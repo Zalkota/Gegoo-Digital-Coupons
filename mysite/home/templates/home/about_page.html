@@ -1,0 +1,108 @@
+{% extends "base-alt.html" %}
+{% load static wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+
+    <!-- Start Services Section -->
+    <div class="container" style="margin-top: 120px; ">
+        <div class="row">
+            <div class="col-lg-12 text-left px-5 my-1">
+                <h1 class="text-dark ">{{ page.header|richtext }}</h1>
+                <hr>
+                <p>{{ page.body|richtext }}</p>
+                <section id="card-view">
+                  <video  style="display: block; margin: 0 auto; margin-top: 3rem;" width="80%" height="80%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ page.video_thumbnail }}">
+                      <source src="{{ page.video_url }}" type="video/mp4">Sorry, your browser doesn't support embedded videos.
+                  </video>
+      				 </section>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid section-alt" id="events" style="">
+            <div class="container text-white">
+                <div class="row">
+                    <div class="col-lg-9 text-left px-5 my-5">
+                        <h2 class="">{{ page.header_two|richtext }}</h2>
+                        <hr style="background-color: #fff;">
+                        <p>{{ page.body_two|richtext }}</p>
+                    </div>
+                    <div class="col-lg-3 col-md-12 img-responsive-sm text-center">
+                      <img src="{% static 'img/undraw_basketball_agx4 (3).svg' %}" class="pt-5" alt="">
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div class="container section">
+            <div class="row">
+              <div class="col-lg-9 text-left px-5">
+                  <h2 class="">{{ page.header_three|richtext }}</h2>
+                  <hr>
+                  <p>{{ page.body_three|richtext }}</p>
+              </div>
+              <div class="col-lg-3 col-md-12  img-responsive-sm text-center">
+                <img src="{% static 'img/undraw_reading_list_4boi.svg' %}" class="pt-5" alt="">
+              </div>
+              </div>
+          </div>
+          <div class="container-fluid section-alt2" id="events" style="">
+              <div class="container text-white">
+                  <div class="row">
+                      <div class="col-lg-9 text-left px-5 my-5">
+                          <h2 >{{ page.header_four|richtext }}</h2>
+                          <hr style="background-color: #fff;">
+                          <p>{{ page.body_four|richtext }}</p>
+                          <a class="btn btn-light shadow mt-3" href="{% url 'memberships:select' %}">View Memberships</button></a>
+                          <a class="btn btn-light shadow mt-3 ml-2 px-4" href="{% url 'portal:course_list' %}">View Courses</button></a>
+                      </div>
+                      <div class="col-lg-3 col-md-12 img-responsive-sm text-center">
+                        <img src="{% static 'img/undraw_youtube_tutorial_2gn3 (1).svg' %}" class="pt-5 " alt="">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="container section">
+              <div class="row">
+                  <div class="col-lg-9 text-left px-5">
+                      <h2 class="">{{ page.header_five|richtext }}</h2>
+                      <hr>
+                      <p>{{ page.body_five|richtext }}</p>
+                      <a class="btn btn-success shadow mt-3" href="{% url 'memberships:select' %}">View Events</button></a>
+                  </div>
+                  <div class="col-lg-3 col-md-12 img-responsive-sm text-center">
+                    <img src="{% static 'img/undraw_goal_0v5v.svg' %}" class="pt-5 " alt="">
+                  </div>
+              </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 text-center mb-5 px-5" >
+                <h2 class="mb-5">Our Partners</h2>
+                <div class="row">
+            {% for item in page.gallery_images.all %}
+                 <div class=" col-xl-4 float-center img-center img-responsive">
+                     {% image item.image original %}
+                     <p>{{ item.caption }}</p>
+                 </div>
+            {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+      <div class="container-fluid" style="padding-top: 7px; background-image: linear-gradient(45deg, #2ac399, #3a75c1);"></div>
+
+
+
+
+      <!-- End Services Section -->
+
+
+
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% load static %}
+{% load wagtailcore_tags %}
+
+<!-- Generic Navigation !-->
+
+
+    <nav class=" navbar navbar-default fixed-top navbar-expand-lg" id="mynav">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <span class="mt-4"> Mod Technologies</span>
+        </a>
+
+        <div class="collapse navbar-collapse hide" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto" id="example-one">
+                <li class="nav-item  mx-4">
+                  <a class="nav-link" href="{% slugurl 'projects' %}" id="">Projects</a>
+                </li>
+                <li class="nav-item  mx-4">
+                  <a class="nav-link" href="{% url 'memberships:select' %}" id="">Pricing</a>
+                </li>
+                <li class="nav-item  mx-4">
+                  <a class="nav-link" href="{% slugurl 'contact' %}" id="">Contact</a>
+                </li>
+              {% if not request.user.is_authenticated %}
+                <li class="nav-item  ml-4 mr-5">
+                  <a class="nav-link btn btn-outline-navbar px-3 mr-2" href="{% url 'account_login' %}" id="">Sign In</a>
+                </li>
+              {% else %}
+              <li class="nav-item dropdown mr-5" style="z-index: 500;">
+                <a class="text-nowrap btn btn-outline-navbar px-3" id="messagesDropdown" style="font-weight: 500; font-size: 0.8rem;" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                account
+                </a>
+                  <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
+                    <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'userPage' %}">
+                      Profile
+                    </a>
+                    {% if request.user.is_superuser %}
+                    <a class="dropdown-item" href="{% url 'memberships:admin_panel' %}">
+                      Admin Panel
+                    </a>
+                    {% endif %}
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'account_logout' %}">
+                      Logout
+                  </a>
+                </div>
+              </li>
+              {% endif %}
+            </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+<!-- Custom Navigation 100 !-->
+
+<div class="navigation unhide">
+    <input type="checkbox" class="navigation__checkbox" style="display: none;" id="navi-toggle">
+    <label for="navi-toggle" class="navigation__button">
+        <span class="navigation__icon">&nbsp;</span>
+    </label>
+    <div class="navigation__background">&nbsp;</div>
+    <nav class="navigation__nav">
+        <ul class="navigation__list">
+          <li class="navigation__item"><a href="{% slugurl 'home' %}" class="navigation__link" style="">Home</a></li>
+          <li class="navigation__item"><a href="{% slugurl 'projects' %}" class="navigation__link" style="">Projects</a></li>
+          <li class="navigation__item"><a href="{% url 'memberships:select' %}" class="navigation__link" style="">Pricing</a></li>
+          <li class="navigation__item"><a href="{% slugurl 'contact' %}" class="navigation__link" style="">Contact</a></li>
+          {% if not request.user.is_authenticated %}
+          <li class="navigation__item"><a href="{% url 'account_login' %}" class="navigation__link" style="">Sign In</a></li>
+          {% else %}
+          <li class="navigation__item"><a href="{% url 'userPage' %}" class="navigation__link" style="">Profile</a></li>
+          {% if request.user.is_superuser %}
+          <li class="navigation__item"><a href="{% url 'memberships:admin_panel' %}" class="navigation__link" style="">Admin Panel</a></li>
+          {% endif %}
+          <li class="navigation__item"><a href="{% url 'account_logout' %}" class="navigation__link" style="">Log Out</a></li>
+          {% endif %}
+        </ul>
+    </nav>
+</div>

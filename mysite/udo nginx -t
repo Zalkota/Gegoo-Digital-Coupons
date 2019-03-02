@@ -1,0 +1,20 @@
+[0;1;32m●[0m gunicorn.service - Gunicorn daemon
+   Loaded: loaded (/etc/systemd/system/gunicorn.service; enabled; vendor preset: enabled)
+   Active: [0;1;32mactive (running)[0m since Sat 2018-09-15 18:43:06 UTC; 1 day 3h ago
+ Main PID: 1479 (gunicorn)
+   CGroup: /system.slice/gunicorn.service
+           ├─1479 /home/projects/stemletics/stemletics/env/bin/python3 /home/projects/stemletics/stemletics/env/bin/gunicorn --workers 3 --bind unix:/home/projects/stemletics/stemletics/mysite/mysite.sock mysite.wsgi:application
+           ├─1629 /home/projects/stemletics/stemletics/env/bin/python3 /home/projects/stemletics/stemletics/env/bin/gunicorn --workers 3 --bind unix:/home/projects/stemletics/stemletics/mysite/mysite.sock mysite.wsgi:application
+           ├─1630 /home/projects/stemletics/stemletics/env/bin/python3 /home/projects/stemletics/stemletics/env/bin/gunicorn --workers 3 --bind unix:/home/projects/stemletics/stemletics/mysite/mysite.sock mysite.wsgi:application
+           └─1631 /home/projects/stemletics/stemletics/env/bin/python3 /home/projects/stemletics/stemletics/env/bin/gunicorn --workers 3 --bind unix:/home/projects/stemletics/stemletics/mysite/mysite.sock mysite.wsgi:application
+
+Sep 16 22:21:20 django-manaland gunicorn[1479]:     return strfunc(str(pathobj), *args)
+Sep 16 22:21:20 django-manaland gunicorn[1479]: FileNotFoundError: [Errno 2] No such file or directory: '/home/projects/stemletics/stemletics/env/lib/python3.5/site-packages/django/views/templates/technical_500.html'
+Sep 16 22:21:20 django-manaland gunicorn[1479]: During handling of the above exception, another exception occurred:
+Sep 16 22:21:20 django-manaland gunicorn[1479]: Traceback (most recent call last):
+Sep 16 22:21:20 django-manaland gunicorn[1479]:   File "/home/projects/stemletics/stemletics/env/lib/python3.5/site-packages/django/core/handlers/exception.py", line 35, in inner
+Sep 16 22:21:20 django-manaland gunicorn[1479]:   File "/home/projects/stemletics/stemletics/env/lib/python3.5/site-packages/django/utils/deprecation.py", line 95, in __call__
+Sep 16 22:21:20 django-manaland gunicorn[1479]:   File "/home/projects/stemletics/stemletics/env/lib/python3.5/site-packages/django/core/handlers/exception.py", line 37, in inner
+Sep 16 22:21:20 django-manaland gunicorn[1479]:   File "/home/projects/stemletics/stemletics/env/lib/python3.5/site-packages/django/core/handlers/exception.py", line 87, in response_for_exception
+Sep 16 22:21:20 django-manaland gunicorn[1479]:   File "/home/projects/stemletics/stemletics/env/lib/python3.5/site-packages/django/core/handlers/exception.py", line 122, in handle_uncaught_exception
+Sep 16 22:23:13 django-manaland systemd[1]: Started Gunicorn daemon.

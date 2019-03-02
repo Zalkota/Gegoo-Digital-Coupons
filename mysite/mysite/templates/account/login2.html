@@ -1,0 +1,89 @@
+{% extends "account/base-alt.html" %}
+{% load i18n %}
+{% load static wagtailuserbar %}
+{% load account socialaccount %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Login" %}{% endblock %}
+
+{% block content %}
+<style>
+a {
+  color:#3a75c1;
+}
+
+body {
+  background-image: linear-gradient(45deg, #2ac399, #3a75c1);
+
+}
+h3 {
+   width: 100%;
+   text-align: center;
+   border-bottom: 1px solid #ccc;
+   line-height: 0.4em;
+   margin: 10px 0 24px;
+}
+
+h3 span {
+    background:#fafafa;
+    padding:0 10px;
+    margin-bottom: 3px;
+}
+
+.shadow-background {
+  background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.12) !important;
+}
+</style>
+<div class="container-fluid pt-3 shadow-background" style="background-color: #3f3f3;">
+  <div class="text-center"><img class="mb-3" src="{% static 'img/stemlogo2.png' %}" width="58px" height="52px" alt="Card image"></div>
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
+        <div class="border mb-5 p-4" style="border-radius: .2rem; margin-left: 6rem; margin-right: 6rem;">
+
+        <h2 class="mt-1 mb-2">{% trans "Sign In" %}</h2>
+
+        {% get_providers as socialaccount_providers %}
+
+        {% if socialaccount_providers %}
+        <p class="text-center">{% blocktrans with site.name as site_name %}Please sign in with one
+          of your existing third party accounts. Or, <a href="">sign up</a>
+          for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+          <div class="socialaccount_ballot">
+
+            <ul class="socialaccount_providers">
+              {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+            </ul>
+
+            <div class="login-or">{% trans 'or' %}</div>
+
+          </div>
+
+          {% include "socialaccount/snippets/login_extra.html" %}
+
+          {% else %}
+
+          {% endif %}
+            <form class="login" method="POST" action="{% url 'account_login' %}">
+              {% csrf_token %}
+              {{ form|crispy }}
+            {% if redirect_field_value %}
+              <input  type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+
+              <button class="primaryAction btn btn-primary shadow  mt-2" style="width: 100%;" type="submit">{% trans "Sign In" %}</button>
+            </form>
+            <div class="mt-4">
+              <h3><span class="text-muted" style="font-size: 15px;">New to Stemletics?</span></h3>
+              <a class="btn btn-secondary shadow " style="width: 100%;"  href="{{ signup_url }}">Create your Stemletics Account</a>
+            </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+<div class="text-center mt-2"><a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></div>
+
+
+  {% endblock content %}

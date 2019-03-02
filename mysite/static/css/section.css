@@ -1,0 +1,95 @@
+/* Sections */
+
+
+    .section-md-secondary {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+      color: #fff;
+      background-color: #505763;
+      text-align: center;
+    }
+    .section-lg-secondary {
+
+      color: #fff;
+      background-color: #29303B;
+      text-align: center;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    .section-sm-secondary {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+      color: #fff;
+      background-color: #505763;
+    }
+    .section-jumbo-secondary .text-box {
+
+      color: #fff;
+      text-align: left;
+    }
+
+    .section {
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+
+    .section-alt {
+      padding-top: 22rem;
+      padding-bottom: 12rem;
+      background-color: #d7e8ff;
+      clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+;
+    }
+
+    .section-alt-2 {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+      background-image: linear-gradient(45deg, #5b00fa, #3b8dff, #26c281);
+
+    }
+
+    .section-alt-3 {
+      margin-top: 7rem;
+      margin-bottom: 7rem;
+      padding-top: 8rem;
+      padding-bottom: 10rem;
+      color: #fff;
+      background-attachment: fixed;
+      background-color: #e7f1ff;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url(/static/img/background_picture3.jpg);
+
+    ;
+    }
+
+    .section-card-parent {
+      position: relative;
+    }
+    .section-card-overlay-top {
+      padding-top: 7rem;
+      padding-bottom: 16rem;
+      background-color: #ebf3ff;
+      z-index: 1;
+    }
+
+
+    .section-card-overlay-bottom {
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+      background-color: #fafafa;
+    }
+
+    .card-overlayed {
+      z-index: 2;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+    }

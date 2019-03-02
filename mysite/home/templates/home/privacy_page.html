@@ -1,0 +1,24 @@
+{% extends "base-alt.html" %}
+{% load static wagtailcore_tags widget_tweaks wagtailuserbar %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+
+
+
+
+    <!-- Start Services Section -->
+    <div class="container pt-5">
+      <div class="card my-5">
+        <div class="card-body">
+          <h2> {{ page.header|richtext }} </h2>
+          <hr <hr class="mb-5">
+          {{ page.content|richtext }}
+
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,56 @@
+
+  /*      HERO       */
+
+    .hero {
+        /* Sizing */
+        height: 75vh;
+        /* Flexbox stuff */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        /* Text styles */
+        text-align: center;
+
+        /* Background styles */
+        background-image: url(/static/img/background_waves_6.svg);
+        /* background-image: linear-gradient(45deg, #5b00fa, #3a75c1, #26c281); */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+
+    }
+
+    .hero .text {
+      position: absolute;
+      margin-left: auto;
+      top: 17%;
+      max-width: 60rem;
+      animation: moveInTop 1.5s;
+      animation-fill-mode: forwards
+    }
+
+    .hero h1 {
+        /* Text styles */
+        font-size: 2.5em;
+        color: white;
+        /* Margins */
+        opacity: .95;
+        margin-top: 0;
+        margin-bottom: 0.5em;
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    .hero p {
+        /* Text styles */
+        font-size: 1em;
+
+        color: white;
+
+        /* Margins */
+        margin-top: 0;
+        margin-bottom: 2em;
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }

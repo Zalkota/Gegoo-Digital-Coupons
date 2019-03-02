@@ -1,0 +1,108 @@
+
+@media screen and (min-width: 992px) {
+.hero-300 {
+    /* Sizing */
+
+    height: 100vh;
+      background-color: #e1e1e1;
+
+
+    /* Flexbox stuff */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Text styles */
+    text-align: center;
+
+    /* Background styles */
+    position: relative;
+    background-size: cover;  /* take width of view port, fits element inside of box */
+    background-position: center;  /* hero always sticks to the top when resized. */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+}
+.hero-300 .text {
+  position: absolute;
+  left: 14%;
+  top: 28%;
+  animation: moveInTop 1.5s;
+  animation-fill-mode: forwards;
+}
+.hero-300 h1 {
+    /* Text styles */
+    font-size: 3.5em;
+    color: white;
+    /* Margins */
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+.hero-300 p {
+    /* Text styles */
+    font-size: 1.25em;
+    line-height: 0;
+    color: white;
+
+
+    /* Margins */
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
+.hero-300 img {
+    /* Text styles */
+    font-size: 1.25em;
+    position: absolute;
+    left: 16.5%;
+    top: 30%;
+    color: white;
+    /* Margins */
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
+@media screen and (max-width: 992px) {
+  .hero-300 {
+      /* Sizing */
+
+      height: 100vh;
+
+      background-color: #fff;
+      background-image:  #fff !important;
+
+      /* Flexbox stuff */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      /* Text styles */
+      text-align: center;
+
+      /* Background styles */
+      position: relative;
+      background-size: cover;  /* take width of view port, fits element inside of box */
+      background-position: center;  /* hero always sticks to the top when resized. */
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+
+  }
+  .hide {
+
+    display: none;
+
+  }
+
+}
+
+@media screen and (min-width: 992px) {
+  .unhide {
+    display: none;
+  }
+
+}
+
+.unhide {
+
+}

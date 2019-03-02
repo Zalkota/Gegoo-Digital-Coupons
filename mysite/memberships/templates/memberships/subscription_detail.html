@@ -1,0 +1,73 @@
+{% extends "base-alt.html" %}
+{% load staticfiles %}
+
+{% block title %} Subscription Detail {% endblock title %}
+{% block extra_head %}{% endblock extra_head %}
+<!-- TODO: Add a alert message if trailer is overdue -->
+
+{% block content %}
+<div class="py-5"></div>
+<div class="container">
+  <div class="container h100">
+    <div class="card">
+      <div class="card-header px-4">
+        <h3 class="mt-2">Subscription Details</h3>
+        <p class="text-muted mt-3">Subscription ID: {{ subscription.id }}</p>
+        <p class="text-muted mt-3">Stripe ID: {{ subscription.stripe_subscription_id }}</p>
+      </div>
+      <div class="card-body table-responsive">
+        <table class="table table-hover text-center">
+          <thead >
+            <tr>
+              <th scope="col"><span class="text-primary pull-left">DATE</span></th>
+              <th scope="col" class="text-primary pull-left">CUSTOMER NAME</th>
+              <th scope="col"><span class="text-primary pull-left">SUBSCRIPTION</span></th>
+              <th scope="col"><span class="text-primary pull-left">ACTIVE</span></th>
+              <th scope="col"><span class="text-primary pull-left">ORDER TOTAL</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for tr in subscription.subscription_transaction.all %}
+                <tr class="text-left">
+                  <td  class="text-dark ">{{ tr.timestamp }}</td>
+                  <td class="text-dark">{{ tr.user }}</td>
+                  <td  class="text-dark ">{{ subscription.user_membership.membership }}</td>
+                  <td  class="text-dark ">{{ subscription.active }}</td>
+                  <td  class="text-dark">$ {{ tr.amount }}</td>
+                </tr>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="py-4"></div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Subscription Options</h3>
+      </div>
+        <div class="card-body py-0 pb-4">
+          <div class="row">
+            <div class="col-lg-6 text-center pt-5 pb-3 px-5" style="padding-right:20px; border-right: 1px solid #e5e5e5;">
+              <h1><i class="fa fa-2x fa-envelope-o text-success" aria-hidden="true"></i></h1>
+              <a href="{% url 'portal:contact_form' subscription.user_membership.user.email subscription.user_membership.user %}" class="btn btn-light box-shadow shadow px-4 mt-5">
+                Contact Customer
+              </a>
+            </div>
+            <div class="col-lg-6 text-center pt-5 pb-3 px-5">
+              <h1><i class="fa  fa-2x fa-times text-danger" aria-hidden="true"></i></h1>
+              <a href="{% url 'memberships:cancelAdmin' subscription.stripe_subscription_id subscription.user_membership.user %}" class="btn btn-light box-shadow px-4 mt-5">Cancel Subscription</a>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="py-4"></div>
+    <a class="btn btn-primary bg-primary shadow pr-4 pl-3" role="button" href="{% url 'memberships:subscription_list' %}"><i class="fa fa-chevron-left mr-2" aria-hidden="true"></i> All subscriptions</a>
+  </div>
+</div>
+<div class="py-5"></div>
+
+
+{% endblock content %}

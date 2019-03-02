@@ -1,0 +1,203 @@
+{% extends 'base-alt.html' %}
+{% load static wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %} Stemletics Video Course List {% endblock %}
+
+{% block extra_css %}
+<style>
+
+body {
+  background-color: #e2e7ee; #f3f6fa
+}
+
+
+input,
+button,
+select,
+optgroup,
+textarea {
+   }
+
+button,
+input {
+   }
+
+
+  input[type="radio"],
+  input[type="checkbox"] {
+   }
+
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"],
+  input[type="month"] {
+   }
+
+</style>
+{% endblock extra_css %}
+
+{% block content %}
+
+<section class="hero-200" style="background-image: url(/static/img/stemletics_hero.jpg); height: 60vh; background-attachment: scroll;">
+ <div class="hero-inner ">
+   <div class="text moveInTop">
+     <h1>Courses</h1>
+     <p>Continous improvement for your child</p>
+	 </div>
+</section>
+
+<div class="py-3"></div>
+
+<section>
+	<div class="container">
+      <div class="row mb-3" style="z-index: 2;">
+    	    <div class="col-lg-4 col-md-12 hide">
+              <h4>
+                  <span class="text-muted">Student Courses</span>
+              </h4>
+          </div>
+          <div class="col-lg-8 col-md-12 pt-5" style="z-index: 2; height: 20px" style="box-sizing: content-box; ">
+                  <div class="search-box" style="z-index: 2; ">
+                    {% csrf_token %}
+                      <input type="text" class="search-text" style="" id="search" name="search" placeholder="Search for Courses"/>
+                          <a href="#" class="search-btn" style="text-decoration: none;">
+                            <i class="fa fa-search " style="padding-top: 0.6em;"></i>
+                          </a>
+                  </div>
+          </div>
+      </div>
+    <div class="row" id="search-results">
+
+   </div>
+   <hr>
+	  <div class="row">
+			{% for object in paid_list %}
+	    <div class="col-lg-3 col-md-6 mb-5 hide">
+	        <div class="card card-effects" style="width: 100%; border: 0;">
+    	        <a href="{{ object.get_absolute_url }}" class="card-full-link"  style="text-decoration: none;">
+        	        <img class="" src="{{ object.image_url }}" style="width:100%;" alt="Card image">
+        	        <div class="card-body py-1" style="overflow-y: auto; background-color: #fff;">
+        	          <p class="course-card-title text-dark pt-3">{{ object.title }}</p>
+        	          <p class="course-card-text py-0 ">{{ object.card_description }}</p>
+                    <p>
+                        {% if object.rating_average == None %} <i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i>
+                        {% elif object.rating_average <= 1.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-star text-light fa-lg" aria-hidden="true"></i><i class="fa fa-star text-light fa-lg" aria-hidden="true"></i><i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                        {% elif object.rating_average <= 2.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg " aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                        {% elif object.rating_average <= 3.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                        {% elif object.rating_average <= 4.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                        {% elif object.rating_average <= 5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star  fa-lg star-yellow" aria-hidden="true"></i>
+                        {% endif %}
+                        <span class="text-muted">({% if object.rating_average == None %}0{% else %}{{ object.rating_average }}{% endif %})</span>
+                    </p>
+        	        </div>
+    	        </a>
+	        </div>
+	    </div>
+      <div class="col-sm-12 mini-container unhide">
+          <div class="card-mini">
+              <a href="{{ object.get_absolute_url }}" class="card-full-link"  style="text-decoration: none;">
+                  <img class="" src="{{ object.image_url }}"  style=" max-height: 110px;" alt="Card image">
+              </a>
+          </div>
+          <div class="card-mini">
+              <a href="{{ object.get_absolute_url }}" class="card-full-link"  style="text-decoration: none;">
+                  <div class="title text-dark">{{ object.title }}</div>
+                  <div class="paragraph text-dark">{{ object.card_description }}</div>
+                  <div class="stars">
+                      {% if object.rating_average == None %} <i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i>
+                      {% elif object.rating_average <= 1.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-star text-light fa-lg" aria-hidden="true"></i><i class="fa fa-star text-light fa-lg" aria-hidden="true"></i><i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                      {% elif object.rating_average <= 2.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg " aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                      {% elif object.rating_average <= 3.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                      {% elif object.rating_average <= 4.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                      {% elif object.rating_average <= 5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star  fa-lg star-yellow" aria-hidden="true"></i>
+                      {% endif %}
+                      <span class="text-muted">({% if object.rating_average == None %}0{% else %}{{ object.rating_average }}{% endif %})</span>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <div class="col-sm-12 unhide">
+          <hr>
+      </div>
+			{% endfor %}
+	  </div>
+    <div class="mb-3" id="free"><h4><span class="text-muted">Free Courses</span></h4></div>
+    <hr>
+	  <div class="row" >
+			{% for object in free_list %}
+	    <div class="col-lg-3 mb-5 hide">
+	        <div class="card" style="width: 100%; border: 0; box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);">
+    	        <a href="{{ object.get_absolute_url }}" class="card-full-link"  style="text-decoration: none;">
+        	        <img class="" src="{% static 'img/pic7.png' %}" style="width:100%;" alt="Card image">
+        	        <div class="card-body py-1" style="overflow-y: auto; background-color: #fff;">
+        	          <h5 class="card-text pt-3">{{ object.title }}</h5>
+        	          <p class="card-text text-muted py-0 ">{{ object.card_description }}</p>
+                    <p>
+                        {% if object.rating_average == None %} <i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i>
+                        {% elif object.rating_average <= 1.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-star text-light fa-lg" aria-hidden="true"></i><i class="fa fa-star text-light fa-lg" aria-hidden="true"></i><i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                        {% elif object.rating_average <= 2.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg " aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                        {% elif object.rating_average <= 3.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                        {% elif object.rating_average <= 4.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                        {% elif object.rating_average <= 5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star  fa-lg star-yellow" aria-hidden="true"></i>
+                        {% endif %}
+                        <span class="text-muted">({% if object.rating_average == None %}0{% else %}{{ object.rating_average }}{% endif %})</span><span class="pull-right text-muted"><i class="fa fa-unlock" aria-hidden="true"></i></span>
+                    </p>
+        	        </div>
+    	        </a>
+	        </div>
+	    </div>
+      <div class="col-sm-12 mini-container unhide">
+          <div class="card-mini">
+              <a href="{{ object.get_absolute_url }}" class="card-full-link"  style="text-decoration: none;">
+                  <img class="" src="{{ object.image_url }}"  style=" max-height: 110px;" alt="Card image">
+              </a>
+          </div>
+          <div class="card-mini">
+              <a href="{{ object.get_absolute_url }}" class="card-full-link"  style="text-decoration: none;">
+                  <div class="title text-dark">{{ object.title }} <i class="fa text-success fa-unlock ml-2" aria-hidden="true"></i></div>
+                  <div class="paragraph text-dark">{{ object.card_description }}</div>
+                  <div class="stars">
+                      {% if object.rating_average == None %} <i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i>
+                      {% elif object.rating_average <= 1.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i><i class="fa fa-lg fa-star text-light" aria-hidden="true"></i><i class="fa fa-star text-light fa-lg" aria-hidden="true"></i><i class="fa fa-star text-light fa-lg" aria-hidden="true"></i><i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                      {% elif object.rating_average <= 2.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg " aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                      {% elif object.rating_average <= 3.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                      {% elif object.rating_average <= 4.5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star text-light fa-lg" aria-hidden="true"></i>
+                      {% elif object.rating_average <= 5 %} <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star fa-lg star-yellow" aria-hidden="true"></i> <i class="fa fa-star  fa-lg star-yellow" aria-hidden="true"></i>
+                      {% endif %}
+                      <span class="text-muted">({% if object.rating_average == None %}0{% else %}{{ object.rating_average }}{% endif %})</span>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <div class="col-sm-12 unhide">
+          <hr>
+      </div>
+			{% endfor %}
+	  </div>
+	</div>
+</section>
+
+<div class="py-4"></div>
+<div class="py-4"></div>
+<div class="py-4"></div>
+
+<section>
+	<div class="container-fluid" style="padding-top: 7px; background-image: linear-gradient(45deg, #2ac399, #3a75c1);"></div>
+	<div class="container-fluid section-md-secondary">
+		<h1>Enter the Court today!</h1>
+		<br>
+		<p>Purchase a membership today and jumpstart your future.</p>
+		<br>
+		<p><a class="btn btn-light shadow px-4" role="button" href="{% url 'memberships:select' %}">Memberships</a></p>
+	</div>
+</section>
+
+
+{% endblock %}
+
+
+{% block script  %}
+<!-- Search Functionality !--->
+<script src="{% static 'js/ajax.js' %}"></script>
+{% endblock script  %}

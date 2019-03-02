@@ -1,0 +1,50 @@
+
+/*      HERO       */
+  .hero {
+      /* Sizing */
+
+      height: 100vh;
+
+      /* Flexbox stuff */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      /* Text styles */
+      text-align: center;
+
+      /* Background styles */
+      background-image: url(/static/img/hero3.jpg);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+  }
+
+  .hero h1 {
+      /* Text styles */
+      font-size: 3.5em;
+
+      color: white;
+
+      /* Margins */
+      margin-top: 0;
+      margin-bottom: 0.5em;
+  }
+  .hero p {
+      /* Text styles */
+      font-size: 1.25em;
+
+      color: white;
+
+      /* Margins */
+      margin-top: 0;
+      margin-bottom: 2em;
+  }
+
+
+  .badge {
+    position: relative;
+    margin-left: 90%;
+    margin-bottom: 0%;
+  }

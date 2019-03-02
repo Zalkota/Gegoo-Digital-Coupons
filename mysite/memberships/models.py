@@ -1,0 +1,140 @@
+from django.conf import settings
+from django.db import models
+from django.db.models.signals import post_save
+import uuid
+from datetime import datetime
+import stripe
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+
+class Invoice(models.Model):
+	slug = models.SlugField()
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="invoice")
+	invoice_id = models.CharField(max_length=36, unique=True, default=uuid.uuid4, primary_key=True, editable=False)
+	payed = models.BooleanField(default=False, help_text="Has the customer payed?")
+	description = models.CharField(max_length=255, default="add description")
+	price = models.DecimalField(max_digits=6, decimal_places=2)
+	tax = models.DecimalField(null=True, max_digits=6, decimal_places=2)
+	image = models.ImageField(null=True)
+
+	#def get_total(self):
+    #    return sum([item.product.price for item in self.tax])
+
+	def get_total(self):
+		return self.tax + self.price
+		total = property(get_total)
+
+	def stripe_total(self):
+		return (self.tax + self.price) * 100
+		total = property(stripe_total)
+
+	def __str__(self):
+		return self.description
+
+	@property
+	def all_benefits(self):
+		return self.benefit.all()
+
+class Benefit(models.Model):
+	name = models.CharField(max_length=36)
+
+	def __str__(self):
+		return self.name
+
+class Membership(models.Model):
+	MEMBERSHIP_CHOICES = (
+	('Website Hosting', 'Website Hosting'),
+	('PPC Advertising', 'PPC Advertising'),
+	('Digital Marketing', 'Digital Marketing')
+	)
+	slug = models.SlugField()
+	membership_type = models.CharField(
+			choices=MEMBERSHIP_CHOICES,
+			default='Website Hosting',
+			max_length=30)
+	benefit = models.ManyToManyField(Benefit)
+	special = models.BooleanField(default=False)
+	description = models.CharField(max_length=255, default="add description")
+	price = models.DecimalField(max_digits=6, decimal_places=2)
+	tax = models.DecimalField(null=True, max_digits=6, decimal_places=2)
+	stripe_plan_id = models.CharField(max_length=40)
+	image = models.ImageField(null=True)
+
+	#def get_total(self):
+    #    return sum([item.product.price for item in self.tax])
+
+	def get_total(self):
+		return self.tax + self.price
+		total = property(get_total)
+
+	def stripe_total(self):
+		return (self.tax + self.price) * 100
+		total = property(stripe_total)
+
+	def __str__(self):
+		return self.membership_type
+
+	@property
+	def all_benefits(self):
+		return self.benefit.all()
+
+
+class UserMembership(models.Model):
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="user_membership")
+	stripe_customer_id = models.CharField(max_length=40)
+	membership = models.ForeignKey(Membership, on_delete=models.SET_NULL, null=True, blank=True)
+
+	def __str__(self):
+		return self.user.username
+
+def post_save_usermembership_create(sender, instance, created, *args, **kwargs):
+
+	#Creates a userMembership
+	if created:
+		UserMembership.objects.get_or_create(user=instance)
+
+	user_membership, created = UserMembership.objects.get_or_create(user=instance)
+
+	#Creates Stripe ID for user
+	if user_membership.stripe_customer_id is None or user_membership.stripe_customer_id == '':
+		new_customer_id = stripe.Customer.create(email=instance.email)
+		user_membership.stripe_customer_id = new_customer_id['id']
+		user_membership.save()
+
+post_save.connect(post_save_usermembership_create, sender=settings.AUTH_USER_MODEL)
+
+
+class Subscription(models.Model):
+	id = models.CharField(max_length=36, unique=True, default=uuid.uuid4, primary_key=True, editable=False)
+	user_membership = models.OneToOneField(UserMembership, on_delete=models.CASCADE)
+	stripe_subscription_id = models.CharField(max_length=40)
+	active = models.BooleanField(default=True)
+
+	def __str__(self):
+		return self.user_membership.user.username
+
+	@property
+	def get_created_date(self):
+		subscription = stripe.Subscription.retrieve(self.stripe_subscription_id)
+		return datetime.fromtimestamp(subscription.created)
+
+	@property
+	def get_next_billing_date(self):
+		subscription = stripe.Subscription.retrieve(self.stripe_subscription_id)
+		return datetime.fromtimestamp(subscription.current_period_end)
+
+
+class Transaction(models.Model):
+	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="user_transaction")
+	order_id = models.CharField(max_length=36, unique=True, default=uuid.uuid4, primary_key=True, editable=False)
+	subscription = models.ForeignKey(Subscription, on_delete=models.SET_NULL, null=True, blank=True, related_name="subscription_transaction")
+	amount = models.DecimalField(max_digits=6, decimal_places=2)
+	tax = models.DecimalField(null=True, max_digits=6, decimal_places=2)
+	success = models.BooleanField(default=True)
+	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+	def __str__(self):
+		return '%s (%s)' % (self.order_id, self.user)
+
+	class Meta:
+		ordering = ['-timestamp']

@@ -1,0 +1,123 @@
+{% extends "base-video.html" %}
+{% load static wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %} {{ object.title }} Lesson Page from {{ object.course.title }} Course {% endblock %}
+
+{% block post_detail_link %}
+<li>{{ object.title }}</li>
+{% endblock %}
+
+
+
+{% block content %}
+	<body ng-app="app">
+		<div class="loader">
+			<img src="{% static 'img/loading.gif' %}" alt="loading">
+
+			<h3 class="text-muted mx-3"></h3>
+		</div>
+
+		<section class='global-wrapper' ng-controller="ctrl">
+			<div class="dash">
+					<div class="dash-nav dash-nav-dark">
+							<header>
+									<a href="#!" class="menu-toggle">
+											<i class="fas fa-bars"></i>
+									</a>
+									<a href="{% slugurl 'home' %}">
+										<img class="" src="{% static 'img/stemlogo2.png' %}" width="44px" height="38px" alt="Card image">
+									</a>
+							</header>
+							<nav class="dash-nav-list">
+									<a href="{% url 'portal:course_detail' object.course.slug %}" style="margin: auto;">
+											{{ object.course.title }}
+									</a>
+									<div class="dash-nav-dropdown">
+											<a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
+													<i class="material-icons text-left">play_circle_outline</i> Lessons </a>
+											<div class="dash-nav-dropdown-menu">
+												{% for object in lesson_list %}
+														<a href="{{ object.get_absolute_url }}" class="dash-nav-dropdown-item" style="text-decoration: none;">
+																{{ object.title }}
+														</a>
+												{% endfor %}
+											</div>
+									</div>
+							</nav>
+					</div>
+					<div class="dash-app">
+							<header class="dash-toolbar">
+									<a href="#!" class="menu-toggle">
+											<i class="fas fa-bars"></i>
+									</a>
+									<div class="tools">
+											<div class="dropdown tools-item">
+													<a href="#" class="" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+															<i class="fas fa-user"></i>
+													</a>
+													<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+															<a class="dropdown-item" href="{% url 'userPage' %}">Profile</a>
+															<a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+													</div>
+											</div>
+									</div>
+							</header>
+					</div>
+					<main id="" class="dash-content" style="background-color: #e9ebf4;">
+						<div class="py-5"></div>
+						<div>
+								<video  style="display: block; margin: auto; margin-top: 3rem;" width="70%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ object.course.image_url }}">
+				    				<source src="{{ object.video_url }}" type="video/mp4">Sorry, your browser doesn't support embedded videos.
+								</video>
+								<div class="text-center my-4" style="width: 80%; margin: auto; display: block;">
+										<div class="row">
+											<div class="col-xl-3 col-lg-6 "><a  href="{% url 'portal:previous_lesson' object.course.slug object.ordering_id %}" class="btn btn-xl btn-light box-shadow"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous Lesson</a></div>
+											<div class="col-xl-3 col-lg-6 order-xl-1 order-2"><a  href="{% url 'portal:course_list' %}" class="btn btn-xl btn-light box-shadow"><i class="fa fa-download mr-2" aria-hidden="true"></i> Lesson PDF</a></div>
+											<div class="col-xl-3 col-lg-6 order-xl-1  order-2"><a  href="{% url 'portal:course_list' %}" class="btn btn-xl btn-light box-shadow"><i class="fa fa-download mr-2" aria-hidden="true"></i> Powerpoint</a></div>
+											<div class="col-xl-3 col-lg-6 order-xl-2 order-1"><a  href="{% url 'portal:next_lesson' object.course.slug object.ordering_id %}" class="btn btn-xl btn-light box-shadow">Next Lesson <i class="fa fa-arrow-right" aria-hidden="true"></i></a></div>
+										</div>
+								</div>
+						</div>
+								<div class="py-5"></div>
+								<div class="py-5"></div>
+								<div class="container text-dark">
+										<h1>Welcome to {{ object.title }}</h1>
+										<hr>
+										<p>{{ object.description }}</p>
+										<div class="py-4"></div>
+										<p>{{ object.detailed_description }}</p>
+								</div>
+						</div>
+						<div class="py-5"></div>
+					</main>
+			</div>
+		</section>
+	</body>
+{% endblock %}
+
+
+{% block jquery %}
+			$(".dash-nav-dropdown-toggle").click(function(){
+			        $(this).closest(".dash-nav-dropdown")
+			            .toggleClass("show")
+			            .find(".dash-nav-dropdown")
+			            .removeClass("show");
+
+			        $(this).parent()
+			            .siblings()
+			            .removeClass("show");
+			    });
+
+			    $(".menu-toggle").click(function(){
+			        if (mobileBreakpoint.matches) {
+			            $(".dash-nav").toggleClass("mobile-show");
+			        } else {
+			            $(".dash").toggleClass("dash-compact");
+			        }
+			    });
+
+			    $(".searchbox-toggle").click(function(){
+			        $(".searchbox").toggleClass("show");
+			    });
+{% endblock jquery %}

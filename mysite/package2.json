@@ -1,0 +1,19 @@
+
+
+{
+  "name": "mcmanus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "css": "node-sass mysite/static/sass/_base.scss -o mysite/static/css/ ",
+    "css:watch": "npm run css && node-sass mysite/static/sass/_base.scss -wo dist"
+  },
+
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "node-sass": "^3.4.2"
+  }
+}

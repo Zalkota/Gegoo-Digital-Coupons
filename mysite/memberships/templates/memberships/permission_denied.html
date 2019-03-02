@@ -1,0 +1,16 @@
+{% extends 'base-alt.html' %}
+{% load static wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block title %} PERMISSION DENIED {% endblock title %}
+{% block content %}
+<div class="container" style="height: 100vh;">
+  <div class="jumbotron text-center" style="top: 15%; position: relative; background-color: #fafafa;">
+
+    <h1>You do not have permission to view this page.</h1>
+
+    <div class="text-center">
+    <a class="btn btn-primary bg-danger shadow mt-5 mx-2" style="padding-left: 3.5rem; padding-right: 3.5rem;" role="button" href="{% slugurl 'home' %}">Home</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

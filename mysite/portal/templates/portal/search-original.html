@@ -1,0 +1,19 @@
+
+{% load static %}
+
+{% if course.count > 0 %}
+  {% for object in course %}
+
+
+      <li class="" style="z-index: 2">
+        <a  href="{{ object.get_absolute_url }}" class="text-white">
+          <p class="ml-3">{{ object.title }} {{ object.rating_average }} <br>
+        </a>
+      </li>
+
+
+  {% endfor %}
+{% elif course.count == 0 %}
+<li><p class="pb-3 pt-3 mb-0 ml-3  search">Sorry, no results were found. <br>Trying typing in a course title</p></li>
+
+{% endif %}

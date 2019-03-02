@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% extends "base-alt.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-projectpage{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="py-5"></div>
+    <div class="py-5"></div>
+    <div class="py-5"></div>
+        <div class="" style="max-width: 570px;">
+            <h1 style="font-size: 65px; font-weight: 600;">{{ page.header|richtext }}</h1>
+            <h3 class="py-1 pb-3" style="font-size: 28.5px; font-weight: 500;">{{ page.intro|richtext }}</h3>
+            <p class="font-weight: 500;">{{ page.work_done }}</p>
+        </div>
+      <div class="py-5"></div>
+      <div class="py-5"></div>
+  <section>
+      <div>
+          <div class="card card-effects" style="position: relative; box-shadow: none;">
+              <img src="{{ page.image_url_1 }}" style="width:100%;" alt="Project image">
+          </div>
+      </div>
+      <div class="py-5"></div>
+      <div class="pt-5 pb-3">
+          <h3 class="py-1" style="font-size: 28.5px; font-weight: 500;">{{ page.title_1|richtext }}</h3>
+          <p class="font-weight: 500;">{{ page.body_1|richtext }}</p>
+      </div>
+  </section>
+  <section>
+    <div>
+        <div class="card card-effects" style="position: relative; box-shadow: none;">
+            <img src="{{ page.image_url_2 }}" style="width:100%;" alt="Project image">
+        </div>
+    </div>
+    <div class="py-5"></div>
+    <div class="pt-5 pb-3">
+        <h3 class="py-1" style="font-size: 28.5px; font-weight: 500;">{{ page.title_2|richtext }}</h3>
+        <p class="font-weight: 500;">{{ page.body_2|richtext }}</p>
+    </div>
+  </section>
+  <section>
+    <div>
+        <div class="card card-effects" style="position: relative; box-shadow: none;">
+            <img src="{{ page.image_url_3 }}" style="width:100%;" alt="Project image">
+        </div>
+    </div>
+    <div class="py-5"></div>
+    <div class="pt-5 pb-3">
+        <h3 class="py-1" style="font-size: 28.5px; font-weight: 500;">{{ page.title_3|richtext }}</h3>
+        <p class="font-weight: 500;">{{ page.body_3|richtext }}</p>
+    </div>
+  </section>
+    <div class="uniform-buttom-spacing-parent">
+      <div class="button-uniform"><a class="btn btn-primary bg-primary" role="button" href="{{ page.get_parent.url }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Previous</a></div>
+      <div class="button-uniform"><a class="btn btn-primary bg-primary" role="button" href="{{ page.get_parent.url }}">All Projects</a></div>
+      <div class="button-uniform"><a class="btn btn-primary bg-primary" role="button" href="{{ page.get_parent.url }}">Next <i class="fa fa-arrow-right" aria-hidden="true"></i></a></div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load static %}
+{% load wagtailcore_tags %}
+
+<!-- Footer section -->
+
+<footer  style="background-color:#232323;padding-top:2%;">
+  <div class="container pb-5">
+    <div class="row ">
+      <!--Column1-->
+      <div class="col-md-3 col-sm-6 mt-3">
+        <div class="footer-pad">
+          <h6 style="color:#dfe0e1;"> <img class="" src="{% static 'img/stemlogo2.png' %}" width="32px" height="26px" alt="Card image"> Stemletics </h6>
+          <p class="font-footer" style="margin-top: 1.5em;">
+           STEMLETICS is a dynamic company that combines two totally different subjects into one awesome program. We use sports as a vehicle to teach students about STEM concepts.
+          </p>
+        </div>
+      </div>
+      <!--Column1-->
+      <div class="col-md-3 col-sm-6 mt-3">
+        <div class="footer-pad">
+          <h6 style="color:#dfe0e1;">FOLLOW US</h6>
+          <hr class="hr-footer-md">
+          <span class="font-footer">
+          <a href="https://www.instagram.com/stemletics/?hl=en" style="color: #dfe0e1;">Instagram<i class="fa fa2 fa-angle-right pull-right"></i></a>
+          <hr class="hr-footer-sm">
+          <a href="https://www.instagram.com/stemletics/?hl=en" style="color: #dfe0e1;">Facebook<i class="fa fa2 fa-angle-right pull-right"></i></a>
+          <hr class="hr-footer-sm">
+          <a href="https://www.eventbrite.com/o/stemletics-17444659772" style="color: #dfe0e1;">EventBrite<i class="fa fa2 fa-angle-right pull-right"></i></a>
+        </span>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 mt-3">
+        <div class="footer-pad">
+          <h6 style="color:#dfe0e1;">USEFUL LINKS</h6>
+          <hr class="hr-footer-md">
+          <span class="font-footer">
+            <a href="{% slugurl 'about' %}" style="color: #dfe0e1;">About<i class="fa fa2 fa-angle-right pull-right"></i></a>
+            <hr class="hr-footer-sm">
+            <a href="{% slugurl 'recruitment' %}" style="color: #dfe0e1;">Jobs <i class="fa fa2 fa-angle-right pull-right"></i></a>
+            <hr class="hr-footer-sm">
+            <a href="{% slugurl 'contact' %}" style="color: #dfe0e1;">Contact Us <i class="fa fa2 fa-angle-right pull-right"></i></a>
+          </span>
+        </div>
+      </div>
+      <!--Column1-->
+      <div class="col-md-3 col-sm-6 mt-3">
+        <div class="footer-pad map-background">
+          <h6 style="color:#dfe0e1;">CONTACT US</h6>
+          <hr class="hr-footer-md">
+          <span class="font-footer">
+          123 University Dr, Flint <br>
+          Michigan, US<br>
+          Phone: 248 755-3703<br>
+          Email: Hello@Stemletics.com<br>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </footer>
+<!-- Footer bottom-->
+<div style="background-color:#1f1f1f;" class="pt-3">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-9 ">
+          <span class="font-footer pull-left text-white mt-2"><p>2018 &copy; All Rights Reserved.  <a href="{% slugurl 'privacy-page' %}" style="color:#2ecc71;">Privary Policy</a> |  <a href="{% slugurl 'terms-page' %}" style="color:#2ecc71;">Terms of Use</a> | <a href="https://www.modtechnologies.io" style="color:#2ecc71;">ModWebSerices</a>
+            </p></span>
+        </div>
+        <div class="col-md-3 pull-right">
+          <ul class="pull-right" style="list-style-type: none;">
+            <li style="display: inline; margin: 4px;"><a href="https://www.instagram.com/stemletics/?hl=en"><i class="fa fa1 fa-facebook" aria-hidden="true"></i></a>
+            <li style="display: inline; margin: 4px;"><a href="https://www.instagram.com/stemletics/?hl=en"><i class="fa fa1 fa-linkedin" aria-hidden="true"></i></a>
+            <li style="display: inline; margin: 4px;"><a href="https://www.instagram.com/stemletics/?hl=en"><i class="fa fa1 fa-instagram" aria-hidden="true"></i></a>
+          </ul>
+        </div>
+      </div>
+    </div>
+<!-- Footer section  ends -->

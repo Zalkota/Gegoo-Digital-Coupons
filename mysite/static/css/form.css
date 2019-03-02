@@ -1,0 +1,67 @@
+/*       CONTACT PAGE AND FORM        */
+
+
+
+
+.form-control, .custom-file-control,
+.is-focused .form-control,
+.is-focused .custom-file-control {
+  background-image: linear-gradient(to top, #3a75c1 2px, rgba(63, 81, 181, 0) 2px), linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px); }
+
+.form-control:valid, .custom-file-control:valid {
+
+    color: #3a3a3a !important;
+}
+.form-control, .custom-file-control, .is-focused .form-control, .is-focused .custom-file-control {
+    background-image: linear-gradient(to top, #3a75c1 2px, rgba(63, 81, 181, 0) 2px), linear-gradient(to top, #c6c7c8 1px, transparent 1px);
+}
+.form-control::placeholder, .custom-file-control::placeholder {
+  color: #c6c7c8;
+  opacity: 1; }
+
+
+.form-control .custom-file-control{
+color: #3a3a3a;
+
+}
+
+.form-control:invalid {
+color: #ff7f7f;
+
+}
+
+.form-control:focus, .custom-file-control:focus{
+color: #3a3a3a;
+
+}
+.form-control:invalid, .custom-file-control:invalid {
+    background-image: linear-gradient(to top, #3a75c1 2px, rgba(213, 0, 0, 0) 2px), linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px);
+}
+
+.form-control:valid, .custom-file-control:valid {
+
+    color: #3a3a3a !important;
+  }
+
+.form-control::placeholder, .custom-file-control::placeholder {
+  color: #c6c7c8;
+  opacity: 1; }
+
+
+.contactinfo {
+  background-image: linear-gradient(25deg, #2ac399, #3a75c1);
+  color: #fff;
+}
+.btn-contact {
+background-image: linear-gradient(25deg, #2ac399, #3a75c1);
+color: white;
+}
+.btn-contact:hover {
+background-image: linear-gradient(25deg, #2ac399, #3a75c1);
+color: #555;
+}
+.gradienttext {
+  background: linear-gradient(2deg, #2ac399, #3a75c1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

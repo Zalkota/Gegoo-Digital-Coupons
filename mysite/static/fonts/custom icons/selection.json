@@ -1,0 +1,102 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M1244.68 306.4l-557.88-171.4c-30.4-9.34-63.2-9.34-93.58 0l-557.9 171.4c-47.080 14.46-47.080 76.72 0 91.18l97.26 29.88c-21.34 26.38-34.46 58.56-35.76 93.8-19.26 11.040-32.82 30.96-32.82 54.74 0 21.56 11.36 39.7 27.72 51.3l-51.060 229.76c-4.44 19.98 10.76 38.94 31.22 38.94h112.22c20.48 0 35.68-18.96 31.24-38.94l-51.060-229.76c16.36-11.6 27.72-29.74 27.72-51.3 0-23.14-12.94-42.5-31.32-53.74 1.52-30.040 16.88-56.6 41.38-73.44l391.14 120.18c18.12 5.56 52.88 12.5 93.58 0l557.9-171.4c47.1-14.48 47.1-76.72 0-91.2zM705.58 630.18c-57.060 17.52-105.68 7.84-131.18 0l-290.040-89.1-28.36 226.92c0 70.7 171.92 128 384 128s384-57.3 384-128l-28.36-226.94-290.060 89.12z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "width": 1280,
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "graduation-cap-solid"
+        ]
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 18,
+        "id": 16,
+        "name": "graduation-cap-solid",
+        "prevSize": 32,
+        "code": 59648
+      },
+      "setIdx": 0,
+      "setId": 2,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
+          "M424.6 20.6c-87.6 12.6-172.4 48.2-244.4 107.6l154.8 154.8c55.6-71.6 86.6-162.4 89.6-262.4zM496 444l315.8-315.8c-84.8-70-187.2-107-291-112.2-2.4 127.8-43 244.6-117.4 335.4l92.6 92.6zM112.2 196.2c-59.4 72-95 156.8-107.6 244.4 100-3 191-34 262.4-89.6l-154.8-154.8zM656.6 604.6c90.6-74.2 207.4-114.8 335.4-117.4-5.2-103.8-42.2-206.2-112.2-291l-315.8 315.8 92.6 92.6zM496 580l-315.8 315.8c84.8 69.8 187.2 107 291 112.2 2.6-128 43.2-244.8 117.4-335.4l-92.6-92.6zM879.8 827.8c59.4-72 95-156.8 107.6-244.4-100.2 3.2-191 34.2-262.4 89.6l154.8 154.8zM335.4 419.4c-90.8 74.4-207.6 115.2-335.4 117.4 5.2 103.8 42.2 206.2 112.2 291l315.8-315.8-92.6-92.6zM567.4 1003.4c87.6-12.6 172.4-48.2 244.4-107.6l-154.8-154.8c-55.4 71.4-86.4 162.4-89.6 262.4z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "width": 992,
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "basketball-ball-solid"
+        ]
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 17,
+        "id": 15,
+        "name": "basketball-ball-solid",
+        "prevSize": 32,
+        "code": 59649
+      },
+      "setIdx": 0,
+      "setId": 2,
+      "iconIdx": 1
+    }
+  ],
+  "height": 1024,
+  "metadata": {
+    "name": "icomoon"
+  },
+  "preferences": {
+    "showGlyphs": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "icon-",
+      "metadata": {
+        "fontFamily": "icomoon"
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false,
+      "autoHost": true
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": true,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215,
+      "classSelector": ".icon"
+    },
+    "historySize": 50,
+    "showCodes": true,
+    "gridSize": 16,
+    "quickUsageToken": {
+      "UntitledProject": "ZjI3NzUzMDEzOGYwMzc5YmIwM2FhNTFlMGUzM2VmMzMjMSMxNTM1MjU2OTc5IyMj"
+    }
+  }
+}
