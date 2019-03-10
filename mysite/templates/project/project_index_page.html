@@ -1,0 +1,37 @@
+{% extends "base-alt.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-projectindexpage{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="py-5"></div>
+  <div class="py-5"></div>
+  <div class="py-5 hide"></div>
+          <div class="projectform " style="max-width: 570px;">
+              <h1 style="font-size: 65px; font-weight: 600;">{{ page.header|richtext }}</h1>
+              <h3 class="py-1" style="font-size: 28.5px; font-weight: 500;">{{ page.intro|richtext }}</h3>
+              <p class="font-weight: 500;">{{ page.body|richtext }}</p>
+              <a href="{% slugurl 'contact' %}" class="btn btn-primary-round mt-3 px-5">Start a Project</a>
+          </div>
+    <div class="py-5"></div>
+    <div class="py-5"></div>
+    <div class="row">
+    {% for post in page.get_children %}
+        <div class="col-lg-6">
+            <div class="card card-effects mb-3" style="position: relative; box-shadow: none;">
+              <a class="card-full-link" role="button" href="{% pageurl post %}">
+              <img src="{{ post.specific.image_url_1 }}" style="width:100%;" alt="Card image">
+                    <div class="card-body" style="position: absolute; z-index: 99; top: 5%; left: 5%;">
+                        <h2 style="font-weight: 500; color: #fff;">{{ post.title }}</h2>
+                        <p style="font-weight: 400; color: #fff;">{{ post.specific.work_done }}</p> <br>
+
+                </div>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

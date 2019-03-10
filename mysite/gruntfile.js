@@ -15,7 +15,7 @@ module.exports = function (grunt) {
 
     return {
       app: this.app,
-      templates: this.app + '/portal/templates',
+      templates: this.app + '/templates',
       css: this.app + '/static/css',
       sass: this.app + '/static/sass',
       fonts: this.app + '/static/fonts',
@@ -67,42 +67,42 @@ module.exports = function (grunt) {
               '<%= paths.css %>/test.css': '<%= paths.sass %>/_base.scss'
           },
       },
-//      dist: {
-//          options: {
-//              outputStyle: 'compressed',
-//              sourceMap: false,
-//              precision: 10
-//          },
-//          files: {
-//              '<%= paths.css %>/test.css': '<%= paths.sass %>/_base.scss'
-//          },
-//      }
-//    },
+      dist: {
+          options: {
+              outputStyle: 'compressed',
+              sourceMap: false,
+              precision: 10
+          },
+          files: {
+            //  '<%= paths.css %>/test.css': '<%= paths.sass %>/_base.scss'
+          },
+      }
+    },
 
     //see https://github.com/nDmitry/grunt-postcss
-//    postcss: {
-//      options: {
-//        map: true, // inline sourcemaps
-//
-//        processors: [
-//          require('pixrem')(), // add fallbacks for rem units
-//          require('autoprefixer')({browsers: [
-//            'Android 2.3',
-//            'Android >= 4',
-//            'Chrome >= 20',
-//            'Firefox >= 24',
-//            'Explorer >= 8',
-//            'iOS >= 6',
-//            'Opera >= 12',
-//            'Safari >= 6'
-//          ]}), // add vendor prefixes
-//          require('cssnano')() // minify the result
-//        ]
-//      },
-//      dist: {
-//        src: '<%= paths.css %>/*.css'
-//      }
-//    },
+    postcss: {
+      options: {
+        map: true, // inline sourcemaps
+
+        processors: [
+          require('pixrem')(), // add fallbacks for rem units
+          require('autoprefixer')({browsers: [
+            'Android 2.3',
+            'Android >= 4',
+            'Chrome >= 20',
+            'Firefox >= 24',
+            'Explorer >= 8',
+            'iOS >= 6',
+            'Opera >= 12',
+            'Safari >= 6'
+          ]}), // add vendor prefixes
+          require('cssnano')() // minify the result
+        ]
+      },
+      dist: {
+        src: '<%= paths.css %>/*.css'
+      }
+    },
 
     // see: https://npmjs.org/package/grunt-bg-shell
     bgShell: {
@@ -123,8 +123,8 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'sass:dist',
-    'postcss'
+    'sass:dist'
+    //'postcss'
   ]);
 
   grunt.registerTask('default', [

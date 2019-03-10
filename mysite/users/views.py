@@ -28,6 +28,7 @@ def userPage(request):
     model = User
     user = request.user
 
+
     if request.method == 'POST':
         selected_invoice_id = request.POST.get('invoice_id') #Obtains the membrship data from form POST
         selected_invoice_qs = Invoice.objects.filter(

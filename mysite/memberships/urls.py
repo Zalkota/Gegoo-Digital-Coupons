@@ -3,6 +3,8 @@ from django.urls import path
 from .views import (
 	MembershipSelectView,
 	InvoicePaymentView,
+	updateTransactionRecordsInvoice,
+	download_invoice_pdf,
 	PaymentView,
 	success,
 	updateTransactionRecords,
@@ -27,10 +29,13 @@ app_name = 'memberships'
 urlpatterns = [
 	# Invoice
 	path('invoice-payment/', InvoicePaymentView, name='invoice_payment'),
+	path('update-transactions-invoice/<transaction_info>/', updateTransactionRecordsInvoice, name='update_transactions_invoice'),
+	path('<invoice_id>/pdf/', download_invoice_pdf, name="invoice_pdf"),
+
     path('', MembershipSelectView.as_view(), name='select'),
     path('payment/', PaymentView, name='payment'),
 	path('success/', success, name='purchase_success'),
-    path('update-transactions/<subscription_id>/', updateTransactionRecords, name='update-transactions'),
+    path('update-transactions/<subscription_id>/', updateTransactionRecords, name='update_transactions'),
     path('subscription/', user_subscriptions_view, name='user_subscription'),
     path('cancel/', cancelSubscription, name='cancel'),
 	path('cancelAdmin/<stripe_subscription_id>/<user>/', cancelSubscriptionAdmin, name='cancelAdmin'),

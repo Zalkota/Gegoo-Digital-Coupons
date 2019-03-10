@@ -1,0 +1,19 @@
+{% extends 'base-minimal.html' %}
+{% load static wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block title %} Payment Successful | Thank you | Stemletics LLC{% endblock title %}
+
+{% block content %}
+<div class="container mobile-margin" style="height: 100vh; min-height: 850px;">
+    <div class="jumbotron text-center" style=" position: relative; background-color: #fafafa;">
+        <div class="text-center img-responsive-md">
+          <img src="{% static 'img/undraw_order_confirmed_1m3v.svg' %}" alt="">
+          <h3>Your purchase was successful.</span></h3>
+          <p class="text-muted">An email with your transaction information.</p>
+        </div>
+        <div class="text-center">
+            <a class="btn btn-xl btn-success-round " role="button" href="{% url 'userPage' %}">Go To Profile</a>
+        </div>
+  </div>
+</div>
+{% endblock content %}

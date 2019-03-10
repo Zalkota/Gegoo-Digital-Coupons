@@ -6,34 +6,79 @@ from datetime import datetime
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+class Discount(models.Model):
+	name = models.CharField(max_length=80)
+	percentage = models.DecimalField(max_digits=6, decimal_places=2)
+
+	def get_percentage(self):
+		return self.percentage * 100
+		total = property(get_percentage)
+
+	def __str__(self):
+		return '%s (%s)' % (self.name, self.percentage)
+
+class Charge(models.Model):
+	description = models.CharField(max_length=80)
+	hours = models.DecimalField(max_digits=6, decimal_places=2)
+	rate = models.DecimalField(max_digits=6, decimal_places=2)
+
+	def get_total(self):
+		return self.hours * self.rate
+		total = property(get_total)
+
+	def __str__(self):
+		return '%s' % (self.description)
 
 class Invoice(models.Model):
+
 	slug = models.SlugField()
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="invoice")
 	invoice_id = models.CharField(max_length=36, unique=True, default=uuid.uuid4, primary_key=True, editable=False)
 	payed = models.BooleanField(default=False, help_text="Has the customer payed?")
 	description = models.CharField(max_length=255, default="add description")
-	price = models.DecimalField(max_digits=6, decimal_places=2)
+	amount = models.DecimalField(max_digits=6, decimal_places=2)
 	tax = models.DecimalField(null=True, max_digits=6, decimal_places=2)
-	image = models.ImageField(null=True)
-
-	#def get_total(self):
-    #    return sum([item.product.price for item in self.tax])
-
-	def get_total(self):
-		return self.tax + self.price
-		total = property(get_total)
-
-	def stripe_total(self):
-		return (self.tax + self.price) * 100
-		total = property(stripe_total)
+	issue_date = models.DateField(auto_now_add=True, auto_now=False, null=True)
+	due_date = models.DateField(auto_now_add=False, auto_now=False, null=True)
+	discount = models.ForeignKey(Discount, on_delete=models.CASCADE, related_name="discount_invoice", null=True)
+	charge = models.ManyToManyField(Charge)
 
 	def __str__(self):
 		return self.description
 
+	class Meta:
+		ordering = ('-issue_date', 'due_date')
+		verbose_name = "Invoice"
+		verbose_name_plural = "Invoices"
+
+	#def get_total(self):
+    #    return sum([item.product.price for item in self.tax])
+
+	# Factories
+
+    # Mutators
+
+    # Queries
+
+    # Properties
+
 	@property
-	def all_benefits(self):
-		return self.benefit.all()
+	def get_total(self):
+		return self.tax + self.amount
+		total = property(get_total)
+
+	@property
+	def stripe_total(self):
+		return (self.tax + self.amount) * 100
+		total = property(stripe_total)
+
+	@property
+	def all_charges(self):
+		return self.charge.all()
+
+
+
+
 
 class Benefit(models.Model):
 	name = models.CharField(max_length=36)
@@ -128,6 +173,7 @@ class Transaction(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="user_transaction")
 	order_id = models.CharField(max_length=36, unique=True, default=uuid.uuid4, primary_key=True, editable=False)
 	subscription = models.ForeignKey(Subscription, on_delete=models.SET_NULL, null=True, blank=True, related_name="subscription_transaction")
+	invoice_id = models.CharField(max_length=36, null=True, blank=True)
 	amount = models.DecimalField(max_digits=6, decimal_places=2)
 	tax = models.DecimalField(null=True, max_digits=6, decimal_places=2)
 	success = models.BooleanField(default=True)

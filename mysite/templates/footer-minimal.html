@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+{% load wagtailcore_tags %}
+
+<footer >
+    <div class="py-5"></div><div class="py-5"></div><div class="py-5"></div>
+    <div class="container-fluid">
+        <div class="container ">
+            <div class="row text-center">
+                <div class="offset-md-2"></div>
+                <div class="col-md-2 col-sm-12 mb-4">
+                    <a style="line-height: 2rem;" href="#">About us</a>
+                </div>
+                <div class="col-md-2 col-sm-12 mb-4">
+                    <a style="line-height: 2rem;" href="{% slugurl 'terms-page' %}">Terms of Use</a>
+                </div>
+                <div class="col-md-2 col-sm-12 mb-4">
+                    <a style="line-height: 2rem;" href="{% slugurl 'privacy-page' %}">Privacy Policy</a>
+                </div>
+                <div class="col-md-2 col-sm-12 mb-4">
+                    <a style="line-height: 2rem;" href="{% slugurl 'contact' %}"> &copy; 2019 Mod</a>
+                </div>
+                <div class="offset-md-2"></div>
+            </div>
+      </div>
+</footer>

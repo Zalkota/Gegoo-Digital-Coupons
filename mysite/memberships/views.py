@@ -21,7 +21,15 @@ from django.template.loader import render_to_string
 #SuperUser Mixin
 from braces import views
 
+#Payment
 import stripe
+
+#PDF
+from xhtml2pdf import pisa
+from django.http import HttpResponse, HttpResponseServerError
+from django.utils.text import slugify
+# from django.template.loader import render_to_string
+# from django.shortcuts import render, redirect, get_object_or_404
 
 
 def user_subscriptions_view(request):
@@ -121,6 +129,7 @@ def InvoicePaymentView(request):
 	publishKey = settings.STRIPE_PUBLISHABLE_KEY
 
 	customer_id = request.user.user_stripe.stripe_id
+
 	if request.method == 'POST':
 		token = request.POST['stripeToken']
 		# Token is created using Checkout or Elements!
@@ -129,24 +138,98 @@ def InvoicePaymentView(request):
 			customer = stripe.Customer.retrieve(customer_id)  # Creditcard info is linked with customer
 			customer.sources.create(source=token)
 			charge = stripe.Charge.create(
-			amount=selected_invoice.price,
+			amount=100,
 			currency='usd',
 			customer = customer,
-			description='Example charge',
+			description='Invoice Charge',
 			)
 
-			return redirect(reverse('user_profile',
-			))
+			return redirect(reverse('memberships:update_transactions_invoice',
+			kwargs={
+				'transaction_info': selected_invoice.invoice_id
+			}))
+
 
 		except stripe.CardError as e:
 			messages.info(request, "Your card has been declined")
 
+
 	context = {
 	'publishKey': publishKey,
-	'selected_invoice': selected_invoice
+	'invoice': selected_invoice
 	}
 
 	return render(request, "memberships/invoice_payment.html", context)
+
+@login_required()
+def updateTransactionRecordsInvoice(request, transaction_info):
+
+	selected_invoice = get_selected_invoice(request)
+
+	selected_invoice.payed = True
+	selected_invoice.save()
+
+	# Grab User
+	#user_profile = get_object_or_404(Profile, user=request.user)
+	# create a transaction
+	transaction = Transaction(user=request.user,
+							subscription=None,
+							invoice_id=transaction_info,
+							amount=selected_invoice.amount,
+							tax=selected_invoice.tax,
+							success=True)
+	# save the transcation (otherwise doesn't exist)
+	transaction.save()
+
+	try:
+		del request.session['selected_invoice_id']
+	except:
+		pass
+
+	#messages.success(request, 'Successfully purchased {} membership'.format(selected_membership))
+	messages.success(request, "Payment Successful")
+	return redirect(reverse('userPage'))
+
+
+def link_callback(uri, rel):
+	# convert URIs to absolute system paths
+	if uri.startswith(settings.MEDIA_ROOT):
+		path = os.path.join(settings.MEDIA_ROOT,
+							uri.replace(settings.MEDIA_URL, ""))
+	elif uri.startswith(settings.STATIC_URL):
+		path = os.path.join(settings.STATIC_ROOT,
+							uri.replace(settings.STATIC_URL, ""))
+	else:
+		# handle absoluteuri (ie: http://my.tld/a.png)
+		return path
+
+	# make sure that the file exists
+	if not os.path.isfile(path):
+		raise Exception(
+			"Media URI must start with "
+			'%s' % (settings.STATIC_URL or settings.MEDIA_URL))
+	return path
+
+
+def download_invoice_pdf(request, invoice_id):
+	#Obtain Object Invoice
+	invoice = get_object_or_404(Invoice, pk=invoice_id)
+
+	response = HttpResponse(content_type="application/pdf")
+	response["Content-Disposition"] = \
+		'%s''%s''%s' % ('filename=', slugify(invoice, True), ".pdf")
+
+	html = render_to_string("memberships/pdf/invoice_pdf.html", {"invoice": invoice})
+	status = pisa.CreatePDF(html,
+							dest=response,
+							link_callback=link_callback)
+	if status.err:
+		response = HttpReponseServerError("The PDF could not be generated.")
+
+	return response
+
+
+
 
 @login_required
 def PaymentView(request):
@@ -174,7 +257,7 @@ def PaymentView(request):
 			  source=token # 4242424242424242
 			)
 
-			return redirect(reverse('memberships:update-transactions',
+			return redirect(reverse('memberships:update_transactions',
 				kwargs={
 					'subscription_id': subscription.id
 				}))
@@ -220,7 +303,7 @@ def updateTransactionRecords(request, subscription_id):
 	except:
 		pass
 
-	#messages.success(request, 'Successfully purchased {} membership'.format(selected_membership))
+	messages.success(request, 'Successfully purchased {} membership'.format(selected_membership))
 	return redirect(reverse('memberships:purchase_success'))
 
 
@@ -354,7 +437,7 @@ def refundSubscriptionAdmin(request, stripe_subscription_id, user):
 
 def send_subscription_cancelation_email(emailRecipient, user):
 
-		subject = 'Stemletics Subscription Cancellation Notice'
+		subject = 'Mod Technologies Subscription Cancellation Notice'
 		sender = 'hello@modwebservices.com'
 		receiver = emailRecipient
 		context = ({'email': emailRecipient, 'user': user})
@@ -369,7 +452,7 @@ def send_subscription_cancelation_email(emailRecipient, user):
 
 def send_payment_refund_email(emailRecipient, user, selected_amount):
 	if not settings.DEBUG:
-		subject = 'Stemletics Subscription Notice'
+		subject = 'Mod Technologies Subscription Notice'
 		sender = 'hello@modwebservices.com'
 		receiver = emailRecipient
 		context = ({'email': emailRecipient, 'user': user})
@@ -384,7 +467,7 @@ def send_payment_refund_email(emailRecipient, user, selected_amount):
 
 def send_payment_success_email(emailRecipient, user):
 
-	subject = 'Stemletics Subscription Notice'
+	subject = 'Mod Technologies Subscription Notice'
 	sender = 'hello@modwebservices.com'
 	receiver = emailRecipient
 	context = ({'email': emailRecipient, 'user': user})

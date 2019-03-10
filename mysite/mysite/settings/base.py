@@ -66,6 +66,9 @@ INSTALLED_APPS = [
     #Cookies
     'cookielaw',
 
+    #PDF
+    'xhtml2pdf',
+
 
     #Custom Forms with classes
     'widget_tweaks',
@@ -119,9 +122,7 @@ MESSAGE_TAGS = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(PROJECT_DIR, 'templates'),
-        ],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

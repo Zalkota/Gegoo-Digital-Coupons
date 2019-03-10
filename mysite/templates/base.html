@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+{% load static wagtailuserbar %}
+{% load wagtailcore_tags %}
+
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta http-equiv="Expires" content="30">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo_5.svg' %}">
+        <title>
+            {% block title %}
+                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% with self.get_site.site_name as site_name %}
+                    {% if site_name %}- {{ site_name }}{% endif %}
+                {% endwith %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Fonts
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">-->
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font.css' %}" />
+
+        {# Global stylesheets #}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/docs.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/navigation_button.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/button.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/waves.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/section.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/hero.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/cookielaw.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/animation.css' %}">
+  <!--  <link rel="stylesheet" type="text/css" href="{% static 'css/style-alt' %}"
+        <link rel="stylesheet" type="text/css" href="{% static 'css/hero.css' %}"> -->
+        <!-- Material Design for Bootstrap fonts and icons -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Material+Icons">
+<style>
+
+body {
+    margin: 0;
+    font-family: Montserrat, sans-serif !important;
+    background-color: #F6FAFD;
+}
+
+/* #TODO A HEADER FILE NEEDS TO BE CREATED AND THEN PASTED INTO THIS FILE. */
+
+
+
+/*        Custom Icons          */
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url("{% static 'fonts/icomoon.eot' %}");
+  src:  url("{% static 'fonts/icomoon.eot' %}") format('embedded-opentype'),
+    url("{% static 'fonts/icomoon.ttf' %}") format('truetype'),
+    url("{% static 'fonts/icomoon.woff' %}") format('woff'),
+    url("{% static 'fonts/icomoon.svg' %}") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-graduation-cap-solid:before {
+  content: "\e900";
+  color: #ccc;
+  font-size: 60px;
+  margin-bottom: 24px;
+}
+.icon-basketball-ball-solid:before {
+  content: "\e901";
+  color: #ccc;
+  font-size: 60px;
+  margin-bottom: 24px;
+}
+
+.hr-footer {
+ border: 0;
+ clear:both;
+ display:block;
+ width: 98%;
+ background-color:#fff;
+ height: 1px;
+}
+
+
+
+  .phototext {
+    margin-top: 8em;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  }
+
+  .card-nav {
+    width: 100%;
+    color: #3c3c3c;
+    background-color: transparent;
+    background-image: linear-gradient(120deg, #fff 40%, transparent 40%);
+    min-height: 40px;
+  }
+  .top-left {
+      position: absolute;
+    }
+
+  .text-shamrock {
+
+    color: #24a35a;
+
+  }
+
+  .underline {
+      padding-bottom: 2px;
+      border-bottom: #3a75c1 1px solid;
+  }
+
+  .img-responsive img {
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+  }
+
+  .img-center {
+
+    display: block;
+    margin: 0 auto;
+    height: auto;
+  }
+
+/* ##  SERVICES IMAGES ## */
+
+  .img-background1 {
+
+     background-image: url("/static/img/pic1.png");
+     background-color: #fafafa;
+     height: 380px;
+     background-repeat: no-repeat;
+     background-position: center center;
+
+  }
+  .img-background2 {
+
+     background-image: url("/static/img/pic7.png");
+     background-color: #fafafa;
+     height: 380px;
+     background-repeat: no-repeat;
+     background-position: center center;
+
+
+  }
+  .img-background3 {
+
+     background-image: url("/static/img/pic6.png");
+     background-color: #fafafa;
+     height: 380px;
+     background-repeat: no-repeat;
+     background-position: center center;
+
+  }
+
+  /** BACK TO TOP BUTTON **/
+
+
+  #myBtn {
+      display: none; /* Hidden by default */
+      position: fixed; /* Fixed/sticky position */
+      bottom: 20px; /* Place the button at the bottom of the page */
+      right: 30px; /* Place the button 30px from the right */
+      z-index: 99; /* Make sure it does not overlap */
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      outline: none; /* Remove outline */
+      background-color: #3a75c1; /* Set a background color */
+      color: #fff; /* Text color */
+      cursor: pointer; /* Add a mouse pointer on hover */
+      line-height: 16px;
+      padding:11px 15px 18px 15px;
+      font-weight: 400;
+      font-size: 8px;
+      margin-bottom: 4px;
+      cursor: pointer;
+      outline: none;
+      outline-offset: 0;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 50%; /* Rounded corners */
+      font-size: 18px; /* Increase font size */
+      box-shadow: 0 3px 6px rgba(0,0,0,0.22), 0 3px 6px rgba(0,0,0,0.26);
+      opacity: .9;
+      filter: alpha(opacity=70); /* For IE8 and earlier */
+  }
+
+  #myBtn:hover {
+      background-color: #2e5d9a; /* Add a dark-grey background on hover */
+  }
+
+
+  .badge {
+    position: relative;
+    margin-left: 90%;
+    margin-bottom: 0%;
+  }
+
+
+</style>
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+
+        {% block nav %}
+          {% include "navbar.html" %}
+        {% endblock nav %}
+
+        {% if messages %}
+          <div class="container-fluid messages" id="message_container">
+            <div class="col-lg-9"></div>
+            <div class="col-lg-3 moveInTop" style="">
+
+            <ul class="messages alert" style="list-style-type: none;">
+              {% for message in messages %}
+                <li class="card alert {{ message.tags }}" style="display: inline-block">{% if message.tags == 'alert-success' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i> {% elif message.tags == 'alert-info' %}<i class="fa fa-exclamation" aria-hidden="true"></i>{% elif message.tags == 'alert-danger' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i>{% endif %} {{ message }}</li>
+              {% endfor %}
+            </ul>
+
+            </div>
+          </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+
+
+
+        {% block footer %}
+          {% include "footer-ghost.html" %}
+        {% endblock footer %}
+
+        {# Global javascript #}
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+        <!-- <script type="text/javascript" src="{% static 'js/mysite.js' %}"></script> !-->
+        <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+        <script type="text/javascript" src="{% static 'cookielaw/js/cookielaw.js' %}"></script>
+
+        <script src="{% static 'js/docs.min.js' %}"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChmLHKBW5VXZsv5Am2kkAy4HOYqd6vd0k&callback=initMap"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+
+        <!-- Waves Effect !-->
+        <script type="text/javascript" src="{% static 'js/button-wave-effect.js' %}"></script>
+
+
+        <script>
+
+        $(function () {
+          $(document).scroll(function () {
+            var $nav = $(".navbar-default");
+            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
+          });
+        });
+
+        $(function () {
+          $(document).scroll(function () {
+            var $nav = $(".nav-link");
+            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
+          });
+        });
+
+        $(function () {
+          $(document).scroll(function () {
+            var $nav = $(".navbar-brand");
+            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
+          });
+        });
+
+        $(function () {
+          $(document).scroll(function () {
+            var $nav = $(".navbar-toggler");
+            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
+          });
+        });
+
+        $(function () {
+          $(document).scroll(function () {
+            var $nav = $(".btn-outline-navbar");
+            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
+          });
+        });
+
+
+        // BACK TOP TOP FUNCTION When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+              document.getElementById("myBtn").style.display = "block";
+          } else {
+              document.getElementById("myBtn").style.display = "none";
+          }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+
+        // Message container destroy after time period
+        var message_ele = document.getElementById("message_container");
+
+        setTimeout(function(){
+           message_ele.style.display = "none";
+        }, 7000);
+
+        </script>
+        <!-- Start of Async Drift Code -->
+        <script>
+        "use strict";
+
+        !function() {
+          var t = window.driftt = window.drift = window.driftt || [];
+          if (!t.init) {
+            if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+            t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
+            t.factory = function(e) {
+              return function() {
+                var n = Array.prototype.slice.call(arguments);
+                return n.unshift(e), t.push(n), t;
+              };
+            }, t.methods.forEach(function(e) {
+              t[e] = t.factory(e);
+            }), t.load = function(t) {
+              var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+              o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+              var i = document.getElementsByTagName("script")[0];
+              i.parentNode.insertBefore(o, i);
+            };
+          }
+        }();
+        drift.SNIPPET_VERSION = '0.3.1';
+        drift.load('kwrmh6ugxzt5');
+        </script>
+        <!-- End of Async Drift Code -->
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+        {% endblock %}
+
+      <button onclick="topFunction()" id="myBtn" class="" title="Go to top"><i class="fa fa-angle-up"></i><br><span>Top</span></button>
+    </body>
+</html>

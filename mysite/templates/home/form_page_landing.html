@@ -1,0 +1,26 @@
+{% extends "base-minimal.html" %}
+{% load static wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+
+    <div class="container h100" style="margin-top: 10em; ">
+      <div class="row">
+        <div class="offset-md-3 col-lg-6 text-center pull-center">
+          <div class="card">
+            <div class="card-body text-center">
+              <div class="card-title"><i class="material-icons mt-2" style="font-size: 64px;
+          color: #3a75c1;">check_circle_outline</i><h2 class="text-dark mt-2 mb-3">Submitted Successfully</h2>
+        <p class="text-muted">You should hear back from us within 48 hours!</p></div>
+                <p><a class="btn btn-primary mt-2 px-3" role="button" href="{% slugurl 'home' %}">Return to HomePage</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+{% endblock %}
