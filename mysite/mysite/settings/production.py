@@ -6,10 +6,10 @@ DEBUG = False
 # SECURITY ---------------------------------------------------------------------
 
 import os
-SECRET_KEY = os.environ["DJANGO_SECRET_KEY_STEMLETICS"]
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY_MOD"]
 
-ALLOWED_HOSTS = ['www.dommazzola.com', 'dommazzola.com']
-ADMINS = [('Stemletics', 'hello@modwebservices.com')]
+ALLOWED_HOSTS = ['www.modtechnologies.io', 'modtechnologies.io', '104.248.6.5', '127.0.0.1', '0.0.0.0']
+ADMINS = [('ModTechnology', 'hello@modwebservices.com')]
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True

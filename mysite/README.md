@@ -275,7 +275,7 @@ Checklist:
 
 - Setup Recaptcha Settings https://github.com/praekelt/django-recaptcha  https://www.google.com/recaptcha/admin#list
 
-- Update Nginx File
+- Update sites-available Nginx File (sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled)
 
 - Create stemletics/stemletics/mysite/.env file from above for Gunicorn
 
