@@ -193,7 +193,7 @@ GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
 
 
 
-### Accessing Postgres Database Tables ##
+### MODIFY Postgres Database Tables ##
 First you must connect to the database within container:
 sudo su postgres
 psql -h localhost -p 5432
@@ -204,6 +204,9 @@ sudo su postgres
 \dt "lists all tables"
 SELECT * FROM pg_catalog.pg_tables;
 \c vickibot "connects to database vickibot"
+
+\ Delete table
+mod=# DROP TABLE event_eventpage;
 
 example: select * from memberships_usermembership;
 memberships_usermembership = table
@@ -227,9 +230,11 @@ python3 local.py dumpdata --natural-foreign --indent=4 -e contenttypes -e auth.P
 
 ## THIS WORKED ##
 
-LOADING A DATBASE FILE INTO BLANK DATABASE: python3 local.py loaddata db.json
+LOADING A DATBASE FILE INTO BLANK DATABASE:
+python3 local.py loaddata db.json
 
-CREATING A DATABASE FILE FROM EXISTING DATABASE: python3 local.py dumpdata --natural-foreign --indent=4 -e contenttypes -e auth.Permission -e sessions > db.json
+CREATING A DATABASE FILE FROM EXISTING DATABASE:
+python3 local.py dumpdata --natural-foreign --indent=4 -e contenttypes -e auth.Permission -e sessions > db.json
 
 docker-compose -f dev.yml run --rm django python manage.py flush
 
