@@ -124,12 +124,17 @@ EnvironmentFile=/home/sammy/myproject/.env
 [Install]
 WantedBy=multi-user.target
 ''
+# .bashrc
+
+cd to base directory with:
+cd    
+nano .bashrc
 
 ## Create .env below
 
 '' //ENV file #What is this for?? Environment file?
 DEBUG=off
-DJANGO_SECRET_KEY_MCMANUS='#^57b45ap)gvbl@#@f5v1uqbv)1x3na2ct@xe$ql^r_ds#g0ap'
+DJANGO_SECRET_KEY_MCMANUS=''
 DATABASE_URL=psql://urser:un-githubbedpassword@127.0.0.1:8458/database
 CACHE_URL=memcache://127.0.0.1:11211,127.0.0.1:11212,127.0.0.1:11213
 REDIS_URL=rediscache://127.0.0.1:6379/1?client_class=django_redis.client.DefaultClient&password=ungithubbed-secret
@@ -273,8 +278,6 @@ Checklist:
 
 - load data
 
-- Setup Recaptcha Settings https://github.com/praekelt/django-recaptcha  https://www.google.com/recaptcha/admin#list
-
 - Update sites-available Nginx File (sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled)
 
 - Create stemletics/stemletics/mysite/.env file from above for Gunicorn
@@ -288,6 +291,10 @@ Checklist:
   sudo systemctl status gunicorn
 
 - edit WSGI.py file from dev to production
+
+- Set Django ALLOWED_HOSTS in production settings
+
+- Setup Recaptcha Settings https://github.com/praekelt/django-recaptcha  https://www.google.com/recaptcha/admin#list
 
 
 SEO:
