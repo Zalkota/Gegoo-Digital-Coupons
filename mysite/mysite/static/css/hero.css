@@ -24,6 +24,7 @@
           margin-left: auto;
           top: 17%;
           max-width: 60rem;
+
           animation: moveInTop 1.5s;
           animation-fill-mode: forwards
         }
@@ -78,6 +79,7 @@
       max-width: 60rem;
       animation: moveInTop 1.5s;
       animation-fill-mode: forward;
+      padding: 0 2rem 0 2rem;
 
     }
 
