@@ -40,7 +40,7 @@ class Invoice(models.Model):
 	tax = models.DecimalField(null=True, max_digits=6, decimal_places=2)
 	issue_date = models.DateField(auto_now_add=True, auto_now=False, null=True)
 	due_date = models.DateField(auto_now_add=False, auto_now=False, null=True)
-	discount = models.ForeignKey(Discount, on_delete=models.CASCADE, related_name="discount_invoice", null=True)
+	discount = models.ForeignKey(Discount, on_delete=models.CASCADE, related_name="discount_invoice", null=True, blank=True)
 	charge = models.ManyToManyField(Charge)
 
 	def __str__(self):
