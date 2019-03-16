@@ -38,7 +38,7 @@ except ImportError:
     pass
 
 # ReCaptcha https://github.com/praekelt/django-recaptcha
-RECAPTCHA_PUBLIC_KEY = '6LfDKI0UAAAAAGPojMtiBI1wD-2CYTRFKX765uj4'
-RECAPTCHA_PRIVATE_KEY = '6LfDKI0UAAAAADzjHFL5GEL4JTQjL-ZkkJSBu7q6'
+RECAPTCHA_PUBLIC_KEY = '6LdGApgUAAAAADzpwNfGePbYmVrZS-2gCCPQyfs6'
+RECAPTCHA_PRIVATE_KEY = '6LdGApgUAAAAAJWHqK6Sp7KMPjdq_BpI9NXsxKKc'
 
 RECAPTCHA_PROXY = {'http': 'http://127.0.0.1:8000', 'https': 'https://127.0.0.1:8000'}

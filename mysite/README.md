@@ -132,12 +132,15 @@ nano .bashrc
 
 ## Create .env below
 
-'' //ENV file #What is this for?? Environment file?
 DEBUG=off
-DJANGO_SECRET_KEY_MCMANUS=''
+DJANGO_SECRET_KEY=''
 DATABASE_URL=psql://urser:un-githubbedpassword@127.0.0.1:8458/database
 CACHE_URL=memcache://127.0.0.1:11211,127.0.0.1:11212,127.0.0.1:11213
 REDIS_URL=rediscache://127.0.0.1:6379/1?client_class=django_redis.client.DefaultClient&password=ungithubbed-secret
+
+EMAIL_PASSWORD='$Django28'
+RECAPTCHA_PUBLIC_KEY = '' 
+RECAPTCHA_PRIVATE_KEY = ''
 ''
 
 sudo systemctl stop gunicorn
