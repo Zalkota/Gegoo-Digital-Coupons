@@ -237,19 +237,11 @@
     }
 },
 {
-    "model": "sites.site",
-    "pk": 1,
-    "fields": {
-        "domain": "example.com",
-        "name": "example.com"
-    }
-},
-{
     "model": "users.user",
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$100000$HM1YqZRv6CuD$h2TblshzBoQ8ZOkNIJ7Kd2sDmkd/9uHbw+BOwxQpock=",
-        "last_login": "2019-03-09T00:52:36.103Z",
+        "last_login": "2019-03-15T03:22:40.716Z",
         "is_superuser": true,
         "username": "root",
         "first_name": "",

@@ -234,7 +234,21 @@ LOADING A DATBASE FILE INTO BLANK DATABASE:
 python3 local.py loaddata db.json
 
 CREATING A DATABASE FILE FROM EXISTING DATABASE:
-python3 local.py dumpdata --natural-foreign --indent=4 -e contenttypes -e auth.Permission -e sessions > db.json
+python3 local.py dumpdata --natural-foreign --indent=4 -e contenttypes -e auth.Permission -e sessions -e sites > db.json
+
+
+Exclude apps:
+wagtailusers
+wagtailsearch
+wagtailredirects
+wagtailimages
+wagtailforms
+wagtailembeds
+wagtaildocs
+wagtailcore
+wagtailadmin
+
+
 
 docker-compose -f dev.yml run --rm django python manage.py flush
 
