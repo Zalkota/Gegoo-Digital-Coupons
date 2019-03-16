@@ -237,7 +237,8 @@ python3 production.py loaddata db.json
 
 
 CREATING A DATABASE FILE FROM EXISTING DATABASE:
-python3 local.py dumpdata --natural-foreign --indent=4 -e contenttypes -e auth.Permission -e sessions -e sites > db.json
+python3 local.py dumpdata --natural-foreign --indent=4 -e contenttypes -e auth.Permission -e sessions > db.json
+
 
 
 Exclude apps:
