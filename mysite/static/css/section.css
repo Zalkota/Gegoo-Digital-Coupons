@@ -54,7 +54,7 @@
 
     .section-alt-3 {
       margin-top: 7rem;
-      margin-bottom: 7rem;
+      margin-bottom: 0rem;
       padding-top: 8rem;
       padding-bottom: 10rem;
       color: #fff;
@@ -66,6 +66,21 @@
       background-image: url(/static/img/background_picture3.jpg);
 
     ;
+    }
+
+    .section-alt-4 {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+      padding-top: 12rem;
+      padding-bottom: 10rem;
+      background-color: #fff;
+    }
+
+    .section-alt-5 {
+      padding-top: 8rem;
+      padding-bottom: 12rem;
+      background-color: #edf4ff;
+      color: #737373;
     }
 
     .section-card-parent {

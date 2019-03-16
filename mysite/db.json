@@ -3,6 +3,7 @@
 =======
 [
 {
+<<<<<<< HEAD
     "model": "home.formfield",
     "pk": 1,
     "fields": {
@@ -278,6 +279,8 @@
     }
 },
 {
+=======
+>>>>>>> e7bf581693d90241be81886c1b7086c99831d5d8
     "model": "memberships.discount",
     "pk": 1,
     "fields": {
@@ -303,26 +306,7 @@
         "rate": "40.00"
     }
 },
-{
-    "model": "memberships.invoice",
-    "pk": "d499b9b9-28c0-4a42-970c-c06fefe1c12e",
-    "fields": {
-        "slug": "lawn",
-        "user": [
-            "root"
-        ],
-        "payed": false,
-        "description": "Invoice for website",
-        "amount": "100.00",
-        "tax": "0.00",
-        "issue_date": "2019-03-02",
-        "due_date": "2019-03-28",
-        "discount": 1,
-        "charge": [
-            4
-        ]
-    }
-},
+
 {
     "model": "memberships.benefit",
     "pk": 1,
@@ -463,6 +447,7 @@
         ]
     }
 },
+<<<<<<< HEAD
 {
     "model": "memberships.usermembership",
     "pk": 1,
@@ -2448,3 +2433,5 @@
 }
 ]
 >>>>>>> f18bed066d325a1db007b88558d50da505316519
+=======
+>>>>>>> e7bf581693d90241be81886c1b7086c99831d5d8

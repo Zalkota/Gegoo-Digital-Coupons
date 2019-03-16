@@ -4,10 +4,7 @@
     font-weight: 650;
 
 }
-.btn:hover {
-    font-size: 16px;
-    font-weight: 650;
-}
+
 
 
   .btn-action {
@@ -96,6 +93,23 @@
 
   }
 
+  .btn-action-alt:visited {
+    background-image: linear-gradient(180deg, #26c281, #1c8248 95%);
+    color: #e5e5e5;
+    box-shadow: none;
+    padding-left: 1.7rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+
+  }
+
+  .btn-action-alt:active:hover{
+      color: rgba(255, 255, 255, 1);
+      background-color: #1c8248;
+      border-color: #1c8248;
+  }
+
 
 
 
@@ -179,6 +193,12 @@
   padding-bottom: .75rem;
   }
 
+  .btn-success-round:active:hover{
+      color: rgba(255, 255, 255, 1);
+      background-color: #1c8248;
+      border-color: #1c8248;
+  }
+
   .btn-primary-round {
   background: #3A75C1;
   color: #fafafa;
@@ -198,7 +218,7 @@
   padding-right: 5rem;
   padding-top: .75rem;
   padding-bottom: .75rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
   }
 
   .btn-primary-round:active {
@@ -265,4 +285,54 @@
   padding-right: 2rem;
   padding-top: .5rem;
   padding-bottom: .75rem;
+  }
+
+  .btn-secondary-round {
+  background: #6c757d;
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: 30px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .75rem;
+  }
+
+  .btn-secondary-round:hover {
+  background: #6c757d;
+  color: #f3f3f3;
+  border-radius: 30px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .75rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+  }
+
+  .btn-secondary-round:active {
+  background: #6c757d;
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: 30px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .75rem;
+  }
+
+  .btn-secondary-round:focus {
+  background: #6c757d;
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: 30px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .75rem;
+  }
+
+
+
+  .btn-primary:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13) !important;
   }

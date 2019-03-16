@@ -6,9 +6,3 @@ from .models import Course, Lesson, Review
 #@admin.register(Product)
 #class ProductAdmin(admin.ModelAdmin):
 #    pass
-
-
-admin.site.register(Course)
-admin.site.register(Lesson)
-
-admin.site.register(Review)

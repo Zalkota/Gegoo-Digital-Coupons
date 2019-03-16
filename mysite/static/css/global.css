@@ -1,4 +1,6 @@
-
+body h2 {
+  font-size: 1.5rem;
+}
 @media screen and (min-width: 992px) {
   .unhide {
     display: none;
@@ -17,6 +19,48 @@
   }
   .message-resizer {
     width: 25rem;
+  }
+  .column-border {
+    border-right: 1px solid #f1f1f1;
+  }
+  .contactform h1 {
+    font-size: 65px;
+    font-weight: 600;
+  }
+
+  .contactform h2 {
+  font-size: 28.5px;
+  font-weight: 500;
+  }
+
+  .contactform h5 {
+
+  }
+
+  .projectform h1 {
+    font-size: 65px;
+    font-weight: 600;
+  }
+
+  .projectform h2 {
+  font-size: 28.5px;
+  font-weight: 500;
+  }
+
+  .projectform h5 {
+  font-size: 16px;
+  font-weight: 500;
+  }
+
+  .img-responsive-sm img {
+      width: 100%;
+      max-width: 20rem;
+      height: auto;
+  }
+  .img-responsive-md img {
+      width: 100%;
+      max-width: 35rem;
+      height: auto;
   }
 }
 @media screen and (max-width: 1200px) {
@@ -57,9 +101,54 @@
     margin-top: 110px;
     background-color: #fafafa;
     background-repeat: no-repeat;
+    height: 110rem;
   }
+  .contactform h1 {
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .contactform h2 {
+  font-size: 16px;
+  font-weight: 500;
+  }
+
+  .contactform h5 {
+  font-size: 14px;
+  font-weight: 500;
+  }
+
+  .projectform h1 {
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .projectform h2 {
+  font-size: 16px;
+  font-weight: 500;
+  }
+
+  .projectform h5 {
+  font-size: 22px;
+  font-weight: 500;
+  }
+
   .message-resizer {
     width: 15rem;
+  }
+  .column-border {
+    border-right: none;
+  }
+
+  .img-responsive-sm img {
+      width: 100%;
+      max-width: 8rem;
+      height: auto;
+  }
+  .img-responsive-md img {
+      width: 100%;
+      max-width: 20rem;
+      height: auto;
   }
 }
 
@@ -68,6 +157,29 @@
 
 .star-yellow {
   color: #f3c840;
+}
+
+.card-effects {
+  transition: transform 0.25s;
+}
+.card-effects::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+  content: '';
+  opacity: 0;
+  z-index: -1;
+}
+.card-effects:hover::after, .card__one:focus::after {
+  opacity: 1;
+}
+
+.card-shadow {
+  box-shadow: 0 5px 11px rgba(222,222,222,0.08), 0 10px 10px rgba(0,0,0,0.05)
 }
 
 .card-effects {
@@ -118,19 +230,6 @@
 
 }
 
-
-  /*      IMAGES      */
-
-  .img-responsive-sm img {
-      width: 100%;
-      max-width: 13rem;
-      height: auto;
-  }
-  .img-responsive-md img {
-      width: 100%;
-      max-width: 20rem;
-      height: auto;
-  }
 
 
 
@@ -226,7 +325,7 @@
     }
 
     .jumbo-white {
-      font-size: 3rem;
+      font-size: 2.4rem;
       font-weight: 800;
       color: #f1f1f1
     }
@@ -240,8 +339,14 @@
       font-size: 2.4rem;
       font-weight: 800;
       color: #3936d9;
-
     }
+
+    .jumbo-blue {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #3a75c1;
+    }
+
 
 
 
@@ -264,7 +369,7 @@
   .uniform-buttom-spacing-parent {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-flow: flex-start;
     justify-content: space-between;
 
@@ -276,4 +381,41 @@
     padding: .1rem;
     margin: 0;
 
+  }
+
+  .button-uniform-full-width {
+    width:100%;
+    margin-left:0;
+    margin-right:0;
+    padding-left:0;
+    padding-right:0;
+    display:block;
+    text-align:center;
+
+  }
+
+  .invoice {
+    margin-top: 2rem;
+    display: inline;
+    margin: 1.5rem 0 1rem 1rem;
+    width: 100%;
+    font-size: 1.3rem;
+  }
+  .invoice-card {
+    background-color: #2a2a2a;
+    color: #fff;
+    padding: .3rem 1.5rem .3rem 1.5rem;
+    border: 1px solid #2a2a2a;
+    font-weight: 500;
+
+
+
+  }
+  .invoice-card-inverse {
+    padding: .3rem 1rem .3rem 7rem;
+    border: 1px solid #2a2a2a;
+    font-weight: 500;
+    width: 100%;
+    margin: 0;
+    font-size: 24;
   }

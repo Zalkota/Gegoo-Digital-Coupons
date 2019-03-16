@@ -86,6 +86,7 @@
     background-color: #fdfdfe !important;
     transition: background-color 200ms linear;
     color: #424242;
+    z-index:9999;
   }
 
 /* ## NAVBAR BRAND ## */
