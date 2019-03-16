@@ -1,129 +1,5 @@
 [
-{
-    "model": "memberships.discount",
-    "pk": 1,
-    "fields": {
-        "name": "Payment on time",
-        "percentage": "0.10"
-    }
-},
-{
-    "model": "memberships.charge",
-    "pk": 3,
-    "fields": {
-        "description": "Hours Worked",
-        "hours": "10.00",
-        "rate": "40.00"
-    }
-},
-{
-    "model": "memberships.charge",
-    "pk": 4,
-    "fields": {
-        "description": "Web server management",
-        "hours": "10.00",
-        "rate": "40.00"
-    }
-},
 
-{
-    "model": "memberships.benefit",
-    "pk": 1,
-    "fields": {
-        "name": "SSL Certificate"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 2,
-    "fields": {
-        "name": "No cancellation fee"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 3,
-    "fields": {
-        "name": "99% up time"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 4,
-    "fields": {
-        "name": "SHA256 Secured"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 5,
-    "fields": {
-        "name": "100% Neurotic PPC Management"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 6,
-    "fields": {
-        "name": "Increased Customer Base"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 7,
-    "fields": {
-        "name": "Customized Ads"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 8,
-    "fields": {
-        "name": "Targeted Ads"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 9,
-    "fields": {
-        "name": "$150 in ads"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 10,
-    "fields": {
-        "name": "Weekly Facebook Posts"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 11,
-    "fields": {
-        "name": "Weekly Instagram Posts"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 12,
-    "fields": {
-        "name": "Google Adwords"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 13,
-    "fields": {
-        "name": "Instagram Ads"
-    }
-},
-{
-    "model": "memberships.benefit",
-    "pk": 14,
-    "fields": {
-        "name": "Amazon CloudFront"
-    }
-},
 {
     "model": "memberships.membership",
     "pk": 1,
@@ -137,11 +13,7 @@
         "stripe_plan_id": "plan_EaMcS85NzDPndk",
         "image": "basic_logo_aBnjWcS.jpg",
         "benefit": [
-            1,
-            2,
-            3,
-            4,
-            14
+
         ]
     }
 },
@@ -158,11 +30,7 @@
         "stripe_plan_id": "plan_EaMbss5sf6N7u1",
         "image": "basic_logo_addVqdm.jpg",
         "benefit": [
-            5,
-            10,
-            11,
-            12,
-            13
+
         ]
     }
 },
