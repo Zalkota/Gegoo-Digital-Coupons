@@ -1,5 +1,3 @@
-[
-
 
 {
     "model": "memberships.benefit",
@@ -99,4 +97,3 @@
         "name": "Amazon CloudFront"
     }
 },
-]
