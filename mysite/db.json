@@ -1,37 +1,102 @@
 [
 
+
 {
-    "model": "memberships.membership",
+    "model": "memberships.benefit",
     "pk": 1,
     "fields": {
-        "slug": "WebsiteHosting",
-        "membership_type": "Website Hosting",
-        "special": false,
-        "description": "Web server management that you can trust",
-        "price": "20.00",
-        "tax": "0.00",
-        "stripe_plan_id": "plan_EaMcS85NzDPndk",
-        "image": "basic_logo_aBnjWcS.jpg",
-        "benefit": [
-
-        ]
+        "name": "SSL Certificate"
     }
 },
 {
-    "model": "memberships.membership",
+    "model": "memberships.benefit",
+    "pk": 2,
+    "fields": {
+        "name": "No cancellation fee"
+    }
+},
+{
+    "model": "memberships.benefit",
     "pk": 3,
     "fields": {
-        "slug": "digital-marketing",
-        "membership_type": "Digital Marketing",
-        "special": false,
-        "description": "Enhance your digital footprint with our suite of services",
-        "price": "199.00",
-        "tax": "0.00",
-        "stripe_plan_id": "plan_EaMbss5sf6N7u1",
-        "image": "basic_logo_addVqdm.jpg",
-        "benefit": [
-
-        ]
+        "name": "99% up time"
+    }
+},
+{
+    "model": "memberships.benefit",
+    "pk": 4,
+    "fields": {
+        "name": "SHA256 Secured"
+    }
+},
+{
+    "model": "memberships.benefit",
+    "pk": 5,
+    "fields": {
+        "name": "100% Neurotic PPC Management"
+    }
+},
+{
+    "model": "memberships.benefit",
+    "pk": 6,
+    "fields": {
+        "name": "Increased Customer Base"
+    }
+},
+{
+    "model": "memberships.benefit",
+    "pk": 7,
+    "fields": {
+        "name": "Customized Ads"
+    }
+},
+{
+    "model": "memberships.benefit",
+    "pk": 8,
+    "fields": {
+        "name": "Targeted Ads"
+    }
+},
+{
+    "model": "memberships.benefit",
+    "pk": 9,
+    "fields": {
+        "name": "$150 in ads"
+    }
+},
+{
+    "model": "memberships.benefit",
+    "pk": 10,
+    "fields": {
+        "name": "Weekly Facebook Posts"
+    }
+},
+{
+    "model": "memberships.benefit",
+    "pk": 11,
+    "fields": {
+        "name": "Weekly Instagram Posts"
+    }
+},
+{
+    "model": "memberships.benefit",
+    "pk": 12,
+    "fields": {
+        "name": "Google Adwords"
+    }
+},
+{
+    "model": "memberships.benefit",
+    "pk": 13,
+    "fields": {
+        "name": "Instagram Ads"
+    }
+},
+{
+    "model": "memberships.benefit",
+    "pk": 14,
+    "fields": {
+        "name": "Amazon CloudFront"
     }
 },
 ]
