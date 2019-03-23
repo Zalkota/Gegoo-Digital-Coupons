@@ -234,6 +234,8 @@ body {
         <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
         <script type="text/javascript" src="{% static 'cookielaw/js/cookielaw.js' %}"></script>
 
+
+
         <script src="{% static 'js/docs.min.js' %}"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChmLHKBW5VXZsv5Am2kkAy4HOYqd6vd0k&callback=initMap"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -242,7 +244,8 @@ body {
 
         <!-- Waves Effect !-->
         <script type="text/javascript" src="{% static 'js/button-wave-effect.js' %}"></script>
-
+        <!-- Drift Chat Button !-->
+        <script type="text/javascript" src="{% static 'js/drift.js' %}"></script>
 
         <script>
 
@@ -307,38 +310,11 @@ body {
         }, 7000);
 
         </script>
-        <!-- Start of Async Drift Code -->
-        <script>
-        "use strict";
 
-        !function() {
-          var t = window.driftt = window.drift = window.driftt || [];
-          if (!t.init) {
-            if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
-            t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
-            t.factory = function(e) {
-              return function() {
-                var n = Array.prototype.slice.call(arguments);
-                return n.unshift(e), t.push(n), t;
-              };
-            }, t.methods.forEach(function(e) {
-              t[e] = t.factory(e);
-            }), t.load = function(t) {
-              var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
-              o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
-              var i = document.getElementsByTagName("script")[0];
-              i.parentNode.insertBefore(o, i);
-            };
-          }
-        }();
-        drift.SNIPPET_VERSION = '0.3.1';
-        drift.load('kwrmh6ugxzt5');
-        </script>
-        <!-- End of Async Drift Code -->
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
 
-    
+
     </body>
 </html>

@@ -2,11 +2,36 @@
 @media screen and (min-width: 992px) {
 .hero-300 {
     /* Sizing */
+    height: 5vh;
 
-    height: 100vh;
-      background-color: #e1e1e1;
+    background-color: transparent;
 
 
+    /* Flexbox stuff */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Text styles */
+    text-align: center;
+    z-index: 2;
+
+    /* Background styles */
+    position: relative;
+    background-size: cover;  /* take width of view port, fits element inside of box */
+    background-position: center;  /* hero always sticks to the top when resized. */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+
+}
+.hero-300-background {
+    /* Sizing */
+
+    height: 95vh;
+    background-color: #e1e1e1;
+
+    z-index: 1;
     /* Flexbox stuff */
     display: flex;
     justify-content: center;
@@ -21,9 +46,32 @@
     background-position: center;  /* hero always sticks to the top when resized. */
     background-repeat: no-repeat;
     background-attachment: fixed;
-    clip-path: polygon(0 0%, 100% 0, 100% 60%, 0 80%);
+    clip-path: polygon(0 0%, 100% 0, 100% 40%, 0 80%);
 
 }
+
+.card {
+    left: 60%;
+    top: 20%;
+    border-radius: 8px;
+    position: fixed;
+  }
+  .message {
+    left: 61%;
+    top: 68%;
+    border-radius: 8px;
+    position: fixed;
+    opacity: .9;
+  }
+
+  .terms {
+    color: #3a3a3a;
+    left: 61.25%;
+    bottom: 1%;
+    position: fixed;
+    font-size: .8rem;
+  }
+
 }
 .hero-300 .text {
   position: absolute;
@@ -55,13 +103,15 @@
 .hero-300 img {
     /* Text styles */
     font-size: 1.25em;
-    position: absolute;
+    position: fixed;
     left: 16.5%;
     top: 30%;
     color: white;
+    z-index: 1000;
     /* Margins */
     margin-top: 0;
     margin-bottom: 2em;
+
 }
 
 @media screen and (max-width: 992px) {
@@ -96,7 +146,25 @@
     display: none;
 
   }
+  .message {
+    border-radius: 8px;
+    top: 40%;
+    right: 0px;
+    margin: auto;
+    opacity: .9;
+  }
 
+  button {
+    height: 45px;
+  }
+
+  .btn {
+    padding-top: 0.8rem;
+  }
+
+  .terms {
+    color: #3a3a3a;
+  }
 }
 
 @media screen and (min-width: 992px) {

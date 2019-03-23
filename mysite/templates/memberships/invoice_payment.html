@@ -124,7 +124,7 @@ form.addEventListener('submit', function(event) {
         <form action="." method="POST" id="">{% csrf_token %}
           <script
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="pk_test_TmqMTnX3HO2uC02cdXX7fhyL"
+            data-key="{{ publishKey }}"
             data-amount="{{ invoice.stripe_total }}"
             data-name="ModTechnologies.io"
             data-description="{{ invoice }} Payment"

@@ -13,50 +13,16 @@ a {
   color:#3a75c1;
 }
 
+input {
+  width: 100%;
+}
+
 @media screen and (max-width: 992px) {
 
-  .message {
-    border-radius: 8px;
-    top: 40%;
-    right: 0px;
-    margin: auto;
-    opacity: .9;
-  }
 
-  button {
-    height: 45px;
-  }
-
-  .btn {
-    padding-top: 0.8rem;
-  }
-
-  .terms {
-    color: #3a3a3a;
-  }
 }
 @media screen and (min-width: 992px) {
-.card {
-    left: 60%;
-    top: 20%;
-    border-radius: 8px;
-    position: fixed;
-  }
-  .message {
-    left: 61%;
-    top: 68%;
-    border-radius: 8px;
-    position: fixed;
-    opacity: .9;
-  }
 
-  .terms {
-    color: #3a3a3a;
-    left: 61.25%;
-    bottom: 42%;
-    position: fixed;
-    font-size: .8rem;
-  }
 }
 /*     ANIMATION       */
 
@@ -72,14 +38,16 @@ a {
   }
 }
 </style>
-
+<div class=" hero-300-background">
+</div>
 <section class="hero-300">
+
   <!-- Desktop View -->
-     <div class="hero-inner pt-3 hide">
-          <img  src="{% static 'img/logo_9.1.svg' %}" width="508px" alt="Card image">
+     <div class="pt-3 hide moveInLeft" style=" z-index: 1000;">
+          <img src="{% static 'img/logo_9.1.svg' %}" width="508px" alt="Card image">
       </div>
       <div class="hide">
-          <div class="card mx-3 mt-3" style="width: 25rem;">
+          <div class="card mx-3 mt-3" style="width: 25rem; z-index: 1000;">
               <h2 class="mt-4 mb-0">{% trans "Sign In" %}</h2>
               <div class="card-body text-left px-4 pb-4 pt-3" style="">
                   {% get_providers as socialaccount_providers %}
@@ -135,7 +103,7 @@ a {
             {% endfor %}
           {% endif %}
           <div class="terms">
-            <span class="" style="font-size: 1em;"><a href="" >Terms & Conditons</a> | Copyright 2018 Mod Technologies LLC</span>
+            <span class="" style="font-size: 1em;"><a href="{% slugurl 'terms-page' %}" >Terms & Conditons</a> | Copyright 2018 Mod Technologies LLC</span>
           </div>
   </div>
   <!-- Mobile View -->

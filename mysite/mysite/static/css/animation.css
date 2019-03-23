@@ -1,4 +1,4 @@
-/** fadeInLeft **/
+
 
 @-webkit-keyframes fadeInLeft {
     from {
@@ -65,4 +65,16 @@
     -moz-animation-delay: .75s;
     -o-animation-duration:.75s;
     animation-delay: .75s;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

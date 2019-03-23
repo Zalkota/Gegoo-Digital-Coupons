@@ -139,7 +139,7 @@ CACHE_URL=memcache://127.0.0.1:11211,127.0.0.1:11212,127.0.0.1:11213
 REDIS_URL=rediscache://127.0.0.1:6379/1?client_class=django_redis.client.DefaultClient&password=ungithubbed-secret
 
 EMAIL_PASSWORD='$Django28'
-RECAPTCHA_PUBLIC_KEY = '' 
+RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
 ''
 
@@ -153,7 +153,23 @@ sudo systemctl status gunicorn
 debug:
 systemctl status gunicorn.service
 
+# Letscrypt
+https://www.linode.com/docs/security/ssl/install-lets-encrypt-to-create-ssl-certificates/#create-an-ssl-certificate
 
+Create an SSL Certificate
+cd /opt/letsencrypt
+sudo -H ./letsencrypt-auto certonly --standalone -d example.com -d www.example.com
+
+Renew
+sudo -H ./letsencrypt-auto certonly --standalone --renew-by-default -d example.com -d www.example.com
+
+CronTab
+sudo crontab -e
+0 0 1 * * /opt/letsencrypt/letsencrypt-auto renew
+
+
+Check Certificate
+sudo ls /etc/letsencrypt/live
 # Internet problems
 
 dominic@dom-Inspiron-7559:~$ sudo rm -f /var/lib/NetworkManager/NetowkrManager.state

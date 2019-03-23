@@ -123,13 +123,11 @@ class MembershipSelectView(ListView):
 
 @login_required
 def InvoicePaymentView(request):
-
 	selected_invoice = get_selected_invoice(request)
-
 	publishKey = settings.STRIPE_PUBLISHABLE_KEY
-
 	customer_id = request.user.user_stripe.stripe_id
-
+	user = request.user
+	email = user.email
 	if request.method == 'POST':
 		token = request.POST['stripeToken']
 		# Token is created using Checkout or Elements!
@@ -140,20 +138,18 @@ def InvoicePaymentView(request):
 			charge = stripe.Charge.create(
 			amount=100,
 			currency='usd',
-			customer = customer,
 			description='Invoice Charge',
+			#source=token,
+			customer = customer,
+			receipt_email= email,
 			)
 
 			return redirect(reverse('memberships:update_transactions_invoice',
 			kwargs={
 				'transaction_info': selected_invoice.invoice_id
 			}))
-
-
 		except stripe.CardError as e:
 			messages.info(request, "Your card has been declined")
-
-
 	context = {
 	'publishKey': publishKey,
 	'invoice': selected_invoice
@@ -254,7 +250,7 @@ def PaymentView(request):
 			      "plan": selected_membership.stripe_plan_id,
 			    },
 			  ],
-			  source=token # 4242424242424242
+			  #source=token # 4242424242424242
 			)
 
 			return redirect(reverse('memberships:update_transactions',
@@ -267,7 +263,6 @@ def PaymentView(request):
 
 	context = {
 	'publishKey': publishKey,
-	'course_list': course_list,
 	'selected_membership': selected_membership
 	}
 
