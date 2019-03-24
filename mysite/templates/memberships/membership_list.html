@@ -1,4 +1,4 @@
-{% extends 'portal/base.html' %}
+{% extends 'base-minimal.html' %}
 {% load staticfiles %}
 {% load static wagtailuserbar %}
 {% load wagtailcore_tags wagtailimages_tags %}
@@ -107,12 +107,14 @@ tr {
                 {% endfor %}
                 <div class="offset-lg-2"></div>
             </div>
-            <p class="text-muted" style="font-size: 12px;">Your membership will renew automatically every month. You may cancel your membership at any time from your member dashboard.</p>
+            <p class="text-muted " style="font-size: 12px;">Your membership will renew automatically every month. You may cancel your membership at any time from your member dashboard.</p>
         </div>
     </div>
     <div class="container-fluid section-card-overlay-bottom">
       <div class="container text-center">
-          <div class="py-5"></div><div class="py-3"></div>
+          <div class="py-5"></div><div class="py-3"></div> <div class="py-4 hide"></div>
+
+          </div>
         </div>
     </div>
 </div>
@@ -168,8 +170,8 @@ tr {
         </div>
     </div>
 </div>
-<div class="py-4"></div>
-<div class="py-5"></div>
+<div class="py-4 hide"></div>
+<div class="py-5 hide"></div>
 <div class="body-light"></div>
 
 {% endblock content %}

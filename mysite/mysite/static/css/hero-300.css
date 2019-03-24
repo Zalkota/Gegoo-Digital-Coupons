@@ -50,27 +50,6 @@
 
 }
 
-.card {
-    left: 60%;
-    top: 20%;
-    border-radius: 8px;
-    position: fixed;
-  }
-  .message {
-    left: 61%;
-    top: 68%;
-    border-radius: 8px;
-    position: fixed;
-    opacity: .9;
-  }
-
-  .terms {
-    color: #3a3a3a;
-    left: 61.25%;
-    bottom: 1%;
-    position: fixed;
-    font-size: .8rem;
-  }
 
 }
 .hero-300 .text {

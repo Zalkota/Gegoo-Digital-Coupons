@@ -24,6 +24,7 @@
     clip-path: polygon(0 0%, 100% 0, 100% 60%, 0 80%);
 
 }
+
 }
 .hero-300 .text {
   position: absolute;
@@ -91,21 +92,4 @@
 
 
   }
-  .hide {
-
-    display: none;
-
-  }
-
-}
-
-@media screen and (min-width: 992px) {
-  .unhide {
-    display: none;
-  }
-
-}
-
-.unhide {
-
 }

@@ -1,4 +1,4 @@
-{% extends 'base-minimal.html' %}
+{% extends 'base-alt.html' %}
 {% load static wagtailuserbar %}
 {% load wagtailcore_tags wagtailimages_tags %}
 {% block title %} Checkout for Monthly Subscription Plans | Video Courses{% endblock title %}
@@ -104,32 +104,7 @@ table.table thead {
 
 </style>
 
-<!-- Modal -->
-<div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content p-0 ">
 
-      <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLongTitle">What is Included</h4>
-
-      </div>
-      <div class="modal-body">
-        <p class="">By purchasing the {{ selected_membership }} subscription you will gain access to the following courses:
-          <ul>
-          {% for course in selected_membership.course_set.all %}
-            <li class="my-2" style="list-style-type: none;"><i class="fa fa-check text-primary mr-2" aria-hidden="true"></i><span class="text-muted"> {{ course.title }}</span></li>
-          {% endfor %}
-          </ul>
-        </p>
-      </div>
-      <div class="modal-footer p-0">
-        <button type="button" class="btn btn-light text-center close" style="width: 6rem; " data-dismiss="modal" aria-label="Close">
-          <p class="text-muted">Close</p>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <section>
   <div class="container-fluid section-sm-secondary" style="margin-top: 60px;">
@@ -145,13 +120,9 @@ table.table thead {
       <p class="lead" style="font-size: 2rem;">Your Order</p>
       <div class="card p-3 mt-5" style=" border-style: solid; border-width: 1px; border-color: #ccc;">
           <div class="row">
-
-            <div class="col-lg-8  p-4">
+            <div class="col-lg-8 p-4">
               <p class="text-left ml-3"><span  style="font-size: 1.4em; margin-bottom: 2rem;">{{ selected_membership }} Subscription</span><br>
-                <a type="" class="text-primary mt-5" data-toggle="modal" data-target="#exampleModalCenter">
-                  Show what's included <i class="fa fa-info-circle" aria-hidden="true"></i>
-                </a>
-              </p>
+
             </div>
             <div class="col-lg-4  p-4">
               <p class="text-center ml-3"><span  style="font-size: 1.4em; margin-bottom: 2rem;">${{ selected_membership.price }}</span><br>

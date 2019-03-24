@@ -17,6 +17,28 @@ input {
   width: 100%;
 }
 
+.card {
+    left: 60%;
+    top: 20%;
+    border-radius: 8px;
+    position: fixed;
+  }
+  .message {
+    left: 61%;
+    top: 68%;
+    border-radius: 8px;
+    position: fixed;
+    opacity: .9;
+  }
+
+  .terms {
+    color: #3a3a3a;
+    left: 61.25%;
+    bottom: 1%;
+    position: fixed;
+    font-size: .8rem;
+  }
+
 @media screen and (max-width: 992px) {
 
 
@@ -38,7 +60,7 @@ input {
   }
 }
 </style>
-<div class=" hero-300-background">
+<div class="hero-300-background">
 </div>
 <section class="hero-300">
 
@@ -90,7 +112,7 @@ input {
                   </form>
                   <div class="mt-4">
                       <h3><span class="text-muted" style="font-size: 15px;">New to Mod Technologies?</span></h3>
-                      <a class="btn btn-secondary-round pb-2" style="width: 100%;"  href="{{ signup_url }}">Create Mod Account</a>
+                      <a class="btn btn-secondary-round pb-2" style="width: 100%;"  href="{{ signup_url }}">Register</a>
                   </div>
                   <div class="mt-3"><a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></div>
               </div>
@@ -150,7 +172,7 @@ input {
                </form>
                <div class="mt-4 text-center">
                    <h3><span class="text-muted" style="font-size: 15px;">New to Mod Technologies?</span></h3>
-                   <button class="btn btn-secondary-round" style="width: 100%;"  href="{{ signup_url }}">Create Mod Account</button>
+                   <button class="btn btn-secondary-round" style="width: 100%;"  href="{{ signup_url }}">Register</button>
                </div>
                <div class="text-center mt-3"><a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></div>
            </div>

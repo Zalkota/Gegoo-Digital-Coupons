@@ -183,7 +183,7 @@ def updateTransactionRecordsInvoice(request, transaction_info):
 		pass
 
 	#messages.success(request, 'Successfully purchased {} membership'.format(selected_membership))
-	messages.success(request, "Payment Successful")
+	messages.success(request, "Payment Received")
 	return redirect(reverse('userPage'))
 
 
@@ -330,7 +330,7 @@ def cancelSubscription(request):
 	user = user_membership.user
 	send_subscription_cancelation_email(emailRecipient, user)
 
-	messages.success(request, "Successfully cancelled membership")
+	messages.success(request, "Membership cancelled")
 	# sending an email here
 
 	return redirect('userPage')
@@ -380,7 +380,7 @@ def cancelSubscriptionAdmin(request, stripe_subscription_id, user):
 	emailRecipient = user_membership.user.email
 	send_subscription_cancelation_email(emailRecipient, user)
 
-	messages.success(request, "Successfully cancelled membership")
+	messages.success(request, "Membership cancelled")
 
 	return redirect('/')
 
@@ -424,8 +424,8 @@ def refundSubscriptionAdmin(request, stripe_subscription_id, user):
 	emailRecipient = user.email
 	send_payment_refund_email(emailRecipient, user, selected_amount)
 
-	#create message
-	messages.info(request, "Successfully refunded the membership. We have sent an email to the customer")
+	#create messagef
+	messages.info(request, "Membership refunded. Email sent to the customer")
 	# sending an email here
 
 	return redirect('userPage')

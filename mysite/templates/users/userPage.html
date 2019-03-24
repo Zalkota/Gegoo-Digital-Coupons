@@ -32,9 +32,9 @@ a:hover {
                       <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2">Home</span>
                   </li>
                 </a>
-                <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
+                <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'memberships:user_subscription' %}" role="button">
                   <li class="pb-3">
-                      <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2">Settings</span>
+                      <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2">Subscriptions</span>
                   </li>
                 </a>
                 <!--
@@ -44,12 +44,6 @@ a:hover {
                   </li>
                 </a>
                 !-->
-
-                <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'memberships:user_subscription' %}" role="button">
-                  <li class="pb-3">
-                      <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2">Subscriptions</span>
-                  </li>
-                </a>
                 <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_reset_password' %}" role="button">
                   <li class="pb-3">
                       <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2">Password</span>
@@ -58,6 +52,11 @@ a:hover {
                 <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'update_image' %}" role="button">
                   <li class="pb-3">
                       <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1">Edit Profile</span>
+                  </li>
+                </a>
+                <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
+                  <li class="pb-3">
+                      <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2">Settings</span>
                   </li>
                 </a>
               </ul>
