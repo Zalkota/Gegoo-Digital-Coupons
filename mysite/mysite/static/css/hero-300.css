@@ -48,10 +48,10 @@
     background-attachment: fixed;
     clip-path: polygon(0 0%, 100% 0, 100% 40%, 0 80%);
 
+  }
 }
 
 
-}
 .hero-300 .text {
   position: absolute;
   left: 14%;
@@ -92,24 +92,7 @@
     margin-bottom: 2em;
 
 }
-.hide {
 
-   display: none;
-
- }
-
-}
-
-@media screen and (min-width: 992px) {
-.unhide {
-  display: none;
-}
-
-}
-
-.unhide {
-
-}
 
 @media screen and (max-width: 992px) {
   .hero-300 {
