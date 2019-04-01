@@ -1,0 +1,75 @@
+
+// Theme Colors
+$color-primary: #5981a4;
+$color-primary-light: lighten( $color-primary, 10% );
+$color-primary-dark: darken( $color-primary, 10% );
+$color-secondary: #e4e7f1;
+$color-secondary-light: lighten( $color-secondary, 10% );
+$color-secondary-dark: darken( $color-secondary, 10% );
+$color-alt: #aeaf99;
+$color-white: #fff;
+$color-light: #fafafa;
+$color-dark:  darken( $color-white, 20% );
+$color-black: #000000;
+$color-main: #2f3136;
+$color-alt: #36393f;
+$color-accent: #233341;
+$color-accent-light: lighten( $color-accent, 10% );
+$color-accent-dark: darken( $color-accent, 10% );
+$color-accent-lighter: lighten( $color-accent, 50% );
+
+$keep: #476783;
+$keep1: #5981a4;
+$keep2: #6b81cb;
+
+// Buttons
+$color-success: #3fc380;
+$color-success-light: lighten( $color-success, 10% );
+$color-success-dark: darken( $color-success, 10% );
+
+$color-danger: #d64541;
+$color-danger-light: lighten( $color-danger, 10% );
+$color-danger-dark: darken( $color-danger, 10% );
+
+
+/* ANIMATION */
+$mdb-animation-curve-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$mdb-animation-curve-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1) !default;
+$mdb-animation-curve-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1) !default;
+$mdb-animation-curve-default: $mdb-animation-curve-fast-out-slow-in !default;
+
+@import "global";
+@import "animations";
+@import "navbar";
+@import "buttons";
+@import "sections";
+@import "hero";
+@import "footer";
+//@import "form";
+//@import "navigation_button";
+
+
+
+
+body {
+    margin: 0;
+    font-family: Montserrat, sans-serif !important;
+    background-color: $color-main;
+    color: $color-white;
+}
+
+a:hover {
+  color: $color-primary;
+}
+
+.text-primary {
+  color: $color-primary;
+}
+
+.text-success {
+  color: $color-success;
+}
+
+.text-danger {
+  color: $color-danger;
+}

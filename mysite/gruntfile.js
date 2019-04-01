@@ -59,12 +59,13 @@ module.exports = function (grunt) {
     sass: {
       dev: {
           options: {
-              outputStyle: 'nested',
+              style: 'nested',
               sourceMap: false,
               precision: 10
           },
           files: {
-              '<%= paths.css %>/test.css': '<%= paths.sass %>/_base.scss'
+              '<%= paths.css %>/sweetalert2.css': '<%= paths.sass %>/sweetalert2.scss'
+              //'<%= paths.css %>/base-alt.css': '<%= paths.sass %>/base-alt.scss'
           },
       },
       dist: {
@@ -123,7 +124,8 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'sass:dist'
+    'sass:dist',
+    'sass'
     //'postcss'
   ]);
 
