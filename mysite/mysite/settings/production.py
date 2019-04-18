@@ -23,7 +23,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # EMAIL ------------------------------------------------------------------------
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER ='hello@modwebservices.com'
+EMAIL_HOST_USER ='dominic@modwebservices.com'
 EMAIL_HOST_PASSWORD = '$Django28' #TODO This should probably go to a python variable
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
