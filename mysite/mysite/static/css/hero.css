@@ -3,7 +3,7 @@
 @media screen and (min-width: 992px) {
     .hero {
         /* Sizing */
-        height: 65vh;
+        height:100vh;
         /* Flexbox stuff */
         display: flex;
         justify-content: center;
@@ -12,8 +12,8 @@
         text-align: center;
         /* Background styles */
         /* background-image: url(/static/img/background_waves_6.svg); */
-        background-image: linear-gradient(75deg, #5b00fa, #3b8dff, #26c281);
-        clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%);
+        background-image: linear-gradient(60deg, #5b00fa, #3b8dff, #26c281);
+        /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -22,7 +22,7 @@
         .hero .text {
           position: absolute;
           margin-left: auto;
-          top: 17%;
+          top: 30%;
           max-width: 60rem;
 
           animation: moveInTop 1.5s;

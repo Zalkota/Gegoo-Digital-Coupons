@@ -19,9 +19,10 @@
     "time-grunt": "^2.0.0"
   },
   "dependencies": {
-    "caniuse-lite": "^1.0.30000954",
-    "grunt": "^1.0.3",
+    "caniuse-lite": "^1.0.30000960",
+    "cosmiconfig": "^5.2.0",
+    "grunt": "^1.0.4",
     "grunt-contrib-sass": "^1.0.0",
-    "sweetalert2": "^8.7.0"
+    "livereload-js": "^3.0.0"
   }
 }

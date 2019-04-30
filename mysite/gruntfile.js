@@ -64,8 +64,9 @@ module.exports = function (grunt) {
               precision: 10
           },
           files: {
-              '<%= paths.css %>/sweetalert2.css': '<%= paths.sass %>/sweetalert2.scss'
-              //'<%= paths.css %>/base-alt.css': '<%= paths.sass %>/base-alt.scss'
+              '<%= paths.css %>/base.css': '<%= paths.sass %>/base.scss',
+              '<%= paths.css %>/base-alt.css': '<%= paths.sass %>/base-alt.scss',
+              '<%= paths.css %>/components/base-alt.css': '<%= paths.sass %>/components/base-components.scss',
           },
       },
       dist: {

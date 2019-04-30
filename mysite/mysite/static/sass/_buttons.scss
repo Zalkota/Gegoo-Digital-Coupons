@@ -1,0 +1,655 @@
+/* BUTTON BASICS */
+.btn {
+    font-size: 16px;
+    font-weight: 650;
+
+}
+
+.btn {
+    font-size: 16px;
+    font-weight: 650;
+
+}
+
+/* BUTTONS */
+
+  .btn-action {
+  width: 13.75rem;
+  background-image: linear-gradient(180deg,$color-primary, $color-primary-dark 95%);
+  color: $color-alt;
+  box-shadow: 0;
+  border-radius: 5px;
+  padding-left: 1.7rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+
+  }
+  .btn-action:hover {
+    background-image: linear-gradient(180deg, $color-primary-light, $color-primary 95%);
+    color: $color-alt;
+    box-shadow: none;
+    padding-left: 1.7rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+
+  }
+  .btn-action:active {
+    background-image: linear-gradient(180deg, $color-primary-light, $color-primary 95%);
+    color: $color-alt;
+    box-shadow: none;
+    padding-left: 1.7rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+
+  }
+  .btn-action:focus {
+    background-image: linear-gradient(180deg, $color-primary-light, $color-primary 95%);
+    color: $color-alt;
+    box-shadow: none;
+    padding-left: 1.7rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+
+  }
+
+  .btn-action-alt {
+  width: 12rem;
+  background-image: linear-gradient(180deg,#26c281, #24a35a 95%);
+  color: #fafafa;
+  box-shadow: none;
+  border-radius: 5px;
+  padding-left: 1.7rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+
+  }
+  .btn-action-alt:hover {
+    background-image: linear-gradient(180deg, #26c281, #1c8248 95%);
+    color: #e5e5e5;
+    box-shadow: none;
+    padding-left: 1.7rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+
+  }
+  .btn-action-alt:active {
+    background-image: linear-gradient(180deg, #26c281, #1c8248 95%);
+    color: #e5e5e5;
+    box-shadow: none;
+    padding-left: 1.7rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+
+  }
+  .btn-action-alt:focus {
+    background-image: linear-gradient(180deg, #26c281, #1c8248 95%);
+    color: #e5e5e5;
+    box-shadow: none;
+    padding-left: 1.7rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+
+  }
+
+  .btn-action-alt:visited {
+    background-image: linear-gradient(180deg, #26c281, #1c8248 95%);
+    color: #e5e5e5;
+    box-shadow: none;
+    padding-left: 1.7rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+
+  }
+
+  .btn-action-alt:active:hover{
+      color: rgba(255, 255, 255, 1);
+      background-color: #1c8248;
+      border-color: #1c8248;
+  }
+
+
+
+
+/* BUTTON ALT */
+
+
+
+  .btn-primary-alt {
+  background: $color-primary-light;
+  color: $color-white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+  font-weight: 600;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+  }
+  .btn-primary-alt:hover {
+    background: $color-primary;
+    color: $color-white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+    font-weight: 600;
+
+  }
+  .btn-primary-alt:active {
+    background: $color-primary-dark;
+    color: $color-white;
+    box-shadow: 0;
+    font-weight: 600;
+
+  }
+  .btn-primary-alt:focus {
+    background: $color-primary-dark;
+    color: $color-white;
+    box-shadow: 0;
+    font-weight: 600;
+
+  }
+
+  .btn-success-alt {
+  background: $color-success;
+  color: #fafafa;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  }
+  .btn-success-alt:hover {
+    background: $color-success-light;
+    color: #e5e5e5;
+    box-shadow: 0 2px 4px rgba(155,155,155,0.3), 0 2px 4px rgba(155,155,155,0.3);
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-success-alt:active {
+    background: $color-success-dark;
+    color: #e5e5e5;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-success-alt:focus {
+    background: $color-success-dark;
+    color: #e5e5e5;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+
+  .btn-danger-alt {
+  background: $color-danger;
+  color: #fafafa;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  }
+  .btn-danger-alt:hover {
+    background: $color-danger-light;
+    color: #e5e5e5;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-danger-alt:active {
+    background: $color-danger-dark;
+    color: #e5e5e5;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-danger-alt:focus {
+    background: $color-danger-dark;
+    color: #e5e5e5;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+
+  .btn-secondary-alt {
+  background: $color-secondary;
+  color: $color-danger;
+  box-shadow: 0;
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  padding-top: .95rem;
+  padding-bottom: .95rem;
+  }
+
+  .btn-secondary-alt:hover {
+  background: $color-secondary-dark;
+  color: $color-danger;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.3);
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  padding-top: .95rem;
+  padding-bottom: .95rem;
+  }
+
+  .btn-secondary-alt:active {
+  background: $color-secondary-dark;
+  color: $color-danger;
+  box-shadow: 0;
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  padding-top: .95rem;
+  padding-bottom: .95rem;
+  }
+
+  .btn-secondary-alt:focus {
+  background: $color-secondary-dark;
+  color: $color-danger;
+  box-shadow: 0;
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  padding-top: .95rem;
+  padding-bottom: .95rem;
+  }
+
+  .btn-secondary-alt-2 {
+  background: $color-secondary;
+  color: $color-primary;
+  box-shadow: 0;
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  padding-top: .95rem;
+  padding-bottom: .95rem;
+  }
+
+  .btn-secondary-alt-2:hover {
+  background: $color-secondary-light;
+  color: $color-primary;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.3);
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  padding-top: .95rem;
+  padding-bottom: .95rem;
+  }
+
+  .btn-secondary-alt-2:active {
+  background: $color-secondary-light;
+  color: $color-primary;
+  box-shadow: 0;
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  padding-top: .95rem;
+  padding-bottom: .95rem;
+  }
+
+  .btn-secondary-alt-2:focus {
+  background: $color-secondary-light;
+  color: $color-primary;
+  box-shadow: 0;
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  padding-top: .95rem;
+  padding-bottom: .95rem;
+  }
+
+  .btn-accent-alt {
+  background: $color-accent;
+  color: #fafafa;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  }
+
+  .btn-accent-alt:hover {
+  background: $color-accent-light;
+  color: #f3f3f3;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  }
+
+  .btn-accent-alt:active {
+  background: $color-accent-dark;
+  color: #fafafa;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  }
+
+  .btn-accent-alt:focus {
+  background: $color-accent-dark;
+  color: #fafafa;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  }
+
+
+/* BUTTON ROUND */
+
+  .btn-primary-round {
+  background: $color-primary;
+  color: $color-white;
+  box-shadow: 0;
+  border-radius: 30px;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  }
+
+  .btn-primary-round:hover {
+  background: $color-primary-light;
+  color: $color-alt;
+  border-radius: 30px;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+  }
+
+  .btn-primary-round:active {
+  background: $color-primary-dark;
+  color: $color-alt;
+  box-shadow: 0;
+  border-radius: 30px;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  }
+
+  .btn-primary-round:focus {
+  background: $color-primary-dark;
+  color: $color-alt;
+  box-shadow: 0;
+  border-radius: 30px;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  }
+
+
+  .btn-success-round {
+  background: $color-success;
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: 30px;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  }
+
+  .btn-success-round:hover {
+  background: $color-success-light;
+  color: #f3f3f3;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+  border-radius: 30px;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  }
+
+  .btn-success-round:active {
+  background: $color-success-dark;
+  color: #fafafa;
+  border-radius: 30px;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  }
+
+  .btn-success-round:focus {
+  background: $color-success-dark;
+  color: #fafafa;
+  border-radius: 30px;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  }
+
+  .btn-success-round:active:hover{
+      color: rgba(255, 255, 255, 1);
+      background-color: #1c8248;
+      border-color: #1c8248;
+  }
+
+  .btn-secondary-round {
+  background: $color-secondary;
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: 30px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .75rem;
+  }
+
+  .btn-secondary-round:hover {
+  background: $color-secondary-light;
+  color: #f3f3f3;
+  border-radius: 30px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .75rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+  }
+
+  .btn-secondary-round:active {
+  background: $color-secondary-dark;
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: 30px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .75rem;
+  }
+
+  .btn-secondary-round:focus {
+  background: $color-secondary-dark;
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: 30px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .75rem;
+  }
+
+  /* OUTLINE BUTTONS */
+  .btn-outline-success{
+  background: transparent;
+  color: $color-success;
+  border: solid 1px $color-success;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  }
+  .btn-outline-success:hover {
+    background: transparent !important;
+    color: $color-success-light !important;
+    border: solid 1px $color-success-light !important;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-outline-success:active {
+    background: transparent !important;
+    color: $color-success-light !important;
+    border: solid 1px $color-success-light !important;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-outline-success:focus {
+    background: transparent !important;
+    color: $color-success-light !important;
+    border: solid 1px $color-success-light !important;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+
+  .btn-outline-primary {
+  background: transparent;
+  color: $color-primary !important;
+  border: solid 1px $color-primary !important;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  }
+  .btn-outline-primary:hover {
+    background: $color-primary-light !important;
+    color: #e5e5e5;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-outline-primary:active {
+    background: $color-primary-dark !important;
+    color: #e5e5e5;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-outline-primary:focus {
+    background: $color-primary-dark  !important;
+    color: #e5e5e5;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+
+  .btn-outline-dark {
+  background: transparent;
+  color: $color-dark !important;
+  border: solid 1px $color-dark !important;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  }
+  .btn-outline-dark:hover {
+    background: transparent !important;
+    color: $color-light !important;
+    border: solid 1px $color-light !important;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-outline-dark:active {
+    background: transparent!important;
+    color: $color-light !important;
+    border: solid 1px $color-light !important;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-outline-dark:focus {
+    background: transparent !important;
+    color: $color-light !important;
+    border: solid 1px $color-light !important;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+
+
+
+
+  .btn-primary:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13) !important;
+  }

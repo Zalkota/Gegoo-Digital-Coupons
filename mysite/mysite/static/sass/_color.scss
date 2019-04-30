@@ -1,0 +1,43 @@
+
+// Theme Colors
+$color-primary: #3b8dff;
+$color-primary-light: lighten( $color-primary, 10% );
+$color-primary-lighter: lighten( $color-primary, 45% );
+$color-primary-dark: darken( $color-primary, 10% );
+$color-secondary: lighten( $color-primary, 40% );
+$color-secondary-light: lighten( $color-secondary, 5% );
+$color-secondary-dark: darken( $color-secondary, 10% );
+$color-alt: #aeaf99;
+$color-white: #fff;
+$color-light: #fafafa;
+$color-dark:  #3a3a3a;
+$color-black: #000000;
+$color-main: #fafafa;
+$color-alt: #f3f3f3;
+$color-alt-light: lighten( $color-alt, 3% );
+$color-accent: #29303B;
+$color-accent-light: lighten( $color-accent, 10% );
+$color-accent-dark: darken( $color-accent, 10% );
+$color-accent-lighter: lighten( $color-accent, 50% );
+
+
+$color-text: #2a2a2a;
+
+// Navbar
+$color-navbar-background: $color-main;
+$color-navbar-background-scrolled: $color-alt;
+$color-navbar-text: $color-primary;
+$color-navbar-hover: $color-primary-dark;
+
+$keep: #476783;
+$keep1: #5981a4;
+$keep2: #6b81cb;
+
+// Buttons
+$color-success: #3fc380;
+$color-success-light: lighten( $color-success, 10% );
+$color-success-dark: darken( $color-success, 10% );
+
+$color-danger: #d91227;
+$color-danger-light: lighten( $color-danger, 10% );
+$color-danger-dark: darken( $color-danger, 10% );
