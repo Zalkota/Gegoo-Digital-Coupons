@@ -472,49 +472,68 @@
   }
 
   .btn-secondary-round {
+  background: $color-secondary-light;
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: 30px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .75rem;
+
+
+  &:hover {
+  background: $color-secondary;
+  color: #f3f3f3;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+  }
+
+  &:active {
   background: $color-secondary;
   color: #fafafa;
   box-shadow: 0;
+
+  }
+
+  &:focus {
+  background: $color-secondary;
+  color: #fafafa;
+  box-shadow: 0;
+
+    }
+  }
+
+  .btn-accent-round {
+  background: $color-accent-light;
+  color: #fafafa;
+  box-shadow: 0;
   border-radius: 30px;
   padding-left: 2rem;
   padding-right: 2rem;
   padding-top: .5rem;
   padding-bottom: .75rem;
-  }
 
-  .btn-secondary-round:hover {
-  background: $color-secondary-light;
+
+  &:hover {
+  background: $color-accent;
   color: #f3f3f3;
-  border-radius: 30px;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: .5rem;
-  padding-bottom: .75rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
   }
 
-  .btn-secondary-round:active {
-  background: $color-secondary-dark;
+  &:active {
+  background: $color-accent;
   color: #fafafa;
   box-shadow: 0;
-  border-radius: 30px;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: .5rem;
-  padding-bottom: .75rem;
+
   }
 
-  .btn-secondary-round:focus {
-  background: $color-secondary-dark;
+  &:focus {
+  background: $color-accent;
   color: #fafafa;
   box-shadow: 0;
-  border-radius: 30px;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: .5rem;
-  padding-bottom: .75rem;
-  }
 
+    }
+  }
   /* OUTLINE BUTTONS */
   .btn-outline-success{
   background: transparent;

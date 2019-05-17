@@ -71,7 +71,7 @@ input {
         </a>
       </div>
       <div class="hide">
-          <div class="card mx-3 mt-3" style="width: 25rem; z-index: 1000;">
+          <div class="card mx-3 mt-3 shadow-3" style="width: 25rem; z-index: 1000;">
               <h2 class="mt-4 mb-0">{% trans "Sign In" %}</h2>
               <div class="card-body text-left px-4 pb-4 pt-3" style="">
                   {% get_providers as socialaccount_providers %}
@@ -132,7 +132,7 @@ input {
   </div>
   <!-- Mobile View -->
    <div class=" unhide">
-           <h2 class="">{% trans "Sign In" %}</h2>
+           <h2 class="mb-3">{% trans "Sign In" %}</h2>
            <div class="text-left p-2" style="">
                {% get_providers as socialaccount_providers %}
                {% if socialaccount_providers %}
@@ -169,12 +169,12 @@ input {
                    {% if redirect_field_value %}
                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />{% endif %}
                    <div class="btn-div pull-center">
-                     <button class="btn btn-primary-round"  type="submit">{% trans "Sign In" %}</button>
+                     <button class="btn btn-primary-alt btn-block" type="submit">{% trans "Sign In" %}</button>
                    </div>
                </form>
                <div class="mt-4 text-center">
                    <h3><span class="text-muted" style="font-size: 15px;">New to Mod Technologies?</span></h3>
-                   <button class="btn btn-secondary-round" style="width: 100%;"  href="{{ signup_url }}">Register</button>
+                   <a class="btn btn-secondary-round pb-2" style="width: 100%;"  href="{{ signup_url }}">Register</a>
                </div>
                <div class="text-center mt-3"><a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></div>
            </div>
@@ -185,7 +185,7 @@ input {
            </div>
          {% endfor %}
          {% endif %}
-         <div style="padding-top: 4rem; margin: auto;">
+         <div class="hide" style="padding-top: 4rem; margin: auto;">
              <span class="terms" style="font-size: .65em;"><a href="" class="terms">Terms & Conditons</a> | Copyright 2018 <br class="unhide"> Mod Technologies LLC</span>
          </div>
     </div>
