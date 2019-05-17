@@ -202,11 +202,13 @@
                     <div class="carousel-inner" role="listbox">
                       {% for object in page.special_projects %}
                         <div class="carousel-item {% if object.active == True %} active {% else %} {% endif %}">
+                          <a class="text-primary" href="{% pageurl object %}">
                              <img class="d-block w-100" src="{{ object.image_url_1 }}" style="width:100%;" alt="First slide">
                              <div class="carousel-caption d-none d-md-block">
                                <h3 class="text-dark" style="font-weight: 700;">{{ object.title }}</h3>
                                <p style="font-size: 1.15rem;"><a class="text-primary" href="{% pageurl object %}">Read the case study <i class="fa fa-arrow-right" aria-hidden="true"></i></a></p>
                              </div>
+                           </a>
                         </div>
                       {% endfor %}
                         <!--<div class="carousel-item">
