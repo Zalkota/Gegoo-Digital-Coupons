@@ -7,10 +7,14 @@ $mdb-animation-curve-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1) !default;
 $mdb-animation-curve-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1) !default;
 $mdb-animation-curve-default: $mdb-animation-curve-fast-out-slow-in !default;
 
+html {
+  scroll-behavior: smooth !important;
+}
+
 
 body {
     margin: 0;
-    font-family: Roboto, sans-serif !important;
+    font-family: Montserrat, sans-serif !important;
     background-color: $color-main;
     color: #3a3a3a;
 
@@ -35,11 +39,13 @@ body {
 //@import "global";
 //@import "animations";
 //@import "navbar";
-//@import "buttons";
+@import "buttons";
 @import "sections";
-//@import "hero";
+@import "appointment";
+@import "hero";
 //@import "form";
 @import "footer";
+@import "text";
 //@import "form";
 //@import "navigation_button";
 
@@ -68,6 +74,10 @@ a:hover {
 
 .text-success {
   color: $color-success;
+}
+
+.bg-success {
+  background-color: $color-success;
 }
 
 .text-danger {

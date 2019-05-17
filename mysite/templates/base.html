@@ -2,13 +2,14 @@
 {% load static wagtailuserbar %}
 {% load wagtailcore_tags %}
 
-<!DOCTYPE html>
 <html class="no-js">
+
     <head>
         <meta http-equiv="Expires" content="30">
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo_5.svg' %}">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo_5.png' %}">
+        <link rel="icon" href="{% static 'img/logo_5.png' %}">
         <title>
             {% block title %}
                 {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
@@ -19,7 +20,7 @@
                 {% endwith %}
             {% endblock %}
         </title>
-        <meta name="description" content="" />
+        <meta name="description" content="Mod Technology LLC is a web application development company that creates websites and web application for small to medium size companies in the United States of America. We utilize Django Web Framework for our client websites." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <!-- Fonts
@@ -28,26 +29,29 @@
         <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
         <link rel="stylesheet" href="{% static 'css/font.css' %}" />
 
+
+
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/docs.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navigation_button.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/button.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/waves.css' %}">
-
-        <link rel="stylesheet" type="text/css" href="{% static 'css/hero.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/cookielaw.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+
         <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/animation.css' %}">
   <!--  <link rel="stylesheet" type="text/css" href="{% static 'css/style-alt' %}"
         <link rel="stylesheet" type="text/css" href="{% static 'css/hero.css' %}"> -->
 
-
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
         <!-- Material Design for Bootstrap fonts and icons -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Material+Icons">
+
+        {% block extrastyle %}
+
+        {% endblock extrastyle %}
 <style>
 
 body {
@@ -56,149 +60,10 @@ body {
     background-color: #F6FAFD;
 }
 
-/* #TODO A HEADER FILE NEEDS TO BE CREATED AND THEN PASTED INTO THIS FILE. */
-
-
-
-/*        Custom Icons          */
-
-@font-face {
-  font-family: 'icomoon';
-  src:  url("{% static 'fonts/icomoon.eot' %}");
-  src:  url("{% static 'fonts/icomoon.eot' %}") format('embedded-opentype'),
-    url("{% static 'fonts/icomoon.ttf' %}") format('truetype'),
-    url("{% static 'fonts/icomoon.woff' %}") format('woff'),
-    url("{% static 'fonts/icomoon.svg' %}") format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-[class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-graduation-cap-solid:before {
-  content: "\e900";
-  color: #ccc;
-  font-size: 60px;
-  margin-bottom: 24px;
-}
-.icon-basketball-ball-solid:before {
-  content: "\e901";
-  color: #ccc;
-  font-size: 60px;
-  margin-bottom: 24px;
-}
-
-.hr-footer {
- border: 0;
- clear:both;
- display:block;
- width: 98%;
- background-color:#fff;
- height: 1px;
-}
-
-
-
-  .phototext {
-    margin-top: 8em;
-  margin-left: auto;
-  margin-right: auto;
-  vertical-align: middle;
-  }
-
-  .card-nav {
-    width: 100%;
-    color: #3c3c3c;
-    background-color: transparent;
-    background-image: linear-gradient(120deg, #fff 40%, transparent 40%);
-    min-height: 40px;
-  }
-  .top-left {
-      position: absolute;
-    }
-
-  .text-shamrock {
-
-    color: #24a35a;
-
-  }
-
-  .underline {
-      padding-bottom: 2px;
-      border-bottom: #3a75c1 1px solid;
-  }
-
-  .img-responsive img {
-      width: 100%;
-      max-width: 1000px;
-      height: auto;
-  }
-
-  .img-center {
-
-    display: block;
-    margin: 0 auto;
-    height: auto;
-  }
-
-/* ##  SERVICES IMAGES ## */
-
-  .img-background1 {
-
-     background-image: url("/static/img/pic1.png");
-     background-color: #fafafa;
-     height: 380px;
-     background-repeat: no-repeat;
-     background-position: center center;
-
-  }
-  .img-background2 {
-
-     background-image: url("/static/img/pic7.png");
-     background-color: #fafafa;
-     height: 380px;
-     background-repeat: no-repeat;
-     background-position: center center;
-
-
-  }
-  .img-background3 {
-
-     background-image: url("/static/img/pic6.png");
-     background-color: #fafafa;
-     height: 380px;
-     background-repeat: no-repeat;
-     background-position: center center;
-
-  }
-
-
-
-  .badge {
-    position: relative;
-    margin-left: 90%;
-    margin-bottom: 0%;
-  }
-
 
 </style>
 
-        {% block extra_css %}
-            {# Override this in templates to add extra stylesheets #}
-        {% endblock %}
+
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
@@ -232,12 +97,8 @@ body {
         {% endblock footer %}
 
         {# Global javascript #}
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-        <!-- <script type="text/javascript" src="{% static 'js/mysite.js' %}"></script> !-->
-        <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+
         <script type="text/javascript" src="{% static 'cookielaw/js/cookielaw.js' %}"></script>
-
-
 
         <script src="{% static 'js/docs.min.js' %}"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChmLHKBW5VXZsv5Am2kkAy4HOYqd6vd0k&callback=initMap"></script>
@@ -245,79 +106,32 @@ body {
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
 
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
+
         <!-- Waves Effect !-->
         <script type="text/javascript" src="{% static 'js/button-wave-effect.js' %}"></script>
         <!-- Drift Chat Button !-->
         <script type="text/javascript" src="{% static 'js/drift.js' %}"></script>
+        <!-- To Top Button
+        <script type="text/javascript" src="{% static 'js/button_top.js' %}"></script>-->
+        <!-- Navbar Color Change on Scroll !-->
+        <script type="text/javascript" src="{% static 'js/navbarscroll.js' %}"></script>
+        <!-- Message Timeout button !-->
+        <script type="text/javascript" src="{% static 'js/message_timeout.js' %}"></script>
 
         <script>
-
-        $(function () {
-          $(document).scroll(function () {
-            var $nav = $(".navbar-default");
-            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
-          });
-        });
-
-        $(function () {
-          $(document).scroll(function () {
-            var $nav = $(".nav-link");
-            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
-          });
-        });
-
-        $(function () {
-          $(document).scroll(function () {
-            var $nav = $(".navbar-brand");
-            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
-          });
-        });
-
-        $(function () {
-          $(document).scroll(function () {
-            var $nav = $(".navbar-toggler");
-            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
-          });
-        });
-
-        $(function () {
-          $(document).scroll(function () {
-            var $nav = $(".btn-outline-navbar");
-            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
-          });
-        });
-
-
-        // BACK TOP TOP FUNCTION When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
-
-        function scrollFunction() {
-          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-              document.getElementById("myBtn").style.display = "block";
-          } else {
-              document.getElementById("myBtn").style.display = "none";
-          }
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-          document.body.scrollTop = 0; // For Safari
-          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
-
-        // Message container destroy after time period
-        var message_ele = document.getElementById("message_container");
-
-        setTimeout(function(){
-           message_ele.style.display = "none";
-        }, 7000);
-
+          $(document).ready(function() {
+            {% block jquery %}
+                {# add jquery to webpage #}
+            {% endblock %}
+            });
         </script>
 
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
+        {% block extrajs %}
 
+        {% endblock extrajs %}
 
     </body>
 </html>

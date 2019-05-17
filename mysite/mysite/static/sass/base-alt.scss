@@ -1,32 +1,53 @@
 // BASE-ALT IS THE SAME AS BASE, BUT IS CONTAINS STYLE-ALT.scss
-
+@import "color";
 /* ANIMATION */
 $mdb-animation-curve-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1) !default;
 $mdb-animation-curve-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1) !default;
 $mdb-animation-curve-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1) !default;
 $mdb-animation-curve-default: $mdb-animation-curve-fast-out-slow-in !default;
 
-@import "color";
-@import "global";
-@import "style-alt";
-@import "animations";
-@import "navbar-alt";
+
+html {
+  scroll-behavior: smooth !important;
+}
+
+body {
+    margin: 0;
+    font-family: Montserrat, sans-serif !important;
+    background-color: $color-main;
+    color: #3a3a3a;
+
+    h1 h2 h3 h4 h5 h6 {
+      color: #1a1a1a;
+    }
+
+    p {
+      color: $color-text;
+    }
+
+    li {
+      color: $color-primary;
+    }
+
+    a {
+      color: $color-primary;
+    }
+}
+
+
+//@import "global";
+//@import "style-alt";
+//@import "animations";
+//@import "navbar-alt";
 @import "buttons";
 @import "sections";
-@import "hero";
+//@import "hero";
 @import "footer";
 //@import "form";
 //@import "navigation_button";
 
 
 
-
-body {
-    margin: 0;
-    font-family: Montserrat, sans-serif !important;
-    background-color: $color-main;
-    color: $color-white;
-}
 
 a:hover {
   color: $color-primary;

@@ -4,13 +4,15 @@ from django.conf.urls import url
 from django.urls import path
 from . import views
 #from .views import ProductDetailView
-from .views import CourseListView, CourseDetailView, LessonDetailView, LessonCreateView, LessonUpdateView, LessonDeleteView, CourseCreateView, CourseUpdateView, CourseDeleteView, Contact, membership_required, previous_lesson, next_lesson, SearchTitles
+from .views import AppointmentFormView
 
 #NOTE: https://github.com/codingforentrepreneurs/Guides/blob/master/all/common_url_regex.md
 
 urlpatterns = [
 
     url(r'^subscriptions/$', views.SubscriptionListView, name='subscription_list'),
+    path('consultation/', views.AppointmentFormView, name='appintment_form'),
+    path('menu/', views.menu, name='menu-page'),
     #url(r'^courselist/$', CourseListView, name='course_list'),
     #path('contact/<email>/<user>/', views.Contact, name='contact_form'),
     #path('<slug>', CourseDetailView.as_view(), name='course_detail'),

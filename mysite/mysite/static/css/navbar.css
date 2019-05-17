@@ -1,71 +1,6 @@
 
 
 
-  .navbar-toggler {
-    border: none;
-    background: transparent !important;
-  }
-
-  .navbar-toggler:focus {
-    outline: none;
-    background: transparent !important;
-  }
-
-
-  .navbar-toggler .icon-bar {
-    background-color: #fff;
-    transform: rotate(0deg) translate(0px, 0px);
-    transition: ease all .2s;
-  }
-
-  .navbar-toggler.scrolled .icon-bar {
-    background-color: #424242;
-    transform: rotate(0deg) translate(0px, 0px);
-    transition: ease all .2s;
-  }
-
-  .navbar-toggler .icon-bar {
-    display: block;
-    width: 22px;
-    height: 2px;
-    border-radius: 1px;
-  }
-
-  .navbar-toggler .icon-bar+.icon-bar {
-    margin-top: 4px;
-  }
-
-  .icon-bar:nth-child(2) {
-    width: 22px;
-    transition: ease all .2s;
-  }
-
-  .navbar-toggler:hover>.icon-bar:nth-child(2) {
-    width: 22px;
-    transition: ease all .2s;
-  }
-
-  .navbar-toggler:active>.icon-bar:nth-child(2) {
-    width: 22px;
-    transition: ease all .2s;
-  }
-
-  .navbar-toggler:not(.collapsed) .icon-bar:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 4px);
-    transition: ease all .2s;
-  }
-
-  .navbar-toggler:not(.collapsed) .icon-bar:nth-child(2) {
-    opacity: 0;
-    transition: ease all .2s;
-  }
-
-  .navbar-toggler:not(.collapsed) .icon-bar:nth-child(3) {
-    transform: rotate(-45deg) translate(4px, -4px);
-    transition: ease all .2s;
-  }
-
-
 
   @media (max-width:767px) {
     .navbar-nav {
@@ -73,11 +8,18 @@
     }
   }
 
+  .navbar-default {
+
+    height: 70px;
+
+  }
+
   .navbar-default.scrolled {
     background-color: #fdfdfe !important;
     transition: background-color 200ms linear;
     color: #424242;
     z-index: 999;
+    height: 75px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   }
 
@@ -150,6 +92,9 @@
       color: white;
       font-weight: 500 !important;
       font-size: 0.8rem;
+      line-height: 25px;
+      margin-top: 8px;
+
   }
   .nav-link:hover {
       color: #cacaca;
@@ -157,6 +102,7 @@
 
   .nav-link.scrolled {
       color: #424242;
+      margin-top: 8px;
   }
   .nav-link.scrolled:hover {
       color: #3a75c1;
@@ -166,9 +112,78 @@
 /* ## CENTER COLLPASED LINKS ## */
   .navbar {
     box-shadow: none;
-
   }
   .navbar .navbar-collapse {
     text-align: center;
     box-shadow: none;
+  }
+
+
+
+/* TOGGLER */
+
+
+
+  .navbar-toggler {
+    border: none;
+    background: transparent !important;
+  }
+
+  .navbar-toggler:focus {
+    outline: none;
+    background: transparent !important;
+  }
+
+
+  .navbar-toggler .icon-bar {
+    background-color: #fff;
+    transform: rotate(0deg) translate(0px, 0px);
+    transition: ease all .2s;
+  }
+
+  .navbar-toggler.scrolled .icon-bar {
+    background-color: #424242;
+    transform: rotate(0deg) translate(0px, 0px);
+    transition: ease all .2s;
+  }
+
+  .navbar-toggler .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+  }
+
+  .navbar-toggler .icon-bar+.icon-bar {
+    margin-top: 4px;
+  }
+
+  .icon-bar:nth-child(2) {
+    width: 22px;
+    transition: ease all .2s;
+  }
+
+  .navbar-toggler:hover>.icon-bar:nth-child(2) {
+    width: 22px;
+    transition: ease all .2s;
+  }
+
+  .navbar-toggler:active>.icon-bar:nth-child(2) {
+    width: 22px;
+    transition: ease all .2s;
+  }
+
+  .navbar-toggler:not(.collapsed) .icon-bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 4px);
+    transition: ease all .2s;
+  }
+
+  .navbar-toggler:not(.collapsed) .icon-bar:nth-child(2) {
+    opacity: 0;
+    transition: ease all .2s;
+  }
+
+  .navbar-toggler:not(.collapsed) .icon-bar:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+    transition: ease all .2s;
   }

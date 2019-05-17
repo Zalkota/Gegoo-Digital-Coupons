@@ -1,0 +1,106 @@
+{% extends "base-alt.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Contact Form{% endblock %}
+
+{% block content %}
+<div class="container text-center" style="height: 100vh; margin-top: 10rem;">
+    <h1 class="fw-6 fs-40">Schedule Your First Call With Our Amazing Team...</h1>
+    <h2 class="fw-5 fs-22"><span class="text-success">Attention:</span> Jump start your success by scheduling your FREE Brainstorming session...</h2>
+    <hr>
+    <div class="btn btn-success-alt fs-22 mt-4 px-5 py-4" style="border-radius: 0.125rem; line-height: 1.5rem;" >Free Consultation - No Commitment Necessary</div>
+
+    <div class="card mt-5" style="box-shadow: none; border: 1px solid #e1e1e1;">
+      <div class="card-title text-left p-5" id="panel">
+          <h4><span class="bg-success text-white py-2 mr-3" style="border-radius: 50%; padding: 0 1.25rem 0 1.25rem;">1</span>Schedule Appointment</h4>
+          <hr>
+      </div>
+
+
+        <form action="" method="post">
+          <div class="card-body form-check">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <div class="col-lg-12">
+
+            </div>
+        </form>
+<input class="btn btn-success-alt " type="submit" value="Submit">
+      </div>
+    </div>
+</div>
+
+<div class="py-5"></div><div class="py-5"></div><div class="py-5"></div>
+{% endblock %}
+
+
+{% block jquery %}
+  $(".form-check-input").on("click", function() {
+    $('.form-check-input' ).next().removeAttr('id');
+  });
+
+  $( "#id_id_appointment_time_0_1" ).after( "<span>3:00pm</span>" );
+  $( "#id_id_appointment_time_0_2" ).after( "<span>3:45pm</span>" );
+  $( "#id_id_appointment_time_0_3" ).after( "<span>4:30pm</span>" );
+  $( "#id_id_appointment_time_0_4" ).after( "<span>5:15pm</span>" );
+  $( "#id_id_appointment_time_0_5" ).after( "<span>6:00pm</span>" );
+  $( "#id_id_appointment_time_0_6" ).after( "<span>6:45pm</span>" );
+
+  $( "#id_id_appointment_time_0_7" ).after( "<span>3:00pm</span>" );
+  $( "#id_id_appointment_time_0_8" ).after( "<span>3:45pm</span>" );
+  $( "#id_id_appointment_time_0_9" ).after( "<span>4:30pm</span>" );
+  $( "#id_id_appointment_time_0_10" ).after( "<span>5:15pm</span>" );
+  $( "#id_id_appointment_time_0_11" ).after( "<span>6:00pm</span>" );
+  $( "#id_id_appointment_time_0_12" ).after( "<span>6:45pm</span>" );
+
+  $("#id_id_appointment_time_0_1").on("click", function() {
+    $( "#id_id_appointment_time_0_1" ).next().attr('id','id_span_appointment_time_0_1');
+  });
+  $("#id_id_appointment_time_0_2").on("click", function() {
+    $( "#id_id_appointment_time_0_2" ).next().attr('id','id_span_appointment_time_0_2');
+  });
+  $("#id_id_appointment_time_0_3").on("click", function() {
+    $( "#id_id_appointment_time_0_3" ).next().attr('id','id_span_appointment_time_0_3');
+  });
+  $("#id_id_appointment_time_0_4").on("click", function() {
+    $( "#id_id_appointment_time_0_4" ).next().attr('id','id_span_appointment_time_0_4');
+  });
+  $("#id_id_appointment_time_0_5").on("click", function() {
+    $( "#id_id_appointment_time_0_5" ).next().attr('id','id_span_appointment_time_0_5');
+  });
+  $("#id_id_appointment_time_0_6").on("click", function() {
+    $( "#id_id_appointment_time_0_6" ).next().attr('id','id_span_appointment_time_0_6');
+  });
+  $("#id_id_appointment_time_0_7").on("click", function() {
+    $( "#id_id_appointment_time_0_7" ).next().attr('id','id_span_appointment_time_0_7');
+  });
+  $("#id_id_appointment_time_0_8").on("click", function() {
+    $( "#id_id_appointment_time_0_8" ).next().attr('id','id_span_appointment_time_0_8');
+  });
+  $("#id_id_appointment_time_0_9").on("click", function() {
+    $( "#id_id_appointment_time_0_9" ).next().attr('id','id_span_appointment_time_0_9');
+  });
+  $("#id_id_appointment_time_0_10").on("click", function() {
+    $( "#id_id_appointment_time_0_10" ).next().attr('id','id_span_appointment_time_0_10');
+  });
+  $("#id_id_appointment_time_0_11").on("click", function() {
+    $( "#id_id_appointment_time_0_11" ).next().attr('id','id_span_appointment_time_0_11');
+  });
+  $("#id_id_appointment_time_0_12").on("click", function() {
+    $( "#id_id_appointment_time_0_12" ).next().attr('id','id_span_appointment_time_0_12');
+  });
+
+
+  $("#id_appointment_time_0").hide()
+
+  $(".form-check:eq(1)").parent().addClass("row");
+
+  $(".form-check:eq(1), .form-check:eq(2), .form-check:eq(3),.form-check:eq(4), .form-check:eq(5), .form-check:eq(6)").wrapAll("<div class='col-lg-6'>");
+  $(".form-check:eq(1)").before("<h5>{{ day_plus_one }}</h5>");
+
+  $(".form-check:eq(7), .form-check:eq(8), .form-check:eq(9),.form-check:eq(10), .form-check:eq(11), .form-check:eq(12)").wrapAll("<div class='col-lg-6'>");
+  $(".form-check:eq(7)").before("<h5>{{ day_plus_two }}</h5>");
+
+
+{% endblock %}

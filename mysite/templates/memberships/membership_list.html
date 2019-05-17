@@ -59,11 +59,15 @@ tr {
    height: 25px;
 }
 </style>
+
+
 <div class="section-card-parent">
     <div class="container-fluid section-card-overlay-top" style="border-bottom: 1px solid #d4d4d4;">
-        <div class="container text-center my-5">
-            <h2 class="jumbo-dark mt-5">Bring Clients to your Website</h2>
-            <p>Websites are only as good as its search engine optimization and advertisements</p>
+      <div class="pt-5 hide"></div>
+        <div class="container text-center mb-5">
+            <h1 class="jumbo-dark mt-5 hide">Bring Clients to your Website</h1>
+            <h1 class="jumbo-dark mt-5 unhide" style="font-size: 1.75rem;">Bring Clients to your Website</h1>
+            <p class="lead">Websites are only as good as its search engine optimization and advertisements</p>
         </div>
         <div class="container text-center card-overlayed">
             <div class="row">
@@ -107,7 +111,7 @@ tr {
                 {% endfor %}
                 <div class="offset-lg-2"></div>
             </div>
-            <p class="text-muted " style="font-size: 12px;">Your membership will renew automatically every month. You may cancel your membership at any time from your member dashboard.</p>
+            <p class="text-muted " style="font-size: 14px;">Your membership will renew automatically every month. You may cancel your membership at any time from your member dashboard.</p>
         </div>
     </div>
     <div class="container-fluid section-card-overlay-bottom">
@@ -128,45 +132,63 @@ tr {
   </div>
 <div class="py-5"></div><div class="py-3"></div>
 
-<div class="jumbotron text-center img-responsive-sm mt-5">
+<div class="jumbotron text-center img-responsive-sm mt-5" id="faq">
   <h2 class="text-dark" style="font-size: 36px;"><strong>Join hundreds of business owners</strong></h2>
 </div>
-<div class="container text-center">
+<div class="container"  >
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
-            <h2 class="text-dark py-5" style="font-size: 36px"><strong>Frequently Asked Questions</strong></h2>
-            <p class="lead py-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  <br><br>
-                <span class="text-muted">
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </span>
-            </p>
-            <p class="lead py-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  <br><br>
-                <span class="text-muted">
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </span>
-            </p>
-            <p class="lead py-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  <br><br>
-                <span class="text-muted">
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </span>
-            </p>
-            <p class="lead py-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  <br><br>
-                <span class="text-muted">
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </span>
-            </p>
+            <h2 class="text-dark py-5 text-center" style="font-size: 36px"><strong>Frequently Asked Questions</strong></h2>
+            <div class="text-left">
+                <h3 class="pt-5 pb-2">
+                    Will I have a say in the graphic design process?
+                </h3>
+                <p class="lead text-muted">
+                  Of course, our team of trained frontend and backend developers will work with you every step of the way to ensure that you are happy with your design.
+                  We will have frequent in person and over the phone meetings to share the progress of our work as each milestone progresses before the final design is completed.
+                </p>
+                <h3 class="pt-5 pb-2">
+                    What Payment Options to do you offer?
+                </h3>
+                <p class="text-muted lead">
+                  Our websites offer three methods of payment: <a target="_blank" class="text-primary" href="https://stripe.com/">Stripe</a>, <a target="_blank" class="text-primary" href="paypal.com">Paypal</a>, and <a target="_blank" class="text-primary" href="https://bitpay.com/">Bitpay</a>.
+                  These providers are industry leading in security, reliablity, and support.
+                  These providers handle all of the credit card and transaction information on the frontend and encrypt the credit card information as soon as it is submitted.
+                  This maximizes security for your customers and your business.
+                </p>
+                <h3 class="pt-5 pb-2">
+                    Where do you host your servers?
+                </h3>
+                <p class="text-muted lead">
+                  Your website will be hosted on Amazon Web Services, an industry leader in this space, that can easily scale to thousands of users for affordable prices if necessary.
+                </p>
+                <h3 class="pt-5 pb-2">
+                    Do you accept every client?
+                </h3>
+                <p class="text-muted lead">
+                  Absolutely not, there are times that a client is simply not a good fit for our business model. Mod Technology creates extensive and high quality frontend and backend systems for
+                  medium sized companies that are willing to put in the teamwork and effort to help us help them.
+                  Creating a customer driven, value add website requires a lot of input, information, and product knowledge from the client.
+                </p>
+
+                <h3 class="pt-5 pb-2">
+                    Do you use WordPress?
+                </h3>
+                <p class="text-muted lead">
+                  No, we use a high-end web application framework called Django - which runs on Python 3.0. Django was created in 2005 by the Django Software Foundation.
+                  Django is extremely scalable and is used by Instragram.com, BitBucket.com, Curse.com, and many other leading technology companies.
+                  With the correct configuration and support Django can handle over 50,000 users a day, is extremely secure, and ridiculously fast. <br>For more information visit <a target="_blank" class="text-primary" href="https://www.djangoproject.com/">djangoproject.com</a>
+                </p>
+            </div>
         </div>
-        <div class="col-lg-8 offset-lg-2 py-5">
+        <div class="col-lg-8 offset-lg-2 py-5 text-center">
             <h2 class="text-dark" style="font-size: 36px"><strong>Need help picking the best plan?</strong></h2>
-            <a class="btn btn-success-round px-5 mt-5 mx-2" role="button" href="{% slugurl 'contact' %}">Contact Sales &#38; Support</a>
+            <div class="hide">
+              <a class="btn btn-success-round px-5 mt-5 mx-2" role="button" href="{% slugurl 'contact' %}">Contact Sales &#38; Support</a>
+            </div>
+            <div class="unhide">
+              <a class="btn btn-success-round px-5 mt-5 mx-2" role="button" href="{% slugurl 'contact' %}">Contact Sales</a>
+            </div>
         </div>
     </div>
 </div>

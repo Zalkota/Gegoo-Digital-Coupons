@@ -4196,12 +4196,12 @@ button.bg-secondary:focus {
   background-color: #545b62 !important; }
 
 .bg-success {
-  background-color: #4caf50 !important; }
+  background-color: #4caf50; }
 
 a.bg-success:hover, a.bg-success:focus,
 button.bg-success:hover,
 button.bg-success:focus {
-  background-color: #3d8b40 !important; }
+  background-color: #3d8b40 !importan; }
 
 .bg-info {
   background-color: #03a9f4 !important; }

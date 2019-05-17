@@ -8,37 +8,48 @@
 
 {% block body_class %}template-homepage{% endblock %}
 
+{% block extrastyle %}
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+{% endblock extrastyle %}
+
 {% block content %}
 
   <section class="hero">
         <div class="text">
-            <h1 class="jumbo-white">{{ page.firstheader }}</h1>
-            <p class="">{{ page.firstbody }}</p>
-            <a class="btn btn-xl btn-success-round " href="{% slugurl 'contact' %}">Start a project</a>
+            <h1 class="jumbo-white mb-5">{{ page.firstheader }}</h1>
+            <p class="mb-5">{{ page.firstbody }}</p>
+            <div class="hide">
+              <a class="btn btn-xl btn-success-round fs-20" href="{% slugurl 'contact' %}">Start a project</a>
+            </div>
+            <div class="unhide">
+              <a class="btn btn-success-round fs-16 px-5" href="{% slugurl 'contact' %}">Start a project</a>
+            </div>
+
+
         </div>
   </section>
 
 
   <!-- ****** Logo Section ******* -->
 
-  <section class="section-accent-sm">
+  <section class="parallax1" data-aos="fade-in">
       <div class="container">
             <div class="text-center row">
-                <div class="col-lg-3 px-4">
-                  <i class="fa fa-line-chart fa-5x pb-3" aria-hidden="true"></i>
-                  <h5 style="font-weight: 500;">Converting Customers is the goal</h5>
+                <div class="col-lg-3 px-4"  >
+                  <i class="fa fa-line-chart fa-4x pb-3" aria-hidden="true"></i>
+                  <h5 style="font-weight: 500;">High Converting, Website Layouts and Funnels</h5>
                 </div>
                 <div class="col-lg-3 px-4">
-                  <i class="fa fa-apple fa-5x pb-3 " aria-hidden="true"></i>
-                  <h5 style="font-weight: 500;">Converting Customers is the goal</h5>
+                  <i class="fa fa-apple fa-4x pb-3 " aria-hidden="true"></i>
+                  <h5 style="font-weight: 500;">Customized Specifically To Your Brand</h5>
                 </div>
                 <div class="col-lg-3 px-4">
-                  <i class="fa fa-flask fa-5x pb-3" aria-hidden="true"></i>
-                  <h5 style="font-weight: 500;">Converting Customers is the goal</h5>
+                  <i class="fa fa-flask fa-4x pb-3" aria-hidden="true"></i>
+                  <h5 style="font-weight: 500;">Ready For Business Automation</h5>
                 </div>
                 <div class="col-lg-3 px-4">
-                  <i class="fa fa-cogs fa-5x pb-3" aria-hidden="true"></i>
-                  <h5 style="font-weight: 500;">Converting Customers is the goal</h5>
+                  <i class="fa fa-cogs fa-4x pb-3" aria-hidden="true"></i>
+                  <h5 style="font-weight: 500;">Implement Most Effective Growth Strategies</h5>
                 </div>
           </div>
       </div>
@@ -51,31 +62,32 @@
   <section class="section-md container">
       <div class="row">
           <div class="col-lg-6">
-            <img class="img-responsive" src="{% static 'img/undraw_designer_life_w96d.svg' %}" width="100%" height="100%" alt="TODO">
+            <img class="img-responsive"  src="{% static 'img/undraw_designer_life_w96d.svg' %}" width="100%" height="100%" alt="TODO">
           </div>
           <div class="col-lg-6">
-              <div class="px-5 vertical-align">
+              <div class="px-1 vertical-align" data-aos="zoom-in">
                 <h2><span style="font-size: 4rem; font-weight: 600;">01.</span>
                   <br>
-                  <span style="font-size: 2.25rem; font-weight: 600;">If You Can Dream It, We Can Plan & Create It</span>
+                  <span style="font-size: 2rem; font-weight: 600;">If You Can Dream It, We Can Plan & Create It</span>
                 </h2>
                 <div class="bg-primary" style="height: 5px; width: 90px;"></div>
-                <p class="py-4 mb-0">We’re here to reflect your vision that you think about day in and day out. We begin to translate your vision - in style. You’ll review and approve a base concept, and than we can work through the rest. After-all, thats why you're working with the experts.
-                <br><br>The future is extremely visual, and the design of your site is the first impression they’ll have of your business. In fact, most visitors decide whether they like or dislike something within five seconds of seeing it.
-                <br><br>With that in mind, it's important to have a professional and attractive design that conveys the right message.</p>
+                <p class="py-4 mb-0">No two projects are ever the same. That’s why we personally discuss your needs with you one-on-one via email, video chat, or over the phone to determine exactly what you want to accomplish and how we can help. Once we properly assess your needs, we develop a customized plan of action and get to work.
+                <br><br>Taking a leap. Without knowing how to fly, can be costly & deadly. We want to see you soar. We'll set you up with our tidy, convenient, and super easy-to-use project management software. This is where we’ll share style inspiration, mind maps, questionnaires and any curated content.
+                This is a collaboration, after all, and we care about protecting the purity of your vision.
+                </p>
               </div>
           </div>
       </div>
   </section>
 
-  <section class="section-secondary-light-md ">
+  <section class="section-secondary-light-md text-left">
     <div class="container">
       <div class="row">
           <div class="col-lg-6">
-              <div class="px-5 vertical-align">
+              <div class="px-1 vertical-align">
                 <h2><span style="font-size: 4rem; font-weight: 600;">02.</span>
                   <br>
-                  <span style="font-size: 2.25rem; font-weight: 600;">Your Brand, Our Process</span>
+                  <span style="font-size: 2rem; font-weight: 600;">Your Brand, Our Process</span>
                 </h2>
                 <div class="bg-primary" style="height: 5px; width: 90px;"></div>
                 <p class="py-4 mb-0">We’re here to reflect your vision that you think about day in and day out. We begin to translate your vision - in style. You’ll review and approve a base concept, and than we can work through the rest. After-all, thats why you're working with the experts.
@@ -93,18 +105,17 @@
   <section class="section-md container">
       <div class="row">
           <div class="col-lg-6">
-            <img class="img-responsive" src="{% static 'img/undraw_Outer_space_drqu.svg' %}" width="100%" height="100%" alt="TODO">
+            <img class="img-responsive" src="{% static 'img/undraw_To_the_stars_qhyy_4.svg' %}" width="100%" height="100%" alt="TODO">
           </div>
           <div class="col-lg-6">
-              <div class="px-5 vertical-align">
+              <div class="px-1 vertical-align">
                 <h2><span style="font-size: 4rem; font-weight: 600;">03.</span>
                   <br>
-                  <span style="font-size: 2.25rem; font-weight: 600;">Test, Tweak & Deploy</span>
+                  <span style="font-size: 2rem; font-weight: 600;">Test, Tweak & Deploy</span>
                 </h2>
                 <div class="bg-primary" style=" height: 5px; width: 90px;"></div>
                 <p class="py-4 mb-0">Your visitors expect an easy to navigate, memorable and impressionable experience when they visit your website.
-                Even the best of websites can be rendered useless with a few broken links and typos.
-                <br><br>That is why we test every link, examine the copywriting with a fine tooth comb and split-test the opt-in pages. We simply want your website to be perfect.
+                <br><br>Even the best of websites can be rendered useless with a few broken links and typos. That is why we test every link, examine the copywriting with a fine tooth comb and split-test the opt-in pages. We simply want your website to be perfect.
                 <br><br>Once we have tested everything and made the necessary adjustments it's ready to go live. You are now ready to deliver your business, product, or service to the world and with the push of a button it will be LIVE on the world wide web.
                 You can be confident that your project will deliver.</p>
               </div>
@@ -117,26 +128,45 @@
 
     <!-- ****** Logo Section ******* -->
 
-    <section class="section-secondary-sm">
+    <section class="section-accent-xs">
         <div class="container">
               <div class="text-center row">
                   <div class="col-lg-3 px-4">
-                    <img class="img-responsive" src="{% static 'img/django-logo-positive.svg' %}" width="200px" height="100px" alt="TODO">
+                    <img class="img-responsive" src="{% static 'img/django_logo.svg' %}" width="160px" height="100px" alt="TODO">
                   </div>
                   <div class="col-lg-3 px-4">
-                    <img class="img-responsive" src="{% static 'img/python-logo-generic.svg' %}" width="200px" height="80px" alt="TODO">
+                    <img class="img-responsive" src="{% static 'img/python_logo.svg' %}" width="160px" height="100px" alt="TODO">
                   </div>
                   <div class="col-lg-3 px-4">
-                    <img class="img-responsive" src="{% static 'img/DO_Logo_horizontal_blue.svg' %}" width="200px" height="100px" alt="TODO">
+                    <img class="img-responsive" src="{% static 'img/do_logo.svg' %}" width="220px" height="100px" alt="TODO">
                   </div>
                   <div class="col-lg-3 px-4">
-                    <img class="img-responsive" src="{% static 'img/Stripe logo - blue.svg' %}" width="200px" height="100px" alt="TODO">
+                    <img class="img-responsive" src="{% static 'img/stripe_logo.svg' %}" width="160px" height="100px" alt="TODO">
                   </div>
             </div>
         </div>
     </section>
 
     <!-- ****** End Logo Section ******* -->
+
+    <section class="section-darker-md">
+        <div class="container">
+              <div class="text-center">
+                <h2><span class="fs-24" >In Just 2018 Our Clients Have Generated</span> <br>
+                  <span class="fw-6 fs-80 hide" style="line-height: 8rem;">10x More Business</span> <span class="fw-6 fs-40 unhide" style="line-height: 4rem;">10x More Business</span> <br>
+                  <span class="fs-20">Using Our Web Based Systems, Sales Funnels, Distribution & Influencer Marketing Strategies</span>
+                </h2>
+              <div class="hide">
+                  <a class="btn btn-action-alt fs-22 mt-5 px-5 py-4" style="border-radius: 0.325rem; line-height: 1.5rem;" ref="">Take My Business To The Next Level <br> <span class="fs-12 fw-5" style="line-height: 0;">Click Here To Get Started On Your Project</span></a>
+              </div>
+              <div class="unhide">
+                  <a class="btn btn-action-alt fs-18 mt-5 px-5 py-4" style="border-radius: 0.325rem; line-height: 1rem;" ref="">Take My Business <br>To The Next Level</a>
+              </div>
+            </div>
+        </div>
+    </section>
+
+<!--
 <section class="section-md">
   <div class="container text-left in-left">
       <div class="row">
@@ -153,47 +183,12 @@
           </div>
       </div>
   </div>
-</section>
+</section> -->
 
-<!--
-<section>
-  <div class="container-fluid section-alt-3" id="" style="">
-      <div class="container text-center">
-          <h2 class="jumbo-white" style="font-weight: 500;">We transform your napkin sketches into loveable products. Here’s how we do it.</h2>
-          <div class="py-5"></div>
-          <div class="row text-left">
-              <div class="col-lg-4 column-border">
-                <h4>Strategy</h4>
-                    <p class="py-4">We recommend product features and business strategies that help you achieve your business goals.
-                      Our team spends 1-5 days deep diving into the core problems your product solves.
-                      When we finish, you receive a product strategy document and delivery plan.</p>
-                    <a class="btn btn-outline-light px-3 PT-5" style="font-weight: 500; font-size: 0.8rem;" href="#">Learn More</a>
-              </div>
-              <div class="col-lg-4 py-4 unhide"></div>
-              <div class="col-lg-4 column-border" >
-                  <h4>Rapid Prototyping</h4>
-                  <p class="py-4">We peel back layers of “nice to have” features to expose your product’s core value proposition and
-                    we quickly develop product features you can experience. Put your product in front your customers early to validate
-                     your hypotheses against customers who fit your target persona.</p>
-                  <a class="btn btn-outline-light px-3 PT-5" style="font-weight: 500; font-size: 0.8rem;" href="#">How we do it</a>
-              </div>
-              <div class="col-lg-4 py-4 unhide"></div>
-              <div class="col-lg-4">
-                <h4>Product Development</h4>
-                  <p class="py-4">We utilize a design driven development process to define each product screen and feature.
-                     Our design and development teams communicate with you often and quickly iterate on product features until
-                     you and your customers love the product we deliver.</p>
-                  <a class="btn btn-outline-light px-3 PT-5" style="font-weight: 500; font-size: 0.8rem;" href="#">See our process</a>
-              </div>
-          </div>
-      </div>
-</section>
--->
 
-  <section class="section-md">
-    <div class="container-fluid text-center">
-        <h2 class="jumbo-dark mb-4">Selected Projects</h2>
-      <div class="container my-5">
+  <section class="section-white-md" id="projects">
+      <div class="container text-center" data-aos="fade-up">
+        <h2 class="fs-40 fw-6">Selected Projects</h2>
             <div class="row">
                 <div class="col-sm-12">
                   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -236,60 +231,32 @@
               </div>
           </div>
       </div>
-    </div>
   </section>
 
-  <!-- <section>
-    <div class="container-fluid section-alt" id="" style="">
-        <div class="container text-center">
-            <h2 class="jumbo-purple">IMAGINE NEVER HAVING TO WORRY ABOUT WHERE YOUR NEXT CLIENT WILL COME FROM</h2>
-            <h6 class="text-muted">Unfortunately, most businesses generate leads the amateur way: referrals and networking.</h6>
-        </div>
-        <div class="py-5"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7" style="padding: 6rem 0 6rem 0;">
-                    <h5 class="mb-3 mt-4"><strong>REFERRALS AND NETWORKING:<br> THE DEATH OF YOUR BUSINESS</strong></h5>
-                    <p>We’ve been there! One month your business is on top of the world, next month you don’t close a single sale. Referrals are great, but so is having control of your destiny. </p>
-                </div>
-                <div class="col-lg-5 text-center" style="padding: 6rem 0 6rem 0;">
-                  <img class="" src="{% static 'img/undraw_business_deal_cpi9.svg' %}" style="width:60%;" alt="Card image">
-
-                </div>
-                <div class="col-lg-5 text-center" style="padding: 6rem 0 6rem 0;">
-                    <img class="" src="{% static 'img/undraw_sleep_analysis_o5f9.svg' %}" style="width:60%;" alt="Card image">
-                </div>
-                <div class="col-lg-7 mt-4" style="padding: 6rem 0 6rem 0;">
-                    <h5 class="mb-3"><strong>LEADS WHILE YOU SLEEP</strong></h5>
-                    <p>Your website and marketing should introduce new visitors to your business automatically. If you're relying on referrals and networking to pay the bills.
-                      Your growth is limited by the time you can spend hustling. Never mind all the other responsibilities of running your business.</p>
-                </div>
-                <div class="col-lg-7 mt-4" style="padding: 6rem 0 6rem 0;">
-                    <h5 class="mb-3"><strong>A BETTER MOUSE TRAP</strong></h5>
-                    <p>Your business needs to predictably capture your visitors and turn them into email subscribers. With an email list, you can nurture those relationships until they are ready to buy.</p>
-                </div>
-                <div class="col-lg-5 text-center" style="padding: 6rem 0 6rem 0;">
-                    <img class="" src="{% static 'img/undraw_email_campaign_qa8y.svg' %}" style="width:60%;" alt="Card image">
-                </div>
-            </div>
-        </div>
-  </section> -->
 <section class="section-accent-md">
   <div class="container">
     <div class="row">
         <div class="col-lg-6">
-          <img class="img-responsive" src="{% static 'img/undraw_designer_life_w96d.svg' %}" width="100%" height="100%" alt="TODO">
+          <img class="img-responsive" src="{% static 'img/undraw_bug_fixing_oc7a.svg' %}" width="100%" height="100%" alt="TODO">
         </div>
         <div class="col-lg-6">
-            <div class="px-5 vertical-align">
-              <h2><span style="font-size: 4rem; font-weight: 600;">01.</span>
-                <br>
-                <span style="font-size: 2.25rem; font-weight: 600;">If You Can Dream It, We Can Plan & Create It</span>
+            <div class="px-1 vertical-align">
+              <h2>
+                <span style="font-size: 2rem; font-weight: 600;">
+                Stop Trying To Do Everything!</span>
               </h2>
               <div class="bg-primary" style="height: 5px; width: 90px;"></div>
-              <p class="py-4 mb-0">We’re here to reflect your vision that you think about day in and day out. We begin to translate your vision - in style. You’ll review and approve a base concept, and than we can work through the rest. After-all, thats why you're working with the experts.
-              <br><br>The future is extremely visual, and the design of your site is the first impression they’ll have of your business. In fact, most visitors decide whether they like or dislike something within five seconds of seeing it.
-              <br><br>With that in mind, it's important to have a professional and attractive design that conveys the right message.</p>
+              <p class="py-4 mb-0">The truth is that if you are building a complicated thing, you should involve experts. This goes for everything: a kitchen renovation, a space shuttle – and, YES – designing the experience of a website or app.
+              <br><br>Experts such as ourselves recognise how to build effective and easy-to-use digital products. We know how to avoid Owner & customer frustration and avoid the need for expensive redesigns.
+              <br><br>When working with us you'll no longer feel uncertain about whether you're using the right approach when it comes to your technology. You won't have to guess because you'll have a valid way to test and optimize your marketing, sales, and business processes.
+              <br>
+              </p>
+              <div class="hide">
+                <a class="btn btn-action fs-18 mt-4 px-5 py-3" style="border-radius: 0.325rem; line-height: 1.25rem;" ref="">Schedule Phone Consultation <br> <span class="fs-12 fw-5" style="line-height: 0;">Limited Slots Available</span></a>
+              </div>
+              <div class="unhide">
+                <a class="btn btn-action fs-14 mt-4 px-2 py-3" style="border-radius: 0.325rem; line-height: 1.25rem;" ref="">Schedule Phone Consultation <br> <span class="fs-12 fw-5" style="line-height: 0;">Limited Slots Available</span></a>
+              </div>
             </div>
         </div>
     </div>
@@ -299,19 +266,18 @@
   <div class="container">
     <div class="row">
         <div class="col-lg-6">
-            <div class="px-5 vertical-align">
-              <h2><span style="font-size: 4rem; font-weight: 600;">02.</span>
-                <br>
-                <span style="font-size: 2.25rem; font-weight: 600;">Your Brand, Our Process</span>
+            <div class="px-1 vertical-align">
+              <h2>
+                <span style="font-size: 2rem; font-weight: 600;">We Eat, Sleep, Breath This</span>
               </h2>
               <div class="bg-primary" style=" height: 5px; width: 90px;"></div>
-              <p class="py-4 mb-0">We’re here to reflect your vision that you think about day in and day out. We begin to translate your vision - in style. You’ll review and approve a base concept, and than we can work through the rest. After-all, thats why you're working with the experts.
-              <br><br>The future is extremely visual, and the design of your site is the first impression they’ll have of your business. In fact, most visitors decide whether they like or dislike something within five seconds of seeing it.
-              <br><br>With that in mind, it's important to have a professional and attractive design that conveys the right message.</p>
+              <p class="py-4 mb-0">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, retargeting pixels, etc...
+              <br>We love what we do. So, If you are ready to power up your project, we are ready to take the wheel! Our business growth specialists are dedicated to getting you results.
+              <br>A well thought out business strategy combined with a gorgeously designed funnel / website can 10x the sales for your business. If you are struggling to stand out from the crowd online - than your in the right place.</p>
             </div>
         </div>
         <div class="col-lg-6">
-          <img class="img-responsive" src="{% static 'img/undraw_design_tools_42tf.svg' %}" width="100%" height="100%" alt="TODO">
+          <img class="img-responsive" src="{% static 'img/undraw_programming_2svr.svg' %}" width="100%" height="100%" alt="TODO">
         </div>
     </div>
   </div>
@@ -319,14 +285,24 @@
 
 <section class="section-accent-md">
   <div class="container text-center">
-    <h2 style="font-size: 2rem; font-weight: 500;">"Highly Recommended!" - Jacob Gaft</h2>
+    <h2 style="font-size: 2rem; font-weight: 500;">"Great Work!" - Evan Robberts</h2>
     <br>
-    <p class="text-white" style="font-size: 1.25rem; font-style: italic;">"Mastermind Media Group blew our expectations out of the water. Always going above and beyond to ensure that my project was successful.
+    <p class="text-white" style="font-size: 1.25rem; font-style: italic;">"Mod Technologies blew part our expectations. Always going above and beyond to ensure that my project was successful.
       Taking full ownership of their part of the project and even made great suggestions on other aspects of the project that helped make it even successful in the long run. Highly recommended to anyone who wants to succeed!"
-    <br><br> <span style="font-style: normal;">- Jacob Gaft Lexington Lawncare</span></p>
+    <br><br> <span style="font-style: normal;">- Evan Robberts Intellisys Capital</span></p>
   </div>
 </section>
 
 
 
 {% endblock %}
+
+
+{% block extrajs %}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+  });
+</script>
+{% endblock extrajs %}

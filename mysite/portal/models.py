@@ -30,6 +30,39 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+class Appointment(BaseModel):
+    One = 1
+    Two = 2
+    Three = 3
+    Four = 4
+    Five = 5
+    Six = 6
+    SEVEN = 7
+    EIGHT = 8
+    NINE = 9
+    TEN = 10
+    ELEVEN = 11
+    TWELVE = 12
+    TYPE_CHOICES = (
+        (One, ''),
+        (Two, ''),
+        (Three, ''),
+        (Four, ''),
+        (Five, ''),
+        (Six, ''),
+        (SEVEN, ''),
+        (EIGHT, ''),
+        (NINE, ''),
+        (TEN, ''),
+        (ELEVEN, ''),
+        (TWELVE, ''),
+    )
+    first_name = models.CharField(max_length=50, help_text="First name")
+    last_name = models.CharField(max_length=50, help_text="Last name")
+    company = models.CharField(max_length=50, help_text="Company")
+    email = models.CharField(max_length=50, help_text="Email")
+    appointment_time = models.PositiveSmallIntegerField(('Pick a time to schedule a over the phone consultation'), choices=TYPE_CHOICES, default=None, db_index=True)
+
 
 class Course(models.Model):
     slug = models.SlugField()

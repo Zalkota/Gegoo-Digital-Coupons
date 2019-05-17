@@ -31,7 +31,7 @@
 
         .hero h1 {
             /* Text styles */
-            font-size: 2.5em;
+            font-size: 2.75em;
             color: white;
             /* Margins */
             opacity: .95;
@@ -42,7 +42,7 @@
         }
         .hero p {
             /* Text styles */
-            font-size: 1.5em;
+            font-size: 1.8em;
 
             color: white;
 

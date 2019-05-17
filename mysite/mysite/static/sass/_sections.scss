@@ -1,10 +1,6 @@
 /* Sections */
 
-.section-jumbo-secondary .text-box {
 
-  color: #fff;
-  text-align: left;
-}
 
 
     .section {
@@ -12,6 +8,17 @@
       margin-bottom: 0rem;
       padding-top: 12rem;
       padding-bottom: 10rem;
+    }
+
+    .section-lg {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+      padding-top: 10rem;
+      padding-bottom: 10rem;
+
+      p {
+        color: $color-dark;
+      }
     }
 
     .section-md {
@@ -32,6 +39,14 @@
       padding-bottom: 4rem;
     }
 
+    .section-white-md {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+      background-color: #fff;
+    }
+
     .section-alt-md {
       margin-top: 0rem;
       margin-bottom: 0rem;
@@ -46,69 +61,12 @@
       padding-top: 4rem;
       padding-bottom: 4rem;
       background-color: $color-alt;
-    }
-
-    .section-alt-sm {
-      margin-top: 0rem;
-      margin-bottom: 0rem;
-      padding-top:3rem;
-      padding-bottom: 3rem;
-      background-color: $color-alt;
       color: $color-primary;
 
       p {
         color: $color-primary-dark;
       }
     }
-
-    .section-alt-2 {
-      margin-top: 0rem;
-      margin-bottom: 0rem;
-      padding-top: 9rem;
-      padding-bottom: 9rem;
-      padding-right: 5rem;
-      padding-left: 5rem;
-      background-color: #e5e7e5;
-
-      h2  {
-        color: $color-primary
-      }
-
-    }
-
-    .section-parallax {
-      margin-top: 7rem;
-      margin-bottom: 0rem;
-      padding-top: 8rem;
-      padding-bottom: 8rem;
-      color: #fff !important;
-      background-attachment: fixed;
-      background-color: #e7f1ff;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-image: url(/static/img/background_picture3.jpg);
-
-      img {
-
-        width:100px;
-      }
-      p {
-        text-align: center;
-        color: #fff !important;
-        padding: 0 10rem 0 10rem;
-      }
-    }
-
-    .section-alt-4 {
-      margin-top: 0rem;
-      margin-bottom: 0rem;
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-      background-color: $color-accent-light;
-      color: $color-secondary;
-    }
-
 
     .section-primary-lg {
       margin-top: 0rem;
@@ -187,15 +145,6 @@
       }
     }
 
-    .section-dark-sm {
-      margin-top: 0rem;
-      margin-bottom: 0rem;
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-      background-color: $color-dark;
-      color: $color-light;
-    }
-
     .section-accent-sm {
       margin-top: 0rem;
       margin-bottom: 0rem;
@@ -208,6 +157,58 @@
         color: $color-white;
       }
     }
+
+    .section-accent-xs {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+      padding-top: 2em;
+      padding-bottom: 2rem;
+      background-color: $color-accent-light;
+      color: $color-secondary-light;
+
+      p {
+        color: $color-white;
+      }
+    }
+
+    .section-dark-lg {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+      padding-top: 10rem;
+      padding-bottom: 10rem;
+      background-color: $color-dark;
+      color: $color-light;
+    }
+
+    .section-darker-lg {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+      padding-top: 10rem;
+      padding-bottom: 10rem;
+      background-color: $color-accent-dark;
+      color: $color-light;
+    }
+
+    .section-darker-md {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+      background-color: $color-accent-dark;
+      color: $color-light;
+    }
+
+
+
+    .section-dark-sm {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+      background-color: $color-dark;
+      color: $color-light;
+    }
+
 
 
     .section-primary-gradient {
@@ -230,13 +231,7 @@
       }
     }
 
-    .section-secondary-md {
-      padding-top: 8rem;
-      padding-bottom: 8rem;
-      color: $color-dark;
-      background-color: $color-secondary;
-      text-align: center;
-    }
+
     .section-secondary-lg {
       margin-top: 0rem;
       margin-bottom: 0rem;
@@ -246,6 +241,15 @@
       padding-top: 10rem;
       padding-bottom: 10rem;
     }
+
+    .section-secondary-md {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+      color: $color-dark;
+      background-color: $color-secondary;
+      text-align: center;
+    }
+
     .section-secondary-sm {
       margin-top: 0rem;
       margin-bottom: 0rem;
@@ -274,6 +278,16 @@
       padding-bottom: 8rem;
     }
 
+    .section-secondary-light-sm {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+      color: $color-dark;
+      background-color: $color-secondary-light;
+      text-align: center;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
     .section-secondary-light-xs {
       margin-top: 0rem;
       margin-bottom: 0rem;
@@ -283,6 +297,87 @@
       padding-top: 3rem;
       padding-bottom: 3rem;
     }
+
+
+
+        .section-alt-2 {
+          margin-top: 0rem;
+          margin-bottom: 0rem;
+          padding-top: 9rem;
+          padding-bottom: 9rem;
+          padding-right: 5rem;
+          padding-left: 5rem;
+          background-color: #e5e7e5;
+
+          h2  {
+            color: $color-primary
+          }
+
+        }
+
+
+/* ******* MISC SECTIONS ****** */
+
+
+        .section-parallax {
+          margin-top: 7rem;
+          margin-bottom: 0rem;
+          padding-top: 8rem;
+          padding-bottom: 8rem;
+          color: #fff !important;
+          background-attachment: fixed;
+          background-color: #e7f1ff;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-image: url(/static/img/background_picture3.jpg);
+
+          img {
+
+            width:100px;
+          }
+          p {
+            text-align: center;
+            color: #fff !important;
+            padding: 0 10rem 0 10rem;
+          }
+        }
+
+
+        .parallax1 {
+          margin-top: 0rem;
+          margin-bottom: 0rem;
+          padding-top: 4rem;
+          padding-bottom: 4rem;
+          background-color: $color-accent-light;
+          position: relative;
+          color: $color-secondary-light;
+          /* Create the parallax scrolling effect */
+          background-image: url(/static/img/triangle_background2.jpg);
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          p {
+            color: $color-white;
+          }
+        }
+
+        .section-alt-4 {
+          margin-top: 0rem;
+          margin-bottom: 0rem;
+          padding-top: 4rem;
+          padding-bottom: 4rem;
+          background-color: $color-accent-light;
+          color: $color-secondary;
+        }
+
+        .section-jumbo-secondary .text-box {
+
+          color: #fff;
+          text-align: left;
+        }
 
 
     .section-image {
@@ -300,6 +395,7 @@
           width: 60%;
       }
     }
+
     .section-overlap-img {
 
       img {
@@ -403,7 +499,7 @@
 
 
 
-    /* BANNER */
+    /* ****** BANNER ******* */
     .banner {
         position: relative;
         background-size: cover;  /* take width of view port, fits element inside of box */

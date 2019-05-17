@@ -20,7 +20,7 @@ input {
 .card {
     left: 60%;
     top: 20%;
-    border-radius: 8px;
+    border-radius: 4px;
     position: fixed;
   }
   .message {
@@ -66,7 +66,9 @@ input {
 
   <!-- Desktop View -->
      <div class="pt-3 hide moveInLeft" style=" z-index: 1000;">
+       <a href="{% slugurl 'homepage' %}">
           <img src="{% static 'img/logo_9.1.svg' %}" width="508px" alt="Card image">
+        </a>
       </div>
       <div class="hide">
           <div class="card mx-3 mt-3" style="width: 25rem; z-index: 1000;">

@@ -19,7 +19,7 @@ from .models import Course, Lesson, Review
 from django.contrib.auth.decorators import login_required  # This is to block pages to non users using function views
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import ContactForm, ReviewForm
+from .forms import ContactForm, AppointmentForm
 from users.models import User, Profile
 from django.template.context_processors import csrf
 from django.core.exceptions import ObjectDoesNotExist
@@ -29,6 +29,69 @@ from django.utils import timezone
 #SuperUser Mixin
 from braces import views
 from django.conf import settings
+
+#appointmentform
+import datetime
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+
+def menu(request):
+    return render(request, 'portal/strada.html')
+
+def AppointmentFormView(request):
+    # If this is a POST request then process the Form data
+    if request.method == 'POST':
+        # Create a form instance and populate it with data from the request (binding):
+        form = AppointmentForm(request.POST)
+        # Check if the form is valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/appointment-confirmation/')
+
+        # If this is a GET (or any other method) create the default form.
+    else:
+        form = AppointmentForm()
+
+    day_plus_one = datetime.date.today() + datetime.timedelta(days=1)
+    day_plus_two = datetime.date.today() + datetime.timedelta(days=2)
+    day_plus_three = datetime.date.today() + datetime.timedelta(days=3)
+    day_plus_four = datetime.date.today() + datetime.timedelta(days=4)
+
+    return render(request, 'portal/appointment_form.html', {'form': form, 'day_plus_one': day_plus_one, 'day_plus_two': day_plus_two, 'day_plus_three': day_plus_three, 'day_plus_four': day_plus_four })
+
+
+def renew_book_librarian(request, pk):
+    book_instance = get_object_or_404(BookInstance, pk=pk)
+
+    # If this is a POST request then process the Form data
+    if request.method == 'POST':
+
+        # Create a form instance and populate it with data from the request (binding):
+        form = RenewBookForm(request.POST)
+
+        # Check if the form is valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+            book_instance.due_back = form.cleaned_data['renewal_date']
+            book_instance.save()
+
+            # redirect to a new URL:
+            return HttpResponseRedirect(reverse('all-borrowed') )
+
+    # If this is a GET (or any other method) create the default form.
+    else:
+        proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
+        form = RenewBookForm(initial={'renewal_date': proposed_renewal_date})
+
+    context = {
+        'form': form,
+        'book_instance': book_instance,
+    }
+
+    return render(request, 'catalog/book_renew_librarian.html', context)
+
 
 def SubscriptionListView(request):
 
