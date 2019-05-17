@@ -25,9 +25,9 @@ from django.shortcuts import redirect
 
 
 class HomePage(Page):
-    firstheader = models.CharField(blank=True, max_length=256)
-    firstbody = models.CharField(blank=True, max_length=256)
-    registerbuttonurl = models.CharField(blank=True, max_length=250)
+    firstheader = models.CharField(blank=True, max_length=500)
+    firstbody = models.CharField(blank=True, max_length=500)
+    registerbuttonurl = models.CharField(blank=True, max_length=256)
     secondheader = RichTextField(blank=True)
     secondbody = RichTextField(blank=True)
 
