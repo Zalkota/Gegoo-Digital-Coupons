@@ -5,9 +5,9 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block inner %}
-<div class="py-5"></div>
-<div class="col-md-6 offset-md-2">
-  <div class="mt-5">
+
+  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-4" style="padding-top: 2rem;">
+    <div class="px-4">
   <h1>{% trans "Sign Up" %}</h1>
 
   <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
@@ -20,7 +20,7 @@
     {% endif %}
     By signing up, you agree to our Terms of Use and Privacy Policy.
 
-    <button class="btn btn-success mt-4"  type="submit">{% trans "Create Account" %} &raquo;</button>
+    <button class="btn btn-primary-alt mt-4"  type="submit">{% trans "Create Account" %}</button>
   </form>
   </div>
 </div>

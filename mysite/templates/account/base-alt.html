@@ -44,13 +44,13 @@
 
 
 
-{% block content %}
-<div class="row">
-  <div class="col-md-4 offset-md-4">
-    {% block inner %}{% endblock inner %}
-  </div>
-</div>
-{% endblock content %}
+    {% block content %}
+    <div class="row">
+      <div class="offset-md-2 offset-xl-4"></div>
+        {% block inner %}{% endblock inner %}
+      <div class="offset-md-2 offset-xl-4"></div>
+    </div>
+    {% endblock content %}
 
 {% block footer %}
   <!-- No Footer for account/base.html -->
@@ -60,8 +60,6 @@
 
 {# Global javascript #}
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<script type="text/javascript" src="{% static 'js/mysite.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 
 <script src="{% static 'js/docs.min.js' %}"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChmLHKBW5VXZsv5Am2kkAy4HOYqd6vd0k&callback=initMap"></script>
@@ -69,9 +67,7 @@
 <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
 
-<!-- stripe !-->
-<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
-<script type="text/javascript" src="{% static 'js/charge.js' %}"></script>
+
 
 <!-- Waves Effect !-->
 <script type="text/javascript" src="{% static 'js/button-wave-effect.js' %}"></script>
