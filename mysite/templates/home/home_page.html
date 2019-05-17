@@ -32,7 +32,7 @@
 
   <!-- ****** Logo Section ******* -->
 
-  <section class="parallax1" data-aos="fade-in">
+  <section class="parallax1">
       <div class="container">
             <div class="text-center row">
                 <div class="col-lg-3 px-4"  >
@@ -62,10 +62,10 @@
   <section class="section-md container">
       <div class="row">
           <div class="col-lg-6">
-            <img class="img-responsive"  src="{% static 'img/undraw_designer_life_w96d.svg' %}" width="100%" height="100%" alt="TODO">
+            <img class="img-responsive" data-aos="fade-up" src="{% static 'img/undraw_designer_life_w96d.svg' %}" width="100%" height="100%" alt="TODO">
           </div>
           <div class="col-lg-6">
-              <div class="px-1 vertical-align" data-aos="zoom-in">
+              <div class="px-1 vertical-align" data-aos="fade-down">
                 <h2><span style="font-size: 4rem; font-weight: 600;">01.</span>
                   <br>
                   <span style="font-size: 2rem; font-weight: 600;">If You Can Dream It, We Can Plan & Create It</span>
@@ -83,7 +83,7 @@
   <section class="section-secondary-light-md text-left">
     <div class="container">
       <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-6" data-aos="fade-right">
               <div class="px-1 vertical-align">
                 <h2><span style="font-size: 4rem; font-weight: 600;">02.</span>
                   <br>
@@ -95,7 +95,7 @@
                 <br><br>With that in mind, it's important to have a professional and attractive design that conveys the right message.</p>
               </div>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-6" data-aos="fade-left">
             <img class="img-responsive" src="{% static 'img/undraw_design_tools_42tf.svg' %}" width="100%" height="100%" alt="TODO">
           </div>
       </div>
@@ -104,10 +104,10 @@
 
   <section class="section-md container">
       <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-6" data-aos="fade-up">
             <img class="img-responsive" src="{% static 'img/undraw_To_the_stars_qhyy_4.svg' %}" width="100%" height="100%" alt="TODO">
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-6" data-aos="fade-up">
               <div class="px-1 vertical-align">
                 <h2><span style="font-size: 4rem; font-weight: 600;">03.</span>
                   <br>
@@ -150,14 +150,14 @@
     <!-- ****** End Logo Section ******* -->
 
     <section class="section-darker-md">
-        <div class="container">
+        <div class="container" data-aos="zoom-in">
               <div class="text-center">
                 <h2><span class="fs-24" >In Just 2018 Our Clients Have Generated</span> <br>
-                  <span class="fw-6 fs-80 hide" style="line-height: 8rem;">10x More Business</span> <span class="fw-6 fs-40 unhide" style="line-height: 4rem;">10x More Business</span> <br>
+                  <span class="fw-6 fs-80 hide" style="line-height: 8rem;" >10x More Business</span> <span class="fw-6 fs-40 unhide" style="line-height: 4rem;">10x More Business</span> <br>
                   <span class="fs-20">Using Our Web Based Systems, Sales Funnels, Distribution & Influencer Marketing Strategies</span>
                 </h2>
               <div class="hide">
-                  <a class="btn btn-action-alt fs-22 mt-5 px-5 py-4" style="border-radius: 0.325rem; line-height: 1.5rem;" ref="">Take My Business To The Next Level <br> <span class="fs-12 fw-5" style="line-height: 0;">Click Here To Get Started On Your Project</span></a>
+                  <a class="btn btn-action-alt fs-22 mt-5 px-5 py-4" data-aos="zoom-in" style="border-radius: 0.325rem; line-height: 1.5rem;" ref="">Take My Business To The Next Level <br> <span class="fs-12 fw-5" style="line-height: 0;">Click Here To Get Started On Your Project</span></a>
               </div>
               <div class="unhide">
                   <a class="btn btn-action-alt fs-18 mt-5 px-5 py-4" style="border-radius: 0.325rem; line-height: 1rem;" ref="">Take My Business <br>To The Next Level</a>
@@ -239,7 +239,7 @@
         <div class="col-lg-6">
           <img class="img-responsive" src="{% static 'img/undraw_bug_fixing_oc7a.svg' %}" width="100%" height="100%" alt="TODO">
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6" data-aos="fade-left" >
             <div class="px-1 vertical-align">
               <h2>
                 <span style="font-size: 2rem; font-weight: 600;">
@@ -265,7 +265,7 @@
 <section class="section-secondary-md text-left">
   <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6" data-aos="fade-right">
             <div class="px-1 vertical-align">
               <h2>
                 <span style="font-size: 2rem; font-weight: 600;">We Eat, Sleep, Breath This</span>
@@ -302,7 +302,7 @@
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
   AOS.init({
-    duration: 1000,
+    duration: 1300,
   });
 </script>
 {% endblock extrajs %}

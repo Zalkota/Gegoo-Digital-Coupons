@@ -35,9 +35,6 @@ import datetime
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 
-def menu(request):
-    return render(request, 'portal/strada.html')
-
 def AppointmentFormView(request):
     # If this is a POST request then process the Form data
     if request.method == 'POST':

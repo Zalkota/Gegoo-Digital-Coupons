@@ -12,7 +12,6 @@ urlpatterns = [
 
     url(r'^subscriptions/$', views.SubscriptionListView, name='subscription_list'),
     path('consultation/', views.AppointmentFormView, name='appintment_form'),
-    path('menu/', views.menu, name='menu-page'),
     #url(r'^courselist/$', CourseListView, name='course_list'),
     #path('contact/<email>/<user>/', views.Contact, name='contact_form'),
     #path('<slug>', CourseDetailView.as_view(), name='course_detail'),
