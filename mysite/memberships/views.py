@@ -253,6 +253,14 @@ def PaymentView(request):
 			  #source=token # 4242424242424242
 			)
 
+
+			charge = stripe.Charge.create(
+			  amount=2000,
+			  currency="usd",
+			  source=token, # obtained with Stripe.js
+			  description="Monthly Subscription Charge"
+			)
+
 			return redirect(reverse('memberships:update_transactions',
 				kwargs={
 					'subscription_id': subscription.id
