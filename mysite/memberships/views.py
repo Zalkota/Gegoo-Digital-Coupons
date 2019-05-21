@@ -258,7 +258,7 @@ def PaymentView(request):
 			  amount=selected_membership.membership.price,
 			  currency="usd",
 			  source=token, # obtained with Stripe.js
-			  description="Monthly Subscription Charge"
+			  description="Monthly Subscription Charge",
 			  receipt_email=user_membership.user.email
 			)
 
