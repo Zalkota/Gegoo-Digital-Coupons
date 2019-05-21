@@ -262,7 +262,7 @@ def PaymentView(request):
 			  currency="usd",
 			  source=token, # obtained with Stripe.js
 			  description="Monthly Subscription Charge",
-			  receipt_email=email,
+			  receipt_email='mazz6261@kettering.edu',
 			)
 
 			return redirect(reverse('memberships:update_transactions',
