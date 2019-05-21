@@ -230,8 +230,7 @@ def download_invoice_pdf(request, invoice_id):
 @login_required
 def PaymentView(request):
 
-	user = request.user
-	email = user.email
+	email = request.user.email
 
 	user_membership = get_user_membership(request)
 
@@ -262,7 +261,7 @@ def PaymentView(request):
 			  currency="usd",
 			  source=token, # obtained with Stripe.js
 			  description="Monthly Subscription Charge",
-			  receipt_email='mazz6261@kettering.edu',
+			  receipt_email=email,
 			)
 
 			return redirect(reverse('memberships:update_transactions',
