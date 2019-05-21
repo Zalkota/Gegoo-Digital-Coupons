@@ -245,6 +245,20 @@ def PaymentView(request):
 	if request.method == "POST":
 		try:
 			token = request.POST['stripeToken']
+
+
+            #First we need to add the source for the customer
+
+
+			customer = stripe.Customer.retrieve(user_membership.stripe_customer_id)
+			customer.source = token # 4242424242424242
+			customer.save()
+
+
+            #Now we can create the subscription using only the customer as we don't need to pass their
+            #credit card source anymore
+
+
 			subscription = stripe.Subscription.create(
 			  customer=user_membership.stripe_customer_id,
 			  items=[
@@ -252,25 +266,24 @@ def PaymentView(request):
 			      "plan": selected_membership.stripe_plan_id,
 			    },
 			  ],
-			  #source=token # 4242424242424242
 			)
 
 
-			charge = stripe.Charge.create(
-			  amount=selected_membership.stripe_price,
-			  currency="usd",
-			  source=token, # obtained with Stripe.js
-			  description=selected_membership.description,
-			  receipt_email=email,
-			)
+			#charge = stripe.Charge.create(
+			#  amount=selected_membership.stripe_price,
+			#  currency="usd",
+			#  source=token, # obtained with Stripe.js
+			#  description=selected_membership.description,
+			#  receipt_email=email,
+			#)
 
 			return redirect(reverse('memberships:update_transactions',
 				kwargs={
 					'subscription_id': subscription.id
 				}))
 
-		except stripe.CardError as e:
-			messages.info(request, "Your card has been declined")
+		except stripe.error.CardError as e:
+			messages.info(request, "Oops, your card has been declined")
 
 	context = {
 	'publishKey': publishKey,
