@@ -258,7 +258,7 @@ def PaymentView(request):
 
 
 			charge = stripe.Charge.create(
-			  amount=selected_membership.price,
+			  amount=selected_membership.stripe_price,
 			  currency="usd",
 			  source=token, # obtained with Stripe.js
 			  description="Monthly Subscription Charge",
