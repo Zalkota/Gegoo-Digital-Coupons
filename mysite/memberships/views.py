@@ -255,10 +255,11 @@ def PaymentView(request):
 
 
 			charge = stripe.Charge.create(
-			  amount=2000,
+			  amount=selected_membership.membership.price,
 			  currency="usd",
 			  source=token, # obtained with Stripe.js
 			  description="Monthly Subscription Charge"
+			  receipt_email=user_membership.user.email
 			)
 
 			return redirect(reverse('memberships:update_transactions',
