@@ -260,7 +260,7 @@ def PaymentView(request):
 			  amount=selected_membership.stripe_price,
 			  currency="usd",
 			  source=token, # obtained with Stripe.js
-			  description="Monthly Subscription Charge",
+			  description=selected_membership.description,
 			  receipt_email=email,
 			)
 
@@ -491,9 +491,9 @@ def send_payment_success_email(emailRecipient, user):
 def success(request):
 
 	user_membership = get_user_membership(request)
-	user = request.user
-	emailRecipient = user.email
-	send_payment_success_email(emailRecipient, user)
+	#user = request.user
+	#emailRecipient = user.email
+	#send_payment_success_email(emailRecipient, user)
 
 	context = {
 	'user_membership': user_membership,
