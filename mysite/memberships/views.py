@@ -261,6 +261,7 @@ def PaymentView(request):
 
 			subscription = stripe.Subscription.create(
 			  customer=user_membership.stripe_customer_id,
+			  receipt_email=email,
 			  items=[
 			    {
 			      "plan": selected_membership.stripe_plan_id,
