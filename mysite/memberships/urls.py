@@ -17,8 +17,6 @@ from .views import (
 	SubscriptionDetailView,
 	SubscriptionListView,
 	adminPanel,
-	coursePanel,
-	lessonPanel,
 	MembershipUpdateView,
 	MembershipListView,
 	permission_denied
@@ -33,7 +31,7 @@ urlpatterns = [
 	path('<invoice_id>/pdf/', download_invoice_pdf, name="invoice_pdf"),
 
     path('', MembershipSelectView.as_view(), name='select'),
-    path('payment/', PaymentView, name='payment'),
+    path('checkout/', PaymentView, name='payment'),
 	path('success/', success, name='purchase_success'),
     path('update-transactions/<subscription_id>/', updateTransactionRecords, name='update_transactions'),
     path('subscription/', user_subscriptions_view, name='user_subscription'),

@@ -1,3 +1,7 @@
+# To Start Server
+
+Python3 local.py runserver
+
 # The Official README #
 
 # Table of Contents #

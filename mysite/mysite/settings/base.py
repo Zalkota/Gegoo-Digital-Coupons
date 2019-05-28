@@ -126,6 +126,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'mysite.processors.SiteName',
                 #'allauth.account.context_processors',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -303,7 +304,3 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True  # The default behaviour is not log u
 #TEST
 #STRIPE_PUBLISHABLE_KEY = 'pk_test_idvhfKDQ341zGBS85RwhLnWY'
 #STRIPE_SECRET_KEY = 'sk_test_UreA2MI54Bmadk6xO2j9jGlD'
-
-#LIVE
-STRIPE_PUBLISHABLE_KEY = 'pk_live_MdjBMj7pTrz0Dh9XN4wAtlSH'
-STRIPE_SECRET_KEY = 'sk_live_6SBA0vgeQtjnrmdFViw6yutU'

@@ -2,7 +2,7 @@
 @media screen and (min-width: 992px) {
 .hero-300 {
     /* Sizing */
-    height: 5vh;
+    height: 0vh;
 
     background-color: transparent;
 
@@ -28,7 +28,7 @@
 .hero-300-background {
     /* Sizing */
 
-    height: 95vh;
+    height: 100vh;
     background-color: #003156;
 
     z-index: 1;
@@ -46,7 +46,8 @@
     background-position: center;  /* hero always sticks to the top when resized. */
     background-repeat: no-repeat;
     background-attachment: fixed;
-    clip-path: polygon(0 0%, 100% 0, 100% 40%, 0 80%);
+    -webkit-clip-path: polygon(0 0, 46% 0, 46% 100%, 0% 100%);
+    clip-path: polygon(0 0, 46% 0, 46% 100%, 0% 100%);
 
   }
 }
@@ -83,8 +84,8 @@
     /* Text styles */
     font-size: 1.25em;
     position: fixed;
-    left: 16.5%;
-    top: 30%;
+    left: 8%;
+    top: 35%;
     color: white;
     z-index: 1000;
     /* Margins */
@@ -133,6 +134,8 @@
     margin: auto;
     opacity: .9;
   }
+
+
 
   button {
     height: 45px;

@@ -6,6 +6,9 @@
 
 {% block script %}
 <script type="text/javascript">
+
+// ============ STRIPE PAYMENT PROCESSING JS =========== //
+
 var stripe = Stripe('{{ publishKey }}');
 var elements = stripe.elements();
 
@@ -83,7 +86,35 @@ form.addEventListener('submit', function(event) {
     }
   });
 });
+
 {% endblock jquery %}
+
+{% block extra_jQuery %}
+<script>
+$(document).ready$(function(){
+
+    $( '.informationDropdown' ).each( function( index, value ){
+
+        $( value ).data( 'height', $( this ).height() );
+        $( value ).css( {height: 30} );
+    });
+
+    $( '.informationDropdown .information' ).click( function(){
+
+        if( $( this ).data( 'expanded' ) ){
+
+          $( this ).parent().animate( {height: 30} );
+          $( this ).data( 'expanded', false );
+        }else{
+
+          $( this ).parent( ).animate( {height: $( this ).parent().data( 'height' )} );
+          $( this ).data( 'expanded', true );
+        }
+    });
+});
+</script>
+
+{% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/stripe.css' %}">
@@ -101,75 +132,105 @@ table.table thead {
   border-bottom: 1px solid #cecece;
   border-top: 1px solid #cecece;
 }
-
+.informationDropdown {
+  border: 1px solid black;
+  margin: 20px;
+  overflow: hidden;
+  padding: 10px;
+}
 </style>
 
 
-
-<section>
-  <div class="container-fluid section-sm-secondary" style="margin-top: 60px;">
-      <div class="container text-box">
-          <p><a href="{% slugurl 'home' %}"><i class="text-light fa fa-home" aria-hidden="true"></i></a> / <a class="text-light" href="{% url 'memberships:select' %}">Subscriptions</a> / Shopping Cart</p>
-          <h2>Shopping Cart</h2>
-      </div>
-  </div>
-</section>
-  <div class="container">
+  <div class="container mt-5" >
     <div class="row">
-    <div class="col-lg-8">
-      <p class="lead" style="font-size: 2rem;">Your Order</p>
-      <div class="card p-3 mt-5" style=" border-style: solid; border-width: 1px; border-color: #ccc;">
+    <div class="col-lg-8 ">
+      <div class="px-0">
+        <h1><strong>Your Order</strong></h1>
+      </div>
+      <div class="py-3 px-0 mt-5">
           <div class="row">
-            <div class="col-lg-8 p-4">
+            <div class="col-lg-8 <py></py>-4 px-0">
               <p class="text-left ml-3"><span  style="font-size: 1.4em; margin-bottom: 2rem;">{{ selected_membership }} Subscription</span><br>
-
+              <div class="accordion" id="myAccordion">
+                  <div id="headingThree">
+                      <button type="button" class="text-left btn-information-dropdown collapsed" data-toggle="collapse" data-target="#collapseThree">view whats included <i class="fa fa-info-circle" aria-hidden="true"></i></button>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myAccordion">
+                      <div class="px-3">
+                          <p>{{ selected_membership.description }}</p>
+                      </div>
+                  </div>
+              </div>
+                            </p>
             </div>
-            <div class="col-lg-4  p-4">
-              <p class="text-center ml-3"><span  style="font-size: 1.4em; margin-bottom: 2rem;">${{ selected_membership.price }}</span><br>
+            <div class="col-lg-4 p-4 hide">
+              <p class="text-center ml-3"><span  style="font-size: 1.4em; margin-bottom: 2rem;">${{ selected_membership.price }}/mo</span><br>
               </p>
             </div>
         </div>
+        <hr class="hide">
       </div>
     </div>
     <div class="offset-lg-1"></div>
-    <div class="col-lg-3">
-      <p class="lead" style="font-size: 2rem;">Total</p><br>
-      <p style="font-size: 1.8em;"><strong>${{ selected_membership.price }}</strong></p>
-      <p class="text-secondary">This purchase is a recurring monthly subscription.</p>
-      <form action="." method="POST" id="">{% csrf_token %}
-        <script
-          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="{{ publishKey }}"
-          data-amount="{{ selected_membership.stripe_total }}"
-          data-name="ModTechnologies.io"
-          data-description="{{ selected_membership }} Monthly Subscription"
-          data-image="{% static 'img/logo_5.svg' %}"
-          data-locale="auto"
-          data-zip-code="true">PROCEED TO CHECKOUT
-        </script>
-        <script>
-          // Hide default stripe button, be careful there if you
-          // have more than 1 button of that class
-          document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
-        </script>
-        <button type="submit" class="btn btn-primary bg-primary shadow px-2">Order Now</button>
-      </form>
+    <div class="col-lg-3 p-0">
+      <div class=" p-4 m-1" style="border: 1px solid #ccc;">
+        <h2  ><strong>Summary</strong></h2><br>
+        <div class="py-1">
+          <span>Subtotal</span>
+          <span class="float-right">${{ selected_membership.price }}</span>
+        </div>
+        <hr>
+        <div class="py-1">
+          <span class="fw-6">Total</span>
+          <span class="fw-6 float-right">${{ selected_membership.price }}</span>
+        </div>
+        <p class="text-secondary fs-12">This purchase is a recurring monthly subscription from the date of purchase.</p>
+        <form action="." method="POST" id="">{% csrf_token %}
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="{{ publishKey }}"
+            data-amount="{{ selected_membership.stripe_total }}"
+            data-name="{{ SITE_NAME }}"
+            data-description="{{ selected_membership }} Monthly Subscription"
+            data-image="{% static 'img/logo/logo.jpeg' %}"
+            data-locale="auto"
+            data-zip-code="true">PROCEED TO CHECKOUT
+          </script>
+          <script>
+            // Hide default stripe button, be careful there if you
+            // have more than 1 button of that class
+            document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+          </script>
+          <button type="submit" class="btn btn-primary-alt">Order Now</button>
+        </form>
+      </div>
+
+      <div class="text-center">
+        <div class="mt-3 mb-5">
+          <img src="{% static 'img/1.png' %}" alt="Credit Card Payment Icon" width="36px">
+          <img src="{% static 'img/2.png' %}" alt="Credit Card Payment Icon" width="36px">
+          <img src="{% static 'img/14.png' %}" alt="Credit Card Payment Icon" width="36px">
+          <img src="{% static 'img/22.png' %}" alt="Credit Card Payment Icon" width="36px">
+          <img src="{% static 'img/10.png' %}" alt="Credit Card Payment Icon" width="36px">
+          <img src="{% static 'img/16.png' %}" alt="Credit Card Payment Icon" width="36px">
+        </div>
+        <i class="fa fa-lock text-success" aria-hidden="true"></i>
+        <strong><span class="text-success">SSL</span> SECURED PAYMENT</strong>
+        <br>
+        <span class="text-muted" style="font-size: 14px;">Your information is protected by 256-bit SSL encryption</span>
+      </div>
     </div>
   </div>
 
 
-<div class="py-5"></div>
-<div class="text-right"><i class="fa fa-lock text-success" aria-hidden="true"></i> <strong><span class="text-success">SSL</span> SECURED PAYMENT</strong><br>
-<span class="text-muted" style="font-size: 14px;">Your information is protected by 256-bit SSL encryption</span>
-</div>
-  <hr>
-  </div>
 
 
   <div class="py-5"></div>
   <div class="py-5"></div>
   <div class="py-4"></div>
 {% endblock %}
+
+
 {% block scripts %}
   {{ block.super }}
   <script>

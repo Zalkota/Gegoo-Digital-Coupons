@@ -1,0 +1,143 @@
+/* ANIMATION */
+@media screen and (min-width: 992px) {
+  .hero-300 {
+    height: 5vh;
+    background-color: transparent;
+    /* Flexbox stuff */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Text styles */
+    text-align: center;
+    z-index: 2;
+    /* Background styles */
+    position: relative;
+    background-size: cover;
+    /* take width of view port, fits element inside of box */
+    background-position: center;
+    /* hero always sticks to the top when resized. */
+    background-repeat: no-repeat;
+    background-attachment: fixed; }
+    .hero-300-background {
+      /* Sizing */
+      height: 95vh;
+      background-color: #003156;
+      z-index: 1;
+      /* Flexbox stuff */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* Text styles */
+      text-align: center;
+      /* Background styles */
+      position: relative;
+      background-size: cover;
+      /* take width of view port, fits element inside of box */
+      background-position: center;
+      /* hero always sticks to the top when resized. */
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      clip-path: polygon(0 0%, 100% 0, 100% 40%, 0 80%);
+      -webkit-clip-path: polygon(0 0%, 100% 0, 100% 40%, 0 80%); }
+    .hero-300 .text {
+      position: absolute;
+      left: 14%;
+      top: 28%;
+      animation: moveInTop 1.5s;
+      animation-fill-mode: forwards; }
+    .hero-300 h1 {
+      /* Text styles */
+      font-size: 3.5em;
+      color: white;
+      /* Margins */
+      margin-top: 0;
+      margin-bottom: 0.5em; }
+    .hero-300 p {
+      /* Text styles */
+      font-size: 1.25em;
+      line-height: 0;
+      color: white;
+      /* Margins */
+      margin-top: 0;
+      margin-bottom: 2em; }
+    .hero-300 img {
+      /* Text styles */
+      font-size: 1.25em;
+      position: fixed;
+      left: 16.5%;
+      top: 30%;
+      color: white;
+      z-index: 1000;
+      /* Margins */
+      margin-top: 0;
+      margin-bottom: 2em; } }
+@media screen and (max-width: 992px) {
+  .hero-300 {
+    /* Sizing */
+    height: 100vh;
+    background-color: #fff;
+    background-image: #fff !important;
+    /* Flexbox stuff */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Text styles */
+    text-align: center;
+    /* Background styles */
+    position: relative;
+    background-size: cover;
+    /* take width of view port, fits element inside of box */
+    background-position: center;
+    /* hero always sticks to the top when resized. */
+    background-repeat: no-repeat;
+    background-attachment: fixed; }
+    .hero-300 .hide {
+      display: none; }
+    .hero-300 .message {
+      border-radius: 8px;
+      top: 40%;
+      right: 0px;
+      margin: auto;
+      opacity: .9; }
+    .hero-300 button {
+      height: 45px; }
+    .hero-300 .btn {
+      padding-top: 0.8rem; }
+    .hero-300 .terms {
+      color: #3a3a3a; } }
+@media screen and (min-width: 992px) {
+  .unhide {
+    display: none; } }
+html {
+  scroll-behavior: smooth !important; }
+
+body {
+  margin: 0;
+  font-family: Montserrat, sans-serif !important;
+  background-color: #fafafa;
+  color: #3a3a3a; }
+  body h1 h2 h3 h4 h5 h6 {
+    color: #1a1a1a; }
+  body p {
+    color: #2a2a2a; }
+  body li {
+    color: #3b8dff; }
+  body a {
+    color: #3b8dff; }
+
+a:hover {
+  color: #3b8dff; }
+
+.text-primary {
+  color: #3b8dff; }
+
+.text-success {
+  color: #3ddb93; }
+
+.text-danger {
+  color: #d91227; }
+
+.text-muted {
+  color: #3a3a3a; }
+
+/*# sourceMappingURL=base-account.css.map */

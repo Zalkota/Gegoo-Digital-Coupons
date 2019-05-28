@@ -1,19 +1,59 @@
-{% extends 'base-minimal.html' %}
+{% extends 'base-alt.html' %}
 {% load static wagtailuserbar %}
 {% load wagtailcore_tags wagtailimages_tags %}
 {% block title %} Payment Successful | Thank you | Stemletics LLC{% endblock title %}
 
 {% block content %}
 <div class="container mobile-margin" style="height: 100vh; min-height: 850px;">
-    <div class="jumbotron text-center" style=" position: relative; background-color: #fafafa;">
-        <div class="text-center img-responsive-md">
-          <img src="{% static 'img/undraw_order_confirmed_1m3v.svg' %}" alt="">
-          <h3>Your purchase was successful.</span></h3>
-          <p class="text-muted">Thank you! An email with your transaction information has been sent to you.</p>
+    <div class="card text-left" style=" position: relative; background-color: #fafafa;">
+      <div class="card-body p-5">
+        <div class="card-title">
+          <h1><strong>Transaction Complete</strong><span class="float-right"><img src="{% static 'img/undraw_check.svg' %}" width=" 100px;" alt=""></span></h1>
+          <h5>Order Number: {{ transaction.order_id }}</h5>
+          <hr>
         </div>
-        <div class="text-center">
-            <a class="btn btn-xl btn-success-round " role="button" href="{% url 'userPage' %}">Go To Profile</a>
-        </div>
+
+              <p class="text-muted">A receipt of this transaction has been sent your email.</p>
+
+      <div class="table-responsive">
+        <table class="table table-hover my-5">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Description</th>
+              <th scope="col">Subscription Duration</th>
+              <th scope="col"><strong>Total Cost</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ timestamp }}</th>
+              <td>{{ transaction.subscription }}</td>
+              <td>30 Days</td>
+              <td>$ {{ transaction.price }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center my-4">
+
+      </div>
+
+      <div class="card-footer">
+        <p class="text-muted">Thank you for choosing Mod Technologies for your Website Services. We pride ourselves in exceptional services and high customer satisifaction.
+          If you have any questions or concerns please feel free to contact Dominic Mazzola directly by clicking <a href="{% slugurl 'contact-us' %}">here</a>.</p>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="py-3"></div>
+
+  <div class="text-center mb-5">
+    <h3>What's next?</h3>
+    <p class=" fs-16">Sit back, relax, and let the customers flow in! <br>
+      If your assitance is needed, you will be contacted via phone or email.</p>
+      <a class="btn btn-xl btn-success-round " role="button" href="{% url 'userPage' %}">Go To Profile</a>
   </div>
 </div>
 {% endblock content %}

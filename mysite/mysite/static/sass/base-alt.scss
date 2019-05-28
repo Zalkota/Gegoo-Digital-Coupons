@@ -1,5 +1,5 @@
 // BASE-ALT IS THE SAME AS BASE, BUT IS CONTAINS STYLE-ALT.scss
-@import "color";
+@import "./utility/color";
 /* ANIMATION */
 $mdb-animation-curve-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1) !default;
 $mdb-animation-curve-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1) !default;
@@ -39,10 +39,10 @@ body {
 //@import "style-alt";
 //@import "animations";
 //@import "navbar-alt";
-@import "buttons";
-@import "sections";
+@import "./generic/buttons";
+@import "./generic/sections";
 //@import "hero";
-@import "footer";
+@import "./generic/footer";
 //@import "form";
 //@import "navigation_button";
 

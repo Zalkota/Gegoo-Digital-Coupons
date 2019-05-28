@@ -1,0 +1,162 @@
+
+
+// ===== Original Login Design with Slant  ======  //
+
+@media screen and (min-width: 992px) {
+.hero-300 {
+  height: 5vh;
+  background-color: transparent;
+  /* Flexbox stuff */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Text styles */
+  text-align: center;
+  z-index: 2;
+
+  /* Background styles */
+  position: relative;
+  background-size: cover;  /* take width of view port, fits element inside of box */
+  background-position: center;  /* hero always sticks to the top when resized. */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+
+&-background {
+    /* Sizing */
+
+
+    height: 95vh;
+    background-color: #003156;
+
+    z-index: 1;
+    /* Flexbox stuff */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Text styles */
+    text-align: center;
+
+    /* Background styles */
+    position: relative;
+    background-size: cover;  /* take width of view port, fits element inside of box */
+    background-position: center;  /* hero always sticks to the top when resized. */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    clip-path: polygon(0 0%, 100% 0, 100% 40%, 0 80%);
+    -webkit-clip-path: polygon(0 0%, 100% 0, 100% 40%, 0 80%);
+  }
+
+
+
+& .text {
+  position: absolute;
+  left: 14%;
+  top: 28%;
+  animation: moveInTop 1.5s;
+  animation-fill-mode: forwards;
+}
+& h1 {
+    /* Text styles */
+    font-size: 3.5em;
+    color: white;
+    /* Margins */
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+& p {
+    /* Text styles */
+    font-size: 1.25em;
+    line-height: 0;
+    color: white;
+
+
+    /* Margins */
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
+& img {
+  /* Text styles */
+  font-size: 1.25em;
+  position: fixed;
+  left: 16.5%;
+  top: 30%;
+  color: white;
+  z-index: 1000;
+  /* Margins */
+  margin-top: 0;
+  margin-bottom: 2em;
+
+        }
+    }
+}
+
+
+@media screen and (max-width: 992px) {
+  .hero-300 {
+      /* Sizing */
+
+      height: 100vh;
+
+
+      background-color: #fff;
+      background-image:  #fff !important;
+
+      /* Flexbox stuff */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      /* Text styles */
+      text-align: center;
+
+      /* Background styles */
+      position: relative;
+      background-size: cover;  /* take width of view port, fits element inside of box */
+      background-position: center;  /* hero always sticks to the top when resized. */
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+
+
+
+  .hide {
+
+    display: none;
+
+  }
+  .message {
+    border-radius: 8px;
+    top: 40%;
+    right: 0px;
+    margin: auto;
+    opacity: .9;
+  }
+
+
+
+  button {
+    height: 45px;
+  }
+
+  .btn {
+    padding-top: 0.8rem;
+  }
+
+  .terms {
+    color: #3a3a3a;
+    }
+  }
+}
+@media screen and (min-width: 992px) {
+  .unhide {
+    display: none;
+  }
+
+}
+
+.unhide {
+
+}

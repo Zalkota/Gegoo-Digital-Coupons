@@ -515,3 +515,90 @@ hr.hr-2 {
     padding-bottom: 8rem;
     vertical-align: middle;
   }
+
+
+// ============== Payment Bread Crumb =========== //
+
+.payment-crumb {
+    height: 65px;
+    margin-top: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+
+    .font-size {
+      font-size: 1rem;
+      line-height: normal;
+    }
+
+    &-brand {
+      padding: 1rem 3rem 1rem 0;
+      margin-bottom: 0;
+      order: 1;
+      color: $color-text;
+      flex-grow: 0;
+      font-weight: 700;
+      line-height: normal;
+      font-size: 1.25rem
+
+    }
+    &-text {
+      color: $color-text;
+
+      order: 1;
+      flex-grow: 0;
+      padding: 0.75rem 1rem 1rem 1rem;
+      line-height: normal;
+
+    }
+}
+
+  .crumb-border {
+    border-bottom: 1px solid #c1c1c1;
+  }
+
+
+
+  // ============== CUSTOM MESSAGES ================//
+
+    .messages {
+      z-index: 100;
+      position: fixed;
+      left: 0%;
+      bottom: 0%;
+      opacity: .95;
+    }
+
+    .alert {
+      background-color: #fafafa;
+      color: $color-dark;
+      font-family: Montserrat, sans-serif;
+      font-size: .95em;
+      font-weight: 600;
+      padding: 1em 1em 1em 2em;
+      z-index: 80;
+      position: fixed;
+
+      bottom: 0%;
+    }
+
+    .alert-success {
+      border-left: 6px solid $color-success;
+    }
+
+    .alert-danger {
+      border-left: 6px solid $color-danger;
+    }
+
+    .alert-info {
+      border-left: 6px solid $color-info;
+    }
+
+    .message-shadow {
+      -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.22), 0 3px 6px rgba(0,0,0,0.22) !important;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.22), 0 3px 6px rgba(0,0,0,0.22) !important;
+    }
+
+  // ============== CUSTOM MESSAGES END ================//

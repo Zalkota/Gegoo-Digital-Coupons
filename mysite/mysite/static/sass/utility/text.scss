@@ -1,3 +1,57 @@
+a:hover {
+  color: $color-primary;
+}
+
+.text-primary {
+  color: $color-primary;
+}
+
+.bg-primary {
+  background-color: $color-primary;
+}
+
+.text-primary-light {
+  color: $color-primary-light;
+}
+
+.text-success {
+  color: $color-success;
+}
+
+.bg-success {
+  background-color: $color-success;
+}
+
+.text-danger {
+  color: $color-danger;
+}
+
+.text-muted {
+  color: $color-dark;
+}
+
+.text-secondary {
+  color:  #c1c1c1 !important;
+}
+
+body  {
+  font-size: 1em;
+}
+
+h1 {
+  font-size: 2.25em;
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+
+.text-shadow-1 {
+  text-shadow: 1px 1px 3px #212121;
+}
+
+
 .fw-4 {font-weight: 400;}
 .fw-5 {font-weight: 500;}
 .fw-6 {font-weight: 600;}
@@ -205,3 +259,15 @@
 .fs-198 {font-size: 198px;}
 .fs-199 {font-size: 199px;}
 .fs-200 {font-size: 200px;}
+
+
+.ls-1 {letter-spacing: 1px;}
+.ls-2 {letter-spacing: 2px;}
+.ls-3 {letter-spacing: 3px;}
+.ls-4 {letter-spacing: 4px;}
+.ls-5 {letter-spacing: 5px;}
+.ls-6 {letter-spacing: 6px;}
+.ls-7 {letter-spacing: 7px;}
+.ls-8 {letter-spacing: 8px;}
+.ls-9 {letter-spacing: 9px;}
+.ls-10 {letter-spacing: 10px;}

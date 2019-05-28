@@ -5,7 +5,8 @@
         <meta http-equiv="Expires" content="30">
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/stemlogo3.png' %}">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo/logo.png' %}">
+        <link rel="icon" href="{% static 'img/logo/logo.png' %}">
         <title>
             {% block title %}
                 {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
@@ -28,8 +29,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/docs.css' %}">
 
         <!-- Custom !-->
-        <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/button.css' %}">
+
         <link rel="stylesheet" type="text/css" href="{% static 'css/waves.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/section.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}">
@@ -41,9 +41,13 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/style-alt.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar-alt.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
         <!-- Material Design for Bootstrap fonts and icons -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Material+Icons">
 
+        {% block extra_styles %}
+        
+        {% endblock extra_styles %}
 
 <style>
 
@@ -86,95 +90,42 @@ body {
         {% endblock footer %}
 
         {# Global javascript #}
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-        <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'cookielaw/js/cookielaw.js' %}"></script>
 
         <script src="{% static 'js/docs.min.js' %}"></script>
-        <script async defer src="{% static 'js/googleapis.min.js' %}"></script>
-        <script src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChmLHKBW5VXZsv5Am2kkAy4HOYqd6vd0k&callback=initMap"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
 
-        <!-- stripe !-->
-        <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
-        <script type="text/javascript" src="{% static 'js/charge.js' %}"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
         <!-- Waves Effect !-->
         <script type="text/javascript" src="{% static 'js/button-wave-effect.js' %}"></script>
         <!-- Drift Chat Button !-->
         <script type="text/javascript" src="{% static 'js/drift.js' %}"></script>
+        <!-- To Top Button
+        <script type="text/javascript" src="{% static 'js/button_top.js' %}"></script>-->
+        <!-- Navbar Color Change on Scroll !-->
+        <script type="text/javascript" src="{% static 'js/navbarscroll.js' %}"></script>
+        <!-- Message Timeout button !-->
+        <script type="text/javascript" src="{% static 'js/message_timeout.js' %}"></script>
 
-
-
-
-        {% block script %}
-
-        {% endblock script %}
-
-
-
-        <script>
-        $(function () {
-          $(document).scroll(function () {
-            var $nav = $(".navbar-default");
-            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
-          });
-        });
-
-        $(function () {
-          $(document).scroll(function () {
-            var $nav = $(".nav-link");
-            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
-          });
-        });
-
-        $(function () {
-          $(document).scroll(function () {
-            var $nav = $(".navbar-brand");
-            $nav.toggleClass('scrolled', $(this).scrollTop() > 25);
-          });
-        });
-
-
-        // BACK TOP TOP FUNCTION When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
-
-        function scrollFunction() {
-          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-              document.getElementById("myBtn").style.display = "block";
-          } else {
-              document.getElementById("myBtn").style.display = "none";
-          }
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-          document.body.scrollTop = 0; // For Safari
-          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
-
-        // Message container destroy after time period
-        var message_ele = document.getElementById("message_container");
-
-        setTimeout(function(){
-           message_ele.style.display = "none";
-        }, 7000);
-
-
-
-      </script>
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
+        <!-- stripe !-->
+        <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+        <script type="text/javascript" src="{% static 'js/charge.js' %}"></script>
 
         <script>
-          $(document).ready(function(){
+          $(document).ready(function() {
             {% block jquery %}
-            {% endblock jquery %}
+                {# add jquery to webpage #}
+            {% endblock %}
+            });
+        </script>
 
-          });
-          </script>
+        {% block extrajs %}
+
+        {% endblock extrajs %}
 
     </body>
 </html>

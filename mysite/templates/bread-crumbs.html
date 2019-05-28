@@ -1,0 +1,114 @@
+{% load static %}
+{% load wagtailcore_tags %}
+
+{% block extra_styles %}
+{% if request.path == '/membership/checkout/' %}
+<style>
+
+.text-one {
+  color: #3b8dff;
+}
+
+.text-three {
+  color: #c1c1c1;
+}
+</style>
+
+ {% else %}
+
+<style>
+
+.text-one {
+  color: #c1c1c1;
+}
+
+.text-three {
+  color: #3b8dff;
+}
+</style>
+
+{% endif %}
+
+{% endblock extra_styles %}
+
+
+<section class="crumb-border hide">
+      <div class="container">
+          <div class="payment-crumb">
+            <div class="payment-crumb-brand">
+              <a class="text-dark" href="/">MOD Technologies</a>
+            </div>
+              <div class="payment-crumb-text">
+                  <!-- Create an icon wrapped by the fa-stack class -->
+                  <span class="fa-stack mb-2">
+                      <!-- The icon that will wrap the number -->
+                      <span class="fa fa-circle fa-stack-2x text-one"></span>
+                      <!-- a strong element with the custom content, in this case a number -->
+                      <strong class="fa-stack-1x text-light" style="font-family: Arial; font-size: 15px; ">
+                          1
+                      </strong>
+                  </span>
+                    <span class="mx-3 font-size mb-5 text-one" id="">Order Details</span>
+                    <i class="fa fa-chevron-right text-one"  style="font-size: 14px;" aria-hidden="true"></i>
+              </div>
+              <div class="payment-crumb-text">
+                  <!-- Create an icon wrapped by the fa-stack class -->
+                  <span class="fa-stack mb-2">
+                      <!-- The icon that will wrap the number -->
+                      <span class="fa fa-circle fa-stack-2x" style="color: #c1c1c1;"></span>
+                      <!-- a strong element with the custom content, in this case a number -->
+                      <strong class="fa-stack-1x text-light" style=" font-family: Arial; font-size: 15px; ">
+                          2
+                      </strong>
+                  </span>
+
+                    <span class="mx-3 text-secondary font-size mb-5"  id="">Confirm & Pay</span>
+                    <i class="fa fa-chevron-right" style="color: #c1c1c1; font-size: 14px;" aria-hidden="true"></i>
+              </div>
+              <div class="payment-crumb-text">
+                  <!-- Create an icon wrapped by the fa-stack class -->
+                  <span class="fa-stack mb-2">
+                      <!-- The icon that will wrap the number -->
+                      <span class="fa fa-circle fa-stack-2x text-three"></span>
+                      <!-- a strong element with the custom content, in this case a number -->
+                      <strong class="fa-stack-1x text-light" style=" font-family: Arial; font-size: 15px; ">
+                          3
+                      </strong>
+                  </span>
+
+                    <span  class="mx-3 font-size mb-5 text-three" id="">Transaction Complete</span>
+                    <i class="fa fa-chevron-right text-three" style="font-size: 14px;" aria-hidden="true"></i>
+              </div>
+          </div>
+      </div>
+</section>
+
+
+
+    <!-- Custom Navigation 100 !-->
+
+    <div class="navigation unhide">
+        <input type="checkbox" class="navigation__checkbox" style="display: none;" id="navi-toggle">
+        <label for="navi-toggle" class="navigation__button">
+            <span class="navigation__icon">&nbsp;</span>
+        </label>
+        <div class="navigation__background">&nbsp;</div>
+        <nav class="navigation__nav">
+            <ul class="navigation__list">
+              <li class="navigation__item"><a href="{% slugurl 'homepage' %}" class="navigation__link" style="">Home</a></li>
+              <li class="navigation__item"><a href="{% slugurl 'projects' %}" class="navigation__link" style="">Projects</a></li>
+              <li class="navigation__item"><a href="{% url 'memberships:select' %}" class="navigation__link" style="">Pricing</a></li>
+              <li class="navigation__item"><a href="{% slugurl 'contact' %}" class="navigation__link" style="">Consultation</a></li>
+
+              {% if not request.user.is_authenticated %}
+              <li class="navigation__item"><a href="{% url 'account_login' %}" class="navigation__link" style="">Sign In</a></li>
+              {% else %}
+              <li class="navigation__item"><a href="{% url 'userPage' %}" class="navigation__link" style="">Profile</a></li>
+              {% if request.user.is_superuser %}
+              <li class="navigation__item"><a href="{% url 'memberships:admin_panel' %}" class="navigation__link" style="">Admin Panel</a></li>
+              {% endif %}
+              <li class="navigation__item"><a href="{% url 'account_logout' %}" class="navigation__link" style="">Log Out</a></li>
+              {% endif %}
+            </ul>
+        </nav>
+    </div>

@@ -1,0 +1,193 @@
+{% extends "account/base-alt.html" %}
+{% load i18n %}
+{% load static wagtailcore_tags widget_tweaks wagtailuserbar %}
+{% load account socialaccount %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Login" %}{% endblock %}
+
+{% block content %}
+<style>
+
+a {
+  color:#3a75c1;
+}
+
+input {
+  width: 100%;
+}
+
+.form {
+    left: 60%;
+    top: 20%;
+    border-radius: 4px;
+    position: fixed;
+  }
+  .message {
+    left: 61%;
+    top: 68%;
+    border-radius: 8px;
+    position: fixed;
+    opacity: .9;
+  }
+
+  .terms {
+    color: #3a3a3a;
+    left: 61.25%;
+    bottom: 1%;
+    position: fixed;
+    font-size: .8rem;
+  }
+
+@media screen and (max-width: 992px) {
+
+
+}
+@media screen and (min-width: 992px) {
+
+}
+/*     ANIMATION       */
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+</style>
+<div class="hero-300-background">
+</div>
+<section class="hero-300">
+
+  <!-- Desktop View -->
+     <div class="pt-3 hide moveInLeft" style=" z-index: 1000;">
+       <a href="{% slugurl 'homepage' %}">
+          <img src="{% static 'img/logo_9.1.svg' %}" width="508px" alt="Card image">
+        </a>
+      </div>
+      <div class="hide">
+          <div class="form mx-3 mt-3 shadow-3" style="width: 28rem; z-index: 1000;">
+              <h2 class="mt-4 mb-0">{% trans "Sign In" %}</h2>
+              <div class="text-left px-4 pb-4 pt-3" style="">
+                  {% get_providers as socialaccount_providers %}
+                  {% if socialaccount_providers %}
+                  <p class="text-center">{% blocktrans with site.name as site_name %}Please sign in with one
+                    of your existing third party accounts. Or, <a href="">sign up</a>
+                    for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+                  <div class="socialaccount_ballot">
+                      <ul class="socialaccount_providers">
+                        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                      </ul>
+                      <div class="login-or">
+                        {% trans 'or' %}
+                      </div>
+                  </div>
+                  {% include "socialaccount/snippets/login_extra.html" %}
+                  {% else %}
+                  {% endif %}
+                  <form class="login" method="POST" action="{% url 'account_login' %}" style="list-style-type: none;">
+                      {% csrf_token %}
+                      <div class="form-group {% if form.login.errors %}has-error{% endif %}">
+                          <div class="form-control glyphicon glyphicon-envelope">
+                              {{ form.login }}
+                          </div>
+                      </div>
+                      <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                          <div class="form-control ">
+                              {{ form.password }}
+                          </div>
+                      </div>
+                      <div class="pull-left my-3 remember text-center">
+                        {{ form.remember }}
+                        <label for="id_remember" class="text-muted">Remember me</label>
+                      </div>
+                      {% if redirect_field_value %}
+                      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />{% endif %}
+                      <div class="btn-div pull-center">
+                        <button class="btn btn-primary-alt btn-block" type="submit">{% trans "Sign In" %}</button>
+                      </div>
+                  </form>
+                  <div class="mt-4">
+                      <h3><span class="text-muted" style="font-size: 15px;">New to Mod Technologies?</span></h3>
+                      <a class="btn btn-alt-round pb-2" style="width: 100%;"  href="{{ signup_url }}">Register</a>
+                  </div>
+                  <div class="mt-3"><a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></div>
+              </div>
+          </div>
+          {% if form.errors %}
+            {% for error in form.non_field_errors %}
+              <div class="alert alert-error alert-danger alert-dismissible moveInTop message" style="width: 25rem;" role="alert">
+              {{ error|escape }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          <div class="terms">
+            <span class="" style="font-size: 1em;"><a href="{% slugurl 'terms-page' %}" >Terms & Conditons</a> | Copyright 2018 Mod Technologies LLC</span>
+          </div>
+  </div>
+  <!-- Mobile View -->
+   <div class=" unhide">
+           <h2 class="mb-3">{% trans "Sign In" %}</h2>
+           <div class="text-left p-0" style="">
+               {% get_providers as socialaccount_providers %}
+               {% if socialaccount_providers %}
+               <p class="text-center">{% blocktrans with site.name as site_name %}Please sign in with one
+                 of your existing third party accounts. Or, <a href="">sign up</a>
+                 for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+               <div class="socialaccount_ballot">
+                   <ul class="socialaccount_providers">
+                     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                   </ul>
+                   <div class="login-or">
+                     {% trans 'or' %}
+                   </div>
+               </div>
+           {% include "socialaccount/snippets/login_extra.html" %}
+           {% else %}
+           {% endif %}
+               <form class="login" method="POST" action="{% url 'account_login' %}" style="list-style-type: none;">
+                   {% csrf_token %}
+                   <div class="form-group {% if form.login.errors %}has-error{% endif %}">
+                       <div class="form-control glyphicon glyphicon-envelope">
+                           {{ form.login }}
+                       </div>
+                   </div>
+                   <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                       <div class="form-control ">
+                           {{ form.password }}
+                       </div>
+                   </div>
+                   <div class="pull-left my-3 remember text-center">
+                     {{ form.remember }}
+                     <label for="id_remember" class="text-muted">Remember me</label>
+                   </div>
+                   {% if redirect_field_value %}
+                   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />{% endif %}
+                   <div class="btn-div pull-center">
+                     <button class="btn btn-primary-alt btn-block" type="submit">{% trans "Sign In" %}</button>
+                   </div>
+               </form>
+               <div class="mt-4 text-center">
+                   <h3><span class="text-muted" style="font-size: 15px;">New to Mod Technologies?</span></h3>
+                   <a class="btn btn-alt-round pb-2" style="width: 100%;"  href="{{ signup_url }}">Register</a>
+               </div>
+               <div class="text-center mt-3"><a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></div>
+           </div>
+         {% if form.errors %}
+         {% for error in form.non_field_errors %}
+           <div class="alert alert-error alert-danger alert-dismissible moveInTop message" style="width: 18.5rem;" role="alert">
+           {{ error|escape }}
+           </div>
+         {% endfor %}
+         {% endif %}
+         <div class="hide" style="padding-top: 4rem; margin: auto;">
+             <span class="terms" style="font-size: .65em;"><a href="" class="terms">Terms & Conditons</a> | Copyright 2018 <br class="unhide"> Mod Technologies LLC</span>
+         </div>
+    </div>
+</section>
+{% endblock content %}

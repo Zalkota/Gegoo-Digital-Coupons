@@ -1,21 +1,61 @@
-/* BUTTON BASICS */
+
+
+// ========================== BASIC CONFIGURATION ========================/
 .btn {
     font-size: 16px;
     font-weight: 650;
+      height: 45px;
 
-}
-
-.btn {
+&:hover, &:active &:focus {
     font-size: 16px;
     font-weight: 650;
+    height: 45px;
 
 }
+}
 
-/* BUTTONS */
+// ============ CUSTOM BUTTON CONFIGURATION ==========//
+    button {
+      display: block;
+      background: #666ee8;
+      color: #fff;
+      box-shadow: 0;
+      border-radius: 4px;
+      border: 0;
+      width: 100%;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+  .custom-button-animations {
+
+    button:focus {
+      background: #555abf;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 7px 14px 0 rgba(50, 50, 93, 0.1),
+        0 3px 6px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    button:active {
+      background: #43458b;
+    }
+  }
+
+
+// ========================== ADVANCED CONFIGURATION ========================/
+
+// USE THIS STYLE OF SASS CONFIGURATION //
+
+
 
   .btn-action {
-  background-image: linear-gradient(180deg,$color-primary, $color-primary-dark 95%);
-  color: $color-alt;
+  background-image: linear-gradient(180deg,#3b8dff, #3469ad 95%);
+  color: #fafafa;
   box-shadow: 0;
   border-radius: 5px;
   padding-left: 1.7rem;
@@ -23,40 +63,15 @@
   padding-top: .85rem;
   padding-bottom: .85rem;
 
-  }
-  .btn-action:hover {
-    background-image: linear-gradient(180deg, $color-primary-light, $color-primary 95%);
-    color: $color-alt;
+  &:hover,&:active,&:focus,&:visited {
+    background-image: linear-gradient(180deg, #3b8dff, #2e5d9a 95%);
+    color: #e5e5e5;
     box-shadow: none;
-    padding-left: 1.7rem;
-    padding-right: 2rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
-
-  }
-  .btn-action:active {
-    background-image: linear-gradient(180deg, $color-primary-light, $color-primary 95%);
-    color: $color-alt;
-    box-shadow: none;
-    padding-left: 1.7rem;
-    padding-right: 2rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
-
-  }
-  .btn-action:focus {
-    background-image: linear-gradient(180deg, $color-primary-light, $color-primary 95%);
-    color: $color-alt;
-    box-shadow: none;
-    padding-left: 1.7rem;
-    padding-right: 2rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
-
+    }
   }
 
   .btn-action-alt {
-    background-image: linear-gradient(180deg,#26c281, #1c8248 95%);
+    background-image: linear-gradient(180deg, #26c281, #1c8248 95%);
     color: #fafafa;
     box-shadow: none;
     border-radius: 5px;
@@ -65,56 +80,34 @@
     padding-top: .85rem;
     padding-bottom: .85rem;
 
-  }
-  .btn-action-alt:hover {
-    background-image: linear-gradient(180deg, #3bc88d, #24a35a 95%);
+
+  &:hover,  &:focus, &:active{
+    background-image: linear-gradient(180deg,#26c281, #24a35a 95%);
     color: #e5e5e5;
     box-shadow: none;
+    }
+  }
+
+
+  .btn-action-disabled {
+    background-color: #ccc;
+    color: #fafafa;
+    box-shadow: none;
+    height: 50px;
+    width: 12rem;
+    border-radius: 5px;
     padding-left: 1.7rem;
     padding-right: 2rem;
     padding-top: .85rem;
     padding-bottom: .85rem;
 
-  }
-  .btn-action-alt:active {
-    background-image: linear-gradient(180deg, #3bc88d, #24a35a 95%);
-    color: #e5e5e5;
-    box-shadow: none;
-    padding-left: 1.7rem;
-    padding-right: 2rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
-
-  }
-  .btn-action-alt:focus {
-    background-image: linear-gradient(180deg, #3bc88d, #24a35a 95%);
-    color: #e5e5e5;
-    box-shadow: none;
-    padding-left: 1.7rem;
-    padding-right: 2rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
-
-  }
-
-  .btn-action-alt:visited {
-    background-image: linear-gradient(180deg, #3bc88d, #24a35a 95%);
-    color: #e5e5e5;
-    box-shadow: none;
-    padding-left: 1.7rem;
-    padding-right: 2rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
-
-  }
-
-  .btn-action-alt:active:hover{
-      color: rgba(255, 255, 255, 1);
-      background-color: #1c8248;
-      border-color: #1c8248;
-  }
-
-
+    &:hover,  &:focus, &:active{
+      background-color: #ccc;
+      color: #e5e5e5;
+      height: 50px;
+      box-shadow: none;
+      }
+    }
 
 
 /* BUTTON ALT */
@@ -130,27 +123,25 @@
   padding-right: 1.6rem;
   padding-top: .8rem;
   padding-bottom: .8rem;
-  }
+
   .btn-primary-alt:hover {
     background: $color-primary;
     color: $color-white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
-    font-weight: 600;
+
 
   }
   .btn-primary-alt:active {
     background: $color-primary-dark;
     color: $color-white;
-    box-shadow: 0;
-    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
 
   }
   .btn-primary-alt:focus {
     background: $color-primary-dark;
     color: $color-white;
-    box-shadow: 0;
-    font-weight: 600;
-
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+    }
   }
 
   .btn-success-alt {
@@ -196,59 +187,35 @@
 
   .btn-danger-alt {
   background: $color-danger;
+  box-shadow: 0 2px 4px rgba(155,155,155,0.3), 0 2px 4px rgba(155,155,155,0.3);
   color: #fafafa;
-  box-shadow: 0;
   font-weight: 600;
   padding-left: 2.3rem;
   padding-right: 2.3rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
-  }
-  .btn-danger-alt:hover {
+
+  &:hover {
     background: $color-danger-light;
     color: #e5e5e5;
     box-shadow: 0;
-    font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
+
   }
-  .btn-danger-alt:active {
+  &:active {
     background: $color-danger-dark;
     color: #e5e5e5;
     box-shadow: 0;
-    font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
+
   }
-  .btn-danger-alt:focus {
+  &:focus {
     background: $color-danger-dark;
     color: #e5e5e5;
     box-shadow: 0;
-    font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
   }
+}
 
   .btn-secondary-alt {
-  background: $color-secondary;
-  color: $color-danger;
-  box-shadow: 0;
-  font-weight: 600;
-  font-size: 1.4rem;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-  padding-top: .95rem;
-  padding-bottom: .95rem;
-  }
-
-  .btn-secondary-alt:hover {
-  background: $color-secondary-dark;
+  background: #efefef;
   color: $color-danger;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.3);
   font-weight: 600;
@@ -257,47 +224,33 @@
   padding-right: 2.4rem;
   padding-top: .95rem;
   padding-bottom: .95rem;
+
+
+  .btn-secondary-alt:hover {
+  background: #efefef;
+  color: $color-danger;
+  box-shadow: 0;
+  font-size: 1.4rem;
   }
 
   .btn-secondary-alt:active {
-  background: $color-secondary-dark;
+  background: #efefef;
   color: $color-danger;
   box-shadow: 0;
-  font-weight: 600;
   font-size: 1.4rem;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-  padding-top: .95rem;
-  padding-bottom: .95rem;
   }
 
   .btn-secondary-alt:focus {
-  background: $color-secondary-dark;
+  background: #efefef;
   color: $color-danger;
   box-shadow: 0;
-  font-weight: 600;
   font-size: 1.4rem;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-  padding-top: .95rem;
-  padding-bottom: .95rem;
+    }
   }
 
   .btn-secondary-alt-2 {
-  background: $color-secondary;
-  color: $color-primary;
-  box-shadow: 0;
-  font-weight: 600;
-  font-size: 1.4rem;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-  padding-top: .95rem;
-  padding-bottom: .95rem;
-  }
-
-  .btn-secondary-alt-2:hover {
-  background: $color-secondary-light;
-  color: $color-primary;
+  background: #efefef;
+  color: $color-text;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.3);
   font-weight: 600;
   font-size: 1.4rem;
@@ -305,31 +258,24 @@
   padding-right: 2.4rem;
   padding-top: .95rem;
   padding-bottom: .95rem;
+
+
+  .btn-secondary-alt-2:hover {
+  background: #efefef;
+  box-shadow: 0 ;
   }
 
   .btn-secondary-alt-2:active {
-  background: $color-secondary-light;
-  color: $color-primary;
+  background: #efefef;
   box-shadow: 0;
-  font-weight: 600;
-  font-size: 1.4rem;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-  padding-top: .95rem;
-  padding-bottom: .95rem;
   }
 
   .btn-secondary-alt-2:focus {
-  background: $color-secondary-light;
-  color: $color-primary;
+  background: #efefef;
   box-shadow: 0;
-  font-weight: 600;
-  font-size: 1.4rem;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-  padding-top: .95rem;
-  padding-bottom: .95rem;
+    }
   }
+
 
   .btn-accent-alt {
   background: $color-accent;
@@ -375,6 +321,37 @@
   padding-bottom: .85rem;
   }
 
+
+
+    .btn-alt {
+    background: $color-alt;
+    color: $color-white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+    font-weight: 600;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+
+    .btn-alt:hover {
+      background: $color-alt-dark !important;
+      color: $color-white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+
+
+    }
+    .btn-alt:active {
+      background: $color-alt-dark;
+      color: $color-white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+
+    }
+    .btn-alt:focus {
+      background: $color-alt-dark;
+      color: $color-white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+      }
+    }
 
 /* BUTTON ROUND */
 
@@ -432,44 +409,27 @@
   padding-right: 5rem;
   padding-top: .75rem;
   padding-bottom: .75rem;
-  }
 
-  .btn-success-round:hover {
+  &:hover {
   background: $color-success-light;
   color: #f3f3f3;
   box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
-  border-radius: 30px;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  padding-top: .75rem;
-  padding-bottom: .75rem;
+
   }
 
-  .btn-success-round:active {
+  &:active {
   background: $color-success-dark;
   color: #fafafa;
-  border-radius: 30px;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  padding-top: .75rem;
-  padding-bottom: .75rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
   }
 
-  .btn-success-round:focus {
+  &:focus {
   background: $color-success-dark;
   color: #fafafa;
-  border-radius: 30px;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  padding-top: .75rem;
-  padding-bottom: .75rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+    }
   }
 
-  .btn-success-round:active:hover{
-      color: rgba(255, 255, 255, 1);
-      background-color: #1c8248;
-      border-color: #1c8248;
-  }
 
   .btn-secondary-round {
   background: $color-secondary-light;
@@ -697,8 +657,37 @@
   }
 
 
-
-
   .btn-primary:hover {
     box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13) !important;
   }
+
+
+
+
+    .btn-information-dropdown {
+    background: transparent;
+    color: $color-primary;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 1rem;
+    padding-right: 1.6rem;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+    text-transform: lowercase;
+
+    &:hover {
+      color: $color-primary-dark;
+      box-shadow: 0;
+
+
+    }
+    &:active {
+      color: $color-primary-dark;
+      box-shadow: 0;
+
+    }
+    &:focus {
+      color: $color-primary-dark;
+      box-shadow: 0;
+      }
+    }

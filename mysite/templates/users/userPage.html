@@ -6,11 +6,30 @@
 
 {% block title %}Profile Page{% endblock %}
 
+{% block extra_styles %}
 <style>
 a:hover {
     text-decoration: none;
 }
+
+.modal-header {
+  background-color: #fff !important;
+  padding-bottom: 2rem !important;
+}
+
+.modal-body {
+  background-color: #f9fafb !important;
+}
+
+.modal-footer {
+  padding: 1rem 1rem 1rem 1rem !important;
+  background-color: #fff !important;
+  text-align: center !important;
+}
 </style>
+{% endblock extra_styles %}
+
+
 {% block content %}
 
 
@@ -19,22 +38,28 @@ a:hover {
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content p-0 ">
 
-      <div class="modal-header">
-        <h4 class="modal-title text-center" id="exampleModalLongTitle">Are you sure you want to cancel your subscription?</h4>
-
+      <div class="modal-header bg-light">
+        <h5 class="modal-title text-center" id="exampleModalLongTitle"><strong>Are you sure you want to cancel your subscription?</strong></h5>
+          <hr>
       </div>
       <div class="modal-body text-center">
-        <p class=" py-4">By ending your subscription, your services will be discontuined at the end of this billing period.
+        <p class="mb-0 py-3">By ending your subscription, your services will be discontuined at the end of this billing period.
         </p>
-        <button type="button" class="btn btn-primary text-center pb-1 pt-3 mr-4" style="width: 6rem; height: 3.5rem;" class="close" data-dismiss="modal" aria-label="Close">
-          <p class="">No</p>
-        </button>
-        <a class="btn btn-outline-primary text-center pb-1 pt-3 ml-4" style="width: 6rem; height: 3.5rem;" href="{% url 'memberships:cancel' %}">
-          <p class="text-primary">Yes</p>
-        </a>
-      </div>
-      <div class="modal-footer">
 
+      </div>
+      <div class="p-4">
+        <div class="row">
+          <div class="col-lg-6">
+            <button type="button" class="btn btn-primary-alt  "  class="close" data-dismiss="modal" aria-label="Close">
+              No
+            </button>
+          </div>
+          <div class="col-lg-6">
+            <button type="button" class="btn btn-primary-alt " href="{% url 'memberships:cancel' %}">
+              Yes
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -53,7 +78,7 @@ a:hover {
                 <br>
 
               <!-- Action buttons -->
-              <ul class="pull-left" style="list-style-type: none;">
+              <ul class="pull-left text-dark" style="list-style-type: none;">
                 <a class="text-dark py-5" style="text-decoration: none;" href="{% slugurl 'home' %}" role="button">
                   <li class="pb-3">
                       <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2">Home</span>

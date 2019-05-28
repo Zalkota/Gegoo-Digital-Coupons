@@ -1,8 +1,8 @@
 
 // Theme Colors
 $color-primary: #3b8dff;
-$color-primary-light: lighten( $color-primary, 10% );
-$color-primary-lighter: lighten( $color-primary, 45% );
+$color-primary-light: lighten( $color-primary, 5% );
+$color-primary-lighter: lighten( $color-primary, 35% );
 $color-primary-dark: darken( $color-primary, 10% );
 $color-secondary: lighten( $color-primary, 40% );
 $color-secondary-light: lighten( $color-secondary, 10% );
@@ -35,10 +35,14 @@ $keep1: #5981a4;
 $keep2: #6b81cb;
 
 // Buttons
-$color-success: #3fc380;
+$color-success: #3ddb93;
 $color-success-light: lighten( $color-success, 10% );
 $color-success-dark: darken( $color-success, 10% );
 
 $color-danger: #d91227;
 $color-danger-light: lighten( $color-danger, 10% );
 $color-danger-dark: darken( $color-danger, 10% );
+
+$color-info: #19b5fe;
+$color-info-light: lighten( $color-info, 10% );
+$color-info-dark: darken( $color-info, 10% );

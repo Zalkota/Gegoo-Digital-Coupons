@@ -58,6 +58,16 @@ tr {
    min-height: 25px;
    height: 25px;
 }
+
+.btn-action-alt {
+  width: 12rem;
+  height: 50px;
+}
+
+.btn-action {
+  width: 12rem;
+  height: 50px;
+}
 </style>
 
 
@@ -71,7 +81,7 @@ tr {
         </div>
         <div class="container text-center card-overlayed">
             <div class="row">
-            <div class="offset-lg-2"></div>
+
               {% for object in membership_list %}
                 <div class="col-lg-4 mb-5">
                     <div class="card card-effects mt-4 {% if object.special == True %} special-card {% else %} regular-card {% endif %}">
@@ -92,24 +102,23 @@ tr {
                             </p>
                             <div class="py-3"></div>
                             {% if request.user.is_authenticated %}
-
                   						<form method="POST" action="{% url 'memberships:select' %}">
                   							{% csrf_token %}
                   								{% if object.membership_type != current_membership %}
                                   	<button class="btn {% if object.special == True %} btn-action-alt {% else %} btn-action {% endif %}">Select</button>
                   								{% else %}
-                                    <a style="padding-top: .85rem; padding-bottom: .85rem; border-radius: 5px;" class="btn disabled px-4 {% if object.special == True %} btn-success {% else %} btn-primary {% endif %}">Purchased</a>
+                                    <a style="padding-top: .85rem; padding-bottom: .85rem; border-radius: 5px;" class="btn btn-action-disabled">Purchased</a>
                   								{% endif %}
                   							<input type="hidden" name="membership_type" value="{{ object.membership_type }}">
                   						</form>
                             {% else %}
-                                    <a href="{% url 'account_signup' %}" class="btn {% if object.special == True %} btn-action-alt {% else %} btn-action {% endif %}">Select</a>
+                                    <a href="{% url 'account_login' %}" class="btn {% if object.special == True %} btn-action-alt {% else %} btn-action {% endif %}">Select</a>
                             {% endif %}
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-                <div class="offset-lg-2"></div>
+
             </div>
             <p class="text-muted " style="font-size: 14px;">Your membership will renew automatically every month. You may cancel your membership at any time from your member dashboard.</p>
         </div>
@@ -122,20 +131,24 @@ tr {
         </div>
     </div>
 </div>
-<div class="py-5"></div><div class="py-4"></div>
+<section class="section-white-md ">
   <div class="container text-center my-5">
       <h2 class="jumbo-dark mt-5">Need help with a project?</h2>
       <p>Mod Technologies specializes in building transformative software based web applications and websites. <br>No matter the obstacles, let's build something together! </p>
       <div class="text-center pt-3">
-        <a class="btn btn-primary-round px-5" role="button" href="{% slugurl 'contact' %}">Start a Project</a>
+        <a class="btn btn-success-round px-5" role="button" href="{% slugurl 'contact' %}">Start a Project</a>
       </div>
   </div>
-<div class="py-5"></div><div class="py-3"></div>
+</section>
 
-<div class="jumbotron text-center img-responsive-sm mt-5" id="faq">
-  <h2 class="text-dark" style="font-size: 36px;"><strong>Join hundreds of business owners</strong></h2>
-</div>
-<div class="container"  >
+<section class="section-success-sm shadow-3">
+  <div class="text-center" id="faq">
+    <h2 class="fs-50 fw-7 text-light" style="font-size: 36px;"><strong>Join hundreds of business owners</strong></h2>
+  </div>
+</section>
+
+<div class="container">
+  <div class="py-5"></div>
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
             <h2 class="text-dark py-5 text-center" style="font-size: 36px"><strong>Frequently Asked Questions</strong></h2>

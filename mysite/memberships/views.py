@@ -18,6 +18,9 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
+from .json import json_serial, DecimalEncoder
+import json
+from datetime import date, datetime
 #SuperUser Mixin
 from braces import views
 
@@ -31,6 +34,7 @@ from django.utils.text import slugify
 # from django.template.loader import render_to_string
 # from django.shortcuts import render, redirect, get_object_or_404
 
+# ======== Essential Query Functions  ========
 
 def user_subscriptions_view(request):
 	user_membership = get_user_membership(request)
@@ -77,6 +81,7 @@ def get_selected_invoice(request):
 		return selected_invoice_qs.first()
 	return None
 
+
 class MembershipSelectView(ListView):
 	model = Membership
 	context_object_name = 'membership_list'
@@ -108,7 +113,6 @@ class MembershipSelectView(ListView):
 			VALIDATION
 			==========
 			'''
-
 			if user_membership.membership == selected_membership:
 				if user_subscription != None:
 					messages.info(request, "You already have this membership. Your \
@@ -123,11 +127,16 @@ class MembershipSelectView(ListView):
 
 @login_required
 def InvoicePaymentView(request):
+
+	#Query Essentials
 	selected_invoice = get_selected_invoice(request)
-	publishKey = settings.STRIPE_PUBLISHABLE_KEY
 	customer_id = request.user.user_stripe.stripe_id
 	user = request.user
 	email = user.email
+
+	#Stripe Key
+	publishKey = settings.STRIPE_PUBLISHABLE_KEY
+
 	if request.method == 'POST':
 		token = request.POST['stripeToken']
 		# Token is created using Checkout or Elements!
@@ -167,7 +176,8 @@ def updateTransactionRecordsInvoice(request, transaction_info):
 
 	# Grab User
 	#user_profile = get_object_or_404(Profile, user=request.user)
-	# create a transaction
+
+	# Create a transaction
 	transaction = Transaction(user=request.user,
 							subscription=None,
 							invoice_id=transaction_info,
@@ -221,62 +231,42 @@ def download_invoice_pdf(request, invoice_id):
 							link_callback=link_callback)
 	if status.err:
 		response = HttpReponseServerError("The PDF could not be generated.")
-
 	return response
-
-
 
 
 @login_required
 def PaymentView(request):
 
-	email = request.user.email
-
 	user_membership = get_user_membership(request)
-
 	selected_membership = get_selected_membership(request)
-
+	cus_stripe_id = user_membership.user.user_stripe.stripe_id
 	publishKey = settings.STRIPE_PUBLISHABLE_KEY
 
 	#totalCost = selected_membership.objects.filter('membership').values('total').annotate(amount=Sum('id', field="price * tax"))
 	course_list = Course.objects.filter(membership_required=True).order_by('ordering_id')[:4]
 
-
 	if request.method == "POST":
 		try:
 			token = request.POST['stripeToken']
 
+            #Modify the customer and add the token from the front end
+			stripe.Customer.modify(
+			  cus_stripe_id, # cus_xxxyyyyz
+			  source=token # tok_xxxx or src_xxxyyy
+			)
+			#customer = stripe.Customer.retrieve(user_membership.stripe_customer_id)
+			#customer.source = token # 4242424242424242
+			#customer.save()
 
-            #First we need to add the source for the customer
-
-
-			customer = stripe.Customer.retrieve(user_membership.stripe_customer_id)
-			customer.source = token # 4242424242424242
-			customer.save()
-
-
-            #Now we can create the subscription using only the customer as we don't need to pass their
-            #credit card source anymore
-
-
+            #Now we can create the subscription using only the customer as we don't need to pass their credit card source anymore
 			subscription = stripe.Subscription.create(
-			  customer=user_membership.stripe_customer_id,
+			  customer=cus_stripe_id,
 			  items=[
 			    {
 			      "plan": selected_membership.stripe_plan_id,
 			    },
 			  ],
 			)
-
-
-			#charge = stripe.Charge.create(
-			#  amount=selected_membership.stripe_price,
-			#  currency="usd",
-			#  source=token, # obtained with Stripe.js
-			#  description=selected_membership.description,
-			#  receipt_email=email,
-			#)
-
 			return redirect(reverse('memberships:update_transactions',
 				kwargs={
 					'subscription_id': subscription.id
@@ -306,6 +296,9 @@ def updateTransactionRecords(request, subscription_id):
 	sub.active = True
 	sub.save()
 
+	# Check stripe transaction status TODO
+	# This will be part of Webhooks TODO
+
 	# Grab User
 	#user_profile = get_object_or_404(Profile, user=request.user)
 	# create a transaction
@@ -317,6 +310,24 @@ def updateTransactionRecords(request, subscription_id):
 	# save the transcation (otherwise doesn't exist)
 	transaction.save()
 
+	#Serialize timestamp
+	timestamp = json_serial(transaction.timestamp)
+	#Turn UUID into a Storing
+	sub = str(sub)
+	order_id = str(transaction.order_id)
+	price = str(selected_membership.price)
+	# Create array
+	array = {}
+	# Add desired object attritbutes to array
+	array['timestamp'] = timestamp
+	array['order_id'] = order_id
+	array['subscription'] = sub
+	array['price'] = price
+	# Convert to JSON string
+	json.dumps(array, indent=4, sort_keys=True, default=str)
+	# Add array to sessions
+	request.session['transaction'] = array
+	# Remove sessions from other view
 	try:
 		del request.session['selected_membership_type']
 	except:
@@ -326,13 +337,39 @@ def updateTransactionRecords(request, subscription_id):
 	return redirect(reverse('memberships:purchase_success'))
 
 
+# Success page if transaction was successful
+@login_required()
+def success(request):
+
+	# Request transaction from stored session
+	transaction = request.session.get('transaction', None)
+	# Obtain timestamp from JSON string
+	timestamp = transaction["timestamp"]
+	# Parse string after 10 characters
+	data = (timestamp[:10]) if len(timestamp) > 10 else timestamp
+	data2 = datetime.strptime(data, '%Y-%m-%d').date()
+	# Obtain users new membership #TODO THIS IS AN ISSUE
+	user_membership = get_user_membership(request)
+	#user = request.user
+	#emailRecipient = user.email
+	#send_payment_success_email(emailRecipient, user)
+
+	context = {
+	'user_membership': user_membership,
+	'transaction': transaction,
+	'timestamp': timestamp,
+	}
+	return render(request, 'memberships/purchase_success.html', context)
+
+
+
 #Allows user to cancel their own subscription
 @login_required
 def cancelSubscription(request):
 	user_sub = get_user_subscription(request)
 
 	if user_sub.active == False:
-		messages.info(request, "You dont have an active membership")
+	#	messages.info(request, "You dont have an active membership")
 		return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 	sub = stripe.Subscription.retrieve(user_sub.stripe_subscription_id)
@@ -454,65 +491,6 @@ def refundSubscriptionAdmin(request, stripe_subscription_id, user):
 
 	return redirect('userPage')
 
-def send_subscription_cancelation_email(emailRecipient, user):
-
-		subject = 'Mod Technologies Subscription Cancellation Notice'
-		sender = 'hello@modwebservices.com'
-		receiver = emailRecipient
-		context = ({'email': emailRecipient, 'user': user})
-		html_content = render_to_string('mail/mail_cancellation.html', context)
-		message = render_to_string('mail/mail_cancellation.html', context)
-		send_mail(subject,
-	              message,
-	              sender,
-	              [receiver],
-	              fail_silently=False,
-	              html_message=html_content)
-
-def send_payment_refund_email(emailRecipient, user, selected_amount):
-	if not settings.DEBUG:
-		subject = 'Mod Technologies Subscription Notice'
-		sender = 'hello@modwebservices.com'
-		receiver = emailRecipient
-		context = ({'email': emailRecipient, 'user': user})
-		html_content = render_to_string('mail/mail_success.html', context)
-		message = render_to_string('mail/mail_success.html', context)
-		send_mail(subject,
-	              message,
-	              sender,
-	              [receiver],
-	              fail_silently=False,
-	              html_message=html_content)
-
-def send_payment_success_email(emailRecipient, user):
-
-	subject = 'Mod Technologies Subscription Notice'
-	sender = 'hello@modwebservices.com'
-	receiver = emailRecipient
-	context = ({'email': emailRecipient, 'user': user})
-	html_content = render_to_string('mail/mail_success.html', context)
-	message = render_to_string('mail/mail_success.html', context)
-	send_mail(subject,
-              message,
-              sender,
-              [receiver],
-              fail_silently=False,
-              html_message=html_content)
-
-
-@login_required()
-def success(request):
-
-	user_membership = get_user_membership(request)
-	#user = request.user
-	#emailRecipient = user.email
-	#send_payment_success_email(emailRecipient, user)
-
-	context = {
-	'user_membership': user_membership,
-	}
-	return render(request, 'memberships/purchase_success.html', context)
-
 
 # ADMIN Panel
 class SubscriptionListView(views.SuperuserRequiredMixin, ListView):
@@ -610,40 +588,6 @@ def adminPanel(request):
 
 
 
-@login_required()
-def coursePanel(request):
-	object_list = Course.objects.order_by('ordering_id')
-
-	#group = Group.objects.get(name='super_user')
-	#request.user.groups.add(group)
-	if request.user.is_superuser:
-
-		context = {
-		'object_list': object_list,
-		}
-
-		return render(request, 'memberships/course_panel.html', context)
-
-
-	else:
-		return redirect('memberships:permission_denied')
-
-@login_required()
-def lessonPanel(request):
-	object_list = Lesson.objects.order_by('course', 'ordering_id')
-
-	#group = Group.objects.get(name='super_user')
-	#request.user.groups.add(group)
-	if request.user.is_superuser:
-
-		context = {
-		'object_list': object_list,
-		}
-
-		return render(request, 'memberships/lesson_panel.html', context)
-
-	else:
-		return redirect('memberships:permission_denied')
 
 
 class MembershipUpdateView(SuccessMessageMixin, views.SuperuserRequiredMixin, UpdateView):
@@ -657,3 +601,52 @@ class MembershipUpdateView(SuccessMessageMixin, views.SuperuserRequiredMixin, Up
     raise_exception = False
     redirect_field_name = '/'
     redirect_unauthenticated_users = True
+
+
+# ==================== EMAILS ======================
+
+
+def send_subscription_cancelation_email(emailRecipient, user):
+
+		subject = 'Mod Technologies Subscription Cancellation Notice'
+		sender = 'hello@modwebservices.com'
+		receiver = emailRecipient
+		context = ({'email': emailRecipient, 'user': user})
+		html_content = render_to_string('mail/mail_cancellation.html', context)
+		message = render_to_string('mail/mail_cancellation.html', context)
+		send_mail(subject,
+	              message,
+	              sender,
+	              [receiver],
+	              fail_silently=False,
+	              html_message=html_content)
+
+def send_payment_refund_email(emailRecipient, user, selected_amount):
+	if not settings.DEBUG:
+		subject = 'Mod Technologies Subscription Notice'
+		sender = 'hello@modwebservices.com'
+		receiver = emailRecipient
+		context = ({'email': emailRecipient, 'user': user})
+		html_content = render_to_string('mail/mail_success.html', context)
+		message = render_to_string('mail/mail_success.html', context)
+		send_mail(subject,
+	              message,
+	              sender,
+	              [receiver],
+	              fail_silently=False,
+	              html_message=html_content)
+
+def send_payment_success_email(emailRecipient, user):
+
+	subject = 'Mod Technologies Subscription Notice'
+	sender = 'hello@modwebservices.com'
+	receiver = emailRecipient
+	context = ({'email': emailRecipient, 'user': user})
+	html_content = render_to_string('mail/mail_success.html', context)
+	message = render_to_string('mail/mail_success.html', context)
+	send_mail(subject,
+              message,
+              sender,
+              [receiver],
+              fail_silently=False,
+              html_message=html_content)

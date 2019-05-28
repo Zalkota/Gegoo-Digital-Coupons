@@ -22,3 +22,7 @@ except ImportError:
 # ReCaptcha https://github.com/praekelt/django-recaptcha
 RECAPTCHA_PUBLIC_KEY = '6LfDKI0UAAAAAGPojMtiBI1wD-2CYTRFKX765uj4'
 RECAPTCHA_PRIVATE_KEY = '6LfDKI0UAAAAADzjHFL5GEL4JTQjL-ZkkJSBu7q6'
+
+#TEST
+STRIPE_PUBLISHABLE_KEY = 'pk_test_idvhfKDQ341zGBS85RwhLnWY'
+STRIPE_SECRET_KEY = 'sk_test_UreA2MI54Bmadk6xO2j9jGlD'

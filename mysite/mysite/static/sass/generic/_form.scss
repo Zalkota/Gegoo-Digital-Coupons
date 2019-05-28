@@ -1,6 +1,8 @@
 /*       CONTACT PAGE AND FORM        */
 
-
+input {
+    font-size: 1.1rem;
+}
 
 
 .form-control, .custom-file-control,
@@ -77,7 +79,7 @@ color: #555;
     background-color: $color-white;
   }
 
-  
+
 
   p {
     color: $color-text;

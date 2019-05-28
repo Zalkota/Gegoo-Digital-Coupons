@@ -16,15 +16,15 @@
                     <a class="nav-link" href="{% url 'memberships:select' %}" id="">Pricing</a>
                   </li>
                   <li class="nav-item  ml-4 mr-5">
-                    <a class="nav-link" href="{% slugurl 'contact' %}" id="">Contact</a>
+                    <a class="nav-link" href="{% slugurl 'contact' %}" id="">Consultation</a>
                   </li>
                 {% if not request.user.is_authenticated %}
                   <li class="nav-item  ml-4 mr-5">
-                    <a class="nav-link" href="{% url 'account_login' %}" id="">Sign In</a>
+                    <a class="nav-link btn btn-outline-navbar px-3 mr-2" href="{% url 'account_login' %}" id="">Sign In</a>
                   </li>
                 {% else %}
                 <li class="nav-item dropdown mr-5" style="z-index: 500;">
-                  <a class="text-nowrap btn btn-outline-navbar px-3" id="messagesDropdown" style="font-weight: 500; font-size: 0.8rem;" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link btn btn-outline-navbar px-3 mr-2" id="messagesDropdown" style="font-weight: 500; font-size: 0.8rem;" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Account
                   </a>
                     <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
@@ -60,7 +60,7 @@
         <div class="navigation__background">&nbsp;</div>
         <nav class="navigation__nav">
             <ul class="navigation__list">
-              <li class="navigation__item"><a href="{% slugurl 'home' %}" class="navigation__link" style="">Home</a></li>
+              <li class="navigation__item"><a href="{% slugurl 'homepage' %}" class="navigation__link" style="">Home</a></li>
               <li class="navigation__item"><a href="{% slugurl 'projects' %}" class="navigation__link" style="">Projects</a></li>
               <li class="navigation__item"><a href="{% url 'memberships:select' %}" class="navigation__link" style="">Pricing</a></li>
               <li class="navigation__item"><a href="{% slugurl 'contact' %}" class="navigation__link" style="">Consultation</a></li>
