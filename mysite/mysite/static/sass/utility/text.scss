@@ -15,11 +15,11 @@ a:hover {
 }
 
 .text-success {
-  color: $color-success;
+  color: $color-success !important;
 }
 
 .bg-success {
-  background-color: $color-success;
+  background-color: $color-success !important;
 }
 
 .text-danger {

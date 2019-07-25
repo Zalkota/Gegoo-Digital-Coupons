@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 {% load static %}
 {% load wagtailcore_tags %}
 
@@ -9,7 +9,7 @@
             <div class="row text-center">
                 <div class="offset-md-2"></div>
                 <div class="col-md-2 col-sm-12 mb-4">
-                    <a style="line-height: 2rem;" href="#">About us</a>
+                    <a style="line-height: 2rem;" href="{% slugurl 'contact' %}">Contact Us</a>
                 </div>
                 <div class="col-md-2 col-sm-12 mb-4">
                     <a style="line-height: 2rem;" href="{% slugurl 'terms-page' %}">Terms of Use</a>

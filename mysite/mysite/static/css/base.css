@@ -263,8 +263,8 @@ hr.hr-2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.28), 0 4px 8px rgba(0, 0, 0, 0.29) !important; }
 
 .shadow-2 {
-  -webkit-box-shadow: 0 8px 12px rgba(0, 0, 0, 0.28), 0 8px 12px rgba(0, 0, 0, 0.29) !important;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.28), 0 8px 12px rgba(0, 0, 0, 0.29) !important; }
+  -webkit-box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05), 0 15px 40px rgba(166, 173, 201, 0.2) !important;
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05), 0 15px 40px rgba(166, 173, 201, 0.2) !important; }
 
 .shadow-3 {
   -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
@@ -508,14 +508,197 @@ hr.hr-2 {
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.22), 0 3px 6px rgba(0, 0, 0, 0.22) !important;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.22), 0 3px 6px rgba(0, 0, 0, 0.22) !important; }
 
+.navbar-top {
+  background-color: #559cff;
+  color: white;
+  height: 35px;
+  top: 0%;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  text-align: left; }
+  .navbar-top .text {
+    position: absolute;
+    right: 20%;
+    font-weight: 600;
+    padding-top: 5px; }
+
+.navbar-toggler {
+  border: none;
+  background: transparent !important; }
+
+.navbar-toggler:focus {
+  outline: none;
+  background: transparent !important; }
+
+.navbar-toggler .icon-bar {
+  background-color: #fff;
+  transform: rotate(0deg) translate(0px, 0px);
+  transition: ease all .2s; }
+
+.navbar-toggler.scrolled .icon-bar {
+  background-color: #fff;
+  transform: rotate(0deg) translate(0px, 0px);
+  transition: ease all .2s; }
+
+.navbar-toggler .icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px; }
+
+.navbar-toggler .icon-bar + .icon-bar {
+  margin-top: 4px; }
+
+.icon-bar:nth-child(2) {
+  width: 22px;
+  transition: ease all .2s; }
+
+.navbar-toggler:hover > .icon-bar:nth-child(2) {
+  width: 22px;
+  transition: ease all .2s; }
+
+.navbar-toggler:active > .icon-bar:nth-child(2) {
+  width: 22px;
+  transition: ease all .2s; }
+
+.navbar-toggler:not(.collapsed) .icon-bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 4px);
+  transition: ease all .2s; }
+
+.navbar-toggler:not(.collapsed) .icon-bar:nth-child(2) {
+  opacity: 0;
+  transition: ease all .2s; }
+
+.navbar-toggler:not(.collapsed) .icon-bar:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -4px);
+  transition: ease all .2s; }
+
+/* ################ NAVBAR NOT SCROLLED ################ */
+.navbar-default {
+  height: 70px; }
+
+.navbar-brand {
+  color: #3b8dff;
+  font-weight: 700 !important; }
+
+.navbar-brand:hover {
+  color: #086fff; }
+
+.ul-spacing {
+  height: 85px; }
+
+.nav-link {
+  color: white;
+  font-weight: 500 !important;
+  font-size: 0.8rem;
+  line-height: 25px;
+  margin-top: 8px; }
+
+.nav-link:hover {
+  color: white;
+  border-bottom: 1px solid #fdfdfe; }
+
+.btn-outline-navbar {
+  background-color: transparent !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+  border: 1px solid #fff !important;
+  color: white; }
+
+.btn-outline-navbar:hover {
+  background-color: #fff !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+  color: #424242 !important;
+  border-color: white !important; }
+
+/* ################## NAVBAR SCROLLED ################## */
+.navbar-default.scrolled {
+  background-color: #fdfdfe !important;
+  transition: background-color 200ms linear;
+  color: #424242;
+  z-index: 999;
+  height: 75px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
+
+a.navbar-brand.scrolled {
+  color: #424242 !important; }
+
+a.navbar-brand.scrolled:hover {
+  color: #3b8dff !important; }
+
+.navbar-brand {
+  color: #fff; }
+
+.navbar-brand:hover {
+  color: #cacaca; }
+
+.navbar-brand.scrolled {
+  color: #424242; }
+
+.navbar-brand.scrolled:hover {
+  color: #3b8dff; }
+
+.navbar-brand {
+  font-weight: 700 !important; }
+
+.btn-outline-navbar.scrolled {
+  background-color: transparent !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem;
+  border-color: #424242 !important;
+  color: #424242 !important; }
+
+.btn-outline-navbar.scrolled:hover {
+  background-color: #3a75c1 !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem;
+  color: #fdfdfe !important;
+  border-color: #3a75c1 !important; }
+
+.nav-link.scrolled {
+  color: #424242;
+  margin-top: 8px; }
+
+.nav-link.scrolled:hover {
+  color: #3a75c1; }
+
+.nav-item .active {
+  border-bottom: 2px solid #fdfdfe; }
+
+@media screen and (max-width: 992px) {
+  .navbar-default.scrolled {
+    background-color: #003156 !important;
+    transition: background-color 200ms linear;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    color: white;
+    z-index: 999; }
+
+  .navbar-brand.scrolled {
+    color: #3b8dff; }
+
+  .navbar-brand.scrolled:hover {
+    color: #086fff; }
+
+  a.navbar-brand.scrolled {
+    color: #3b8dff !important; }
+
+  a.navbar-brand.scrolled:hover {
+    color: #086fff !important; } }
+/* ## CENTER COLLPASED LINKS ## */
+.navbar {
+  box-shadow: none; }
+
+.navbar .navbar-collapse {
+  text-align: center;
+  box-shadow: none; }
+
 .btn {
   font-size: 16px;
-  font-weight: 650;
-  height: 45px; }
+  font-weight: 650; }
   .btn:hover, .btn:active .btn:focus {
-    font-size: 16px;
-    font-weight: 650;
-    height: 45px; }
+    font-weight: 650; }
 
 button {
   display: block;
@@ -1538,7 +1721,7 @@ input[type=checkbox]:checked + label {
     text-align: center;
     /* Background styles */
     /* background-image: url(/static/img/background_waves_6.svg); */
-    background-image: linear-gradient(60deg, #5b00fa, #3b8dff, #26c281);
+    background-image: linear-gradient(60deg, #5b00fa, #3b8dff);
     /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
     background-size: cover;
     background-position: center;
@@ -1755,10 +1938,10 @@ a:hover {
   color: #559cff; }
 
 .text-success {
-  color: #3ddb93; }
+  color: #3ddb93 !important; }
 
 .bg-success {
-  background-color: #3ddb93; }
+  background-color: #3ddb93 !important; }
 
 .text-danger {
   color: #d91227; }

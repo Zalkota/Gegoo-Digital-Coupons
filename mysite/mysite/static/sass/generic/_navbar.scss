@@ -89,16 +89,13 @@
     }
   }
 
-/* ## NAVBAR NOT SCROLLED ## */
+/* ################ NAVBAR NOT SCROLLED ################ */
 
-  .navbar-default {
-    background-color: $color-navbar-background !important;
-    transition: background-color 200ms linear;
-    box-shadow: 0;
-    z-index: 999;
-    height: 85px;
-    position: fixed;
-  }
+.navbar-default {
+
+  height: 70px;
+
+}
 
   .navbar-brand {
     color: $color-navbar-text;
@@ -113,103 +110,111 @@
   }
 
   .nav-link {
-      color: $color-navbar-text;
-      font-weight: 600 !important;
+      color: white;
+      font-weight: 500 !important;
       font-size: 0.8rem;
-      line-height: 70px;
-      vertical-align: center;
-      width: 125px;
-      height: 85px;
+      line-height: 25px;
+      margin-top: 8px;
 
   }
   .nav-link:hover {
-      color: $color-navbar-hover;
-      background: $color-alt;
-      border-bottom: 4px solid $color-navbar-text;
-      line-height: 70px;
-      height: 85px;
+      color:  white;
+      border-bottom: 1px solid #fdfdfe;
+
   }
+
 
   .btn-outline-navbar {
     background-color: transparent !important;
     font-weight: 500 !important;
-    font-size: 0.875rem;
+    font-size: 0.875rem !important;
     border: 1px solid #fff !important;
-    color: $color-navbar-text;
+    color: white;
   }
+
 
   .btn-outline-navbar:hover {
-    background-color:$color-navbar-hover !important;
+    background-color: #fff !important;
     font-weight: 500 !important;
-    font-size: 0.875rem;
+    font-size: 0.875rem !important;
     color: #424242 !important;
-    border-color: $color-navbar-hover !important;
+    border-color: white !important;
   }
 
-  /* ## NAVBAR SCROLLED ## */
+  /* ################## NAVBAR SCROLLED ################## */
 
   .navbar-default.scrolled {
-    background-color: $color-navbar-background-scrolled !important;
+    background-color: #fdfdfe !important;
     transition: background-color 200ms linear;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    color: #424242;
     z-index: 999;
-    margin-top: 0;
-    position: fixed;
-    top: 0%;
+    height: 75px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   }
 
-  .navbar-brand.scrolled {
-    color:$color-navbar-text;
-  }
-  .navbar-brand.scrolled:hover {
-    color: $color-navbar-hover;
-  }
 
   a.navbar-brand.scrolled {
-      color: $color-navbar-text !important;
+      color: #424242 !important;
   }
   a.navbar-brand.scrolled:hover {
-      color:$color-navbar-hover !important;
+      color: $color-navbar-text !important;
   }
 
-  .nav-link.scrolled {
-      color: $color-navbar-text;
+  .navbar-brand {
+    color: #fff;
   }
-  .nav-link.scrolled:hover {
-      color: $color-navbar-hover;
+  .navbar-brand:hover {
+    color: #cacaca;
   }
+  .navbar-brand.scrolled {
+    color: #424242;
+  }
+  .navbar-brand.scrolled:hover {
+    color: $color-navbar-text;
+  }
+  .navbar-brand {
+    font-weight: 700 !important;
+  }
+
 
   .btn-outline-navbar.scrolled {
     background-color: transparent !important;
     font-weight: 500 !important;
     font-size: 0.875rem;
-    border-color: white !important;
-    color: white !important;
+    border-color: #424242 !important;
+    color: #424242 !important;
   }
 
 
   .btn-outline-navbar.scrolled:hover {
-    background-color: $color-primary !important;
+    background-color: #3a75c1 !important;
     font-weight: 500 !important;
     font-size: 0.875rem;
     color: #fdfdfe !important;
-    border-color: $color-primary !important;
+    border-color: #3a75c1 !important;
   }
+
+  .nav-link.scrolled {
+      color: #424242;
+      margin-top: 8px;
+  }
+  .nav-link.scrolled:hover {
+      color: #3a75c1;
+
+  }
+
 
   .nav-item {
 
     .active {
-        color: $color-navbar-hover;
-        background: $color-alt;
-        border-bottom: 4px solid $color-navbar-text;
+
+        border-bottom: 2px solid #fdfdfe;
     }
   }
 
 
 
 @media screen and (max-width: 992px) {
-
-
 
   .navbar-default.scrolled {
     background-color: $color-navbar-background-scrolled !important;

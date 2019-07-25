@@ -60,8 +60,9 @@ INSTALLED_APPS = [
     #Payment
     'stripe',
     #Security
-    'wagtailcaptcha',
-    'captcha',
+    #'wagtailcaptcha',
+    #'captcha',
+    'honeypot',
 
     #Cookies
     'cookielaw',
@@ -93,6 +94,9 @@ MIDDLEWARE = [
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
+#honeypot
+HONEYPOT_FIELD_NAME = 'phonenumber'
+
 ROOT_URLCONF = 'mysite.urls'
 
 # django-compressor
@@ -106,7 +110,7 @@ COMPRESS_PRECOMPILERS = (
 )
 
 # Form Rendering
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 from django.contrib.messages import constants as messages
 

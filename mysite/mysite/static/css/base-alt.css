@@ -18,12 +18,9 @@ body {
 
 .btn {
   font-size: 16px;
-  font-weight: 650;
-  height: 45px; }
+  font-weight: 650; }
   .btn:hover, .btn:active .btn:focus {
-    font-size: 16px;
-    font-weight: 650;
-    height: 45px; }
+    font-weight: 650; }
 
 button {
   display: block;

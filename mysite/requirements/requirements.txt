@@ -68,3 +68,6 @@ django-cookie-law
 
 #PDF Creator/download Pg.150 Django CookBook
 xhtml2pdf~=0.2.3
+
+# Honeypot
+django-honeypot

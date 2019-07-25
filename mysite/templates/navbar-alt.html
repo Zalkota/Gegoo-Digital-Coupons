@@ -3,7 +3,7 @@
 
 <!-- Generic Navigation !-->
     <nav class=" navbar navbar-default fixed-top navbar-expand-lg hide" id="mynav">
-      <div class="container hide">
+      <div class="container-fluid hide">
           <a class="navbar-brand" href="/">
             <span class="mt-4">MOD Technologies</span>
           </a>
@@ -23,7 +23,7 @@
                     <a class="nav-link btn btn-outline-navbar px-3 mr-2" href="{% url 'account_login' %}" id="">Sign In</a>
                   </li>
                 {% else %}
-                <li class="nav-item dropdown mr-5" style="z-index: 500;">
+                <li class="nav-item dropdown mr-3" style="z-index: 500;">
                   <a class="nav-link btn btn-outline-navbar px-3 mr-2" id="messagesDropdown" style="font-weight: 500; font-size: 0.8rem;" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Account
                   </a>

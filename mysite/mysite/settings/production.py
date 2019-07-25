@@ -29,19 +29,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 
-# Captcha ----------------------------------------------------------------------
-
-''' https://accounts.google.com/displayunlockcaptacha '''
-try:
-    from .local import *
-except ImportError:
-    pass
-
-# ReCaptcha https://github.com/praekelt/django-recaptcha
-RECAPTCHA_PUBLIC_KEY = '6LdGApgUAAAAADzpwNfGePbYmVrZS-2gCCPQyfs6'
-RECAPTCHA_PRIVATE_KEY = '6LdGApgUAAAAAJWHqK6Sp7KMPjdq_BpI9NXsxKKc'
-
-RECAPTCHA_PROXY = {'http': 'http://127.0.0.1:8000', 'https': 'https://127.0.0.1:8000'}
 
 #LIVE #TODO THIS NEED TO GO INTO ENVIRONEMNT VARIABLES ASAP
 STRIPE_PUBLISHABLE_KEY = 'pk_live_MdjBMj7pTrz0Dh9XN4wAtlSH'

@@ -10,7 +10,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 
 #Captcha
-from wagtailcaptcha.models import WagtailCaptchaEmailForm
+#from wagtailcaptcha.models import WagtailCaptchaEmailForm
 
 # forms http://docs.wagtail.io/en/v2.0/reference/contrib/forms/
 from modelcluster.fields import ParentalKey
@@ -22,6 +22,9 @@ from wagtail.core.fields import RichTextField
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from django.shortcuts import redirect
 
+#honeypot
+from honeypot.decorators import check_honeypot
+from django.utils.decorators import method_decorator
 
 
 class HomePage(Page):
@@ -123,7 +126,7 @@ class FormField(AbstractFormField):
     page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
 
 
-class FormPage(WagtailCaptchaEmailForm):
+class FormPage(AbstractEmailForm):
     intro = RichTextField(blank=True)
     body = RichTextField(blank=True)
     address = RichTextField(blank=True)
@@ -152,7 +155,7 @@ class FormPage(WagtailCaptchaEmailForm):
         on_delete=models.SET_NULL,
         related_name='+',
     )
-
+    @method_decorator(check_honeypot)
     def render_landing_page(self, request, form_submission=None, *args, **kwargs):
         if self.thank_you_page:
             url = self.thank_you_page.url

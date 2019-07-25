@@ -1,5 +1,6 @@
 {% extends "base-minimal.html" %}
 {% load static wagtailcore_tags widget_tweaks wagtailuserbar %}
+{% load honeypot %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -51,6 +52,7 @@ body {
                     {% endif %}
                     <h2 class="py-1 pb-3" style="font-size: 28.5px; font-weight: 500;">New Business Enquiries!</h2><br>
                     <h5 class="pb-3">Complete the form below and we will be in touch.</h5><br>
+                    {% render_honeypot_field "phonenumber" %}
                   </div>
 
                   {% for field in form.visible_fields %}

@@ -3,7 +3,7 @@
 
 <!-- Generic Navigation !-->
     <nav class=" navbar navbar-default fixed-top navbar-expand-lg hide" id="mynav">
-      <div class="container hide">
+      <div class="container-fluid hide">
         <a class="navbar-brand" href="/">
           <span class="mt-4"> MOD Technologies</span>
         </a>
@@ -20,7 +20,7 @@
                   <a class="nav-link" href="{% slugurl 'contact' %}" id="">Consultation</a>
                 </li>
               {% if not request.user.is_authenticated %}
-                <li class="nav-item  ml-4 mr-5">
+                <li class="nav-item  ml-4 mr-3">
                   <a class="nav-link btn btn-outline-navbar px-3 mr-2" href="{% url 'account_login' %}" id="">Sign In</a>
                 </li>
               {% else %}
