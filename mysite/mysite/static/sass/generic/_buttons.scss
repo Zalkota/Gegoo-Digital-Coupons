@@ -140,41 +140,18 @@
   padding-right: 2.3rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
-  }
-  .btn-success-alt:hover {
+
+  &:hover, &:active, &:focus, &:visited {
     background: $color-success-light;
     color: #e5e5e5;
     box-shadow: 0 2px 4px rgba(155,155,155,0.3), 0 2px 4px rgba(155,155,155,0.3);
-    font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
+    }
   }
-  .btn-success-alt:active {
-    background: $color-success-dark;
-    color: #e5e5e5;
-    box-shadow: 0;
-    font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
-  }
-  .btn-success-alt:focus {
-    background: $color-success-dark;
-    color: #e5e5e5;
-    box-shadow: 0;
-    font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
-  }
+
 
   .btn-danger-alt {
   background: $color-danger;
-  box-shadow: 0 2px 4px rgba(155,155,155,0.3), 0 2px 4px rgba(155,155,155,0.3);
+  box-shadow: 0;
   color: #fafafa;
   font-weight: 600;
   padding-left: 2.3rem;
@@ -182,24 +159,12 @@
   padding-top: .85rem;
   padding-bottom: .85rem;
 
-  &:hover {
+  &:hover, &:active, &:focus, &:visited {
     background: $color-danger-light;
     color: #e5e5e5;
-    box-shadow: 0;
-
+    box-shadow: 0 2px 4px rgba(155,155,155,0.3), 0 2px 4px rgba(155,155,155,0.3)
+    }
   }
-  &:active {
-    background: $color-danger-dark;
-    color: #e5e5e5;
-    box-shadow: 0;
-
-  }
-  &:focus {
-    background: $color-danger-dark;
-    color: #e5e5e5;
-    box-shadow: 0;
-  }
-}
 
   .btn-secondary-alt {
   background: #efefef;
