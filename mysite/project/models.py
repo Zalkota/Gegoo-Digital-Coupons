@@ -18,8 +18,8 @@ class ProjectIndexPage(Page):
 
 class ProjectPage(Page):
     date = models.DateField("Post date")
-    header = RichTextField(blank=True)
     intro = models.CharField(max_length=250)
+    image_url_thumbnail = models.CharField(blank=True, max_length=250, help_text="Image link")
     title_1 = RichTextField(blank=True)
     body_1 = RichTextField(blank=True)
     image_url_1 = models.CharField(blank=True, max_length=250, help_text="Image link")
@@ -34,7 +34,6 @@ class ProjectPage(Page):
     website_url = models.CharField(blank=True, max_length=250)
     active = models.BooleanField(default=False)
 
-
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
         index.SearchField('body_1'),
@@ -43,20 +42,19 @@ class ProjectPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
-        FieldPanel('header'),
-        FieldPanel('intro'),
-        FieldPanel('title_1', classname="full"),
-        FieldPanel('body_1', classname="full"),
-        FieldPanel('image_url_1'),
-        FieldPanel('title_2', classname="full"),
-        FieldPanel('body_2', classname="full"),
-        FieldPanel('image_url_2'),
-        FieldPanel('title_3', classname="full"),
-        FieldPanel('body_3', classname="full"),
-        FieldPanel('image_url_3'),
-
         FieldPanel('work_done'),
         FieldPanel('location'),
         FieldPanel('website_url'),
+        FieldPanel('image_url_thumbnail'),
+        FieldPanel('image_url_1'),
+        FieldPanel('image_url_2'),
+        FieldPanel('image_url_3'),
+        FieldPanel('intro'),
+        FieldPanel('title_1', classname="full"),
+        FieldPanel('body_1', classname="full"),
+        FieldPanel('title_2', classname="full"),
+        FieldPanel('body_2', classname="full"),
+        FieldPanel('title_3', classname="full"),
+        FieldPanel('body_3', classname="full"),
         FieldPanel('active'),
     ]

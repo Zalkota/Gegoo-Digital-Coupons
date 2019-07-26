@@ -359,7 +359,7 @@
   background: $color-primary;
   color: $color-white;
   box-shadow: 0;
-  border-radius: 30px;
+  border-radius: 3px;
   padding-left: 5rem;
   padding-right: 5rem;
   padding-top: .75rem;
@@ -368,35 +368,19 @@
 
   .btn-primary-round:hover {
   background: $color-primary-light;
-  color: $color-alt;
-  border-radius: 30px;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  padding-top: .75rem;
-  padding-bottom: .75rem;
+  color: $color-white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
   }
 
   .btn-primary-round:active {
   background: $color-primary-dark;
-  color: $color-alt;
-  box-shadow: 0;
-  border-radius: 30px;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  padding-top: .75rem;
+  color: $color-white;
   padding-bottom: .75rem;
   }
 
   .btn-primary-round:focus {
   background: $color-primary-dark;
-  color: $color-alt;
-  box-shadow: 0;
-  border-radius: 30px;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  padding-top: .75rem;
-  padding-bottom: .75rem;
+  color: $color-white;
   }
 
 
@@ -404,7 +388,7 @@
   background: $color-success;
   color: #fafafa;
   box-shadow: 0;
-  border-radius: 30px;
+  border-radius: 2px;
   padding-left: 5rem;
   padding-right: 5rem;
   padding-top: .75rem;

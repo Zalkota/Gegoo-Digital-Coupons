@@ -214,7 +214,6 @@
   </div>
 </section> -->
 
-
   <section class="section-white-md" id="projects">
       <div class="container text-left" data-aos="fade-up">
         <h2 class="fs-40 fw-6">Some Of Our Favorite Projects...</h2>
@@ -226,7 +225,7 @@
                 <div class="col-sm-4 my-3">
                   <a href="{% pageurl object %}" target="_blank">
                     <div class="card shadow-2"style="border: solid 1px #ddd">
-                      <img class="card-img-top " src="{{ object.image_url_1 }}" alt="Card image cap">
+                      <img class="card-img-top" src="{{ object.image_url_thumbnail }}" alt="webdesign project thumbnail">
                       <div class="card-body">
                         <h5 class="card-title text-dark">{{ object.title }}</h5>
                         <p class="card-text">{{ object.work_done }}</p>
@@ -235,8 +234,6 @@
                   </a>
                 </div>
               {% endfor %}
-
-
           </div>
       </div>
   </section>
