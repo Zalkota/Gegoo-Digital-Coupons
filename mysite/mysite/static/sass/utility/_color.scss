@@ -10,7 +10,7 @@ $color-secondary-dark: darken( $color-secondary, 10% );
 $color-alt: #aeaf99;
 $color-white: #fff;
 $color-light: #fafafa;
-$color-dark:  #3a3a3a;
+$color-dark:  #424242;
 $color-black: #000000;
 $color-main: #fafafa;
 $color-alt: #003156;
@@ -29,6 +29,12 @@ $color-navbar-background: $color-main;
 $color-navbar-background-scrolled: $color-alt;
 $color-navbar-text: $color-primary;
 $color-navbar-hover: $color-primary-dark;
+
+// Navbar-alt
+$color-navbar-alt-background: $color-main;
+$color-navbar-alt-background-scrolled: #fdfdfe;
+$color-navbar-alt-text: $color-dark;
+$color-navbar-alt-hover: $color-primary;
 
 $keep: #476783;
 $keep1: #5981a4;

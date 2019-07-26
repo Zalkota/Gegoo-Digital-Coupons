@@ -68,11 +68,10 @@ a:hover {
 <div class="container h100" style="margin-top: 120px;">
       <div class="row">
         <div class="col-lg-3">
-              <div class="pull-left">
+              <div class="pull-left mt-4">
                 <ul class="pull-left pb-2" style="list-style-type: none;">
                   <li>
-                    <img src="/media/{{ user.user_profile.image }}" alt="Profile Picture" width="100px" style="">
-                    <h5><span class="text-muted" style="font-size: .7em;">{{ user.username }}   </span></h5>
+                    <h5><span class="text-muted text-uppercase" style="font-size: .7em;"><strong>{{ user.username }}</strong></span></h5>
                   </li>
                 </ul>
                 <br>
@@ -116,14 +115,14 @@ a:hover {
         </div>
         <div class="col-lg-9 pl-4">
         <br>
-        <div class="card">
+        <div class="card shadow-2 card-border">
           <div class="card-body">
             <h4 class="card-title">Welcome to Mod, {{ user.username }}!</h4>
             <p class="text-muted">If you would like to learn more about Mod <a href="{% slugurl 'about' %}">click here.</a></p>
           </div>
         </div>
         <br>
-        <div class="card">
+        <div class="card shadow-2 card-border">
           <div class="card-body">
             <h6>Subscription</h6>
             <hr>
@@ -138,7 +137,7 @@ a:hover {
                 </div>
                 <div class="col-lg-4 col-sm-4">
                     <!-- Button to Open the Modal -->
-                    <button type="button" class="btn btn-danger shadow" style="width: 8rem;" data-toggle="modal" data-target="#Modal">Cancel</button>
+                    <button type="button" class="btn btn-danger-alt" style="width: 8rem;" data-toggle="modal" data-target="#Modal">Cancel</button>
 
                 </div>
               {% else %}
@@ -155,27 +154,37 @@ a:hover {
           </div>
         </div>
         <br>
-        <div class="card">
+        <div class="card shadow-2 card-border">
           <div class="card-body">
               <h6>Invoices <a href="#" class="pull-right">View All</a></h6>
               <hr>
               <div class="row text-center">
                   {% for object in user.invoice.all %}
                     {% if object.payed != True %}
-                    <div class="col-lg-4 ">
-                        <strong><h5 class="text-dark pt-4">{{ object.description }}</h5></strong>
+                    <div class="col-lg-4">
+                        <span class="text-muted float-left ml-3">Description</span>
+                        <strong><h5 class="text-dark pt-4 pb-0">{{ object.description }}</h5></strong>
                     </div>
-                    <div class="col-lg-4 ">
-                          <h5 class="text-dark pt-4">${{ object.amount}}</h5>
+                    <div class="col-lg-6"></div>
+                    <div class="col-lg-2">
+                        <div class="py-2 unhide"></div>
+                        <span class="text-muted float-left ml-3">Total</span> <br>
+                        <h5 class="text-dark ">${{ object.amount}}</h5>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="pb-0 mb-0 mt-4">
+                        <button class="btn btn-primary-alt mt-3">Download Report</button>
+                      </div>
+                    </div>
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <form method="POST" class="pb-0 mb-0 mt-4" action="{% url 'userPage' %}">
+                            {% csrf_token %}
+                            <button class="btn btn-success-alt mt-3">Pay Invoice</button>
+                            <input type="hidden" name="invoice_id" value="{{ object.invoice_id }}">
+                        </form>
                     </div>
 
-                    <div class="col-lg-4 ">
-                      <form method="POST" action="{% url 'userPage' %}">
-                        {% csrf_token %}
-                            <button class="btn btn-success shadow mt-3">Pay Invoice</button>
-                        <input type="hidden" name="invoice_id" value="{{ object.invoice_id }}">
-                      </form>
-                    </div>
                   {% endif %}
                 {% endfor %}
               </div>

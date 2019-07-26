@@ -117,28 +117,15 @@
   .btn-primary-alt {
   background: $color-primary;
   color: $color-white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+  box-shadow: 0;
   font-weight: 600;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
   padding-top: .8rem;
   padding-bottom: .8rem;
 
-  .btn-primary-alt:hover {
-    background: $color-primary;
-    color: $color-white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
-
-
-  }
-  .btn-primary-alt:active {
-    background: $color-primary-dark;
-    color: $color-white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
-
-  }
-  .btn-primary-alt:focus {
-    background: $color-primary-dark;
+  &:hover, &:active, &:focus{
+    background: $color-primary-light;
     color: $color-white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
     }

@@ -130,17 +130,17 @@
     font-size: 0.875rem !important;
     border: 1px solid #fff !important;
     color: white;
-  }
 
 
-  .btn-outline-navbar:hover {
+
+  &:hover, &:focus, &:active,  {
     background-color: #fff !important;
     font-weight: 500 !important;
     font-size: 0.875rem !important;
     color: #424242 !important;
     border-color: white !important;
+    }
   }
-
   /* ################## NAVBAR SCROLLED ################## */
 
   .navbar-default.scrolled {

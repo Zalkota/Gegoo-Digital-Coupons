@@ -113,8 +113,8 @@ form.addEventListener('submit', function(event) {
 {% block content %}
 <section>
   <div class="container-fluid section-sm-secondary" style="margin-top: 60px;">
-      <div class="container text-box">
-          <p><a href="{% slugurl 'home' %}"><i class="text-light fa fa-home" aria-hidden="true"></i></a> / <a class="text-light" href="{% url 'userPage' %}">Profile</a> / Invoice Checkout</p>
+      <div class="container text-box text-white">
+          <span><a href="{% slugurl 'home' %}"><i class="text-light fa fa-home" aria-hidden="true"></i></a> / <a class="text-light" href="{% url 'userPage' %}">Profile</a> / Invoice Checkout</span>
           <h1>Invoice Checkout</h1>
       </div>
   </div>
@@ -137,8 +137,8 @@ form.addEventListener('submit', function(event) {
             // have more than 1 button of that class
             document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
           </script>
-          <button type="submit" style="max-width: 15rem;" class="btn btn-success px-2"><i class="fa fa-credit-card mr-1" aria-hidden="true"></i> Pay Invoice Online</button>
-          <a class="btn btn-secondary px-4" style="font-weight: 500;" href="{% url 'memberships:invoice_pdf' invoice.pk %}"><i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i> Generate PDF</a>
+          <button type="submit" style="max-width: 15rem;" class="btn btn-success-alt px-2"><i class="fa fa-credit-card mr-1" aria-hidden="true"></i> Pay Invoice Online</button>
+          <a class="btn btn-primary-alt px-4" style="font-weight: 500;" href="{% url 'memberships:invoice_pdf' invoice.pk %}"><i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i> Generate PDF</a>
         </form>
     </div>
     <div class="card">

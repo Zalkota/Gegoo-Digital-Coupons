@@ -6,7 +6,7 @@
       color: #424242 !important;
   }
   a.navbar-brand.scrolled:hover {
-      color: $color-primary !important;
+      color: $color-navbar-alt-hover !important;
   }
 
 
@@ -85,7 +85,7 @@
   .navbar-default.scrolled {
     background-color: #fdfdfe !important;
     transition: background-color 200ms linear;
-    color: #424242;
+    color: $color-navbar-alt-text;
     z-index: 999;
   }
 
@@ -95,33 +95,33 @@
   background-color: transparent !important;
   font-weight: 500 !important;
   font-size: 0.875rem;
-  color: white !important;
-  border: 1px solid white !important;
+  color: $color-navbar-alt-text !important;
+  border: 1px solid $color-navbar-alt-text !important;
 }
 
 
 .btn-outline-navbar:hover {
-  background-color: $color-primary !important;
+  background-color: $color-navbar-alt-hover !important;
   font-weight: 500 !important;
   font-size: 0.875rem;
-  color: #fdfdfe !important;
-  border-color: $color-primary !important;
+  color: $color-navbar-alt-background-scrolled !important;
+  border-color: $color-navbar-alt-hover !important;
 }
 
 
 .btn-outline-navbar.scrolled:hover {
-    color: #424242 !important;
-    border-color: #424242 !important;
+    color: $color-navbar-alt-background-scrolled !important;
+    border-color: $color-navbar-alt-hover !important;
 }
 
   .navbar-brand {
-    color:  white;
+    color: $color-navbar-alt-text;
   }
   .navbar-brand:hover {
-    color: $color-primary;
+    color: $color-navbar-alt-hover !important;
   }
   .navbar-brand.scrolled {
-    color: $color-primary;
+    color: $color-navbar-alt-text;
   }
   .navbar-brand {
     font-weight: 700 !important;
@@ -130,19 +130,19 @@
 /* ## NAVBAR LINK ## */
 
   .nav-link {
-      color:  white;
+      color:  $color-navbar-alt-text;
       font-weight: 500 !important;
       font-size: 0.8rem;
   }
   .nav-link:hover {
-      color: $color-primary;
+      color: $color-navbar-alt-hover;
   }
 
   .nav-link.scrolled {
-      color: #424242;
+      color: $color-navbar-alt-text;
   }
   .nav-link.scrolled:hover {
-      color: $color-primary;
+      color: $color-navbar-alt-hover;
   }
 
 
