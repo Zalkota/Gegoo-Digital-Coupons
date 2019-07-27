@@ -1,0 +1,15 @@
+{% load static %}
+{% load wagtailcore_tags %}
+
+{% if messages %}
+<div class="container-fluid messages" id="message_container">
+  <div class="col-lg-9"></div>
+  <div class="col-lg-3 moveInTop" style="">
+  <ul class="messages alert" style="list-style-type: none; display: none;">
+    {% for message in messages %}
+      <li class="card alert {{ message.tags }}" style="display: inline-block">{% if message.tags == 'alert-success' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i> {% elif message.tags == 'alert-info' %}<i class="fa fa-exclamation" aria-hidden="true"></i>{% elif message.tags == 'alert-danger' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i>{% endif %} {{ message }}</li>
+    {% endfor %}
+  </ul>
+  </div>
+</div>
+        {% endif %}

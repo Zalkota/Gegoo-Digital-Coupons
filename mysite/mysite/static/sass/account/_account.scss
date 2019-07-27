@@ -119,22 +119,11 @@
       background-position: center;  /* hero always sticks to the top when resized. */
       background-repeat: no-repeat;
       background-attachment: fixed;
-
-
+    }
 
   .hide {
-
     display: none;
-
   }
-  .message {
-    border-radius: 8px;
-    top: 40%;
-    right: 0px;
-    margin: auto;
-    opacity: .9;
-  }
-
 
 
   button {
@@ -148,15 +137,14 @@
   .terms {
     color: #3a3a3a;
     }
+
   }
-}
+
 @media screen and (min-width: 992px) {
   .unhide {
     display: none;
   }
-
 }
-
 .unhide {
 
 }

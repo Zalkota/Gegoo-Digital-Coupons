@@ -91,20 +91,18 @@
     /* hero always sticks to the top when resized. */
     background-repeat: no-repeat;
     background-attachment: fixed; }
-    .hero-300 .hide {
-      display: none; }
-    .hero-300 .message {
-      border-radius: 8px;
-      top: 40%;
-      right: 0px;
-      margin: auto;
-      opacity: .9; }
-    .hero-300 button {
-      height: 45px; }
-    .hero-300 .btn {
-      padding-top: 0.8rem; }
-    .hero-300 .terms {
-      color: #3a3a3a; } }
+
+  .hide {
+    display: none; }
+
+  button {
+    height: 45px; }
+
+  .btn {
+    padding-top: 0.8rem; }
+
+  .terms {
+    color: #3a3a3a; } }
 @media screen and (min-width: 992px) {
   .unhide {
     display: none; } }

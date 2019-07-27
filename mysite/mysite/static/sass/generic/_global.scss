@@ -568,11 +568,21 @@ hr.hr-2 {
   // ============== CUSTOM MESSAGES ================//
 
     .messages {
-      z-index: 100;
+      z-index: 999;
       position: fixed;
       left: 0%;
       bottom: 0%;
       opacity: .95;
+      background-color: transparent !important;
+      color: $color-dark;
+      font-family: Montserrat, sans-serif;
+      font-size: .95em;
+      font-weight: 600;
+      padding: 1em 1em 1em 2em;
+      z-index: 80;
+      position: fixed;
+      bottom: 0%;
+      height: 3rem;
     }
 
     .alert {
@@ -582,10 +592,12 @@ hr.hr-2 {
       font-size: .95em;
       font-weight: 600;
       padding: 1em 1em 1em 2em;
-      z-index: 80;
+      z-index: 999;
       position: fixed;
-
+      left: 3%;
       bottom: 0%;
+      -webkit-box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2) !important;
+      box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2) !important;
     }
 
     .alert-success {

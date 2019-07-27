@@ -36,8 +36,6 @@
 
         <link rel="stylesheet" type="text/css" href="{% static 'css/navigation_button.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/waves.css' %}">
-
-        <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/cookielaw.css' %}">
 
@@ -75,16 +73,13 @@ body {
         {% endblock nav %}
 
         {% if messages %}
-          <div class="container-fluid messages" id="message_container">
-            <div class="col-lg-9"></div>
-            <div class="col-lg-3 moveInTop" style="">
-
-            <ul class="messages alert" style="list-style-type: none;">
-              {% for message in messages %}
-                <li class="card alert {{ message.tags }}" style="display: inline-block">{% if message.tags == 'alert-success' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i> {% elif message.tags == 'alert-info' %}<i class="fa fa-exclamation" aria-hidden="true"></i>{% elif message.tags == 'alert-danger' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i>{% endif %} {{ message }}</li>
-              {% endfor %}
-            </ul>
-
+          <div class="container-fluid messages" id="message_container" >
+            <div class="moveInTop" style="">
+              <ul class="messages alert" style="list-style-type: none;">
+                {% for message in messages %}
+                  <li class="card alert {{ message.tags }}" style="display: inline-block">{% if message.tags == 'alert-success' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i> {% elif message.tags == 'alert-info' %}<i class="fa fa-exclamation" aria-hidden="true"></i>{% elif message.tags == 'alert-danger' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i>{% endif %} {{ message }}</li>
+                {% endfor %}
+              </ul>
             </div>
           </div>
         {% endif %}

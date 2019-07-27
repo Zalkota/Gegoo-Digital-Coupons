@@ -30,14 +30,13 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/docs.css' %}">
 
         <!-- Custom !-->
-        <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/waves.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navigation_button.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style-alt.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/navbar-alt.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
 
-
+        <link rel="stylesheet" type="text/css" href="{% static 'css/animation.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 
         <!-- Material Design for Bootstrap fonts and icons -->
@@ -49,6 +48,18 @@
       {% include "navbar-alt.html" %}
     {% endblock nav %}
 
+    {% if messages %}
+      <div class="container-fluid messages" id="message_container" >
+        <div class="moveInTop" style="">
+          <ul class="messages alert" style="list-style-type: none;">
+            {% for message in messages %}
+              <li class="card alert {{ message.tags }}" style="display: inline-block">{% if message.tags == 'alert-success' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i> {% elif message.tags == 'alert-info' %}<i class="fa fa-exclamation" aria-hidden="true"></i>{% elif message.tags == 'alert-danger' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i>{% endif %} {{ message }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endif %}
+
     {% block content %}
     <div class="row">
       <div class="offset-md-2 offset-xl-4"></div>
@@ -56,6 +67,7 @@
       <div class="offset-md-2 offset-xl-4"></div>
     </div>
     {% endblock content %}
+
 
 {% block footer %}
   <!-- No Footer for account/base.html -->
