@@ -19,11 +19,11 @@
                     <a class="nav-link" href="{% slugurl 'contact' %}" id="">Consultation</a>
                   </li>
                 {% if not request.user.is_authenticated %}
-                  <li class="nav-item  ml-4 mr-5">
+                  <li class="nav-item  ml-4 mr-3">
                     <a class="nav-link btn btn-outline-navbar px-3 mr-2" href="{% url 'account_login' %}" id="">Sign In</a>
                   </li>
                 {% else %}
-                <li class="nav-item dropdown mr-3" style="z-index: 500;">
+                <li class="nav-item dropdown mr-5" style="z-index: 500;">
                   <a class="nav-link btn btn-outline-navbar px-3 mr-2" id="messagesDropdown" style="font-weight: 500; font-size: 0.8rem;" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Account
                   </a>

@@ -26,7 +26,7 @@ body {
     }
 
     li {
-      color: $color-primary;
+      color: $color-dark;
     }
 
     a {
@@ -43,6 +43,7 @@ body {
 @import "./generic/sections";
 //@import "hero";
 @import "./generic/footer";
+@import "./utility/text";
 //@import "form";
 //@import "navigation_button";
 

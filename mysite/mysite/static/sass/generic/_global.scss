@@ -9,6 +9,7 @@ hr.hr-2 {
 }
 
 
+
   #myBtn {
       display: none; /* Hidden by default */
       position: fixed; /* Fixed/sticky position */
@@ -215,7 +216,7 @@ hr.hr-2 {
 
 .card {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 3px 2px -2px rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  border-radius: 0.125rem !important;
+  border-radius: $border-radius !important;
   background-color: #fff !important;
 
 
@@ -441,7 +442,7 @@ hr.hr-2 {
       position: relative;
       background-size: cover;  /* take width of view port, fits element inside of box */
       background-position: center;
-      border-radius: 10px;
+      border-radius: $border-radius;
       padding-left: 3.5rem;
       padding-right: 3.5rem;
       padding-top: 3rem;

@@ -15,7 +15,7 @@
                 <p>Let's build something together!</p>
             </div>
             <div class="col-lg-3">
-                <a href="{% slugurl 'contact' %}" class="btn btn-outline-light px-4 mt-2">Start a Project</a>
+                <a href="{% slugurl 'contact' %}" class="btn btn-outline-light px-4 mt-2">Consultation</a>
             </div>
         </div>
     </div>
@@ -24,43 +24,53 @@
       <!--Column1-->
         <div class="col-md-3 col-sm-12 mt-3">
             <div class="footer-pad">
-                <h6> Mod Technologies </h6>
+                <h6 class="fw-6 fs-20"> Mod Technologies </h6>
                 <p class="font-footer" style="margin-top: 2.5rem; font-size: 14px;">
                    2018 &copy; All Rights Reserved.
                 </p>
             </div>
         </div>
-        <div class="offset-lg-1"></div>
+
       <!--Column2-->
-      <div class="col-md-2 col-sm-12 mt-3">
+      <div class="col-md-3 col-sm-12 mt-3">
         <div class="font-thick">
+          <span class="fw-6 fs-20" style="line-height: 2rem;">Useful Links</span>
+            <br>
+            <br>
+
+            <a style="line-height: 2rem;" href="{% slugurl 'contact' %}">Contact Us</a>
+            <br>
             <a style="line-height: 2rem;" href="{% url 'memberships:select' %}">Pricing</a>
             <br>
-            <!--<a style="line-height: 2rem;" href="#">Blog</a>
-            <br>-->
-            <a style="line-height: 2rem;" href="{% slugurl 'contact' %}">Contact</a>
+            <a style="line-height: 2rem;" href="{% url 'memberships:select' %}#faq">FAQ</a>
         </div>
       </div>
       <!--Column3-->
-      <div class="col-md-2 col-sm-12 mt-3">
-        <div class="font-thick ">
+      <div class="col-md-3 col-sm-12 mt-3">
+        <div class="font-thick">
+            <span class="fw-6 fs-20" style="line-height: 2rem;">Account</span>
+            <br>
+            <br>
             {% if not request.user.is_authenticated %}
             <a style="line-height: 2rem;" href="{% url 'account_login' %}">Log in</a>
             <br>
             {% else %}
+            <a style="line-height: 2rem;" href="{% url 'account_signup' %}">Sign Up</a>
+            <br>
             {% endif %}
-            <a style="line-height: 2rem;" href="{% url 'memberships:select' %}#faq">FAQ</a>
 
         </div>
       </div>
       <!--Column4-->
-      <div class="offset-lg-1"></div>
+
       <div class="col-md-3 col-sm-12 mt-3">
-          <div class="">
+          <div class="font-thick">
+              <span class="fw-6 fs-20" style="line-height: 2rem;">Legal</span>
+              <br>
+              <br>
               <a style="line-height: 2rem;" href="{% slugurl 'privacy-page' %}">Privary Policy</a>
               <br>
               <a style="line-height: 2rem;" href="{% slugurl 'terms-page' %}">Terms of Use</a>
-
           </div>
       </div>
     </div>

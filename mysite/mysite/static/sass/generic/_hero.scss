@@ -12,7 +12,7 @@
         text-align: center;
         /* Background styles */
         /* background-image: url(/static/img/background_waves_6.svg); */
-        background-image: linear-gradient(60deg, #5b00fa, #3b8dff);
+        background-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
         /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
         background-size: cover;
         background-position: center;

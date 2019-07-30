@@ -77,15 +77,15 @@ a:hover {
                 <br>
 
               <!-- Action buttons -->
-              <ul class="pull-left text-dark" style="list-style-type: none;">
+              <ul class="pull-left " style="list-style-type: none;">
                 <a class="text-dark py-5" style="text-decoration: none;" href="{% slugurl 'home' %}" role="button">
                   <li class="pb-3">
-                      <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2">Home</span>
+                      <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2 fw-5">Home</span>
                   </li>
                 </a>
                 <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'memberships:user_subscription' %}" role="button">
                   <li class="pb-3">
-                      <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2">Subscriptions</span>
+                      <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Subscriptions</span>
                   </li>
                 </a>
                 <!--
@@ -97,17 +97,17 @@ a:hover {
                 !-->
                 <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_reset_password' %}" role="button">
                   <li class="pb-3">
-                      <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2">Password</span>
+                      <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2 fw-5">Password</span>
                   </li>
                 </a>
                 <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'update_image' %}" role="button">
                   <li class="pb-3">
-                      <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1">Edit Profile</span>
+                      <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span>
                   </li>
                 </a>
                 <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
                   <li class="pb-3">
-                      <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2">Settings</span>
+                      <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2 fw-5">Settings</span>
                   </li>
                 </a>
               </ul>

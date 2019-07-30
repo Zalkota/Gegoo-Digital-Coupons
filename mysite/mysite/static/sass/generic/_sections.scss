@@ -1,8 +1,6 @@
 /* Sections */
 
 
-
-
     .section {
       margin-top: 0rem;
       margin-bottom: 0rem;
@@ -205,6 +203,14 @@
       padding-bottom: 7rem;
       background-color: $color-accent-dark;
       color: $color-light;
+
+      a {
+        color: $color-success
+      }
+
+      a:hover, a:focus, a:visited {
+        color: $color-success-light
+      }
     }
 
 
@@ -437,21 +443,32 @@
     .section-card-overlay-top {
       padding-top: 7rem;
       padding-bottom: 16rem;
-      background-color: $color-primary-lighter;
+      background-image: linear-gradient(180deg, $color-secondary-light, $color-secondary);
+      background-color: $color-secondary;
       color: $color-secondary;
       z-index: 1;
     }
 
-
+@media screen and (min-width: 992px) {
     .section-card-overlay-bottom {
       margin-top: 0rem;
       margin-bottom: 0rem;
       padding-top: 7rem;
       padding-bottom: 7rem;
       color: $color-secondary;
-      background-color: $color-secondary;
+      background-color: $color-white;
     }
-
+  }
+@media screen and (max-width: 992px) {
+  .section-card-overlay-bottom {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    padding-top: 47rem;
+    padding-bottom: 47rem;
+    color: $color-secondary;
+    background-color: $color-white;
+  }
+}
     /* ******** CARDS ********* */
 
     .contact-background {
