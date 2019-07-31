@@ -503,44 +503,21 @@ text-shadow: 0px -1px $color-primary-dark;
 
   .btn-outline-primary {
   background: transparent;
-  color: $color-primary !important;
+  color: $color-primary;
   border: solid 1px $color-primary !important;
   box-shadow: 0;
   font-weight: 600;
-  padding-left: 2.3rem;
-  padding-right: 2.3rem;
-  padding-top: .85rem;
-  padding-bottom: .85rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+
+
+  &:hover, &:active, &:focus, &:visited {
+    background: $color-primary !important;
+    color: #fff;
   }
-  .btn-outline-primary:hover {
-    background: $color-primary-light !important;
-    color: #e5e5e5;
-    font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
-  }
-  .btn-outline-primary:active {
-    background: $color-primary-dark !important;
-    color: #e5e5e5;
-    box-shadow: 0;
-    font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
-  }
-  .btn-outline-primary:focus {
-    background: $color-primary-dark  !important;
-    color: #e5e5e5;
-    box-shadow: 0;
-    font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
-    padding-top: .85rem;
-    padding-bottom: .85rem;
-  }
+}
 
   .btn-outline-dark {
   background: transparent;

@@ -87,6 +87,8 @@
     transition: background-color 200ms linear;
     color: $color-navbar-alt-text;
     z-index: 999;
+    -webkit-box-shadow: 0 5px 10px rgba(154,160,185,.085), 0 15px 40px rgba(166,173,201,.25) !important;
+    box-shadow: 0 5px 10px rgba(154,160,185,.085), 0 15px 40px rgba(166,173,201,.25) !important;
   }
 
 /* ## NAVBAR BRAND ## */

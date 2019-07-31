@@ -50,12 +50,12 @@ a:hover {
       <div class="p-4">
         <div class="row">
           <div class="col-lg-6">
-            <button type="button" class="btn btn-success-alt  "  class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="btn btn-primary-alt "  class="close" data-dismiss="modal" aria-label="Close">
               No
             </button>
           </div>
           <div class="col-lg-6">
-            <button type="button" class="btn btn-danger-alt " href="{% url 'memberships:cancel' %}">
+            <button type="button" class="btn btn-outline-primary " href="{% url 'memberships:cancel' %}">
               Yes
             </button>
           </div>
@@ -66,28 +66,30 @@ a:hover {
 </div>
 
 <div class="container h100" style="margin-top: 120px;">
-      <div class="row">
-        <div class="col-lg-3">
+        <div class="row">
+          <div class="col-lg-3 col-sm-12 pl-0 hide">
               <div class="pull-left mt-4">
-                <ul class="pull-left pb-2" style="list-style-type: none;">
+                <ul class="pull-left pb-2" style="width: 100wv; list-style-type: none;">
                   <li>
                     <h5><span class="text-muted text-uppercase" style="font-size: .7em;"><strong>{{ user.username }}</strong></span></h5>
                   </li>
                 </ul>
                 <br>
-
               <!-- Action buttons -->
-              <ul class="pull-left " style="list-style-type: none;">
-                <a class="text-dark py-5" style="text-decoration: none;" href="{% slugurl 'home' %}" role="button">
+              <ul class="pull-left" style="list-style-type: none;">
+                <hr class="mt-0 mb-3 unhide">
+                <a class="text-dark py-5" style="text-decoration: none;" href="/" role="button">
                   <li class="pb-3">
                       <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2 fw-5">Home</span>
                   </li>
                 </a>
+                <hr class="mt-0 mb-3 unhide">
                 <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'memberships:user_subscription' %}" role="button">
                   <li class="pb-3">
                       <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Subscriptions</span>
                   </li>
                 </a>
+                <hr class="mt-0 mb-3 unhide">
                 <!--
                 <a class="text-dark py-5" style="text-decoration: none; " href="" role="button">
                   <li class="pb-3">
@@ -100,25 +102,69 @@ a:hover {
                       <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2 fw-5">Password</span>
                   </li>
                 </a>
+                <hr class="mt-0 mb-3 unhide">
                 <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'update_image' %}" role="button">
                   <li class="pb-3">
                       <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span>
                   </li>
                 </a>
+                <hr class="mt-0 mb-3 unhide">
                 <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
                   <li class="pb-3">
                       <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2 fw-5">Settings</span>
                   </li>
                 </a>
+                <hr class="mt-0 mb-3 unhide">
               </ul>
             </div>
         </div>
         <div class="col-lg-9 pl-4">
         <br>
-        <div class="card shadow-2 card-border">
+        <div class="card shadow-2 card-border hide">
+            <div class="card-body">
+                <h4 class="card-title">Welcome to Mod, {{ user.username }}!</h4>
+                <p class="text-muted">If you would like to learn more about how we can help your business bring in more clients <a href="{% url 'memberships:select' %}">click here.</a></p>
+            </div>
+        </div>
+
+        <div class="card shadow-2 card-border unhide">
           <div class="card-body">
             <h4 class="card-title">Welcome to Mod, {{ user.username }}!</h4>
             <p class="text-muted">If you would like to learn more about how we can help your business bring in more clients <a href="{% url 'memberships:select' %}">click here.</a></p>
+            <br>
+            <!-- Action buttons -->
+            <ul class="pl-0" style="list-style-type: none;">
+              <hr class="mt-0 mb-3 unhide">
+              <a class="text-dark py-5" style="text-decoration: none;" href="/" role="button">
+                <li class="pb-3">
+                    <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2 fw-5">Home</span>
+                </li>
+              </a>
+              <hr class="mt-0 mb-3 unhide">
+              <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'memberships:user_subscription' %}" role="button">
+                <li class="pb-3">
+                    <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Subscriptions</span>
+                </li>
+              </a>
+              <hr class="mt-0 mb-3 unhide">
+              <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_reset_password' %}" role="button">
+                <li class="pb-3">
+                    <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2 fw-5">Password</span>
+                </li>
+              </a>
+              <hr class="mt-0 mb-3 unhide">
+              <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'update_image' %}" role="button">
+                <li class="pb-3">
+                    <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span>
+                </li>
+              </a>
+              <hr class="mt-0 mb-3 unhide">
+              <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
+                <li class="pb-0">
+                    <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2 fw-5">Settings</span>
+                </li>
+              </a>
+            </ul>
           </div>
         </div>
         <br>
@@ -129,18 +175,20 @@ a:hover {
             {% if user_subscription.active == True %}
             <div class="row text-center">
               <div class="col-lg-4 col-sm-4">
-                <span class="text-muted float-left ml-3">Description</span>
-                <strong><h5 class="text-dark float-left ml-3 mt-2">{{ user.user_membership.membership }}</h5></strong>
+                <span class="text-muted float-left ml-3">Description</span><br>
+                <strong><h5 class="text-dark ml-3 mt-2">{{ user.user_membership.membership }}</h5></strong>
               </div>
               {% if user_subscription.active != False %}
                 <div class="col-lg-5 col-sm-5 ">
-                    <span class="text-muted">Next payment due:</span> <br>
+                  <div class="py-2 unhide"></div>
+                    <span class="text-muted float-left unhide">Next payment due:</span>
+                    <span class="text-muted float-left ml-5 hide">Next payment due:</span> <br>
                     <h5 class="text-dark mt-2">{{ user_subscription.get_next_billing_date }}</h5>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                     <!-- Button to Open the Modal -->
+                    <div class="py-2 unhide"></div>
                     <button type="button" class="btn btn-primary-alt" data-toggle="modal" data-target="#Modal">Cancel</button>
-
                 </div>
               {% else %}
                 <div class="col-lg-12">

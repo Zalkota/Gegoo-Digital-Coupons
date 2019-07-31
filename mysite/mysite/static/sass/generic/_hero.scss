@@ -40,6 +40,7 @@
             margin-bottom: 0.5em;
             padding-left: 10%;
             padding-right: 10%;
+            text-shadow: 1px 1px 3px #212121;
         }
         .hero p {
             /* Text styles */
@@ -66,7 +67,7 @@
         text-align: center;
         /* Background styles */
         /* background-image: url(/static/img/background_waves_6.svg); */
-        background-image: linear-gradient(40deg, #5b00fa, #3b8dff, #26c281);
+        background-image: linear-gradient(40deg, $color-alt-light, #3b8dff, $color-success);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -74,7 +75,7 @@
 
     .text {
       position: absolute;
-
+      text-align: left;
       top: 17%;
       max-width: 60rem;
       animation: moveInTop 1.5s;
@@ -90,18 +91,16 @@
         /* Margins */
         opacity: .95;
         margin-top: 0;
-        margin-bottom: 0.5em;
+        margin-bottom: 1em;
 
     }
     p {
         /* Text styles */
-        font-size: 1.1em;
-
-        color: white;
-
+        font-size: 1.125em;
+        color: $color-secondary;
         /* Margins */
         margin-top: 0;
-        margin-bottom: 2em;
+        margin-bottom: 2.5em;
 
     }
   }

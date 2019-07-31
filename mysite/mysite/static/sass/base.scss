@@ -37,7 +37,6 @@ body {
 
 
 @import "./generic/global";
-//@import "animations";
 @import "./generic/navbar";
 @import "./generic/buttons";
 @import "./generic/sections";
@@ -45,9 +44,10 @@ body {
 @import "./generic/hero";
 //@import "form";
 @import "./generic/footer";
-@import "./utility/text";
 @import "./generic/form";
-//@import "navigation_button";
+@import "./generic/navigation_button";
+@import "./utility/animations";
+@import "./utility/text";
 
 
 
