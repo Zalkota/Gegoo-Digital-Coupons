@@ -1,6 +1,6 @@
 
 // Theme Colors
-$color-primary: #006bbc;
+$color-primary: #007ad6;
 $color-primary-light: lighten( $color-primary, 5% );
 $color-primary-lighter: lighten( $color-primary, 35% );
 $color-primary-dark: darken( $color-primary, 10% );
@@ -55,3 +55,4 @@ $color-info-light: lighten( $color-info, 10% );
 $color-info-dark: darken( $color-info, 10% );
 
 $border-radius: 0.15rem;
+$box-shadow-1: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);

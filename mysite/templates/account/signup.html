@@ -37,9 +37,9 @@ input {
 
 
 </style>
-<div class="hero-300-background">
+<div class="hero-300-background hide">
 </div>
-<section class="hero-300">
+<section class="hero-300 hide">
   <!-- Desktop View -->
      <div class="pt-3 hide moveInLeft" style=" z-index: 1000;">
        <a href="{% slugurl 'homepage' %}">
@@ -75,6 +75,8 @@ input {
             <span class="" style="font-size: 1em;"><a href="{% slugurl 'terms-page' %}" >Terms & Conditons</a> | Copyright 2018 Mod Technologies LLC</span>
           </div>
       </div>
+</section>
+
 
   <!-- Mobile View -->
    <div class=" unhide">
@@ -107,5 +109,5 @@ input {
          <span class="terms" style="font-size: .65em;"><a href="" class="terms">Terms & Conditons</a> | Copyright 2018 <br class="unhide"> Mod Technologies LLC</span>
      </div>
   </div>
-</section>
+
 {% endblock %}

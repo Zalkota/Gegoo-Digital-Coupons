@@ -278,32 +278,18 @@
     .btn-alt {
     background: $color-alt;
     color: $color-white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
     font-weight: 600;
     padding-left: 1.6rem;
     padding-right: 1.6rem;
     padding-top: .8rem;
     padding-bottom: .8rem;
 
-    .btn-alt:hover {
-      background: $color-alt-dark !important;
+    &:hover,  &:focus, &:active{
+      background: $color-alt-light !important;
       color: $color-white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
-
-
+      box-shadow: $box-shadow-1;
     }
-    .btn-alt:active {
-      background: $color-alt-dark;
-      color: $color-white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
-
-    }
-    .btn-alt:focus {
-      background: $color-alt-dark;
-      color: $color-white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
-      }
-    }
+  }
 
 /* BUTTON ROUND */
 
@@ -321,7 +307,7 @@ border-bottom: 5px solid $color-primary-dark;
 text-shadow: 0px -1px $color-primary-dark;
 
 &:hover,  {
-  background: $color-primary;
+  background: $color-primary-light;
   color: #f3f3f3;
   border-bottom: 5px solid $color-primary-dark;
   }
