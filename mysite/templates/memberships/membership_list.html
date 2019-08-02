@@ -107,7 +107,7 @@ tr {
                   						<form method="POST" action="{% url 'memberships:select' %}">
                   							{% csrf_token %}
                   								{% if object.membership_type != current_membership %}
-                                  	<button class="btn mb-5 {% if object.special == True %} btn-action-alt {% else %} btn-action {% endif %}">Select</button>
+                                  	<button class="btn {% if object.special == True %} btn-action-alt {% else %} btn-action {% endif %}">Select</button>
                   								{% else %}
                                     <a style="padding-top: .85rem; padding-bottom: .85rem; border-radius: 5px;" class="btn btn-action-disabled">Purchased</a>
                   								{% endif %}
