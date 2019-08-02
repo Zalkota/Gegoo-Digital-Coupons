@@ -42,6 +42,7 @@ input {
       </div>
       <div class="hide">
           <div class="card mx-3 mt-3 shadow-3" style="width: 25rem; z-index: 1000;">
+
               <h2 class="mt-4 mb-0">{% trans "Sign In" %}</h2>
               <div class="card-body text-left px-4 pb-4 pt-3" style="">
                   {% get_providers as socialaccount_providers %}
@@ -105,8 +106,9 @@ input {
 
   <!-- Mobile View -->
    <div class="unhide" style="margin-left: auto; margin-right: auto; max-width: 520px;">
-        <div class="text-center px-4">
-           <h2 class="mb-3 mt-5">{% trans "Sign In" %}</h2>
+        <div class="text-center px-4 mb-3 mt-5">
+                      <img class="img-responsive" data-aos="fade-up" src="{% static 'img/logo/logo_5.svg' %}" width="50%" alt="TODO">
+           <h1 >{% trans "Sign In" %}</h1>
         </div>
         <div class="text-left p-4" style="">
            {% get_providers as socialaccount_providers %}
