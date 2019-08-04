@@ -10,6 +10,7 @@ a:hover {
   background-color: $color-primary;
 }
 
+
 .text-primary-light {
   color: $color-primary-light;
 }
@@ -24,6 +25,14 @@ a:hover {
 
 .text-danger {
   color: $color-danger;
+}
+
+.text-alt {
+  color: $color-alt;
+}
+
+.bg-alt {
+  background-color: $color-alt;
 }
 
 .text-muted {

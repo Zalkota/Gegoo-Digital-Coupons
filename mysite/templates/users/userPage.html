@@ -210,38 +210,38 @@ a:hover {
               <hr>
               <div class="row text-center">
                   {% for object in user.invoice.all %}
-                    {% if object.payed != True %}
-                    <div class="col-lg-4">
-                        <span class="text-muted float-left ml-3">Description</span>
-                        <strong><h5 class="text-dark pt-4 pb-0">{{ object.description }}</h5></strong>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="py-2 unhide"></div>
-                      <span class="text-muted float-center ml-3 hide">Date Created:</span>
-                      <strong><h5 class="text-dark pt-1 pb-0 hide">{{ object.issue_date }}</h5></strong>
-                      <span class="text-muted float-left ml-3 unhide">Date Created:</span><br>
-                      <strong><h5 class="text-dark pt-1 pb-0 unhide">{{ object.issue_date }}</h5></strong>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="py-2 unhide"></div>
-                        <span class="text-muted float-left ml-3">Total</span> <br>
-                        <h5 class="text-dark ">${{ object.amount}}</h5>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="pb-0 mb-0 mt-4">
-                        <button class="btn btn-primary-alt mt-3">Download Report</button>
+                      {% if object.payed != True %}
+                      <div class="col-lg-4">
+                          <span class="text-muted float-left ml-3">Description</span>
+                          <strong><h5 class="text-dark pt-4 pb-0">{{ object.description }}</h5></strong>
                       </div>
-                    </div>
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        <form method="POST" class="pb-0 mb-0 mt-4" action="{% url 'userPage' %}">
-                            {% csrf_token %}
-                            <button class="btn btn-success-alt mt-3">Pay Invoice</button>
-                            <input type="hidden" name="invoice_id" value="{{ object.invoice_id }}">
-                        </form>
-                    </div>
+                      <div class="col-lg-6">
+                        <div class="py-2 unhide"></div>
+                        <span class="text-muted float-center ml-3 hide">Date Created:</span>
+                        <strong><h5 class="text-dark pt-1 pb-0 hide">{{ object.issue_date }}</h5></strong>
+                        <span class="text-muted float-left ml-3 unhide">Date Created:</span><br>
+                        <strong><h5 class="text-dark pt-1 pb-0 unhide">{{ object.issue_date }}</h5></strong>
+                      </div>
+                      <div class="col-lg-2">
+                          <div class="py-2 unhide"></div>
+                          <span class="text-muted float-left ml-3">Total</span> <br>
+                          <h5 class="text-dark ">${{ object.amount}}</h5>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="pb-0 mb-0 mt-4">
+                          <button class="btn btn-primary-alt mt-3">Download Report</button>
+                        </div>
+                      </div>
+                      <div class="col-lg-4"></div>
+                      <div class="col-lg-4">
+                          <form method="POST" class="pb-0 mb-0 mt-4" action="{% url 'userPage' %}">
+                              {% csrf_token %}
+                              <button class="btn btn-success-alt mt-3">Pay Invoice</button>
+                              <input type="hidden" name="invoice_id" value="{{ object.invoice_id }}">
+                          </form>
+                      </div>
 
-                  {% endif %}
+                    {% endif %}
                 {% endfor %}
               </div>
           </div>

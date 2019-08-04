@@ -347,6 +347,33 @@ text-shadow: 0px -1px $color-primary-dark;
     }
   }
 
+  .btn-alt-round {
+  background: $color-alt;
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: $border-radius;
+  font-weight: 600;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  border-bottom: 5px solid $color-alt-dark;
+  text-shadow: 0px -1px $color-alt-dark;
+
+  &:hover,  {
+    background: $color-alt-light;
+    color: #f3f3f3;
+    border-bottom: 5px solid $color-alt-dark;
+    }
+
+  &:active, &:focus {
+    background: $color-alt-light;
+    color: #f3f3f3;
+    box-shadow: 0;
+    border-bottom: 5px solid $color-primary-dark;
+    }
+  }
+
   .btn-secondary-round {
   background: $color-secondary-light;
   color: #fafafa;
@@ -373,38 +400,6 @@ text-shadow: 0px -1px $color-primary-dark;
 
   &:focus {
   background: $color-secondary;
-  color: #fafafa;
-  box-shadow: 0;
-
-    }
-  }
-
-  .btn-alt-round {
-  background: $color-alt-light;
-  color: #fafafa;
-  box-shadow: 0;
-  border-radius: 30px;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: .5rem;
-  padding-bottom: .75rem;
-
-
-  &:hover {
-  background: $color-alt;
-  color: #f3f3f3;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
-  }
-
-  &:active {
-  background: $color-alt;
-  color: #fafafa;
-  box-shadow: 0;
-
-  }
-
-  &:focus {
-  background: $color-alt;
   color: #fafafa;
   box-shadow: 0;
 

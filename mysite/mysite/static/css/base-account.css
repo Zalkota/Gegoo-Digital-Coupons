@@ -119,15 +119,15 @@ body {
   body p {
     color: #2a2a2a; }
   body li {
-    color: #007ad6; }
+    color: #00aeeeff; }
   body a {
-    color: #007ad6; }
+    color: #00aeeeff; }
 
 a:hover {
-  color: #007ad6; }
+  color: #00aeeeff; }
 
 .text-primary {
-  color: #007ad6; }
+  color: #00aeeeff; }
 
 .text-success {
   color: #3ddb93; }

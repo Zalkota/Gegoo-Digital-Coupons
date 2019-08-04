@@ -622,3 +622,9 @@ hr.hr-2 {
       color: $color-alt;
     }
   }
+.circle-success {
+  border: solid 3px $color-success;
+  border-radius: 50%;
+  padding: 2.2rem 1rem 1.2rem 1rem;
+  margin-bottom: 5rem;
+}

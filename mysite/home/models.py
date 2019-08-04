@@ -183,6 +183,31 @@ class FormPage(AbstractEmailForm):
         ], 'Email'),
     ]
 
+class ServicesPage(Page):
+    firstheader = models.CharField(blank=True, max_length=500)
+    firstbody = models.CharField(blank=True, max_length=500)
+    secondheader = models.CharField(blank=True, max_length=500)
+    secondbody = models.CharField(blank=True, max_length=500)
+    secondbody_2 = models.CharField(blank=True, max_length=500)
+    thirdheader = models.CharField(blank=True, max_length=500)
+    thirdbody = models.CharField(blank=True, max_length=500)
+    thirdbody_2 = models.CharField(blank=True, max_length=500)
+    fourthheader = models.CharField(blank=True, max_length=500)
+    fourthbody = models.CharField(blank=True, max_length=500)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('firstheader'),
+        FieldPanel('firstbody', classname="full"),
+        FieldPanel('secondheader'),
+        FieldPanel('secondbody', classname="full"),
+        FieldPanel('secondbody_2', classname="full"),
+        FieldPanel('thirdheader'),
+        FieldPanel('thirdbody', classname="full"),
+        FieldPanel('thirdbody_2', classname="full"),
+        FieldPanel('fourthheader'),
+        FieldPanel('fourthbody', classname="full"),
+
+    ]
 
 
 class JobField(AbstractFormField):

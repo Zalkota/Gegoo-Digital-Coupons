@@ -1,0 +1,236 @@
+{% extends "base-minimal.html" %}
+{% load static %}
+
+
+{% load static wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_styles %}
+<style>
+  .nav-link {
+    color: #fff;
+  }
+
+  .nav-link:hover {
+    border: 0;
+  }
+
+  .navbar-brand {
+    color: #fff;
+  }
+
+  .btn-outline-navbar {
+    color: #fff ;
+    border: solid 2px #fff ;
+  }
+
+  .btn-outline-navbar:hover {
+    color: #fff ;
+    border: solid 2px #fff ;
+  }
+
+</style>
+
+{% endblock extra_styles %}
+
+
+{% block content %}
+
+  <section class="section-hero-img text-shadow-1" style="border-bottom: solid 1px #ddd">
+        <div class="text">
+            <h1 class="pb-0">Our Services</h1>
+            <p class="text-white">We have a complete range of services to make your digital project impactful</p>
+        </div>
+  </section>
+
+
+  <!-- ****** Logo Section ******* -->
+
+  <section class="section-lg" style="border-bottom: solid 6px #00aeeeff;">
+      <div class="container">
+            <div class="row">
+              <div class="col-lg-6 px-4 mb-5">
+                  <h2 class="fw-6 fs-34">{{ page.firstheader }}</h2>
+                  <div class="bg-primary" style="height: 5px; width: 130px;"></div>
+                      <p class="mt-4">{{ page.firstbody }}</p>
+                  <div class="hide">
+                      <a class="btn btn-primary-round text-white mt-4" href="{% slugurl 'contact' %}">Start a Project</span></a>
+                  </div>
+                  <div class="unhide">
+                      <a class="btn btn-primary-round text-white mt-4"  href="{% slugurl 'contact' %}">Start a Project</a>
+                  </div>
+              </div>
+              <div class="col-lg-6 px-4">
+                  <div class="card shadow-2">
+
+                      <div class="card-body">
+                        <img class="img-responsive" src="{% static 'img/logo/django-logo-negative2.svg' %}" width="60%" alt="TODO">
+                        <div class="bg-primary" style="height: 5px; width: 130px;"></div>
+                            <p class="mt-4">Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers,
+                              it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- ****** End Logo Section ******* -->
+
+  <section class="section-hero-img-2" style="border-bottom: solid 1px #ddd;">
+    <div class="text">
+        <h1 class="pb-0 text-white text-shadow-1">Google Adwords</h1>
+    </div>
+  </section>
+
+  <!-- ****** Picture Gallery ******* -->
+
+  <section class="section-secondary-lg" style="border-bottom: solid 6px #3ddb93; background-color:#fbfefc;">
+      <div class="container text-left">
+          <div class="row">
+              <div class="col-lg-5 mb-5" >
+                  <img class="img-responsive" src="{% static 'img/stripe_integration2.svg' %}" width="100%" height="100%" alt="TODO">
+              </div>
+              <div class="offset-lg-1"></div>
+              <div class="col-lg-6">
+                <h2 class="fw-6 fs-34">Pay-Per-Click Advertising for Lead Generation</h2>
+                <div class="bg-success" style="height: 5px; width: 130px;"></div>
+                    <p class="mt-4">{{ page.secondbody }}</p>
+                    <p class="mt-4">{{ page.secondbody_2 }}</p>
+                <div class="hide">
+                    <a class="btn btn-success-round text-white mt-4 "  href="{% slugurl 'contact' %}">Learn more about Google Adwords PPC</span></a>
+                </div>
+                <div class="unhide">
+                    <a class="btn btn-success-round text-white mt-4 "  href="{% slugurl 'contact' %}">Take My Business <br>To The Next Level</a>
+                </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="section-hero-img-3" style="border-bottom: solid 1px #ddd;">
+    <div class="text">
+        <h1 class="pb-0 text-white text-shadow-1">E-Commerce Development</h1>
+    </div>
+  </section>
+
+  <section class="section-lg" style="border-bottom: solid 6px #00aeeeff;">
+      <div class="container">
+            <div class="row">
+              <div class="col-lg-6 px-4 mb-5">
+                  <h2 class="fw-6 fs-34">E-Commerce Development and Design</h2>
+                  <div class="bg-primary" style="height: 5px; width: 130px;"></div>
+                      <p class="mt-4">{{ page.thirdbody }}</p>
+                      <p class="mt-4">{{ page.thirdbody_2 }}</p>
+                  <div class="hide">
+                      <a class="btn btn-primary-round text-white mt-4"  href="{% slugurl 'contact' %}">Try Our E-Commerce Demo</span></a>
+                  </div>
+                  <div class="unhide">
+                      <a class="btn btn-primary-round text-white mt-4" href="{% slugurl 'contact' %}">Try Demo</a>
+                  </div>
+              </div>
+              <div class="col-lg-6 px-4">
+                  <img class="img-responsive" src="{% static 'img/stripe_integration.svg' %}" width="93%" height="93%" alt="E-commerce store development and design">
+                  <div class="text-center">
+                    <div class="">
+                      <img src="{% static 'img/1.png' %}" alt="Credit Card Payment Icon" width="36px">
+                      <img src="{% static 'img/2.png' %}" alt="Credit Card Payment Icon" width="36px">
+                      <img src="{% static 'img/14.png' %}" alt="Credit Card Payment Icon" width="36px">
+                      <img src="{% static 'img/22.png' %}" alt="Credit Card Payment Icon" width="36px">
+                      <img src="{% static 'img/10.png' %}" alt="Credit Card Payment Icon" width="36px">
+                      <img src="{% static 'img/16.png' %}" alt="Credit Card Payment Icon" width="36px">
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="section-hero-img-4" style="border-bottom: solid 1px #ddd;">
+    <div class="text">
+        <h1 class="pb-0 text-white text-shadow-1">AI Marketing</h1>
+    </div>
+  </section>
+
+  <section class="section-secondary-lg" style="border-bottom: solid 6px #29303B; background-color:#fbfefc;">
+      <div class="container text-left">
+          <div class="row">
+              <div class="col-lg-5 mb-5" >
+                  <img class="img-responsive" src="{% static 'img/ai_vector.svg' %}" width="100%" height="100%" alt="TODO">
+              </div>
+              <div class="offset-lg-1"></div>
+              <div class="col-lg-6">
+                <h2 class="fw-6 fs-34">Automate your Marketing with Neural Networks</h2>
+                <div class="bg-alt" style="height: 5px; width: 130px;"></div>
+                    <p class="mt-4">{{ page.secondbody }}</p>
+                <div class="hide">
+                    <a class="btn btn-alt-round text-white mt-4"  href="{% slugurl 'contact' %}">Learn More</span></a>
+                </div>
+                <div class="unhide">
+                    <a class="btn btn-alt-round text-white mt-4"  href="{% slugurl 'contact' %}">Take My Business <br>To The Next Level</a>
+                </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="section-lg" style="border-top: solid 1px #ddd;">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12 text-center">
+                <h1 class="fw-7 fs-40 mb-5">Other Services</h1>
+              </div>
+              <div class="col-lg-6 p-5" style="border: solid 1px #ccc;">
+                  <span class="circle-success"><i class="fa fa-wrench fs-46" aria-hidden="true"></i></span> <br><br>
+                  <h2 class="fw-6 fs-34">Support and Maintenance</h2>
+                  <div class="bg-success" style="height: 5px; width: 160px;"></div>
+                  <p class="mt-4"></p>
+                  <a class="btn btn-success-round mt-4"  href="{% url 'memberships:select' %}">Pricing</span></a>
+
+              </div>
+              <div class="col-lg-6 p-5" style="border: solid 1px #ccc;">
+                  <span class="circle-success"><i class="fa fa-server fs-46" aria-hidden="true"></i></span> <br><br>
+                  <h2 class="fw-6 fs-34">Server Hosting</h2>
+                  <div class="bg-success" style="height: 5px; width: 160px;"></div>
+                  <p class="mt-4"></p>
+                  <a class="btn btn-success-round mt-4"  href="{% url 'memberships:select' %}">Pricing</span></a>
+
+              </div>
+              <div class="col-lg-6 p-5" style="border: solid 1px #ccc;">
+                  <span class="circle-success"><i class="fa fa-search fs-46" aria-hidden="true"></i></span> <br><br>
+                  <h2 class="fw-6 fs-34">Search Engine Optimization</h2>
+                  <div class="bg-success" style="height: 5px; width: 160px;"></div>
+                  <p class="mt-4"></p>
+                  <a class="btn btn-success-round mt-4"  href="{% url 'memberships:select' %}">Pricing</span></a>
+
+              </div>
+              <div class="col-lg-6 p-5" style="border: solid 1px #ccc;">
+                  <span class="circle-success"><i class="fa fa-briefcase fs-46" aria-hidden="true"></i></span> <br><br>
+                  <h2 class="fw-6 fs-34">Web Consulting</h2>
+                  <div class="bg-success" style="height: 5px; width: 160px;"></div>
+                  <p class="mt-4"></p>
+                  <a class="btn btn-success-round mt-4"  href="{% url 'memberships:select' %}">Pricing</span></a>
+
+              </div>
+          </div>
+      </div>
+  </section>
+
+
+
+
+
+{% endblock %}
+
+
+{% block extrajs %}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1300,
+  });
+</script>
+{% endblock extrajs %}

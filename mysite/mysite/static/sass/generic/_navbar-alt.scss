@@ -91,14 +91,47 @@
     box-shadow: 0 5px 10px rgba(154,160,185,.085), 0 15px 40px rgba(166,173,201,.25) !important;
   }
 
-/* ## NAVBAR BRAND ## */
+
+  /* ################ NAVBAR NOT SCROLLED ################ */
+
+.navbar-default {
+
+  height: 70px;
+
+}
+
+.ul-spacing {
+  height: 85px;
+}
+
+
+
+.nav-link {
+  color:  $color-navbar-alt-text;
+  font-weight: 500 !important;
+  font-size: 0.8rem;
+  line-height: 25px;
+  margin-top: 8px;
+}
+.nav-link:hover {
+  color: $color-navbar-alt-hover;
+  border-bottom: 1px solid $color-navbar-text;
+}
+
+.navbar-brand {
+  color: $color-navbar-alt-text;
+  font-weight: 700 !important;
+}
+.navbar-brand:hover {
+  color: $color-navbar-alt-hover !important;
+}
 
 .btn-outline-navbar {
   background-color: transparent !important;
   font-weight: 500 !important;
   font-size: 0.875rem;
-  color: $color-navbar-alt-text !important;
-  border: 2px solid $color-navbar-alt-text !important;
+  color: $color-navbar-alt-text;
+  border: 2px solid $color-navbar-alt-text;
 }
 
 
@@ -110,50 +143,58 @@
   border-color: $color-navbar-alt-text !important;
 }
 
+.navbar {
+  box-shadow: none;
+
+}
+.navbar .navbar-collapse {
+  text-align: center;
+  box-shadow: none;
+}
+
+
+  /* ################ NAVBAR SCROLLED ################ */
+
+
+
+
+
+.navbar-brand.scrolled {
+  color: $color-navbar-alt-text;
+}
+.navbar-brand.scrolled:hover {
+  color: $color-navbar-text;
+}
+
+
+.nav-link.scrolled {
+    color: $color-navbar-alt-text;
+}
+.nav-link.scrolled:hover {
+    color: $color-navbar-alt-hover;
+}
+
+.navbar-default.scrolled {
+  background-color: #fdfdfe !important;
+  transition: background-color 200ms linear;
+  color: #424242;
+  z-index: 999;
+  height: 75px;
+
+  -webkit-box-shadow: 0 5px 10px rgba(154,160,185,.085), 0 15px 40px rgba(166,173,201,.25) !important;
+  box-shadow: 0 5px 10px rgba(154,160,185,.085), 0 15px 40px rgba(166,173,201,.25) !important;
+}
+
+.btn-outline-navbar.scrolled {
+  background-color: transparent !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem;
+  border-color: $color-navbar-alt-text !important;
+  color: $color-navbar-alt-text !important;
+}
 
 .btn-outline-navbar.scrolled:hover {
     color: $color-navbar-alt-background-scrolled !important;
+    background-color: $color-navbar-alt-text !important;
     border-color: $color-navbar-alt-text !important;
 }
-
-  .navbar-brand {
-    color: $color-navbar-alt-text;
-  }
-  .navbar-brand:hover {
-    color: $color-navbar-alt-hover !important;
-  }
-  .navbar-brand.scrolled {
-    color: $color-navbar-alt-text;
-  }
-  .navbar-brand {
-    font-weight: 700 !important;
-  }
-
-/* ## NAVBAR LINK ## */
-
-  .nav-link {
-      color:  $color-navbar-alt-text;
-      font-weight: 500 !important;
-      font-size: 0.8rem;
-  }
-  .nav-link:hover {
-      color: $color-navbar-alt-hover;
-  }
-
-  .nav-link.scrolled {
-      color: $color-navbar-alt-text;
-  }
-  .nav-link.scrolled:hover {
-      color: $color-navbar-alt-hover;
-  }
-
-
-/* ## CENTER COLLPASED LINKS ## */
-  .navbar {
-    box-shadow: none;
-
-  }
-  .navbar .navbar-collapse {
-    text-align: center;
-    box-shadow: none;
-  }
