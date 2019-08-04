@@ -98,22 +98,22 @@
   font-weight: 500 !important;
   font-size: 0.875rem;
   color: $color-navbar-alt-text !important;
-  border: 1px solid $color-navbar-alt-text !important;
+  border: 2px solid $color-navbar-alt-text !important;
 }
 
 
 .btn-outline-navbar:hover {
-  background-color: $color-navbar-alt-hover !important;
+  background-color: $color-navbar-alt-text !important;
   font-weight: 500 !important;
   font-size: 0.875rem;
   color: $color-navbar-alt-background-scrolled !important;
-  border-color: $color-navbar-alt-hover !important;
+  border-color: $color-navbar-alt-text !important;
 }
 
 
 .btn-outline-navbar.scrolled:hover {
     color: $color-navbar-alt-background-scrolled !important;
-    border-color: $color-navbar-alt-hover !important;
+    border-color: $color-navbar-alt-text !important;
 }
 
   .navbar-brand {
