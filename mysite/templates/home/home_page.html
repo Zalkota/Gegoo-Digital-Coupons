@@ -19,10 +19,10 @@
             <h1 class="pb-0">{{ page.firstheader }}</h1>
             <p class="">{{ page.firstbody }}</p>
             <div class="hide">
-              <a class="btn btn-success-round fs-22" href="{% slugurl 'contact' %}">Start a project</a>
+              <a class="btn btn-primary-round fs-18" href="{% slugurl 'contact' %}">Start a project</a>
             </div>
             <div class="unhide">
-              <a class="btn btn-success-round fs-16 px-5" href="{% slugurl 'contact' %}">Start a project</a>
+              <a class="btn btn-primary-round fs-16 px-5" href="{% slugurl 'contact' %}">Start a project</a>
             </div>
         </div>
   </section>
@@ -30,17 +30,22 @@
 
   <!-- ****** Logo Section ******* -->
 
-  <section class="section-darker-md">
+  <section class="section-alt-md">
       <div class="container">
             <div class="row">
-                <div class="col-lg-3 px-3"  >
+              <div class="col-lg-12 px-5 mb-4">
+                <h2 class="text-white fw-6 fs-34">Services</h2>
+                <div class="bg-primary" style="height: 5px; width: 110px;"></div>
+              </div>
+
+                <div class="col-lg-6 px-5 py-4">
                   <div class="">
-                    <i class="material-icons text-success" style="font-size: 5em;">devices</i>
-                    <h6 class="text-uppercase text-success ls-3 fw-6 pt-2">Website Design</h6>
+                    <i class="material-icons text-primary-light" style="font-size: 5em;">devices</i>
+                    <h5 class="text-uppercase text-primary-light ls-3 fw-6 pt-2">Website Design</h5>
                     <br>
                   </div>
                   <div class="text-left">
-                    <span class="fw-5 fs-14 text-left">We specialize in building high performance and scalable web applications and websites using Django Python Web Framework. Learn more about Django <a class="text-success" target="_blank" href="https://www.djangoproject.com/">here</a>.
+                    <span class="fw-5 fs-16 text-left">We specialize in building high performance and scalable web applications and websites using Django Python Web Framework. Learn more about Django <a target="_blank" href="https://www.djangoproject.com/">here</a>.
 
                       </span>
                   </div>
@@ -51,14 +56,14 @@
                   </div>
                   <div class="unhide my-5" style="height: 1px; width: 100%; background-color: #bbb;"></div>
                 </div>
-                <div class="col-lg-3 px-4">
+                <div class="col-lg-6 px-5 py-4">
                   <div class="">
-                    <i class="material-icons text-success"  style="font-size: 5em;">shopping_cart</i>
-                    <h6 class="text-uppercase text-success ls-3 fw-6 pt-2">E-Commerce</h6>
+                    <i class="material-icons text-primary-light"  style="font-size: 5em;">shopping_cart</i>
+                    <h5 class="text-uppercase text-primary-light ls-3 fw-6 pt-2">E-Commerce</h5>
                     <br>
                   </div>
                   <div class="text-left">
-                    <span class="fw-5 fs-14 text-left">Our skilled team of developers will create, manage, and deliver a top-performing unqie <br>E-Commerce site for your business.</span>
+                    <span class="fw-5 fs-16 text-left">Our skilled team of developers will create, manage, and deliver a top-performing unqie E-Commerce site for your business.</span>
                   </div>
                   <div class="mt-3">
                     <a href="#" class="py-1 fw-6" style="border-bottom: solid 2px #3ddb93; display: none;">
@@ -67,14 +72,14 @@
                   </div>
                   <div class="unhide my-5" style="height: 1px; width: 100%; background-color: #bbb;"></div>
                 </div>
-                <div class="col-lg-3 px-4">
+                <div class="col-lg-6 px-5 py-4">
                   <div class="">
-                    <i class="material-icons text-success" style="font-size: 5em;">signal_cellular_alt</i>
-                    <h6 class="text-uppercase text-success ls-3 fw-6 pt-2">PPC Advertising</h6>
+                    <i class="material-icons text-primary-light" style="font-size: 5em;">signal_cellular_alt</i>
+                    <h5 class="text-uppercase text-primary-light ls-3 fw-6 pt-2">PPC Advertising</h5>
                     <br>
                   </div>
                   <div class="text-left">
-                    <span class="fw-5 fs-14 text-left">We work with organizations who are serious about taking their online marketing and conversion ratings to the next level.</span>
+                    <span class="fw-5 fs-16 text-left">We work with organizations who are serious about taking their online marketing and conversion ratings to the next level.</span>
                   </div>
                   <div class="mt-3">
                     <a href="#" class="py-1 fw-6" style="border-bottom: solid 2px #3ddb93; display: none;">
@@ -83,14 +88,14 @@
                   </div>
                   <div class="unhide my-5" style="height: 1px; width: 100%; background-color: #bbb;"></div>
                 </div>
-                <div class="col-lg-3 px-4">
+                <div class="col-lg-6 px-5 py-4">
                   <div class="">
-                    <i class="material-icons text-success" style="font-size: 5em;">location_searching</i>
-                    <h6 class="text-uppercase text-success ls-4 fw-6 pt-2">AI Marketing</h6>
+                    <i class="material-icons text-primary-light" style="font-size: 5em;">location_searching</i>
+                    <h5 class="text-uppercase text-primary-light ls-4 fw-6 pt-2">AI Marketing</h5>
                     <br>
                   </div>
                   <div class="text-left">
-                    <span class="fw-5 fs-14 text-left ">
+                    <span class="fw-5 fs-16 text-left ">
                      Our goal is to maximize conversions while decreasing labor times and costs, by analyzing trends and data.
 
                      </span>
@@ -112,10 +117,10 @@
   <section class="section-md container">
       <div class="row">
           <div class="col-lg-6">
-            <img class="img-responsive" data-aos="fade-up" src="{% static 'img/undraw_designer_life_w96d.svg' %}" width="100%" height="100%" alt="TODO">
+            <img class="img-responsive" data-aos="fade-right" src="{% static 'img/undraw_designer_life_w96d.svg' %}" width="100%" height="100%" alt="TODO">
           </div>
           <div class="col-lg-6">
-              <div class="px-1 vertical-align" data-aos="fade-down">
+              <div class="px-1 vertical-align" data-aos="fade-right">
                 <h2><span style="font-size: 4rem; font-weight: 600;">01.</span>
                   <br>
                   <span style="font-size: 2rem; font-weight: 600;">If You Can Dream It, We Can Plan & Create It</span>
@@ -133,7 +138,7 @@
   <section class="section-secondary-light-md text-left" style="border-top: solid 1px #ddd; border-bottom: solid 1px #ddd">
     <div class="container">
       <div class="row">
-          <div class="col-lg-6" data-aos="fade-right">
+          <div class="col-lg-6" data-aos="fade-down">
               <div class="px-1 vertical-align">
                 <h2><span style="font-size: 4rem; font-weight: 600;">02.</span>
                   <br>
@@ -145,7 +150,7 @@
                 <br><br>With that in mind, it's important to have a professional and attractive design that conveys the right message.</p>
               </div>
           </div>
-          <div class="col-lg-6" data-aos="fade-right">
+          <div class="col-lg-6" data-aos="fade-down">
             <img class="img-responsive" src="{% static 'img/undraw_design_tools_42tf.svg' %}" width="100%" height="100%" alt="TODO">
           </div>
       </div>
@@ -154,10 +159,10 @@
 
   <section class="section-md container">
       <div class="row">
-          <div class="col-lg-6" data-aos="fade-up">
+          <div class="col-lg-6" data-aos="fade-right">
             <img class="img-responsive" src="{% static 'img/undraw_To_the_stars_qhyy_4.svg' %}" width="100%" height="100%" alt="TODO">
           </div>
-          <div class="col-lg-6" data-aos="fade-up">
+          <div class="col-lg-6" data-aos="fade-right">
               <div class="px-1 vertical-align">
                 <h2><span style="font-size: 4rem; font-weight: 600;">03.</span>
                   <br>
@@ -292,7 +297,7 @@
   </div>
 </section>
 
-<section class="section-secondary-md text-left">
+<section class="section-sm text-left">
   <div class="container">
     <div class="row">
         <div class="col-lg-6" data-aos="fade-right">
@@ -313,14 +318,23 @@
   </div>
 </section>
 
-<section class="section-accent-md">
-  <div class="container text-center">
-    <h2 style="font-size: 2rem; font-weight: 500;">"Great Work!" - Evan Robberts</h2>
-    <br>
-    <p class="text-white" style="font-size: 1.25rem; font-style: italic;">"Mod Technologies blew apart our expectations. Always going above and beyond to ensure that my project was successful.
-      Taking full ownership of their part of the project and even made great suggestions on other aspects of the project that helped make it even successful in the long run. Highly recommended to anyone who wants to succeed!"
-    <br><br> <span style="font-style: normal;">- Evan Robberts, Intellisys Capital</span></p>
-  </div>
+<section class=" p-0 m-0" style="display: none;">
+    <div class="container-fluid text-center fs-45">
+        <div class="row">
+            <div class="col-lg-3 social-media-boxes">
+                <i class="fa fa-facebook " aria-hidden="true"></i>
+            </div>
+            <div class="col-lg-3 social-media-boxes">
+                <i class="fa fa-behance text-white " aria-hidden="true"></i>
+            </div>
+            <div class="col-lg-3 social-media-boxes">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </div>
+            <div class="col-lg-3 social-media-boxes">
+                <i class="fa fa-instagram " aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
 </section>
 
 

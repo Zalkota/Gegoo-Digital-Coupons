@@ -110,7 +110,7 @@
   }
 
   .nav-link {
-      color: white;
+      color: $color-navbar-text;
       font-weight: 500 !important;
       font-size: 0.8rem;
       line-height: 25px;
@@ -118,8 +118,8 @@
 
   }
   .nav-link:hover {
-      color:  white;
-      border-bottom: 1px solid #fdfdfe;
+      color:  $color-navbar-text;
+      border-bottom: 1px solid $color-navbar-text;
 
   }
 
@@ -128,17 +128,15 @@
     background-color: transparent !important;
     font-weight: 500 !important;
     font-size: 0.875rem !important;
-    border: 1px solid #fff !important;
-    color: white;
-
-
+    border: 1px solid $color-navbar-text !important;
+    color:  $color-navbar-text;
 
   &:hover, &:focus, &:active,  {
-    background-color: #fff !important;
+    background-color: $color-navbar-text !important;
     font-weight: 500 !important;
     font-size: 0.875rem !important;
-    color: #424242 !important;
-    border-color: white !important;
+    color: #fff !important;
+    border-color: $color-navbar-text !important;
     }
   }
   /* ################## NAVBAR SCROLLED ################## */
@@ -161,21 +159,13 @@
       color: $color-navbar-text !important;
   }
 
-  .navbar-brand {
-    color: #fff;
-  }
-  .navbar-brand:hover {
-    color: #cacaca;
-  }
   .navbar-brand.scrolled {
     color: #424242;
   }
   .navbar-brand.scrolled:hover {
     color: $color-navbar-text;
   }
-  .navbar-brand {
-    font-weight: 700 !important;
-  }
+
 
 
   .btn-outline-navbar.scrolled {
@@ -188,11 +178,11 @@
 
 
   .btn-outline-navbar.scrolled:hover {
-    background-color: #3a75c1 !important;
+    background-color: $color-navbar-text !important;
     font-weight: 500 !important;
     font-size: 0.875rem;
     color: #fdfdfe !important;
-    border-color: #3a75c1 !important;
+    border-color: $color-navbar-text !important;
   }
 
   .nav-link.scrolled {
@@ -200,7 +190,8 @@
       margin-top: 8px;
   }
   .nav-link.scrolled:hover {
-      color: #3a75c1;
+      color: $color-navbar-text;
+      border: none;
 
   }
 

@@ -16,7 +16,7 @@
 
 @media screen and (max-width: 767px) {
   .navigation__button {
-    background-color: $color-success;
+    background-color: $color-primary;
     height: 3.5rem;
     width: 3.5rem;
     position: fixed;
@@ -40,7 +40,7 @@
 
 @media screen and (min-width: 767px) {
   .navigation__button {
-    background-color: $color-success;
+    background-color: $color-primary;
     height: 4rem;
     width: 4rem;
     position: fixed;

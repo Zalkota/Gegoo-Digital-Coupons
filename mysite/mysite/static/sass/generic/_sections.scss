@@ -51,6 +51,7 @@
       padding-top:8rem;
       padding-bottom: 8rem;
       background-color: $color-alt;
+      color: #fff;
     }
 
     .section-alt-sm {
@@ -443,7 +444,7 @@
     .section-card-overlay-top {
       padding-top: 3rem;
       padding-bottom: 16rem;
-      //background-image: linear-gradient(180deg, $color-secondary, $color-secondary-light);
+      background-image: linear-gradient(180deg, $color-secondary-light, $color-secondary-light);
       background-color: #fefefe;
       color: $color-secondary;
       z-index: 1;
@@ -536,7 +537,7 @@
         padding-top: 3rem;
         padding-bottom: 2.5rem;
         margin-bottom: 5rem;
-        background-color: $color-success;
+        background-color: $color-primary;
         color: #fff;
 
 
@@ -544,3 +545,20 @@
           color: $color-white;
         }
       }
+
+
+    .social-media-boxes {
+      background-color: $color-alt;
+      border-right: 1px solid #fafafa;
+      padding: 4rem 4rem 4rem 4rem;
+
+      &:hover {
+        background-color: $color-primary-dark;
+        transition: background-color 0.5s ease-out;
+        -webkit-transition: background-color 0.5s ease-out;
+        -moz-transition: background-color 0.5s ease-out;
+        -o-transition: background-color 0.5s ease-out;
+        transition: background-color 0.5s ease-out;
+
+      }
+    }
