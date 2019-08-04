@@ -2556,7 +2556,7 @@ h2 {
     position: fixed;
     top: 1.5rem;
     right: 1.5rem;
-    background-image: radial-gradient(#09bdff, #a2e6ff);
+    background-image: radial-gradient(#0089bb, #09bdff);
     z-index: 1000;
     transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1); } }
 @media screen and (min-width: 767px) {

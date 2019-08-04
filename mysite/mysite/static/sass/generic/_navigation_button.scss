@@ -34,7 +34,7 @@
     position: fixed;
     top: 1.5rem;
     right: 1.5rem;
-    background-image: radial-gradient($color-primary-light, $color-primary-lighter);
+    background-image: radial-gradient($color-primary-dark, $color-primary-light);
     z-index: 1000;
     transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1); } }
 

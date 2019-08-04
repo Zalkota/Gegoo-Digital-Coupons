@@ -32,6 +32,9 @@
     border: solid 2px #fff ;
   }
 
+.services-page {
+  color: #fff !important;
+}
 </style>
 
 {% endblock extra_styles %}
@@ -91,11 +94,11 @@
   <section class="section-secondary-lg" style="border-bottom: solid 6px #3ddb93; background-color:#fbfefc;">
       <div class="container text-left">
           <div class="row">
-              <div class="col-lg-5 mb-5" >
+              <div class="col-lg-5 order-1 order-sm-2" >
                   <img class="img-responsive" src="{% static 'img/stripe_integration2.svg' %}" width="100%" height="100%" alt="TODO">
               </div>
               <div class="offset-lg-1"></div>
-              <div class="col-lg-6">
+              <div class="col-lg-6  mb-5 order-lg-2">
                 <h2 class="fw-6 fs-34">Pay-Per-Click Advertising for Lead Generation</h2>
                 <div class="bg-success" style="height: 5px; width: 130px;"></div>
                     <p class="mt-4">{{ page.secondbody }}</p>
@@ -158,11 +161,11 @@
   <section class="section-secondary-lg" style="border-bottom: solid 6px #29303B; background-color:#fbfefc;">
       <div class="container text-left">
           <div class="row">
-              <div class="col-lg-5 mb-5" >
+              <div class="col-lg-5 mb-5 order-1 order-sm-2" >
                   <img class="img-responsive" src="{% static 'img/ai_vector.svg' %}" width="100%" height="100%" alt="TODO">
               </div>
               <div class="offset-lg-1"></div>
-              <div class="col-lg-6">
+              <div class="col-lg-6 mb-5 order-lg-2">
                 <h2 class="fw-6 fs-34">{{ page.fourthheader }}</h2>
                 <div class="bg-alt" style="height: 5px; width: 130px;"></div>
                     <p class="mt-4">{{ page.fourthbody }}</p>
