@@ -45,6 +45,16 @@
       background-color: #fff;
     }
 
+
+    .section-light-md {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+      background-color: $color-light;
+    }
+
+
     .section-alt-md {
       margin-top: 0rem;
       margin-bottom: 0rem;
@@ -655,8 +665,6 @@
             opacity: .95;
             margin-top: 0;
             margin-bottom: 0.5em;
-
-            padding-right: 10%;
         }
         & p {
             /* Text styles */

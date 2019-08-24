@@ -254,6 +254,28 @@ hr.hr-2 {
 .card-border {
   border: solid 1px #ddd; }
 
+.card-graphic-middle {
+  background-image: url(/static/img/card.svg);
+  /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative; }
+
+.card-graphic-left {
+  background-image: url(/static/img/card_left.svg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative; }
+
+.card-graphic-right {
+  background-image: url(/static/img/card_right.svg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative; }
+
 /* ******** SHADOWS EFFECTS ********* */
 .box-shadow {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
@@ -1187,6 +1209,13 @@ button {
   padding-bottom: 8rem;
   background-color: #fff; }
 
+.section-light-md {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  background-color: #fafafa; }
+
 .section-alt-md {
   margin-top: 0rem;
   margin-bottom: 0rem;
@@ -1662,8 +1691,7 @@ button {
     /* Margins */
     opacity: .95;
     margin-top: 0;
-    margin-bottom: 0.5em;
-    padding-right: 10%; }
+    margin-bottom: 0.5em; }
   .section-hero-img-2 p {
     /* Text styles */
     font-size: 1.8em;

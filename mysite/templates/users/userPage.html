@@ -207,10 +207,10 @@ a:hover {
         <div class="card shadow-2 card-border">
           <div class="card-body">
               <h6>Invoices <a href="#" class="pull-right">View All</a></h6>
-              <hr>
               <div class="row text-center">
                   {% for object in user.invoice.all %}
                       {% if object.payed != True %}
+                      <div class="col-lg-12"><hr></div>
                       <div class="col-lg-4">
                           <span class="text-muted float-left ml-3">Description</span>
                           <strong><h5 class="text-dark pt-4 pb-0">{{ object.description }}</h5></strong>
@@ -240,6 +240,7 @@ a:hover {
                               <input type="hidden" name="invoice_id" value="{{ object.invoice_id }}">
                           </form>
                       </div>
+
 
                     {% endif %}
                 {% endfor %}

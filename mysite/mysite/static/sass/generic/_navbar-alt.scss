@@ -114,7 +114,7 @@
   margin-top: 8px;
 }
 .nav-link:hover {
-  color: $color-navbar-alt-hover;
+  color: $color-navbar-text;
   border-bottom: 1px solid $color-navbar-text;
 }
 
@@ -123,7 +123,7 @@
   font-weight: 700 !important;
 }
 .navbar-brand:hover {
-  color: $color-navbar-alt-hover !important;
+  color: $color-navbar-alt-text !important;
 }
 
 .btn-outline-navbar {
@@ -131,7 +131,7 @@
   font-weight: 500 !important;
   font-size: 0.875rem;
   color: $color-navbar-alt-text;
-  border: 2px solid $color-navbar-alt-text;
+  border: 1px solid $color-navbar-alt-text;
 }
 
 
@@ -168,10 +168,11 @@
 
 
 .nav-link.scrolled {
-    color: $color-navbar-alt-text;
+    color: #424242;
 }
 .nav-link.scrolled:hover {
-    color: $color-navbar-alt-hover;
+    color: $color-navbar-text;
+    border: none;
 }
 
 .navbar-default.scrolled {
@@ -189,12 +190,12 @@
   background-color: transparent !important;
   font-weight: 500 !important;
   font-size: 0.875rem;
-  border-color: $color-navbar-alt-text !important;
-  color: $color-navbar-alt-text !important;
+  border: solid 1px #424242 !important;
+  color: #424242 !important;
 }
 
 .btn-outline-navbar.scrolled:hover {
     color: $color-navbar-alt-background-scrolled !important;
     background-color: $color-navbar-alt-text !important;
-    border-color: $color-navbar-alt-text !important;
+    border: solid 1px $color-navbar-alt-text !important;
 }
