@@ -144,7 +144,7 @@ def InvoicePaymentView(request):
 		try:
 			customer = stripe.Customer.retrieve(customer_id)  # Creditcard info is linked with customer
 			customer.sources.create(source=token)
-			charge = stripe.Charge.ceate(
+			charge = stripe.Charge.create(
 			amount=selected_invoice.stripe_total,
 			currency='usd',
 			description='Invoice Charge',
