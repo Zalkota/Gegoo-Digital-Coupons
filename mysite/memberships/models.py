@@ -69,7 +69,10 @@ class Invoice(models.Model):
 
 	@property
 	def stripe_total(self):
-		return (self.tax + self.amount) * 100
+		calculate = (self.tax + self.amount) * 100
+		result = int(calculate)
+		print ('amount=', result)
+		return result
 		total = property(stripe_total)
 
 	@property

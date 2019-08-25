@@ -130,8 +130,8 @@ def InvoicePaymentView(request):
 
 	#Query Essentials
 	selected_invoice = get_selected_invoice(request)
-	customer_id = request.user.user_stripe.stripe_id
 	user = request.user
+	cus_stripe_id = user.user_stripe.stripe_id
 	email = user.email
 
 	#Stripe Key
@@ -142,22 +142,27 @@ def InvoicePaymentView(request):
 		# Token is created using Checkout or Elements!
 		# Get the payment token ID submitted by the form:
 		try:
-			customer = stripe.Customer.retrieve(customer_id)  # Creditcard info is linked with customer
-			customer.sources.create(source=token)
+			#customer = stripe.Customer.retrieve(customer_id)  # Creditcard info is linked with customer
+			#customer.sources.create(source=token)
+            #Modify the customer and add the token from the front end
+			stripe.Customer.modify(
+			  cus_stripe_id, # cus_xxxyyyyz
+			  source=token # tok_xxxx or src_xxxyyy
+			)
 			charge = stripe.Charge.create(
 			amount=selected_invoice.stripe_total,
 			currency='usd',
 			description='Invoice Charge',
-			#source=token,
-			customer = customer,
-			receipt_email= email,
+			#source=token
+			customer = cus_stripe_id
+			#receipt_email= email,
 			)
 
 			return redirect(reverse('memberships:update_transactions_invoice',
 			kwargs={
 				'transaction_info': selected_invoice.invoice_id
 			}))
-		except stripe.CardError as e:
+		except stripe.error.CardError as e:
 			messages.info(request, "Your card has been declined")
 	context = {
 	'publishKey': publishKey,
@@ -170,6 +175,7 @@ def InvoicePaymentView(request):
 def updateTransactionRecordsInvoice(request, transaction_info):
 
 	selected_invoice = get_selected_invoice(request)
+	date_now = datetime.now()
 
 	selected_invoice.payed = True
 	selected_invoice.save()
@@ -183,7 +189,8 @@ def updateTransactionRecordsInvoice(request, transaction_info):
 							invoice_id=transaction_info,
 							amount=selected_invoice.amount,
 							tax=selected_invoice.tax,
-							success=True)
+							success=True,
+							timestamp=date_now)
 	# save the transcation (otherwise doesn't exist)
 	transaction.save()
 
