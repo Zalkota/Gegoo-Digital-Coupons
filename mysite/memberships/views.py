@@ -152,7 +152,7 @@ def InvoicePaymentView(request):
 			charge = stripe.Charge.create(
 			amount=selected_invoice.stripe_total,
 			currency='usd',
-			description='Invoice Charge',
+			description=selected_invoice.description,
 			#source=token
 			customer = cus_stripe_id
 			#receipt_email= email,
