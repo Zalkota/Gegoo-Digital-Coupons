@@ -96,12 +96,13 @@ class Membership(models.Model):
 	('Digital Marketing', 'Digital Marketing')
 	)
 	slug = models.SlugField()
+	id = models.PositiveSmallIntegerField(primary_key=True)
 	membership_type = models.CharField(
 			choices=MEMBERSHIP_CHOICES,
 			default='Website Hosting',
 			max_length=30)
 	benefit = models.ManyToManyField(Benefit)
-	special = models.BooleanField(default=False)
+
 	description = models.CharField(max_length=255, default="add description")
 	price = models.DecimalField(max_digits=6, decimal_places=2)
 	stripe_price = models.PositiveIntegerField( default=0)
@@ -176,7 +177,7 @@ class Transaction(models.Model):
 	amount = models.DecimalField(max_digits=6, decimal_places=2)
 	tax = models.DecimalField(null=True, max_digits=6, decimal_places=2)
 	success = models.BooleanField(default=True)
-	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+	timestamp = models.DateTimeField(auto_now_add=True, editable=True, auto_now=False)
 
 	def __str__(self):
 		return '%s (%s)' % (self.order_id, self.user)

@@ -655,3 +655,98 @@ hr.hr-2 {
   padding: 2.2rem 1rem 1.2rem 1rem;
   margin-bottom: 5rem;
 }
+
+
+// ======== hr =========== //
+
+
+    .hr-primary {
+      background-color: $color-primary;
+      height:3px;
+      width: 100%;
+    }
+
+    .hr-secondary {
+      background-color: $color-secondary;
+      height:3px;
+      width: 100%;
+    }
+
+    .hr-accent {
+      background-color: $color-accent;
+      height:3px;
+      width: 100%;
+    }
+
+    .hr-white {
+      background-color: $color-white;
+      height:3px;
+      width: 100%;
+    }
+
+
+    .hr-primary-sm {
+      background-color: $color-primary;
+      height:4px;
+      width: 8rem;
+    }
+
+    .hr-primary-md {
+      background-color: $color-primary;
+      height:4px;
+      width: 8rem;
+    }
+
+    .hr-primary-lg {
+      background-color: $color-primary;
+      height: 3px;
+      width: 15rem;
+    }
+
+    .hr-primary-gradient-sm, {
+      background-image: -webkit-linear-gradient($color-primary-light, $color-primary-dark);
+      background-image: -o-linear-gradient($color-primary-light, $color-primary-dark);
+      background-image: linear-gradient($color-primary-light, $color-primary-dark);
+      height: 4px;
+      width: 9rem;
+        }
+
+    .hr-primary-gradient-md {
+      background-image: -webkit-linear-gradient($color-primary-light, $color-primary-dark);
+      background-image: -o-linear-gradient($color-primary-light, $color-primary-dark);
+      background-image: linear-gradient($color-primary-light, $color-primary-dark);
+      height: 4px;
+      width: 20rem;
+        }
+
+    .hr-primary-gradient-xl {
+      background-image: -webkit-linear-gradient($color-primary-light, $color-primary-dark);
+      background-image: -o-linear-gradient($color-primary-light, $color-primary-dark);
+      background-image: linear-gradient($color-primary-light, $color-primary-dark);
+      height: 4px;
+      width: 100%;
+        }
+
+    .hr-secondary-sm {
+      background-color: $color-secondary;
+      height: 4px;
+      width: 7.5rem;
+    }
+
+    .hr-accent-sm {
+      background-color: $color-accent;
+      height: 4px;
+      width: 7.5rem;
+    }
+
+    .hr-white-lg {
+      background-color: white;
+      height: 3px;
+      width: 50%;
+    }
+
+    .hr-white-md {
+      background-color: white;
+      height: 3px;
+      width: 8rem;
+    }

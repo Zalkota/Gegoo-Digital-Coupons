@@ -44,7 +44,7 @@
 
   <section class="section-hero-img text-shadow-1" style="border-bottom: solid 1px #ddd">
         <div class="text">
-            <h1 class="pb-0">Our Services</h1>
+            <h1 class="pb-0 fs-12">Services</h1>
             <p class="text-white">We have a complete range of services to make your digital project impactful</p>
         </div>
   </section>
@@ -52,7 +52,7 @@
 
   <!-- ****** Logo Section ******* -->
 
-  <section class="section-lg" style="border-bottom: solid 6px #00aeeeff;">
+  <section class="section-lg">
       <div class="container">
             <div class="row">
               <div class="col-lg-6 px-4 mb-5">
@@ -68,7 +68,6 @@
               </div>
               <div class="col-lg-6 px-4">
                   <div class="card shadow-2">
-
                       <div class="card-body">
                         <img class="img-responsive" src="{% static 'img/logo/django-logo-negative2.svg' %}" width="60%" alt="TODO">
                         <div class="bg-primary" style="height: 5px; width: 130px;"></div>
@@ -91,7 +90,7 @@
 
   <!-- ****** Picture Gallery ******* -->
 
-  <section class="section-secondary-lg" style="border-bottom: solid 6px #3ddb93; background-color:#fbfefc;">
+  <section class="section-secondary-lg">
       <div class="container text-left">
           <div class="row">
               <div class="col-lg-6  mb-5">
@@ -120,7 +119,7 @@
     </div>
   </section>
 
-  <section class="section-lg" style="border-bottom: solid 6px #00aeeeff;">
+  <section class="section-lg">
       <div class="container">
             <div class="row">
               <div class="col-lg-6 px-4 mb-5">
@@ -158,7 +157,7 @@
     </div>
   </section>
 
-  <section class="section-secondary-lg" style="border-bottom: solid 6px #29303B; background-color:#fbfefc;">
+  <section class="section-secondary-lg">
       <div class="container text-left">
           <div class="row">
               <div class="col-lg-6 mb-5 ">
@@ -180,48 +179,54 @@
       </div>
   </section>
 
-  <section class="section-lg" style="border-top: solid 1px #ddd;">
+  <section class="section-lg" >
       <div class="container">
-          <div class="row">
+          <div class="row" style="border-bottom: solid 1px #ccc">
               <div class="col-lg-12 text-center">
                 <h1 class="fw-7 fs-40 mb-5">Other Services</h1>
               </div>
-              <div class="col-lg-6 p-5" style="border: solid 1px #ccc;">
-                  <span class="circle-success"><i class="fa fa-wrench fs-46" aria-hidden="true"></i></span> <br><br>
-                  <h2 class="fw-6 fs-34">Support and Maintenance</h2>
-                  <div class="bg-success" style="height: 5px; width: 160px;"></div>
-                  <p class="mt-4"></p>
-                  <a class="btn btn-success-round mt-4"  href="{% url 'memberships:select' %}">Pricing</span></a>
-
+              <div class="col-lg-6 p-5">
+                  <div class="card card-border shadow-2">
+                      <div class="card-body p-4">
+                        <span class="circle-success"><i class="fa fa-wrench fs-46 my-3" aria-hidden="true"></i></span> <br><br>
+                        <h2 class="fw-6 fs-34">Support and Maintenance</h2>
+                        <p class="text-muted mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                      </div>
+                  </div>
               </div>
-              <div class="col-lg-6 p-5" style="border: solid 1px #ccc;">
-                  <span class="circle-success"><i class="fa fa-server fs-46" aria-hidden="true"></i></span> <br><br>
-                  <h2 class="fw-6 fs-34">Server Hosting</h2>
-                  <div class="bg-success" style="height: 5px; width: 160px;"></div>
-                  <p class="mt-4"></p>
-                  <a class="btn btn-success-round mt-4"  href="{% url 'memberships:select' %}">Pricing</span></a>
-
-              </div>
-              <div class="col-lg-6 p-5" style="border: solid 1px #ccc;">
-                  <span class="circle-success"><i class="fa fa-search fs-46" aria-hidden="true"></i></span> <br><br>
-                  <h2 class="fw-6 fs-34">Search Engine Optimization</h2>
-                  <div class="bg-success" style="height: 5px; width: 160px;"></div>
-                  <p class="mt-4"></p>
-                  <a class="btn btn-success-round mt-4"  href="{% url 'memberships:select' %}">Pricing</span></a>
-
-              </div>
-              <div class="col-lg-6 p-5" style="border: solid 1px #ccc;">
-                  <span class="circle-success"><i class="fa fa-briefcase fs-46" aria-hidden="true"></i></span> <br><br>
-                  <h2 class="fw-6 fs-34">Web Consulting</h2>
-                  <div class="bg-success" style="height: 5px; width: 160px;"></div>
-                  <p class="mt-4"></p>
-                  <a class="btn btn-success-round mt-4"  href="{% url 'memberships:select' %}">Pricing</span></a>
-
+              <div class="col-lg-6 p-5" style="border-left: 1px solid #ccc">
+                  <div class="card card-border shadow-2">
+                      <div class="card-body p-4">
+                        <span class="circle-success"><i class="fa fa-server fs-46 my-3" aria-hidden="true"></i></span> <br><br>
+                        <h2 class="fw-6 fs-34">Server Hosting</h2>
+                        <p class="text-muted mt-4"></p>
+                      </div>
+                  </div>
               </div>
           </div>
-      </div>
-      <div class="text-center mt-4">
-        <p class="text-muted">Django is a registered trademark of Django Software Foundation (DSF) released under the Creative Commons Attribution-ShareAlike 3.0 unported License.</p>
+          <div class="row">
+              <div class="col-lg-6 p-5" >
+                  <div class="card card-border shadow-2">
+                      <div class="card-body p-4">
+                          <span class="circle-success"><i class="fa fa-search fs-46 my-3" aria-hidden="true"></i></span> <br><br>
+                          <h2 class="fw-6 fs-34">Search Engine Optimization</h2>
+                          <p class=text-muted "mt-4"></p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-6 p-5" style="border-left: 1px solid #ccc">
+                  <div class="card card-border shadow-2">
+                      <div class="card-body p-4">
+                          <span class="circle-success"><i class="fa fa-briefcase fs-46 my-3" aria-hidden="true"></i></span> <br><br>
+                          <h2 class="fw-6 fs-34">Web Consulting</h2>
+                          <p class="text-muted mt-4"></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="text-center mt-4">
+            <p class="text-muted">Django is a registered trademark of Django Software Foundation (DSF) released under the Creative Commons Attribution-ShareAlike 3.0 unported License.</p>
+          </div>
       </div>
   </section>
 

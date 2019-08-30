@@ -1,27 +1,39 @@
 
 // Theme Colors #007ad6
-$color-primary: #00aeeeff;
-$color-primary-light: lighten( $color-primary, 5% );
+$color-primary: #4299E1;
+$color-primary-light: #63B3ED;
 $color-primary-lighter: lighten( $color-primary, 35% );
-$color-primary-dark: darken( $color-primary, 10% );
+$color-primary-dark: #3182CE;
 $color-secondary: lighten( $color-primary, 50% );
 $color-secondary-light: lighten( $color-secondary, 20% );
 $color-secondary-dark: darken( $color-secondary, 10% );
 $color-alt: #aeaf99;
 $color-white: #fff;
 $color-light: #fafafa;
-$color-dark:  #424242;
-$color-black: #000000;
+
+$color-white: #fff;
+$color-light: #fafafa;
+$color-light-2: #F7FAFC;
+$color-gray-1: #F7FAFC;
+$color-gray-2: #E2E8F0;
+$color-gray-3: #CBD5E0;
+$color-gray-4: #A0AEC0;
+$color-muted: #E2E8F0;
+
+$color-dark:  #2A4365; //#343741
+$color-black: #2D3748;
+//$color-dark:  #424242;
+//$color-black: #000000;
+
 $color-main: #fafafa;
 $color-alt: #003156;
 $color-alt-light: lighten( $color-alt, 20% );
 $color-alt-lighter: lighten( $color-alt, 25% );
 $color-alt-dark: darken( $color-alt, 10%);
-$color-accent: #29303B;
-$color-accent-light: lighten( $color-accent, 10% );
+$color-accent: #2D3748;
+$color-accent-light: lighten( $color-accent, 13% );
 $color-accent-dark: darken( $color-accent, 5% );
-$color-accent-lighter: lighten( $color-accent, 50% );
-
+$color-accent-lighter: lighten( $color-accent, 80% );
 
 $color-text: #2a2a2a;
 

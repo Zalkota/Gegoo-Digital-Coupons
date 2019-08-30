@@ -1,3 +1,20 @@
+body  {
+  font-size: 18px;
+
+  p {
+    font-size: 18px;
+  }
+}
+
+h1 {
+  font-size: 2.25em;
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+
 a:hover {
   color: $color-primary;
 }
@@ -43,16 +60,13 @@ a:hover {
   color:  #c1c1c1 !important;
 }
 
-body  {
-  font-size: 1em;
-}
 
-h1 {
-  font-size: 2.25em;
-}
-
-h2 {
-  font-size: 1.75em;
+.text-gradient {
+  background: -webkit-linear-gradient($color-primary-light, $color-primary-dark);
+  background: -o-linear-gradient($color-primary-light, $color-primary-dark);
+  background: linear-gradient($color-primary-light, $color-primary-dark);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 
