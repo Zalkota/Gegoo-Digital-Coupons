@@ -85,8 +85,8 @@ tr {
         <div class="container text-center card-overlayed">
             <div class="row">
             {% for object in membership_list %}
-                <div class="col-lg-4 mb-5  {% if object.id == 2 %} mt-2 {% else %} mt-5 {% endif %}">
-                    <div class="card card-effects shadow-4 mt-4 {% if object.id == 1 %} card-graphic-left {% elif object.id == 2 %} card-graphic-middle {% else %} card-graphic-right {% endif %}">
+                <div class="col-lg-4 mb-5  {% if object.position == 2 %} mt-2 {% else %} mt-5 {% endif %}">
+                    <div class="card card-effects shadow-4 mt-4 {% if object.position == 1 %} card-graphic-left {% elif object.position == 2 %} card-graphic-middle {% else %} card-graphic-right {% endif %}">
                         <div class="card-body">
                             <h4 class="py-3 text-white fs-28" style="font-weight: 700;">{{ object.membership_type }}</h4>
                             <p class="pb-3" style="font-weight: 700;"><span class="text-white" style="font-size: 4rem; ">${{ object.price }}</span><span class="text-primary">/ </span><span class="text-primary">Month</span> <br>
@@ -120,16 +120,13 @@ tr {
                     </div>
                 </div>
               {% endfor %}
-
-
-
             </div>
             <p class="text-muted " style="font-size: 14px;">Your membership will renew automatically every month. You may cancel your membership at any time from your member dashboard.</p>
         </div>
     </div>
     <div class="container-fluid section-card-overlay-bottom">
       <div class="container text-center">
-          <div class="py-5"></div><div class="py-3"></div> <div class="py-5 hide"></div><div class="py-5 hide"></div><div class="py-5 hide"></div>
+          <div class="py-5"></div><div class="py-3"></div> <div class="py-5"></div><div class="py-5"></div><div class="py-5 "></div>
           </div>
         </div>
     </div>

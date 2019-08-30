@@ -96,13 +96,12 @@ class Membership(models.Model):
 	('Digital Marketing', 'Digital Marketing')
 	)
 	slug = models.SlugField()
-	id = models.PositiveSmallIntegerField(primary_key=True)
+	position = models.PositiveSmallIntegerField(null=True)
 	membership_type = models.CharField(
 			choices=MEMBERSHIP_CHOICES,
 			default='Website Hosting',
 			max_length=30)
 	benefit = models.ManyToManyField(Benefit)
-
 	description = models.CharField(max_length=255, default="add description")
 	price = models.DecimalField(max_digits=6, decimal_places=2)
 	stripe_price = models.PositiveIntegerField( default=0)

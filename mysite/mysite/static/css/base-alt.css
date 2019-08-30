@@ -1981,6 +1981,9 @@ a:hover {
 .text-secondary {
   color: #c1c1c1 !important; }
 
+.bg-gray-2 {
+  background-color: #E2E8F0; }
+
 .text-gradient {
   background: -webkit-linear-gradient(#63B3ED, #3182CE);
   background: -o-linear-gradient(#63B3ED, #3182CE);

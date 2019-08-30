@@ -206,11 +206,11 @@
         <div class="container" data-aos="zoom-in">
               <div class="text-center">
                 <h2><span class="fs-24" >In Just 2018 Our Clients Have Generated</span> <br>
-                  <span class="fw-6 fs-80 hide" style="line-height: 8rem;" >10x More Business</span> <span class="fw-6 fs-40 unhide" style="line-height: 4rem;">10x More Business</span> <br>
+                  <span class="fw-6 fs-80 hide" style="line-height: 8rem;" >4x More Business</span> <span class="fw-6 fs-40 unhide" style="line-height: 4rem;">10x More Business</span> <br>
                   <span class="fs-20">Using Our Web Based Systems, Sales Funnels, Distribution & Influencer Marketing Strategies</span>
                 </h2>
               <div class="hide">
-                  <a class="btn btn-success-round text-white fs-22 mt-5 px-5 py-4" style="line-height: 1.5rem;" href="{% slugurl 'contact' %}">Take My Business To The Next Level <br> <span class="fs-14 fw-5" style="line-height: 0;">Click Here To Get Started On Your Project</span></a>
+                  <a class="btn btn-success-round text-white fs-22 mt-5 px-5 py-4" style="line-height: 1.5rem;" href="{% slugurl 'contact' %}">Take My Business To The Next Level</a>
               </div>
               <div class="unhide">
                   <a class="btn btn-success-round text-white fs-18 mt-5 px-5 py-4" style="line-height: 1rem;" href="{% slugurl 'contact' %}">Take My Business <br>To The Next Level</a>
@@ -240,7 +240,7 @@
 
   <section class="section-white-md" id="projects">
       <div class="container text-left" data-aos="fade-up">
-        <h2 class="fs-40 fw-6">Some Of Our Favorite Projects...</h2>
+        <h2 class="fs-40 fw-6">Case Studies</h2>
         <div class="hr-primary-gradient-sm" data-aos="fade-right"></div>
         <p class="mt-4">Over the years we have worked on a multitude of projects. Everything from Video Courses Websites, eCommerce Websites,
           Training & Marketing Systems, High Converting Sales Funnels. We're looking forward to adding your project to our portfolio...</p>
@@ -250,9 +250,9 @@
                   <a href="{{ object.website_url }}" target="_blank">
                     <div class="card shadow-2"style="border: solid 1px #ddd">
                       <img class="card-img-top" src="{{ object.image_url_thumbnail }}" alt="webdesign project thumbnail">
-                      <div class="card-body">
+                      <div class="card-body border-top">
                         <h5 class="card-title text-dark">{{ object.title }}</h5>
-                        <p class="card-text">{{ object.work_done }}</p>
+                        <p class="card-text text-muted fs-16">{{ object.work_done }}</p>
                       </div>
                     </div>
                   </a>
@@ -260,7 +260,7 @@
               {% endfor %}
           </div>
           <div class="text-center">
-            <a class="btn btn-primary-round fs-20" href="{% slugurl 'contact' %}">View More</a>
+            <a class="btn btn-primary-round fs-20" href="{% slugurl 'contact' %}">View Additional Projects</a>
           </div>
       </div>
   </section>

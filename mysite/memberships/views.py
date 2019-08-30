@@ -567,6 +567,7 @@ class TransactionDetailView(views.SuperuserRequiredMixin, DetailView):
 
 class MembershipListView(views.SuperuserRequiredMixin, ListView):
 	model = Membership
+	ordering = ['position']
 	#queryset = Transaction.objects.all()  # Default: Model.objects.all()
 	template_name = 'memberships/membership_panel.html'
 
