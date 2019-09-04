@@ -14,8 +14,7 @@ html {
 body {
     margin: 0;
     font-family: Montserrat, sans-serif !important;
-    background-color: $color-main;
-    color: #3a3a3a;
+    background-color: $color-background-alt !important;
 
     h1 h2 h3 h4 h5 h6 {
       color: #1a1a1a;
@@ -23,6 +22,7 @@ body {
 
     p {
       color: $color-text;
+      font-family: Roboto, sans-serif !important;
     }
 
     li {
@@ -41,7 +41,9 @@ body {
 @import "./generic/navbar-alt";
 @import "./generic/buttons";
 @import "./generic/sections";
+@import "./generic/mobile";
 @import "./generic/footer";
+@import "./generic/images";
 @import "./utility/text";
 //@import "form";
 @import "./generic/navigation_button";

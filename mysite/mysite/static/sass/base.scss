@@ -7,34 +7,6 @@ $mdb-animation-curve-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1) !default;
 $mdb-animation-curve-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1) !default;
 $mdb-animation-curve-default: $mdb-animation-curve-fast-out-slow-in !default;
 
-html {
-  scroll-behavior: smooth !important;
-}
-
-
-body {
-    margin: 0;
-    font-family: Montserrat, sans-serif !important;
-    background-color: $color-main;
-    color: #3a3a3a;
-
-    h1 h2 h3 h4 h5 h6 {
-      color: #1a1a1a;
-    }
-
-    p {
-      color: $color-text;
-    }
-
-    li {
-      color: $color-text;
-    }
-
-    a {
-      color: $color-primary;
-    }
-}
-
 
 @import "./generic/global";
 @import "./generic/navbar";
@@ -42,6 +14,8 @@ body {
 @import "./generic/sections";
 @import "./generic/appointment";
 @import "./generic/hero";
+@import "./generic/mobile";
+@import "./generic/images";
 //@import "form";
 @import "./generic/footer";
 @import "./generic/form";

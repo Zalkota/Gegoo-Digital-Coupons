@@ -1,5 +1,5 @@
 body h2 {
-  font-size: 1.5rem;
+
 }
 
 hr.hr-2 {
@@ -93,25 +93,6 @@ hr.hr-2 {
   font-size: 16px;
   font-weight: 500;
   }
-
-  .img-responsive-sm img {
-      width: 100%;
-      max-width: 15rem;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-  }
-  .img-responsive-md img {
-      max-width: 25rem;
-      height: 80%;
-      display: block;
-      margin: 0 auto;
-  }
-  .img-shadow {
-    img {
-      box-shadow: 0 4px 9px 0 rgba(0, 0, 0, .2), 0 5px 11px 0 rgba(0, 0, 0, .15);
-    }
-  }
   /* UserPage Padding UL */
   .ul-padding-mobile {
     padding-inline-start: 0px;
@@ -194,17 +175,6 @@ hr.hr-2 {
     border-right: none;
   }
 
-  .img-responsive-sm img {
-      width: 100%;
-      max-width: 8rem;
-      height: auto;
-  }
-  .img-responsive-md img {
-      width: 100%;
-      max-width: 20rem;
-      height: auto;
-  }
-
   /* UserPage Padding UL */
   .ul-padding-mobile {
     padding-inline-start: 20px;
@@ -272,6 +242,10 @@ hr.hr-2 {
 
 }
 
+.share-buttons {
+  position: fixed;
+  left: 5%;
+}
 
 .card-graphic-middle {
   background-image: url(/static/img/card.svg);
@@ -299,6 +273,9 @@ hr.hr-2 {
   position: relative;
 }
 
+.stripe-primary {
+  border-left: 5px solid $color-primary;
+}
 
 /* ******** SHADOWS EFFECTS ********* */
 .box-shadow {
@@ -749,4 +726,27 @@ hr.hr-2 {
       background-color: white;
       height: 3px;
       width: 8rem;
+    }
+
+    .social-media-btn {
+      z-index: 5;
+      padding: 12px;
+      font-size: 15px;
+      width: 40px;
+      text-align: center;
+      text-decoration: none;
+      background-color: $color-primary;
+      color: $color-main;
+      border-radius: 50%;
+      position: fixed;
+      left: 10%;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    .social-media-btn:hover {
+        background: $color-primary-light;
+        opacity: 0.7;
+        color: $color-main;
     }

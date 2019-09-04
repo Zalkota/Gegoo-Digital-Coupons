@@ -1,0 +1,118 @@
+
+// ========= REMOVES HORIZONTAL PADDING ON MOBILE =========//
+
+@media screen and (min-width: 992px) {
+  .p-m-5 {
+    padding: 3rem;
+  }
+
+  .px-m-5 {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  .pr-m-5 {
+    padding-right: 3rem;
+  }
+
+  .pl-m-5 {
+    padding-left: 3rem;
+  }
+
+  .p-m-5-0 {
+    padding: 5rem !important;
+  }
+
+  .p-m-4-0 {
+    padding: 3rem !important;
+  }
+
+  .px-m-5-1 {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .px-0-3 {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+  }
+
+  .px-m-na-0 {
+
+  }
+
+
+}
+
+
+@media screen and (max-width: 992px) {
+  .px-m-5 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .pr-m-5 {
+    padding-right: 1rem !important;
+  }
+
+  .pl-m-5 {
+    padding-left: 0rem !important;
+  }
+
+  .p-m-5 {
+    padding: 2rem 1rem 2rem 1rem !important;
+  }
+
+  .p-m-5-0 {
+    padding: 1rem !important;
+  }
+
+  .p-m-4-0 {
+    padding: 1rem !important;
+  }
+
+  .px-m-5-1 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .px-0-3 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .px-m-na-0 {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+  }
+
+}
+
+// ========= REMOVES HORIZONTAL PADDING ON MOBILE =========//
+
+@media screen and (min-width: 992px) {
+  .h-m-700 {
+  }
+
+}
+@media screen and (max-width: 992px) {
+  .h-m-700 {
+    height: 700px;
+  }
+
+}
+
+
+// ========= WIDTH CHANGE FOR PARALAX  =========//
+
+@media screen and (min-width: 992px) {
+  .w-m-100 {
+   width: 700px;
+  }
+
+}
+@media screen and (max-width: 992px) {
+  .w-m-100 {
+  width: 100%;
+
+  }
+
+}

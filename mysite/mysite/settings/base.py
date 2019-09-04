@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'users',
     'portal',
     'memberships',
+    'blog',
 
     #Payment
     'stripe',

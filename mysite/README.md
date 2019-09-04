@@ -174,6 +174,19 @@ sudo crontab -e
 
 Check Certificate
 sudo ls /etc/letsencrypt/live
+
+# Cert bot
+sudo -H ./letsencrypt-auto certonly --preferred-challenges http -d negativegravityband.com -d www.negativegravityband.com
+
+certbot renew --cert-name negativegravityband.com -a nginx --dry-run
+
+Helpful Links:
+https://www.digitalocean.com/community/tutorials/how-to-use-certbot-standalone-mode-to-retrieve-let-s-encrypt-ssl-certificates-on-ubuntu-16-04
+
+https://community.letsencrypt.org/t/already-listening-on-tcp-port-80/61885
+
+https://community.letsencrypt.org/t/cert-renewal-for-standalone-nginx/89149
+
 # Internet problems
 
 dominic@dom-Inspiron-7559:~$ sudo rm -f /var/lib/NetworkManager/NetowkrManager.state

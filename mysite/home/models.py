@@ -90,8 +90,7 @@ class AboutPage(Page):
     body_four = RichTextField(blank=True)
     header_five = RichTextField(blank=True)
     body_five = RichTextField(blank=True)
-    video_url = models.CharField(blank=True, max_length=250)
-    video_thumbnail = models.CharField(blank=True, max_length=250, help_text="Upload a JPG",  null=True)
+
 
     content_panels = Page.content_panels + [
         FieldPanel('header'),
@@ -104,8 +103,6 @@ class AboutPage(Page):
         FieldPanel('body_four', classname="full"),
         FieldPanel('header_five'),
         FieldPanel('body_five', classname="full"),
-        FieldPanel('video_url'),
-        FieldPanel('video_thumbnail'),
         InlinePanel('gallery_images', label="Gallery images"),
     ]
 
