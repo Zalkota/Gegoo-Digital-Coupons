@@ -9,8 +9,9 @@
     <main class="container">
       <div class="mb-5">
         <h6><a href="{% slugurl 'homepage' %}" class="text-dark">Home</a> <span class="text-primary">&#8226;</span> <a href="{% slugurl 'blog' %}" class="text-dark">Blog</a></h6>
-        <h1 class="fw-6">{{ page.title }} <a href="" class="fs-20 fw-5 ml-4 text-muted"> <i class="fa fa-share-alt mr-2" aria-hidden="true"></i> Share</a></h1>
+        <h1 class="fw-6">{{ page.title }} <a href="" class="fs-20 fw-5 ml-3 hide text-muted"> <i class="fa fa-share-alt mr-2" aria-hidden="true"></i> Share</a></h1>
         By: Dominic Mazzola  <span class="text-muted ml-3">{{ page.first_published_at }}</span>
+        <a href="" class="fs-20 fw-5 unhide text-muted"> <i class="fa fa-share-alt pt-3 mr-2" aria-hidden="true"></i> Share</a>
       </div>
         <div class="row">
           <div class="col-lg-9 px-m-na-0">
@@ -77,5 +78,18 @@
     </main>
 </section>
 
+
+{% endblock %}
+
+{% block extrajs %}
+<script  type="text/javascript">
+function Copy()
+            {
+                //var Url = document.createElement("textarea");
+                urlCopied.innerHTML = window.location.href;
+                //Copied = Url.createTextRange();
+                //Copied.execCommand("Copy");
+            }
+</script>
 
 {% endblock %}
