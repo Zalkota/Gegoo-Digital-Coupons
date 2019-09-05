@@ -2025,7 +2025,7 @@ footer {
     width: 1100px; }
 
 .img-responsive img {
-  height: auto;
+  max-height: 400px;
   width: 100%; }
 
 .img-center {
