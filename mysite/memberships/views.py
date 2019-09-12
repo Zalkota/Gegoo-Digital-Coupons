@@ -36,14 +36,6 @@ from django.utils.text import slugify
 
 # ======== Essential Query Functions  ========
 
-def user_subscriptions_view(request):
-	user_membership = get_user_membership(request)
-	user_subscription = get_user_subscription(request)
-	context = {
-		'user_membership': user_membership,
-		'user_subscription': user_subscription
-	}
-	return render(request, "memberships/user_subscription.html", context)
 
 def get_user_membership(request):
 	user_membership_qs = UserMembership.objects.filter(user=request.user)

@@ -178,7 +178,29 @@ sudo ls /etc/letsencrypt/live
 # Cert bot
 sudo -H ./letsencrypt-auto certonly --preferred-challenges http -d negativegravityband.com -d www.negativegravityband.com
 
+test:
 certbot renew --cert-name negativegravityband.com -a nginx --dry-run
+
+live:
+certbot renew --cert-name negativegravityband.com -a nginx
+
+Delete
+sudo certbot delete --cert-name example.com
+
+Install
+apt-get install software-properties-common python-software-properties
+add-apt-repository ppa:certbot/certbot
+apt-get update
+apt-get install python-certbot-apache
+sudo apt-get install certbot python-certbot-nginx
+
+Install Link: https://linuxhostsupport.com/blog/install-lets-encrypt-ssl-certificates-using-certbot/
+
+comment out sites-available
+
+sudo certbot --nginx
+
+ps -ef | grep certb
 
 Helpful Links:
 https://www.digitalocean.com/community/tutorials/how-to-use-certbot-standalone-mode-to-retrieve-let-s-encrypt-ssl-certificates-on-ubuntu-16-04

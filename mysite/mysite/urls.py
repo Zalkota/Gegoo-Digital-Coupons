@@ -17,8 +17,8 @@ from search import views as search_views
 #Stemletic App Models
 from .views import security
 from portal.views import SubscriptionListView, CourseListView, CourseDetailView, LessonDetailView, SearchTitles #ProductDetailView, ProductCreateView, ProductUpdateView,
-from users.views import  UserDetailView, UserRedirectView, UserUpdateView, RedirectProfileView, userPage, add_image
-from memberships.views import user_subscriptions_view, get_user_membership, get_user_subscription, get_selected_membership, MembershipSelectView, PaymentView, updateTransactionRecords, cancelSubscription
+from users.views import  UserDetailView, UserRedirectView, UserUpdateView, RedirectProfileView, userPage, add_image, user_subscriptions_view
+from memberships.views import get_user_membership, get_user_subscription, get_selected_membership, MembershipSelectView, PaymentView, updateTransactionRecords, cancelSubscription
 
 admin.site.login = staff_member_required(login_url='/', redirect_field_name='')(admin.site.login)
 #wagtailadmin_urls = staff_member_required(login_url='/', redirect_field_name='')(wagtailadmin_urls)
@@ -57,6 +57,7 @@ urlpatterns = [
     url(r'^users/~update/$', UserUpdateView.as_view(), name='update'),
     url(r'^users/redirectprofile/$', RedirectProfileView.as_view(), name='redirectprofile'),
     path('users/update/image/', add_image, name='update_image'),
+    path('subscription/', user_subscriptions_view, name='user_subscription'),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:

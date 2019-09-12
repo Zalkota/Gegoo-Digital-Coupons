@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
 
     url(
@@ -21,7 +22,9 @@ urlpatterns = [
     ),
         url(r'^redirectprofile/$', views.RedirectProfileView.as_view(), name='redirectprofile'),
 
-        #Profile Image
-        path('users/update/image/', add_image, name='update_image'),
+
+    #Profile Image
+    path('users/update/image/', add_image, name='update_image'),
+
 
 ]

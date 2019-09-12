@@ -94,6 +94,16 @@ class RedirectProfileView(LoginRequiredMixin, RedirectView):
                             kwargs={'username': self.request.user.username}))
 
 
+def user_subscriptions_view(request):
+	user_membership = get_user_membership(request)
+	user_subscription = get_user_subscription(request)
+	context = {
+		'user_membership': user_membership,
+		'user_subscription': user_subscription
+	}
+	return render(request, "users/user_subscription.html", context)
+
+
 #Profile Image
 @login_required
 def add_image(request):

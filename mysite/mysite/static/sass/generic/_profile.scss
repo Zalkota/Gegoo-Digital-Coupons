@@ -1,0 +1,45 @@
+.profile-nav {
+  border-bottom: 2px solid $color-gray-2;
+  height: 60px;
+
+  ul {
+    list-style: none;
+
+  }
+
+  li {
+    display: inline;
+  }
+
+  .profile-link {
+    color: $color-gray-5;
+    font-weight: 500 !important;
+    font-size: 1rem;
+    line-height:60px;
+    text-align: center;
+    width: 125px;
+    margin-right: 2rem;
+    height: 60px;
+    padding-bottom: 35px;
+
+
+  &-active {
+      color: $color-dark;
+      border-bottom: 4px solid $color-navbar-text;
+      padding-bottom: 15px;
+      text-decoration: none;
+      margin-right: 2rem;
+    }
+
+  &:hover, &:active {
+    text-decoration: none;
+    color: $color-dark;
+    border-bottom: 4px solid $color-navbar-text;
+    padding-bottom: 15px;
+    }
+  }
+}
+
+.card-body {
+  background-color: #fafbfc !important;
+}

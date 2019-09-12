@@ -1,4 +1,4 @@
- {% extends "base-minimal.html" %}
+{% extends "base-minimal.html" %}
 {% load static %}
 
 {% load static wagtailuserbar %}
@@ -37,17 +37,15 @@ a:hover {
 <div class="modal fade " id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content p-0 ">
+      <div class="modal-header ">
+        <span class="modal-title text-center fs-24 fw-6" id="exampleModalLongTitle">Are you sure you want to cancel your subscription?</span>
 
-      <div class="modal-header bg-light">
-        <h5 class="modal-title text-center" id="exampleModalLongTitle"><strong>Are you sure you want to cancel your subscription?</strong></h5>
-          <hr>
       </div>
-      <div class="modal-body text-center">
-        <p class="mb-0 py-3">By ending your subscription, your services will be discontinued at the end of this billing period.
+      <div class="text-center px-4 pb-4">
+        <p class="text-muted fs-16 mb-0 py-3">By ending your subscription, your services will be discontinued at the end of this billing period.
         </p>
-
       </div>
-      <div class="p-4">
+      <div class="p-4 modal-body border-top">
         <div class="row">
           <div class="col-lg-6">
             <button type="button" class="btn btn-primary-alt "  class="close" data-dismiss="modal" aria-label="Close">
@@ -64,190 +62,149 @@ a:hover {
     </div>
   </div>
 </div>
+<!-- Modal End -->
 
-<div class="container h100" style="margin-top: 120px;">
-        <div class="row">
-          <div class="col-lg-3 col-sm-12 pl-0 hide">
-              <div class="pull-left mt-4">
-                <ul class="pull-left pb-2" style="width: 100wv; list-style-type: none;">
-                  <li>
-                    <h5><span class="text-muted text-uppercase" style="font-size: .7em;"><strong>{{ user.username }}</strong></span></h5>
-                  </li>
-                </ul>
-                <br>
-              <!-- Action buttons -->
-              <ul class="pull-left" style="list-style-type: none;">
-                <hr class="mt-0 mb-3 unhide">
-                <a class="text-dark py-5" style="text-decoration: none;" href="/" role="button">
-                  <li class="pb-3">
-                      <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2 fw-5">Home</span>
-                  </li>
-                </a>
-                <hr class="mt-0 mb-3 unhide">
-                <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'memberships:user_subscription' %}" role="button">
-                  <li class="pb-3">
-                      <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Subscriptions</span>
-                  </li>
-                </a>
-                <hr class="mt-0 mb-3 unhide">
-                <!--
-                <a class="text-dark py-5" style="text-decoration: none; " href="" role="button">
-                  <li class="pb-3">
-                      <i class="fa fa-university" aria-hidden="true"></i><span class="ml-1"> Payments</span>
-                  </li>
-                </a>
-                !-->
-                <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_reset_password' %}" role="button">
-                  <li class="pb-3">
-                      <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2 fw-5">Password</span>
-                  </li>
-                </a>
-                <hr class="mt-0 mb-3 unhide">
-                <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'update_image' %}" role="button">
-                  <li class="pb-3">
-                      <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span>
-                  </li>
-                </a>
-                <hr class="mt-0 mb-3 unhide">
-                <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
-                  <li class="pb-3">
-                      <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2 fw-5">Settings</span>
-                  </li>
-                </a>
-                <hr class="mt-0 mb-3 unhide">
-              </ul>
+<!-- Body Start -->
+<section class="section-md">
+    <div class="container">
+      {% block component %}
+        {% include "users/profile_nav.html" %}
+      {% endblock component %}
+        <div>
+            <div class="card shadow-1 card-border hide">
+                <div class="card-header">
+                  <h4 class="card-title py-2">Welcome to Mod, {{ user.username }}!</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">If you would like to learn more about how we can help your business bring in more clients <a href="{% url 'memberships:select' %}">click here.</a></p>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-9 pl-4">
-        <br>
-        <div class="card shadow-2 card-border hide">
-            <div class="card-body">
-                <h4 class="card-title">Welcome to Mod, {{ user.username }}!</h4>
-                <p class="text-muted">If you would like to learn more about how we can help your business bring in more clients <a href="{% url 'memberships:select' %}">click here.</a></p>
-            </div>
-        </div>
 
-        <div class="card shadow-2 card-border unhide">
-          <div class="card-body">
-            <h4 class="card-title">Welcome to Mod, {{ user.username }}!</h4>
-            <p class="text-muted">If you would like to learn more about how we can help your business bring in more clients <a href="{% url 'memberships:select' %}">click here.</a></p>
-            <br>
-            <!-- Action buttons -->
-            <ul class="pl-0" style="list-style-type: none;">
-              <hr class="mt-0 mb-3 unhide">
-              <a class="text-dark py-5" style="text-decoration: none;" href="/" role="button">
-                <li class="pb-3">
-                    <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2 fw-5">Home</span> <i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                </li>
-              </a>
-              <hr class="mt-0 mb-3 unhide">
-              <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'memberships:user_subscription' %}" role="button">
-                <li class="pb-3">
-                    <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Subscriptions</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                </li>
-              </a>
-              <hr class="mt-0 mb-3 unhide">
-              <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_reset_password' %}" role="button">
-                <li class="pb-3">
-                    <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2 fw-5">Password</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                </li>
-              </a>
-              <hr class="mt-0 mb-3 unhide">
-              <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'update_image' %}" role="button">
-                <li class="pb-3">
-                    <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                </li>
-              </a>
-              <hr class="mt-0 mb-3 unhide">
-              <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
-                <li class="pb-0">
-                    <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2 fw-5">Settings</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                </li>
-              </a>
-            </ul>
-          </div>
-        </div>
-        <br>
-        <div class="card shadow-2 card-border">
-          <div class="card-body">
-            <h6>Subscription</h6>
-            <hr>
-            {% if user_subscription.active == True %}
-            <div class="row text-center">
-              <div class="col-lg-4 col-sm-4">
-                <span class="text-muted float-left ml-3">Description</span><br>
-                <strong><h5 class="text-dark ml-3 mt-2">{{ user.user_membership.membership }}</h5></strong>
+          <div class="card shadow-1 card-border unhide">
+              <div class="card-body">
+                  <h5 class="fw-5">Profile</h5>
+                  <p class="text-muted fs-14">If you would like to learn more about how we can help your business bring in more clients <a href="{% url 'memberships:select' %}">click here.</a></p>
+                  <br>
+                  <!-- Action buttons -->
+                  <ul class="pl-0" style="list-style-type: none;">
+                    <hr class="mt-0 mb-3 unhide">
+                    <a class="text-dark py-5" style="text-decoration: none;" href="/" role="button">
+                      <li class="pb-3">
+                          <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2 fw-5">Home</span> <i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                      </li>
+                    </a>
+                    <hr class="mt-0 mb-3 unhide">
+                    <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'user_subscription' %}" role="button">
+                      <li class="pb-3">
+                          <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Subscriptions</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                      </li>
+                    </a>
+                    <hr class="mt-0 mb-3 unhide">
+                    <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_reset_password' %}" role="button">
+                      <li class="pb-3">
+                          <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2 fw-5">Password</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                      </li>
+                    </a>
+                    <hr class="mt-0 mb-3 unhide">
+                    <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'update_image' %}" role="button">
+                      <li class="pb-3">
+                          <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                      </li>
+                    </a>
+                    <hr class="mt-0 mb-3 unhide">
+                    <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
+                      <li class="pb-0">
+                          <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2 fw-5">Settings</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                      </li>
+                    </a>
+                  </ul>
               </div>
-              {% if user_subscription.active != False %}
-                <div class="col-lg-5 col-sm-5 ">
-                  <div class="py-2 unhide"></div>
-                    <span class="text-muted float-left unhide">Next payment due:</span>
-                    <span class="text-muted float-left ml-5 hide">Next payment due:</span> <br>
-                    <h5 class="text-dark mt-2">{{ user_subscription.get_next_billing_date }}</h5>
-                </div>
-                <div class="col-lg-3 col-sm-3">
-                    <!-- Button to Open the Modal -->
-                    <div class="py-2 unhide"></div>
-                    <button type="button" class="btn btn-primary-alt" data-toggle="modal" data-target="#Modal">Cancel</button>
-                </div>
-              {% else %}
-                <div class="col-lg-12">
-                    <p>You do not have an active membership plan. <a href="{% url 'memberships:select' %}">Click here</a> to view memberships.</p>
-                </div>
-              {% endif %}
-            </div>
-            {% else %}
-            <div class="text-center">
-              <p>You do not have an active membership plan. <a href="{% url 'memberships:select' %}">Click here</a> to view memberships.</p>
-            </div>
-            {% endif %}
           </div>
-        </div>
-        <br>
-        <div class="card shadow-2 card-border">
-          <div class="card-body">
-              <h6>Invoices <a href="#" class="pull-right">View All</a></h6>
-              <div class="row text-center">
-                  {% for object in user.invoice.all %}
-                      {% if object.payed != True %}
-                      <div class="col-lg-12"><hr></div>
-                      <div class="col-lg-4">
-                          <span class="text-muted float-left ml-3">Description</span>
-                          <strong><h5 class="text-dark pt-4 pb-0">{{ object.description }}</h5></strong>
+          <br>
+          <div class="card shadow-1 card-border">
+              <div class="card-header">
+                  <h5 class=" fw-5">Subscription <button type="button" class="pull-right py-3 btn-primary-alt hide mt-1 fs-16" style="width: 14rem;" data-toggle="modal" data-target="#Modal">Cancel Membership</button></h5>
+                  <span class="text-muted fs-14">If you would like to learn more about how we can help your business bring in more clients</span>
+              </div>
+              <div class="card-body">
+                  {% if user_subscription.active == True %}
+                  <div class="row text-center pt-4">
+                      <div class="col-lg-6 col-sm-6">
+                          <span class="text-muted text-center">Description</span><br>
+                          <div class="mt-2">
+                            <span class="text-dark mt-2 fw-5 fs-18">{{ user.user_membership.membership }}</span>
+                          </div>
                       </div>
-                      <div class="col-lg-6">
-                        <div class="py-2 unhide"></div>
-                        <span class="text-muted float-center ml-3 hide">Date Created:</span>
-                        <strong><h5 class="text-dark pt-1 pb-0 hide">{{ object.issue_date }}</h5></strong>
-                        <span class="text-muted float-left ml-3 unhide">Date Created:</span><br>
-                        <strong><h5 class="text-dark pt-1 pb-0 unhide">{{ object.issue_date }}</h5></strong>
+                    {% if user_subscription.active != False %}
+                      <div class="col-lg-6 col-sm-6 ">
+                          <span class="text-muted text-center unhide">Next payment due:</span>
+                          <span class="text-muted text-center hide">Next payment due:</span> <br>
+                          <div class="mt-2">
+                              <span class="text-dark fw-5 fs-18">{{ user_subscription.get_next_billing_date }}</span>
+                          </div>
                       </div>
-                      <div class="col-lg-2">
-                          <div class="py-2 unhide"></div>
-                          <span class="text-muted float-left ml-3">Total</span> <br>
-                          <h5 class="text-dark ">${{ object.amount}}</h5>
+                    {% else %}
+                      <div class="col-lg-12">
+                          <p>You do not have an active membership plan. <a href="{% url 'memberships:select' %}">Click here</a> to view memberships.</p>
                       </div>
-                      <div class="col-lg-4">
-                        <div class="pb-0 mb-0 mt-4">
-                          <button class="btn btn-primary-alt mt-3">Download Report</button>
-                        </div>
-                      </div>
-                      <div class="col-lg-4"></div>
-                      <div class="col-lg-4">
-                          <form method="POST" class="pb-0 mb-0 mt-4" action="{% url 'userPage' %}">
-                              {% csrf_token %}
-                              <button class="btn btn-success-alt mt-3">Pay Invoice</button>
-                              <input type="hidden" name="invoice_id" value="{{ object.invoice_id }}">
-                          </form>
-                      </div>
-
-
                     {% endif %}
-                {% endfor %}
+                  </div>
+                  {% else %}
+                  <div class="text-center">
+                      <p>You do not have an active membership plan. <a href="{% url 'memberships:select' %}">Click here</a> to view memberships.</p>
+                  </div>
+                  {% endif %}
+                  <div class="text-center pull-center mt-5">
+                      <button type="button" class="py-3 btn-primary-alt unhide fs-16" data-toggle="modal" data-target="#Modal">Cancel Membership</button>
+                  </div>
               </div>
           </div>
+          <br>
+          <div class="card shadow-1 card-border">
+              <div class="card-header">
+                  <h5 class=" fw-5">Invoices <a href="#" class="text-center pull-right btn-primary-alt hide mt-1 fs-16" style="width: 12rem;">View History</a><a href="#" class="text-center pull-right unhide fs-16">View History</a></h5>
+                  <span class="text-muted fs-14">If you would like to learn more about how we can help your business bring in more clients</span>
+              </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    {% for object in user.invoice.all %}
+                        {% if object.payed != True %}
+                        <div class="col-lg-12"><hr></div>
+                        <div class="col-lg-4">
+                            <span class="text-muted float-left ml-3">Description</span>
+                            <strong><h5 class="text-dark pt-4 pb-0">{{ object.description }}</h5></strong>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="py-2 unhide"></div>
+                          <span class="text-muted float-center ml-3 hide">Date Created:</span>
+                          <strong><h5 class="text-dark pt-1 pb-0 hide">{{ object.issue_date }}</h5></strong>
+                          <span class="text-muted float-left ml-3 unhide">Date Created:</span><br>
+                          <strong><h5 class="text-dark pt-1 pb-0 unhide">{{ object.issue_date }}</h5></strong>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="py-2 unhide"></div>
+                            <span class="text-muted float-left ml-3">Total</span> <br>
+                            <h5 class="text-dark ">${{ object.amount}}</h5>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="pb-0 mb-0 mt-4">
+                            <button class="btn btn-primary-alt mt-3">Download Report</button>
+                          </div>
+                        </div>
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                            <form method="POST" class="pb-0 mb-0 mt-4" action="{% url 'userPage' %}">
+                                {% csrf_token %}
+                                <button class="btn btn-success-alt mt-3">Pay Invoice</button>
+                                <input type="hidden" name="invoice_id" value="{{ object.invoice_id }}">
+                            </form>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</section>
+
 {% endblock content %}

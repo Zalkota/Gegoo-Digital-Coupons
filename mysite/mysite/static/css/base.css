@@ -237,6 +237,9 @@ hr.hr-2 {
 .stripe-primary {
   border-left: 5px solid #4299E1; }
 
+.stripe-primary-top {
+  border-top: 4px solid #4299E1; }
+
 /* ******** SHADOWS EFFECTS ********* */
 .box-shadow {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
@@ -245,8 +248,8 @@ hr.hr-2 {
   border-color: #29303B; }
 
 .shadow-1 {
-  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.28), 0 4px 8px rgba(0, 0, 0, 0.29) !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.28), 0 4px 8px rgba(0, 0, 0, 0.29) !important; }
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.06) !important; }
 
 .shadow-2 {
   -webkit-box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05), 0 15px 40px rgba(166, 173, 201, 0.2) !important;
@@ -487,7 +490,7 @@ hr.hr-2 {
   border-left: 6px solid #3ddb93; }
 
 .alert-danger {
-  border-left: 6px solid #d91227; }
+  border-left: 6px solid #E53E3E; }
 
 .alert-info {
   border-left: 6px solid #19b5fe; }
@@ -886,7 +889,7 @@ button {
     box-shadow: 0 2px 4px rgba(155, 155, 155, 0.3), 0 2px 4px rgba(155, 155, 155, 0.3); }
 
 .btn-danger-alt {
-  background: #d91227;
+  background: #E53E3E;
   box-shadow: 0;
   color: #fafafa;
   font-weight: 600;
@@ -895,13 +898,13 @@ button {
   padding-top: .85rem;
   padding-bottom: .85rem; }
   .btn-danger-alt:hover, .btn-danger-alt:active, .btn-danger-alt:focus, .btn-danger-alt:visited {
-    background: #ee3044;
+    background: #eb6b6b;
     color: #e5e5e5;
     box-shadow: 0 2px 4px rgba(155, 155, 155, 0.3), 0 2px 4px rgba(155, 155, 155, 0.3); }
 
 .btn-secondary-alt {
   background: #efefef;
-  color: #d91227;
+  color: #E53E3E;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3);
   font-weight: 600;
   font-size: 1.4rem;
@@ -911,17 +914,17 @@ button {
   padding-bottom: .95rem; }
   .btn-secondary-alt .btn-secondary-alt:hover {
     background: #efefef;
-    color: #d91227;
+    color: #E53E3E;
     box-shadow: 0;
     font-size: 1.4rem; }
   .btn-secondary-alt .btn-secondary-alt:active {
     background: #efefef;
-    color: #d91227;
+    color: #E53E3E;
     box-shadow: 0;
     font-size: 1.4rem; }
   .btn-secondary-alt .btn-secondary-alt:focus {
     background: #efefef;
-    color: #d91227;
+    color: #E53E3E;
     box-shadow: 0;
     font-size: 1.4rem; }
 
@@ -2067,7 +2070,7 @@ input[type=checkbox]:checked + label {
     width: 1100px; }
 
 .img-responsive img {
-  max-height: 400px;
+  height: auto;
   width: 100%; }
 
 .img-center {
@@ -2208,6 +2211,38 @@ footer {
 .fa-instagram {
   color: #fafafa;
   border-radius: 50%; }
+
+.profile-nav {
+  border-bottom: 2px solid #E2E8F0;
+  height: 60px; }
+  .profile-nav ul {
+    list-style: none; }
+  .profile-nav li {
+    display: inline; }
+  .profile-nav .profile-link {
+    color: #718096;
+    font-weight: 500 !important;
+    font-size: 1rem;
+    line-height: 60px;
+    text-align: center;
+    width: 125px;
+    margin-right: 2rem;
+    height: 60px;
+    padding-bottom: 35px; }
+    .profile-nav .profile-link-active {
+      color: #2A4365;
+      border-bottom: 4px solid #003156;
+      padding-bottom: 15px;
+      text-decoration: none;
+      margin-right: 2rem; }
+    .profile-nav .profile-link:hover, .profile-nav .profile-link:active {
+      text-decoration: none;
+      color: #2A4365;
+      border-bottom: 4px solid #003156;
+      padding-bottom: 15px; }
+
+.card-body {
+  background-color: #fafbfc !important; }
 
 /*       CONTACT PAGE AND FORM        */
 input {
@@ -2599,7 +2634,7 @@ a:hover {
   background-color: #3ddb93 !important; }
 
 .text-danger {
-  color: #d91227; }
+  color: #E53E3E; }
 
 .text-alt {
   color: #003156; }
@@ -3296,7 +3331,7 @@ a:hover {
   background-color: #3ddb93; }
 
 .text-danger {
-  color: #d91227; }
+  color: #E53E3E; }
 
 .text-muted {
   color: #2A4365; }

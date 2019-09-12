@@ -1,0 +1,22 @@
+{% load static %}
+{% load wagtailcore_tags %}
+{% block component %}
+<h2 class="fw-6 hide">Profile</h2>
+<div class="profile-nav hide mt-4">
+    <ul class="list-unstyled">
+      <li>
+        <a href="{% url 'userPage' %}" class="profile-link-active">Basic Information</a>
+      </li>
+      <li class="list-inline-item">
+        <a href="" class="profile-link">Invoices</a>
+      </li>
+      <li class="list-inline-item">
+        <a href="{% url 'user_subscription' %}" class="profile-link">Subscriptions</a>
+      </li>
+      <li class="list-inline-item">
+        <a href="{% url 'account_set_password' %}" class="profile-link">Settings</a>
+      </li>
+    </ul>
+</div>
+<br>
+{% endblock component %}

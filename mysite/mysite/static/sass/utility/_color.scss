@@ -18,6 +18,7 @@ $color-gray-1: #F7FAFC;
 $color-gray-2: #E2E8F0;
 $color-gray-3: #CBD5E0;
 $color-gray-4: #A0AEC0;
+$color-gray-5: #718096;
 $color-muted: #E2E8F0;
 
 $color-dark:  #2A4365; //#343741
@@ -60,7 +61,7 @@ $color-success: #3ddb93;
 $color-success-light: lighten( $color-success, 10% );
 $color-success-dark: darken( $color-success, 10% );
 
-$color-danger: #d91227;
+$color-danger: #E53E3E;
 $color-danger-light: lighten( $color-danger, 10% );
 $color-danger-dark: darken( $color-danger, 10% );
 

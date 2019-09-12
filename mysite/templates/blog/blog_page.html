@@ -7,72 +7,95 @@
 
 <section class="section-lg">
     <main class="container">
-      <div class="mb-5">
-        <h6><a href="{% slugurl 'homepage' %}" class="text-dark">Home</a> <span class="text-primary">&#8226;</span> <a href="{% slugurl 'blog' %}" class="text-dark">Blog</a></h6>
-        <h1 class="fw-6">{{ page.title }} <a href="" class="fs-20 fw-5 ml-3 hide text-muted"> <i class="fa fa-share-alt mr-2" aria-hidden="true"></i> Share</a></h1>
-        By: Dominic Mazzola  <span class="text-muted ml-3">{{ page.first_published_at }}</span>
-        <a href="" class="fs-20 fw-5 unhide text-muted"> <i class="fa fa-share-alt pt-3 mr-2" aria-hidden="true"></i> Share</a>
-      </div>
-        <div class="row">
-          <div class="col-lg-9 px-m-na-0">
-            <div class="card shadow-2 mb-3">
-                <div class="card-img-top">
-                    <img class="img-responsive img-circle" data-aos="fade-in" src="/media/{{ page.image }}" width="100%" height="50%" alt="TODO">
-                </div>
-                <div class="p-m-5 img-responsive">
-                    {{ page.specific.body|richtext }}
-                </div>
-                <div class="row mt-5 p-5">
-                  <div class="col-lg-4">
-                      <img class="img-responsive img-circle mt-4" data-aos="fade-in" src="{% static 'img/profile_dom.png' %}" width="100%"  alt="TODO">
-                  </div>
-                  <div class="col-lg-8">
-                    <div class="hr-primary-sm  my-3"></div>
-                    <h3 class="fs-18 fw-6">About Dominic Mazzola</h3>
-                    <p class="fs-16 text-muted mt-4">While studying Engineering, Dominic started Mod Technologies LLC, which specializes in building
-                      Web Applications and helping local companies expand their online presense in order to bring in more business.
-                      </p>
-                  </div>
-                </div>
-              <div class="px-4 py-3"></div>
+        <div class="mb-5 hide">
+          <h6><a href="{% slugurl 'homepage' %}" class="text-dark">Home</a> <span class="text-primary">&#8226;</span> <a href="{% slugurl 'blog' %}" class="text-dark">Blog</a></h6>
+          <h1 class="fw-6">{{ page.title }} </h1>
+
+          <div class="row">
+            <div class="col-lg-1">
+                <img class="img-responsive img-circle  mt-2" data-aos="fade-in" src="{% static 'img/profile_dom.png' %}" width="70px"  alt="TODO">
             </div>
-            <div class="row">
-                {% for object in page.tag_set.all %}
-                <div class="col-lg-3">
-                    <li class="card shadow-0 p-3 fs-16 fw-6 stripe-primary">{{ object.name }}</li>
-                </div>
-                {% endfor %}
+            <div class="col-lg-11 pull-left">
+              <h4 class="fs-14 mb-0 mt-3">Dominic Mazzola</h4>
+              <span class="text-muted fs-14">{{ page.first_published_at }}</span>
             </div>
-              <div class="py-5"></div>
-              <div class="shadow-2 banner" data-aos="fade-up">
-                    <div class="row">
-                      <div class="col-lg-9">
-                          <h4 class="text-white">Ready to start a project?</h4>
-                          <p>Let's build something together!</p>
-                      </div>
-                      <div class="col-lg-3">
-                          <button href="{% slugurl 'contact' %}" class="btn btn-outline-light px-4 mt-2">Contact Us</button>
-                      </div>
-                  </div>
-              </div>
           </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 px-m-na-0">
+                <div class="card shadow-2 mb-3">
+                    <div class="card-img-top">
+                        <img class="img-responsive img-circle" data-aos="fade-in" src="/media/{{ page.image }}" width="100%" height="50%" alt="TODO">
+                    </div>
+                    <div class="card-body mb-3 p-m-5">
+                        <div class="unhide">
+                            <h6><a href="{% slugurl 'homepage' %}" class="text-dark">Home</a> <span class="text-primary">&#8226;</span> <a href="{% slugurl 'blog' %}" class="text-dark">Blog</a></h6>
+                            <h1 class="fw-6">{{ page.title }} </h1>
+                            <div class="row">
+                                <div class="col-lg-1">
+                                  <img class="img-responsive img-circle hide mt-2" data-aos="fade-in" src="{% static 'img/profile_dom.png' %}" width="70px"  alt="TODO">
+                                </div>
+                                <div class="col-lg-11 pull-left">
+                                  <h4 class="fs-14 mb-0 mt-3 ">Dominic Mazzola</h4>
+                                  <span class="text-muted fs-14">{{ page.first_published_at }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="img-responsive">
+                            {{ page.specific.body|richtext }}
+                        </div>
+                        <div class="row mt-5 ">
+                            <div class="col-lg-4">
+                                <img class="img-responsive img-circle mt-4 " data-aos="fade-in" src="{% static 'img/profile_dom.png' %}" width="200px"  alt="TODO">
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="hr-primary-sm my-3"></div>
+                                <h3 class="fs-18 fw-6">About Dominic Mazzola</h3>
+                                <p class="fs-16 text-muted mt-4">While studying Engineering, Dominic started Mod Technologies LLC, which specializes in building
+                                  Web Applications and helping local companies expand their online presense in order to bring in more business.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="py-3"></div>
+
+                <div class="row">
+                    {% for object in page.tag_set.all %}
+                    <div class="col-lg-3">
+                        <li class="card shadow-0 p-3 fs-16 fw-6 stripe-primary">{{ object.name }}</li>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="py-5"></div>
+                <div class="shadow-2 banner" data-aos="fade-up">
+                      <div class="row">
+                        <div class="col-lg-9">
+                            <h4 class="text-white">Ready to start a project?</h4>
+                            <p>Let's build something together!</p>
+                        </div>
+                        <div class="col-lg-3">
+                            <button href="{% slugurl 'contact' %}" class="btn btn-outline-light px-4 mt-2">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
           <div class="col-lg-3">
-            <div class="text-center shadow-0 card-border ">
-              <div class="p-4">
-                <div class="hr-primary-sm mx-auto my-3"></div>
-                <h3 class="fs-20">Do you want <span class="fw-6">more traffic?</span></h3>
-
-                <p class="fs-16 mt-3">We will help you determine why your online footprint is lacking weight and how it can be fixed</p>
-                <a class="btn btn-primary-round" style="line-height: 1.25rem;" href="{% slugurl 'contact' %}">Contact Us</a>
+              <div class="text-center shadow-0 card-border ">
+                <div class="p-4">
+                  <div class="hr-primary-sm mx-auto my-3"></div>
+                  <h3 class="fs-20">Do you want <span class="fw-6">more traffic?</span></h3>
+                  <p class="fs-16 mt-3">We will help you determine why your online footprint is lacking weight and how it can be fixed</p>
+                  <a class="btn btn-primary-round" style="line-height: 1.25rem;" href="{% slugurl 'contact' %}">Contact Us</a>
+                </div>
               </div>
-            </div>
-            <div class="py-4"></div>
-            <div class="p-4">
-                <h3 class="fs-20">Recommended <span class="fw-6">Blogs</span></h3>
-                <hr>
-                <a href="{% slugurl 'blog' %}">View all blogs <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i> </a>
-
-            </div>
+              <div class="py-4"></div>
+              <div class="p-4">
+                  <h3 class="fs-20">Recommended <span class="fw-6">Blogs</span></h3>
+                  <hr>
+                  <a href="{% slugurl 'blog' %}">View all blogs <i class="fa fa-arrow-right mr-2" aria-hidden="true"></i> </a>
+              </div>
           </div>
         </div>
     </main>
