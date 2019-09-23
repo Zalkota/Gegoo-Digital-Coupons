@@ -82,120 +82,124 @@
     }
   }
 
-  .navbar-default.scrolled {
-    background-color: #fdfdfe !important;
-    transition: background-color 200ms linear;
-    color: $color-navbar-alt-text;
-    z-index: 999;
-    -webkit-box-shadow: 0 5px 10px rgba(154,160,185,.085), 0 15px 40px rgba(166,173,201,.25) !important;
-    box-shadow: 0 5px 10px rgba(154,160,185,.085), 0 15px 40px rgba(166,173,201,.25) !important;
+
+  /* ################ NAVBAR TOP ################ */
+
+.navbar-default {
+  background-color: $color-navbar-alt-background;
+  height: 100px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+
+  .ul-spacing {
+    height: 85px;
+
+  }
+
+  .nav-link {
+      color: $color-navbar-alt-text;
+      font-weight: 600 !important;
+      font-size: 1.1rem;
+      line-height: 28px;
+      margin-left: .85rem;
+      margin-right: .85rem;
+      text-transform: none;
+      display: inline-block;
+      padding-top: 0.3125rem;
+      padding-bottom: 0.3125rem;
+      margin-right: 1rem;
+      line-height: inherit;
+  }
+
+  .nav-link:hover {
+      color:  $color-navbar-alt-hover;
+  }
+
+  li.nav-item {
+    height: 2rem;
   }
 
 
-  /* ################ NAVBAR NOT SCROLLED ################ */
+  .navbar-brand {
+    color: $color-navbar-alt-text;
+    font-weight: 700 !important;
+  }
+  .navbar-brand:hover {
+    color: $color-navbar-alt-text !important;
+  }
 
-.navbar-default {
+  .btn-outline-navbar {
+    background-color: transparent !important;
+    font-weight: 600 !important;
+    border: 1px solid $color-navbar-alt-text !important;
+    color:  $color-navbar-alt-text;
 
-  height: 70px;
+  &:hover, &:focus, &:active,  {
+    background-color: $color-navbar-hover !important;
+    color: #fff !important;
+    border-color: $color-navbar-hover !important;
+    }
+  }
+
+  .navbar {
+    box-shadow: none;
+
+  }
+  .navbar .navbar-collapse {
+    text-align: center;
+    box-shadow: none;
+  }
+
+
 
 }
 
-.ul-spacing {
-  height: 85px;
-}
 
 
 
-.nav-link {
-  color:  $color-navbar-alt-text;
-  font-weight: 500 !important;
-  font-size: 0.8rem;
-  line-height: 25px;
-  margin-top: 8px;
-}
-.nav-link:hover {
-  color: $color-navbar-text;
-  border-bottom: 1px solid $color-navbar-text;
-}
+// ======= NAVBAR LOWER ========== //
 
-.navbar-brand {
-  color: $color-navbar-alt-text;
-  font-weight: 700 !important;
-}
-.navbar-brand:hover {
-  color: $color-navbar-alt-text !important;
-}
+.navbar-lower  {
+  background-color: $color-navbar-alt-background;
+  height: 40px;
+  z-index: 1;
 
-.btn-outline-navbar {
-  background-color: transparent !important;
-  font-weight: 500 !important;
-  font-size: 0.875rem;
-  color: $color-navbar-alt-text;
-  border: 1px solid $color-navbar-alt-text;
-}
-
-
-.btn-outline-navbar:hover {
-  background-color: $color-navbar-alt-text !important;
-  font-weight: 500 !important;
-  font-size: 0.875rem;
-  color: $color-navbar-alt-background-scrolled !important;
-  border-color: $color-navbar-alt-text !important;
-}
-
-.navbar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: none;
 
-}
-.navbar .navbar-collapse {
-  text-align: center;
-  box-shadow: none;
-}
 
 
-  /* ################ NAVBAR SCROLLED ################ */
+  .ul-spacing {
+    height: 30px;
+  }
 
 
+  .nav-link {
+      color: $color-navbar-alt-text;
+      font-weight: 500 !important;
+      font-size: 0.8rem;
+      line-height: 15px;
+      margin-right: .85rem;
+      text-transform: none;
+  }
+
+  .nav-link:hover {
+      color:  $color-navbar-alt-hover;
+  }
 
 
-
-.navbar-brand.scrolled {
-  color: $color-navbar-alt-text;
-}
-.navbar-brand.scrolled:hover {
-  color: $color-navbar-text;
-}
+  li.nav-item {
+    line-height: 10px;
+  }
 
 
-.nav-link.scrolled {
-    color: #424242;
-}
-.nav-link.scrolled:hover {
-    color: $color-navbar-text;
-    border: none;
-}
+  .navbar {
+    box-shadow: none;
 
-.navbar-default.scrolled {
-  background-color: #fdfdfe !important;
-  transition: background-color 200ms linear;
-  color: #424242;
-  z-index: 999;
-  height: 75px;
+  }
+  .navbar .navbar-collapse {
+    text-align: center;
+    box-shadow: none;
+  }
 
-  -webkit-box-shadow: 0 5px 10px rgba(154,160,185,.085), 0 15px 40px rgba(166,173,201,.25) !important;
-  box-shadow: 0 5px 10px rgba(154,160,185,.085), 0 15px 40px rgba(166,173,201,.25) !important;
-}
-
-.btn-outline-navbar.scrolled {
-  background-color: transparent !important;
-  font-weight: 500 !important;
-  font-size: 0.875rem;
-  border: solid 1px #424242 !important;
-  color: #424242 !important;
-}
-
-.btn-outline-navbar.scrolled:hover {
-    color: $color-navbar-alt-background-scrolled !important;
-    background-color: $color-navbar-alt-text !important;
-    border: solid 1px $color-navbar-alt-text !important;
 }

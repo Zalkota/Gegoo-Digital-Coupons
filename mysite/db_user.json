@@ -1,10 +1,18 @@
 [
 {
-    "model": "users.user",
-    "pk": 2,
+    "model": "sites.site",
+    "pk": 1,
     "fields": {
-        "password": "pbkdf2_sha256$100000$nTZNzsDmPV0v$SYG3JqwRjMZDaGV3IBQ0zihbzed4kSX6Agx4Vwjq3ZQ=",
-        "last_login": "2019-03-22T22:31:24.089Z",
+        "domain": "example.com",
+        "name": "example.com"
+    }
+},
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$100000$u3TB2YlCCBDp$mjcEqDjE1YUKTQIplH00Ph4XSEms0Ldqs76rIBYE8/s=",
+        "last_login": null,
         "is_superuser": true,
         "username": "admindominic",
         "first_name": "",
@@ -12,7 +20,7 @@
         "email": "dominicmazzola@gmail.com",
         "is_staff": true,
         "is_active": true,
-        "date_joined": "2019-03-12T03:05:13.857Z",
+        "date_joined": "2019-08-13T01:52:30.932Z",
         "name": "",
         "groups": [],
         "user_permissions": []

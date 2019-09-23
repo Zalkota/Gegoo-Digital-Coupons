@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 1440 600"
+   id="svg4165"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="footer_wavesvg.svg"
+   width="1440"
+   height="600">
+  <metadata
+     id="metadata4173">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4171" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     id="namedview4169"
+     showgrid="false"
+     inkscape:zoom="0.5"
+     inkscape:cx="638.45632"
+     inkscape:cy="589.21815"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4165" />
+  <path
+     d="M 0,2.0546918 60.018229,28.769592 c 60.018231,26.31468 180.054691,80.344808 300.091141,69.33867 120.03646,-11.00614 240.07292,-85.04743 360.10938,-85.3476 120.03646,0.30017 240.07292,74.34146 360.10935,117.365458 120.0365,43.02399 240.0729,53.02957 300.0912,58.73276 l 60.0182,5.30295 0,32.01786 -60.0182,0 c -60.0183,0 -180.0547,0 -300.0912,0 -120.03643,0 -240.07289,0 -360.10935,0 -120.03646,0 -240.07292,0 -360.10938,0 -120.03645,0 -240.07291,0 -300.091141,0 L 0,226.17969 Z"
+     id="path4167"
+     inkscape:connector-curvature="0"
+     style="fill:#2a4365;fill-opacity:1" />
+  <rect
+     style="fill:#000000;fill-opacity:0"
+     id="rect4175"
+     width="1468"
+     height="424"
+     x="-4"
+     y="226" />
+  <rect
+     style="fill:#2a4365;fill-opacity:1"
+     id="rect4177"
+     width="1478"
+     height="408"
+     x="-8"
+     y="222" />
+</svg>

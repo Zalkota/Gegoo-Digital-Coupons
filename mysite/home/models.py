@@ -1,263 +1,179 @@
 from django.db import models
-from project.models import ProjectPage, ProjectIndexPage
-from portal.models import Course
-from modelcluster.fields import ParentalKey
-
-from wagtail.core.models import Page, Orderable
-from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
-from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.search import index
-
-#Captcha
-#from wagtailcaptcha.models import WagtailCaptchaEmailForm
-
-# forms http://docs.wagtail.io/en/v2.0/reference/contrib/forms/
-from modelcluster.fields import ParentalKey
-from wagtail.admin.edit_handlers import (
-    FieldPanel, FieldRowPanel,
-    InlinePanel, MultiFieldPanel, PageChooserPanel
-)
-from wagtail.core.fields import RichTextField
-from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
-from django.shortcuts import redirect
-
-#honeypot
-from honeypot.decorators import check_honeypot
-from django.utils.decorators import method_decorator
+from datetime import date
+from django.utils.encoding import python_2_unicode_compatible
+from django.utils import timezone
+from phonenumber_field.modelfields import PhoneNumberField
+#get_absolute_url
+from django.urls import reverse
+from django.utils.text import slugify
+#Ckeditor
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
-class HomePage(Page):
-    firstheader = models.CharField(blank=True, max_length=500)
-    firstbody = models.CharField(blank=True, max_length=500)
-    registerbuttonurl = models.CharField(blank=True, max_length=256)
-    secondheader = RichTextField(blank=True)
-    secondbody = RichTextField(blank=True)
+@python_2_unicode_compatible
+class BaseModel(models.Model):
+    #TODO: Add queryset managers / mixins
+    is_active = models.BooleanField(default=True, help_text=('Designates whether this item should be treated as active. Unselect this instead of deleting data.'), db_index=True) #TODO: Can I hide this on the model form unless user has permissions or do I do this in forms.py? Change these to 'visible' or 'is_active'??
+    created_time = models.DateTimeField(('created time'), editable=False, auto_now_add=True, blank=True, null=True)
+    modified_time = models.DateTimeField(('last modified time'), editable=False, auto_now=True)
+    #  id = models.BigAutoField(primary_key=True)
+    class Meta:
+        abstract = True
 
-    def special_projects(self):
-        return ProjectPage.objects.all()
-
-    def course_list(self):
-        return Course.objects.filter(membership_required=True).order_by('ordering_id')[:4]
-
-    content_panels = Page.content_panels + [
-
-        FieldPanel('firstheader', classname="full"),
-        FieldPanel('firstbody', classname="full"),
-        FieldPanel('registerbuttonurl'),
-        InlinePanel('gallery_images', label="Gallery images"),
-        FieldPanel('secondheader', classname="full"),
-        FieldPanel('secondbody', classname="full"),
-    ]
-
-class HomePageGalleryImage(Orderable):
-    page = ParentalKey(HomePage, on_delete=models.CASCADE, related_name='gallery_images')
-    image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
+class Reservation(BaseModel):
+    class Meta:
+        verbose_name_plural = "Reservations"
+    One = 1
+    Two = 2
+    Three = 3
+    Four = 4
+    Five = 5
+    Six = 6
+    SEVEN = 7
+    EIGHT = 8
+    NINE = 9
+    TEN = 10
+    ELEVEN = 11
+    TWELVE = 12
+    TIME_CHOICES = (
+        (One, '4:00pm'),
+        (Two, '4:30pm'),
+        (Three, '5:00pm'),
+        (Four, '5:30pm'),
+        (Five, '6:00pm'),
+        (Six, '6:30pm'),
+        (SEVEN, '7:00pm'),
+        (EIGHT, '7:30pm'),
+        (NINE, '8:00pm'),
     )
-    caption = models.CharField(blank=True, max_length=250)
-
-    panels = [
-        ImageChooserPanel('image'),
-        FieldPanel('caption'),
-    ]
-
-
-class PrivacyPage(Page):
-    header = RichTextField(blank=True)
-    content = RichTextField(blank=True)
-    content_panels = Page.content_panels + [
-    FieldPanel('header', classname="full"),
-    FieldPanel('content', classname="full"),
-    ]
-
-class TermsPage(Page):
-    header = RichTextField(blank=True)
-    content = RichTextField(blank=True)
-    content_panels = Page.content_panels + [
-    FieldPanel('header', classname="full"),
-    FieldPanel('content', classname="full"),
-    ]
-
-class AboutPage(Page):
-    header = RichTextField(blank=True)
-    body = RichTextField(blank=True)
-    header_two = RichTextField(blank=True)
-    body_two = RichTextField(blank=True)
-    header_three = RichTextField(blank=True)
-    body_three = RichTextField(blank=True)
-    header_four = RichTextField(blank=True)
-    body_four = RichTextField(blank=True)
-    header_five = RichTextField(blank=True)
-    body_five = RichTextField(blank=True)
-
-
-    content_panels = Page.content_panels + [
-        FieldPanel('header'),
-        FieldPanel('body', classname="full"),
-        FieldPanel('header_two'),
-        FieldPanel('body_two', classname="full"),
-        FieldPanel('header_three'),
-        FieldPanel('body_three', classname="full"),
-        FieldPanel('header_four'),
-        FieldPanel('body_four', classname="full"),
-        FieldPanel('header_five'),
-        FieldPanel('body_five', classname="full"),
-        InlinePanel('gallery_images', label="Gallery images"),
-    ]
-
-class AboutPageGalleryImage(Orderable):
-    page = ParentalKey(AboutPage, on_delete=models.CASCADE, related_name='gallery_images')
-    image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
+    SEATING_CHOICES = (
+        (One, '1'),
+        (Two, '2'),
+        (Three, '3'),
+        (Four, '4'),
+        (Five, '5'),
+        (Six, '6'),
+        (SEVEN, '7'),
+        (EIGHT, '8'),
+        (NINE, '9'),
+        (TEN, '10+'),
     )
-    caption = models.CharField(blank=True, max_length=250)
+    date = models.DateField(null=True)
+    name = models.CharField(max_length=35, null=True)
+    phone = PhoneNumberField(null=True)   #USE THIS https://github.com/stefanfoulis/django-phonenumber-field
+    email = models.EmailField(null=True)
+    people = models.PositiveSmallIntegerField(choices=SEATING_CHOICES, default=None, db_index=True)
+    reservation_time = models.PositiveSmallIntegerField(choices=TIME_CHOICES, default=None, db_index=True)
 
-    panels = [
-        ImageChooserPanel('image'),
-        FieldPanel('caption'),
-    ]
-
-
-class FormField(AbstractFormField):
-    page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
-
-
-class FormPage(AbstractEmailForm):
-    intro = RichTextField(blank=True)
-    body = RichTextField(blank=True)
-    address = RichTextField(blank=True)
-    thank_you_text = RichTextField(blank=True)
-
-    content_panels = AbstractEmailForm.content_panels + [
-        FieldPanel('intro', classname="full"),
-        FieldPanel('body', classname='full'),
-        FieldPanel('address', classname='full'),
-        InlinePanel('form_fields', label="Form fields"),
-        FieldPanel('thank_you_text', classname="full"),
-        MultiFieldPanel([
-            FieldRowPanel([
-                FieldPanel('from_address', classname="col6"),
-                FieldPanel('to_address', classname="col6"),
-            ]),
-            FieldPanel('subject'),
-        ], "Email"),
-    ]
+    def __str__(self):
+        return '(%s) %s %s' % (self.date, self.name, self.phone )
 
 
-    thank_you_page = models.ForeignKey(
-        'wagtailcore.Page',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-    )
-    @method_decorator(check_honeypot)
-    def render_landing_page(self, request, form_submission=None, *args, **kwargs):
-        if self.thank_you_page:
-            url = self.thank_you_page.url
-            # if a form_submission instance is available, append the id to URL
-            # when previewing landing page, there will not be a form_submission instance
-            if form_submission:
-              url += '?id=%s' % form_submission.id
-            return redirect(url, permanent=False)
-        # if no thank_you_page is set, render default landing page
-        return super().render_landing_page(request, form_submission, *args, **kwargs)
+class Page(BaseModel):
+    slug = models.SlugField(null=True, unique=True, editable=False)
+    title = models.CharField(max_length=200, help_text='TITLE MUST BE UNIQUE')
+    main_header = models.CharField(max_length=200, null=True, blank=True)
+    description = models.CharField(max_length=255, null=True, blank=True)
+    header_1 = RichTextUploadingField(null=True, blank=True)
+    body_1 = RichTextUploadingField(null=True, blank=True)
+    section = models.CharField(max_length=10000, null=True, blank=True)
+    header_2 = RichTextUploadingField(null=True, blank=True)
+    body_2 = RichTextUploadingField(null=True, blank=True)
+    created_date = models.DateTimeField(default = timezone.now)
 
-    content_panels = AbstractEmailForm.content_panels + [
-        FieldPanel('intro', classname='full'),
-        FieldPanel('body', classname='full'),
-        FieldPanel('address', classname='full'),
-        InlinePanel('form_fields'),
-        FieldPanel('thank_you_text', classname='full'),
-        PageChooserPanel('thank_you_page'),
-        MultiFieldPanel([
-            FieldRowPanel([
-                FieldPanel('from_address', classname='col6'),
-                FieldPanel('to_address', classname='col6'),
-            ]),
-            FieldPanel('subject'),
-        ], 'Email'),
-    ]
+    def __str__(self):
+        return self.title
 
-class ServicesPage(Page):
-    firstheader = models.CharField(blank=True, max_length=500)
-    firstbody = models.CharField(blank=True, max_length=500)
-    secondheader = models.CharField(blank=True, max_length=500)
-    secondbody = models.CharField(blank=True, max_length=500)
-    secondbody_2 = models.CharField(blank=True, max_length=500)
-    thirdheader = models.CharField(blank=True, max_length=500)
-    thirdbody = models.CharField(blank=True, max_length=500)
-    thirdbody_2 = models.CharField(blank=True, max_length=500)
-    fourthheader = models.CharField(blank=True, max_length=500)
-    fourthbody = models.CharField(blank=True, max_length=500)
+    def get_absolute_url(self):
+        return reverse('page-detail', kwargs={'slug': self.slug})
 
-    content_panels = Page.content_panels + [
-        FieldPanel('firstheader'),
-        FieldPanel('firstbody', classname="full"),
-        FieldPanel('secondheader'),
-        FieldPanel('secondbody', classname="full"),
-        FieldPanel('secondbody_2', classname="full"),
-        FieldPanel('thirdheader'),
-        FieldPanel('thirdbody', classname="full"),
-        FieldPanel('thirdbody_2', classname="full"),
-        FieldPanel('fourthheader'),
-        FieldPanel('fourthbody', classname="full"),
-
-    ]
+    def save(self, *args, **kwargs):
+        value = self.title
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
 
 
-class JobField(AbstractFormField):
-    page = ParentalKey('JobPage', on_delete=models.CASCADE, related_name='form_fields')
+class Product(BaseModel):
+    slug = models.SlugField(null=True, unique=True, editable=False)
+    name = models.CharField(max_length=200, help_text='Name must be unique')
+    image = models.ImageField(upload_to = 'product_images/', help_text="All Images must be 800x600px")
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
+
+class Furnace(BaseModel):
+    slug = models.SlugField(null=True, unique=True, editable=False)
+    name = models.CharField(max_length=200, help_text='Name must be unique')
+    description = RichTextUploadingField(null=True, blank=True)
+    productNumber = models.CharField(max_length=200, null=True)
+    price = models.PositiveSmallIntegerField(default = timezone.now)
+    image = models.ImageField(upload_to = 'product_images/', help_text="All Images must be 800x600px")
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
 
 
-class JobPage(AbstractEmailForm):
-    intro = RichTextField(blank=True)
-    thank_you_text = RichTextField(blank=True)
+class AirConditioning(BaseModel):
+    slug = models.SlugField(null=True, unique=True, editable=False)
+    name = models.CharField(max_length=200, help_text='Name must be unique')
+    description = RichTextUploadingField(null=True, blank=True)
+    productNumber = models.CharField(max_length=200, null=True)
+    price = models.PositiveSmallIntegerField(default = timezone.now)
+    image = models.ImageField(upload_to = 'product_images/', help_text="All Images must be 800x600px")
 
-    content_panels = AbstractEmailForm.content_panels + [
-        FieldPanel('intro', classname="full"),
-        InlinePanel('form_fields', label="Form fields"),
-        FieldPanel('thank_you_text', classname="full"),
-        MultiFieldPanel([
-            FieldRowPanel([
-                FieldPanel('from_address', classname="col6"),
-                FieldPanel('to_address', classname="col6"),
-            ]),
-            FieldPanel('subject'),
-        ], "Email"),
-    ]
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
+
+class Service(BaseModel):
+    name = models.CharField(max_length=60)
+    description = models.CharField(max_length=256)
+    image = models.ImageField(upload_to = 'product_images/', help_text="All Images must be 800x600px")
+
+    def __str__(self):
+        return '%s' % (self.name)
+
+class Review(BaseModel):
+    description = models.CharField(max_length=256)
+    customer = models.CharField(max_length=256, help_text="Customer first and last name")
+    city = models.CharField(max_length=256)
+
+    def __str__(self):
+        return '%s' % (self.customer)
+
+class Contact(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    phone = PhoneNumberField(null=True, blank=True)   #USE THIS https://github.com/stefanfoulis/django-phonenumber-field\
+    description = models.TextField()
 
 
-    thank_you_page = models.ForeignKey(
-        'wagtailcore.Page',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-    )
+    #def get_absolute_url(self):
+    #    return reverse('author-detail', kwargs={'pk': self.pk})
 
-    def render_landing_page(self, request, form_submission=None, *args, **kwargs):
-        if self.thank_you_page:
-            url = self.thank_you_page.url
-            # if a form_submission instance is available, append the id to URL
-            # when previewing landing page, there will not be a form_submission instance
-            if form_submission:
-              url += '?id=%s' % form_submission.id
-            return redirect(url, permanent=False)
-        # if no thank_you_page is set, render default landing page
-        return super().render_landing_page(request, form_submission, *args, **kwargs)
+class Coupon(BaseModel):
+    name = models.CharField(max_length=255, null=True)
+    image = models.ImageField(upload_to = 'product_images/', help_text="All Images must be 800x600px")
 
-    content_panels = AbstractEmailForm.content_panels + [
-        FieldPanel('intro', classname='full'),
-        InlinePanel('form_fields'),
-        FieldPanel('thank_you_text', classname='full'),
-        PageChooserPanel('thank_you_page'),
-        MultiFieldPanel([
-            FieldRowPanel([
-                FieldPanel('from_address', classname='col6'),
-                FieldPanel('to_address', classname='col6'),
-            ]),
-            FieldPanel('subject'),
-        ], 'Email'),
-    ]
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)

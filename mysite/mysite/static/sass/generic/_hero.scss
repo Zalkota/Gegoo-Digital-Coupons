@@ -3,57 +3,71 @@
 @media screen and (min-width: 992px) {
     .hero {
         /* Sizing */
-        height:100vh;
+        height: 120vh;
         /* Flexbox stuff */
         display: flex;
         justify-content: center;
-        align-items: center;
-        /* Text styles */
+        flex-direction: column;
 
+        /* Text styles */
         /* Background styles */
-        background-image: url(/static/img/lp_5.svg);
+        background: url(/static/img/headers/wave.svg);
         //background-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
         /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
         background-size: cover;
-        background-position: left;
+        background-position: bottom;
         background-repeat: no-repeat;
         position: relative;
 
     }
 
         .hero .text {
-          position: absolute;
-          text-align: left;
-          top: 33%;
-          left: 12%;
-          max-width: 37rem;
+          text-align: center;
+          align-self:  center;
+          top: 10%;
+          max-width: 60rem;
+          margin-top: 15%;
+          display: block;
+          width: 70%;
           animation: moveInTop 1.5s;
-          animation-fill-mode: forwards
+          animation-fill-mode: forwards;
+        }
+
+        .hero .carousel {
+          align-self:  center;
+          text-align: center;
+          display: block;
+          width: 100%;
+          animation: moveInTop 1.5s;
+          animation-fill-mode: forwards;
+
+          img {
+            width: 40%;
+            height: 40%;
+          }
         }
 
         .hero h1 {
-            /* Text styles */
-            font-size: 2.2em;
+            font-size: 2.5rem;
             color: $color-alt;
-            font-weight: 700;
-            /* Margins */
+            font-weight: 800;
             opacity: .95;
             margin-top: 0;
-            margin-bottom: 0.5em;
+            margin-bottom: 2rem;
 
-            padding-right: 10%;
         }
         .hero p {
             /* Text styles */
-            font-size: 1.2em;
-
-            color: $color-accent-light;
-
-            /* Margins */
+            font-size: 1.2rem;
+            color: $color-alt;
             margin-top: 0;
-            margin-bottom: 2em;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
 
-            padding-right: 4rem;
+        img {
+          margin-top: 4rem;
+          border-radius: $border-radius;
         }
     }
 @media screen and (max-width: 992px) {
@@ -76,19 +90,20 @@
 
     .text {
       position: absolute;
-      text-align: left;
+      text-align: center;
       top: 17%;
       max-width: 40rem;
       animation: moveInTop 1.5s;
       animation-fill-mode: forward;
       padding: 0 10% 0 5%;
+      color: $color-main;
 
     }
 
     h1 {
         /* Text styles */
         font-size: 2em;
-        color: $color-alt;
+        color: $color-main;
         /* Margins */
         opacity: .95;
         margin-top: 0;
@@ -98,7 +113,7 @@
     p {
         /* Text styles */
         font-size: 1.125em;
-        color: $color-dark;
+        color: $color-main;
         /* Margins */
         margin-top: 0;
         margin-bottom: 2.5em;

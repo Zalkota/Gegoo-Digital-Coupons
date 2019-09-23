@@ -92,10 +92,7 @@
 /* ################ NAVBAR NOT SCROLLED ################ */
 
 .navbar-default {
-
-  height: 70px;
-
-}
+  height: 100px;
 
   .navbar-brand {
     color: $color-navbar-text;
@@ -111,34 +108,43 @@
 
   .nav-link {
       color: $color-navbar-text;
-      font-weight: 500 !important;
-      font-size: 0.8rem;
-      line-height: 25px;
-      margin-top: 8px;
+      font-weight: 600 !important;
+      font-size: 1.1rem;
+      line-height: 28px;
+      margin-left: .85rem;
+      margin-right: .85rem;
+      text-transform: none;
+      display: inline-block;
+      padding-top: 0.3125rem;
+      padding-bottom: 0.3125rem;
+      margin-right: 1rem;
+      line-height: inherit;
   }
 
   .nav-link:hover {
-      color:  $color-navbar-text;
-      border-bottom: 1px solid $color-navbar-text;
-
+      color:  $color-navbar-hover;
   }
 
+  li.nav-item {
+    height: 2rem;
+  }
 
   .btn-outline-navbar {
     background-color: transparent !important;
-    font-weight: 500 !important;
-    font-size: 0.875rem !important;
-    border: 2px solid $color-navbar-text !important;
+    font-weight: 600 !important;
+    border: 1px solid $color-navbar-text !important;
     color:  $color-navbar-text;
 
   &:hover, &:focus, &:active,  {
-    background-color: $color-navbar-text !important;
-    font-weight: 500 !important;
-    font-size: 0.875rem !important;
+    background-color: $color-navbar-hover !important;
     color: #fff !important;
-    border-color: $color-navbar-text !important;
+    border-color: $color-navbar-hover !important;
     }
   }
+
+}
+
+
   /* ################## NAVBAR SCROLLED ################## */
 
   .navbar-default.scrolled {
@@ -176,7 +182,6 @@
     color: #424242 !important;
   }
 
-
   .btn-outline-navbar.scrolled:hover {
     background-color: $color-navbar-text !important;
     font-weight: 500 !important;
@@ -187,14 +192,27 @@
 
   .nav-link.scrolled {
       color: #424242;
-      margin-top: 8px;
+      font-weight: 600 !important;
+      font-size: 1.1rem;
+      line-height: 28px;
+      margin-left: .85rem;
+      margin-right: .85rem;
+      text-transform: none;
+      display: inline-block;
+      padding-top: 0.3125rem;
+      padding-bottom: 0.3125rem;
+      margin-right: 1rem;
+      line-height: inherit;
   }
+
+  li.nav-item {
+    height: 2rem;
+  }
+
   .nav-link.scrolled:hover {
       color: $color-navbar-text;
       border: none;
-
   }
-
 
   .nav-item {
 
@@ -203,8 +221,6 @@
         border-bottom: 2px solid #fdfdfe;
     }
   }
-
-
 
 @media screen and (max-width: 992px) {
 

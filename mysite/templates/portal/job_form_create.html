@@ -1,0 +1,40 @@
+{% extends "base-alt.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} Create New Form {% endblock %}
+
+{% block content %}
+
+{% block breadcrumbs %}
+  {% include "bread-crumbs.html" %}
+{% endblock breadcrumbs %}
+
+
+
+<section class="section-sm">
+    <div class="container mb-5">
+      <div class="row">
+        <div class=" col-lg-8 px-0">
+          {% block breadcrumbs-mobile %}
+            {% include "bread-crumbs-mobile.html" %}
+          {% endblock breadcrumbs-mobile %}
+          <div class="card card-border shadow-2">
+            <div class="card-header px-m-5 py-4">
+              <h2 class="fw-6 mb-0">1. Describe Your Landscaping Job</h2>
+            </div>
+            <div class="card-body px-m-5 py-4">
+                <form action="" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <table>
+                  {{ form|crispy }}
+                  </table>
+                  <input class="btn btn-primary-alt mt-3" style="width: 100%;" type="submit" value="Submit">
+                </form>
+            </div>
+          </div>
+        </div>
+        <div class="offset-lg-4"></div>
+      </div>
+    </div>
+</section>
+{% endblock %}

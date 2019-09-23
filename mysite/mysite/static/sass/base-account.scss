@@ -9,6 +9,7 @@ $mdb-animation-curve-default: $mdb-animation-curve-fast-out-slow-in !default;
 
 @import "./utility/color";
 @import "./account/account";
+@import "./generic/store";
 
 //@import "form";
 //@import "navigation_button";
@@ -21,7 +22,7 @@ html {
 body {
     margin: 0;
     font-family: Montserrat, sans-serif !important;
-    background-color: $color-main;
+    background-color: $color-main !important;
     color: #3a3a3a;
 
     h1 h2 h3 h4 h5 h6 {

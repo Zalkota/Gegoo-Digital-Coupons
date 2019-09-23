@@ -25,20 +25,8 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
-    'home',
-    'search',
-
-    'wagtail.contrib.forms',
-    'wagtail.contrib.redirects',
-    'wagtail.embeds',
-    'wagtail.sites',
-    'wagtail.users',
-    'wagtail.snippets',
-    'wagtail.documents',
-    'wagtail.images',
-    'wagtail.search',
-    'wagtail.admin',
-    'wagtail.core',
+    #'home',
+    #'search',
 
     'modelcluster',
     'taggit',
@@ -50,30 +38,37 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.flatpages',
+    'home',
+    'debug_toolbar',
 
     #APPS
-    'project',
     'users',
     'portal',
-    'memberships',
-    'blog',
+    #'memberships',
+    #'blog',
 
     #Payment
     'stripe',
+
     #Security
-    #'wagtailcaptcha',
-    #'captcha',
     'honeypot',
+
+    #Phone Number Field
+    'phonenumber_field',
 
     #Cookies
     'cookielaw',
 
     #PDF
-    'xhtml2pdf',
+    #'xhtml2pdf',
 
+    #editor
+    'ckeditor',
+    'ckeditor_uploader',
 
     #Custom Forms with classes
-    'widget_tweaks',
+    #'widget_tweaks',
     'crispy_forms',
 
     #ALLAUTH
@@ -91,14 +86,26 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 
-    'wagtail.core.middleware.SiteMiddleware',
-    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    #debug toolbar
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
+]
+
+INTERNAL_IPS = [
+
+    '127.0.0.1',
+
 ]
 
 #honeypot
 HONEYPOT_FIELD_NAME = 'phonenumber'
 
 ROOT_URLCONF = 'mysite.urls'
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+# Form Rendering
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # django-compressor
 # ------------------------------------------------------------------------------
@@ -110,8 +117,7 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),  #libsass for scss to CSS
 )
 
-# Form Rendering
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 
 from django.contrib.messages import constants as messages
 
@@ -150,7 +156,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = 'users.User'
 
-WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'account/privacy.html'
+
 #WAGTAIL_FRONTEND_LOGIN_URL = '/accounts/login/'
 #WAGTAILADMIN_USER_LOGIN_FORM = 'admin.site.login'
 #Privacy page
@@ -164,8 +170,8 @@ DATABASES = {
 
 	'default': {
         	'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        	'NAME': 'mod',
-        	'USER': 'modadmin',
+        	'NAME': 'printrender',
+        	'USER': 'printrenderadmin',
         	'PASSWORD': '$Django10',
         	'HOST': 'localhost',
         	'PORT': '',
@@ -246,13 +252,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-# Wagtail settings
-
-WAGTAIL_SITE_NAME = "mysite"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'https://domazzola.com'
+
 
 SITE_ID = 1
 
@@ -279,7 +282,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 # Determines the e-mail verification method during signup – choose one of "mandatory", "optional", or "none". When set to “mandatory” the user is blocked from logging in until the email address is verified. Choose “optional” or “none” to allow logins with an unverified e-mail address. In case of “optional”, the e-mail verification mail is still sent, whereas in case of “none” no e-mail verification mails are sent.
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 # Determines the e-mail verification method during signup – choose one of "mandatory", "optional", or "none". When set to “mandatory” the user is blocked from logging in until the email address is verified. Choose “optional” or “none” to allow logins with an unverified e-mail address. In case of “optional”, the e-mail verification mail is still sent, whereas in case of “none” no e-mail verification mails are sent.
-ACCOUNT_EMAIL_SUBJECT_PREFIX ='Mod Technologies LLC '
+ACCOUNT_EMAIL_SUBJECT_PREFIX ='PrintRender'
 # Subject-line prefix to use for email messages sent. By default, the name of the current Site (django.contrib.sites) is used.
 ACCOUNT_DEFAULT_HTTP_PROTOCOL ='http'
 
@@ -309,3 +312,6 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True  # The default behaviour is not log u
 #TEST
 #STRIPE_PUBLISHABLE_KEY = 'pk_test_idvhfKDQ341zGBS85RwhLnWY'
 #STRIPE_SECRET_KEY = 'sk_test_UreA2MI54Bmadk6xO2j9jGlD'
+
+
+EMAIL_CUSTOMER = 'dominic@modwebservices.com'

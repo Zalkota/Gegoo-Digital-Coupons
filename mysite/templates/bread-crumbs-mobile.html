@@ -1,0 +1,75 @@
+{% load static %}
+
+{% block extra_styles %}
+{% if request.path == '/membership/checkout/' %}
+<style>
+
+.text-one {
+  color: #48BB78;
+}
+
+.text-three {
+  color: #c1c1c1;
+}
+</style>
+
+ {% else %}
+
+<style>
+
+.text-one {
+  color: #c1c1c1;
+}
+
+.text-three {
+  color: #48BB78;
+}
+</style>
+
+{% endif %}
+
+{% endblock extra_styles %}
+
+
+
+  <div class="mb-2 unhide">
+    <ul class="list-unstyled pl-3">
+      <li><h5 class="text-muted fs-18 mb-3">
+        <span class="fa-stack mb-1 mr-1">
+            <!-- The icon that will wrap the number -->
+            <span class="fa fa-circle fa-stack-2x text-one text-primary"></span>
+            <!-- a strong element with the custom content, in this case a number -->
+            <strong class="fa-stack-1x text-light" style="font-family: Arial; font-size: 15px; ">
+                1
+            </strong>
+        </span>
+        <span class="text-primary">Job Description</span>
+      </h5></li>
+      <li>
+          <h5 class="text-muted fs-18 mb-3">
+            <span class="fa-stack mb-1 mr-1">
+                <!-- The icon that will wrap the number -->
+                <span class="fa fa-circle fa-stack-2x text-one"></span>
+                <!-- a strong element with the custom content, in this case a number -->
+                <strong class="fa-stack-1x text-light" style="font-family: Arial; font-size: 15px; ">
+                    2
+                </strong>
+            </span>
+            <span>Upload Images</span>
+          </h5>
+      </li>
+      <li>
+        <h5 class="text-muted fs-18 mb-3">
+          <span class="fa-stack mb-1 mr-1">
+              <!-- The icon that will wrap the number -->
+              <span class="fa fa-circle fa-stack-2x text-one"></span>
+              <!-- a strong element with the custom content, in this case a number -->
+              <strong class="fa-stack-1x text-light" style="font-family: Arial; font-size: 15px; ">
+                  3
+              </strong>
+          </span>
+          <span>Checkout</span>
+        </h5>
+      </li>
+    </ul>
+  </div>

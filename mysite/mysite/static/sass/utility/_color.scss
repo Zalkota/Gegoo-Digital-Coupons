@@ -1,73 +1,137 @@
 
-// Theme Colors #007ad6
-$color-primary: #4299E1;
-$color-primary-light: #63B3ED;
-$color-primary-lighter: lighten( $color-primary, 35% );
-$color-primary-dark: #3182CE;
-$color-secondary: lighten( $color-primary, 50% );
+// Rainbow section
+
+$color-gray-100: #F7FAFC;
+$color-gray-200: #EDF2F7;
+$color-gray-300: #E2E8F0;
+$color-gray-400: #CBD5E0;
+$color-gray-500: #A0AEC0;
+$color-gray-600: #718096;
+$color-gray-700: #4A5568;
+$color-gray-800: #2D3748;
+$color-gray-900: #1A202C;
+
+$color-red-100: #FEB2B2;
+$color-red-200: #FC8181;
+$color-red-300: #FEB2B2;
+$color-red-400: #FC8181;
+$color-red-500: #F56565;
+$color-red-600: #E53E3E;
+$color-red-700: #C53030;
+$color-red-800: #E53E3E;
+$color-red-900: #C53030;
+
+$color-orange-100: #FFFAF0;
+$color-orange-200: #FEEBC8;
+$color-orange-300: #FBD38D;
+$color-orange-400: #F6AD55;
+$color-orange-500: #ED8936;
+$color-orange-600: #DD6B20;
+$color-orange-700: #C05621;
+$color-orange-800: #9C4221;
+$color-orange-900: #7B341E;
+
+$color-yellow-100: #FFFFF0;
+$color-yellow-200: #FEFCBF;
+$color-yellow-300: #FAF089;
+$color-yellow-400: #F6E05E;
+$color-yellow-500: #ECC94B;
+$color-yellow-600: #D69E2E;
+$color-yellow-700: #B7791F;
+$color-yellow-800: #975A16;
+$color-yellow-900: #744210;
+
+$color-green-100: #F0FFF4;
+$color-green-200: #C6F6D5;
+$color-green-300: #9AE6B4;
+$color-green-400: #68D391;
+$color-green-500: #48BB78;
+$color-green-600: #38A169;
+$color-greeLen-700: #2F855A;
+$color-green-800: #276749;
+$color-green-900: #22543D;
+
+$color-blue-100: #EBF8FF;
+$color-blue-200: #BEE3F8;
+$color-blue-300: #90CDF4;
+$color-blue-400: #63B3ED;
+$color-blue-500: #4299E1;
+$color-blue-600: #3182CE;
+$color-blue-700: #2B6CB0;
+$color-blue-800: #2C5282;
+$color-blue-900: #2A4365;
+
+// Theme Colors
+$color-primary: $color-green-500;
+$color-primary-light: $color-green-400;
+$color-primary-lighter: $color-green-300;
+$color-primary-dark: $color-green-600;
+
+$color-secondary: $color-orange-500;
 $color-secondary-light: lighten( $color-secondary, 20% );
 $color-secondary-dark: darken( $color-secondary, 10% );
-$color-alt: #aeaf99;
-$color-white: #fff;
-$color-light: #fafafa;
 
 $color-white: #fff;
-$color-light: #fafafa;
+$color-light: $color-gray-200;
 $color-light-2: #F7FAFC;
-$color-gray-1: #F7FAFC;
-$color-gray-2: #E2E8F0;
-$color-gray-3: #CBD5E0;
-$color-gray-4: #A0AEC0;
-$color-gray-5: #718096;
-$color-muted: #E2E8F0;
+$color-muted: $color-gray-600;
 
 $color-dark:  #2A4365; //#343741
 $color-black: #2D3748;
 //$color-dark:  #424242;
 //$color-black: #000000;
 
-$color-background: #F6FAFD;
-$color-background-alt: #f3f6fa;
-$color-main: #fafafa;
-$color-alt: #003156;
+$color-alt: #2D3748;
 $color-alt-light: lighten( $color-alt, 20% );
 $color-alt-lighter: lighten( $color-alt, 25% );
 $color-alt-dark: darken( $color-alt, 10%);
-$color-accent: #2D3748;
+
+$color-accent: $color-gray-800;
 $color-accent-light: lighten( $color-accent, 13% );
 $color-accent-dark: darken( $color-accent, 5% );
 $color-accent-lighter: lighten( $color-accent, 80% );
 
-$color-text: #2a2a2a;
+$color-text: $color-black;
+$color-background: #F6FAFD;
+$color-background-alt: #f3f6fa;
+$color-main: #fafafa;
 
 // Navbar
 $color-navbar-background: $color-main;
-$color-navbar-background-scrolled: $color-alt;
-$color-navbar-text: $color-alt;
-$color-navbar-hover: $color-primary-dark;
+$color-navbar-background-scrolled: $color-main;
+$color-navbar-text: $color-main;
+$color-navbar-hover: $color-black;
 
 // Navbar-alt
 $color-navbar-alt-background: $color-main;
 $color-navbar-alt-background-scrolled: #fdfdfe;
-$color-navbar-alt-text: $color-alt;
+$color-navbar-alt-text: $color-black;
 $color-navbar-alt-hover: $color-primary-dark;
+
+// Footer
+$color-footer-background: $color-dark;
+$color-footer-text: $color-light;
+$color-footer-title: $color-white;
 
 $keep: #476783;
 $keep1: #5981a4;
 $keep2: #6b81cb;
 
 // Buttons
-$color-success: #3ddb93;
+$color-success: $color-green-500;
 $color-success-light: lighten( $color-success, 10% );
 $color-success-dark: darken( $color-success, 10% );
 
-$color-danger: #E53E3E;
+$color-danger: $color-red-600;
 $color-danger-light: lighten( $color-danger, 10% );
 $color-danger-dark: darken( $color-danger, 10% );
 
-$color-info: #19b5fe;
+$color-info: $color-blue-400;
 $color-info-light: lighten( $color-info, 10% );
 $color-info-dark: darken( $color-info, 10% );
 
-$border-radius: 0.15rem;
+$border-radius: 0.2rem;
+$border-color: rgba(0, 0, 0, 0.06);
 $box-shadow-1: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+
+// #666ee8 stripe color

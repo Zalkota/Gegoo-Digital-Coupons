@@ -1,0 +1,85 @@
+
+{% extends "base-alt.html" %}
+{% load staticfiles %}
+
+{% block title %} User Subscription {% endblock title %}
+{% block extra_head %}{% endblock extra_head %}
+<!-- TODO: Add a alert message if trailer is overdue -->
+{% block content %}
+<style>
+table td {
+
+border-collapse:collapse;
+    border-top: 3px solid rgba(0,0,0,.06); !important
+}
+table th {
+
+border-collapse:collapse;
+    border-top: 3px solid rgba(0,0,0,.06) !important;
+}
+</style>
+<!-- Body Start -->
+    <div class="container">
+      <h2 class="fw-6 hide">Orders</h2>
+      {% block component %}
+        {% include "users/profile_nav.html" %}
+      {% endblock component %}
+        <div>
+    			{% if user_jobs != None %}
+          {% for object in user_jobs %}
+              <div class="card mb-3">
+                  <div class="card-header pb-2">
+                    <h6 class="lead">Job</h6>
+                  </div>
+                  <div class="card-body">
+                      <div class="row text-center">
+                          <div class="col-lg-5">
+                              <table class="table responsive" >
+                                  <tbody style="border: none;">
+                                    <tr class="text-left">
+                                      <td class="text-muted">Status</td>
+                                      <td> <span class="fw-6 {% if object.status == "COMPLETED" %} text-success {% elif object.status == "REQUIRES INPUT" %} text-danger {% else %} text-warning {% endif %}"><i class="fa fa-circle mr-1" aria-hidden="true"></i> {{ object.status }}</span></td>
+                                    </tr>
+                                    <tr class="text-left">
+                                      <td class="text-muted">Created</td>
+                                      <td><span class=" text-dark">{{ object.created_time }}</span></td>
+                                    </tr>
+                                    <tr class="text-left">
+                                      <td class="text-muted">Due Date</td>
+                                      <td><span class="text-dark">{{ object.due_date }}</span></td>
+                                    </tr>
+                                    <tr class="text-left">
+                                      <td class="text-muted">Price</td>
+                                      <td><span class="text-dark">$299.00</span></td>
+                                    </tr>
+                                    <tr class="text-left">
+                                      <td class="text-muted">Designer</td>
+                                      <td><span class="text-dark">{{ object.designer }}</span></td>
+                                    </tr>
+
+                                  </tbody>
+                              </table>
+                          </div>
+                          <div class="col-lg-7 pull-right">
+                              <a href="" class="pull-right btn-accent-alt mt-1 ">Contact Designer</a>
+                              <br><br><br>
+                              <a href="" class="pull-right btn-accent-alt mt-1 ">Edit Job Details</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
+
+					{% else %}
+            <div class="text-center">
+              <h5> You haven't started any jobs, click <a href="{% url 'portal:job_request' %}">here to start one.</a></h5>
+            </div>
+        	{% endif %}
+      </div>
+      <div style="margin-bottom: 36rem;"></div>
+    </div>
+
+
+
+
+{% endblock content %}

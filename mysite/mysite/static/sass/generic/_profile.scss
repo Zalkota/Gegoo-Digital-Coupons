@@ -1,5 +1,5 @@
 .profile-nav {
-  border-bottom: 2px solid $color-gray-2;
+  border-bottom: 2px solid $color-gray-300;
   height: 60px;
 
   ul {
@@ -12,7 +12,7 @@
   }
 
   .profile-link {
-    color: $color-gray-5;
+    color: $color-gray-500;
     font-weight: 500 !important;
     font-size: 1rem;
     line-height:60px;
@@ -25,7 +25,7 @@
 
   &-active {
       color: $color-dark;
-      border-bottom: 4px solid $color-navbar-text;
+      border-bottom: 4px solid $color-dark;
       padding-bottom: 15px;
       text-decoration: none;
       margin-right: 2rem;
@@ -34,12 +34,16 @@
   &:hover, &:active {
     text-decoration: none;
     color: $color-dark;
-    border-bottom: 4px solid $color-navbar-text;
+    border-bottom: 4px solid $color-dark;
     padding-bottom: 15px;
     }
   }
 }
 
 .card-body {
+  background-color: #fff !important;
+}
+
+.card-header {
   background-color: #fafbfc !important;
 }

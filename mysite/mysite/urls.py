@@ -8,17 +8,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from allauth.account import views as allauthviews
 
-#Wagtail
-from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.core import urls as wagtail_urls
-from wagtail.documents import urls as wagtaildocs_urls
-from search import views as search_views
-
 #Stemletic App Models
 from .views import security
-from portal.views import SubscriptionListView, CourseListView, CourseDetailView, LessonDetailView, SearchTitles #ProductDetailView, ProductCreateView, ProductUpdateView,
-from users.views import  UserDetailView, UserRedirectView, UserUpdateView, RedirectProfileView, userPage, add_image, user_subscriptions_view
-from memberships.views import get_user_membership, get_user_subscription, get_selected_membership, MembershipSelectView, PaymentView, updateTransactionRecords, cancelSubscription
+from users.views import  UserDetailView, UserRedirectView, UserUpdateView, RedirectProfileView, userPage, add_image, user_jobs_view
 
 admin.site.login = staff_member_required(login_url='/', redirect_field_name='')(admin.site.login)
 #wagtailadmin_urls = staff_member_required(login_url='/', redirect_field_name='')(wagtailadmin_urls)
@@ -31,24 +23,14 @@ urlpatterns = [
     #Security
     path('.well-known/security.txt', security, name='security'),
 
-    #Generic
-    url(r'^django-admin/', admin.site.urls),
-
-    #url(r'^cms/login', redirect_to_my_auth, name='wagtailadmin_urls'),
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
-
-    # Wagtail Search
-    #url(r'^search/$', search_views.search, name='search'),
-
     #Authentication
     url(r'^accounts/', include('allauth.urls')),
 
-    #Product
-    url(r'^portal/', include(('portal.urls', 'portal'), namespace='portal')),
+    #home
+    path('', include('home.urls')),
 
-    #Membership
-    url(r'^membership/', include(('memberships.urls', 'memberships'), namespace='memberships')),
+    #Portal
+    url(r'^portal/', include(('portal.urls', 'portal'), namespace='portal')),
 
     #Users
     url(r'^profile/$', userPage, name='userPage'),
@@ -57,22 +39,22 @@ urlpatterns = [
     url(r'^users/~update/$', UserUpdateView.as_view(), name='update'),
     url(r'^users/redirectprofile/$', RedirectProfileView.as_view(), name='redirectprofile'),
     path('users/update/image/', add_image, name='update_image'),
-    path('subscription/', user_subscriptions_view, name='user_subscription'),
-    # For anything not caught by a more specific rule above, hand over to
-    # Wagtail's page serving mechanism. This should be the last pattern in
-    # the list:
-    url(r'', include(wagtail_urls)),
+    path('orders/', user_jobs_view, name='user_jobs'),
 
-    # Alternatively, if you want Wagtail pages to be served from a subpath
-    # of your site, rather than the site root:
-    #    url(r'^pages/', include(wagtail_urls)),
+    path('admin/', admin.site.urls),
+
+
+    #Ckeditor
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+
 ]
 
-
 if settings.DEBUG:
+    import debug_toolbar
     from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
     # Serve static and media files from development server
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += path('__debug__/', include(debug_toolbar.urls)),

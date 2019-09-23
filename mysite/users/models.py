@@ -10,8 +10,9 @@ from allauth.account.signals import user_logged_in, user_signed_up
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 from django.core.validators import FileExtensionValidator
-from portal.models import Course
 
+import datetime
+from django.utils import timezone
 
 class User(AbstractUser):
     # First Name and Last Name do not cover name patterns
@@ -38,9 +39,8 @@ def upload_to(instance, filename):
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_profile')
-    school = models.CharField(max_length=30, blank=True, default="Stemletics University")
     image = models.ImageField(_("Picture"), upload_to=upload_to, null=True, default='blankImage.png', validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Image must be a .PNG or .JPG")
-    enrolled = models.ManyToManyField(Course, related_name="profile", blank=True)
+    created_time = models.DateTimeField(('created time'), editable=False, null=True, auto_now_add=True)
 
     def __str__(self):
         return self.user.username

@@ -1,6 +1,6 @@
 
 {% load static %}
-{% load wagtailcore_tags %}
+
 
 <footer style="background-image: none;">
     <div class="py-5"></div>
@@ -10,16 +10,16 @@
             <div class="row text-center my-4">
                 <div class="offset-md-2"></div>
                 <div class="col-md-2 col-sm-12 mb-4">
-                    <a style="line-height: 2rem;" href="{% slugurl 'contact' %}">Contact Us</a>
+                    <a style="line-height: 2rem;" href="{% url 'contact-page' %}">Contact Us</a>
                 </div>
                 <div class="col-md-2 col-sm-12 mb-4">
-                    <a style="line-height: 2rem;" href="{% slugurl 'terms-page' %}">Terms of Use</a>
+                    <a style="line-height: 2rem;" href="/terms-page/">Terms of Use</a>
                 </div>
                 <div class="col-md-2 col-sm-12 mb-4">
-                    <a style="line-height: 2rem;" href="{% slugurl 'privacy-page' %}">Privacy Policy</a>
+                    <a style="line-height: 2rem;" href="/privacy-page/">Privacy Policy</a>
                 </div>
                 <div class="col-md-2 col-sm-12 mb-4">
-                    <a style="line-height: 2rem;" href="{% slugurl 'contact' %}"> &copy; 2019 Mod</a>
+                    <a style="line-height: 2rem;"> &copy; 2019 Mod</a>
                 </div>
                 <div class="col-md-2 col-sm-12 mb-4">
                     <img src="{% static 'img/logo/logo.png' %}" width="40px;" alt="">

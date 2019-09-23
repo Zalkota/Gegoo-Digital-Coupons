@@ -2,13 +2,14 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User, Profile
+from portal.views import get_user_jobs
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.shortcuts import render
-from memberships.models import Membership, UserMembership, Subscription, Invoice
-from memberships.views import get_user_membership, get_user_subscription
+import datetime
+from django.utils import timezone
 
 #Profile Image
 from .forms import ProfileImageForm
@@ -28,31 +29,6 @@ def userPage(request):
     model = User
     user = request.user
 
-
-    if request.method == 'POST':
-        selected_invoice_id = request.POST.get('invoice_id') #Obtains the membrship data from form POST
-        selected_invoice_qs = Invoice.objects.filter(
-        invoice_id=selected_invoice_id)
-        print('selected_invoice_qs', selected_invoice_qs)
-        selected_invoice = selected_invoice_qs.first()
-        print('selected_invoice',selected_invoice)
-        # assign to the session
-        request.session['selected_invoice_id'] = selected_invoice.invoice_id
-        return HttpResponseRedirect(reverse('memberships:invoice_payment'))
-
-    if user.user_membership != None: #BROKEN
-
-        user_membership = get_user_membership(request)
-        user_subscription = get_user_subscription(request)
-        print(user_membership, user_subscription)
-
-        context = {
-                'user': user,
-        		'user_membership': user_membership,
-        		'user_subscription': user_subscription
-                }
-        template = 'users/userPage.html'
-        return render(request, template, context)
 
     context = {
             'user': user,
@@ -94,14 +70,12 @@ class RedirectProfileView(LoginRequiredMixin, RedirectView):
                             kwargs={'username': self.request.user.username}))
 
 
-def user_subscriptions_view(request):
-	user_membership = get_user_membership(request)
-	user_subscription = get_user_subscription(request)
+def user_jobs_view(request):
+	user_jobs = get_user_jobs(request)
 	context = {
-		'user_membership': user_membership,
-		'user_subscription': user_subscription
+		'user_jobs': user_jobs
 	}
-	return render(request, "users/user_subscription.html", context)
+	return render(request, "users/user_jobs.html", context)
 
 
 #Profile Image

@@ -48,18 +48,7 @@ color: #3a3a3a;
   opacity: 1; }
 
 
-.contactinfo {
-  background-image: linear-gradient(25deg, #2ac399, #3a75c1);
-  color: #fff;
-}
-.btn-contact {
-background-image: linear-gradient(25deg, #2ac399, #3a75c1);
-color: white;
-}
-.btn-contact:hover {
-background-image: linear-gradient(25deg, #2ac399, #3a75c1);
-color: #555;
-}
+
 .gradienttext {
   background: linear-gradient(2deg, #2ac399, #3a75c1);
   -webkit-background-clip: text;

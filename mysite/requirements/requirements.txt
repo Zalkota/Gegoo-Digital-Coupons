@@ -20,9 +20,6 @@ six==1.11.0
 Unidecode==1.0.22
 urllib3==1.23
 
-#Wagtail Framework
-wagtail==2.2.2
-
 webencodings==0.5.1
 
 # Used with Wagtail
@@ -38,7 +35,7 @@ django-allauth==0.36.0
 django-crispy-forms==1.7.2
 
 # Payment Procesing
-stripe
+stripe==2.36.1
 
 # Compress Assets With Django Compressor
 rcssmin==1.0.6  # https://github.com/ndparker/rcssmin
@@ -49,16 +46,8 @@ django-libsass==0.7
 libsass==0.12.3
 
 
-# Django Rating System https://github.com/wildfish/django-star-ratings
-django-star-ratings
-
 # Permission System https://github.com/brack3t/django-braces/tree/v1.4.0
 django-braces
-
-
-#Wagtail Captcha https://github.com/springload/wagtail-django-recaptcha;
-#Sign up for ReCaptcha: https://github.com/praekelt/django-recaptcha
-wagtail-django-recaptcha
 
 #Crispy Form Wagtail extensions
 django-widget-tweaks
@@ -67,7 +56,21 @@ django-widget-tweaks
 django-cookie-law
 
 #PDF Creator/download Pg.150 Django CookBook
-xhtml2pdf~=0.2.3
+#xhtml2pdf~=0.2.3
 
 # Honeypot
 django-honeypot
+
+# Instagram APP https://github.com/marcopompili/django-instagram
+#sorl-thumbnail
+django-instagram
+
+# Ckeditor https://django-ckeditor.readthedocs.io/en/latest/
+django-ckeditor
+
+# Phone Numbers https://github.com/stefanfoulis/django-phonenumber-field
+django-phonenumber-field
+phonenumbers
+
+#Debug Toolbar
+django-debug-toolbar

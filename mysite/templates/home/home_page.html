@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
-
-{% load static wagtailuserbar %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load  %}
 
 
 {% block body_class %}template-homepage{% endblock %}
@@ -16,114 +13,56 @@
 
   <section class="hero">
         <div class="text">
-            <h1 class="pb-0">{{ page.firstheader }}</h1>
-            <p class="">{{ page.firstbody }}</p>
+            <h1>Tools to grow your search traffic, research your competitors and monitor your niche</h1>
+            <p>Ahrefs helps you learn why your competitors rank so high and <br>what you need to do to outrank them.</p>
             <div class="hide">
-              <a class="btn btn-primary-round fs-18" href="{% slugurl 'contact' %}">Start a project</a>
+              <a class="btn btn-secondary-round" href="{% url 'contact-page' %}">Start a project</a>
             </div>
             <div class="unhide">
-              <a class="btn btn-primary-round fs-16 px-5" href="{% slugurl 'contact' %}">Start a project</a>
+              <a class="btn btn-secondary-round px-5" href="{% url 'contact-page' %}">Start a project</a>
             </div>
+
+        </div>
+        <div id="carouselExampleIndicators" class="carousel slide mt-5 hide" data-ride="carousel" data-aos="fade-up">
+          <div class="carousel-inner ">
+            <div class="carousel-item active text-center ">
+              <img class="img-responsive my-4 shadow-3" src="{% static 'img/headers/real_picture.jpg' %}" alt="TODO">
+            </div>
+            <div class="carousel-item text-center">
+              <img class="img-responsive my-4 shadow-3" src="{% static 'img/headers/real_picture.jpg' %}" alt="TODO">
+            </div>
+            <div class="carousel-item text-center">
+              <img class="img-responsive my-4 shadow-3" src="{% static 'img/headers/real_picture.jpg' %}" alt="TODO">
+            </div>
+          </div>
+          <a class="carousel-control-prev hide" style="opacity: 1; width: 30%;" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <div class="card-icon-circle" >
+              <span class="fa fa-chevron-left text-primary" aria-hidden="true"></span>
+            </div>
+          </a>
+          <a class="carousel-control-next hide" style="opacity: 1; width: 30%;" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <div class="card-icon-circle">
+              <span class="fa fa-chevron-right text-primary" aria-hidden="true"></span>
+            </div>
+          </a>
         </div>
   </section>
-
-
-  <!-- ****** Logo Section ******* -->
-
-  <section class="section-alt-md">
-      <div class="container">
-            <div class="row">
-              <div class="col-lg-12 px-5 mb-4">
-                <h2 class="text-white fw-6 fs-34">Services</h2>
-                <div class="hr-primary-gradient-sm" data-aos="fade-right"></div>
-              </div>
-
-                <div class="col-lg-6 px-5 py-4">
-                  <div class="">
-                    <i class="material-icons text-gradient" style="font-size: 5em;">devices</i>
-                    <h5 class="text-uppercase text-primary-light ls-3 fw-6 pt-2">Web Applcations</h5>
-                    <br>
-                  </div>
-                  <div class="text-left">
-                    <span class="fw-5 text-left">We specialize in building high performance and scalable web applications and websites using Django Python Web Framework. Learn more about Django <a target="_blank" href="https://www.djangoproject.com/">here</a>.
-                    </span>
-                  </div>
-                  <div class="mt-3">
-                    <a href="#" class="py-1 fw-6" style="border-bottom: solid 2px #3ddb93; display: none;">
-                      Learn more
-                    </a>
-                  </div>
-                  <div class="unhide my-5" style="height: 1px; width: 100%; background-color: #bbb;"></div>
-                </div>
-                <div class="col-lg-6 px-5 py-4">
-                  <div class="">
-                    <i class="material-icons text-gradient"  style="font-size: 5em;">shopping_cart</i>
-                    <h5 class="text-uppercase text-primary-light ls-3 fw-6 pt-2">E-Commerce</h5>
-                    <br>
-                  </div>
-                  <div class="text-left">
-                    <span class="fw-5 text-left">Our skilled team of developers will create, manage, and deliver a top-performing unqie E-Commerce site for your business.</span>
-                  </div>
-                  <div class="mt-3">
-                    <a href="#" class="py-1 fw-6" style="border-bottom: solid 2px #3ddb93; display: none;">
-                      Learn more
-                    </a>
-                  </div>
-                  <div class="unhide my-5" style="height: 1px; width: 100%; background-color: #bbb;"></div>
-                </div>
-                <div class="col-lg-6 px-5 py-4">
-                  <div class="">
-                    <i class="material-icons text-gradient" style="font-size: 5em;">signal_cellular_alt</i>
-                    <h5 class="text-uppercase text-primary-light ls-3 fw-6 pt-2">PPC Advertising</h5>
-                    <br>
-                  </div>
-                  <div class="text-left">
-                    <span class="fw-5 text-left">We work with organizations who are serious about taking their online marketing and conversion ratings to the next level.</span>
-                  </div>
-                  <div class="mt-3">
-                    <a href="#" class="py-1 fw-6" style="border-bottom: solid 2px #3ddb93; display: none;">
-                      Learn more
-                    </a>
-                  </div>
-                  <div class="unhide my-5" style="height: 1px; width: 100%; background-color: #bbb;"></div>
-                </div>
-                <div class="col-lg-6 px-5 py-4">
-                  <div class="">
-                    <i class="material-icons text-gradient" style="font-size: 5em;">location_searching</i>
-                    <h5 class="text-uppercase text-primary-light ls-4 fw-6 pt-2">AI Marketing</h5>
-                    <br>
-                  </div>
-                  <div class="text-left">
-                    <span class="fw-5 text-left ">
-                     Our goal is to maximize conversions while decreasing labor times and costs, by analyzing trends and data.
-                     </span>
-                  </div>
-                  <div class="mt-3">
-                    <a href="#" class="py-1 fw-6" style="border-bottom: solid 2px #3ddb93; display: none;">
-                      Learn more
-                    </a>
-                  </div>
-                </div>
-          </div>
-      </div>
-  </section>
-
-  <!-- ****** End Logo Section ******* -->
 
   <!-- ****** Picture Gallery ******* -->
 
   <section class="section-md container">
+
       <div class="row">
           <div class="col-lg-6">
-            <img class="img-responsive" data-aos="fade-right" src="{% static 'img/undraw_designer_life_w96d.svg' %}" width="100%" height="100%" alt="TODO">
+            <img class="img-responsive shadow-3" data-aos="fade-up" src="{% static 'img/headers/real_picture.jpg' %}" width="100%" alt="TODO">
           </div>
           <div class="col-lg-6">
-              <div class="px-1 vertical-align" data-aos="fade-right">
+              <div class="px-1" data-aos="fade-up">
                 <h3><span style="font-size: 4rem; font-weight: 600;">01.</span>
                   <br>
                   <span style="font-size: 2rem; font-weight: 600;">If You Can Dream It, We Can Plan & Create It</span>
                 </h3>
-                <div class="hr-primary-gradient-sm" data-aos="fade-right"></div>
+                <div class="hr-primary-gradient-sm" ></div>
                 <p class="py-4 mb-0">No two projects are ever the same. That’s why we personally discuss your needs with you one-on-one via email, video chat, or over the phone to determine exactly what you want to accomplish and how we can help. Once we properly assess your needs, we develop a customized plan of action and get to work.
                 <br><br>Taking a leap. Without knowing how to fly, can be costly & deadly. We want to see you soar. We'll set you up with our tidy, convenient, and super easy-to-use project management software. This is where we’ll share style inspiration, mind maps, questionnaires and any curated content.
                 This is a collaboration, after all, and we care about protecting the purity of your vision.
@@ -133,11 +72,11 @@
       </div>
   </section>
 
-  <section class="section-secondary-light-md text-left" style="border-top: solid 1px #ddd; border-bottom: solid 1px #ddd">
+  <section class="section-light-md text-left" style="border-top: solid 1px #ddd; border-bottom: solid 1px #ddd">
     <div class="container">
       <div class="row">
-          <div class="col-lg-6" data-aos="fade-down">
-              <div class="px-1 vertical-align">
+          <div class="col-lg-6" data-aos="fade-up">
+              <div class="px-1">
                 <h3><span style="font-size: 4rem; font-weight: 600;">02.</span>
                   <br>
                   <span style="font-size: 2rem; font-weight: 600;">Your Brand, Our Process</span>
@@ -149,7 +88,7 @@
               </div>
           </div>
           <div class="col-lg-6" data-aos="fade-down">
-            <img class="img-responsive" src="{% static 'img/undraw_design_tools_42tf.svg' %}" width="100%" height="100%" alt="TODO">
+            <img class="img-responsive shadow-3" src="{% static 'img/headers/real_picture.jpg' %}" width="100%" alt="TODO">
           </div>
       </div>
     </div>
@@ -157,16 +96,16 @@
 
   <section class="section-md container">
       <div class="row">
-          <div class="col-lg-6" data-aos="fade-right">
-            <img class="img-responsive" src="{% static 'img/undraw_To_the_stars_qhyy_4.svg' %}" width="100%" height="100%" alt="TODO">
+          <div class="col-lg-6" data-aos="fade-up">
+            <img class="img-responsive shadow-3" src="{% static 'img/headers/real_picture.jpg' %}" width="100%" alt="TODO">
           </div>
-          <div class="col-lg-6" data-aos="fade-right">
-              <div class="px-1 vertical-align">
+          <div class="col-lg-6" data-aos="fade-up">
+              <div class="px-1">
                 <h3><span style="font-size: 4rem; font-weight: 600;">03.</span>
                   <br>
                   <span style="font-size: 2rem; font-weight: 600;">Test, Tweak & Deploy</span>
                 </h3>
-                <div class="hr-primary-gradient-sm" data-aos="fade-right"></div>
+                <div class="hr-primary-gradient-sm"></div>
                 <p class="py-4 mb-0">Your visitors expect an easy to navigate, memorable and impressionable experience when they visit your website.
                 <br><br>Even the best of websites can be rendered useless with a few broken links and typos. That is why we test every link, examine the copywriting with a fine tooth comb and split-test the opt-in pages. We simply want your website to be perfect.
                 <br><br>Once we have tested everything and made the necessary adjustments it's ready to go live. You are now ready to deliver your business, product, or service to the world and with the push of a button it will be LIVE on the world wide web.
@@ -178,10 +117,146 @@
 
   <!-- ****** End Picture Gallery ******* -->
 
+  <section class="section-image-grey-md ">
+    <div class="container text-left" data-aos="fade-up">
+      <h3 class="fs-30 fw-6">Designed By Landscapes <br> For Landscapers</h3>
+      <div class="hr-primary-gradient-sm" ></div>
+      <div class="py-3"></div>
+          <div class="row my-5">
+              <div class="col-sm-4 my-3" target="_blank" data-aos="fade-up" data-aos-duration="1500">
+                <div class="text-center">
+                  <!-- Create an icon wrapped by the fa-stack class -->
+                  <span class="fa-stack mb-2">
+                      <!-- The icon that will wrap the number -->
+                      <span class="fa fa-circle fa-stack-2x text-primary"></span>
+                      <!-- a strong element with the custom content, in this case a number -->
+                      <strong class="fa-stack-1x text-light" style=" font-family: Arial; font-size: 15px; ">
+                          1
+                      </strong>
+                  </span>
+                </div>
+                <a href="{{ object.website_url }}" >
+                  <div class="card shadow-2 card-border">
+                    <img class="card-img-top" src="{% static 'img/headers/real_picture.jpg' %}" alt="webdesign project thumbnail">
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-4 my-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1500">
+                <div class="text-center">
+                  <!-- Create an icon wrapped by the fa-stack class -->
+                  <span class="fa-stack mb-2">
+                      <!-- The icon that will wrap the number -->
+                      <span class="fa fa-circle fa-stack-2x text-primary"></span>
+                      <!-- a strong element with the custom content, in this case a number -->
+                      <strong class="fa-stack-1x text-light" style=" font-family: Arial; font-size: 15px; ">
+                          2
+                      </strong>
+                  </span>
+                </div>
+                <a href="{{ object.website_url }}" target="_blank" >
+                  <div class="card shadow-2 card-border">
+                    <img class="card-img-top" src="{% static 'img/headers/real_picture.jpg' %}" alt="webdesign project thumbnail">
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-4 my-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1500">
+                <div class="text-center">
+                  <!-- Create an icon wrapped by the fa-stack class -->
+                  <span class="fa-stack mb-2">
+                      <!-- The icon that will wrap the number -->
+                      <span class="fa fa-circle fa-stack-2x text-primary"></span>
+                      <!-- a strong element with the custom content, in this case a number -->
+                      <strong class="fa-stack-1x text-light" style=" font-family: Arial; font-size: 15px; ">
+                          3
+                      </strong>
+                  </span>
+                </div>
+                <a href="{{ object.website_url }}" target="_blank" >
+                  <div class="card shadow-2 card-border">
+                    <img class="card-img-top" src="{% static 'img/headers/real_picture.jpg' %}" alt="webdesign project thumbnail">
+                  </div>
+                </a>
+              </div>
+        </div>
+        <div class="py-5"></div>
+        <div class="text-center">
+          <div class="text-left">
+              <h4 class="mt-4">"I'm getting at least one contact a day. Today a person called and wanted fall clean up, lawn service mext summer and spring clean. Easy money, starting to realize how beneficial this website could be."</h4>
+                <div class="row">
+                  <div class="col-lg-1">
+                      <img class="img-responsive img-circle  mt-2" data-aos="fade-in" src="{% static 'img/profile_jacob.png' %}" width="70px"  alt="TODO">
+                  </div>
+                  <div class="col-lg-11 pull-left">
+                    <h4 class="fs-14 mb-0 mt-3 ">Jacob Gaft - Owner, Lexington Landscapes LLC</h4>
+                    <span class="text-primary fs-14">September 11, 2019, 6:09 p.m.</span>
+                  </div>
+                </div>
+            </div>
+          <div class="text-center" style="display: none;">
+            <a class="btn btn-primary-round fs-20" href="{% url 'contact-page' %}">View Additional Projects</a>
+          </div>
+        </div>
+    </div>
+  </section>
 
+
+    <section class="section-image-grey-2-md ">
+      <div class="container" data-aos="fade-up">
+        <h2 class="fw-6">Why PrintRender?</h2>
+        <p>Print Render is a Verfied Google Business Partner</p>
+        <div class="hr-primary-gradient-sm" data-aos="fade-right"></div>
+        <br>
+        <div class="row">
+          <div class="col-lg-6 my-3" data-aos="fade-up" >
+            <div class="card stripe-primary">
+              <div class="card-header">
+                <h2>Multiple Revisions <span class="pull-right text-primary"><i data-feather="rotate-cw"></i></span></h2>
+              </div>
+              <div class="card-body ">
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+            </div>
+          </div>
+          <div class="col-lg-6 my-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="card stripe-primary">
+              <div class="card-header">
+                <h2>Experience Designers<span class="pull-right text-primary"><i data-feather="pen-tool"></i></span></h2>
+              </div>
+              <div class="card-body ">
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+            </div>
+          </div>
+          <div class="col-lg-6 my-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="card stripe-primary">
+              <div class="card-header">
+                <h2>3 Day Turn Around <span class="pull-right text-primary"><i data-feather="clock"></i></span></h2>
+              </div>
+              <div class="card-body ">
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+            </div>
+          </div>
+          <div class="col-lg-6 my-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="card stripe-primary">
+              <div class="card-header">
+                <h2>Industry Trusted<span class="pull-right text-primary"><i data-feather="heart"></i></span></h2>
+              </div>
+              <div class="card-body ">
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- ****** Logo Section ******* -->
 
-    <section class="section-accent-xs">
+    <section class="section-accent-xs shadow-3">
         <div class="container">
               <div class="text-center row">
                   <div class="col-lg-3 px-4">
@@ -210,66 +285,104 @@
                   <span class="fs-20">By Using Our Web Based Systems, Google Adwords, Analytics, Distribution & Influencer Marketing Strategies</span>
                 </h3>
               <div class="hide">
-                  <a class="btn btn-success-round text-white fs-22 mt-5 px-5 py-4" style="line-height: 1.5rem;" href="{% slugurl 'contact' %}">Take My Business To The Next Level</a>
+                  <a class="btn btn-success-round text-white fs-22 mt-5 px-5 py-4" style="line-height: 1.5rem;" href="{% url 'contact-page' %}">Take My Proposals To The Next Level</a>
               </div>
               <div class="unhide">
-                  <a class="btn btn-success-round text-white fs-18 mt-5 px-5 py-4" style="line-height: 1rem;" href="{% slugurl 'contact' %}">Take My Business <br>To The Next Level</a>
+                  <a class="btn btn-success-round text-white fs-18 mt-5 px-5 py-4" style="line-height: 1rem;" href="{% url 'contact-page' %}">Take My Proposals <br>To The Next Level</a>
               </div>
             </div>
         </div>
     </section>
 
-<!--
-<section class="section-md">
-  <div class="container text-left in-left">
-      <div class="row">
-          <div class="col-lg-6">
-              <h3 class="jumbo-dark mb-4 mt-5 " style="color: #3a75c1">We are product innovators</h3>
-              <p class="mb-4 text-left" style="font-size: 1.1rem;" >
-                We are product innovators
-                Founded by two engineers in 2018, we're a product development company, transforming founders’ and product owners’ visions into beautiful intuitive mobile and web software products that scale to support millions of users.
-                We bring a fresh perspective to your problems through our agile design and development process that accelerates your time to market and ensures you launch the right product for the right people at the right time.</p>
-          </div>
-          <div class="col-lg-12 py-4 unhide"></div>
-          <div class="col-lg-6 img-responsive-md">
-              <img class="pl-5  margin-top-unhide" src="{% static 'img/Iphone_r2.png' %}" style=" transform: rotate(-5deg);" alt="Card image" >
-          </div>
-      </div>
-  </div>
-</section> -->
 
-  <section class="section-white-md" id="projects">
-      <div class="container text-left" data-aos="fade-up">
-        <h3 class="fs-40 fw-6">Case Studies</h3>
-        <div class="hr-primary-gradient-sm" data-aos="fade-right"></div>
-        <p class="mt-4">Over the years we have worked on a multitude of projects. Everything from Video Courses Websites, eCommerce Websites,
-          Training & Marketing Systems, High Converting Sales Funnels. We're looking forward to adding your project to our portfolio...</p>
-            <div class="row my-5">
-              {% for object in page.special_projects %}
-                <div class="col-sm-4 my-3">
-                  <a href="{{ object.website_url }}" target="_blank">
-                    <div class="card shadow-2"style="border: solid 1px #ddd">
-                      <img class="card-img-top" src="{{ object.image_url_thumbnail }}" alt="webdesign project thumbnail">
-                      <div class="card-body border-top">
-                        <h5 class="text-dark fs-20">{{ object.title }}</h5>
-                        <p class="card-text text-muted fs-16">{{ object.work_done }}</p>
+      <!-- ****** Logo Section ******* -->
+
+      <section class="section-alt-md" style="display: none;">
+          <div class="container">
+                <div class="row">
+                  <div class="col-lg-12 px-5 mb-4">
+                    <h2 class="text-white fw-6 fs-34">Services</h2>
+                    <div class="hr-primary-gradient-sm" data-aos="fade-right"></div>
+                  </div>
+
+                    <div class="col-lg-6 px-5 py-4">
+                      <div class="">
+                        <i class="material-icons text-gradient" style="font-size: 5em;">devices</i>
+                        <h5 class="text-uppercase text-primary-light ls-3 fw-6 pt-2">Web Applcations</h5>
+                        <br>
+                      </div>
+                      <div class="text-left">
+                        <span class="fw-5 text-left">We specialize in building high performance and scalable web applications and websites using Django Python Web Framework. Learn more about Django <a target="_blank" href="https://www.djangoproject.com/">here</a>.
+                        </span>
+                      </div>
+                      <div class="mt-3">
+                        <a href="#" class="py-1 fw-6" style="border-bottom: solid 2px #3ddb93; display: none;">
+                          Learn more
+                        </a>
+                      </div>
+                      <div class="unhide my-5" style="height: 1px; width: 100%; background-color: #bbb;"></div>
+                    </div>
+                    <div class="col-lg-6 px-5 py-4">
+                      <div class="">
+                        <i class="material-icons text-gradient"  style="font-size: 5em;">shopping_cart</i>
+                        <h5 class="text-uppercase text-primary-light ls-3 fw-6 pt-2">E-Commerce</h5>
+                        <br>
+                      </div>
+                      <div class="text-left">
+                        <span class="fw-5 text-left">Our skilled team of developers will create, manage, and deliver a top-performing unqie E-Commerce site for your business.</span>
+                      </div>
+                      <div class="mt-3">
+                        <a href="#" class="py-1 fw-6" style="border-bottom: solid 2px #3ddb93; display: none;">
+                          Learn more
+                        </a>
+                      </div>
+                      <div class="unhide my-5" style="height: 1px; width: 100%; background-color: #bbb;"></div>
+                    </div>
+                    <div class="col-lg-6 px-5 py-4">
+                      <div class="">
+                        <i class="material-icons text-gradient" style="font-size: 5em;">signal_cellular_alt</i>
+                        <h5 class="text-uppercase text-primary-light ls-3 fw-6 pt-2">PPC Advertising</h5>
+                        <br>
+                      </div>
+                      <div class="text-left">
+                        <span class="fw-5 text-left">We work with organizations who are serious about taking their online marketing and conversion ratings to the next level.</span>
+                      </div>
+                      <div class="mt-3">
+                        <a href="#" class="py-1 fw-6" style="border-bottom: solid 2px #3ddb93; display: none;">
+                          Learn more
+                        </a>
+                      </div>
+                      <div class="unhide my-5" style="height: 1px; width: 100%; background-color: #bbb;"></div>
+                    </div>
+                    <div class="col-lg-6 px-5 py-4">
+                      <div class="">
+                        <i class="material-icons text-gradient" style="font-size: 5em;">location_searching</i>
+                        <h5 class="text-uppercase text-primary-light ls-4 fw-6 pt-2">AI Marketing</h5>
+                        <br>
+                      </div>
+                      <div class="text-left">
+                        <span class="fw-5 text-left ">
+                         Our goal is to maximize conversions while decreasing labor times and costs, by analyzing trends and data.
+                         </span>
+                      </div>
+                      <div class="mt-3">
+                        <a href="#" class="py-1 fw-6" style="border-bottom: solid 2px #3ddb93; display: none;">
+                          Learn more
+                        </a>
                       </div>
                     </div>
-                  </a>
-                </div>
-              {% endfor %}
+              </div>
           </div>
-          <div class="text-center">
-            <a class="btn btn-primary-round fs-20" href="{% slugurl 'contact' %}">View Additional Projects</a>
-          </div>
-      </div>
-  </section>
+      </section>
+
+      <!-- ****** End Logo Section ******* -->
+
 
 <section class="section-accent-md">
   <div class="container">
     <div class="row">
         <div class="col-lg-6">
-          <img class="img-responsive" src="{% static 'img/undraw_bug_fixing_oc7a.svg' %}" width="100%" height="100%" alt="TODO">
+          <img class="img-responsive" src="{% static 'img/udraw/udraw_1.svg' %}" width="100%" height="100%" alt="TODO">
         </div>
         <div class="col-lg-6"  >
             <div class="px-1">
@@ -284,10 +397,10 @@
               <br>
               </p>
               <div class="hide">
-                <a class="btn btn-primary-round fs-18 mt-4 px-5 py-3" style="line-height: 1.25rem;" href="{% slugurl 'contact' %}">Schedule Phone Consultation</a>
+                <a class="btn btn-primary-round fs-18 mt-4 px-5 py-3" style="line-height: 1.25rem;" href="{% url 'contact-page' %}">Schedule Phone Consultation</a>
               </div>
               <div class="unhide text-center">
-                <a class="btn btn-primary-round fs-14 mt-4 px-4 py-3" style="line-height: 1.25rem;" href="{% slugurl 'contact' %}">Schedule Phone Consultation</a>
+                <a class="btn btn-primary-round fs-14 mt-4 px-4 py-3" style="line-height: 1.25rem;" href="{% url 'contact-page' %}">Schedule Phone Consultation</a>
               </div>
             </div>
         </div>
@@ -295,11 +408,11 @@
   </div>
 </section>
 
-<section class="section-sm text-left">
+<section class="section-md text-left">
   <div class="container">
     <div class="row">
         <div class="col-lg-6" data-aos="fade-right">
-            <div class="px-1 vertical-align">
+            <div class="px-1">
               <h3>
                 <span style="font-size: 2rem; font-weight: 600;">We Eat, Sleep, Breath This</span>
               </h3>
@@ -310,11 +423,199 @@
             </div>
         </div>
         <div class="col-lg-6">
-          <img class="img-responsive" src="{% static 'img/undraw_programming_2svr.svg' %}" width="100%" height="100%" alt="TODO">
+          <img class="img-responsive" src="{% static 'img/udraw/udraw_2.svg' %}" width="100%" height="100%" alt="TODO">
         </div>
     </div>
   </div>
 </section>
+
+<section class="section-sm text-left">
+    <div class="container" data-aos="fade-up">
+        <div class="text-center mb-5">
+            <h3 class="fs-36 fw-6">
+              FAQs
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1 text-center mb-5">
+                <div class="accordion" id="myAccordion">
+                    <div id="headingOne">
+                        <span class="fs-16 fw-6">Although we make it look easy, there is a LOT that happens behind the scenes with programming
+                          <button type="button" class="pull-right btn-information-dropdown collapsed pt-1" data-toggle="collapse" data-target="#collapseOne"><i class="fa fa-plus" aria-hidden="true"></i></button></span>
+                          <br>
+                        <hr>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#myAccordion">
+                        <div class="text-black py-2">
+                            <p class="fs-16">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, </p>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion" id="myAccordion">
+                    <div id="headingTwo">
+                        <span class="fs-16 fw-6">Although we make it look easy, there is a LOT that happens behind the scenes with programming
+                          <button type="button" class="pull-right btn-information-dropdown collapsed pt-1" data-toggle="collapse" data-target="#collapseTwo"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </span>
+                        <hr>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#myAccordion">
+                        <div class="text-black py-2">
+                            <p class="fs-16">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, </p>
+                              <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion" id="myAccordion">
+                    <div id="headingThree">
+                        <span class="fs-16 fw-6">Although we make it look easy, there is a LOT that happens behind the scenes with programming
+                          <button type="button" class="pull-right btn-information-dropdown collapsed pt-1" data-toggle="collapse" data-target="#collapseThree"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </span>
+                        <hr>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myAccordion">
+                        <div class="text-black py-2">
+                            <p class="fs-16">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, </p>
+                              <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion" id="myAccordion">
+                    <div id="headingFour">
+                        <span class="fs-16 fw-6">Although we make it look easy, there is a LOT that happens behind the scenes with programming
+                          <button type="button" class="pull-right btn-information-dropdown collapsed pt-1" data-toggle="collapse" data-target="#collapseFour"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </span>
+                        <hr>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#myAccordion">
+                        <div class="text-black py-2">
+                            <p class="fs-16">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, </p>
+                              <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion" id="myAccordion">
+                    <div id="headingFive">
+                        <span class="fs-16 fw-6">Although we make it look easy, there is a LOT that happens behind the scenes with programming
+                          <button type="button" class="pull-right btn-information-dropdown collapsed pt-1" data-toggle="collapse" data-target="#collapseFive"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </span>
+                        <hr>
+                    </div>
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#myAccordion">
+                            <div class="col-lg-10 offset-lg-1 text-center mb-5">
+                  <h3 class="fs-36 fw-6">
+                    FAQs
+                  </h3>
+              </div>
+              <div class="accordion" id="myAccordion">
+                  <div id="headingOne">
+                      <span class="fs-16 fw-6">Although we make it look easy, there is a LOT that happens behind the scenes with programming
+                        <button type="button" class="pull-right btn-information-dropdown collapsed pt-1" data-toggle="collapse" data-target="#collapseOne"><i class="fa fa-plus" aria-hidden="true"></i></button></span>
+                        <br>
+                      <hr>
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#myAccordion">
+                      <div class="text-black py-2">
+                          <p class="fs-16">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, </p>
+                          <br>
+                      </div>
+                  </div>
+              </div>
+              <div class="accordion" id="myAccordion">
+                  <div id="headingTwo">
+                      <span class="fs-16 fw-6">Although we make it look easy, there is a LOT that happens behind the scenes with programming
+                        <button type="button" class="pull-right btn-information-dropdown collapsed pt-1" data-toggle="collapse" data-target="#collapseTwo"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                      </span>
+                      <hr>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#myAccordion">
+                      <div class="text-black py-2">
+                          <p class="fs-16">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, </p>
+                            <br>
+                      </div>
+                  </div>
+              </div>
+              <div class="accordion" id="myAccordion">
+                  <div id="headingThree">
+                      <span class="fs-16 fw-6">Although we make it look easy, there is a LOT that happens behind the scenes with programming
+                        <button type="button" class="pull-right btn-information-dropdown collapsed pt-1" data-toggle="collapse" data-target="#collapseThree"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                      </span>
+                      <hr>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myAccordion">
+                      <div class="text-black py-2">
+                          <p class="fs-16">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, </p>
+                            <br>
+                      </div>
+                  </div>
+              </div>
+              <div class="accordion" id="myAccordion">
+                  <div id="headingFour">
+                      <span class="fs-16 fw-6">Although we make it look easy, there is a LOT that happens behind the scenes with programming
+                        <button type="button" class="pull-right btn-information-dropdown collapsed pt-1" data-toggle="collapse" data-target="#collapseFour"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                      </span>
+                      <hr>
+                  </div>
+                  <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#myAccordion">
+                      <div class="text-black py-2">
+                          <p class="fs-16">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, </p>
+                            <br>
+                      </div>
+                  </div>
+              </div>
+              <div class="accordion" id="myAccordion">
+                  <div id="headingFive">
+                      <span class="fs-16 fw-6">Although we make it look easy, there is a LOT that happens behind the scenes with programming
+                        <button type="button" class="pull-right btn-information-dropdown collapsed pt-1" data-toggle="collapse" data-target="#collapseFive"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                      </span>
+                      <hr>
+                  </div>
+                  <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#myAccordion">
+                      <div class="text-black py-2">
+                          <p class="fs-16">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, </p>
+                            <br>
+                      </div>
+                  </div>
+              </div>
+              <div class="accordion" id="myAccordion">
+                  <div id="headingSix">
+                      <span class="fs-16 fw-6">Although we make it look easy, there is a LOT that happens behind the scenes with programming
+                        <button type="button" class="pull-right btn-information-dropdown collapsed pt-1" data-toggle="collapse" data-target="#collapseSix"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                      </span>
+                      <hr>
+                  </div>
+                  <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#myAccordion">
+                      <div class="text-black py-2">
+                          <p class="fs-16">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, </p>
+                            <br>
+                      </div>
+                  </div>
+              </div><div class="text-black py-2">
+                            <p class="fs-16">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, </p>
+                              <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion" id="myAccordion">
+                    <div id="headingSix">
+                        <span class="fs-16 fw-6">Although we make it look easy, there is a LOT that happens behind the scenes with programming
+                          <button type="button" class="pull-right btn-information-dropdown collapsed pt-1" data-toggle="collapse" data-target="#collapseSix"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </span>
+                        <hr>
+                    </div>
+                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#myAccordion">
+                        <div class="text-black py-2">
+                            <p class="fs-16">Although we make it look easy, there is a LOT that happens behind the scenes with programming, designing/building squeeze pages, ads, opt-in forms, tracking numbers, managing your campaign, </p>
+                              <br>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <section class=" p-0 m-0" style="display: none;">
     <div class="container-fluid text-center fs-45">
@@ -335,10 +636,11 @@
     </div>
 </section>
 
-
+{% block banner %}
+  {% include "components/html/banner.html" %}
+{% endblock banner %}
 
 {% endblock %}
-
 
 {% block extrajs %}
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

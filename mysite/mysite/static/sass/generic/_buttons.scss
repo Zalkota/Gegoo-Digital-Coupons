@@ -11,6 +11,7 @@
     font-weight: 650;
 
 
+
 }
 }
 
@@ -22,7 +23,7 @@
       box-shadow: 0;
       border-radius: $border-radius;
       border: 0;
-      width: 100%;
+
       font-weight: 700;
       outline: none;
       cursor: pointer;
@@ -119,15 +120,16 @@
   color: $color-white;
   box-shadow: 0;
   font-weight: 600;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
-  padding-top: .8rem;
-  padding-bottom: .8rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
 
   &:hover, &:active, &:focus{
     background: $color-primary-light;
-    color: $color-white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+    color: #e5e5e5;
+    box-shadow: 0;
+    text-decoration: none !important;
     }
   }
 
@@ -136,15 +138,16 @@
   color: #fafafa;
   box-shadow: 0;
   font-weight: 600;
-  padding-left: 2.3rem;
-  padding-right: 2.3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
 
   &:hover, &:active, &:focus {
     background: $color-success-light;
     color: #e5e5e5;
-    box-shadow: 0 2px 4px rgba(155,155,155,0.3), 0 2px 4px rgba(155,155,155,0.3);
+    box-shadow: 0;
+    text-decoration: none !important;
     }
   }
 
@@ -154,8 +157,8 @@
   box-shadow: 0;
   color: #fafafa;
   font-weight: 600;
-  padding-left: 2.3rem;
-  padding-right: 2.3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
 
@@ -167,36 +170,20 @@
   }
 
   .btn-secondary-alt {
-  background: #efefef;
-  color: $color-danger;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.3);
+  background: $color-secondary;
+  color: $color-white;
+  box-shadow: 0;
   font-weight: 600;
-  font-size: 1.4rem;
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
-  padding-top: .95rem;
-  padding-bottom: .95rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
 
-
-  .btn-secondary-alt:hover {
-  background: #efefef;
-  color: $color-danger;
+  &:hover, &:active, &:focus{
+  background: $color-secondary-light;
+  color: #e5e5e5;
   box-shadow: 0;
-  font-size: 1.4rem;
-  }
-
-  .btn-secondary-alt:active {
-  background: #efefef;
-  color: $color-danger;
-  box-shadow: 0;
-  font-size: 1.4rem;
-  }
-
-  .btn-secondary-alt:focus {
-  background: #efefef;
-  color: $color-danger;
-  box-shadow: 0;
-  font-size: 1.4rem;
+  text-decoration: none !important;
     }
   }
 
@@ -230,48 +217,21 @@
 
 
   .btn-accent-alt {
-  background: $color-accent;
-  color: #fafafa;
-  box-shadow: 0;
-  font-weight: 600;
-  padding-left: 2.3rem;
-  padding-right: 2.3rem;
-  padding-top: .85rem;
-  padding-bottom: .85rem;
-  }
-
-  .btn-accent-alt:hover {
   background: $color-accent-light;
+  color: #fafafa;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+
+  &:hover, &:active, &:focus {
+  background: $color-accent;
   color: #f3f3f3;
-  box-shadow: 0;
-  font-weight: 600;
-  padding-left: 2.3rem;
-  padding-right: 2.3rem;
-  padding-top: .85rem;
-  padding-bottom: .85rem;
+  text-decoration: none;
   }
-
-  .btn-accent-alt:active {
-  background: $color-accent-dark;
-  color: #fafafa;
-  box-shadow: 0;
-  font-weight: 600;
-  padding-left: 2.3rem;
-  padding-right: 2.3rem;
-  padding-top: .85rem;
-  padding-bottom: .85rem;
-  }
-
-  .btn-accent-alt:focus {
-  background: $color-accent-dark;
-  color: #fafafa;
-  box-shadow: 0;
-  font-weight: 600;
-  padding-left: 2.3rem;
-  padding-right: 2.3rem;
-  padding-top: .85rem;
-  padding-bottom: .85rem;
-  }
+}
 
 
 
@@ -299,8 +259,8 @@ color: #fafafa;
 box-shadow: 0;
 border-radius: $border-radius;
 font-weight: 600;
-padding-left: 2.3rem;
-padding-right: 2.3rem;
+padding-left: 2rem;
+padding-right: 2rem;
 padding-top: .85rem;
 padding-bottom: .85rem;
 border-bottom: 5px solid $color-primary-dark;
@@ -327,8 +287,8 @@ text-shadow: 0px -1px $color-primary-dark;
   box-shadow: 0;
   border-radius: $border-radius;
   font-weight: 600;
-  padding-left: 2.3rem;
-  padding-right: 2.3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
   border-bottom: 5px solid $color-success-dark;
@@ -353,8 +313,8 @@ text-shadow: 0px -1px $color-primary-dark;
   box-shadow: 0;
   border-radius: $border-radius;
   font-weight: 600;
-  padding-left: 2.3rem;
-  padding-right: 2.3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
   border-bottom: 5px solid $color-alt-dark;
@@ -375,34 +335,22 @@ text-shadow: 0px -1px $color-primary-dark;
   }
 
   .btn-secondary-round {
-  background: $color-secondary-light;
+  background: $color-secondary;
   color: #fafafa;
+  font-weight: 600;
   box-shadow: 0;
-  border-radius: 30px;
+  border-radius: $border-radius;
+  border-bottom: 5px solid $color-secondary-dark;
+  text-shadow: 0px -1px $color-secondary-dark;
   padding-left: 2rem;
   padding-right: 2rem;
-  padding-top: .5rem;
-  padding-bottom: .75rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
 
-
-  &:hover {
-  background: $color-secondary;
+  &:hover, &:active, &:focus  {
+  background: $color-secondary-light;
   color: #f3f3f3;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
-  }
-
-  &:active {
-  background: $color-secondary;
-  color: #fafafa;
-  box-shadow: 0;
-
-  }
-
-  &:focus {
-  background: $color-secondary;
-  color: #fafafa;
-  box-shadow: 0;
-
+  border-bottom: 5px solid $color-secondary-dark;
     }
   }
 
@@ -444,8 +392,8 @@ text-shadow: 0px -1px $color-primary-dark;
   border: solid 1px $color-success;
   box-shadow: 0;
   font-weight: 600;
-  padding-left: 2.3rem;
-  padding-right: 2.3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
   }
@@ -454,8 +402,8 @@ text-shadow: 0px -1px $color-primary-dark;
     color: $color-success-light !important;
     border: solid 1px $color-success-light !important;
     font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     padding-top: .85rem;
     padding-bottom: .85rem;
   }
@@ -465,8 +413,8 @@ text-shadow: 0px -1px $color-primary-dark;
     border: solid 1px $color-success-light !important;
     box-shadow: 0;
     font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     padding-top: .85rem;
     padding-bottom: .85rem;
   }
@@ -476,8 +424,8 @@ text-shadow: 0px -1px $color-primary-dark;
     border: solid 1px $color-success-light !important;
     box-shadow: 0;
     font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     padding-top: .85rem;
     padding-bottom: .85rem;
   }
@@ -506,8 +454,8 @@ text-shadow: 0px -1px $color-primary-dark;
   border: solid 1px $color-dark !important;
   box-shadow: 0;
   font-weight: 600;
-  padding-left: 2.3rem;
-  padding-right: 2.3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
   }
@@ -516,8 +464,8 @@ text-shadow: 0px -1px $color-primary-dark;
     color: $color-light !important;
     border: solid 1px $color-light !important;
     font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     padding-top: .85rem;
     padding-bottom: .85rem;
   }
@@ -527,8 +475,8 @@ text-shadow: 0px -1px $color-primary-dark;
     border: solid 1px $color-light !important;
     box-shadow: 0;
     font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     padding-top: .85rem;
     padding-bottom: .85rem;
   }
@@ -538,8 +486,8 @@ text-shadow: 0px -1px $color-primary-dark;
     border: solid 1px $color-light !important;
     box-shadow: 0;
     font-weight: 600;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     padding-top: .85rem;
     padding-bottom: .85rem;
   }

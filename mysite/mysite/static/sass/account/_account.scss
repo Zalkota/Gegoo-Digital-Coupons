@@ -2,14 +2,16 @@
 
 // ===== Original Login Design with Slant  ======  //
 
-@media screen and (min-width: 992px) {
-.hero-300 {
-  height: 5vh;
-  background-color: transparent;
+@media screen and (min-width: 1220px) {
+.hero-login {
+  height: 100vh;
+  background-color: #fafafa;
   /* Flexbox stuff */
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
 
   /* Text styles */
   text-align: center;
@@ -23,30 +25,40 @@
   background-attachment: fixed;
 
 
-&-background {
+&-left {
     /* Sizing */
+    background-color: $color-primary;
+    color: #fafafa;
+    order: 1;
+    flex-grow: 1;
+    align-self: auto;
 
+    .logo {
+      position: absolute;
+      top: 35%;
+      left: 7%;
+      animation: moveInTop 1.5s;
+      animation-fill-mode: forwards;
+    }
 
-    height: 95vh;
-    background-color: #003156;
+  }
 
-    z-index: 1;
-    /* Flexbox stuff */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    /* Text styles */
-    text-align: center;
-
-    /* Background styles */
+&-right {
+    /* Sizing */
+    background-color: #fafafa;
+    color: $color-black;
+    order: 2;
     position: relative;
-    background-size: cover;  /* take width of view port, fits element inside of box */
-    background-position: center;  /* hero always sticks to the top when resized. */
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    clip-path: polygon(0 0%, 100% 0, 100% 40%, 0 80%);
-    -webkit-clip-path: polygon(0 0%, 100% 0, 100% 40%, 0 80%);
+    flex-grow: 1;
+    align-self: auto;
+
+    .card-login {
+      position: absolute;
+      top: 20%;
+      left: 25%;
+      animation: moveInTop 1.5s;
+      animation-fill-mode: forwards;
+    }
   }
 
 
@@ -95,7 +107,7 @@
 }
 
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1220px) {
   .hero-300 {
       /* Sizing */
 
@@ -140,11 +152,119 @@
 
   }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1220px) {
   .unhide {
     display: none;
   }
 }
 .unhide {
 
+}
+
+
+// ============== SIGN UP PAGE ============= //
+
+
+@media screen and (min-width: 1220px) {
+.hero-signup {
+  height: 100vh;
+  background-color: #fafafa;
+  /* Flexbox stuff */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+
+  /* Text styles */
+  text-align: center;
+  z-index: 2;
+
+  /* Background styles */
+  position: relative;
+  background-size: cover;  /* take width of view port, fits element inside of box */
+  background-position: center;  /* hero always sticks to the top when resized. */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+
+&-right {
+    /* Sizing */
+    background-color: $color-primary;
+    color: #fafafa;
+    order: 2;
+    flex-grow: 1;
+    align-self: auto;
+
+    .logo {
+      position: absolute;
+      top: 35%;
+      left: 7%;
+      animation: moveInTop 1.5s;
+      animation-fill-mode: forwards;
+    }
+
+  }
+
+&-left {
+    /* Sizing */
+    background-color: #fafafa;
+    color: $color-black;
+    order: 1;
+    position: relative;
+    flex-grow: 1;
+    align-self: auto;
+
+    .card-signup {
+      position: absolute;
+      top: 15%;
+      left: 25%;
+      animation: moveInTop 1.5s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+
+
+& .text {
+  position: absolute;
+  left: 14%;
+  top: 28%;
+  animation: moveInTop 1.5s;
+  animation-fill-mode: forwards;
+}
+& h1 {
+    /* Text styles */
+    font-size: 3.5em;
+    color: white;
+    /* Margins */
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+& p {
+    /* Text styles */
+    font-size: 1.25em;
+    line-height: 0;
+    color: white;
+
+
+    /* Margins */
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
+& img {
+  /* Text styles */
+  font-size: 1.25em;
+  position: fixed;
+  left: 16.5%;
+  top: 30%;
+  color: white;
+  z-index: 1000;
+  /* Margins */
+  margin-top: 0;
+  margin-bottom: 2em;
+
+        }
+    }
 }

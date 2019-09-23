@@ -80,7 +80,7 @@ virtualenv -p python3 env
 
 # PIP
 
- pip3 install -r requirements.txt
+pip3 install -r requirements.txt
 
 
 # NETWORKS

@@ -14,4 +14,4 @@ class SignupForm(forms.Form):
 class ProfileImageForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ["image", "school"]
+        fields = ["image"]

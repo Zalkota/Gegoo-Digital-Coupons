@@ -1,23 +1,24 @@
 from django import forms
-from .models import Review
-#from django.forms import ModelForm
-#from .models import Contact
+from .models import Review, Job
+
+import datetime
+from .models import Job, Image
+from phonenumber_field.formfields import PhoneNumberField
+from django.contrib.admin.widgets import AdminDateWidget
+from django.forms.widgets import SelectDateWidget
+from django.forms.fields import DateField
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _
+
+
 
 # Customize Crispy forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML, Field, Div
 from django.utils.safestring import mark_safe
 from crispy_forms.bootstrap import (
-    PrependedText, PrependedAppendedText, FormActions)
+    PrependedText, PrependedAppendedText, FormActions, StrictButton)
 
-
-class ContactForm(forms.Form):
-    contact_name = forms.CharField(required=True)
-    contact_email = forms.EmailField(required=True)
-    content = forms.CharField(
-        required=True,
-        widget=forms.Textarea
-    )
 
 class ReviewForm(forms.ModelForm):
     class Meta:
@@ -25,49 +26,15 @@ class ReviewForm(forms.ModelForm):
         fields = ('__all__')
         widgets = {'review_user': forms.HiddenInput(), 'review_course': forms.HiddenInput(), 'summary':  forms.Textarea}
 
+class JobForm(forms.ModelForm):
+    
+    class Meta:
+       model = Job
+       fields = ['description', 'desired_plants', 'hardscaping', 'hardscaping_description', 'due_date']
 
-class AppointmentForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(JobForm, self).__init__(*args, **kwargs)
 
-    One = 1
-    Two = 2
-    Three = 3
-    Four = 4
-    Five = 5
-    Six = 6
-    SEVEN = 7
-    EIGHT = 8
-    NINE = 9
-    TEN = 10
-    ELEVEN = 11
-    TWELVE = 12
-    TYPE_CHOICES = (
-        (One, ''),
-        (Two, ''),
-        (Three, ''),
-        (Four, ''),
-        (Five, ''),
-        (Six, ''),
-        (SEVEN, ''),
-        (EIGHT, ''),
-        (NINE, ''),
-        (TEN, ''),
-        (ELEVEN, ''),
-        (TWELVE, ''),
-    )
-    appointment_time = forms.ChoiceField(
-            choices=TYPE_CHOICES,
-            label="Appointment times",
-            widget=forms.RadioSelect,
-            required=True,
-             )
-    First_name = forms.CharField(required=True)
-    Last_name = forms.CharField(label='Last Name', required=True)
-    Email = forms.EmailField(required=True)
-    Company = forms.CharField(label='Company', required=True)
-
-def __init__(self, *args, **kwargs):
-        super(ReservationForm, self).__init__(*args, **kwargs)
-        today = datetime.date.today()
         self.helper = FormHelper()
         #self.helper.form_id = 'id-exampleForm'
         #elf.helper.form_class = 'blueForms'
@@ -75,25 +42,33 @@ def __init__(self, *args, **kwargs):
             #Div('first_name', style="background: white;", title="Explication title", css_class="bigdivs")
             Field(
             Div(
-            HTML("<h5>{{ today }}<h5>"),
-            'reservation_time',
-            css_class="col-lg-6 test",
-
-            ),
-            Div(
                 Div(
-                'first_name',
+                'description',
                 css_class="col-lg-6 px-4"
                 ),
                 Div(
-                'last_name',
-                css_class="col-lg-6 px-4"
+                'desired_plants',
+                css_class="col-lg-4 px-4"
                 ),
                 Div(
-                'email',
-                css_class="col-lg-6 px-4"
+                'hardscaping',
+                css_class="col-lg-4 px-4"
                 ),
-            css_class="row"
+                Div(
+                'hardscaping_description',
+                css_class="col-lg-4 px-4"
+                ),
+                Div(
+                'due_date',
+                css_class="col-lg-4 px-4"
+                ),
+            css_class="row px-4 py-4 text-left"
         ),
     )
 )
+
+
+class ImageForm(forms.ModelForm):
+    class Meta:
+       model = Image
+       fields = ['file']

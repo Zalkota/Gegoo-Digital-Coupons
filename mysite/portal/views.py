@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, RedirectView, UpdateView, DeleteView, UpdateView
-from django.views import generic
+from django.views import generic, View
 
 #messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -12,15 +12,21 @@ from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template.loader import get_template
 
-from memberships.models import UserMembership, Transaction
-from .models import Course, Lesson, Review
+#Models
+from .models import Job, Review, Image, Transaction
+from users.models import User, Profile
+
+#Forms
+from django.views.generic.edit import FormView
+from .forms import JobForm, ImageForm
 
 #Login
 from django.contrib.auth.decorators import login_required  # This is to block pages to non users using function views
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import ContactForm, AppointmentForm
-from users.models import User, Profile
+#Image Uploader
+from django.http import JsonResponse
+
 from django.template.context_processors import csrf
 from django.core.exceptions import ObjectDoesNotExist
 import datetime
@@ -35,89 +41,141 @@ import datetime
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 
-def AppointmentFormView(request):
-    # If this is a POST request then process the Form data
-    if request.method == 'POST':
-        # Create a form instance and populate it with data from the request (binding):
-        form = AppointmentForm(request.POST)
-        # Check if the form is valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('/appointment-confirmation/')
+#Payment
+import stripe
 
-        # If this is a GET (or any other method) create the default form.
-    else:
-        form = AppointmentForm()
+def get_selected_job(request):
+	job_id = request.session['selected_job_id']
+	print (job_id)
+	selected_job_qs = Job.objects.filter(id=job_id)
+	if selected_job_qs.exists():
+		return selected_job_qs.first()
+	return None
 
-    day_plus_one = datetime.date.today() + datetime.timedelta(days=1)
-    day_plus_two = datetime.date.today() + datetime.timedelta(days=2)
-    day_plus_three = datetime.date.today() + datetime.timedelta(days=3)
-    day_plus_four = datetime.date.today() + datetime.timedelta(days=4)
-
-    return render(request, 'portal/appointment_form.html', {'form': form, 'day_plus_one': day_plus_one, 'day_plus_two': day_plus_two, 'day_plus_three': day_plus_three, 'day_plus_four': day_plus_four })
-
-
-def renew_book_librarian(request, pk):
-    book_instance = get_object_or_404(BookInstance, pk=pk)
-
-    # If this is a POST request then process the Form data
-    if request.method == 'POST':
-
-        # Create a form instance and populate it with data from the request (binding):
-        form = RenewBookForm(request.POST)
-
-        # Check if the form is valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
-            book_instance.due_back = form.cleaned_data['renewal_date']
-            book_instance.save()
-
-            # redirect to a new URL:
-            return HttpResponseRedirect(reverse('all-borrowed') )
-
-    # If this is a GET (or any other method) create the default form.
-    else:
-        proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
-        form = RenewBookForm(initial={'renewal_date': proposed_renewal_date})
-
-    context = {
-        'form': form,
-        'book_instance': book_instance,
-    }
-
-    return render(request, 'catalog/book_renew_librarian.html', context)
-
-
-def SubscriptionListView(request):
-
-    existing_order = get_user_pending_order(request)
-    filtered_orders = Order.objects.filter(owner=request.user.user_profile, is_ordered=False)
-
-    context = {
-        'order': existing_order,
-    }
-
-    args = {}
-    args.update(csrf(request))
-
-    return render(request, "portal/subscription_list.html", context, args)
-
-
-
-def get_course(course):
-    course_qs = Course.objects.filter(id=course)
-    if course_qs.exists():
-        return course_qs.first()
+def get_user_jobs(request):
+    user_job_qs = Job.objects.filter(
+        user=request.user)
+    if user_job_qs.exists():
+        user_jobs = user_job_qs.all()
+        return user_jobs
     return None
 
+
+class ImageUploadView(View, LoginRequiredMixin):
+	def get(self, request):
+		selected_job = get_selected_job(request)
+		image_list = Image.objects.filter(job=selected_job)
+		return render(self.request, 'portal/image_form_create.html', {'images': image_list})
+
+	def post(self, request):
+		form = ImageForm(self.request.POST, self.request.FILES)
+		selected_job = get_selected_job(request)
+		if form.is_valid():
+			image = form.save(commit=False)
+			image.job = selected_job
+			image = form.save()
+
+			print("save image")
+			data = {'is_valid': True, 'name': image.file.name, 'url': image.file.url}
+		else:
+			print("ELSE")
+			data = {'is_valid': False}
+		return JsonResponse(data)
+
+
+
+class JobListView(ListView, LoginRequiredMixin):
+	model = Job
+
+
+
+class JobDetailView(DetailView, LoginRequiredMixin):
+	model = Job
+
+
 @login_required
-def Review(request, course):
+def JobCreateView(request):
+	#response.delete_cookie('selected_job_id')
+	#reservation = create(Reservation)
+	# If this is a POST request then process the Form data
+	if request.method == 'POST':
+		# Create a form instance and populate it with data from the request (binding):
+		user = request.user
+		form = JobForm(request.POST)
+		# Check if the form is valid:
+		if form.is_valid():
+			# process the data in form.cleaned_data as required
+			# ...
+			# redirect to a new URL:
+			job = form.save(commit=False)
+			job.description = form.cleaned_data['description']
+			job.desired_plants = form.cleaned_data['desired_plants']
+			job.hardscaping = form.cleaned_data['hardscaping']
+			job.hardscaping_description = form.cleaned_data['hardscaping_description']
+			job.due_date = form.cleaned_data['due_date']
+			job.user = user
+			print(job.id)
+			#reservation.created_time = timezone.now()
+			job.save()
+
+			request.session['selected_job_id'] = job.id
+
+			# Add form data to sessions
+			#request.session['name'] = reservation.name
+			#request.session['time'] = reservation.time
+			#request.session['people'] = reservation.people
+			#request.session['date'] = reservation.date
+
+			#send_email_reservation(reservation.email, reservation.name, reservation.time, reservation.people)
+			#messages.success(request, "Reservation Created")
+			#request.session['reservationDate'] = form.cleaned_data['date']
+			return redirect('portal:image_upload')
+
+		# If this is a GET (or any other method) create the default form.
+	else:
+		form = JobForm()
+	return render(request, 'portal/job_form_create.html', {'form': form})
+
+
+
+
+class JobUpdateView(SuccessMessageMixin, views.SuperuserRequiredMixin, UpdateView):
+    model = Job
+    fields = '__all__'
+    success_message = "Job Edited Successfully"
+    success_url = reverse_lazy('memberships:Job_panel')
+
+    #Superuser Mixin
+    login_url = settings.LOGIN_URL
+    raise_exception = False
+    redirect_field_name = '/'
+    redirect_unauthenticated_users = True
+
+
+
+class JobDeleteView(SuccessMessageMixin, views.SuperuserRequiredMixin, DeleteView):
+    model = Job
+    warning_message = "Job Deleted"
+    success_url = reverse_lazy('memberships:Job_panel')
+
+    #Superuser Mixin
+    login_url = settings.LOGIN_URL
+    raise_exception = False
+    redirect_field_name = '/'
+    redirect_unauthenticated_users = True
+
+
+@login_required
+def HowItWorks(request):
+    return render(request, 'portal/how_it_works.html',)
+
+
+@login_required
+def Review(request, Job):
     form_class = ReviewForm
     review_user = request.user
     if request.method == "GET":
-        form_class = ReviewForm(initial={'review_course': course, 'review_user': review_user})
+        form_class = ReviewForm(initial={'review_Job': Job, 'review_user': review_user})
 
     # new logic!
     if request.method == 'POST':
@@ -126,8 +184,8 @@ def Review(request, course):
 
         if form.is_valid():
 
-            review_course = request.POST.get(
-                'review_course'
+            review_Job = request.POST.get(
+                'review_Job'
             , '')
 
             review_summary = request.POST.get('summary', '')
@@ -137,19 +195,19 @@ def Review(request, course):
             , '')
 
 
-            course_instance = get_course(course)
+            Job_instance = get_Job(Job)
 
             review = form.save(commit=False)
             review.review_user = review_user
-            review.review_course = course_instance
+            review.review_Job = Job_instance
             review.summary = review_summary
             review.rating = rating
             review.created_time = timezone.now()
             review.save()
             print ("saved")
             messages.success(request, "Thank you for your review!")
-            return redirect('portal:course_detail', slug=course_instance.slug)
-            #return redirect('portal:course_list')
+            return redirect('portal:Job_detail', slug=Job_instance.slug)
+            #return redirect('portal:Job_list')
 
     else:
             form = ReviewForm()
@@ -158,246 +216,113 @@ def Review(request, course):
         'form': form_class,
     })
 
-@login_required
-def Contact(request, email, user):
-    form_class = ContactForm
-    if request.method == "GET":
-        form_class = ContactForm(initial={'contact_email': email, 'contact_name': user})
-
-    # new logic!
-    if request.method == 'POST':
-        #form_class = ContactForm(initial={'contact_email': email, 'contact_name': user})
-        form = form_class(data=request.POST)
-
-        if form.is_valid():
-            contact_name = request.POST.get(
-                'contact_name'
-            , '')
-            contact_email = request.POST.get(
-                'contact_email'
-            , '')
-            form_content = request.POST.get('content', '')
-
-            # Email the profile with the
-            # contact information
-            template = get_template('portal/contact_template.txt')
-            context = {
-                'contact_name': contact_name,
-                'contact_email': contact_email,
-                'form_content': form_content,
-            }
-            content = template.render(context)
-
-            email = EmailMessage(
-                "New contact form submission",
-                content,
-                "Your website" +'',
-                ['youremail@gmail.com'],
-                headers = {'Reply-To': contact_email }
-            )
-            email.send()
-            messages.success(request, "Email sent successfully")
-            return redirect('memberships:admin_panel')
-
-
-    return render(request, 'portal/contact_form.html', {
-        'form': form_class,
-    })
-
-
-
-#class CourseListView(ListView):
-#	model = Course
-
-
-def CourseListView(request):
-    count = Course.objects.all().count()
-    free_list = Course.objects.filter(membership_required=False).order_by('ordering_id')
-    paid_list = Course.objects.filter(membership_required=True).order_by('ordering_id')
-
-    context = {
-        'count': count,
-        'free_list': free_list,
-        'paid_list': paid_list,
-    }
-
-    args = {}
-    args.update(csrf(request))
-
-    return render(request, "portal/course_list.html", context, args)
-
-
-def SearchTitles(request):
-    if request.method == "POST":
-        search_text = request.POST['search_text']
-    else:
-        search_text = ''
-
-    course = Course.objects.filter(tags__contains=search_text)
-
-    return render(request,'portal/search.html', {'course' : course })
-
-
-
-class CourseDetailView(DetailView):
-	model = Course
 
 @login_required
-def LessonDetailView(request, course_slug, lesson_slug, *args, **kwargs):
+def JobPaymentView(request):
 
-    #def get_context_data(self, **kwargs):
-    #    context = super(LessonDetailView, self).get_context_data(**kwargs)
-    #    context['lesson_list'] = Lesson.objects.filter('')
-    #    return context
+	selected_job = get_selected_job(request)
 
-    user = request.user
-    course_qs = Course.objects.filter(slug=course_slug)
-    if course_qs.exists():
-        course = course_qs.first()
-    course_id = course.ordering_id
-    #Used to pull lesson in sidenav
-    lesson_list = Lesson.objects.filter(course=course_id)
+	#Query Essentials
+	user = request.user
+	cus_stripe_id = user.user_stripe.stripe_id
+	email = user.email
 
-    lesson_qs = course.lessons.filter(slug=lesson_slug)
-    if lesson_qs.exists():
-        lesson = lesson_qs.first()
+	print(selected_job.job_image.first())
 
-    #Checks if the course needs a membership to view it
-    if course.membership_required == True:
+	#Stripe Key
+	publishKey = settings.STRIPE_PUBLISHABLE_KEY
 
-        #Request the users membership
-        user_membership = UserMembership.objects.filter(user=user).first()
+	if request.method == 'POST':
+		token = request.POST['stripeToken']
+		# Token is created using Checkout or Elements!
+		# Get the payment token ID submitted by the form:
+		try:
+			#customer = stripe.Customer.retrieve(customer_id)  # Creditcard info is linked with customer
+			#customer.sources.create(source=token)
+			#Modify the customer and add the token from the front end
+			stripe.Customer.modify(
+			cus_stripe_id, # cus_xxxyyyyz
+			source=token # tok_xxxx or src_xxxyyy
+			)
+			charge = stripe.Charge.create(
+			amount=29900,
+			currency='usd',
+			description='Payment for 3D Modeling creation of Landscaping',
+			#source=token
+			customer = cus_stripe_id
+			#receipt_email= email,
+			)
 
-        if user_membership.membership != None:
+			return redirect(reverse('portal:update_transaction_job',
+			kwargs={
+			'transaction_info': selected_job.id
+			}))
+		except stripe.error.CardError as e:
+			messages.info(request, "Your card has been declined")
 
-            user_membership_type = user_membership.membership.membership_type
-            #Query the allowed memberships from course
-            course_allowed_mem_types = course.allowed_memberships.all()
-
-            context = {
-            'object': None
-            }
-
-            if course_allowed_mem_types.filter(membership_type=user_membership_type).exists():
-                context = {'object': lesson}
-
-        else:
-            return render(request, "portal/membership_required.html")
-
-    #Enrollment feature
-    user_enrolled = user.user_profile.enrolled.filter(slug=course_slug).first()
-    if user_enrolled == None:
-        enrolled = course
-        enrolled.save()
-        user.user_profile.enrolled.add(course)
-
-    context = {
-    'object': lesson,
-    'lesson_list': lesson_list
-    }
-
-    return render(request, "portal/lesson_detail.html", context)
-
-def membership_required(request):
-    return render(request, 'portal/membership_required.html')
+	context = {
+		'publishKey': publishKey,
+		'selected_job': selected_job
+		}
+	return render(request, "portal/job_payment.html", context)
 
 
-def next_lesson(request, course_slug, lesson_slug):
-    lesson_add = int(lesson_slug) + 1
-    course_id = Course.objects.filter(slug=course_slug)
-    try:
-        lesson_qs = Lesson.objects.get(course=course_id[0], ordering_id=lesson_add)
-        lesson_slug = lesson_qs.slug
-        return redirect('portal:lesson_detail', course_slug, lesson_slug)
 
-    except ObjectDoesNotExist:
-        lesson_qs = Lesson.objects.get(course=course_id[0], ordering_id=lesson_slug)
-        lesson_slug = lesson_qs.slug
-        return redirect('portal:lesson_detail', course_slug, lesson_slug)
+@login_required()
+def updateTransactionRecordsJob(request, transaction_info):
 
-def previous_lesson(request, course_slug, lesson_slug):
-    lesson_add = int(lesson_slug) - 1
-    course_id = Course.objects.filter(slug=course_slug)
-    try:
-        lesson_qs = Lesson.objects.get(course=course_id[0], ordering_id=lesson_add)
-        lesson_slug = lesson_qs.slug
-        return redirect('portal:lesson_detail', course_slug, lesson_slug)
+	selected_job = get_selected_job(request)
+	date_now = timezone.now()
 
-    except ObjectDoesNotExist:
-        lesson_qs = Lesson.objects.get(course=course_id[0], ordering_id=lesson_slug)
-        lesson_slug = lesson_qs.slug
-        return redirect('portal:lesson_detail', course_slug, lesson_slug)
+	selected_job.status = "IN PROGRESS"
+	selected_job.save()
 
-class LessonCreateView(SuccessMessageMixin, views.SuperuserRequiredMixin, CreateView):
-    model = Lesson
-    fields = '__all__'
-    template_name = 'portal/lesson_form_create.html'
-    success_message = "Lesson Created"
-    success_url = reverse_lazy('memberships:lesson_panel')
+	# Grab User
+	#user_profile = get_object_or_404(Profile, user=request.user)
 
-    #Superuser Mixin
-    login_url = settings.LOGIN_URL
-    raise_exception = False
-    redirect_field_name = '/'
-    redirect_unauthenticated_users = True
+	# Create a transaction
+	transaction = Transaction(user=request.user,
+							job=selected_job,
+							amount=299,
+							success=True,
+							timestamp=date_now)
+	# save the transcation (otherwise doesn't exist)
+	transaction.save()
 
-class LessonUpdateView(SuccessMessageMixin, views.SuperuserRequiredMixin, UpdateView):
-    model = Lesson
-    fields = '__all__'
-    success_message = "Lesson Edited Successfully"
-    success_url = reverse_lazy('memberships:lesson_panel')
+	try:
+		del request.session['selected_job_id']
+	except:
+		pass
 
-    #Superuser Mixin
-    login_url = settings.LOGIN_URL
-    raise_exception = False
-    redirect_field_name = '/'
-    redirect_unauthenticated_users = True
-
-class LessonDeleteView(SuccessMessageMixin, views.SuperuserRequiredMixin, DeleteView):
-    model = Lesson
-    warning_message = "Lesson Deleted"
-    success_url = reverse_lazy('memberships:lesson_panel')
-
-    #Superuser Mixin
-    login_url = settings.LOGIN_URL
-    raise_exception = False
-    redirect_field_name = '/'
-    redirect_unauthenticated_users = True
+	#messages.success(request, 'Successfully purchased {} membership'.format(selected_membership))
+	messages.success(request, "Payment Received")
+	return redirect(reverse('userPage'))
 
 
-class CourseCreateView(SuccessMessageMixin, views.SuperuserRequiredMixin, CreateView):
-    model = Course
-    fields = '__all__'
-    template_name = 'portal/course_form_create.html'
-    success_message = "Course Created"
-    success_url = reverse_lazy('memberships:course_panel')
+# Success page if transaction was successful
+@login_required()
+def success(request):
 
-    #Superuser Mixin
-    login_url = settings.LOGIN_URL
-    raise_exception = False
-    redirect_field_name = '/'
-    redirect_unauthenticated_users = True
+	# Request transaction from stored session
+	transaction = request.session.get('transaction', None)
 
+	# Obtain timestamp from JSON string
+	timestamp = transaction["timestamp"]
 
-class CourseUpdateView(SuccessMessageMixin, views.SuperuserRequiredMixin, UpdateView):
-    model = Course
-    fields = '__all__'
-    success_message = "Course Edited Successfully"
-    success_url = reverse_lazy('memberships:course_panel')
+	# Parse string after 10 characters
+	data = (timestamp[:10]) if len(timestamp) > 10 else timestamp
 
-    #Superuser Mixin
-    login_url = settings.LOGIN_URL
-    raise_exception = False
-    redirect_field_name = '/'
-    redirect_unauthenticated_users = True
+	data2 = datetime.strptime(data, '%Y-%m-%d').date()
 
-class CourseDeleteView(SuccessMessageMixin, views.SuperuserRequiredMixin, DeleteView):
-    model = Course
-    warning_message = "Course Deleted"
-    success_url = reverse_lazy('memberships:course_panel')
+	# Obtain users new membership #TODO THIS IS AN ISSUE
+	user_membership = get_user_membership(request)
 
-    #Superuser Mixin
-    login_url = settings.LOGIN_URL
-    raise_exception = False
-    redirect_field_name = '/'
-    redirect_unauthenticated_users = True
+	#user = request.user
+	#emailRecipient = user.email
+	#send_payment_success_email(emailRecipient, user)
+
+	context = {
+	#'user_membership': user_membership,
+
+	}
+	return render(request, 'memberships/purchase_success.html', context)

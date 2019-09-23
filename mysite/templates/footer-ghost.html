@@ -1,26 +1,27 @@
-
 {% load static %}
-{% load wagtailcore_tags %}
 
 <!-- Footer section -->
+<div class="container" style="display: none;">
+
+  <div class=" shadow-2 banner" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-9">
+              <h4 class="text-white">Ready to start a project?</h4>
+              <p>Let's build something together!</p>
+          </div>
+          <div class="col-lg-3">
+              <button href="{% url 'contact-page' %}" class="btn btn-outline-light px-4 mt-2">Contact Us</button>
+          </div>
+      </div>
+  </div>
+</div>
 
 <footer>
   <div class="container bg pb-5">
-    <div class=" shadow-2 banner" data-aos="fade-up">
-          <div class="row">
-            <div class="col-lg-9">
-                <h4 class="text-white">Ready to start a project?</h4>
-                <p>Let's build something together!</p>
-            </div>
-            <div class="col-lg-3">
-                <button href="{% slugurl 'contact' %}" class="btn btn-outline-light px-4 mt-2">Contact Us</button>
-            </div>
-        </div>
-    </div>
     <div class="py-3"></div>
     <div class="row ">
       <!--Column1-->
-        <div class="col-md-3 col-sm-12 mt-3">
+        <div class="col-md-3 col-sm-6 mt-3">
             <div class="footer-pad">
                 <span class="fw-6 fs-20 title-footer"> Mod Technologies </span>
                 <p class="font-footer" style="margin-top: 2.5rem; font-size: 14px;">
@@ -34,7 +35,7 @@
         </div>
 
       <!--Column2-->
-      <div class="col-md-3 col-sm-12 mt-3">
+      <div class="col-md-3 col-sm-6 mt-3">
         <div class="font-thick">
           <span class="fw-6 fs-20 title-footer" style="line-height: 2rem;">Useful Links</span>
             <br>
@@ -46,34 +47,36 @@
             <a style="line-height: 2rem;" href="{% url 'account_signup' %}">Sign Up</a>
             <br>
             {% endif %}
-            <a style="line-height: 2rem;" href="{% url 'memberships:select' %}">Pricing</a>
+            <a style="line-height: 2rem;" href="{% url 'portal:how_it_works' %}">How It Works</a>
             <br>
-            <a style="line-height: 2rem;" href="{% slugurl 'blog' %}">Blog</a>
+            <a style="line-height: 2rem;" href="">Blog</a>
             <br>
-            <a style="line-height: 2rem;" href="{% url 'memberships:select' %}#faq">FAQ</a>
+            <a style="line-height: 2rem;" href="{% url 'home-page' %}#faq">FAQ</a>
         </div>
       </div>
       <!--Column3-->
-      <div class="col-md-3 col-sm-12 mt-3">
+      <div class="col-md-3 col-sm-6 mt-3">
         <div class="font-thick">
             <span class="fw-6 fs-20 title-footer" style="line-height: 2rem;">Contact</span>
             <br>
             <br>
-            <a style="line-height: 2rem;" href="{% slugurl 'contact' %}">Contact Us</a>
+            <a style="line-height: 2rem;" href="{% url 'contact-page' %}">Contact Us</a>
             <br>
             <a style="line-height: 2rem;" href="tel:2487561169">(248) 756-1169</a>
+            <br>
+            <a style="line-height: 2rem;" href="tel:2487561169">Join Our Team</a>
         </div>
       </div>
       <!--Column4-->
 
-      <div class="col-md-3 col-sm-12 mt-3">
+      <div class="col-md-3 col-sm-6 mt-3">
           <div class="font-thick">
               <span class="fw-6 fs-20 title-footer" style="line-height: 2rem;">Legal</span>
               <br>
               <br>
-              <a style="line-height: 2rem;" href="{% slugurl 'privacy-page' %}">Privary Policy</a>
+              <a style="line-height: 2rem;" href="/privacy-page/">Privary Policy</a>
               <br>
-              <a style="line-height: 2rem;" href="{% slugurl 'terms-page' %}">Terms of Use</a>
+              <a style="line-height: 2rem;" href="/terms-page/">Terms of Use</a>
           </div>
       </div>
     </div>
