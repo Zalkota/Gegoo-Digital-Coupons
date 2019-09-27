@@ -37,38 +37,38 @@
       <li><h5 class="text-muted fs-18 mb-3">
         <span class="fa-stack mb-1 mr-1">
             <!-- The icon that will wrap the number -->
-            <span class="fa fa-circle fa-stack-2x text-one text-primary"></span>
+            <span class="fa fa-circle fa-stack-2x text-one {% if request.path == '/portal/job-request/' %} text-primary {% else %} text-secondary {% endif %}"></span>
             <!-- a strong element with the custom content, in this case a number -->
             <strong class="fa-stack-1x text-light" style="font-family: Arial; font-size: 15px; ">
                 1
             </strong>
         </span>
-        <span class="text-primary">Job Description</span>
+        <span class="{% if request.path == '/portal/job-request/' %} text-primary {% else %} text-secondary {% endif %}">Job Description</span>
       </h5></li>
       <li>
           <h5 class="text-muted fs-18 mb-3">
             <span class="fa-stack mb-1 mr-1">
                 <!-- The icon that will wrap the number -->
-                <span class="fa fa-circle fa-stack-2x text-one"></span>
+                <span class="fa fa-circle fa-stack-2x {% if request.path == '/portal/image-upload/' %} text-primary {% else %} text-secondary {% endif %}"></span>
                 <!-- a strong element with the custom content, in this case a number -->
                 <strong class="fa-stack-1x text-light" style="font-family: Arial; font-size: 15px; ">
                     2
                 </strong>
             </span>
-            <span>Upload Images</span>
+            <span class="{% if request.path == '/portal/image-upload/' %} text-primary {% else %} text-secondary {% endif %}"> Upload Images</span>
           </h5>
       </li>
       <li>
         <h5 class="text-muted fs-18 mb-3">
           <span class="fa-stack mb-1 mr-1">
               <!-- The icon that will wrap the number -->
-              <span class="fa fa-circle fa-stack-2x text-one"></span>
+              <span class="fa fa-circle fa-stack-2x {% if request.path == '/portal/checkout/' %} text-primary {% else %} text-secondary {% endif %}"></span>
               <!-- a strong element with the custom content, in this case a number -->
               <strong class="fa-stack-1x text-light" style="font-family: Arial; font-size: 15px; ">
                   3
               </strong>
           </span>
-          <span>Checkout</span>
+          <span class="{% if request.path == '/portal/checkout/' %} text-primary {% else %} text-secondary {% endif %}">Checkout</span>
         </h5>
       </li>
     </ul>

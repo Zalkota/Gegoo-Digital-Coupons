@@ -170,8 +170,8 @@ DATABASES = {
 
 	'default': {
         	'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        	'NAME': 'printrender',
-        	'USER': 'printrenderadmin',
+        	'NAME': 'estore',
+        	'USER': 'estoreadmin',
         	'PASSWORD': '$Django10',
         	'HOST': 'localhost',
         	'PORT': '',
