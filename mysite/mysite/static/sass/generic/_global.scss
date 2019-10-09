@@ -43,6 +43,13 @@ hr.hr-2 {
   }
 
 
+
+    @media (min-width: 1200px) {
+        .container{
+            max-width: 1440px;
+        }
+    }
+
 @media screen and (min-width: 992px) {
   .unhide {
     display: none;
@@ -273,6 +280,10 @@ hr.hr-2 {
   position: relative;
 }
 
+.border-top-dark {
+  border-top: 1px solid $color-gray-400;
+}
+
 .stripe-primary {
   border-left: 5px solid $color-primary;
   border-right: solid 1px #d7d7d7;
@@ -473,7 +484,6 @@ hr.hr-2 {
 }
 
 
-
   .uniform-buttom-spacing-parent {
     display: flex;
     flex-direction: row;
@@ -542,6 +552,23 @@ hr.hr-2 {
     vertical-align: middle;
   }
 
+
+  .vertical-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: stretch;
+
+  }
+
+  .vertical-alignment {
+    position: relative;
+    flex-grow: 1;
+    align-self: center;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
 // ============== Payment Bread Crumb =========== //
 

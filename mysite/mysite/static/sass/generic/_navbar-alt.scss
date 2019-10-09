@@ -87,8 +87,8 @@
 
 .navbar-default {
   background-color: $color-navbar-alt-background;
-  height: 100px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  height: 75px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
 
 
   .ul-spacing {
@@ -96,14 +96,34 @@
 
   }
 
-  .nav-link {
+
+  .nav-link-bold {
       color: $color-navbar-alt-text;
-      font-weight: 600 !important;
-      font-size: 1.1rem;
+      font-weight: 700 !important;
+      font-size: 1rem;
       line-height: 28px;
       margin-left: .85rem;
       margin-right: .85rem;
-      text-transform: none;
+      text-transform: uppercase;
+      display: inline-block;
+      padding-top: 0.3125rem;
+      padding-bottom: 0.3125rem;
+      line-height: inherit;
+  }
+
+  .nav-link-bold:hover {
+      color:  $color-navbar-alt-hover;
+      text-decoration: none;
+  }
+
+  .nav-link {
+      color: $color-navbar-alt-text;
+      font-weight: 400 !important;
+      font-size: 0.8rem;
+      line-height: 28px;
+      margin-left: .85rem;
+      margin-right: .85rem;
+      text-transform: uppercase;
       display: inline-block;
       padding-top: 0.3125rem;
       padding-bottom: 0.3125rem;
@@ -122,7 +142,9 @@
 
   .navbar-brand {
     color: $color-navbar-alt-text;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
+    margin-left: auto;
+    margin-right: auto;
   }
   .navbar-brand:hover {
     color: $color-navbar-alt-text !important;

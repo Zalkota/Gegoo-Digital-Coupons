@@ -22,15 +22,21 @@
     background-attachment: fixed; }
     .hero-login-left {
       /* Sizing */
-      background-color: #48BB78;
+      background: url(/static/img/headers/login_background_2.png);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
       color: #fafafa;
       order: 1;
       flex-grow: 1;
       align-self: auto; }
       .hero-login-left .logo {
         position: absolute;
-        top: 35%;
-        left: 7%;
+        bottom: 50%;
+        left: 30%;
+        color: #2D3748;
+        font-size: 2.25rem;
         animation: moveInTop 1.5s;
         animation-fill-mode: forwards; }
     .hero-login-right {
@@ -44,9 +50,9 @@
       .hero-login-right .card-login {
         position: absolute;
         top: 20%;
-        left: 25%;
-        animation: moveInTop 1.5s;
-        animation-fill-mode: forwards; }
+        left: 25%; }
+      .hero-login-right .card-body {
+        background-color: #fafafa !important; }
     .hero-login .text {
       position: absolute;
       left: 14%;
@@ -103,12 +109,6 @@
   .hide {
     display: none; }
 
-  button {
-    height: 45px; }
-
-  .btn {
-    padding-top: 0.8rem; }
-
   .terms {
     color: #3a3a3a; } }
 @media screen and (min-width: 1220px) {
@@ -137,7 +137,7 @@
     background-attachment: fixed; }
     .hero-signup-right {
       /* Sizing */
-      background-color: #48BB78;
+      background-color: #2C5282;
       color: #fafafa;
       order: 2;
       flex-grow: 1;
@@ -350,7 +350,7 @@ select {
   background: transparent; }
 
 select:focus {
-  color: #48BB78; }
+  color: #2C5282; }
 
 ::-webkit-input-placeholder {
   color: #EDF2F7; }
@@ -679,7 +679,7 @@ select:-webkit-autofill {
 
 #demo p.label {
   margin: 0 0 10px;
-  color: #48BB78; }
+  color: #2C5282; }
 
 #demo p.note {
   display: block;
@@ -874,15 +874,15 @@ body {
   body p {
     color: #2D3748; }
   body li {
-    color: #48BB78; }
+    color: #2C5282; }
   body a {
-    color: #48BB78; }
+    color: #2C5282; }
 
 a:hover {
-  color: #48BB78; }
+  color: #2C5282; }
 
 .text-primary {
-  color: #48BB78; }
+  color: #2C5282; }
 
 .text-success {
   color: #48BB78; }

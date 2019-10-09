@@ -5,13 +5,13 @@
 <div class="profile-nav hide mt-4">
     <ul class="list-unstyled">
       <li>
-        <a href="{% url 'userPage' %}" class="profile-link-active">Basic Information</a>
+        <a href="{% url 'users:userPage' %}" class="profile-link-active">Basic Information</a>
       </li>
       <li class="list-inline-item">
-        <a href="{% url 'user_jobs' %}" class="profile-link">Orders</a>
+        <a href="{% url 'users:user_jobs' %}" class="profile-link">Orders</a>
       </li>
       <li class="list-inline-item">
-        <a href="{% url 'user_jobs' %}" class="profile-link">Messages</a>
+        <a href="{% url 'users:user_jobs' %}" class="profile-link">Messages</a>
       </li>
       <li class="list-inline-item">
         <a href="{% url 'account_set_password' %}" class="profile-link">Settings</a>

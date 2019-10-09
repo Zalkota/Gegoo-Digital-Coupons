@@ -430,6 +430,25 @@ text-shadow: 0px -1px $color-primary-dark;
     padding-bottom: .85rem;
   }
 
+  .btn-outline-light {
+  background: transparent;
+  color: $color-white;
+  border-color: $color-white;
+  font-weight: 600;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+  box-shadow: none;
+
+  &:hover,  &:focus, &:active{
+    background: $color-white !important;
+    color: $color-black !important;
+    box-shadow: none;
+  }
+}
+
+
   .btn-outline-primary {
   background: transparent;
   color: $color-primary;

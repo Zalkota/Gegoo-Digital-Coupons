@@ -1,0 +1,208 @@
+{% extends "base-alt.html" %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+<section class="section-sm">
+    <div class="container text-center">
+
+        <div id="carouselExampleIndicators" class="carousel slide mt-5 hide" data-ride="carousel" data-aos="fade-up">
+
+          <div class="carousel-inner ">
+            <div class="carousel-item active text-center ">
+              <img class="img-responsive my-4" style="max-height: 300px;"  src="/media/{{ item.image }}" alt="TODO">
+            </div>
+            <div class="carousel-item text-center">
+              <img class="img-responsive my-4" style="max-height: 300px;"  src="{% static 'img/product1.png' %}" alt="TODO">
+            </div>
+            <div class="carousel-item text-center">
+              <img class="img-responsive my-4" style="max-height: 300px;"  src="{% static 'img/product1.png' %}" alt="TODO">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+
+        </div>
+    </div>
+</section>
+<section class="section-white-sm border-top-dark" style="">
+    <div class="container">
+        <div>
+
+        </div>
+        <div class="row">
+          <div class="offset-lg-2"></div>
+            <div class="col-lg-4">
+              <h2 class="text-uppercase">{{ item.title }}</h2>
+              <h3><span class="text-dark fs-16">${{ item.price }}</span></h3>
+                <p class="fs-14 text-left text-muted">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                   velit esse cillum dolore eu fugiat nulla pariatur.
+                  <br><br>
+                   <span class="font-italic">Materials: Stainless Steel</span>
+                </p>
+            </div>
+            <div class="col-lg-4 text-right">
+              <a href="#" class="btn btn-alt pull-right">ADD TO CART</a>
+              <br><br><br>
+                  <i class="fa fa-share pr-2 pull-right text-muted" aria-hidden="true"></i>
+            </div>
+            <div class="offset-lg-2"></div>
+            <div class="col-lg-8 offset-lg-2">
+              <hr>
+              <div class="row">
+                <div class="col-lg-2">
+                    <img class="img-fluid my-4" style="max-height: 300px;"  src="{% static 'img/image1.png' %}" alt="TODO">
+                </div>
+                <div class="col-lg-2">
+                    <img class="img-fluid my-4" style="max-height: 300px;"  src="{% static 'img/image2.png' %}" alt="TODO">
+                </div>
+                <div class="col-lg-2">
+                    <img class="img-fluid my-4" style="max-height: 300px;"  src="{% static 'img/image3.png' %}" alt="TODO">
+                </div>
+                <div class="col-lg-2">
+                    <img class="img-fluid my-4" style="max-height: 300px;"  src="{% static 'img/image4.png' %}" alt="TODO">
+                </div>
+                <div class="col-lg-2">
+                    <img class="img-fluid my-4" style="max-height: 300px;"  src="{% static 'img/image1.png' %}" alt="TODO">
+                </div>
+                <div class="col-lg-2">
+                    <img class="img-fluid my-4" style="max-height: 300px;"  src="{% static 'img/image3.png' %}" alt="TODO">
+                </div>
+                <div class="col-lg-12">
+                  <div class="text-center card-border p-5 mt-3">
+                    <div class="text-left">
+                        <h4 class="fs-18 mb-0 mt-3 fw-7">Jacob Gaft <span class="text-black fw-7 fs-14 pull-right">September 11, 2019</span>
+                        <br>
+                        <span class="text-muted fw-4 fs-13">Verified Buyer</span></h4>
+                        <br>
+                        <i class="material-icons star-yellow" style="">star star star star star </i>
+
+
+                        <h4 class="mt-4 fs-20">"From the moment I picked this bracelet up, you could feel the quality of the stainless steel and time that was put into it."</h4>
+                          <div class="row">
+
+                          </div>
+                      </div>
+                    <div class="text-center" style="display: none;">
+                      <a class="btn btn-primary-round fs-20" href="{% url 'contact-page' %}">View Additional Projects</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="py-5"></div>
+  </div>
+        <hr>
+
+        <!-- ****** Picture Gallery ******* -->
+
+        <div class="container" >
+            <div class="row">
+                <div class="col-xl-5 px-0 img-shadow-2">
+                  <img class="img-responsive" src="{% static 'img/Selection_115.png' %}" width="100%" height="100%" alt="Injection mold machine">
+                </div>
+                <div class="offset-lg-1"></div>
+                <div class="col-xl-6 vertical-container">
+                    <div class="vertical-alignment px-3 py-5">
+                      <h3>Plastic Injection Molding</h3>
+                      <div class="hr-primary-lg mt-3"></div>
+                      <p class="pb-4 pt-3 mb-0 fs-14 text-muted">Started by Dan Brown in 1999, ATP is a injection molding company that specializes in low to high production and test specimen applications.
+                         Our 40+ years of experience in injection mold manufacturing allows ATP to focus on what we excel at;
+                        product quality, low cost pricing strategies, decreasing lead times, and lean manufacturing.
+                        <br><br>
+                       <a href="">Learn more <i class="fa fa-chevron-right fs-12" aria-hidden="true"></i></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="py-5 hide"></div>
+            <div class="row">
+                <div class="col-xl-5 order-1 order-sm-2  vertical-container">
+                    <div class="vertical-alignment pr-m-5">
+                        <h3>Standardized Plaque Mold Inventory</h3>
+                        <div class="hr-primary-lg mt-3"></div>
+                            <p class="pb-4 pt-3 mb-0 fs-14 text-muted">Looking for common plaque molds? We have 30+ common plaque molds in our inventory at our facility in Livonia, MI.
+                              For a complete list of our common mold inventory click the link below or visit our 'plaques' page.
+                              <br><br>
+                             <a href="">Learn more <i class="fa fa-chevron-right fs-12" aria-hidden="true"></i></a></p>
+                    </div>
+                </div>
+                <div class="offset-xl-2 order-lg-2"></div>
+                <div class="col-xl-5 px-0 order-lg-3 img-shadow-2">
+                    <img class="img-responsive" src="{% static 'img/image5.jpg' %}" width="100%" height="100%" alt="Injection mold tooling" >
+                </div>
+            </div>
+            <div class="py-5 hide"></div>
+            <div class="row">
+                <div class="col-xl-5 px-0  img-shadow-2">
+                    <img class="img-responsive" src="{% static 'img/image6.jpg' %}" width="100%" height="100%" alt="Picture of injectin molding machine located at ATP" >
+                </div>
+                <div class="offset-lg-1"></div>
+                <div class="col-xl-6 vertical-container">
+                    <div class="vertical-alignment px-3 py-5">
+                        <h3>Production Ready</h3>
+                        <div class="hr-primary-lg mt-3"></div>
+                        <p class="pb-4 pt-3 mb-0 fs-14 text-muted">Being in the injection mold industry for over 40 years has enabled our company to
+                           provide expert knowledge and experience in building parts for automotive and consumer businesses across North and South America.
+                           <br><br>
+                          <a href="">Learn more <i class="fa fa-chevron-right fs-12" aria-hidden="true"></i></a></p>
+                    </div>
+                </div>
+                <div class="offset-lg-2"></div>
+            </div>
+
+
+            <section class="section-sm">
+              <div class="container text-left" data-aos="fade-up">
+                  <div class="py-5"></div>
+                  <div class="text-center card-border p-5">
+                    <div class="text-left">
+                      <i class="material-icons star-yellow" style="">star star star star star </i>
+                        <h4 class="mt-4 ">"From the moment I picked this bracelet up, you could feel the quality of the stainless steel and time that was put into it."</h4>
+                          <div class="row">
+                            <div class="col-lg-12 pull-left">
+                              <h4 class="fs-16 mb-0 mt-3 ">Jacob Gaft <br><span class="text-muted fs-12">Verified Buyer</span></h4>
+                              <br>
+                              <span class="text-primary fs-14">September 11, 2019, 6:09 p.m.</span>
+                            </div>
+                          </div>
+                      </div>
+                    <div class="text-center" style="display: none;">
+                      <a class="btn btn-primary-round fs-20" href="{% url 'contact-page' %}">View Additional Projects</a>
+                    </div>
+                  </div>
+              </div>
+            </section>
+
+
+            <div class="py-5"></div>
+            <hr>
+            <div class="py-4"></div>
+            <div class="text-center">
+                <h3 class="fw-7 fs-65">
+                  MADE IN DETROIT.
+                </h3>
+                <p class="text-muted fs-14 pb-4">Looking for a custom piece? Contact Robert James.</p>
+                <a href="#" class="btn btn-alt pull-center">Inquiries</a>
+            </div>
+            <div class="py-4"></div>
+            <hr>
+    </section>
+
+        <!-- ****** End Picture Gallery ******* -->
+    </div></div>
+
+
+{% endblock content %}

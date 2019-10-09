@@ -26,9 +26,9 @@ Python3 local.py runserver
 
 2. Download Virtual environment
 
-3. Create a folder on your computer to store the project files "m2"
+3. Create a folder on your computer to store the project files, call it 'estore'
 
-4. Pull the project into that folder
+4. go into that folder and git pull the project from github
 
 To do that, open up that folder in your terminal and execute the following line:
 

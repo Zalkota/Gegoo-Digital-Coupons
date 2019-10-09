@@ -1,20 +1,13 @@
-.navbar-top {
-  background-color: $color-primary-light;
-  color: white;
-  height: 35px;
-  top: 0%;
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  text-align: left;
 
-  .text {
-    position: absolute;
-    right: 20%;
-    font-weight: 600;
-    padding-top: 5px;
+
+
+  /* CUSTOMER HAMBURGER */
+  a.navbar-brand.scrolled {
+      color: #424242 !important;
   }
-}
+  a.navbar-brand.scrolled:hover {
+      color: $color-navbar-alt-hover !important;
+  }
 
 
   .navbar-toggler {
@@ -35,7 +28,7 @@
   }
 
   .navbar-toggler.scrolled .icon-bar {
-    background-color: #fff;
+    background-color: #424242;
     transform: rotate(0deg) translate(0px, 0px);
     transition: ease all .2s;
   }
@@ -89,31 +82,48 @@
     }
   }
 
-/* ################ NAVBAR NOT SCROLLED ################ */
+
+  /* ################ NAVBAR TOP ################ */
 
 .navbar-default {
-  height: 100px;
+  background-color: $color-navbar-alt-background;
+  height: 75px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
 
-  .navbar-brand {
-    color: $color-navbar-text;
-    font-weight: 700 !important;
-  }
-  .navbar-brand:hover {
-    color: $color-navbar-hover;
-  }
 
   .ul-spacing {
     height: 85px;
+
   }
 
-  .nav-link {
-      color: $color-navbar-text;
-      font-weight: 600 !important;
-      font-size: 1.1rem;
+
+  .nav-link-bold {
+      color: $color-navbar-alt-text;
+      font-weight: 700 !important;
+      font-size: 1rem;
       line-height: 28px;
       margin-left: .85rem;
       margin-right: .85rem;
-      text-transform: none;
+      text-transform: uppercase;
+      display: inline-block;
+      padding-top: 0.3125rem;
+      padding-bottom: 0.3125rem;
+      line-height: inherit;
+  }
+
+  .nav-link-bold:hover {
+      color:  $color-navbar-alt-hover;
+      text-decoration: none;
+  }
+
+  .nav-link {
+      color: $color-navbar-alt-text;
+      font-weight: 400 !important;
+      font-size: 0.8rem;
+      line-height: 28px;
+      margin-left: .85rem;
+      margin-right: .85rem;
+      text-transform: uppercase;
       display: inline-block;
       padding-top: 0.3125rem;
       padding-bottom: 0.3125rem;
@@ -122,18 +132,29 @@
   }
 
   .nav-link:hover {
-      color:  $color-navbar-hover;
+      color:  $color-navbar-alt-hover;
   }
 
   li.nav-item {
     height: 2rem;
   }
 
+
+  .navbar-brand {
+    color: $color-navbar-alt-text;
+    font-weight: 500 !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .navbar-brand:hover {
+    color: $color-navbar-alt-text !important;
+  }
+
   .btn-outline-navbar {
     background-color: transparent !important;
     font-weight: 600 !important;
-    border: 1px solid $color-navbar-text !important;
-    color:  $color-navbar-text;
+    border: 1px solid $color-navbar-alt-text !important;
+    color:  $color-navbar-alt-text;
 
   &:hover, &:focus, &:active,  {
     background-color: $color-navbar-hover !important;
@@ -142,115 +163,6 @@
     }
   }
 
-}
-
-
-  /* ################## NAVBAR SCROLLED ################## */
-
-  .navbar-default.scrolled {
-    background-color: #fdfdfe !important;
-    transition: background-color 200ms linear;
-    color: #424242;
-    z-index: 999;
-    height: 75px;
-    -webkit-box-shadow: 0 5px 10px rgba(154,160,185,.085), 0 15px 40px rgba(166,173,201,.25) !important;
-    box-shadow: 0 5px 10px rgba(154,160,185,.085), 0 15px 40px rgba(166,173,201,.25) !important;
-  }
-
-
-  a.navbar-brand.scrolled {
-      color: #424242 !important;
-  }
-  a.navbar-brand.scrolled:hover {
-      color: $color-navbar-text !important;
-  }
-
-  .navbar-brand.scrolled {
-    color: #424242;
-  }
-  .navbar-brand.scrolled:hover {
-    color: $color-navbar-text;
-  }
-
-
-
-  .btn-outline-navbar.scrolled {
-    background-color: transparent !important;
-    font-weight: 500 !important;
-    font-size: 0.875rem;
-    border-color: #424242 !important;
-    color: #424242 !important;
-  }
-
-  .btn-outline-navbar.scrolled:hover {
-    background-color: $color-navbar-text !important;
-    font-weight: 500 !important;
-    font-size: 0.875rem;
-    color: #fdfdfe !important;
-    border-color: $color-navbar-text !important;
-  }
-
-  .nav-link.scrolled {
-      color: #424242;
-      font-weight: 600 !important;
-      font-size: 1.1rem;
-      line-height: 28px;
-      margin-left: .85rem;
-      margin-right: .85rem;
-      text-transform: none;
-      display: inline-block;
-      padding-top: 0.3125rem;
-      padding-bottom: 0.3125rem;
-      margin-right: 1rem;
-      line-height: inherit;
-  }
-
-  li.nav-item {
-    height: 2rem;
-  }
-
-  .nav-link.scrolled:hover {
-      color: $color-navbar-text;
-      border: none;
-  }
-
-  .nav-item {
-
-    .active {
-
-        border-bottom: 2px solid #fdfdfe;
-    }
-  }
-
-@media screen and (max-width: 992px) {
-
-  .navbar-default.scrolled {
-    background-color: $color-navbar-background-scrolled !important;
-    transition: background-color 200ms linear;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    color: $color-secondary;
-    z-index: 999;
-
-  }
-
-  .navbar-brand.scrolled {
-    color: $color-navbar-text;
-  }
-  .navbar-brand.scrolled:hover {
-    color: $color-navbar-hover;
-  }
-
-  a.navbar-brand.scrolled {
-      color: $color-navbar-text !important;
-  }
-  a.navbar-brand.scrolled:hover {
-      color: $color-navbar-hover !important;
-  }
-
-}
-
-
-/* ## CENTER COLLPASED LINKS ## */
   .navbar {
     box-shadow: none;
 
@@ -259,3 +171,57 @@
     text-align: center;
     box-shadow: none;
   }
+
+
+
+}
+
+
+
+
+// ======= NAVBAR LOWER ========== //
+
+.navbar-lower  {
+  background-color: $color-navbar-alt-background;
+  height: 40px;
+  z-index: 1;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: none;
+
+
+
+  .ul-spacing {
+    height: 30px;
+  }
+
+
+  .nav-link {
+      color: $color-navbar-alt-text;
+      font-weight: 500 !important;
+      font-size: 0.8rem;
+      line-height: 15px;
+      margin-right: .85rem;
+      text-transform: none;
+  }
+
+  .nav-link:hover {
+      color:  $color-navbar-alt-hover;
+  }
+
+
+  li.nav-item {
+    line-height: 10px;
+  }
+
+
+  .navbar {
+    box-shadow: none;
+
+  }
+  .navbar .navbar-collapse {
+    text-align: center;
+    box-shadow: none;
+  }
+
+}

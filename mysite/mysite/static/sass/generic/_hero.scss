@@ -3,60 +3,59 @@
 @media screen and (min-width: 992px) {
     .hero {
         /* Sizing */
-        height: 120vh;
+        height: 70vh;
         /* Flexbox stuff */
         display: flex;
         justify-content: center;
         flex-direction: column;
+        align-items: center;
+        align-content: center;
+        flex-wrap: nowrap;
 
         /* Text styles */
         /* Background styles */
-        background: url(/static/img/headers/wave.svg);
-        //background-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
+        background: url(/static/img/headers/rj_background_4.png);
+        //back: ;ground-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
+        background-color: $color-white;
         /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
         background-size: cover;
-        background-position: bottom;
+        background-position: left;
         background-repeat: no-repeat;
         position: relative;
 
-    }
 
-        .hero .text {
+        & .text {
+          align-self: center;
+          margin-right: auto;
+          margin-left: auto;
           text-align: center;
-          align-self:  center;
-          top: 10%;
           max-width: 60rem;
-          margin-top: 15%;
-          display: block;
+          padding-top: 10rem;
+          padding-bottom: 10rem;
+
           width: 70%;
-          animation: moveInTop 1.5s;
-          animation-fill-mode: forwards;
-        }
 
-        .hero .carousel {
-          align-self:  center;
-          text-align: center;
-          display: block;
-          width: 100%;
-          animation: moveInTop 1.5s;
-          animation-fill-mode: forwards;
+          hr {
 
-          img {
-            width: 40%;
-            height: 40%;
           }
         }
 
-        .hero h1 {
+        & h1 {
             font-size: 2.5rem;
-            color: $color-alt;
+            color: $color-white;
             font-weight: 800;
             opacity: .95;
             margin-top: 0;
             margin-bottom: 2rem;
 
         }
-        .hero p {
+
+        & h3 {
+          margin-top: 2rem;
+          color: $color-gray-400;
+        }
+
+        & p {
             /* Text styles */
             font-size: 1.2rem;
             color: $color-alt;
@@ -65,11 +64,19 @@
             font-weight: 500;
         }
 
+        & .social-media {
+          position: absolute;
+          bottom: 1%;
+          right: 1%;
+          font-size: 2rem;
+        }
+
         img {
           margin-top: 4rem;
           border-radius: $border-radius;
         }
     }
+  }
 @media screen and (max-width: 992px) {
     .hero {
         /* Sizing */
@@ -82,7 +89,7 @@
         text-align: center;
         /* Background styles */
         /* background-image: url(/static/img/background_waves_6.svg); */
-        background-image: url(/static/img/lp_5.svg);
+        background: url(/static/img/headers/wave.svg);
         background-size: cover;
         background-position: left;
         background-repeat: no-repeat;

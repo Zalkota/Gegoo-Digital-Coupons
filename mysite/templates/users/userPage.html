@@ -83,7 +83,7 @@ a:hover {
                       </li>
                     </a>
                     <hr class="mt-0 mb-3 unhide">
-                    <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'user_jobs' %}" role="button">
+                    <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'users:user_jobs' %}" role="button">
                       <li class="pb-3">
                           <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Orders</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
                       </li>
@@ -95,7 +95,7 @@ a:hover {
                       </li>
                     </a>
                     <hr class="mt-0 mb-3 unhide">
-                    <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'update_image' %}" role="button">
+                    <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'users:update_image' %}" role="button">
                       <li class="pb-3">
                           <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
                       </li>
@@ -163,7 +163,7 @@ a:hover {
                           </div>
                           <div class="col-lg-4"></div>
                           <div class="col-lg-4">
-                              <form method="POST" class="pb-0 mb-0 mt-4" action="{% url 'userPage' %}">
+                              <form method="POST" class="pb-0 mb-0 mt-4" action="{% url 'users:userPage' %}">
                                   {% csrf_token %}
                                   <button class="btn btn-success-alt mt-3">Pay Invoice</button>
                                   <input type="hidden" name="invoice_id" value="{{ object.invoice_id }}">

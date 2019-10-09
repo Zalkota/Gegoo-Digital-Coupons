@@ -85,3 +85,40 @@ color: #555;
     color: $color-text;
   }
 }
+
+
+
+// =========bEMAIL SUBSCRIPTION FORM ===========
+
+
+input {
+  -webkit-appearance: textfield;
+  background-color: white;
+  border: 1px solid $color-dark;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  padding-left: 0.65rem;
+  border-style: inset !important;
+  border-image: initial;
+
+}
+
+
+
+  .button {
+    margin-bottom: 0;
+
+  }
+
+
+@media screen and (max-width: 992px) {
+   .w-100-mobile {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+   .w-100-mobile {
+    width: 500px;
+  }
+}

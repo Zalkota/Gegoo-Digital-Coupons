@@ -3,10 +3,10 @@
 
 footer {
 
-    padding-top: 19%;
+    padding-top: 2%;
+    background-color: $color-footer-background;
 
-
-    background-image: url(/static/img/headers/footer_wave_2.svg);
+    //background-image: url(/static/img/headers/footer_wave_2.svg);
     //background-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
 
     /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
@@ -22,10 +22,6 @@ footer {
 
   .bottom-bar {
     background-color: $color-black;
-  }
-
-  a {
-    color: $color-footer-title !important;
   }
 
   a:hover {
@@ -44,10 +40,13 @@ footer {
 
   .font-footer {
   color: $color-footer-text;
+  font-size: .85rem;
   }
 
   .title-footer {
   color: $color-footer-title;
+  letter-spacing: 2px;
+  font-size: .9rem;
   }
 
 }
@@ -70,25 +69,6 @@ footer {
   height: 240px;
   background-size: 90% 120%;
   background-repeat: no-repeat;
-}
-
-.fa1 {
-    padding: 12px;
-    font-size: 15px;
-    width: 40px;
-    text-align: center;
-    text-decoration: none;
-}
-.fa1:hover {
-    background: $color-primary-light;
-    opacity: 0.7;
-}
-.fa2 {
-    padding: 8px;
-    font-size: 12px;
-    width: 30px;
-    text-align: center;
-    text-decoration: none;
 }
 
 
@@ -114,42 +94,21 @@ footer {
     background-repeat: no-repeat;
   }
 
-  .fa1 {
-      padding: 12px;
-      font-size: 15px;
-      width: 40px;
-      text-align: center;
-      text-decoration: none;
-      background-color: $color-primary;
-      color: $color-main;
-  }
-  .fa1:hover {
-      background: $color-primary-light;
-      opacity: 0.7;
-      color: $color-main;
-  }
-  .fa2 {
-      padding: 8px;
-      font-size: 12px;
-      width: 30px;
-      text-align: center;
-      text-decoration: none;
-  }
 
 
   .fa-facebook {
-      color: $color-main;
+      color: $color-black;
       border-radius: 50%;
   }
   .fa-linkedin {
-      color: $color-main;
+      color: $color-black;
       border-radius: 50%;
   }
   .fa-google-plus {
-      color: $color-main;
+      color: $color-black;
       border-radius: 50%;
   }
   .fa-instagram {
-      color: $color-main;
+      color: $color-black;
       border-radius: 50%;
   }

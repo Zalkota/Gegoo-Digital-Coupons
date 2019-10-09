@@ -27,7 +27,12 @@
 
 &-left {
     /* Sizing */
-    background-color: $color-primary;
+    //background-color: $color-primary;
+    background: url(/static/img/headers/login_background_2.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
     color: #fafafa;
     order: 1;
     flex-grow: 1;
@@ -35,8 +40,10 @@
 
     .logo {
       position: absolute;
-      top: 35%;
-      left: 7%;
+      bottom: 50%;
+      left: 30%;
+      color: $color-black;
+      font-size: 2.25rem;
       animation: moveInTop 1.5s;
       animation-fill-mode: forwards;
     }
@@ -56,8 +63,10 @@
       position: absolute;
       top: 20%;
       left: 25%;
-      animation: moveInTop 1.5s;
-      animation-fill-mode: forwards;
+    }
+
+    .card-body {
+    background-color: #fafafa !important;
     }
   }
 
@@ -135,15 +144,6 @@
 
   .hide {
     display: none;
-  }
-
-
-  button {
-    height: 45px;
-  }
-
-  .btn {
-    padding-top: 0.8rem;
   }
 
   .terms {

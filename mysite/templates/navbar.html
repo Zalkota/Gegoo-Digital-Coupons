@@ -1,55 +1,80 @@
 {% load static %}
 
 <!-- Generic Navigation !-->
-    <nav class=" navbar navbar-default fixed-top navbar-expand-lg hide" id="mynav">
-      <div class="container-fluid hide">
-          <a class="navbar-brand" href="/">
-            <span class="mt-4"> MOD Technologies</span>
+    <nav class=" navbar navbar-default shadow-0 fixed-top navbar-expand-lg hide" id="mynav">
+      <div class="container hide" >
+          <a class="navbar-brand text-center" href="/">
           </a>
-        <div class="collapse navbar-collapse  hide" id="navbarResponsive">
-            <ul class="nav navbar-nav ml-auto" id="example-one">
+          <div class="collapse navbar-collapse  hide" id="navbarResponsive">
+            <ul class="nav navbar-nav mr-auto" id="example-one">
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'portal:job_request' %}" id="">Start</a>
+                  <a class="nav-link" href="{% url 'cart:products' %}" id="">{% if request.path == '/cart/products/' %}<strong>Shop</strong>{% else %} Shop {% endif %}</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'portal:how_it_works' %}" id="">How It Works</a>
+                  <a class="nav-link pr-0" href="" id="">Search </a><i class="px-0 pt-1 mx-0" data-feather="search"></i>
                 </li>
-              {% if not request.user.is_authenticated %}
+                <li class="nav-item">
+                </li>
+            </ul>
+            <ul class="nav navbar-nav mr-auto ml-auto" id="example-one">
+                <li class="nav-item">
+                  <a class="nav-link-bold" href="{% url 'home-page' %}" style="font-weight: 700;" id="">{{ SITE_NAME }}</a>
+                </li>
+            </ul>
+              <ul class="nav navbar-nav ml-auto" id="example-one">
+                {% if not request.user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'account_login' %}" id="">Sign In</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link btn btn-outline-navbar px-4" href="{% url 'account_login' %}" id="">Join</a>
-                </li>
-              {% else %}
-                <li class="nav-item dropdown " style="z-index: 500;">
-                  <a class="nav-link btn btn-outline-navbar px-4" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Account
-                  </a>
-                    <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
-                      <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'userPage' %}">
-                        Profile
-                      </a>
-                      {% if request.user.is_superuser %}
-                      <a class="dropdown-item" href="/admin/">
-                        Admin Panel
-                      </a>
-                      {% endif %}
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="{% url 'account_logout' %}">
-                        Logout
+                {% else %}
+                  <li class="nav-item dropdown " style="z-index: 500;">
+                    <a class="nav-link " id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Account
                     </a>
-                  </div>
+                      <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
+                        <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'users:userPage' %}">
+                          Profile
+                        </a>
+                        {% if request.user.is_superuser %}
+                        <a class="dropdown-item" href="/admin/">
+                          Admin Panel
+                        </a>
+                        {% endif %}
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'account_logout' %}">
+                          Logout
+                      </a>
+                    </div>
+                  </li>
+                {% endif %}
+                <li class="nav-item">
+                  <a class="nav-link " href="{% url 'account_login' %}" id="">Cart (0)</a>
                 </li>
-              {% endif %}
-            </ul>
+              </ul>
+          </div>
         </div>
-      </div>
     </nav>
 
-    <!-- Custom Navigation 100 !-->
+<!--
+    <div class="navbar navbar-expand-lg hide navbar-lower">
+        <div class="container-fluid hide" style="padding-left: 10%; padding-right: 10%;">
+            <ul class="nav navbar-nav" id="example-one">
+                <li class="nav-item">
+                  <a class="nav-link"  id="">Messages</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"  id="">Orders</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+-->
 
+
+    <!-- Custom Navigation 100 !-->
+    <div class="py-4"></div>
     <div class="navigation unhide">
+      <div class="navigation__bar"></div>
         <input type="checkbox" class="navigation__checkbox" style="display: none;" id="navi-toggle">
         <label for="navi-toggle" class="navigation__button">
             <span class="navigation__icon">&nbsp;</span>
@@ -57,6 +82,7 @@
         <a class="navigation__logo" href="/">
           <span class="mt-4"> MOD</span>
         </a>
+
         <div class="navigation__background">&nbsp;</div>
         <div class="navigation__background-2">&nbsp;</div>
         <nav class="navigation__nav">
@@ -65,18 +91,18 @@
               <li class="navigation__item mb-3"><a href="{% url 'account_signup' %}" class="btn btn-primary-alt px-4 py-2" style="">Join </a></li>
               <li class="navigation__item"><a href="{% url 'account_login' %}" class="navigation__link" style="">Sign In</a></li>
               {% else %}
-              <li class="navigation__item"><a href="{% url 'userPage' %}" class="navigation__link" style="">Profile</a></li>
+              <li class="navigation__item"><a href="{% url 'users:userPage' %}" class="navigation__link" style="">Profile</a></li>
               {% if request.user.is_superuser %}
               <li class="navigation__item"><a href="/admin/" class="navigation__link" style="">Admin Panel</a></li>
               {% endif %}
-              <li class="navigation__item"><a href="{% url 'account_logout' %}" class="navigation__link" style="">Log Out</a></li>
+              <li class="navigation__item"><a href="{% url 'account_logout' %}" class="navigation__link text-danger" style="">Log Out</a></li>
               {% endif %}
-              <li class="navigation__item text-black mt-5 fs-14 pb-2" style="color: #111; border-bottom: 1px solid #6a6a6a;">General</li>
+              <li class="navigation__item text-black mt-5 fs-14" style="color: #111; border-bottom: 1px solid #6a6a6a;">General</li>
               <li class="navigation__item "><a href="{% url 'home-page' %}" class="navigation__link" style="">Home</a></li>
               <li class="navigation__item"><a href="" class="navigation__link" style="">Projects</a></li>
               <li class="navigation__item"><a href="" class="navigation__link" style="">Services</a></li>
-              <li class="navigation__item"><a href="{% url 'portal:image_upload' %}" class="navigation__link" style="">Pricing</a></li>
-              <li class="navigation__item"><a href="{% url 'contact-page' %}" class="navigation__link" style="">Consultation</a></li>
+              <li class="navigation__item"><a href="" class="navigation__link" style="">Pricing</a></li>
+              <li class="navigation__item"><a href="{% url 'contact-page' %}" class="navigation__link" style="">Contact</a></li>
             </ul>
         </nav>
     </div>

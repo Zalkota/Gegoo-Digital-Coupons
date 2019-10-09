@@ -1,88 +1,89 @@
 {% load static %}
 
 <!-- Footer section -->
-<div class="container" style="display: none;">
-
-  <div class=" shadow-2 banner" data-aos="fade-up">
-        <div class="row">
-          <div class="col-lg-9">
-              <h4 class="text-white">Ready to start a project?</h4>
-              <p>Let's build something together!</p>
-          </div>
-          <div class="col-lg-3">
-              <button href="{% url 'contact-page' %}" class="btn btn-outline-light px-4 mt-2">Contact Us</button>
-          </div>
-      </div>
-  </div>
-</div>
 
 <footer>
-  <div class="container bg pb-5">
+  <div class="container pb-2">
     <div class="py-3"></div>
     <div class="row ">
       <!--Column1-->
         <div class="col-md-3 col-sm-6 mt-3">
             <div class="footer-pad">
-                <span class="fw-6 fs-20 title-footer"> Mod Technologies </span>
+                <span class="fs-20 title-footer">{{ SITE_NAME }}</span>
                 <p class="font-footer" style="margin-top: 2.5rem; font-size: 14px;">
                    2019 &copy; All Rights Reserved.
                 </p>
-                <ul class="pull-left pl-0" style="list-style-type: none;">
-                  <li style="display: inline; margin-right: 4px;"><a href="https://www.facebook.com/modtechnology/?eid=ARCs8uUr97b_fqg1XSWD-SU6-wL1FOZdNwtgOJHFRgYD2AFWzC-VEbGpL3mXkwXBMJwDlDP0vQd71FGX"><i class="fa fa1 fa-facebook" aria-hidden="true"></i></a>
-                  <li style="display: inline; margin-right: 4px;"><a href="https://www.linkedin.com/in/dominic-mazzola-3833a686/"><i class="fa fa1 fa-linkedin" aria-hidden="true"></i></a>
-                </ul>
+
             </div>
         </div>
 
       <!--Column2-->
       <div class="col-md-3 col-sm-6 mt-3">
-        <div class="font-thick">
-          <span class="fw-6 fs-20 title-footer" style="line-height: 2rem;">Useful Links</span>
+        <div class="">
+          <span class="fs-20 title-footer" style="line-height: 2rem;">Learn More</span>
             <br>
             <br>
-            {% if not request.user.is_authenticated %}
-            <a style="line-height: 2rem;" href="{% url 'account_login' %}">Log in</a>
+            <a class="font-footer" style="line-height: 2rem;" href="{% url 'account_login' %}">About</a>
             <br>
-            {% else %}
-            <a style="line-height: 2rem;" href="{% url 'account_signup' %}">Sign Up</a>
+            <a class="font-footer" style="line-height: 2rem;" href="{% url 'account_signup' %}">Shipping</a>
             <br>
-            {% endif %}
-            <a style="line-height: 2rem;" href="{% url 'portal:how_it_works' %}">How It Works</a>
+            <a class="font-footer" style="line-height: 2rem;" href="">FAQ</a>
             <br>
-            <a style="line-height: 2rem;" href="">Blog</a>
+            <a class="font-footer" style="line-height: 2rem;" href="">Sizing</a>
             <br>
-            <a style="line-height: 2rem;" href="{% url 'home-page' %}#faq">FAQ</a>
+            <a class="font-footer" style="line-height: 2rem;" href="{% url 'home-page' %}#faq">Warranty</a>
         </div>
       </div>
       <!--Column3-->
       <div class="col-md-3 col-sm-6 mt-3">
-        <div class="font-thick">
-            <span class="fw-6 fs-20 title-footer" style="line-height: 2rem;">Contact</span>
+        <div class="">
+            <span class="title-footer" style="line-height: 2rem;">Contact</span>
             <br>
             <br>
-            <a style="line-height: 2rem;" href="{% url 'contact-page' %}">Contact Us</a>
+            <a class="font-footer" style="line-height: 2rem;" href="{% url 'contact-page' %}">Contact Us</a>
             <br>
-            <a style="line-height: 2rem;" href="tel:2487561169">(248) 756-1169</a>
+            <a class="font-footer" style="line-height: 2rem;" href="tel:2487561169">(248) 756-1169</a>
             <br>
-            <a style="line-height: 2rem;" href="tel:2487561169">Join Our Team</a>
+            <a class="font-footer" style="line-height: 2rem;" href="tel:2487561169">Instagram</a>
+            <br>
+            <a class="font-footer" style="line-height: 2rem;" href="/privacy-page/">Privacy</a>
+            <br>
+            <a class="font-footer" style="line-height: 2rem;" href="/terms-page/">Terms</a>
         </div>
       </div>
       <!--Column4-->
 
       <div class="col-md-3 col-sm-6 mt-3">
-          <div class="font-thick">
-              <span class="fw-6 fs-20 title-footer" style="line-height: 2rem;">Legal</span>
+          <div class="">
+              <span class="fs-20 title-footer" style="line-height: 2rem;">Subscribe </span>
               <br>
               <br>
-              <a style="line-height: 2rem;" href="/privacy-page/">Privary Policy</a>
-              <br>
-              <a style="line-height: 2rem;" href="/terms-page/">Terms of Use</a>
+              <form action="https://gmail.us3.list-manage.com/subscribe/post?u=1e40a447f0093d59b2e997da1&amp;id=107d21c691" method="POST" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                  <input class="input-group-field " style="height: 50px;" type="email" name="EMAIL" placeholder="Email" required>
+                  <!-- Message Response -->
+                  <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                  </div>
+                  <input style=" display:none;"type="text" name="b_1e40a447f0093d59b2e997da1_107d21c691" tabindex="-1" value=""> <br>
+                  <button type="submit"class="btn btn-alt mt-1" value="Subscribe" style="">Sign up</button>
+              </form>
+
           </div>
       </div>
     </div>
-    <div class="py-4"></div>
+    <div class="py-3"></div>
+    <div class="pt-5 ">
+      <hr>
+      <p class="pt-2 fs-24">
+        <i class="fa fa-instagram pr-2" aria-hidden="true"></i>
+        <i class="fa fa-facebook pr-2" aria-hidden="true"></i>
+        <i class="fa fa-linkedin pr-2" aria-hidden="true"></i>
+        <i class="fa fa-pinterest pr-2" aria-hidden="true"></i>
+        <span class="fs-14 text-muted pull-right">All products are designed and crafted by Robert James in Detroit, Michigan USA.</span>
+      </p>
+    </div>
   </div>
-
   </footer>
 <!-- Footer bottom-->
 

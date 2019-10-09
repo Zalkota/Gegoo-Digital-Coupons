@@ -8,6 +8,30 @@ $mdb-animation-curve-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1) !default;
 $mdb-animation-curve-default: $mdb-animation-curve-fast-out-slow-in !default;
 
 
+body {
+    margin: 0;
+    font-family: Muli, sans-serif !important;
+    background-color: $color-white !important;
+
+    h1 h2 h3 h4 h5 h6 {
+      color: #1a1a1a;
+    }
+
+    p {
+      color: $color-text;
+
+    }
+
+    li {
+      color: $color-dark;
+    }
+
+    a {
+      color: $color-primary;
+    }
+}
+
+
 @import "./generic/global";
 @import "./generic/navbar";
 @import "./generic/buttons";
@@ -16,6 +40,7 @@ $mdb-animation-curve-default: $mdb-animation-curve-fast-out-slow-in !default;
 @import "./generic/hero";
 @import "./generic/mobile";
 @import "./generic/images";
+@import "./generic/art";
 
 //@import "form";
 @import "./generic/footer";
@@ -29,11 +54,9 @@ $mdb-animation-curve-default: $mdb-animation-curve-fast-out-slow-in !default;
 
 
 
-
-
-
 a:hover {
   color: $color-primary;
+  text-decoration: none;
 }
 
 .text-primary {

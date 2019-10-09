@@ -25,11 +25,9 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
-    #'home',
-    #'search',
-
     'modelcluster',
     'taggit',
+    'mysite',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,12 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'home',
     'debug_toolbar',
 
     #APPS
     'users',
-    'portal',
+    #'portal',
+    'shoppingcart',
     #'memberships',
     #'blog',
 

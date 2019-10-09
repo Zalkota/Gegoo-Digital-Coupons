@@ -62,10 +62,10 @@ $color-blue-800: #2C5282;
 $color-blue-900: #2A4365;
 
 // Theme Colors
-$color-primary: $color-green-500;
-$color-primary-light: $color-green-400;
-$color-primary-lighter: $color-green-300;
-$color-primary-dark: $color-green-600;
+$color-primary: $color-blue-800;
+$color-primary-light: $color-blue-400;
+$color-primary-lighter: $color-blue-300;
+$color-primary-dark: $color-blue-600;
 
 $color-secondary: $color-orange-500;
 $color-secondary-light: lighten( $color-secondary, 20% );
@@ -92,8 +92,8 @@ $color-accent-dark: darken( $color-accent, 5% );
 $color-accent-lighter: lighten( $color-accent, 80% );
 
 $color-text: $color-black;
-$color-background: #F6FAFD;
-$color-background-alt: #f3f6fa;
+$color-background: #f1f1f1;
+$color-background-alt: #f1f1f1;
 $color-main: #fafafa;
 
 // Navbar
@@ -106,12 +106,12 @@ $color-navbar-hover: $color-black;
 $color-navbar-alt-background: $color-main;
 $color-navbar-alt-background-scrolled: #fdfdfe;
 $color-navbar-alt-text: $color-black;
-$color-navbar-alt-hover: $color-primary-dark;
+$color-navbar-alt-hover: $color-dark;
 
 // Footer
-$color-footer-background: $color-dark;
-$color-footer-text: $color-light;
-$color-footer-title: $color-white;
+$color-footer-background: $color-white;
+$color-footer-text: $color-gray-700;
+$color-footer-title: $color-black;
 
 $keep: #476783;
 $keep1: #5981a4;
@@ -130,7 +130,7 @@ $color-info: $color-blue-400;
 $color-info-light: lighten( $color-info, 10% );
 $color-info-dark: darken( $color-info, 10% );
 
-$border-radius: 0.2rem;
+$border-radius: 0.1rem;
 $border-color: rgba(0, 0, 0, 0.06);
 $box-shadow-1: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
 
