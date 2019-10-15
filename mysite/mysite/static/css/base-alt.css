@@ -67,117 +67,94 @@ hr.hr-2 {
 @media (min-width: 1200px) {
   .container {
     max-width: 1440px; } }
+
 @media screen and (min-width: 992px) {
   .unhide {
     display: none; }
-
   .mobile-margin {
     margin-top: 100px; }
-
   .search {
     width: 350px; }
-
   .search-input {
     width: 350px; }
-
   .h100 {
     height: 100vh; }
-
   .message-resizer {
     width: 25rem; }
-
   .column-border {
     border-right: 1px solid #f1f1f1; }
-
   .contactform h1 {
     font-size: 65px;
     font-weight: 600; }
-
   .contactform h2 {
     font-size: 28.5px;
     font-weight: 500; }
-
   .projectform h1 {
     font-size: 65px;
     font-weight: 600; }
-
   .projectform h2 {
     font-size: 28.5px;
     font-weight: 500; }
-
   .projectform h5 {
     font-size: 16px;
     font-weight: 500; }
-
   /* UserPage Padding UL */
   .ul-padding-mobile {
     padding-inline-start: 0px; } }
+
 @media screen and (max-width: 1200px) {
   .search {
     width: 290px; }
-
   .search-input {
     width: 290px; }
-
   .contactform {
     height: 73vh;
     margin-top: 110px;
     background-color: #fafafa;
     background-repeat: no-repeat; } }
+
 @media screen and (max-width: 992px) {
   .hide {
     display: none; }
-
   .search {
     width: 100%;
     margin-top: 1rem; }
-
   .search-input {
     width: 95%; }
-
   .center {
     text-align: center; }
-
   .contactform {
     height: 135vh;
     margin-top: 110px;
     background-color: #fafafa;
     background-repeat: no-repeat;
     height: 110rem; }
-
   .contactform h1 {
     font-size: 30px;
     font-weight: 600; }
-
   .contactform h2 {
     font-size: 16px;
     font-weight: 500; }
-
   .contactform h5 {
     font-size: 14px;
     font-weight: 500; }
-
   .projectform h1 {
     font-size: 30px;
     font-weight: 600; }
-
   .projectform h2 {
     font-size: 16px;
     font-weight: 500; }
-
   .projectform h5 {
     font-size: 22px;
     font-weight: 500; }
-
   .message-resizer {
     width: 15rem; }
-
   .column-border {
     border-right: none; }
-
   /* UserPage Padding UL */
   .ul-padding-mobile {
     padding-inline-start: 20px; } }
+
 /* ********* Cards ********** */
 .card {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 3px 2px -2px rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
@@ -311,16 +288,16 @@ hr.hr-2 {
 @media screen and (min-width: 992px) {
   .star-yellow {
     color: #f3c840; }
-
   .service-spacer {
     padding-bottom: 6rem; } }
+
 @media screen and (max-width: 992px) {
   .star-yellow {
     color: #f3c840;
     font-size: 14px; }
-
   .service-spacer {
     padding-bottom: 0rem; } }
+
 .mini-container {
   display: flex;
   flex-direction: row;
@@ -335,7 +312,7 @@ hr.hr-2 {
   margin: 0; }
 
 .card-mini .title {
-  padding: 1rem 0 0 0.5rem;
+  padding: 1rem 0 0 .5rem;
   margin: 0;
   font-size: 16px;
   font-weight: 500; }
@@ -827,9 +804,11 @@ button {
 
 .custom-button-animations button:focus {
   background: #555abf; }
+
 .custom-button-animations button:hover {
   transform: translateY(-1px);
   box-shadow: 0 7px 14px 0 rgba(50, 50, 93, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.08); }
+
 .custom-button-animations button:active {
   background: #43458b; }
 
@@ -957,6 +936,21 @@ button {
   .btn-secondary-alt-2 .btn-secondary-alt-2:focus {
     background: #efefef;
     box-shadow: 0; }
+
+.btn-light-alt {
+  background: #fff;
+  color: #2D3748;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem; }
+  .btn-light-alt:hover, .btn-light-alt:active, .btn-light-alt:focus {
+    background: #2D3748;
+    color: #e5e5e5;
+    box-shadow: 0;
+    text-decoration: none !important; }
 
 .btn-accent-alt {
   background: #475671;
@@ -1349,6 +1343,14 @@ button {
   background-color: #2A4365;
   color: #EDF2F7; }
 
+.section-black-md {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  background-color: #2D3748;
+  color: #EDF2F7; }
+
 .section-accent-lg {
   margin-top: 0rem;
   margin-bottom: 0rem;
@@ -1575,6 +1577,7 @@ button {
   width: 100%;
   height: 40rem;
   border-radius: 0.2em; }
+
 .section-overlap-img .col-lg-6:last-child {
   position: relative; }
   .section-overlap-img .col-lg-6:last-child .panel {
@@ -1604,6 +1607,7 @@ button {
     padding-bottom: 6rem;
     color: #ED8936;
     background-color: #EDF2F7; } }
+
 @media screen and (max-width: 992px) {
   .section-card-overlay-bottom {
     margin-top: 0rem;
@@ -1612,6 +1616,7 @@ button {
     padding-bottom: 49rem;
     color: #ED8936;
     background-color: #EDF2F7; } }
+
 /* ******** CARDS ********* */
 .contact-background {
   height: 100vh;
@@ -1861,70 +1866,60 @@ button {
 @media screen and (min-width: 992px) {
   .p-m-5 {
     padding: 3rem; }
-
   .px-m-5 {
     padding-left: 3rem !important;
     padding-right: 3rem !important; }
-
   .pr-m-5 {
     padding-right: 3rem; }
-
   .pl-m-5 {
     padding-left: 3rem; }
-
   .p-m-5-0 {
     padding: 3rem !important; }
-
   .p-m-4-0 {
     padding: 3rem !important; }
-
   .px-m-5-1 {
     padding-left: 3rem;
     padding-right: 3rem; }
-
   .px-0-3 {
     padding-left: 0rem !important;
     padding-right: 0rem !important; } }
+
 @media screen and (max-width: 992px) {
   .px-m-5 {
     padding-left: 1rem !important;
     padding-right: 1rem !important; }
-
   .pr-m-5 {
     padding-right: 1rem !important; }
-
   .pl-m-5 {
     padding-left: 0rem !important; }
-
   .p-m-5 {
     padding: 2rem 1rem 2rem 1rem !important; }
-
   .p-m-5-0 {
     padding: 0rem !important; }
-
   .p-m-4-0 {
     padding: 1rem !important; }
-
   .px-m-5-1 {
     padding-left: 1rem !important;
     padding-right: 1rem !important; }
-
   .px-0-3 {
     padding-left: 1rem !important;
     padding-right: 1rem !important; }
-
   .px-m-na-0 {
     padding-left: 0rem !important;
     padding-right: 0rem !important; } }
+
 @media screen and (max-width: 992px) {
   .h-m-700 {
     height: 700px; } }
+
 @media screen and (min-width: 992px) {
   .w-m-100 {
     width: 700px; } }
+
 @media screen and (max-width: 992px) {
   .w-m-100 {
     width: 100%; } }
+
 /*         FOOTER GHOST       */
 footer {
   padding-top: 2%;
@@ -2699,84 +2694,67 @@ select:-webkit-autofill {
 @media only screen and (max-width: 1024px) {
   #main.checkout:not(.success):not(.error) {
     width: calc(100% - 320px); }
-
   #summary {
     width: 320px;
     right: -320px; }
-
   #main.checkout:not(.success):not(.error) + #summary {
     right: 0; }
-
   #summary .line-item p {
     margin-top: 0; }
-
   #summary .line-item .image {
     width: 40px;
     height: 40px; }
-
   #summary .line-item .label {
     margin: 0; } }
+
 @media only screen and (max-width: 800px) {
   #main.checkout:not(.success):not(.error) {
     width: 100%; }
-
   #payment-request {
     padding-top: 0;
     min-height: 80px; }
-
   #summary {
     display: none; }
-
   #confirmation .status {
     width: auto;
     height: auto;
     margin: 30px; } }
+
 @media only screen and (max-width: 500px) {
   header {
     height: 60px;
     background-size: 40px 40px; }
-
   header a.shop,
   header a.github {
     display: none; }
-
   #payment-request {
     min-height: 0;
     padding-right: 15px;
     padding-left: 15px; }
-
   #payment-form {
     margin: 0;
     padding: 0 15px;
     border-width: 2px 0 0 0;
     border-radius: 0; }
-
   .payment-info span {
     display: none; }
-
   fieldset {
     margin-bottom: 15px; }
-
   fieldset label.state,
   fieldset label.zip {
     display: flex;
     width: inherit;
     padding: 10px 0; }
-
   p.instruction {
     margin-top: -12px;
     font-size: 14px; }
-
   p.tip {
     margin-bottom: 0;
     font-size: 13px; }
-
   #country::before {
     display: none; }
-
   #checkout {
     margin-bottom: 0; }
-
   #confirmation .status {
     width: auto;
     height: auto;
@@ -2785,9 +2763,9 @@ select:-webkit-autofill {
     background-size: 68px 86px;
     box-shadow: 0 1px 3px 0 rgba(50, 50, 93, 0.15);
     border-radius: 6px; }
-
   #confirmation h1 {
     text-align: center; } }
+
 /*       CONTACT PAGE AND FORM        */
 input {
   font-size: 1.1rem; }
@@ -2867,9 +2845,11 @@ input {
 @media screen and (max-width: 992px) {
   .w-100-mobile {
     width: 100%; } }
+
 @media screen and (min-width: 992px) {
   .w-100-mobile {
     width: 500px; } }
+
 .navigation__logo {
   color: #2D3748;
   font-size: 24px;
@@ -2910,7 +2890,6 @@ input {
     box-shadow: 0;
     text-align: center;
     cursor: pointer; }
-
   .navigation__background {
     height: 100vh;
     width: 70%;
@@ -2920,7 +2899,6 @@ input {
     background-color: #fafafa;
     z-index: 1000;
     transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1); }
-
   .navigation__background-2 {
     height: 100vh;
     width: 100%;
@@ -2930,7 +2908,6 @@ input {
     background-color: rgba(50, 50, 50, 0.86);
     z-index: 500;
     transition: 0s; }
-
   .navigation__list {
     position: absolute;
     top: 10%;
@@ -2939,12 +2916,12 @@ input {
     list-style: none;
     text-align: left;
     width: 100%; }
-
   .navigation__item {
     margin: 1rem 1rem 1rem 0.5rem;
     font-size: 1rem;
     width: 60%;
     max-width: 8rem; } }
+
 @media screen and (min-width: 767px) {
   .navigation__button {
     background-color: transparent;
@@ -2957,7 +2934,6 @@ input {
     box-shadow: 0;
     text-align: center;
     cursor: pointer; }
-
   .navigation__background {
     height: 100vh;
     width: 70%;
@@ -2967,7 +2943,6 @@ input {
     background-color: #fafafa;
     z-index: 1000;
     transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1); }
-
   .navigation__background-2 {
     height: 100vh;
     width: 100%;
@@ -2977,7 +2952,6 @@ input {
     background-color: rgba(50, 50, 50, 0.86);
     z-index: 500;
     transition: 0s; }
-
   .navigation__list {
     position: absolute;
     top: 10%;
@@ -2986,12 +2960,12 @@ input {
     list-style: none;
     text-align: left;
     width: 100%; }
-
   .navigation__item {
     margin: 1.5rem 1.5rem 1.5rem 0.5rem;
     font-size: 1.3rem;
     width: 80%;
     max-width: 8rem; } }
+
 .navigation__nav {
   height: 100vh;
   width: 0;
@@ -3831,5 +3805,3 @@ a:hover {
 
 .text-muted {
   color: #2A4365; }
-
-/*# sourceMappingURL=base-alt.css.map */

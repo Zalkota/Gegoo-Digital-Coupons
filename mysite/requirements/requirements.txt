@@ -38,41 +38,36 @@ django-crispy-forms==1.7.2
 stripe==2.36.1
 
 # Compress Assets With Django Compressor
-rcssmin==1.0.6  # https://github.com/ndparker/rcssmin
+#rcssmin==1.0.6  # https://github.com/ndparker/rcssmin
 django-compressor==2.2  # https://github.com/django-compressor/django-compressor
 
+
 # libsass for scss to css
-django-libsass==0.7
-libsass==0.12.3
+#django-libsass==0.7
+#libsass==0.12.3
 
 
 # Permission System https://github.com/brack3t/django-braces/tree/v1.4.0
-django-braces
-
-#Crispy Form Wagtail extensions
-django-widget-tweaks
-
-#Cookie Law https://www.bedjango.com/blog/how-adaptate-cookies-eu-standards-django-projects/
-django-cookie-law
-
-#PDF Creator/download Pg.150 Django CookBook
-#xhtml2pdf~=0.2.3
+django-braces==1.13.0
 
 # Honeypot
-django-honeypot
+django-honeypot==0.7.0
 
 # Instagram APP https://github.com/marcopompili/django-instagram
-#sorl-thumbnail
-django-instagram
+django-instagram==0.3.0
 
 # Ckeditor https://django-ckeditor.readthedocs.io/en/latest/
-django-ckeditor
+django-ckeditor==5.7.1
 
 # Phone Numbers https://github.com/stefanfoulis/django-phonenumber-field
-django-phonenumber-field
-phonenumbers
+django-phonenumber-field==3.0.01
+phonenumbers==8.10.20
 
 #Debug Toolbar
-django-debug-toolbar
+django-debug-toolbar==1.11
+
+# Payment Procesing
+stripe==2.36.1
+
 
 django-countries==5.3.3

@@ -3,7 +3,7 @@
 @media screen and (min-width: 992px) {
     .hero {
         /* Sizing */
-        height: 70vh;
+        height: 90vh;
         /* Flexbox stuff */
         display: flex;
         justify-content: center;
@@ -14,7 +14,7 @@
 
         /* Text styles */
         /* Background styles */
-        background: url(/static/img/headers/rj_background_4.png);
+        background: url(/static/img/header.png);
         //back: ;ground-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
         background-color: $color-white;
         /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
@@ -32,7 +32,6 @@
           max-width: 60rem;
           padding-top: 10rem;
           padding-bottom: 10rem;
-
           width: 70%;
 
           hr {
@@ -41,13 +40,11 @@
         }
 
         & h1 {
-            font-size: 2.5rem;
+            font-size: 4rem;
             color: $color-white;
             font-weight: 800;
-            opacity: .95;
             margin-top: 0;
             margin-bottom: 2rem;
-
         }
 
         & h3 {

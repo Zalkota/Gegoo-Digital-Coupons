@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     #Payment
     'stripe',
+    'django_countries',
 
     #Security
     'honeypot',
@@ -55,8 +56,6 @@ INSTALLED_APPS = [
     #Phone Number Field
     'phonenumber_field',
 
-    #Cookies
-    'cookielaw',
 
     #PDF
     #'xhtml2pdf',

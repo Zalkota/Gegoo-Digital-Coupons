@@ -215,6 +215,23 @@
     }
   }
 
+  .btn-light-alt {
+  background: $color-white;
+  color: $color-black;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+
+  &:hover, &:active, &:focus{
+    background: $color-black;
+    color: #e5e5e5;
+    box-shadow: 0;
+    text-decoration: none !important;
+    }
+  }
 
   .btn-accent-alt {
   background: $color-accent-light;
