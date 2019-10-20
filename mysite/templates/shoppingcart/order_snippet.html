@@ -29,7 +29,7 @@
     </ul>
 
     {% if DISPLAY_COUPON_FORM %}
-    <form class="card p-2" action="{% url 'core:add-coupon' %}" method="POST">
+    <form class="card p-2" action="{% url 'shoppingcart:add-coupon' %}" method="POST">
         {% csrf_token %}
         <div class="input-group">
             {{ couponform.code }}
@@ -41,4 +41,3 @@
     {% endif %}
 
 </div>
-

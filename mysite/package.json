@@ -20,12 +20,13 @@
     "time-grunt": "^2.0.0"
   },
   "dependencies": {
-    "caniuse-lite": "^1.0.30000960",
+    "caniuse-lite": "^1.0.30000999",
     "core-util-is": "^1.0.2",
-    "cosmiconfig": "^5.2.0",
+    "cosmiconfig": "^5.2.1",
     "grunt": "^1.0.4",
     "grunt-sass": "^2.1.0",
-    "livereload-js": "^3.0.0"
+    "livereload-js": "^3.0.0",
+    "package.json": "^2.0.1"
   },
   "keywords": []
 }

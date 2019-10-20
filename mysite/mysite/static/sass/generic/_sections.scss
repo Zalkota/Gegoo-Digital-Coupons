@@ -45,6 +45,14 @@
       background-color: #fff;
     }
 
+    .section-white {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+      padding-top: 0rem;
+      padding-bottom: 0rem;
+      background-color: #fff;
+    }
+
     .section-light-md {
       margin-top: 0rem;
       margin-bottom: 0rem;
@@ -59,6 +67,15 @@
       padding-top: 4rem;
       padding-bottom: 4rem;
       background-color: $color-light;
+    }
+
+
+    .section-gray-md {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+      background-color: $color-gray-800;
     }
 
 
@@ -610,53 +627,53 @@
 /*      HERO       */
 
   .section-hero-img {
+      margin-top: 4rem;
+      margin-bottom: 4rem;
       /* Sizing */
-      height:75vh;
+      height: 600px;
       /* Flexbox stuff */
       display: flex;
-      justify-content: center;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
       align-items: center;
       /* Text styles */
 
       /* Background styles */
-      background-image: url(/static/img/header-img2.jpg);
+      background: url(/static/img/video.png);
       //background-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
       /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
       background-size: cover;
       background-position: left;
       background-repeat: no-repeat;
-      position: relative;
-
 
       & .text {
-        position: absolute;
         text-align: center;
-        top: 33%;
-        color: $color-white;
+        position: relative;
+        flex-grow: 1;
+        align-self: center;
+        margin-right: auto;
+        margin-left: auto;
 
-        animation: moveInTop 1.5s;
-        animation-fill-mode: forwards
-      }
+        h3 {
+            /* Text styles */
+            font-size: 1.5em;
+            color: $color-white;
+            font-weight: 700;
+            /* Margins */
+            margin-top: 0;
+            margin-bottom: 0.5em;
+            padding: 0 1rem 0 1rem;
 
-      & h1 {
-          /* Text styles */
-          font-size: 3em;
-
-          font-weight: 700;
-          /* Margins */
-          opacity: .95;
-          margin-top: 0;
-          margin-bottom: 0.5em;
-          padding: 0 1rem 0 1rem;
-
-      }
-      & p {
-          /* Text styles */
-          font-size: 1.8em;
-          /* Margins */
-          margin-top: 0;
-          margin-bottom: 2em;
-          padding: 0 1rem 0 1rem;
+        }
+        p {
+            /* Text styles */
+            font-size: 1.8em;
+            /* Margins */
+            margin-top: 0;
+            margin-bottom: 2em;
+            padding: 0 1rem 0 1rem;
+        }
       }
   }
 

@@ -29,15 +29,15 @@
 }
 
 .section-image-grey-md {
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-
-  background: url(/static/img/headers/wave_3.svg);
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  height: 600px;
+  background: url(/static/img/video.png);
   //background-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
 
   /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
   background-size: cover;
-  background-position: bottom;
+  background-position: center;
   background-repeat: no-repeat;
   position: relative;
 }

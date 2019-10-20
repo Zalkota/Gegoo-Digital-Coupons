@@ -53,9 +53,18 @@
                 </p>
             </div>
             <div class="col-lg-4 text-right">
-              <a href="#" class="btn btn-alt pull-right">ADD TO CART</a>
-              <br><br><br>
-                  <i class="fa fa-share pr-2 pull-right text-muted" aria-hidden="true"></i>
+              {% comment %}
+              <form class="d-flex justify-content-left">
+                <!-- Default input -->
+                <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+                <button class="btn btn-alt my-0 p" type="submit">
+                  Add to cart
+                </button>
+              </form> 
+              {% endcomment %}
+              <a href="{{ object.get_add_to_cart_url }}" class="btn btn-alt my-0">
+                Add to cart
+              </a>
             </div>
             <div class="offset-lg-2"></div>
             <div class="col-lg-8 offset-lg-2">
@@ -161,29 +170,6 @@
                 <div class="offset-lg-2"></div>
             </div>
         </div>
-  </section>
-
-  <section class="section-white-sm">
-    <div class="container text-left" data-aos="fade-up">
-        <div class="py-5"></div>
-        <div class="text-center card-border p-5">
-          <div class="text-left">
-            <i class="material-icons star-yellow" style="">star star star star star </i>
-              <h4 class="mt-4 ">"From the moment I picked this bracelet up, you could feel the quality of the stainless steel and time that was put into it."</h4>
-                <div class="row">
-                  <div class="col-lg-12 pull-left">
-                    <h4 class="fs-16 mb-0 mt-3 ">Jacob Gaft <br><span class="text-muted fs-12">Verified Buyer</span></h4>
-                    <br>
-                    <span class="text-primary fs-14">September 11, 2019, 6:09 p.m.</span>
-                  </div>
-                </div>
-            </div>
-          <div class="text-center" style="display: none;">
-            <a class="btn btn-primary-round fs-20" href="{% url 'contact-page' %}">View Additional Projects</a>
-          </div>
-        </div>
-        <div class="py-5"></div>
-    </div>
   </section>
 
 

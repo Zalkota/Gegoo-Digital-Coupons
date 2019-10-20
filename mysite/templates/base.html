@@ -36,8 +36,8 @@
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/docs.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/waves.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/cookielaw.css' %}">
+        <!--<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/cookielaw.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/animation.css' %}">
   <!--  <link rel="stylesheet" type="text/css" href="{% static 'css/style-alt' %}"
         <link rel="stylesheet" type="text/css" href="{% static 'css/hero.css' %}"> -->
@@ -51,6 +51,9 @@
 
         {% endblock extra_styles %}
 
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
 
     </head>
 
@@ -74,7 +77,6 @@
         {% block content %}{% endblock %}
 
 
-
         {% block footer %}
           {% include "footer-ghost.html" %}
         {% endblock footer %}
@@ -86,8 +88,13 @@
         <script src="{% static 'js/docs.min.js' %}"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChmLHKBW5VXZsv5Am2kkAy4HOYqd6vd0k&callback=initMap"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+        <!-- removing the below two packages breaks the dropdown button -->
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
