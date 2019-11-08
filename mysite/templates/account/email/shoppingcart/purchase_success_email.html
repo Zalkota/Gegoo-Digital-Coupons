@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+{% load account %}{% user_display user as user_display %}{% load i18n %}
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no"> <!-- Tell iOS not to automatically link certain text strings. -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+    <!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+    <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+    <!-- CSS Reset : BEGIN -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+            color: #222;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What it does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin: 0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+        a {
+            text-decoration: none;
+        }
+
+        hr {
+          background-color: rgba(0, 0, 0, 0.06);
+          color: rgba(0, 0, 0, 0.06);
+        }
+
+        /* What it does: A work-around for email clients meddling in triggered links. */
+        a[x-apple-data-detectors],  /* iOS */
+        .unstyle-auto-detected-links a,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;off
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+        .a6S {
+            display: none !important;
+            opacity: 0.01 !important;
+        }
+
+        /* What it does: Prevents Gmail from changing the text color in conversation threads. */
+        .im {
+            color: inherit !important;
+        }
+
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+            display: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+
+        /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+            u ~ div .email-container {
+                min-width: 320px !important;
+            }
+        }
+        /* iPhone 6, 6S, 7, 8, and X */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+            u ~ div .email-container {
+                min-width: 375px !important;
+            }
+        }
+        /* iPhone 6+, 7+, and 8+ */
+        @media only screen and (min-device-width: 414px) {
+            u ~ div .email-container {
+                min-width: 414px !important;
+            }
+        }
+
+    </style>
+
+    <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+
+    <!-- CSS Reset : END -->
+
+    <!-- Progressive Enhancements : BEGIN -->
+    <style>
+
+	    /* What it does: Hover styles for buttons */
+	    .button-td,
+	    .button-a {
+	        transition: all 100ms ease-in;
+	    }
+	    .button-td-primary:hover,
+	    .button-a-primary:hover {
+	        background: #555555 !important;
+	        border-color: #555555 !important;
+	    }
+
+	    /* Media Queries */
+	    @media screen and (max-width: 600px) {
+
+	        /* What it does: Adjust typography on small screens to improve readability */
+	        .email-container p {
+	            font-size: 17px !important;
+	        }
+
+	    }
+
+    </style>
+    <!-- Progressive Enhancements : END -->
+
+</head>
+<!--
+	The email background color (#222222) is defined in three places:
+	1. body tag: for most email clients
+	2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
+	3. mso conditional: For Windows 10 Mail
+-->
+<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #ffffff;">
+	<center style="width: 100%; background-color: #ffffff;">
+    <!--[if mso | IE]>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #fffff;">
+    <tr>
+    <td>
+    <![endif]-->
+
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+            (Optional) This text will appear in the inbox preview, but not the email body. It can be used to supplement the email subject line or even summarize the email's contents. Extended text preheaders (~490 characters) seems like a better UX for anyone using a screenreader or voice-command apps like Siri to dictate the contents of an email. If this text is not included, email clients will automatically populate it using the text (including image alt text) at the start of the email's body.
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+
+        <!-- Create white space after the desired preview text so email clients don’t pull other distracting text into the inbox preview. Extend as necessary. -->
+        <!-- Preview Text Spacing Hack : BEGIN -->
+        <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+	        &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+        </div>
+        <!-- Preview Text Spacing Hack : END -->
+
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: 0 auto; " class="email-container">
+            <!--[if mso]>
+            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600">
+            <tr>
+            <td>
+            <![endif]-->
+
+	        <!-- Email Body : BEGIN -->
+	        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style=";margin: auto; border-radius: .3rem">
+		        <!-- Email Header : BEGIN -->
+
+		        <!-- Email Header : END -->
+
+                <!-- Hero Image, Flush : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;">
+                        <img src="https://i.imgur.com/AqSOq5c.jpg" width="600" height="" alt="alt_text" border="0" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #24afe7; margin: auto; display: block;">
+                    </td>
+                </tr>
+                <!-- Hero Image, Flush : END -->
+
+                <!-- 1 Column Text + Button : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+
+                            <tr>
+                                <td style="padding: 20px 0px 40px 0px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #2D3748;">
+                                    <h2>Your Order #34243243</h2>
+                                    <h3>Order Date: </h3>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- 1 Column Text + Button : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;text-align:center;height:auto;border-collapse:collapse" align="left" cellpadding="0" cellspacing="0" border="0">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; font-family: sans-serif; font-size: 15px; line-height: 40px; color: #555555; width: 25%;">
+                                        Item
+                                    </th>
+                                    <th style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; font-family: sans-serif; font-size: 15px; line-height: 40px; color: #555555; width: 25%;">
+                                        Description
+                                    </th>
+                                    <th style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; font-family: sans-serif; font-size: 15px; line-height: 40px; color: #555555; width: 25%;">
+                                        Unit Price
+                                    </th>
+                                    <th style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; font-family: sans-serif; font-size: 15px; line-height: 40px; color: #555555; width: 25%;">
+                                        Subtotal
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 20px; width: 25%;"><img src="https://i.imgur.com/zFfFpow.png" width="100%" alt="alt_text" border="0" style="width: 100%; height: auto; background: #dddddd; font-family: sans-serif; color: #24afe7; margin: auto; display: block;"></td>
+                                    <td style="padding: 20px; width: 25%;">Product Description</td>
+                                    <td style="padding: 20px; width: 25%;">$29.99</td>
+                                    <td style="padding: 20px; width: 25%; padding-bottom: 1px solid #ccc;">$29.99</td>
+                                </tr>
+
+                                <tr>
+                                    <td><hr></td>
+                                    <td><hr></td>
+                                    <td><hr></td>
+                                    <td><hr></td>
+                                </tr>
+
+                                <tr style="padding-bottom: 1px solid #ccc;">
+                                    <td style="padding: 20px; width: 25%;"><img src="https://i.imgur.com/zFfFpow.png" width="100%" alt="alt_text" border="0" style="width: 100%; height: auto; background: #dddddd; font-family: sans-serif; color: #24afe7; margin: auto; display: block;"></td>
+                                    <td style="padding: 20px; width: 25%;">Product Description</td>
+                                    <td style="padding: 20px; width: 25%;">$29.99</td>
+                                    <td style="padding: 20px; width: 25%; padding-bottom: 1px solid #ccc;">$29.99</td>
+                                </tr>
+
+                                <tr>
+                                    <td><hr></td>
+                                    <td><hr></td>
+                                    <td><hr></td>
+                                    <td><hr></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="padding: 0;">
+                        <!-- Button : BEGIN -->
+                        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: auto; background-color: #fff;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <br>
+                                    </td>
+                                </tr>
+                                    <tr style="background-color: #f1f1f1;">
+                                        <td class="button-td button-td-primary" style="padding: 20px; font-weight: 500; border-radius: 4px; width: 100%;">
+                                             Payment method
+                                        </td>
+                                        <td class="button-td button-td-primary" style="padding: 20px; font-weight: 500; border-radius: 4px; width: 100%;">
+                                             Shopify_payments •••• •••• •••• 3002
+                                        </td>
+                                        <td class="button-td button-td-primary" style="padding: 20px; font-weight: 500; border-radius: 4px; width: 100%;">
+                                             $35.98 USD
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                        <!-- Button : END -->
+                    </td>
+                </tr>
+
+
+
+                <!-- 1 Column Text + Button : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+
+                            <tr>
+                                <td class="button-td button-td-primary" style="padding: 20px; font-weight: 400; border-radius: 4px; width: 100%; background-color: #f1f1f1;">
+                                    <span style="font-weight: 600;">Billing Address:</span><br><br>
+
+                                     12345 Stone road rd <br>
+                                     bigville, MI 48782 <br>
+                                     United States
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <br>
+                                </td>
+                            </tr>
+
+                            </tr>
+                                <td class="button-td button-td-primary" style="padding: 20px; font-weight: 400; border-radius: 4px; width: 100%; background-color: #f1f1f1;">
+                                    <span style="font-weight: 600;">Shipping Address:</span><br><br>
+                                    12345 Stone road rd <br>
+                                    bigville, MI 48782 <br>
+                                    United States
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <br>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="background-color: #ffffff;">
+                                    <img src="https://i.imgur.com/mn2lnrn.jpg" width="600" height="" alt="alt_text" border="0" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #24afe7; margin: auto; display: block;">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <br>
+                                </td>
+                            </tr>
+
+
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                <td style="padding:0px;border-collapse:collapse" align="left" cellpadding="0" cellspacing="0" border="0">
+                    <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:600px;border-spacing:0px;border-collapse:collapse;margin:0px auto" id="m_-20885319958755756526cs7o4">
+                        <tbody>
+                            <tr>
+                                <td style="text-align:center;height:auto;border-collapse:collapse" align="left" cellpadding="0" cellspacing="0" border="0">
+                                    <div class="m_-2088531995875575652row_content_two_cols">
+
+                                        <div style="display:inline-block;vertical-align:top">
+                                             <table width="300" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                                                 <tbody>
+                                                     <tr>
+                                                         <td style="border-collapse:collapse" align="center" cellpadding="0" cellspacing="0" border="0">
+                                                             <table width="300" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                                                                 <tbody>
+                                                                    <tr>
+                                                                         <td width="269" style="padding:14px;border-collapse:collapse" align="center" cellpadding="0" cellspacing="0" border="0">
+                                                                            <div style="text-align:center">
+                                                                                <span style="display:inline-block"><a href="http://email.co.aafnation.com/c/eJwVjjEOwjAMRU_TbK1iO6FkyMDCNZATxxCpaRFUqtTTE6Q_vTe8L9GRRzQ1emGGwkVmUn44UbLqZu80DM7SVTtVHZMEGB1wGUOiMEpwkGzAhBmmxnUxr1j8bLvDCyhSsSwJMgNgUIsUcjZLfO37-zvQbcB733EcE7OuvNdtnfLWOjOfKFura82Nz3NbuJ94_gN_b_baylLX8qgSL-Dw6snaH3dGPYM" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://email.co.aafnation.com/c/eJwVjjEOwjAMRU_TbK1iO6FkyMDCNZATxxCpaRFUqtTTE6Q_vTe8L9GRRzQ1emGGwkVmUn44UbLqZu80DM7SVTtVHZMEGB1wGUOiMEpwkGzAhBmmxnUxr1j8bLvDCyhSsSwJMgNgUIsUcjZLfO37-zvQbcB733EcE7OuvNdtnfLWOjOfKFura82Nz3NbuJ94_gN_b_baylLX8qgSL-Dw6snaH3dGPYM&amp;source=gmail&amp;ust=1572404240782000&amp;usg=AFQjCNHT8pZ_omfFMtVZjFLVp7_J_o8DZw">
+                                                                                <img src="https://ci3.googleusercontent.com/proxy/PnRlni6xPGIL7APOEKNd7Cw8xKw3ZDqhmRV23NpXqVPRiJe_DNaH4jYgpkYbWdZtEDcIBTUd1E5wlQFwKC0EU3lgNtn40WdhdSgisyNh_abuGkQUeNyG-4GE982lK9Z9otot6swkxzj1YnW-eNbPxA=s0-d-e1-ft#https://shopifyab.s3.amazonaws.com/mail_images/f255d7addab4282220df53c83892d8cc_unnam33ed.jpg" width="269" style="max-width:600px;width:100%;height:auto" class="m_-2088531995875575652chilli_image CToWUd" height="auto">
+                                                                                </a>
+                                                                                 </span>
+                                                                            </div>
+                                                                         </td>
+                                                                     </tr>
+                                                                 </tbody>
+                                                            </table>
+                                                         </td>
+                                                     </tr>
+                                                 </tbody>
+                                             </table>
+                                         </div>
+
+                                    <div style="display:inline-block;vertical-align:top">
+                                         <table width="300" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                                             <tbody>
+                                                 <tr>
+                                                     <td style="border-collapse:collapse" align="left" cellpadding="0" cellspacing="0" border="0">
+                                                         <table width="300" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+                                                             <tbody>
+                                                                <tr>
+                                                                     <td style="padding:14px;border-collapse:collapse" align="left" cellpadding="0" cellspacing="0" border="0">
+                                                                         <div style="font-size:12pt;text-align:left;font-family:Helvetica,Arial,sans-serif;line-height:18pt">
+                                                                        <span style="font-size:18pt"><strong>Easy AF Returns!</strong></span><br>If your graphic-tee&nbsp;print has a mistake, we'll send you a new one.&nbsp;&nbsp; It's that simple.<br>Despite being&nbsp;almost&nbsp;perfect, we do sometimes make mistakes. &nbsp;The print can be off-center, too faded, or the wrong size. &nbsp;<br><em>
+                                                                        <strong>1. How do I Return/Exchange a shirt?</strong></em>
+                                                                        <br>Just send us a photo of the mistake to: &nbsp;<a href="mailto:support@aafnation.com" target="_blank">support@aafnation.com</a>.<br>You don't even have to mail that sucker back!<br><em>
+                                                                        <strong>2. &nbsp;What about dye-sublimation prints?</strong></em>
+                                                                        <br>While white streaks are generally unavoidable with this high-speed technology, we'll redo anything that could have been done better!<br><em>
+                                                                        <strong>3. &nbsp;What about non-apparel items?</strong></em>
+                                                                        <br>Email us to coordinate. &nbsp;It's not hard :) &nbsp;Check out more details on the<a href="http://email.co.aafnation.com/c/eJwVTssKwyAQ_Jp4M6i7NvXgoZf-Rlkf2wrRlMQS6NfXwsDAMK_kEawxonibiHSmnBZgemBiUIyLRXYTKrjyUJllSE5L1JSlC-BkcqiDciaYqOdKZRUvzypmbRfUioKLEO3wQFycihBGjRKrf_X-Pia4TeY-cJ7nTMSNetnaHLc6tDc98zF4z_xpSe65f_Z2iN2nrZZWYqXvd1tpXHv-Z_8p0UvNa2n5UZK_aDRXC0r9AED7RdA" style="color:inherit;text-decoration:none" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://email.co.aafnation.com/c/eJwVTssKwyAQ_Jp4M6i7NvXgoZf-Rlkf2wrRlMQS6NfXwsDAMK_kEawxonibiHSmnBZgemBiUIyLRXYTKrjyUJllSE5L1JSlC-BkcqiDciaYqOdKZRUvzypmbRfUioKLEO3wQFycihBGjRKrf_X-Pia4TeY-cJ7nTMSNetnaHLc6tDc98zF4z_xpSe65f_Z2iN2nrZZWYqXvd1tpXHv-Z_8p0UvNa2n5UZK_aDRXC0r9AED7RdA&amp;source=gmail&amp;ust=1572404240783000&amp;usg=AFQjCNG5A_RWY4BsCPua0tYvDHBnBNP8Pg">
+                                                                        &nbsp;full policy page here.</a>
+                                                                        </div>
+                                                                     </td>
+                                                                 </tr>
+                                                             </tbody>
+                                                        </table>
+                                                     </td>
+                                                 </tr>
+                                             </tbody>
+                                         </table>
+                                     </div>
+                                     </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+
+             <tr>
+                 <td style="background-color: #ccc; padding: 20px; font-weight: 500;">
+                    Your custom items are now being created. Here's the scoop.
+                    United States shipping time estimate is 3-7 days. During holidays it can take longer. | International shipping time estimate is 1-2 weeks.
+                    <br><br>
+                    Tracking information will be provided when your product(s) ships!
+                    <br><br>
+                    Please note: Each item from our factory is custom-printed just for you. Due to the popularity of certain items, shipping times may exceed estimates.
+                    Please be advised that once your item has entered production, your order cannot be modified or cancelled.
+                    <br><br>
+                    Orders containing more than one item may arrive in separate packages on different dates. If your items have not arrived within 60 days of the date of original purchase, contact Customer Service for a full refund of your purchase. (Not applicable to errors made by customers when providing shipping details on their order(s) and missed parcel deliveries).
+                 </td>
+             </tr>
+                                <!-- 1 Column Text + Button : END -->
+
+
+
+
+                <tr>
+                    <td style="padding: 20px; text-align: center; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #fff; background-color: #222;">
+                        <p style="margin: 0; color: #f1f1f1; font-size: 12px;"><br>
+                                    MOD Technologies LLC 26300 xxxxx, South Lyon, MI, 48178 US | (734) xxx-xxxx
+                        <br></p>
+
+                    </td>
+                </tr>
+
+
+
+
+                <!-- Clear Spacer : BEGIN -->
+                <tr>
+                    <td aria-hidden="true" height="10" style="font-size: 0px; line-height: 0px;">
+                        &nbsp;
+                    </td>
+                </tr>
+                <!-- Clear Spacer : END -->
+
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+	        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
+                <tr>
+                    <td style="padding: 20px; font-family: sans-serif; font-size: 12px; line-height: 15px; text-align: center; color: #888888;">
+                        <!-- <webversion style="color: #cccccc; text-decoration: underline; font-weight: bold;">View as a Web Page</webversion>
+
+                        <unsubscribe style="color: #888888; text-decoration: underline;">unsubscribe</unsubscribe> -->
+                    </td>
+                </tr>
+
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+
+
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <![endif]-->
+    </center>
+</body>
+</html>

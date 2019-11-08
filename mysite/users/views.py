@@ -9,13 +9,12 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 import datetime
 from django.utils import timezone
+from shoppingcart.models import Address
+from shoppingcart.views import get_user_address_default, get_user_orders
 
 #Profile Image
 from .forms import ProfileImageForm
 from django.shortcuts import get_object_or_404
-
-#wagtail
-
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
@@ -27,10 +26,16 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 def userPage(request):
     model = User
     user = request.user
+    address = get_user_address_default(request, user)
+    orders = get_user_orders(request, user)
+
+    print(address)
 
 
     context = {
             'user': user,
+            'address': address,
+            'order_list': orders,
             }
     template = 'users/userPage.html'
     return render(request, template, context)

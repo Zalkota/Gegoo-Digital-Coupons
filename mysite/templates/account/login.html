@@ -35,7 +35,7 @@ input {
 
 <section class="hero-login hide">
 
-  <div class="hero-login-left">
+  <div class="hero-login-left" data-aos="fadeIn">
       <div class="logo  fs-24 hide" >
         <a href="{% url 'home-page' %}">
            {{ SITE_NAME }}
@@ -44,7 +44,7 @@ input {
   </div>
   <div class="hero-login-right">
         <div class="hide">
-            <div class="card-login ml-auto mr-auto mt-3" style="width: 25rem;">
+            <div class="card-login ml-auto mr-auto mt-3 card-border" style="width: 25rem;">
                 <h2 class="my-4 fw-6 fs-24 text-dark">Login </h2>
                 <div class=" text-left px-4 pb-4 pt-3" style="">
                     {% get_providers as socialaccount_providers %}
@@ -63,7 +63,7 @@ input {
                     {% include "socialaccount/snippets/login_extra.html" %}
                     {% else %}
                     {% endif %}
-                    <form class="login" method="POST" action="{% url 'account_login' %}" style="list-style-type: none;">
+                    <form class="login" method="POST" id="loginForm" action="{% url 'account_login' %}" style="list-style-type: none;">
                         {% csrf_token %}
                         <div class="form-group {% if form.login.errors %}has-error{% endif %}">
                             <div class="form-control glyphicon glyphicon-envelope">
@@ -77,7 +77,7 @@ input {
                         </div>
                         <div class="pull-left my-3 remember text-center">
                           {{ form.remember }}
-                          <label for="id_remember" class="text-muted" >Remember me</label>
+                          <label for="id_remember" class="text-muted fs-14" >Remember me</label>
                         </div>
                         {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />{% endif %}
@@ -86,10 +86,10 @@ input {
                         </div>
                     </form>
                     <div class="mt-4">
-                        <h3><span class="text-muted" style="font-size: 15px;">New to {{ SITE_NAME }}</span></h3>
+                        <h3><span class="text-muted fs-14">New to {{ SITE_NAME }}?</span></h3>
                         <a class="btn btn-alt btn-block" href="{{ signup_url }}">Register</a>
                     </div>
-                    <div class="mt-3"><a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></div>
+                    <div class="mt-3 fs-14"><a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></div>
                 </div>
             </div>
             {% if form.errors %}

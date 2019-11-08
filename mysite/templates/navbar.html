@@ -37,6 +37,9 @@
                         <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'users:userPage' %}">
                           Profile
                         </a>
+                        <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'users:userPage' %}">
+                          Support
+                        </a>
                         {% if request.user.is_superuser %}
                         <a class="dropdown-item" href="/admin/">
                           Admin Panel
@@ -74,7 +77,6 @@
 
 
     <!-- Custom Navigation 100 !-->
-    <div class="py-4"></div>
     <div class="navigation unhide">
       <div class="navigation__bar"></div>
         <input type="checkbox" class="navigation__checkbox" style="display: none;" id="navi-toggle">
@@ -84,7 +86,6 @@
         <a class="navigation__logo" href="/">
           <span class="mt-4"> MOD</span>
         </a>
-
         <div class="navigation__background">&nbsp;</div>
         <div class="navigation__background-2">&nbsp;</div>
         <nav class="navigation__nav">

@@ -5,10 +5,10 @@
 <footer>
   <div class="container pb-2">
     <div class="py-3"></div>
-    <div class="row ">
+    <div class="row">
       <!--Column1-->
-        <div class="col-md-3 col-sm-6 mt-3">
-            <div class="footer-pad">
+        <div class="col-lg-3 col-md-6 col-sm-12 mt-3 order-lg-1 order-md-1">
+            <div class="footer-pad text-align-responsive">
                 <span class="fs-20 title-footer">{{ SITE_NAME }}</span>
                 <p class="font-footer" style="margin-top: 2.5rem; font-size: 14px;">
                    2019 &copy; All Rights Reserved.
@@ -18,8 +18,8 @@
         </div>
 
       <!--Column2-->
-      <div class="col-md-3 col-sm-6 mt-3">
-        <div class="">
+      <div class="col-lg-3 col-md-6 col-sm-12 order-lg-2 order-md-3 mt-3">
+        <div class="text-align-responsive">
           <span class="fs-20 title-footer" style="line-height: 2rem;">Learn More</span>
             <br>
             <br>
@@ -35,8 +35,8 @@
         </div>
       </div>
       <!--Column3-->
-      <div class="col-md-3 col-sm-6 mt-3">
-        <div class="">
+      <div class="col-lg-3 col-md-6 col-sm-12 order-lg-3 order-md-4 mt-3">
+        <div class="text-align-responsive">
             <span class="title-footer" style="line-height: 2rem;">Contact</span>
             <br>
             <br>
@@ -53,36 +53,43 @@
       </div>
       <!--Column4-->
 
-      <div class="col-md-3 col-sm-6 mt-3">
+      <div class="col-lg-3 col-md-6 col-sm-12 order-lg-4 order-md-2 mt-3">
+        <div class="text-align-responsive">
           <div class="">
               <span class="fs-20 title-footer" style="line-height: 2rem;">Subscribe </span>
               <br>
               <br>
               <form action="https://gmail.us3.list-manage.com/subscribe/post?u=1e40a447f0093d59b2e997da1&amp;id=107d21c691" method="POST" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                  <input class="input-group-field " style="height: 50px;" type="email" name="EMAIL" placeholder="Email" required>
+                  <input class="input-group-field " style="height: 50px;" id="emailSubscribeForm" type="email" name="EMAIL" placeholder="Email" required>
                   <!-- Message Response -->
                   <div id="mce-responses" class="clear">
                     <div class="response" id="mce-error-response" style="display:none"></div>
                     <div class="response" id="mce-success-response" style="display:none"></div>
                   </div>
-                  <input style=" display:none;"type="text" name="b_1e40a447f0093d59b2e997da1_107d21c691" tabindex="-1" value=""> <br>
+                  <input style=" display:none;"type="text"  name="b_1e40a447f0093d59b2e997da1_107d21c691" tabindex="-1" value=""> <br>
                   <button type="submit"class="btn btn-alt mt-1" value="Subscribe" style="">Sign up</button>
               </form>
 
           </div>
       </div>
     </div>
-    <div class="py-3"></div>
-    <div class="pt-5 ">
+    <div class="col-lg-12 order-lg-5 order-md-5 mt-4">
       <hr>
-      <p class="pt-2 fs-24">
+    </div>
+      <div class="col-lg-6 col-lg-6 col-md-6 col-sm-12 pt-2 fs-24 text-align-responsive order-lg-6 order-md-6 pb-3">
         <i class="fa fa-instagram pr-2" aria-hidden="true"></i>
         <i class="fa fa-facebook pr-2" aria-hidden="true"></i>
         <i class="fa fa-linkedin pr-2" aria-hidden="true"></i>
         <i class="fa fa-pinterest pr-2" aria-hidden="true"></i>
-        <span class="fs-14 text-muted pull-right">All products are designed and crafted by Robert James in Detroit, Michigan USA.</span>
-      </p>
-    </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 text-align-right-responsive order-lg-7 order-md-7 pb-3">
+        <img src="{% static 'img/1.png' %}" class=" mx-1" alt="Credit Card Payment Icon" width="36px">
+        <img src="{% static 'img/2.png' %}" class=" mx-1" alt="Credit Card Payment Icon" width="36px">
+        <img src="{% static 'img/14.png' %}" class=" mx-1" alt="Credit Card Payment Icon" width="36px">
+        <img src="{% static 'img/22.png' %}" class=" mx-1" alt="Credit Card Payment Icon" width="36px">
+        <img src="{% static 'img/10.png' %}" class=" mx-1" alt="Credit Card Payment Icon" width="36px">
+        <img src="{% static 'img/16.png' %}" class=" mx-1" alt="Credit Card Payment Icon" width="36px">
+      </div>
   </div>
   </footer>
 <!-- Footer bottom-->

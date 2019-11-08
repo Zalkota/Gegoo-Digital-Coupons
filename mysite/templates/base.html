@@ -43,9 +43,16 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/hero.css' %}"> -->
 
         <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/loader.css' %}">
         <!-- Material Design for Bootstrap fonts and icons -->
         <link href="https://fonts.googleapis.com/css?family=Muli:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700,800|Material+Icons">
+
+        <style>
+            body {
+                padding-top: 65px;
+            }
+        </style>
 
         {% block extra_styles %}
 
@@ -64,10 +71,10 @@
 
         {% if messages %}
           <div class="container-fluid messages" id="message_container" >
-            <div class="moveInTop" style="">
-              <ul class="messages alert" style="list-style-type: none;">
+            <div class="moveInTop ul-trans" >
+              <ul class="" style="list-style-type: none;">
                 {% for message in messages %}
-                  <li class="card alert {{ message.tags }}" style="display: inline-block">{% if message.tags == 'alert-success' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i> {% elif message.tags == 'alert-info' %}<i class="fa fa-exclamation" aria-hidden="true"></i>{% elif message.tags == 'alert-danger' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i>{% endif %} {{ message }}</li>
+                  <li class="alert {{ message.tags }}" style="display: inline-block">{% if message.tags == 'alert-success' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i> {% elif message.tags == 'alert-info' %}{% elif message.tags == 'alert-danger' %}{% endif %} {{ message }}</li>
                 {% endfor %}
               </ul>
             </div>
@@ -82,11 +89,10 @@
         {% endblock footer %}
 
         {# Global javascript #}
-
-        <script type="text/javascript" src="{% static 'cookielaw/js/cookielaw.js' %}"></script>
+        <!--
+        <script type="text/javascript" src="{% static 'cookielaw/js/cookielaw.js' %}"></script> -->
 
         <script src="{% static 'js/docs.min.js' %}"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChmLHKBW5VXZsv5Am2kkAy4HOYqd6vd0k&callback=initMap"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
         <!-- removing the below two packages breaks the dropdown button -->

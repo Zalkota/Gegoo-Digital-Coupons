@@ -64,6 +64,12 @@ hr.hr-2 {
   background-color: #2C5282;
   /* Add a dark-grey background on hover */ }
 
+.breadcrumb {
+  background-color: #fff; }
+  .breadcrumb a {
+    font-size: 0.8rem;
+    color: #4A5568; }
+
 @media (min-width: 1200px) {
   .container {
     max-width: 1440px; } }
@@ -116,6 +122,8 @@ hr.hr-2 {
 @media screen and (max-width: 992px) {
   .hide {
     display: none; }
+  body {
+    padding-top: 65px; }
   .search {
     width: 100%;
     margin-top: 1rem; }
@@ -205,12 +213,15 @@ hr.hr-2 {
 .card-border {
   border: solid 1px #ddd; }
 
+.card-border-success {
+  border: solid 1px #48BB78; }
+
 .share-buttons {
   position: fixed;
   left: 5%; }
 
 .card-graphic-middle {
-  background-image: url(/static/img/card.svg);
+  background-image: url(/static/img/card_membership.svg);
   /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
   background-size: cover;
   background-position: top;
@@ -238,7 +249,7 @@ hr.hr-2 {
   border-left: 5px solid #2C5282;
   border-right: solid 1px #d7d7d7;
   border-bottom: solid 1px #d7d7d7;
-  border-left: 5px solid #26A65B; }
+  border-left: 5px solid #2C5282; }
 
 .stripe-primary-top {
   border-top: 4px solid #2C5282; }
@@ -432,12 +443,6 @@ hr.hr-2 {
   margin: 0;
   font-size: 24; }
 
-.messages {
-  z-index: 100;
-  position: fixed;
-  bottom: 0%;
-  opacity: .95; }
-
 .vertical-align {
   padding-top: 8rem;
   padding-bottom: 8rem;
@@ -486,12 +491,15 @@ hr.hr-2 {
 .crumb-border {
   border-bottom: 1px solid #c1c1c1; }
 
+/*  <**************************************************************************>
+      <*****                        MESSAGES                         *****>
+      <**************************************************************************>
+  */
 .messages {
   z-index: 999;
   position: fixed;
   left: 0%;
   bottom: 0%;
-  opacity: .95;
   background-color: transparent !important;
   color: #2A4365;
   font-family: Montserrat, sans-serif;
@@ -514,8 +522,10 @@ hr.hr-2 {
   position: fixed;
   left: 3%;
   bottom: 0%;
-  -webkit-box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05), 0 15px 40px rgba(166, 173, 201, 0.2) !important;
-  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05), 0 15px 40px rgba(166, 173, 201, 0.2) !important; }
+  -webkit-box-shadow: 0 !important;
+  box-shadow: 0 !important;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.09), 0 2px 4px rgba(0, 0, 0, 0.09) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.09), 0 2px 4px rgba(0, 0, 0, 0.09) !important; }
 
 .alert-success {
   border-left: 6px solid #48BB78; }
@@ -525,10 +535,6 @@ hr.hr-2 {
 
 .alert-info {
   border-left: 6px solid #63B3ED; }
-
-.message-shadow {
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.22), 0 3px 6px rgba(0, 0, 0, 0.22) !important;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.22), 0 3px 6px rgba(0, 0, 0, 0.22) !important; }
 
 .background-hover:hover {
   background-color: #2C5282;
@@ -1966,6 +1972,16 @@ footer {
     color: #2D3748;
     letter-spacing: 2px;
     font-size: .9rem; }
+  @media screen and (max-width: 992px) {
+    footer .text-align-responsive {
+      text-align: center; }
+    footer .text-align-right-responsive {
+      text-align: center; } }
+  @media screen and (min-width: 992px) {
+    footer .text-align-responsive {
+      text-align: left; }
+    footer .text-align-right-responsive {
+      text-align: right; } }
 
 .hr-footer-sm {
   border-bottom: 1px solid #323232;
@@ -2100,7 +2116,7 @@ footer {
   box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05), 0 15px 40px rgba(166, 173, 201, 0.2) !important; }
 
 .profile-nav {
-  border-bottom: 2px solid #E2E8F0;
+  border-bottom: 1px solid #E2E8F0;
   height: 60px; }
   .profile-nav ul {
     list-style: none; }
@@ -2118,15 +2134,15 @@ footer {
     padding-bottom: 35px; }
     .profile-nav .profile-link-active {
       color: #2A4365;
-      border-bottom: 4px solid #2A4365;
-      padding-bottom: 15px;
+      border-bottom: 1px solid #2D3748;
+      padding-bottom: 18px;
       text-decoration: none;
       margin-right: 2rem; }
     .profile-nav .profile-link:hover, .profile-nav .profile-link:active {
       text-decoration: none;
       color: #2A4365;
-      border-bottom: 4px solid #2A4365;
-      padding-bottom: 15px; }
+      border-bottom: 1px solid #2D3748;
+      padding-bottom: 18px; }
 
 .card-body {
   background-color: #fff !important; }
@@ -2785,8 +2801,43 @@ select:-webkit-autofill {
     text-align: center; } }
 
 /*       CONTACT PAGE AND FORM        */
-input {
+input, input:-internal-autofill-selected, input:-webkit-autofill, select:-webkit-autofill {
   font-size: 1.1rem; }
+
+input[type=checkbox] + label {
+  color: #ccc;
+  font-style: italic; }
+
+input[type=checkbox]:checked + label {
+  color: #32325d;
+  font-style: normal; }
+
+::placeholder {
+  color: #A0AEC0 !important; }
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #A0AEC0; }
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #A0AEC0; }
+
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #A0AEC0; }
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #A0AEC0; }
+
+:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #EDF2F7 inset !important;
+  font-size: 1.1rem !important; }
+
+:-webkit-autofill {
+  -webkit-text-fill-color: #2C5282 !important;
+  font-size: 1.1rem !important; }
 
 .form-control, .custom-file-control,
 .is-focused .form-control,
@@ -2822,23 +2873,6 @@ input {
   color: #c6c7c8;
   opacity: 1; }
 
-.contactinfo {
-  background-image: linear-gradient(25deg, #2ac399, #3a75c1);
-  color: #fff; }
-
-.btn-contact {
-  background-image: linear-gradient(25deg, #2ac399, #3a75c1);
-  color: white; }
-
-.btn-contact:hover {
-  background-image: linear-gradient(25deg, #2ac399, #3a75c1);
-  color: #555; }
-
-.gradienttext {
-  background: linear-gradient(2deg, #2ac399, #3a75c1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; }
-
 /* Form Landing Page */
 .form-landing {
   height: 100vh; }
@@ -2847,7 +2881,7 @@ input {
   .form-landing p {
     color: #2D3748; }
 
-input {
+#emailSubscribeForm {
   -webkit-appearance: textfield;
   background-color: white;
   border: 1px solid #2A4365;

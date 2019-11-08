@@ -8,10 +8,76 @@ PAYMENT_CHOICES = (
     ('P', 'PayPal')
 )
 
+STATES = (
+    ("NA", "(Select State)"),
+    ("AL", "Alabama"),
+    ("AK", "Alaska"),
+    ("AS", "American Samoa"),
+    ("AZ", "Arizona"),
+    ("AR", "Arkansas"),
+    ("CA", "California"),
+    ("CO", "Colorado"),
+    ("CT", "Connecticut"),
+    ("DE", "Delaware"),
+    ("DC", "District Of Columbia"),
+    ("FM", "Federated States Of Micronesia"),  #TODO: WHAT THE FUCK IS THIS?!?!?
+    ("FL", "Florida"),
+    ("GA", "Georgia"),
+    ("GU", "Guam"),
+    ("HI", "Hawaii"),
+    ("ID", "Idaho"),
+    ("IL", "Illinois"),
+    ("IN", "Indiana"),
+    ("IA", "Iowa"),
+    ("KS", "Kansas"),
+    ("KY", "Kentucky"),
+    ("LA", "Louisiana"),
+    ("ME", "Maine"),
+    ("MH", "Marshall Islands"),
+    ("MD", "Maryland"),
+    ("MA", "Massachusetts"),
+    ("MI", "Michigan"),
+    ("MN", "Minnesota"),
+    ("MS", "Mississippi"),
+    ("MO", "Missouri"),
+    ("MT", "Montana"),
+    ("NE", "Nebraska"),
+    ("NV", "Nevada"),
+    ("NH", "New Hampshire"),
+    ("NJ", "New Jersey"),
+    ("NM", "New Mexico"),
+    ("NY", "New York"),
+    ("NC", "North Carolina"),
+    ("ND", "North Dakota"),
+    ("MP", "Northern Mariana Islands"),  #TODO: FIXME: http://thepythondjango.com/list-usa-states-python-django-format/
+    ("OH", "Ohio"),
+    ("OK", "Oklahoma"),
+    ("OR", "Oregon"),
+    ("PW", "Palau"),
+    ("PA", "Pennsylvania"),
+    ("PR", "Puerto Rico"),
+    ("RI", "Rhode Island"),
+    ("SC", "South Carolina"),
+    ("SD", "South Dakota"),
+    ("TN", "Tennessee"),
+    ("TX", "Texas"),
+    ("UT", "Utah"),
+    ("VT", "Vermont"),
+    ("VI", "Virgin Islands"),
+    ("VA", "Virginia"),
+    ("WA", "Washington"),
+    ("WV", "West Virginia"),
+    ("WI", "Wisconsin"),
+    ("WY", "Wyoming")
+    )
 
 class CheckoutForm(forms.Form):
     shipping_address = forms.CharField(required=False)
     shipping_address2 = forms.CharField(required=False)
+    shipping_city = forms.CharField(required=False)
+    shipping_state = forms.CharField(label="(select country)", initial='(Select State)',required=True, widget=forms.Select(choices=STATES, attrs={
+        'class': 'custom-select d-block w-100',
+    }))
     shipping_country = CountryField(blank_label='(select country)').formfield(
         required=False,
         widget=CountrySelectWidget(attrs={
@@ -21,6 +87,10 @@ class CheckoutForm(forms.Form):
 
     billing_address = forms.CharField(required=False)
     billing_address2 = forms.CharField(required=False)
+    billing_city = forms.CharField(required=False)
+    billing_state = forms.CharField(label="(select country)", initial='(Select State)',required=True, widget=forms.Select(choices=STATES, attrs={
+        'class': 'custom-select d-block w-100',
+    }))
     billing_country = CountryField(blank_label='(select country)').formfield(
         required=False,
         widget=CountrySelectWidget(attrs={

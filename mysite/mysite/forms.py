@@ -31,7 +31,7 @@ class ContactForm(forms.ModelForm):
         self.helper.layout = Layout(
             #Div('first_name', style="background: white;", title="Explication title", css_class="bigdivs")
             Field(
-            Div(
+
                 Div(
                 'name',
                 css_class="col-lg-6"
@@ -41,21 +41,18 @@ class ContactForm(forms.ModelForm):
                 css_class="col-lg-6"
                 ),
                 Div(
-                'phone',
-                css_class="col-lg-6"
+                'reason',
+                css_class="col-lg-6 py-4"
                 ),
                 Div(
                 'description',
                 css_class="col-lg-12"
                 ),
-                #Div(
-                #StrictButton("Submit", name="submit", value="submit", type='submit', css_class='btn btn-primary-alt py-3 mt-3 px-5'),
-                #css_class="col-lg-12"
-                #),
-            css_class="row px-4 py-4 text-left"
+
         ),
     )
-)
+
+
 
 
 class ContactMiniForm(forms.ModelForm):

@@ -1,4 +1,4 @@
-{% extends "base-alt.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 
@@ -63,120 +63,114 @@ a:hover {
 <!-- Modal End -->
 
 <!-- Body Start -->
-<section class="container">
-  <h2 class="fw-6 hide">Profile</h2>
+<section class="section-sm container">
+  <h2 class="fw-6 hide">My Account</h2>
+  <span class="fs-14 hide text-muted">Welcome Back, {{ user }}!</span>
       {% block component %}
         {% include "users/profile_nav.html" %}
       {% endblock component %}
-        <div>
-          <div class="card shadow-1 card-border unhide">
-              <div class="card-body">
-                  <h5 class="fw-5">Profile</h5>
-                  <p class="text-muted fs-14">If you would like to learn more about how we can help your business bring in more clients <a href="">click here.</a></p>
-                  <br>
-                  <!-- Action buttons -->
-                  <ul class="pl-0" style="list-style-type: none;">
-                    <hr class="mt-0 mb-3 unhide">
-                    <a class="text-dark py-5" style="text-decoration: none;" href="/" role="button">
-                      <li class="pb-3">
-                          <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2 fw-5">Home</span> <i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                      </li>
-                    </a>
-                    <hr class="mt-0 mb-3 unhide">
-                    <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'users:user_jobs' %}" role="button">
-                      <li class="pb-3">
-                          <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Orders</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                      </li>
-                    </a>
-                    <hr class="mt-0 mb-3 unhide">
-                    <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_reset_password' %}" role="button">
-                      <li class="pb-3">
-                          <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2 fw-5">Password</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                      </li>
-                    </a>
-                    <hr class="mt-0 mb-3 unhide">
-                    <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'users:update_image' %}" role="button">
-                      <li class="pb-3">
-                          <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                      </li>
-                    </a>
-                    <hr class="mt-0 mb-3 unhide">
-                    <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
-                      <li class="pb-0">
-                          <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2 fw-5">Settings</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                      </li>
-                    </a>
-                  </ul>
-              </div>
-          </div>
+        <div class="row mt-2">
+            <div class="col-lg-12 mb-4">
+                <div class="card shadow-2 card-border unhide">
+                    <div class="card-body">
+                        <h2 class="fw-6">My Account</h2>
+                        <span class="fs-14 text-muted">Welcome Back, {{ user }}!</span>
+                        <br>
+                        <br>
+                        <!-- Action buttons -->
+                        <ul class="pl-0" style="list-style-type: none;">
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none;" href="/" role="button">
+                            <li class="pb-3">
+                                <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2 fw-5">Home</span> <i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'users:user_jobs' %}" role="button">
+                            <li class="pb-3">
+                                <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Orders</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_reset_password' %}" role="button">
+                            <li class="pb-3">
+                                <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2 fw-5">Password</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'users:update_image' %}" role="button">
+                            <li class="pb-3">
+                                <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
+                            <li class="pb-0">
+                                <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2 fw-5">Settings</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-      <div class="row">
-          <div class="col-lg-4">
-              <div class="card shadow-0 card-border">
-                <div class="p-4 bg-gray">
-                  <div class="row text-center ml-auto mr-auto" style="background-color: #ccc; border-radius: 100%; height: 150px; width: 150px">
+            <div class="col-lg-8 mb-4">
+                <div class="card shadow-2 card-border">
+                    <div class="text-center table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="text-uppercase ">
+                                  <th scope="col"><span class="fs-14">Order #</span></th>
+                                  <th scope="col"><span class="fs-14">Date</span></th>
+                                  <th scope="col"><span class="fs-14">Status</span></th>
+                                  <th scope="col"><span class="fs-14">Total</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for object in order_list %}
+                                    <tr>
+                                        <td><a href="{% url 'shoppingcart:order' ref_code=object.ref_code %}" class="text-dark">#{{ object.ref_code}}</a></td>
+                                        <td><a href="{{ object.get_absolute_url }}" class="text-dark">{{ object.ordered_date }}</a></td>
+                                        <td class="{% if object.status == 'P' %}text-primary {% elif object.status == 'A' %}text-danger {% else %} text-success {% endif %}">{{ object.get_status_display }}</a></td>
+                                        <td><a href="{{ object.get_absolute_url }}" class="text-dark">$ {{ object.get_total }}0</a></td>
+                                    </tr>
+                            {% empty %}
+                            <tr><th scope="row" class="text-muted fs-14">You have no orders at this time.</th></tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="text-center mt-3">
-                  <h5>{{ user }}</h5>
+      	    </div>
+            <div class="col-lg-4">
+                <div class="card card-border shadow-2">
+                    <table class="table">
+                    <thead>
+                        <tr class="text-uppercase ">
+                            <th scope="col"><span class="fs-14">Shipping Address</span></th>
+                        </tr>
+                    </thead>
+                    </table>
+                    <div class="row px-3 fs-14">
+                        <div class="col-lg-6">
+                            <address>
+                                {{ address.street_address }} <br>
+                                {{ address.city }}, {{ address.state }} <br>
+                                {{ address.zip }}, {{ address.country }}
+                                {{ address.apartment_address }} <br>
+                            </address>
+                        </div>
+                        <div class="col-lg-6">
+                            <h3 class="fs-14 badge badge-primary">
+                                Default
+                            </h3>
+                        </div>
+                    </div>
                 </div>
-                <hr>
-                <div class="fs-14 text-black">
-                  <i class="fa fa-user" aria-hidden="true"></i> Member since <span class="fw-6 pull-right">{{ user.created_time }}</span>
-                  <br>
-                  <br>
-                  <i class="fa fa-map-marker" aria-hidden="true"></i> From <span class="fw-6 pull-right"> US</span>
-                </div>
-                </div>
-              </div>
-          </div>
-          <div class="col-lg-8">
-            <div class="card shadow-0 card-border">
-                <div class="card-header">
-                    <h5 class=" fw-5">Invoices <a href="#" class="text-center pull-right btn-primary-alt hide mt-1 fs-16"s>View History</a><a href="#" class="text-center pull-right unhide fs-16">View History</a></h5>
-                    <span class="text-secondary fs-14">If you would like to learn more about how we can help your business bring in more clients</span>
-                </div>
-              <div class="card-body">
-                  <div class="row text-center">
-                      {% for object in user.invoice.all %}
-                          {% if object.payed != True %}
-                          <div class="col-lg-12"><hr></div>
-                          <div class="col-lg-4">
-                              <span class="text-muted float-left ml-3">Description</span>
-                              <strong><h5 class="text-dark pt-4 pb-0">{{ object.description }}</h5></strong>
-                          </div>
-                          <div class="col-lg-6">
-                            <div class="py-2 unhide"></div>
-                            <span class="text-muted float-center ml-3 hide">Date Created:</span>
-                            <strong><h5 class="text-dark pt-1 pb-0 hide">{{ object.issue_date }}</h5></strong>
-                            <span class="text-muted float-left ml-3 unhide">Date Created:</span><br>
-                            <strong><h5 class="text-dark pt-1 pb-0 unhide">{{ object.issue_date }}</h5></strong>
-                          </div>
-                          <div class="col-lg-2">
-                              <div class="py-2 unhide"></div>
-                              <span class="text-muted float-left ml-3">Total</span> <br>
-                              <h5 class="text-dark ">${{ object.amount}}</h5>
-                          </div>
-                          <div class="col-lg-4">
-                            <div class="pb-0 mb-0 mt-4">
-                              <button class="btn btn-primary-alt mt-3">Download Report</button>
-                            </div>
-                          </div>
-                          <div class="col-lg-4"></div>
-                          <div class="col-lg-4">
-                              <form method="POST" class="pb-0 mb-0 mt-4" action="{% url 'users:userPage' %}">
-                                  {% csrf_token %}
-                                  <button class="btn btn-success-alt mt-3">Pay Invoice</button>
-                                  <input type="hidden" name="invoice_id" value="{{ object.invoice_id }}">
-                              </form>
-                          </div>
-                        {% endif %}
-                      {% endfor %}
-                  </div>
-              </div>
-          </div>
-          </div>
+            </div>
+
       </div>
-
+      <div class="py-5 hide"></div><div class="py-5 hide"></div>
 </section>
 
 {% endblock content %}

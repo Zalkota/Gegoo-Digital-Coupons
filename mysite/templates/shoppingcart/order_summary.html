@@ -2,8 +2,20 @@
 
 {% block content %}
   <main>
+    <div class="container">
+      <!-- BREAD CRUMBS -->
+      <ol class="breadcrumb mt-5 px-0">
+        <li><a href="{% url 'home-page' %}">Home</a></li>
+        <li class="text-muted fw-4 px-2">/</li>
+        <li><a href="{% url 'home-page' %}">Products</a></li>
+        <li class="text-muted fw-4 px-2">/</li>
+        <li><a href="{% url 'home-page' %}">Cart</a></li>
+      </ol>
+      <!-- BREAD CRUMBS END -->
+    </div>
     <section class="section-md">
       <div class="container">
+
 
       <div class="table-responsive text-nowrap">
       <h2>Order Summary</h2>

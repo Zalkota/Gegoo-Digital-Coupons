@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Profile Page{% endblock %}
+
+{% block extra_styles %}
+<style>
+a:hover {
+    text-decoration: none;
+}
+
+.modal-header {
+  background-color: #fff !important;
+  padding-bottom: 2rem !important;
+}
+
+.modal-body {
+  background-color: #f9fafb !important;
+}
+
+.modal-footer {
+  padding: 1rem 1rem 1rem 1rem !important;
+  background-color: #fff !important;
+  text-align: center !important;
+}
+</style>
+{% endblock extra_styles %}
+
+
+{% block content %}
+
+
+<!-- Body Start -->
+<section class="section-sm container">
+    <h6 class="fs-14 mb-4"><a href="{% url 'home-page' %}" class="text-dark">Home</a> <span class="text-muted px-1">&#8226;</span> <a href="{% url 'users:userPage' %}" class="text-dark">Profile</a> <span class="text-muted px-1">&#8226;</span> <a href="" class="text-dark">Order Details</a></h6>
+    <h2 class="fw-6">Order #{{ object.ref_code }}</h2>
+    <span class="fs-14 text-muted">Order Details</span>
+        <div class="row mt-4">
+            <div class="col-lg-6 mb-4">
+                <div class="card card-border shadow-2">
+                    <div class="card-header">
+                        <div class="row text-center">
+                            <div class="col-lg-12 ">
+                                <div class="vertical-container" style="height: 100%;">
+                                    <div class="vertical-alignment text-uppercase text-muted">Shipping Information</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-3">
+                        <span class="fs-14 fw-7">Status:</span>
+                        <br>
+                        <div class="text-center p-3 pb-4">
+                            <h3 class="fw-7 fs-32 text-success">Order Shipped <i class="fa fs-40 fa-truck" aria-hidden="true"></i></h3>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="fs-14 fw-7">Shipping Address:</span>
+                        <br>
+                        <br>
+                        <address class="text-center">
+                            {{ object.shipping_address.street_address }} <br>
+                            {{ object.shipping_address.city }}, {{ object.shipping_address.state }} <br>
+                            {{ object.shipping_address.zip }}, {{ object.shipping_address.country }}
+                            {{ object.shipping_address.apartment_address }} <br>
+                        </address>
+                    </div>
+                    <div class="card-footer">
+                        <span class="fs-14 fw-7">Estimated Arrival:</span>
+                        <br>
+                        <div class="text-center p-3 pb-4">
+                            <h3 class="fw-7 fs-26">
+                                {% if object.arrival_date == None %} <span class="text-muted fs-16">To Be Determined <i class="fa fa-hourglass-half fs-20" aria-hidden="true"></i> </span> {% else %} {{ object.arrival_date }} {% endif %}
+                            </h3>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card shadow-2 card-border">
+                    <div class="card-header">
+                        <div class="row text-center">
+                            <div class="col-lg-3 hide text-center">
+                                <div class="vertical-container" style="height: 100%;">
+                                    <div class="vertical-alignment text-uppercase text-muted">Order Item</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 hide text-center">
+                                <div class="vertical-container" style="height: 100%;">
+                                    <div class="vertical-alignment text-uppercase text-muted">Description</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 hide text-center">
+                                <div class="vertical-container" style="height: 100%;">
+                                    <div class="vertical-alignment text-uppercase text-muted">Quantity</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 hide text-center">
+                                <div class="vertical-container" style="height: 100%;">
+                                    <div class="vertical-alignment text-uppercase text-muted">Price</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 unhide">
+                                <div class="vertical-container" style="height: 100%;">
+                                    <div class="vertical-alignment text-uppercase text-muted">Your Orders</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-0">
+                        {% for object in object.items.all %}
+                        <div class="col-lg-3 col-md-12 text-center my-1">
+                            <img class="card-img-top" style="width: 150px;" src="/media/{{ object.item.image }}" alt="User Uploaded images">
+                        </div>
+                        <div class="col-lg-3 col-md-12 col-sm-12 text-center my-1">
+                            <div class="vertical-container" style="height: 100%;">
+                                <div class="vertical-alignment">{{ object.item.title }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-12 col-sm-12 text-center my-1">
+                            <div class="vertical-container" style="height: 100%;">
+                                <div class="vertical-alignment"><span class="unhide">Quantity:</span> {{ object.quantity }}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-12 col-sm-12 text-center my-1">
+                            <div class="vertical-container" style="height: 100%;">
+                                <div class="vertical-alignment">${{ object.get_final_price }}0</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center mt-1 border-bottom">
+
+                        </div>
+                        {% empty %}
+                        <tr><th scope="row" class="text-muted fs-14">You have no orders at this time.</th></tr>
+                        {% endfor %}
+                    </div>
+
+                </div>
+      	    </div>
+
+
+      </div>
+      <div class="py-5 hide"></div><div class="py-5 hide"></div>
+</section>
+
+{% endblock content %}

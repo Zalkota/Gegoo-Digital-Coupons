@@ -26,16 +26,12 @@ urlpatterns = [
 
     #Security
     path('.well-known/security.txt', security, name='security'),
-
     #Authentication
     url(r'^accounts/', include('allauth.urls')),
-
     #Portal
     #url(r'^portal/', include(('portal.urls', 'portal'), namespace='portal')),
-
     #shoppingcart
     url(r'^cart/', include(('shoppingcart.urls', 'shoppingcart'), namespace='cart')),
-
     #users
     url(r'', include(('users.urls', 'users'), namespace='users')),
 

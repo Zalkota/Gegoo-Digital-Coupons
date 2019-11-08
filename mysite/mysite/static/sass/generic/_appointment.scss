@@ -49,14 +49,6 @@
     font-size: 1rem;
   }
 
-input[type=checkbox] + label {
-  color: #ccc;
-  font-style: italic;
-}
-input[type=checkbox]:checked + label {
-  color: #f00;
-  font-style: normal;
-}
 
 .navigation__checkbox:checked ~ .navigation__background {
   transform: scale(80); }

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 
 
@@ -17,13 +18,13 @@
   display: block;
 }
 
-#collapseOneButton {
+#collapseOneButton, #collapseTwoButton {
   border: none;
   border-radius: 4px;
   outline: none;
   text-decoration: none;
   color: #fff;
-  background: #32325d;
+  background: #2D3748;
   white-space: nowrap;
   display: inline-block;
   height: 40px;
@@ -46,7 +47,7 @@
   outline: none;
   text-decoration: none;
   color: #fff;
-  background: #32325d;
+  background: #2D3748;
   white-space: nowrap;
   display: inline-block;
   height: 40px;
@@ -134,12 +135,18 @@ button:hover {
 
 {% block content %}
 
+<div class="loader">
+  <img src="{% static 'img/logo/loading.svg' %}" alt="Loading...">
+</div>
+
 <main>
     <div class="container wow fadeIn">
         <h2 class="my-5 h2 text-left">Checkout</h2>
-        <form action="." method="post" class="stripe-form" id="stripe-form">
+
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-8 mb-5">
+                  <form method="POST">
+                    {% csrf_token %}
                   <div class="row">
                       <div class="col-md-12 accordion" id="myAccordion">
                           <div class="card">
@@ -157,7 +164,18 @@ button:hover {
                                     <label for="shipping_address2" class="">Address 2 (optional)</label>
                                   </div>
 
+                                  <div class="md-form mb-5">
+                                    <input type='text' placeholder='Detroit' id='shipping_city' name='shipping_city' class='form-control' />
+                                    <label for="shipping_city" class="">City</label>
+                                  </div>
                                   <div class="row">
+                                      <div class="col-lg-4 col-md-12 mb-4">
+                                        <label for="state">State</label>
+                                        {{ form.shipping_state }}
+                                        <div class="invalid-feedback">
+                                          Please select a state.
+                                        </div>
+                                      </div>
                                       <div class="col-lg-4 col-md-12 mb-4">
                                           <label for="country">Country</label>
                                           {{ form.shipping_country }}
@@ -191,7 +209,9 @@ button:hover {
                                 </div>
                                 {% endif %}
 
-                                    <button class="mt-4 collapseOneButton" type="button" name="button" id="collapseOneButton">Continue</button>
+                                    <button class="mt-4 collapseOneButton" type="submit" name="button" value="Update" id="collapseOneButton">Continue</button>
+                                    <button class="mt-4 collapseTwoButton" type="button" name="button" id="collapseTwoButton">Continue</button>
+
 
                                 </div>
                             </div>
@@ -214,7 +234,20 @@ button:hover {
                                 <label for="billing_address2" class="">Address 2 (optional)</label>
                               </div>
 
+                              <div class="md-form mb-5">
+                                <input type='text' placeholder='Detroit' id='billing_city' name='billing_city' class='form-control' />
+                                <label for="billing_city" class="">City</label>
+                              </div>
+
                               <div class="row">
+                                  <div class="col-lg-4 col-md-12 mb-4">
+                                    <label for="state">State</label>
+                                    {{ form.billing_state }}
+                                    <div class="invalid-feedback">
+                                      Please select a state.
+                                    </div>
+                                  </div>
+
                                 <div class="col-lg-4 col-md-12 mb-4">
                                   <label for="country">Country</label>
                                   {{ form.billing_country }}
@@ -244,21 +277,22 @@ button:hover {
                               <label class="custom-control-label" for="use_default_billing">Use default billing address: {{ default_billing_address.street_address|truncatechars:10 }}</label>
                             </div>
                             {% endif %}
-                            <hr>
+                            <hr style="display: none;">
 
-                            <h3>Payment option</h3>
+                            <h3 style="display: none;">Payment option</h3>
 
-                            <div class="d-block my-3">
+                            <div class="d-block my-3" style="display: none;">
                               {% for value, name in form.fields.payment_option.choices %}
-                              <div class="custom-control custom-radio">
+                              <div class="custom-control custom-radio" style="display: none;">
                                 <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" class="custom-control-input" required>
                                 <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
                               </div>
                               {% endfor %}
                             </div>
 
-                            <hr class="mb-4">
-                            <button id="stripeBtn">Continue</button>
+                            <hr class="mb-4" style="display: none;">
+
+                            <button class="mt-4 collapseOneButton" type="submit" name="button"  id="collapseOneButton">Continue</button>
                           </div>
                         </div>
                       </div>
@@ -271,34 +305,28 @@ button:hover {
                         </div>
                       </div>
 
-                      <div class="col-md-12">
-                        <div class="card">
-                          <div class="card-header">
-                              <h3>04. Order Review</h3>
-                          </div>
-                        </div>
-                      </div>
                     </div>
+                    </form>
                 </div>
                 <div class="col-md-4">
                   {% include "shoppingcart/order_snippet.html" %}
                 </div>
             </div>
-        </form>
     </div>
 </main>
 
 {% endblock content %}
 
 {% block extrajs %}
+<!-- Loading Screen -->
+<script type="text/javascript" src="{% static 'js/loader.js' %}"></script>
 <script type="text/javascript">
-
-</script>
-<script type="text/javascript">
+$(document).ready(function() {
 
   var hideable_shipping_form = $('.hideable_shipping_form');
   var hideable_billing_form = $('.hideable_billing_form');
   var shipping_button_continue = $('#collapseOneButton');
+  var shipping_button_continue_two = $('#collapseTwoButton');
   var shipping_button_continue_data = $('[data-target="#collapseOne"]');
   var expand_shipping_button = $('#expand_shipping_button');
   var text_edit = $('#text_edit');
@@ -309,17 +337,23 @@ button:hover {
   var use_default_billing = document.querySelector("input[name=use_default_billing]");
   var use_same_billing = document.querySelector("input[name=same_billing_address]");
 
-  $(document).ready(function() {
 
 
+    shipping_button_continue_two.hide()
+
+    $('.boxNotChecked').on('click', function() {
+      hideable_billing_form.show()
+    })
 
     expand_shipping_button.hide()
     text_edit.hide()
     hideable_billing_form.hide()
 
-    shipping_button_continue.on('click', function () {
-      hideable_shipping_form.hide()
-      expand_shipping_button.show()
+
+    shipping_button_continue_two.on('click', function () {
+      $('.hideable_shipping_form').hide()
+      $('#expand_shipping_button').show()
+      $('.hideable_billing_form').show(4000)
     })
 
     expand_shipping_button.on('click', function () {
@@ -337,138 +371,52 @@ button:hover {
     }
   })
 
+  $('#Stripe').prop('checked', true);
+
+
 
     if ( $("#same_billing_address").is(':checked')) {
-      shipping_button_continue.attr("onclick", "window.location.href = '#'")
-      shipping_button_continue.attr("data-target", "")
-      shipping_button_continue.removeClass('boxNotChecked')
+
+      shipping_button_continue_two.hide()
+      shipping_button_continue.show()
 
     } else {
-      shipping_button_continue.attr("onclick", " ")
-      shipping_button_continue.attr("data-target", "#collapseOne")
-      shipping_button_continue.addClass('boxNotChecked')
+
+      shipping_button_continue_two.show()
+      shipping_button_continue.hide()
 
     }
 
     use_same_billing.addEventListener('change', function() {
       if (this.checked) {
-        shipping_button_continue.attr("onclick", "window.location.href = '#'")
-        shipping_button_continue.attr("data-target", "")
-        shipping_button_continue.removeClass('boxNotChecked')
+        shipping_button_continue_two.hide()
+        shipping_button_continue.show()
       }
       else {
-        shipping_button_continue.attr("onclick", " ")
-        shipping_button_continue.attr("data-target", "#collapseOne")
-        shipping_button_continue.addClass('boxNotChecked')
+        shipping_button_continue_two.show()
+        shipping_button_continue.hide()
       }
     })
 
-    $('.boxNotChecked').on('click', function() {
-      hideable_billing_form.show()
-    })
-  });
 
-use_default_shipping.addEventListener('change', function() {
-  if (this.checked) {
-    hideable_shipping_form.hide();
-  } else {
-    hideable_shipping_form.show();
-  }
-})
-
-use_default_billing.addEventListener('change', function() {
-  if (this.checked) {
-    hideable_billing_form.hide();
-  } else {
-    hideable_billing_form.show();
-  }
-})
-
-</script>
-
-<script nonce="">  // Create a Stripe client.
-  var stripe = Stripe('');
-
-  // Create an instance of Elements.
-  var elements = stripe.elements();
-
-  // Custom styling can be passed to options when creating an Element.
-  // (Note that this demo uses a wider set of styles than the guide below.)
-  var style = {
-    base: {
-      color: '#32325d',
-      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-      fontSmoothing: 'antialiased',
-      fontSize: '16px',
-      '::placeholder': {
-        color: '#aab7c4'
-      }
-    },
-    invalid: {
-      color: '#fa755a',
-      iconColor: '#fa755a'
-    }
-  };
-
-  // Create an instance of the card Element.
-  var card = elements.create('card', {style: style});
-
-  // Add an instance of the card Element into the `card-element` <div>.
-  card.mount('#card-element');
-
-  // Handle real-time validation errors from the card Element.
-  card.addEventListener('change', function(event) {
-    var displayError = document.getElementById('card-errors');
-    if (event.error) {
-      displayError.textContent = event.error.message;
-    } else {
-      displayError.textContent = '';
-    }
-  });
-
-  // Handle form submission.
-  var form = document.getElementById('stripe-form');
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    stripe.createToken(card).then(function(result) {
-      if (result.error) {
-        // Inform the user if there was an error.
-        var errorElement = document.getElementById('card-errors');
-        errorElement.textContent = result.error.message;
-      } else {
-        // Send the token to your server.
-        stripeTokenHandler(result.token);
-      }
-    });
-  });
-
-  // Submit the form with the token ID.
-  function stripeTokenHandler(token) {
-    // Insert the token ID into the form so it gets submitted to the server
-    var form = document.getElementById('stripe-form');
-    var hiddenInput = document.createElement('input');
-    hiddenInput.setAttribute('type', 'hidden');
-    hiddenInput.setAttribute('name', 'stripeToken');
-    hiddenInput.setAttribute('value', token.id);
-    form.appendChild(hiddenInput);
-
-    // Submit the form
-    form.submit();
-  }
-
-  var currentCardForm = $('.current-card-form');
-  var newCardForm = $('.new-card-form');
-  var use_default_card = document.querySelector("input[name=use_default_card]");
-  use_default_card.addEventListener('change', function() {
+  use_default_shipping.addEventListener('change', function() {
     if (this.checked) {
-      newCardForm.hide();
-      currentCardForm.show()
+
     } else {
-      newCardForm.show();
-      currentCardForm.hide()
+      hideable_shipping_form.show();
     }
   })
 
+  use_default_billing.addEventListener('change', function() {
+    if (this.checked) {
+      hideable_billing_form.hide();
+    } else {
+      hideable_billing_form.show();
+    }
+  })
+
+
+});
 </script>
+
 {% endblock extrajs %}

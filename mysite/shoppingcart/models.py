@@ -4,7 +4,8 @@ from django.db import models
 from django.db.models import Sum
 from django.shortcuts import reverse
 from django_countries.fields import CountryField
-
+from allauth.account.signals import user_logged_in, user_signed_up
+import stripe
 
 CATEGORY_CHOICES = (
     ('S', 'Shirt'),
@@ -23,6 +24,13 @@ ADDRESS_CHOICES = (
     ('S', 'Shipping'),
 )
 
+ORDER_CHOICES = (
+    ('A', 'ATTENTION NEEDED'),
+    ('P', 'PROCESSING'),
+    ('D', 'DELIVERED'),
+    ('S', 'SHIPPED'),
+)
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(
@@ -33,6 +41,18 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+
+def stripeCallback(sender, request, user, **kwargs):
+    user_stripe_account, created = UserProfile.objects.get_or_create(user=user)
+    if created:
+        print ('test')
+    if user_stripe_account.stripe_customer_id is None or user_stripe_account.stripe_customer_id == '':
+        new_stripe_id = stripe.Customer.create(email=user.email)
+        user_stripe_account.stripe_customer_id = new_stripe_id['id']
+        user_stripe_account.save()
+
+user_logged_in.connect(stripeCallback)
+user_signed_up.connect(stripeCallback)
 
 class Item(models.Model):
     title = models.CharField(max_length=100)
@@ -71,7 +91,7 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return  '%s' % (self.quantity, self.item.title)
+        return  '(%s) %s' % (self.quantity, self.item.title)
 
     def get_total_item_price(self):
         return self.quantity * self.item.price
@@ -95,7 +115,9 @@ class Order(models.Model):
     items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField()
+    arrival_date = models.DateTimeField(blank=True, null=True)
     ordered = models.BooleanField(default=False)
+    status = models.CharField(choices=ORDER_CHOICES, max_length=1, default="P")
     shipping_address = models.ForeignKey(
         'Address', related_name='shipping_address', on_delete=models.SET_NULL, blank=True, null=True)
     billing_address = models.ForeignKey(
@@ -120,6 +142,9 @@ class Order(models.Model):
     6. Refunds
     '''
 
+    class Meta:
+        ordering = ['-ordered_date']
+
     def __str__(self):
         return self.user.username
 
@@ -133,10 +158,76 @@ class Order(models.Model):
 
 
 class Address(models.Model):
+
+    STATES = (
+        ("AL", "Alabama"),
+        ("AK", "Alaska"),
+        ("AS", "American Samoa"),
+        ("AZ", "Arizona"),
+        ("AR", "Arkansas"),
+        ("CA", "California"),
+        ("CO", "Colorado"),
+        ("CT", "Connecticut"),
+        ("DE", "Delaware"),
+        ("DC", "District Of Columbia"),
+        ("FM", "Federated States Of Micronesia"),  #TODO: WHAT THE FUCK IS THIS?!?!?
+        ("FL", "Florida"),
+        ("GA", "Georgia"),
+        ("GU", "Guam"),
+        ("HI", "Hawaii"),
+        ("ID", "Idaho"),
+        ("IL", "Illinois"),
+        ("IN", "Indiana"),
+        ("IA", "Iowa"),
+        ("KS", "Kansas"),
+        ("KY", "Kentucky"),
+        ("LA", "Louisiana"),
+        ("ME", "Maine"),
+        ("MH", "Marshall Islands"),
+        ("MD", "Maryland"),
+        ("MA", "Massachusetts"),
+        ("MI", "Michigan"),
+        ("MN", "Minnesota"),
+        ("MS", "Mississippi"),
+        ("MO", "Missouri"),
+        ("MT", "Montana"),
+        ("NE", "Nebraska"),
+        ("NV", "Nevada"),
+        ("NH", "New Hampshire"),
+        ("NJ", "New Jersey"),
+        ("NM", "New Mexico"),
+        ("NY", "New York"),
+        ("NC", "North Carolina"),
+        ("ND", "North Dakota"),
+        ("MP", "Northern Mariana Islands"),  #TODO: FIXME: http://thepythondjango.com/list-usa-states-python-django-format/
+        ("OH", "Ohio"),
+        ("OK", "Oklahoma"),
+        ("OR", "Oregon"),
+        ("PW", "Palau"),
+        ("PA", "Pennsylvania"),
+        ("PR", "Puerto Rico"),
+        ("RI", "Rhode Island"),
+        ("SC", "South Carolina"),
+        ("SD", "South Dakota"),
+        ("TN", "Tennessee"),
+        ("TX", "Texas"),
+        ("UT", "Utah"),
+        ("VT", "Vermont"),
+        ("VI", "Virgin Islands"),
+        ("VA", "Virginia"),
+        ("WA", "Washington"),
+        ("WV", "West Virginia"),
+        ("WI", "Wisconsin"),
+        ("WY", "Wyoming")
+        )
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     street_address = models.CharField(max_length=100)
     apartment_address = models.CharField(max_length=100)
+    city = models.CharField(max_length=100, default="")
+    state = models.CharField(choices=STATES, default='AL', max_length=100)
+    #state = models.ForeignKey('States', on_delete=models.CASCADE, null=True, blank=True)
     country = CountryField(multiple=False)
     zip = models.CharField(max_length=100)
     address_type = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
@@ -148,6 +239,15 @@ class Address(models.Model):
     class Meta:
         verbose_name_plural = 'Addresses'
 
+class States(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=96)
+    state_abbr = models.CharField(max_length=24, blank=True)
+
+
+    #Define the __unicode__ method, which is used by related models by default.
+    def __unicode__(self):
+        return self.state_abbr
 
 class Payment(models.Model):
     stripe_charge_id = models.CharField(max_length=50)

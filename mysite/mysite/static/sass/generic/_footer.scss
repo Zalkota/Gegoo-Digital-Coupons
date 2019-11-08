@@ -49,6 +49,25 @@ footer {
   font-size: .9rem;
   }
 
+@media screen and (max-width: 992px) {
+  .text-align-responsive {
+    text-align: center;
+  }
+
+  .text-align-right-responsive {
+    text-align: center;
+  }
+}
+@media screen and (min-width: 992px) {
+  .text-align-responsive {
+    text-align: left;
+  }
+
+  .text-align-right-responsive {
+    text-align: right;
+  }
+}
+
 }
 .hr-footer-sm {
   border-bottom: 1px solid #323232;

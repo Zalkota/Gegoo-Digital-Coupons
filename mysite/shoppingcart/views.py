@@ -13,12 +13,23 @@ from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, Us
 import random
 import string
 import stripe
-stripe.api_key = settings.STRIPE_SECRET_KEY
+
+publishKey = settings.STRIPE_PUBLISHABLE_KEY
+
+#def create_ref_code():
+#    return ''.join(random.choice(string.ascii_lowercase + string.digits, k=4))
+
+def random_string_generator(size=10, chars=string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
 
 
-def create_ref_code():
-    return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
+def unique_order_id_generator():
+    new_ref_code= random_string_generator()
 
+    qs_exists= Order.objects.filter(ref_code=new_ref_code).exists()
+    if qs_exists:
+        return unique_order_id_generator(instance)
+    return new_ref_code
 
 
 def is_valid_form(values):
@@ -26,7 +37,29 @@ def is_valid_form(values):
     for field in values:
         if field == '':
             valid = False
+    print(valid)
     return valid
+
+
+#Could this be a model manager?
+def get_user_address_default(request, user):
+    address_qs = Address.objects.filter(user=user, default=True)
+    if address_qs.exists():
+        address = address_qs.first()
+        return address
+    else:
+        address_qs = Address.objects.filter(user=user, default=False)
+        if address_qs.exists():
+            address = address_qs.first()
+            return address
+        return None
+
+
+def get_user_orders(request, user):
+	user_orders_qs = Order.objects.filter(user=user)
+	if user_orders_qs.exists():
+		return user_orders_qs
+	return None
 
 
 class CheckoutView(View):
@@ -61,7 +94,7 @@ class CheckoutView(View):
 
             return render(self.request, "shoppingcart/checkout.html", context)
         except ObjectDoesNotExist:
-            messages.info(self.request, "You do not have an active order")
+            messages.info(self.request, "Your shopping cart is empty")
             return redirect("shoppingcart:checkout")
 
     def post(self, *args, **kwargs):
@@ -93,15 +126,22 @@ class CheckoutView(View):
                         'shipping_address')
                     shipping_address2 = form.cleaned_data.get(
                         'shipping_address2')
+                    shipping_city = form.cleaned_data.get(
+                        'shipping_city')
+                    shipping_state = form.cleaned_data.get(
+                        'shipping_state')
                     shipping_country = form.cleaned_data.get(
                         'shipping_country')
                     shipping_zip = form.cleaned_data.get('shipping_zip')
 
-                    if is_valid_form([shipping_address1, shipping_country, shipping_zip]):
+                    if is_valid_form([shipping_address1, shipping_city, shipping_state, shipping_country, shipping_zip]):
+                        print('OK is_valid_form')
                         shipping_address = Address(
                             user=self.request.user,
                             street_address=shipping_address1,
                             apartment_address=shipping_address2,
+                            city=shipping_city,
+                            state=shipping_state,
                             country=shipping_country,
                             zip=shipping_zip,
                             address_type='S'
@@ -118,8 +158,10 @@ class CheckoutView(View):
                             shipping_address.save()
 
                     else:
-                        messages.info(
+                        messages.error(
                             self.request, "Please fill in the required shipping address fields")
+                        return redirect('shoppingcart:checkout')
+
 
                 use_default_billing = form.cleaned_data.get(
                     'use_default_billing')
@@ -156,15 +198,21 @@ class CheckoutView(View):
                         'billing_address')
                     billing_address2 = form.cleaned_data.get(
                         'billing_address2')
+                    billing_city = form.cleaned_data.get(
+                        'billing_city')
+                    billing_state = form.cleaned_data.get(
+                        'billing_state')
                     billing_country = form.cleaned_data.get(
                         'billing_country')
                     billing_zip = form.cleaned_data.get('billing_zip')
 
-                    if is_valid_form([billing_address1, billing_country, billing_zip]):
+                    if is_valid_form([billing_address1, billing_city, billing_state, billing_country, billing_zip]):
                         billing_address = Address(
                             user=self.request.user,
                             street_address=billing_address1,
                             apartment_address=billing_address2,
+                            city=billing_city,
+                            state=billing_state,
                             country=billing_country,
                             zip=billing_zip,
                             address_type='B'
@@ -195,7 +243,7 @@ class CheckoutView(View):
                         self.request, "Invalid payment option selected")
                     return redirect('shoppingcart:checkout')
         except ObjectDoesNotExist:
-            messages.warning(self.request, "You do not have an active order")
+            messages.info(self.request, "Your shopping cart is empty")
             return redirect("shoppingcart:order-summary")
 
 
@@ -205,7 +253,8 @@ class PaymentView(View):
         if order.billing_address:
             context = {
                 'order': order,
-                'DISPLAY_COUPON_FORM': False
+                'DISPLAY_COUPON_FORM': False,
+                'publishKey': publishKey,
             }
             userprofile = self.request.user.userprofile
             if userprofile.one_click_purchasing:
@@ -233,6 +282,7 @@ class PaymentView(View):
         userprofile = UserProfile.objects.get(user=self.request.user)
         if form.is_valid():
             token = form.cleaned_data.get('stripeToken')
+            print('token', token)
             save = form.cleaned_data.get('save')
             use_default = form.cleaned_data.get('use_default')
 
@@ -241,8 +291,10 @@ class PaymentView(View):
                     customer = stripe.Customer.retrieve(
                         userprofile.stripe_customer_id)
                     customer.sources.create(source=token)
+                    print('retrieve customer')
 
                 else:
+                    print('create customer')
                     customer = stripe.Customer.create(
                         email=self.request.user.email,
                     )
@@ -254,28 +306,35 @@ class PaymentView(View):
             amount = int(order.get_total() * 100)
 
             try:
-
                 if use_default or save:
                     # charge the customer because we cannot charge the token more than once
                     charge = stripe.Charge.create(
-                        amount=amount,  # cents
-                        currency="usd",
-                        customer=userprofile.stripe_customer_id
+                    amount=amount,  # cents
+                    currency="usd",
+                    customer=userprofile.stripe_customer_id
                     )
                 else:
-                    # charge once off on the token
-                    charge = stripe.Charge.create(
-                        amount=amount,  # cents
-                        currency="usd",
-                        source=token
+                    stripe.Customer.modify(
+                    userprofile.stripe_customer_id, # cus_xxxyyyyz
+                    source=token # tok_xxxx or src_xxxyyy
                     )
+                    charge = stripe.Charge.create(
+                    amount=amount,
+                    currency='usd',
+                    description='description',
+                    #source=token
+                    customer = userprofile.stripe_customer_id
+                    )
+                    print('payment charged')
 
-                # create the payment
+
+                    # create the payment
                 payment = Payment()
                 payment.stripe_charge_id = charge['id']
                 payment.user = self.request.user
                 payment.amount = order.get_total()
                 payment.save()
+                print('payment saved')
 
                 # assign the payment to the order
 
@@ -283,14 +342,18 @@ class PaymentView(View):
                 order_items.update(ordered=True)
                 for item in order_items:
                     item.save()
+                    print('order items')
 
                 order.ordered = True
                 order.payment = payment
-                order.ref_code = create_ref_code()
+                order.ref_code = unique_order_id_generator()
                 order.save()
-
+                print(unique_order_id_generator())
+                print('order saved')
                 messages.success(self.request, "Your order was successful!")
-                return redirect("/")
+                return redirect("shoppingcart:order-review", ref_code=order.ref_code)
+
+
 
             except stripe.error.CardError as e:
                 body = e.json_body
@@ -324,14 +387,15 @@ class PaymentView(View):
                 # Display a very generic error to the user, and maybe send
                 # yourself an email
                 messages.warning(
-                    self.request, "Something went wrong. You were not charged. Please try again.")
+                self.request, "Something went wrong. You were not charged. Please try again.")
                 return redirect("/")
 
             except Exception as e:
                 # send an email to ourselves
                 messages.warning(
-                    self.request, "A serious error occurred. We have been notifed.")
+                self.request, "A serious error occurred. We have been notifed.")
                 return redirect("/")
+
 
         messages.warning(self.request, "Invalid data received")
         return redirect("/payment/stripe/")
@@ -352,8 +416,52 @@ class OrderSummaryView(LoginRequiredMixin, View):
             }
             return render(self.request, 'shoppingcart/order_summary.html', context)
         except ObjectDoesNotExist:
-            messages.warning(self.request, "You do not have an active order")
+            messages.info(self.request, "Your shopping cart is empty")
             return redirect("/")
+
+class OrderReviewView(LoginRequiredMixin, View):
+
+
+    def get(self, *args, **kwargs):
+        ref_code = kwargs['ref_code']
+        order = Order.objects.get(user=self.request.user, ordered=True, ref_code=ref_code)
+        print(order)
+        orderCategory_qs = order.items.first()
+        orderCategory = orderCategory_qs.item.category
+        advert_list = []
+
+        advert_list = Item.objects.filter(category=orderCategory)
+        print(advert_list)
+
+
+        #result = order.items.values()             # return ValuesQuerySet object
+        #list_result = [entry for entry in result]  # converts ValuesQuerySet into Python list
+        #return list_result
+
+        context = {
+            'object': order,
+            'advert_list': advert_list,
+
+        }
+        return render(self.request, 'shoppingcart/order_review.html', context)
+        #except ObjectDoesNotExist:
+        #    messages.warning(self.request, "order error")
+        #    return redirect("/")
+
+class OrderDetailView(LoginRequiredMixin, View):
+
+    def get(self, *args, **kwargs):
+        ref_code = kwargs['ref_code']
+        order = Order.objects.get(user=self.request.user, ordered=True, ref_code=ref_code)
+
+
+
+
+        context = {
+            'object': order,
+
+        }
+        return render(self.request, 'shoppingcart/order_detail.html', context)
 
 
 class ItemListHomeView(ListView):
@@ -420,7 +528,7 @@ def remove_from_cart(request, slug):
             messages.info(request, "This item was not in your cart")
             return redirect("shoppingcart:product", slug=slug)
     else:
-        messages.info(request, "You do not have an active order")
+        messages.info(request, "Your shopping cart is empty")
         return redirect("shoppingcart:product", slug=slug)
 
 
@@ -451,7 +559,7 @@ def remove_single_item_from_cart(request, slug):
             messages.info(request, "This item was not in your cart")
             return redirect("shoppingcart:product", slug=slug)
     else:
-        messages.info(request, "You do not have an active order")
+        messages.info(request, "Your shopping cart is empty")
         return redirect("shoppingcart:product", slug=slug)
 
 
@@ -477,7 +585,7 @@ class AddCouponView(View):
                 messages.success(self.request, "Successfully added coupon")
                 return redirect("shoppingcart:checkout")
             except ObjectDoesNotExist:
-                messages.info(self.request, "You do not have an active order")
+                messages.info(self.request, "Your shopping cart is empty")
                 return redirect("shoppingcart:checkout")
 
 
