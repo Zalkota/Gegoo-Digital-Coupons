@@ -4,26 +4,31 @@
     <nav class=" navbar navbar-default shadow-0 fixed-top navbar-expand-lg hide" id="mynav">
       <div class="container hide" >
           <a class="navbar-brand text-center" href="/">
+              <img class="shadow-0 mb-2" src="{% static 'img/logo/logo.png' %}" width="25px" alt="TODO">
+              <span class="nav-brand">{{ SITE_NAME }} </span>
           </a>
           <div class="collapse navbar-collapse  hide" id="navbarResponsive">
             <ul class="nav navbar-nav mr-auto" id="example-one">
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'cart:products' %}" id="">{% if request.path == '/cart/products/' %}<strong>Shop</strong>{% else %} Shop {% endif %}</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pr-0" href="" id="">Search </a><i class="px-0 pt-1 mx-0" style="display: none;" data-feather="search"></i>
+                    <form class="search-form-container" action="/find/" method="get" >
+                        <div class=" ml-3">
+                            <div class="icon-addon addon-lg">
+                                <input type="text" placeholder="Search for bumper stickers" name="q" id="q" autocomplete="off">
+                                <div id="selction-ajax"></div>
+                            </div>
+                        </div>
+                    </form>
                 </li>
                 <li class="nav-item">
                 </li>
             </ul>
             <ul class="nav navbar-nav mr-auto ml-auto" id="example-one">
-                <li class="nav-item">
-                  <a class="nav-icon" href="{% url 'home-page' %}" style="font-weight: 700;" id="">
-                    <img class="shadow-0 mb-2" src="{% static 'img/logo/logo.png' %}" width="25px" alt="TODO">
-                  </a>
-                </li>
+
             </ul>
               <ul class="nav navbar-nav ml-auto" id="example-one">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cart:products' %}" id="">{% if request.path == '/cart/products/' %}<strong>Shop</strong>{% else %} Shop {% endif %}</a>
+                  </li>
                 {% if not request.user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'account_login' %}" id="">Sign In</a>
@@ -86,26 +91,40 @@
         <a class="navigation__logo" href="/">
           <span class="mt-4"> MOD</span>
         </a>
+        <div class="navigation__background-search">&nbsp;</div>
         <div class="navigation__background">&nbsp;</div>
         <div class="navigation__background-2">&nbsp;</div>
+
+
         <nav class="navigation__nav">
+            <ul class="navigation__search">
+                <li class="nav-item">
+                    <form class="search-form-container" action="/find/" method="get" >
+                        <div class=" ml-3">
+                            <div class="icon-addon addon-lg">
+                                <input type="text" placeholder="Search for bumper stickers" name="q" id="q" autocomplete="off">
+                                <div id="selction-ajax"></div>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            </ul>
             <ul class="navigation__list">
               {% if not request.user.is_authenticated %}
               <li class="navigation__item mb-3"><a href="{% url 'account_signup' %}" class="btn btn-primary-alt px-4 py-2" style="">Join </a></li>
               <li class="navigation__item"><a href="{% url 'account_login' %}" class="navigation__link" style="">Sign In</a></li>
               {% else %}
-              <li class="navigation__item"><a href="{% url 'users:userPage' %}" class="navigation__link" style="">Profile</a></li>
+              <li class="navigation__item"><a href="{% url 'users:userPage' %}" class="navigation__link" style="">Account</a></li>
               {% if request.user.is_superuser %}
               <li class="navigation__item"><a href="/admin/" class="navigation__link" style="">Admin Panel</a></li>
               {% endif %}
               <li class="navigation__item"><a href="{% url 'account_logout' %}" class="navigation__link text-danger" style="">Log Out</a></li>
               {% endif %}
               <li class="navigation__item text-black mt-5 fs-14" style="color: #111; border-bottom: 1px solid #6a6a6a;">General</li>
-              <li class="navigation__item "><a href="{% url 'home-page' %}" class="navigation__link" style="">Home</a></li>
-              <li class="navigation__item"><a href="" class="navigation__link" style="">Projects</a></li>
-              <li class="navigation__item"><a href="" class="navigation__link" style="">Services</a></li>
-              <li class="navigation__item"><a href="" class="navigation__link" style="">Pricing</a></li>
-              <li class="navigation__item"><a href="{% url 'contact-page' %}" class="navigation__link" style="">Contact</a></li>
+              <li class="navigation__item "><a href="{% url 'shoppingcart:products' %}" class="navigation__link" style="">Shop</a></li>
+              <li class="navigation__item"><a href="{% url 'home-page' %}" class="navigation__link" style="">Home</a></li>
+              <li class="navigation__item"><a href="{% url 'shoppingcart:request-refund' %}" class="navigation__link" style="">Return</a></li>
+              <li class="navigation__item"><a href="{% url 'contact-page' %}" class="navigation__link" style="">Support</a></li>
             </ul>
         </nav>
     </div>

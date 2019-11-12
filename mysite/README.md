@@ -278,7 +278,17 @@ docker ps #shows all runnign docker containers
 ##TODO: remove postgres 5433 port for production
 python manage.py generate_secret_key [--replace] [secretkey.txt]
 
+# Elastic search
 
+how to run elastic search Server
+
+    bin/elasticsearch
+
+https://knowpapa.com/haystack-elasticsearch/
+https://www.elastic.co/downloads/past-releases/elasticsearch-1-7-6
+
+
+search_index --rebuild
 
 # DUMP DATABASE #
 

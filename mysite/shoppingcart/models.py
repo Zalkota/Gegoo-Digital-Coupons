@@ -5,13 +5,27 @@ from django.db.models import Sum
 from django.shortcuts import reverse
 from django_countries.fields import CountryField
 from allauth.account.signals import user_logged_in, user_signed_up
+#payments
 import stripe
+#Image Upload
+from django.core.validators import FileExtensionValidator
 
-CATEGORY_CHOICES = (
-    ('S', 'Shirt'),
-    ('SW', 'Sport wear'),
-    ('OW', 'Outwear')
-)
+#Ckeditor
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
+
+
+# Image Upload Create upload to directory
+def upload_to(instance, filename):
+    now = timezone_now()
+    base, ext = os.path.splitext(filename)
+    ext = ext.lower()
+    return '%s' % (now)
+
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'user_{0}/{1}'.format(instance.job.id, filename)
+
 
 LABEL_CHOICES = (
     ('P', 'primary'),
@@ -54,15 +68,50 @@ def stripeCallback(sender, request, user, **kwargs):
 user_logged_in.connect(stripeCallback)
 user_signed_up.connect(stripeCallback)
 
+
+class Category(models.Model):
+  name = models.CharField(max_length=255, db_index=True, unique=True)
+
+  def __str__(self):
+      return self.name
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=32)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['-name']
+
+
+class Image(models.Model):
+    title = models.CharField(max_length=255, blank=True)
+    file = models.FileField(upload_to='photos/', validators=[FileExtensionValidator(['jpg', 'png', 'jpeg'])], help_text="Image must be a .PNG or .JPG")
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    main_photo = models.BooleanField()
+
+#    class Meta:
+#        ordering = ['-main_photo']
+
+    def __str__(self):
+        return '%s (%s)' % (self.file, self.uploaded_at)
+
+
+
 class Item(models.Model):
     title = models.CharField(max_length=100)
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='category')
     label = models.CharField(choices=LABEL_CHOICES, max_length=1)
+    tag = models.ManyToManyField(Tag, blank=True)
     slug = models.SlugField()
-    description = models.TextField()
-    image = models.ImageField()
+    description = RichTextUploadingField()
+    main_image = models.ImageField(upload_to='photos/', null=True)
+    images = models.ManyToManyField(Image, blank=True, help_text="Alternate Photos of Product")
+    timestamp = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
@@ -81,6 +130,9 @@ class Item(models.Model):
         return reverse("shoppingcart:remove-from-cart", kwargs={
             'slug': self.slug
         })
+
+
+
 
 
 class OrderItem(models.Model):

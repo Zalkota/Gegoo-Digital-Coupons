@@ -7,6 +7,7 @@ from .views import (
     ContactFormView,
     contactLandingPage
 )
+from search import views as search_views
 
 #Rerouting django admin through allauth
 from django.contrib.auth.decorators import login_required
@@ -42,7 +43,10 @@ urlpatterns = [
     #path('<slug>/', PageDetailView.as_view(), name='page-detail'),
     path('pages', include('django.contrib.flatpages.urls')),
 
-
+    #Search
+    #path('search', search_views.search, name='search'),
+    url(r'^search/autocomplete/$', search_views.autocomplete),
+    url(r'^find/', search_views.FacetedSearchView.as_view(), name='haystack_search'),
 
     path('admin/', admin.site.urls),
 

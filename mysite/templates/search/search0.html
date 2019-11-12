@@ -1,0 +1,42 @@
+{% extends "base-alt.html" %}
+
+
+{% block content %}
+
+  <main class="">
+    <section class="section-md">
+      <div class="container">
+          {% block search_form  %}
+              {% include "search/search_form.html" %}
+          {% blockend search_form %}
+
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row">
+              {% for object in items %}
+              <div class="col-lg-4 text-center">
+                  <a href="{{ object.get_absolute_url }}">
+                  <img class="card-img-top p-4" style="width: 100%;" src="/media/{{ object.image }}" alt="User Uploaded images">
+                  <div class="text-center text-uppercase mt-4">
+                    <h3 class="fs-14">{{ object.title }}</h3>
+                    <span class="text-muted fs-14 ">${{ object.price }}</span>
+                  </div>
+              </a>
+              </div>
+
+              {% empty %}
+              <div class="col-lg-12 text-center">
+                  <div></div>
+                  <h3 class="fs-14">Sorry, we were not able to find anything.</h3>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+{% endblock content %}

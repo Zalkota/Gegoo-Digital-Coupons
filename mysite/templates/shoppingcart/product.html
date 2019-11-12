@@ -6,21 +6,33 @@
 
 {% block content %}
 
+<style>
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    border-color: #dee2e6 #dee2e6 #fafafa;
+}
+
+</style>
 <section class="section-sm">
     <div class="container text-center">
 
         <div id="carouselExampleIndicators" class="carousel slide mt-5 hide" data-ride="carousel" data-aos="fade-up">
 
           <div class="carousel-inner ">
+          <div class="carousel-item active text-center ">
+            <img class="img-responsive my-4" style="max-height: 300px;"  src="/media/{{ object.main_image }}" alt="TODO">
+          </div>
+            {% for object in item.images.all %}
+            <div class="carousel-item text-center ">
+              <img class="img-responsive my-4" style="max-height: 300px;"  src="/media/{{ object.file }}" alt="TODO">
+            </div>
+            {% empty %}
             <div class="carousel-item active text-center ">
-              <img class="img-responsive my-4" style="max-height: 300px;"  src="/media/{{ item.image }}" alt="TODO">
+                <h3>No Image Found <i class="fa fa-file-o" aria-hidden="true"></i></h3>
+
             </div>
-            <div class="carousel-item text-center">
-              <img class="img-responsive my-4" style="max-height: 300px;"  src="{% static 'img/product1.png' %}" alt="TODO">
-            </div>
-            <div class="carousel-item text-center">
-              <img class="img-responsive my-4" style="max-height: 300px;"  src="{% static 'img/product1.png' %}" alt="TODO">
-            </div>
+            {% endfor %}
+
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -36,14 +48,11 @@
 </section>
 <section class="section-white-sm border-top-dark" style="">
     <div class="container">
-        <div>
-
-        </div>
         <div class="row">
           <div class="offset-lg-2"></div>
             <div class="col-lg-4">
               <h2 class="text-uppercase">{{ item.title }}</h2>
-              <h3><span class="text-dark fs-16">${{ item.price }}</span></h3>
+              <h3><span class="text-primary fs-20">${{ item.price }}</span></h3>
                 <p class="fs-14 text-left text-muted">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
@@ -53,56 +62,71 @@
                 </p>
             </div>
             <div class="col-lg-4 text-right">
-              {% comment %}
-              <form class="d-flex justify-content-left">
-                <!-- Default input -->
-                <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-                <button class="btn btn-alt my-0 p" type="submit">
-                  Add to cart
-                </button>
-              </form> 
-              {% endcomment %}
-              <a href="{{ object.get_add_to_cart_url }}" class="btn btn-alt my-0">
-                Add to cart
-              </a>
+                <form method="POST" class="search-form-container" action="{{ object.get_add_to_cart_url }}">
+                    <!-- Default input -->
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <span class="text-muted fs-14">Quanty:</span>
+                        <input type="number" value="1" aria-label="Search" class="search-form-container" style="width: 70px;" id='quantity' name='quantity'>
+                    </div>
+                    <button class="btn btn-primary-alt my-0 p" type="submit">
+                      Add to cart
+                    </button>
+                </form>
             </div>
             <div class="offset-lg-2"></div>
             <div class="col-lg-8 offset-lg-2">
               <hr>
               <div class="row">
-                <div class="col-lg-2">
-                    <img class="img-fluid my-4" style="max-height: 300px;"  src="{% static 'img/image1.png' %}" alt="TODO">
-                </div>
-                <div class="col-lg-2">
-                    <img class="img-fluid my-4" style="max-height: 300px;"  src="{% static 'img/image2.png' %}" alt="TODO">
-                </div>
-                <div class="col-lg-2">
-                    <img class="img-fluid my-4" style="max-height: 300px;"  src="{% static 'img/image3.png' %}" alt="TODO">
-                </div>
-                <div class="col-lg-2">
-                    <img class="img-fluid my-4" style="max-height: 300px;"  src="{% static 'img/image4.png' %}" alt="TODO">
-                </div>
-                <div class="col-lg-2">
-                    <img class="img-fluid my-4" style="max-height: 300px;"  src="{% static 'img/image1.png' %}" alt="TODO">
-                </div>
-                <div class="col-lg-2">
-                    <img class="img-fluid my-4" style="max-height: 300px;"  src="{% static 'img/image3.png' %}" alt="TODO">
-                </div>
+                  {% for object in item.images.all %}
+                  <div class="col-lg-3">
+                      <img class="img-fluid my-4" style="max-height: 300px;"  src="/media/{{ object.file }}" alt="TODO">
+                  </div>
+                  {% empty %}
+                  <div class="carousel-item active text-center ">
+                      <h3>No Image Found <i class="fa fa-file-o" aria-hidden="true"></i></h3>
+                  </div>
+                  {% endfor %}
+
                 <div class="col-lg-12">
-                  <div class="text-center card-border p-5 mt-3">
-                    <div class="text-left">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item ">
+                          <a class="nav-link active" id="review_btn">Reviews</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="return_btn" ">Return Policy</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="warranty_btn" >Questions</a>
+                        </li>
+                      </ul>
+                  <div class="text-center card-border p-5 ">
+
+                    <div class="text-left" id="review_tab">
                         <h4 class="fs-18 mb-0 mt-3 fw-7">Jacob Gaft <span class="text-black fw-7 fs-14 pull-right">September 11, 2019</span>
                         <br>
                         <span class="text-muted fw-4 fs-13">Verified Buyer</span></h4>
                         <br>
                         <i class="material-icons star-yellow" style="">star star star star star </i>
-
-
                         <h4 class="mt-4 fs-20">"From the moment I picked this bracelet up, you could feel the quality of the stainless steel and time that was put into it."</h4>
-                          <div class="row">
+                    </div>
 
-                          </div>
-                      </div>
+                    <div class="text-left" id="return_tab">
+                        <h4 class="fs-18 mb-0 mt-3 fw-7">Return Policy
+                        <br>
+                        <span class="text-muted fw-4 fs-13">14-Day Return Policy</span></h4>
+                        <br>
+                        <p class="mt-4 fs-14">If you are not satisified with the product, we offer a 14 day return policy on all products. <a href="">Click here</a> to request a return.</p>
+                    </div>
+
+                    <div class="text-left" id="warranty_tab">
+                        <h4 class="fs-18 mb-0 mt-3 fw-7">Shipping Information
+                        <br>
+                        <span class="text-muted fw-4 fs-13">14-Day Return Policy</span></h4>
+                        <br>
+                        <p class="mt-4 fs-16">If you are not satisified with the product, we offer a 14 day return policy on all products. <a href="">Click here</a> to request a return.</p>
+                    </div>
+
                     <div class="text-center" style="display: none;">
                       <a class="btn btn-primary-round fs-20" href="{% url 'contact-page' %}">View Additional Projects</a>
                     </div>
@@ -111,7 +135,6 @@
               </div>
             </div>
         </div>
-
         <div class="py-5"></div>
     </div>
         <hr>
@@ -124,8 +147,8 @@
                 <div class="offset-lg-1"></div>
                 <div class="col-xl-6 vertical-container">
                     <div class="vertical-alignment px-3 py-5">
-                      <h3>Plastic Injection Molding</h3>
-                      <div class="hr-primary-lg mt-3"></div>
+                      <h3>Make Sure Everyone Knows You ares a Trump Fan.</h3>
+                      <img class="" style="max-height: 4px;"  src="{% static 'img/hr_american2.jpg' %}" alt="TODO">
                       <p class="pb-4 pt-3 mb-0 fs-14 text-muted">Started by Dan Brown in 1999, ATP is a injection molding company that specializes in low to high production and test specimen applications.
                          Our 40+ years of experience in injection mold manufacturing allows ATP to focus on what we excel at;
                         product quality, low cost pricing strategies, decreasing lead times, and lean manufacturing.
@@ -180,10 +203,10 @@
       <div class="py-5"></div>
       <div class="text-center">
           <h3 class="fw-7 fs-65">
-            MADE IN DETROIT.
+            PRINTED IN AMERICA.
           </h3>
-          <p class="text-muted fs-14 pb-4">Looking for a custom piece? Contact Robert James.</p>
-          <a href="#" class="btn btn-alt pull-center">Inquiries</a>
+          <p class="text-muted fs-14 pb-4">Designed and printed in Detroit, MI.</p>
+          <a href="#" class="btn btn-primary-alt pull-center">Inquiries</a>
       </div>
       <div class="py-5"></div>
       <hr>
@@ -191,3 +214,52 @@
   </section>
 
 {% endblock content %}
+
+
+{% block extrajs %}
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+    var review_tab = $('#review_tab');
+    var warranty_tab = $('#warranty_tab');
+    var return_tab = $('#return_tab');
+
+
+    warranty_tab.hide()
+    return_tab.hide()
+
+
+    $('#review_btn').on('click', function() {
+      review_tab.show()
+      warranty_tab.hide()
+      return_tab.hide()
+
+      $('#warranty_btn').removeClass('active')
+      $('#return_btn').removeClass('active')
+      $('#review_btn').addClass('active')
+
+    })
+
+    $('#warranty_btn').on('click', function() {
+      review_tab.hide()
+      warranty_tab.show()
+      return_tab.hide()
+
+      $('#warranty_btn').addClass('active')
+      $('#return_btn').removeClass('active')
+      $('#review_btn').removeClass('active')
+    })
+
+    $('#return_btn').on('click', function() {
+      review_tab.hide()
+      warranty_tab.hide()
+      return_tab.show()
+
+      $('#warranty_btn').removeClass('active')
+      $('#return_btn').addClass('active')
+      $('#review_btn').removeClass('active')
+    })
+});
+</script>
+{% endblock extrajs %}

@@ -138,7 +138,7 @@
     background-attachment: fixed; }
     .hero-signup-right {
       /* Sizing */
-      background-color: #2C5282;
+      background-color: #C53030;
       color: #fafafa;
       order: 2;
       flex-grow: 1;
@@ -352,7 +352,7 @@ select {
   background: transparent; }
 
 select:focus {
-  color: #2C5282; }
+  color: #C53030; }
 
 ::-webkit-input-placeholder {
   color: #EDF2F7; }
@@ -681,7 +681,7 @@ select:-webkit-autofill {
 
 #demo p.label {
   margin: 0 0 10px;
-  color: #2C5282; }
+  color: #C53030; }
 
 #demo p.note {
   display: block;
@@ -859,15 +859,15 @@ body {
   body p {
     color: #2D3748; }
   body li {
-    color: #2C5282; }
+    color: #C53030; }
   body a {
-    color: #2C5282; }
+    color: #C53030; }
 
 a:hover {
-  color: #2C5282; }
+  color: #C53030; }
 
 .text-primary {
-  color: #2C5282; }
+  color: #C53030; }
 
 .text-success {
   color: #48BB78; }

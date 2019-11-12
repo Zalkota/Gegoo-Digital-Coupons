@@ -37,18 +37,31 @@ django-braces==1.13.0
 
 # Honeypot
 django-honeypot==0.7.0
+
 # Instagram APP https://github.com/marcopompili/django-instagram
 django-instagram==0.3.0
+
 # Ckeditor https://django-ckeditor.readthedocs.io/en/latest/
 django-ckeditor==5.7.1
+
 # Phone Numbers https://github.com/stefanfoulis/django-phonenumber-field
 django-phonenumber-field==3.0.01
 phonenumbers==8.10.20
+
 #Debug Toolbar
 django-debug-toolbar==1.11
+
 #Chat
 #channels==2.3.0
+
 # Payment Procesing
 stripe==2.36.1
 
 django-countries==5.3.3
+
+#Elastic Search with Haystack
+elasticsearch==5.5.3
+django-haystack==2.8.1
+
+#ImportExport
+django-import-export==1.2.0

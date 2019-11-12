@@ -129,3 +129,6 @@ class PaymentForm(forms.Form):
     stripeToken = forms.CharField(required=False)
     save = forms.BooleanField(required=False)
     use_default = forms.BooleanField(required=False)
+
+class AddToCartForm(forms.Form):
+    quantity = forms.IntegerField(required=False)

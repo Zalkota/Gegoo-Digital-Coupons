@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, View
 from django.shortcuts import redirect
 from django.utils import timezone
-from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
+from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm, AddToCartForm
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
 
 import random
@@ -454,12 +454,8 @@ class OrderDetailView(LoginRequiredMixin, View):
         ref_code = kwargs['ref_code']
         order = Order.objects.get(user=self.request.user, ordered=True, ref_code=ref_code)
 
-
-
-
         context = {
             'object': order,
-
         }
         return render(self.request, 'shoppingcart/order_detail.html', context)
 
@@ -477,6 +473,14 @@ class ItemDetailView(DetailView):
 
 @login_required
 def add_to_cart(request, slug):
+    form_class = AddToCartForm
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+
+        if form.is_valid():
+            quantity = form.cleaned_data.get('quantity')
+
+
     item = get_object_or_404(Item, slug=slug)
     order_item, created = OrderItem.objects.get_or_create(
         item=item,
@@ -488,7 +492,7 @@ def add_to_cart(request, slug):
         order = order_qs[0]
         # check if the order item is in the order
         if order.items.filter(item__slug=item.slug).exists():
-            order_item.quantity += 1
+            order_item.quantity += quantity
             order_item.save()
             messages.info(request, "This item quantity was updated.")
             return redirect("shoppingcart:order-summary")

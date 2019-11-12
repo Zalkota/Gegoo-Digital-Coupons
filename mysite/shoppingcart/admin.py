@@ -1,6 +1,7 @@
 from django.contrib import admin
-
-from .models import Item, OrderItem, Order, Payment, Coupon, Refund, Address, UserProfile
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+from .models import Item, OrderItem, Order, Payment, Coupon, Refund, Address, UserProfile, Category, Image
 
 
 def make_refund_accepted(modeladmin, request, queryset):
@@ -10,7 +11,7 @@ def make_refund_accepted(modeladmin, request, queryset):
 make_refund_accepted.short_description = 'Update orders to refund granted'
 
 
-class OrderAdmin(admin.ModelAdmin):
+class OrderAdmin(ImportExportModelAdmin):
     list_display = ['user',
                     'ordered',
                     'being_delivered',
@@ -55,9 +56,17 @@ class AddressAdmin(admin.ModelAdmin):
     search_fields = ['user', 'street_address', 'apartment_address', 'zip']
 
 
-admin.site.register(Item)
+class ItemAdmin(ImportExportModelAdmin):
+     model= Item
+     filter_horizontal = ('images',) #If you don't specify this, you will get a multiple select widget.
+
+
+
+admin.site.register(Image)
+admin.site.register(Item, ItemAdmin)
 admin.site.register(OrderItem)
 admin.site.register(Order, OrderAdmin)
+admin.site.register(Category)
 admin.site.register(Payment)
 admin.site.register(Coupon)
 admin.site.register(Refund)

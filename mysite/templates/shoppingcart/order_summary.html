@@ -11,6 +11,7 @@
         <li class="text-muted fw-4 px-2">/</li>
         <li><a href="{% url 'home-page' %}">Cart</a></li>
       </ol>
+      <h2>Shopping Cart</h2>
       <!-- BREAD CRUMBS END -->
     </div>
     <section class="section-md">
@@ -18,12 +19,12 @@
 
 
       <div class="table-responsive text-nowrap">
-      <h2>Order Summary</h2>
+
       <table class="table">
           <thead>
           <tr>
               <th scope="col">#</th>
-              <th scope="col">Item title</th>
+              <th scope="col">Description</th>
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
               <th scope="col">Total Item Price</th>
@@ -34,7 +35,7 @@
           <tr>
               <th scope="row">{{ forloop.counter }}</th>
               <td>{{ order_item.item.title }}</td>
-              <td>{{ order_item.item.price }}</td>
+              <td>${{ order_item.item.price }}</td>
               <td>
                   <a href="{% url 'shoppingcart:remove-single-item-from-cart' order_item.item.slug %}"><i class="fa fa-minus mr-2"></i></a>
                   {{ order_item.quantity }}
@@ -48,7 +49,7 @@
                   ${{ order_item.get_total_item_price }}
               {% endif %}
               <a class="text-dark" href="{% url 'shoppingcart:remove-from-cart' order_item.item.slug %}">
-                    <i class="fa fa-times float-right"></i>
+                    <i class="fa fa-times float-right text-primary pt-1"></i>
               </a>
               </td>
           </tr>
@@ -58,7 +59,7 @@
           </tr>
           <tr>
               <td colspan="5">
-              <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+
               </td>
           </tr>
           {% endfor %}
@@ -75,14 +76,27 @@
           </tr>
           <tr>
               <td colspan="5">
-              <a class='btn btn-secondary-alt float-right ml-2' href="{% url 'shoppingcart:checkout' %}">Proceed to checkout</a>
-              <a class='btn btn-alt float-right' href="{% url 'shoppingcart:products' %}">Continue shopping</a>
+
               </td>
           </tr>
           {% endif %}
           </tbody>
       </table>
+      </div>
 
+      <div class="row">
+          <div class="offset-lg-6"></div>
+          <div class="col-lg-6">
+              <div class="row">
+                  <div class="offset-lg-2"></div>
+                  <div class="col-lg-5 pt-3">
+                      <a class='btn btn-alt float-right btn-block ' href="{% url 'shoppingcart:products' %}">Continue shopping</a>
+                  </div>
+                  <div class="col-lg-5 pt-3">
+                      <a class='btn btn-primary-alt float-right btn-block' href="{% url 'shoppingcart:checkout' %}">Proceed to checkout</a>
+                  </div>
+              </div>
+          </div>
       </div>
 
       </div>

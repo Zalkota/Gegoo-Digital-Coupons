@@ -62,12 +62,12 @@ $color-blue-800: #2C5282;
 $color-blue-900: #2A4365;
 
 // Theme Colors
-$color-primary: $color-blue-800;
-$color-primary-light: $color-blue-400;
-$color-primary-lighter: $color-blue-300;
-$color-primary-dark: $color-blue-600;
+$color-primary: $color-red-900;
+$color-primary-light: $color-red-400;
+$color-primary-lighter: $color-red-300;
+$color-primary-dark: $color-red-600;
 
-$color-secondary: $color-orange-500;
+$color-secondary: #3b3b6d;
 $color-secondary-light: lighten( $color-secondary, 20% );
 $color-secondary-dark: darken( $color-secondary, 10% );
 

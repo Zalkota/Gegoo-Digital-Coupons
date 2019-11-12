@@ -82,31 +82,45 @@
 
         {# Global javascript #}
 
-        <script type="text/javascript" src="{% static 'cookielaw/js/cookielaw.js' %}"></script>
+
 
         <script src="{% static 'js/docs.min.js' %}"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChmLHKBW5VXZsv5Am2kkAy4HOYqd6vd0k&callback=initMap"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+        <!-- Json Autocomplete for Search -->
+        <script type="text/javascript" src="{% static 'js/search/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/search/jquery.autocomplete.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/search/our_search_code.js' %}"></script>
+
+
+        <!-- cookie law -->
+        <!--<script type="text/javascript" src="{% static 'cookielaw/js/cookielaw.js' %}"></script>-->
+
         <!-- Waves Effect !-->
         <script type="text/javascript" src="{% static 'js/button-wave-effect.js' %}"></script>
+
         <!-- Drift Chat Button
         <script type="text/javascript" src="{% static 'js/drift.js' %}"></script>!-->
+
         <!-- To Top Button
         <script type="text/javascript" src="{% static 'js/button_top.js' %}"></script>-->
+
         <!-- Navbar Color Change on Scroll !-->
         <script type="text/javascript" src="{% static 'js/navbarscroll.js' %}"></script>
+
         <!-- Message Timeout button !-->
         <script type="text/javascript" src="{% static 'js/message_timeout.js' %}"></script>
 
         <!-- stripe !-->
         <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
         <script type="text/javascript" src="{% static 'js/charge.js' %}"></script>
+
         <script>
           feather.replace()
         </script>
+
         <script>
           $(document).ready(function() {
             {% block jquery %}

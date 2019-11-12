@@ -25,8 +25,8 @@
 
   &-active {
       color: $color-dark;
-      border-bottom: 1px solid $color-black;
-      padding-bottom: 18px;
+      border-bottom: 2px solid $color-black;
+      padding-bottom: 17px;
       text-decoration: none;
       margin-right: 2rem;
     }
@@ -34,8 +34,8 @@
   &:hover, &:active {
     text-decoration: none;
     color: $color-dark;
-    border-bottom: 1px solid $color-black;
-    padding-bottom: 18px;
+    border-bottom: 2px solid $color-black;
+    padding-bottom: 17px;
     }
   }
 }

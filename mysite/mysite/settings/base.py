@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     #Phone Number Field
     'phonenumber_field',
 
-
     #PDF
     #'xhtml2pdf',
 
@@ -64,9 +63,18 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
 
+    #ImportExport
+    'import_export',
+
     #Custom Forms with classes
     #'widget_tweaks',
     'crispy_forms',
+
+    #Search
+    'search',
+    'haystack',
+    #'django_elasticsearch_dsl',
+
 
     #ALLAUTH
     'allauth',
@@ -87,6 +95,14 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 
 ]
+
+HAYSTACK_CONNECTIONS = {
+  'default': {
+  'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+  'URL': 'http://127.0.0.1:9200/',
+  'INDEX_NAME': 'products_tutorial',
+  },
+}
 
 INTERNAL_IPS = [
 

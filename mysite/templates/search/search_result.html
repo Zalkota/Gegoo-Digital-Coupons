@@ -1,0 +1,130 @@
+{% extends "base-alt.html" %}
+
+{% block title %}
+    "{{ query }}" | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<main class="">
+
+
+<section class="section-white-sm">
+    <div class="container">
+        <div class="mb-5">
+            <h2>Bumper Stickers</h2>
+            <span class="fs-14 text-muted">{{ page_obj.paginator.count }} {% if page_obj.paginator.count > 1 %}items {% else %} item {% endif %} found for: <span class="fw-7">{{query}}</span></span>
+        </div>
+        <div class="row">
+
+        <!-- ********************************************** -->
+        <!--                 Side Filter                    -->
+        <!-- ********************************************** -->
+
+        {% if  page_obj.object_list %}
+
+        <div class="col-lg-2">
+        	<h4 class="fs-16 fw-6">Narrow Choices</h4>
+            <br>
+              <dl>
+              {% if facets.fields.category %}
+                 <dt class="fs-14">Category</dt>
+                 <hr class="my-1">
+                 {% for category in facets.fields.category %}
+                 {% if category.1 != 0 %}
+                 <dd>
+                 <input class="facet " id="{{category.0|cut:" "}}" type="checkbox" name="category" value="{{ category.0 }}"
+                 data-toggle="toggle" /> <span class="fs-14">{{ category.0 }} ({{ category.1 }})</span>
+                 </dd>
+                 {% endif %}
+                 {% endfor %}
+                 {% endif %}
+              </dl>
+              <div>
+                  <input class="btn btn-alt btn-block fs-12 px-3 py-2 pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
+              </div>
+        </div>
+
+        {% endif %}
+
+          <!-- ********************************************** -->
+          <!--                   Products                     -->
+          <!-- ********************************************** -->
+
+        {% if  page_obj.object_list %}
+            {% for result in page_obj.object_list %}
+                <div class="col-lg-3 text-center">
+                    <a href="{{ result.object.get_absolute_url }}">
+                        <img class="card-img-top p-4" style="" src="/media/{{ result.object.main_image }}" alt="User Uploaded images">
+                    </a>
+                    <h3 class="fs-14">{{result.object.title}}</h3>
+                    <h4 class="text-center"><span class="label label-info">{{result.object.brand}}</span></h4>
+                    <span class="text-muted fs-14 ">${{ result.object.price }}</span>
+                </div>
+            {% endfor %}
+
+      	<div class="col-lg-12 pt-5 text-muted fs-14">
+            <div class="row">
+                <div class="col-md-12 pull-right">
+                    <p class="pull-right fs-14 text-muted">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    </p>
+                </div>
+
+            </div>
+
+            <div>
+          		{% if is_paginated %}
+          		    <ul class="pagination pull-right">
+          		        {% if page_obj.has_previous %}
+          		            <li><a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">«</a></li>
+          		        {% else %}
+          		            <li class="disabled"><span>«</span></li>
+          		        {% endif %}
+          		        {% for i in paginator.page_range %}
+          		            {% if page_obj.number == i %}
+          		                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          		            {% else %}
+          		                <li><a href="?q={{ query }}&page={{ i }}">{{ i }}</a></li>
+          		            {% endif %}
+          		        {% endfor %}
+          		        {% if page_obj.has_next %}
+          		            <li><a href="?q={{ query }}&page={{ page_obj.next_page_number }}">»</a></li>
+          		        {% else %}
+          		            <li class="disabled"><span>»</span></li>
+          		        {% endif %}
+          		    </ul>
+          		        {% endif %}
+                {% else %}
+          	    <p> Sorry, no result found for the search term  <strong>{{query}} </strong></p>
+          	    {% endif %}
+          	</div>
+        </div>
+    </div>
+    <div class="py-5"></div>
+
+    <div class="bg-light border row">
+
+      {% for object in advert_list %}
+      <div class="col-lg-3 text-center">
+          <a href="{{ object.get_absolute_url }}">
+            <img class="card-img-top p-4"  src="/media/{{ object.main_image }}" alt="User Uploaded images">
+          </a>
+      </div>
+      {% endfor %}
+      <div class="col-lg-12 pb-1 text-center ">
+          <span class="text-muted text-center fs-12">Featured products</span>
+      </div>
+    </div>
+
+
+      </div>
+
+
+
+    </section>
+  </main>
+
+
+
+{% endblock content %}
