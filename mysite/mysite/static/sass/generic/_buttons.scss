@@ -169,6 +169,23 @@
     }
   }
 
+  .btn-warning-alt {
+  background: $color-warning;
+  box-shadow: 0;
+  color: #fff;
+  font-weight: 600;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+
+  &:hover, &:active, &:focus, &:visited {
+    background: $color-warning-light;
+    color: #fafafa;
+    box-shadow: 0 2px 4px rgba(155,155,155,0.3), 0 2px 4px rgba(155,155,155,0.3)
+    }
+  }
+
   .btn-secondary-alt {
   background: $color-secondary;
   color: $color-white;

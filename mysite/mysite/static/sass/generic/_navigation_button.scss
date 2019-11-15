@@ -1,15 +1,52 @@
+.navigation__search {
+  color: $color-black;
+  font-size: 24px;
+  height: 35px;
+  top: 1rem;
+  left: 5rem;
+  position: fixed;
+  z-index: 2;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+.navigation__cart {
+  color: $color-black;
+  font-size: 24px;
+  height: 35px;
+  top: .9rem;
+  right: 6%;
+  position: fixed;
+  z-index: 2;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: left;
+}
 
 .navigation__logo {
   color: $color-black;
   font-size: 24px;
   height: 35px;
   top: .9rem;
-  left: 6%;
+  left: 45%;
   position: fixed;
   z-index: 2;
   font-weight: 700;
   letter-spacing: 1px;
   text-align: left;
+}
+
+
+.navigation__search__bar {
+  height: 200px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: -30%;
+  background-color: $color-main;
+  z-index: 1000;
+  transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
 .navigation__bar {
@@ -37,7 +74,7 @@
     width: 3.5rem;
     position: fixed;
     top: .15rem;
-    right: 1rem;
+    left: .5rem;
     z-index: 2000;
     box-shadow: 0;
     text-align: center;
@@ -62,16 +99,6 @@
     z-index: 500;
     transition: 0s ; }
 
-    .navigation__background-search {
-      height: 300px;
-      width: 75%;
-      position: fixed;
-      top: 0;
-      left: -75%;
-      background-color: $color-gray-800;
-      z-index: 2000;
-      transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1); }
-
     .navigation__list {
       position: absolute;
       top: 10%;
@@ -88,19 +115,6 @@
       max-width: 8rem;
     }
 
-    .navigation__search {
-        position: absolute;
-        top: 4%;
-        left: 47%;
-        transform: translate(50%, 0%);
-        list-style: none;
-        text-align: left;
-        width: 90%;
-
-        input {
-            width: 80%;
-        }
-    }
 }
 
 @media screen and (min-width: 767px) {
@@ -110,7 +124,7 @@
     width: 3.5rem;
     position: fixed;
     top: .15rem;
-    right: 1rem;
+    left: 1rem;
     z-index: 2000;
     box-shadow: 0;
     text-align: center;
@@ -161,19 +175,7 @@
         max-width: 8rem;
     }
 
-    .navigation__search {
-        position: absolute;
-        top: 4%;
-        left: 70%;
-        transform: translate(50%, 0%);
-        list-style: none;
-        text-align: left;
-        width: 70%;
 
-        input {
-            width: 80%;
-        }
-    }
 }
 
 .navigation__nav {

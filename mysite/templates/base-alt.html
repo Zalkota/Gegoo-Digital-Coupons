@@ -61,6 +61,11 @@
         {% endblock nav %}
 
 
+        {% block search_form  %}
+            {% include "search/search_form_insert.html" %}
+        {% endblock search_form %}
+
+
         {% if messages %}
         <div class="container-fluid messages" id="message_container" >
           <div class="moveInTop ul-trans" >

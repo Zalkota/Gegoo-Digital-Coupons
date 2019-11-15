@@ -148,6 +148,79 @@ a:hover {
   text-shadow: 1px 1px 3px #212121;
 }
 
+.border-radius{
+    border-radius: $border-radius;
+}
+
+.border-radius-200 {
+    border-radius: $border-radius-200;
+}
+
+.border-radius-300 {
+    border-radius: $border-radius-300;
+}
+
+
+
+.color-gray-100 { color: $color-gray-100;}
+.color-gray-200 { color: $color-gray-200;}
+.color-gray-300 { color: $color-gray-300;}
+.color-gray-400 { color: $color-gray-400;}
+.color-gray-500 { color: $color-gray-500;}
+.color-gray-600 { color: $color-gray-600;}
+.color-gray-700 { color: $color-gray-700;}
+.color-gray-800 { color: $color-gray-800;}
+.color-gray-900 { color: $color-gray-900;}
+
+.color-red-100 { color: $color-red-100;}
+.color-red-200 { color: $color-red-200;}
+.color-red-300 { color: $color-red-300;}
+.color-red-400 { color: $color-red-400;}
+.color-red-500 { color: $color-red-500;}
+.color-red-600 { color: $color-red-600;}
+.color-red-700 { color: $color-red-700;}
+.color-red-900 { color: $color-red-900;}
+.color-red-800 { color: $color-red-800;}
+
+.color-orange-100 { color: $color-orange-100;}
+.color-orange-200 { color: $color-orange-200;}
+.color-orange-300 { color: $color-orange-300;}
+.color-orange-400 { color: $color-orange-400;}
+.color-orange-500 { color: $color-orange-500;}
+.color-orange-600 { color: $color-orange-600;}
+.color-orange-700 { color: $color-orange-700;}
+.color-orange-800 { color: $color-orange-800;}
+.color-orange-900 { color: $color-orange-900;}
+
+.color-yellow-100 { color: $color-yellow-100;}
+.color-yellow-200 { color: $color-yellow-200;}
+.color-yellow-300 { color: $color-yellow-300;}
+.color-yellow-400 { color: $color-yellow-400;}
+.color-yellow-500 { color: $color-yellow-500;}
+.color-yellow-600 { color: $color-yellow-600;}
+.color-yellow-700 { color: $color-yellow-700;}
+.color-yellow-800 { color: $color-yellow-800;}
+.color-yellow-900 { color: $color-yellow-900;}
+
+.color-green-100 { color: $color-green-100;}
+.color-green-200 { color: $color-green-200;}
+.color-green-300 { color: $color-green-300;}
+.color-green-400 { color: $color-green-400;}
+.color-green-500 { color: $color-green-500;}
+.color-green-600 { color: $color-green-600;}
+.color-green-700 { color: $color-green-700;}
+.color-green-800 { color: $color-green-800;}
+.color-green-900 { color: $color-green-900;}
+
+.color-blue-100 { color: $color-blue-100;}
+.color-blue-200 { color: $color-blue-200;}
+.color-blue-300 { color: $color-blue-300;}
+.color-blue-400 { color: $color-blue-400;}
+.color-blue-500 { color: $color-blue-500;}
+.color-blue-600 { color: $color-blue-600;}
+.color-blue-700 { color: $color-blue-700;}
+.color-blue-800 { color: $color-blue-800;}
+.color-blue-900 { color: $color-blue-900;}
 
 .fw-4 {font-weight: 400;}
 .fw-5 {font-weight: 500;}

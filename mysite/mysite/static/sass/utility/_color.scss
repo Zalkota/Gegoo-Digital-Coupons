@@ -47,7 +47,7 @@ $color-green-300: #9AE6B4;
 $color-green-400: #68D391;
 $color-green-500: #48BB78;
 $color-green-600: #38A169;
-$color-greeLen-700: #2F855A;
+$color-green-700: #2F855A;
 $color-green-800: #276749;
 $color-green-900: #22543D;
 
@@ -126,12 +126,28 @@ $color-danger: $color-red-600;
 $color-danger-light: lighten( $color-danger, 10% );
 $color-danger-dark: darken( $color-danger, 10% );
 
+$color-warning: $color-orange-600;
+$color-warning-light: $color-orange-500;
+$color-warning-dark: $color-orange-700;
+
 $color-info: $color-blue-400;
 $color-info-light: lighten( $color-info, 10% );
 $color-info-dark: darken( $color-info, 10% );
 
+/*  <**************************************************************************>
+    <*****                           MISC                                 *****>
+    <**************************************************************************>
+*/
+
 $border-radius: 0.1rem;
+$border-radius-200: 0.5rem;
+$border-radius-300: 1rem;
+
+
+
 $border-color: rgba(0, 0, 0, 0.06);
+
 $box-shadow-1: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+$box-shadow-2: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
 
 // #666ee8 stripe color

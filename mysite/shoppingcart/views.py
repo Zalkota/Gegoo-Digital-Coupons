@@ -9,7 +9,6 @@ from django.shortcuts import redirect
 from django.utils import timezone
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm, AddToCartForm
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
-
 import random
 import string
 import stripe
@@ -593,13 +592,31 @@ class AddCouponView(View):
                 return redirect("shoppingcart:checkout")
 
 
+class RefundSelectView(View):
+    def get(self, *args, **kwargs):
+        user = self.request.user
+        orders = get_user_orders(self.request, user)
+
+        context = {
+        'order_list': orders,
+        }
+        return render(self.request, "shoppingcart/refund_select.html", context)
+
 class RequestRefundView(View):
     def get(self, *args, **kwargs):
         form = RefundForm()
+
+        order_qs = Order.objects.filter(user=self.request.user, ref_code=self.kwargs['ref_code'])
+        if order_qs.exists():
+            order = order_qs.first()
+        else:
+            return redirect("shoppingcart:refund-select")
+
         context = {
-            'form': form
+            'form': form,
+            'order': order
         }
-        return render(self.request, "request_refund.html", context)
+        return render(self.request, "shoppingcart/request_refund.html", context)
 
     def post(self, *args, **kwargs):
         form = RefundForm(self.request.POST)

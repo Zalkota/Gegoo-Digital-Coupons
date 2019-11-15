@@ -3,7 +3,10 @@
 @media screen and (min-width: 992px) {
     .hero {
         /* Sizing */
-        height: 90vh;
+        margin-left: 10%;
+        margin-right: 10%;
+        border-radius: .3rem;
+        text-transform: capitalize;
         /* Flexbox stuff */
         display: flex;
         justify-content: center;
@@ -14,9 +17,9 @@
 
         /* Text styles */
         /* Background styles */
-        background: url(/static/img/header.png);
+        //background: url(/static/img/headers/landscape5.jpg);
         //back: ;ground-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
-        background-color: $color-white;
+        background-color: $color-secondary;
         /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
         background-size: cover;
         background-position: left;
@@ -33,11 +36,12 @@
           padding-top: 10rem;
           padding-bottom: 10rem;
           width: 70%;
-
           hr {
-
+              
           }
         }
+
+
 
         & h1 {
             font-size: 4rem;
@@ -97,8 +101,6 @@
       text-align: center;
       top: 17%;
       max-width: 40rem;
-      animation: moveInTop 1.5s;
-      animation-fill-mode: forward;
       padding: 0 10% 0 5%;
       color: $color-main;
 

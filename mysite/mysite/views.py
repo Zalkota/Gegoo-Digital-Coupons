@@ -16,6 +16,7 @@ from django.utils import timezone
 
 # imports
 from .models import Contact
+from shoppingcart.models import Item
 
 #mail
 from django.core.mail import send_mail
@@ -29,7 +30,11 @@ from django.contrib import messages
 from django.conf import settings
 EMAIL_CUSTOMER = settings.EMAIL_CUSTOMER
 
-
+def get_items(request):
+    items_qs = Item.objects.all()
+    if items_qs.exists():
+        return items_qs
+    return None
 
 def home(request):
 
@@ -60,11 +65,11 @@ def home(request):
 
     #service_list = get_service(request)
 
-
+    item_list = get_items(request)
 
 
     context = {
-    #'product_list': product_list,
+    'item_list': item_list,
     }
     return render(request, 'mysite/home_page.html', context)
 

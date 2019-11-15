@@ -835,7 +835,16 @@ hr.hr-2 {
         <*****                     MISC                                   *****>
         <**************************************************************************>
     */
+    .promotion-banner {
+        background-color: $color-primary;
+        color: $color-white;
+        font-size: 2rem;
+        width: 100%;
+        height: 65px;
+        position: absolute;
+        top: 0%;
 
+    }
 
     .anchor {
         display: block;

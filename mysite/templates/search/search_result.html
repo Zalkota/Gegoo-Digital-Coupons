@@ -23,9 +23,11 @@
 
         {% if  page_obj.object_list %}
 
-        <div class="col-lg-2">
-        	<h4 class="fs-16 fw-6">Narrow Choices</h4>
-            <br>
+        <div class="col-lg-2 mb-4">
+        	<div class="hide">
+                <h4 class="fs-16 fw-6">Narrow Choices</h4>
+                <br>
+            </div>
               <dl>
               {% if facets.fields.category %}
                  <dt class="fs-14">Category</dt>
@@ -53,13 +55,16 @@
 
         {% if  page_obj.object_list %}
             {% for result in page_obj.object_list %}
-                <div class="col-lg-3 text-center">
-                    <a href="{{ result.object.get_absolute_url }}">
-                        <img class="card-img-top p-4" style="" src="/media/{{ result.object.main_image }}" alt="User Uploaded images">
-                    </a>
-                    <h3 class="fs-14">{{result.object.title}}</h3>
-                    <h4 class="text-center"><span class="label label-info">{{result.object.brand}}</span></h4>
-                    <span class="text-muted fs-14 ">${{ result.object.price }}</span>
+                <div class="col-lg-3 col-sm-6 mb-5 text-center">
+                    <div class="card">
+                        <a href="{{ result.object.get_absolute_url }}">
+                            <img class="card-img-top " style="" src="/media/{{ result.object.main_image }}" alt="User Uploaded images">
+                        </a>
+                        <div class="card-body text-left">
+                            <h3 class=" fw-7 fs-14">{{result.object.title}}</h3>
+                            <span class="text-muted fs-14 ">${{ result.object.price }}</span>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
 
@@ -73,7 +78,7 @@
 
             </div>
 
-            <div>
+            <div class="px-4">
           		{% if is_paginated %}
           		    <ul class="pagination pull-right">
           		        {% if page_obj.has_previous %}
@@ -96,7 +101,9 @@
           		    </ul>
           		        {% endif %}
                 {% else %}
-          	    <p> Sorry, no result found for the search term  <strong>{{query}} </strong></p>
+          	    <div class="px-3">
+                      <p> Sorry, no result were found for the search term:  <strong>{{query}} </strong></p>
+                  </div>
           	    {% endif %}
           	</div>
         </div>
@@ -106,7 +113,7 @@
     <div class="bg-light border row">
 
       {% for object in advert_list %}
-      <div class="col-lg-3 text-center">
+      <div class="col-lg-3 col-sm-6 text-center">
           <a href="{{ object.get_absolute_url }}">
             <img class="card-img-top p-4"  src="/media/{{ object.main_image }}" alt="User Uploaded images">
           </a>

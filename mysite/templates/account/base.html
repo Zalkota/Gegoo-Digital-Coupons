@@ -40,7 +40,7 @@
 
 
     {% block nav %}
-      {% include "navbar-alt.html" %}
+      {% include "navbar.html" %}
     {% endblock nav %}
 
     {% if messages %}
@@ -56,16 +56,15 @@
     {% endif %}
 
     {% block content %}
-    <div class="row" style="height: 100vh;">
-      <div class="offset-md-2 offset-xl-4"></div>
+
+
         {% block inner %}{% endblock inner %}
-      <div class="offset-md-2 offset-xl-4"></div>
-    </div>
+
     {% endblock content %}
 
 
 {% block footer %}
-  <!-- No Footer for account/base.html -->
+  {% include "footer-ghost.html" %}
 {% endblock footer %}
 
 </html>
