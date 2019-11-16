@@ -1,31 +1,46 @@
-Django==2.0.8
+#General
+beautifulsoup4==4.6.0
+certifi==2018.8.24
+chardet==3.0.4
+Django==2.2
 django-modelcluster==4.2
 django-taggit==0.23.0
 django-treebeard==4.3
 djangorestframework==3.8.2
+draftjs-exporter==2.1.2
 gunicorn==19.9.0
+html5lib==1.0.1
+idna==2.7
 Pillow==5.2.0
 psycopg2==2.7.5
 psycopg2-binary==2.7.5
+pytz==2018.5
 requests==2.19.1
+six==1.11.0
+Unidecode==1.0.22
+urllib3==1.23
+
+webencodings==0.5.1
+
+# Used with Wagtail
+Willow==1.1
+
 # Storing Variables - Not sure if this is being used
 django-environ==0.4.5
+
 # User authentication
 django-allauth==0.36.0
+
 # Forms
 django-crispy-forms==1.7.2
 
+# Payment Procesing
+stripe==2.36.1
 
 # Compress Assets With Django Compressor
+#rcssmin==1.0.6  # https://github.com/ndparker/rcssmin
+django-compressor==2.2  # https://github.com/django-compressor/django-compressor
 
-#this install may fail, so you will need to run the following three commands beforehand..
-
-#pip install rcssmin --install-option="--without-c-extensions"
-#pip install rjsmin --install-option="--without-c-extensions"
-#pip install django-compressor --upgrade
-
-#https://github.com/django-compressor/django-compressor
-django-compressor==2.3
 
 # libsass for scss to css
 #django-libsass==0.7
@@ -51,17 +66,8 @@ phonenumbers==8.10.20
 #Debug Toolbar
 django-debug-toolbar==1.11
 
-#Chat
-#channels==2.3.0
-
 # Payment Procesing
 stripe==2.36.1
 
+
 django-countries==5.3.3
-
-#Elastic Search with Haystack
-elasticsearch==5.5.3
-django-haystack==2.8.1
-
-#ImportExport
-django-import-export==1.2.0
