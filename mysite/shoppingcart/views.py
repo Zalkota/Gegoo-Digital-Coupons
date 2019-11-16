@@ -621,24 +621,28 @@ class RequestRefundView(View):
     def post(self, *args, **kwargs):
         form = RefundForm(self.request.POST)
         if form.is_valid():
-            ref_code = form.cleaned_data.get('ref_code')
+
+            #ref_code = self.kwargs['ref_code']
+            reason = form.cleaned_data.get('reason')
             message = form.cleaned_data.get('message')
-            email = form.cleaned_data.get('email')
             # edit the order
             try:
-                order = Order.objects.get(ref_code=ref_code)
+                order_qs = Order.objects.filter(user=self.request.user, ref_code=self.kwargs['ref_code'])
+                if order_qs.exists():
+                    order = order_qs.first()
+                #order = Order.objects.get(ref_code=ref_code)
                 order.refund_requested = True
                 order.save()
 
                 # store the refund
                 refund = Refund()
                 refund.order = order
-                refund.reason = message
-                refund.email = email
+                refund.reason = reason
+                refund.message = message
                 refund.save()
 
                 messages.info(self.request, "Your request was received.")
-                return redirect("shoppingcart:request-refund")
+                return redirect("contact-landing-page")
 
             except ObjectDoesNotExist:
                 messages.info(self.request, "This order does not exist.")

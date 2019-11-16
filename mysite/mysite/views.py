@@ -112,7 +112,7 @@ class ContactFormView(FormView):
         return super(ContactFormView, self).form_valid(form)
 
 def contactLandingPage(request):
-    return render(request, '/mysite/contact_landing_page.html')
+    return render(request, 'mysite/form_page_landing.html')
 
 def security(request):
     return render(request, 'security.txt')

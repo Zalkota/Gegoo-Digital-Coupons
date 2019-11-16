@@ -3,9 +3,10 @@
 @media screen and (min-width: 992px) {
     .hero {
         /* Sizing */
-        margin-left: 10%;
-        margin-right: 10%;
-        border-radius: .3rem;
+        margin-left: 13%;
+        margin-right: 13%;
+        border-radius: .3rem;// HACK:
+        height: 600px;
         text-transform: capitalize;
         /* Flexbox stuff */
         display: flex;
@@ -17,12 +18,12 @@
 
         /* Text styles */
         /* Background styles */
-        //background: url(/static/img/headers/landscape5.jpg);
+        background: url(/static/img/headers/liberty.png);
         //back: ;ground-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
         background-color: $color-secondary;
         /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
         background-size: cover;
-        background-position: left;
+        background-position: center;
         background-repeat: no-repeat;
         position: relative;
 
@@ -33,18 +34,16 @@
           margin-left: auto;
           text-align: center;
           max-width: 60rem;
-          padding-top: 10rem;
+          padding-top: 18rem;
           padding-bottom: 10rem;
           width: 70%;
           hr {
-              
+
           }
         }
 
-
-
         & h1 {
-            font-size: 4rem;
+            font-size: 5rem;
             color: $color-white;
             font-weight: 800;
             margin-top: 0;

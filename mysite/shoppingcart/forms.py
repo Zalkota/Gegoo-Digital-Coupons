@@ -2,6 +2,12 @@ from django import forms
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 
+RETURN_CHOICES = (
+    ('F', 'Found a better deal'),
+    ('S', 'Not satisfied with the quality'),
+    ('T', 'Took too long to arrive'),
+    ('N', 'None of the above')
+)
 
 PAYMENT_CHOICES = (
     ('S', 'Stripe'),
@@ -118,11 +124,12 @@ class CouponForm(forms.Form):
 
 
 class RefundForm(forms.Form):
-    ref_code = forms.CharField()
+    reason = forms.CharField(label="Select Reason", initial='Select Reason',required=True, widget=forms.Select(choices=RETURN_CHOICES, attrs={
+        'class': ' d-block w-100',
+    }))
     message = forms.CharField(widget=forms.Textarea(attrs={
         'rows': 4
     }))
-    email = forms.EmailField()
 
 
 class PaymentForm(forms.Form):

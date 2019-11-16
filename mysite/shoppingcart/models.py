@@ -26,6 +26,12 @@ def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return 'user_{0}/{1}'.format(instance.job.id, filename)
 
+RETURN_CHOICES = (
+    ('F', 'Found a better deal'),
+    ('S', 'Not satisfied with the quality'),
+    ('T', 'Took too long to arrive'),
+    ('N', 'None of the above')
+)
 
 LABEL_CHOICES = (
     ('P', 'primary'),
@@ -322,9 +328,9 @@ class Coupon(models.Model):
 
 class Refund(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    reason = models.TextField()
+    reason = models.CharField(choices=LABEL_CHOICES, max_length=1)
+    message = models.TextField(null=True)
     accepted = models.BooleanField(default=False)
-    email = models.EmailField()
 
     def __str__(self):
         return '%s' % (self.pk)
