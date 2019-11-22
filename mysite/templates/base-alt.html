@@ -67,16 +67,9 @@
 
 
         {% if messages %}
-        <div class="container-fluid messages" id="message_container" >
-          <div class="moveInTop ul-trans" >
-            <ul class="" style="list-style-type: none;">
-              {% for message in messages %}
-                <li class="alert {{ message.tags }}" style="display: inline-block">{% if message.tags == 'alert-success' %}<i class="fa fa-lg fa-check" aria-hidden="true"></i> {% elif message.tags == 'alert-info' %}{% elif message.tags == 'alert-danger' %}{% endif %} {{ message }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
+          {% include "messages.html" %}
         {% endif %}
+
 
 
         {% block content %}{% endblock %}

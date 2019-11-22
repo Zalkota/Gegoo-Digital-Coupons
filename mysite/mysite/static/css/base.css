@@ -5,7 +5,7 @@
 /* ANIMATION */
 body {
   margin: 0;
-  font-family: Muli, sans-serif !important;
+  font-family: Montserrat, sans-serif !important;
   background-color: #fff !important; }
   body h1 h2 h3 h4 h5 h6 {
     color: #1a1a1a; }
@@ -507,7 +507,7 @@ hr.hr-2 {
   background-color: transparent !important;
   color: #2A4365;
   font-family: Montserrat, sans-serif;
-  font-size: .95em;
+  font-size: .9em;
   font-weight: 600;
   padding: 1em 1em 1em 2em;
   z-index: 80;
@@ -519,7 +519,7 @@ hr.hr-2 {
   background-color: #fafafa;
   color: #2A4365;
   font-family: Montserrat, sans-serif;
-  font-size: .95em;
+  font-size: .9em;
   font-weight: 600;
   padding: 1em 1em 1em 2em;
   z-index: 999;
@@ -3546,7 +3546,7 @@ input[type=checkbox]:checked + label {
 
 html {
   scroll-behavior: smooth !important;
-  font-family: Muli, sans-serif !important;
+  font-family: Montserrat, sans-serif !important;
   font-size: 18px; }
 
 body {

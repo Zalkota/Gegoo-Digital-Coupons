@@ -6,17 +6,15 @@
 {% trans "Confirm E-mail Address" %}
 
 {% block inner %}
-  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-4" style="padding-top: 8rem;">
-
+<div class="section-md vertical-container">
+    <div class="vertical-alignment mr-auto ml-auto text-center p-4"  style="max-width: 800px;">
             <div class="card shadow-0 card-border">
                 <div class="card-header pt-4">
                   <h5><strong>{% trans "Confirm E-mail Address" %}</strong></h5>
                 </div>
                 <div class="card-body py-4"  style="background-color: #f9fafb;">
                   {% if confirmation %}
-
                   {% user_display confirmation.email_address.user as user_display %}
-
                   <p>{% blocktrans with confirmation.email_address.email as email %}Welcome to Mod Technologies {{ user_display }}, please confirm your email address{% endblocktrans %}</p>
                 </div>
                 <div class="card-footer text-center pb-0 pt-4">
@@ -27,12 +25,9 @@
                 </div>
             </div>
             {% else %}
-
             {% url 'account_email' as email_url %}
-
             <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
-
             {% endif %}
-
+    </div>
 </div>
 {% endblock %}

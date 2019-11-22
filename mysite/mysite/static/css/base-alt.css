@@ -8,13 +8,12 @@ html {
 
 body {
   margin: 0;
-  font-family: Muli, sans-serif !important;
+  font-family: Montserrat, sans-serif !important;
   background-color: #f1f1f1 !important; }
   body h1 h2 h3 h4 h5 h6 {
     color: #1a1a1a; }
   body p {
-    color: #2D3748;
-    font-family: Roboto, sans-serif !important; }
+    color: #2D3748; }
   body li {
     color: #2A4365; }
   body a {
@@ -511,7 +510,7 @@ hr.hr-2 {
   background-color: transparent !important;
   color: #2A4365;
   font-family: Montserrat, sans-serif;
-  font-size: .95em;
+  font-size: .9em;
   font-weight: 600;
   padding: 1em 1em 1em 2em;
   z-index: 80;
@@ -523,7 +522,7 @@ hr.hr-2 {
   background-color: #fafafa;
   color: #2A4365;
   font-family: Montserrat, sans-serif;
-  font-size: .95em;
+  font-size: .9em;
   font-weight: 600;
   padding: 1em 1em 1em 2em;
   z-index: 999;
@@ -3284,7 +3283,7 @@ input[type=checkbox]:checked + label {
 
 html {
   scroll-behavior: smooth !important;
-  font-family: Muli, sans-serif !important;
+  font-family: Montserrat, sans-serif !important;
   font-size: 18px; }
 
 body {
