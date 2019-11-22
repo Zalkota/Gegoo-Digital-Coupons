@@ -52,11 +52,11 @@
 
 // USE THIS STYLE OF SASS CONFIGURATION //
 
-// @each $color, $value in $colors {
-//   .badge-#{$color} {
-//     @include badge-variant($value);
-//   }
-// }
+@each $color, $value in $colors {
+  .badge-#{$color} {
+    background-color: $color;
+  }
+}
 
   .btn-action {
   background-image: linear-gradient(180deg,#3b8dff, #3469ad 95%);

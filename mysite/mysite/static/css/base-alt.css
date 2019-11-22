@@ -860,6 +860,189 @@ button {
 .custom-button-animations button:active {
   background: #43458b; }
 
+.badge-primary {
+  background-color: "primary"; }
+
+.badge-secondary {
+  background-color: "secondary"; }
+
+.badge-alternate {
+  background-color: "alternate"; }
+
+.badge-gray-10 {
+  background-color: "gray-10"; }
+
+.badge-gray-20 {
+  background-color: "gray-20"; }
+
+.badge-gray-30 {
+  background-color: "gray-30"; }
+
+.badge-gray-40 {
+  background-color: "gray-40"; }
+
+.badge-color-gray-100 {
+  background-color: "color-gray-100"; }
+
+.badge-color-gray-200 {
+  background-color: "color-gray-200"; }
+
+.badge-color-gray-300 {
+  background-color: "color-gray-300"; }
+
+.badge-color-gray-400 {
+  background-color: "color-gray-400"; }
+
+.badge-color-gray-500 {
+  background-color: "color-gray-500"; }
+
+.badge-color-gray-600 {
+  background-color: "color-gray-600"; }
+
+.badge-color-gray-700 {
+  background-color: "color-gray-700"; }
+
+.badge-color-gray-800 {
+  background-color: "color-gray-800"; }
+
+.badge-color-gray-900 {
+  background-color: "color-gray-900"; }
+
+.badge-color-red-100 {
+  background-color: "color-red-100"; }
+
+.badge-color-red-200 {
+  background-color: "color-red-200"; }
+
+.badge-color-red-300 {
+  background-color: "color-red-300"; }
+
+.badge-color-red-400 {
+  background-color: "color-red-400"; }
+
+.badge-color-red-500 {
+  background-color: "color-red-500"; }
+
+.badge-color-red-600 {
+  background-color: "color-red-600"; }
+
+.badge-color-red-700 {
+  background-color: "color-red-700"; }
+
+.badge-color-red-800 {
+  background-color: "color-red-800"; }
+
+.badge-color-red-900 {
+  background-color: "color-red-900"; }
+
+.badge-color-orange-100 {
+  background-color: "color-orange-100"; }
+
+.badge-color-orange-200 {
+  background-color: "color-orange-200"; }
+
+.badge-color-orange-300 {
+  background-color: "color-orange-300"; }
+
+.badge-color-orange-400 {
+  background-color: "color-orange-400"; }
+
+.badge-color-orange-500 {
+  background-color: "color-orange-500"; }
+
+.badge-color-orange-600 {
+  background-color: "color-orange-600"; }
+
+.badge-color-orange-700 {
+  background-color: "color-orange-700"; }
+
+.badge-color-orange-800 {
+  background-color: "color-orange-800"; }
+
+.badge-color-orange-900 {
+  background-color: "color-orange-900"; }
+
+.badge-color-yellow-100 {
+  background-color: "color-yellow-100"; }
+
+.badge-color-yellow-200 {
+  background-color: "color-yellow-200"; }
+
+.badge-color-yellow-300 {
+  background-color: "color-yellow-300"; }
+
+.badge-color-yellow-400 {
+  background-color: "color-yellow-400"; }
+
+.badge-color-yellow-500 {
+  background-color: "color-yellow-500"; }
+
+.badge-color-yellow-600 {
+  background-color: "color-yellow-600"; }
+
+.badge-color-yellow-700 {
+  background-color: "color-yellow-700"; }
+
+.badge-color-yellow-800 {
+  background-color: "color-yellow-800"; }
+
+.badge-color-yellow-900 {
+  background-color: "color-yellow-900"; }
+
+.badge-color-green-100 {
+  background-color: "color-green-100"; }
+
+.badge-color-green-200 {
+  background-color: "color-green-200"; }
+
+.badge-color-green-300 {
+  background-color: "color-green-300"; }
+
+.badge-color-green-400 {
+  background-color: "color-green-400"; }
+
+.badge-color-green-500 {
+  background-color: "color-green-500"; }
+
+.badge-color-green-600 {
+  background-color: "color-green-600"; }
+
+.badge-color-green-700 {
+  background-color: "color-green-700"; }
+
+.badge-color-green-800 {
+  background-color: "color-green-800"; }
+
+.badge-color-green-900 {
+  background-color: "color-green-900"; }
+
+.badge-color-blue-100 {
+  background-color: "color-blue-100"; }
+
+.badge-color-blue-200 {
+  background-color: "color-blue-200"; }
+
+.badge-color-blue-300 {
+  background-color: "color-blue-300"; }
+
+.badge-color-blue-400 {
+  background-color: "color-blue-400"; }
+
+.badge-color-blue-500 {
+  background-color: "color-blue-500"; }
+
+.badge-color-blue-600 {
+  background-color: "color-blue-600"; }
+
+.badge-color-blue-700 {
+  background-color: "color-blue-700"; }
+
+.badge-color-blue-800 {
+  background-color: "color-blue-800"; }
+
+.badge-color-blue-900 {
+  background-color: "color-blue-900"; }
+
 .btn-action {
   background-image: linear-gradient(180deg, #3b8dff, #3469ad 95%);
   color: #fafafa;
