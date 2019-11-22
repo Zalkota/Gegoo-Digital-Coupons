@@ -1,0 +1,164 @@
+//
+// Boxes
+//
+//
+
+%bordered {
+	@include border-radius;
+	@include transition;
+	background-color: transparent;
+	border: $border-width solid $border-color;
+}
+
+%bordered-text-whiteed {
+	background: transparent;
+	border-color: $text-white-border;
+}
+
+%boxed {
+	@include border-radius;
+	@include shadow;
+	background-color: $white;
+}
+
+%floating {
+	-webkit-box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+	   -moz-box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+			box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+}
+
+[class*="boxed"] { @extend %boxed; }
+[class*="bordered"] { @extend %bordered; }
+[class*="floating"] { @extend %floating; }
+[class*="rounded"] { border-radius: 10rem!important; }
+
+
+// Hovers
+%scaling {
+	@include transition;
+
+	&:hover {
+		@include scale;
+		@include shadow;
+		position: relative;
+		z-index: 50;
+	}
+}
+
+%rising {
+	@include transition();
+
+	&:hover {
+		@include translate(0,-10px);
+		position: relative;
+		z-index: 50;
+		-webkit-box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+		   -moz-box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+				box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+	}
+}
+
+@include media-breakpoint-up(md) {
+	[class*="scaling"] {
+		@include transition();
+
+		&:hover {
+			@include scale;
+			@include shadow;
+			position: relative;
+			z-index: 50;
+		}
+	}
+
+	[class*="rising"] {
+		@include transition();
+
+		&:hover {
+			@include translate(0,-10px);
+			position: relative;
+			z-index: 50;
+			-webkit-box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+			   -moz-box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+					box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+		}
+	}
+}
+
+
+//
+// separated items
+//
+.separated {
+	overflow: hidden;
+
+	> * {
+		@include prefix(box-shadow, -1px -1px 0px 0px $border-color, webkit moz);
+
+		&:not(:last-child) {
+			margin-bottom: 0!important;
+		}
+	}
+}
+
+.text-white {
+	.separated {
+		> * {
+			@include prefix(box-shadow, -1px -1px 0px 0px $text-white-border, webkit moz);
+		}
+	}
+}
+
+
+// Equal
+//
+// equalise width and height of a box
+%equal {
+	position: relative;
+	// overflow: hidden;
+
+	&::before {
+		display: block;
+		content: "";
+		width: 100%;
+		padding-top: 100%;
+	}
+
+	> * {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	&[class*="-short"] {
+		&::before {
+			padding-top: 75%;
+		}
+	}	
+
+	&[class*="-long"] {
+		&::before {
+			padding-top: 125%;
+		}
+	}
+}
+
+.equal {
+	@extend %equal;
+
+	.equal-header,
+	.equal-footer {
+		position: absolute;
+		right: 0;
+		left: 0;
+		padding: 30px;
+	}
+
+	.equal-header { top: 0; }
+	.equal-footer { bottom: 0; }
+
+	.row {
+		height: 100%;
+	}
+}

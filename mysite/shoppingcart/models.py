@@ -26,6 +26,12 @@ def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return 'user_{0}/{1}'.format(instance.job.id, filename)
 
+PROMOTION_CHOICES = (
+    ('bg-primary', 'primary'),
+    ('bg-secondary', 'secondary'),
+    ('bg-alt', 'alt')
+)
+
 RETURN_CHOICES = (
     ('F', 'Found a better deal'),
     ('S', 'Not satisfied with the quality'),
@@ -343,3 +349,13 @@ def userprofile_receiver(sender, instance, created, *args, **kwargs):
 
 
 post_save.connect(userprofile_receiver, sender=settings.AUTH_USER_MODEL)
+
+
+class Promotion(models.Model):
+    message = models.CharField(max_length=64)
+    background = models.CharField(choices=PROMOTION_CHOICES, default='Primary', max_length=12)
+    active = models.BooleanField()
+    end_date = models.DateField()
+
+    def __str__(self):
+        return '%s' '(%s, ends=%s)' % (self.message, self.active, self.end_date)

@@ -1,0 +1,88 @@
+// Breadcrumbs
+//
+//
+//
+
+.breadcrumb {
+  display: inline-flex;
+  border: $border-width solid $border-color;
+}
+
+.breadcrumb-item {
+  font-size: $font-size-sm;
+
+  a {
+    @include transition;
+    color: $gray-500;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+}
+
+%breadcrumb-text-whiteed {
+  border-color: $text-white-border;
+
+  .breadcrumb-item {
+
+    + .breadcrumb-item::before {
+      color: $text-white-border;
+    }
+
+    a {
+      color: $text-white-primary;
+    }
+
+    &.active {
+      color: $text-white-secondary;
+    }
+  }
+}
+
+
+//
+// Custom Breadcrumbs
+//
+.breadcrumb-custom {
+  border: 0;
+  padding: 0;
+
+  .breadcrumb-item {
+    position: relative;
+    overflow: hidden;
+
+    &:nth-child(1) {z-index: 1;}
+    &:nth-child(2) {z-index: 2;}
+    &:nth-child(3) {z-index: 3;}
+    &:nth-child(4) {z-index: 4;}
+    &:nth-child(5) {z-index: 5;}
+
+    &.active,
+    a {
+      display: block;
+      padding: 15px 30px;
+      border: $border-width solid $gray-100;
+      border-radius: 10rem;
+      background: $white;
+    }
+
+    a {
+      padding-right: 60px;
+
+      &:hover {
+        background: $primary;
+        color: $white;
+      }
+    }
+
+    + .breadcrumb-item {
+      margin-left: -40px;
+
+      &::before {
+        display: none;
+      }
+
+    }
+  }
+}

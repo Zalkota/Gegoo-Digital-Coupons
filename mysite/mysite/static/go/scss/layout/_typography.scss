@@ -1,0 +1,197 @@
+// Typography
+//
+//
+//
+//
+
+
+
+//
+// Spacing
+//
+h1, h2, h3, h4, h5,
+.h1, .h2, .h3, .h4, .h5 {
+	margin-bottom: .5em;
+	
+	&:last-child { margin-bottom: 0; }
+}
+
+p, span, b, ul, ol,
+blockquote {
+	&:last-child { margin-bottom: 0; }
+}
+
+
+
+//
+// Global
+//
+figure {
+    margin: 0;
+}
+
+strong, b {
+	color: $black;
+	font-weight: $font-weight-bold;
+}
+
+code {
+	display: inline-block;
+	margin-bottom: 1rem;
+}
+
+p {
+	line-height: 1.75em;
+	color: $gray-300;
+}
+
+small {
+	color: $gray-300;
+}
+
+a:hover {
+	text-decoration: none; 
+}
+
+hr {
+	margin-top: 1.875rem;
+	margin-bottom: 1.875rem;
+}
+
+blockquote {
+	p {
+		color: $black;
+	}
+}
+
+
+
+//
+// Decorated
+//
+.text-decorated {
+	position: relative;
+
+	&::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: .6em;
+		width: 5rem; // 80px
+		height: $border-width;
+		background: $black;
+		@include translate(-140%,0);
+	}
+
+	&[class*="padding"] {
+		padding-left: 6.875rem;
+
+		&::after {
+			@include translate(0,0);
+		}
+	}
+}
+
+%text-decorated-text-white {
+	&::after {
+		background: $white;
+	}
+}
+
+
+
+//
+// Text Shadow
+//
+%text-shadow {
+	h1, h2, h3, h4, h5,
+	.h1, .h2, .h3, .h4, .h5,
+	p, span, b, i {
+		@include text-shadow();
+	}
+}
+
+.text-shadow {
+	@include text-shadow();
+}
+
+
+
+//
+// Styled link
+//
+%link {
+	display: inline-block;
+	position: relative;
+
+	@include hover-focus {
+		&::before {
+			@include transition();
+			top: calc(100% + 2px);
+			opacity: 1;
+		}
+	}
+
+	&::before {
+		@include transition();
+		content: "";
+		position: absolute;
+		top: 100%;
+		display: block;
+		width: calc(100% - 2px);
+		height: $border-width;
+		background: currentColor;
+		opacity: 0;
+	}
+}
+
+.link {
+	@extend %link;
+}
+
+
+
+// Eyebrow
+%eyebrow {
+	display: inline-block;
+	font-size: $font-size-sm;
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: $letter-spacing;
+}
+
+.eyebrow {
+	@extend %eyebrow;
+}
+
+
+// Error text
+.error-text {
+	font-size: 10rem;
+	font-weight: 700;
+	line-height: 10rem;
+	margin-bottom: .25em;
+}
+
+
+.letter-spacing {
+	letter-spacing: $letter-spacing;
+}
+
+
+
+// Responsive
+//
+//
+
+@include media-breakpoint-down(md) {
+	.display-1 { font-size: ($display1-size * .75) }
+	.display-2 { font-size: ($display2-size * .75) }
+	.display-3 { font-size: ($display3-size * .75) }
+	.display-4 { font-size: ($display4-size * .75) }
+	h1, .h1 { font-size: ($h1-font-size * .75) }
+	h2, .h2 { font-size: ($h2-font-size * .75) }
+	h3, .h3 { font-size: ($h3-font-size * .75) }
+	h4, .h4 { font-size: ($h4-font-size * .75) }
+	h5, .h5 { font-size: ($h5-font-size * .75) }
+}

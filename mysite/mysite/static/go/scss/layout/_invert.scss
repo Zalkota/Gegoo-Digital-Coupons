@@ -1,0 +1,189 @@
+//
+// text-white
+//
+
+%text-white {
+	color: $white;
+
+	h1, h2, h3, h4, h5, h6,
+	.h1, .h2, .h3, .h4, .h5, .h6,
+	strong, b, li, a:not(.btn) {
+	  color: $text-white-primary;
+	}
+
+	p, span:not(.badge) {
+		color: $text-white-secondary;
+	}
+
+	hr {
+		border-color: $text-white-border;
+	}
+}
+
+%revert {
+	color: $body-color;
+
+	h1, h2, h3, h4, h5, h6,
+	.h1, .h2, .h3, .h4, .h5, .h6,
+	strong, b, li {
+	  color: $black;
+	}
+
+	p, span {
+		color: $body-color;
+	}
+
+	hr {
+		border-color: $border-color;
+	}
+}
+
+.revert {
+	@extend %revert;
+}
+
+
+
+// text-whiteed Components
+//
+//
+.text-white {
+	@extend %text-white;
+
+
+
+	// Typography
+	.lead {
+		color: rgba($white, .75);
+	}
+
+	.text-muted {
+		color: $text-white-secondary!important;
+	}
+
+	// Socials
+	.socials {
+		@extend %socials-text-whiteed;
+	}
+
+	// Bordered
+	[class*="bordered"] {
+		@extend %bordered-text-whiteed;
+	}
+
+	// Box
+	.box {
+		@extend %text-whiteed-box;
+	}
+
+
+	// Text Decorated
+	.text-decorated {
+		@extend %text-decorated-text-white;
+	}
+
+
+	// Blockquote
+	.blockquote {
+		@extend %blockquote-text-white;
+	}
+
+	// Breadcrumb
+	.breadcrumb {
+		@extend %breadcrumb-text-whiteed;
+	}
+
+
+	// Separator
+	[class*="separator"] {
+		@extend %separator-text-white;
+	}
+
+	&[class*="separator"] {
+		@extend %separator-text-white;
+	}
+
+
+
+
+	// Progress
+	@extend %progress-text-white;
+
+
+	// Owl Carousel Dots
+	.owl-dots {
+
+		.owl-dot {
+
+			span { background: rgba($white, .2); }
+
+			&:hover {
+				span { background: rgba($white, .4); }
+			}
+
+			&.active {
+				span { background: $white; }
+			}
+		}
+	}
+
+	// Tabs
+	.nav {
+		.lavalamp-object {
+			border-color: $white;
+		}
+
+		.nav-link {
+			color: rgba($white, 0.5);
+
+			&.active,
+			&:hover {
+				color: $white;
+			}
+		}
+
+		&.nav--line {
+			border-color: rgba($white, 0.2);
+		}
+	}
+
+
+	// Step
+	.step {
+
+		&::before {
+			border-color: rgba($white, 0.2);
+			color: $white;
+		}
+
+		&:hover,
+		&.step-highlight {
+			&::before {
+				background: $white;
+				border-color: $white;
+				color: $black;
+			}
+		}
+
+		&::after {
+			background-color: rgba($white, 0.2)!important;
+		}
+	}
+
+
+	// Table
+	.table {
+		@extend %table-text-whiteed;
+	}
+
+
+	
+
+	// SVG ICON 
+	.svg-icon {
+		color: $white;
+	}
+
+
+
+}

@@ -1,0 +1,28 @@
+// Masonry
+//
+//
+//
+
+
+.masonry {
+	padding: 0;
+	list-style: none;
+
+	> li {
+		position: relative;
+		// width: 100%;
+
+		// > * { margin: 0; }
+
+  //       @include media-breakpoint-up(md) { width: 50%; }
+	}
+
+
+    // &[data-columns="3"] > li {
+    //     @include media-breakpoint-up(lg) { width: (100% / 3); } 
+    // }
+
+    // &[data-columns="4"] > li {
+    //     @include media-breakpoint-up(lg) { width: (100% / 4); }
+    // }
+}

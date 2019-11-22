@@ -1,0 +1,129 @@
+// Cards
+//
+//
+//
+//
+
+
+.card {
+  @extend %boxed;
+}
+
+.card-header,
+.card-footer {
+  padding: $card-spacer-x;
+}
+
+.card-body + .card-footer,
+.card-header + .card-body {
+  padding-top: 0;
+}
+
+.card-img-container {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    @include border-radius;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    background: rgba($black, .1);
+    z-index: 5;
+  }
+
+  .card-footer,
+  .card-header {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  .card-title {
+    @include text-shadow();
+    font-size: 2rem;
+    margin: 0;
+    color: $white;
+  }
+}
+
+.card-meta {
+  font-size: 1rem;
+  color: $gray-300;
+}
+
+.card-title { 
+  a {
+    @include transition;
+    color: $black;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+
+
+//
+// header navs
+//
+
+.card-header-tabs {
+  margin-top: -($card-spacer-x / 2);
+  margin-left: 0;
+  border-right: 0;
+}
+
+.card-header-pills {
+  margin-top: 0;
+  margin-left: 0;
+  border-right: 0;
+}
+
+
+// card minimal
+.card-minimal {
+  @include no-shadow;
+  background: transparent;
+
+  .card-body {
+    padding: $card-spacer-y;
+  }
+
+  .card-img-container {
+    @extend %boxed;
+    @extend %rising;
+    background: transparent;
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+// card minimal - modification for preview
+.demo-preview {
+  .card-minimal {
+    .card-img-container {
+      background: rgba($dark, .1);
+      padding: 2rem 2rem 0 2rem;
+
+      .card-img {
+        border-radius: 0;
+        @extend %floating;
+        @include border-top-radius($card-border-radius)
+      }
+
+      @include media-breakpoint-down(sm) {
+        padding: 1rem 1rem 0 1rem;
+      }
+    }
+  }
+}

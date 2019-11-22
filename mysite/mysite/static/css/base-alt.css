@@ -2031,7 +2031,8 @@ footer {
   footer .title-footer {
     color: #2D3748;
     letter-spacing: 2px;
-    font-size: .9rem; }
+    font-size: .9rem;
+    font-weight: 500; }
   @media screen and (max-width: 992px) {
     footer .text-align-responsive {
       text-align: center; }

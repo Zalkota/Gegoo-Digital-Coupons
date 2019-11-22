@@ -1,0 +1,253 @@
+// Carousel
+//
+//
+//
+
+.owl-carousel {
+	&[data-dots="true"] { 
+	    margin-bottom: 60px;
+	}
+
+	// Navigation
+	.owl-nav {
+
+		button.owl-prev,
+		button.owl-next {
+			@include transition;
+			background: rgba($black, .4);
+			position: absolute;
+			border-radius: 50%;
+			top: 50%;
+			width: 4rem;
+			height: 4rem;
+			text-align: center;
+			z-index: 20;
+
+			&::before {
+				display: block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				line-height: 4rem;
+				font-family: 'icomoon';
+				font-size: 1.8rem;
+				color: $white;
+			}
+
+			&:hover {
+				background: rgba($black, .5);
+			}
+
+			span {
+				display: none;
+			}
+		}
+
+
+		.owl-prev {
+			@include translate(0,-50%);
+			left: ($grid-gutter-width / 2);
+
+			&::before { content: "\ebfb" }
+
+		    &[class*="disabled"] {
+		    	@include translate(-100%, -50%);
+		    	opacity: 0;
+		    	visibility: hidden;
+				z-index: 10;
+		    }
+		}
+
+
+		.owl-next {
+			@include translate(0,-50%);
+			right: ($grid-gutter-width / 2);
+
+			&::before { content: "\ebfc" }
+
+		    &[class*="disabled"] {
+				@include translate(100%, -50%);
+				opacity: 0;
+				visibility: hidden;
+				z-index: 10;
+		    }
+		}
+
+	}
+
+}
+
+
+
+// Dots
+.owl-dots {
+	@include translate(0,50%);
+	position: absolute;
+	bottom: -30px;
+	width: 100%;
+	text-align: center;
+
+	&.disabled {
+		display: none;
+	}
+
+	.owl-dot {
+		display: inline-block;
+		vertical-align: top;
+
+		span {
+			display: block;
+			width: 8px;
+			height: 8px;
+			margin: 10px;
+			border-radius: 50%;
+			background: rgba($black,0.2);
+			@include transition();
+		}
+
+		&:hover {
+			span {
+				background: rgba($black, 0.4);
+			}
+		}
+
+		&.active {
+			span {
+				background: $black; 
+				@include scale(1.5);
+			}
+		}
+
+	}
+}
+
+.owl-carousel-single { 
+    .owl-stage-outer {
+    	@extend %floating;
+    	border-radius: $border-radius;
+    	overflow: hidden;
+    }
+
+    .owl-nav {
+    	button.owl-prev,
+    	button.owl-next {
+    		background: $primary;
+    		width: 5.5rem;
+    		height: 5.5rem;
+
+    		&::before {
+    			line-height: 5.5rem;
+    		}
+
+    		&:hover {
+    			background: rgba($primary, .9);
+    		}
+    	}
+
+
+    	.owl-prev {
+    		@include translate(-50%,-50%);
+    		left: 0;
+    	}
+
+
+    	.owl-next {
+    		@include translate(50%,-50%);
+    		right: 0;
+    	}
+    }
+}
+
+.owl-carousel-library {
+	// Navigation
+	.owl-nav {
+		margin-top: 1rem;
+
+		button.owl-prev,
+		button.owl-next {
+			@include translate(0,0);
+			position: static;
+			border-radius: $border-radius;
+			background: none;
+			border: $border-width solid transparent;
+
+			&::before {
+				color: $black;
+			}
+
+			&:hover {
+				background: transparent;
+				border-color: $border-color;
+			}
+		}
+
+
+		.owl-prev,
+		.owl-nav {
+		    &[class*="disabled"] {
+		    	@include translate(0, 0);
+		    	visibility: visible;
+		    	opacity: .5;
+		    }
+		}
+
+	}
+}
+
+// library navigation for text white
+.text-white {
+	.owl-carousel-library {
+		.owl-nav {
+			button.owl-prev,
+			button.owl-next {
+				&:hover {
+					border-color: $text-white-border;
+				}
+
+				&::before {
+					color: $white;
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+// General
+.owl-carousel {
+
+	.owl-stage-outer {
+		
+		.owl-stage {
+
+			.owl-item {
+				@include transition();
+				counter-increment: owlItem;
+
+				img {
+					width: auto;
+					max-width: 100%;
+				}
+			}
+		}
+	}
+
+	&.visible {
+		.owl-stage-outer { overflow: visible; }
+	}
+
+	&.accent {
+		.owl-item {
+			opacity: .25;
+
+			&.active {
+				opacity: 1;
+			}
+		}
+	}
+}

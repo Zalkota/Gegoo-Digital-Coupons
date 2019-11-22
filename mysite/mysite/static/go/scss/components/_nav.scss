@@ -1,0 +1,287 @@
+// Navs
+//	
+//
+//
+
+.nav {
+	display: inline-block;
+	position: relative;
+
+	.nav-link {
+		@include transition;
+		position: relative;
+		display: inline-block;
+		color: $gray-300;
+		z-index: 5;
+		font-size: 14px;
+		font-weight: 400;
+		text-transform: uppercase;
+		letter-spacing: $letter-spacing;
+	}
+
+	.lavalamp-object {
+		display: none;
+		z-index: 1;
+	}
+}
+
+
+//
+// text
+//
+.nav-text {
+	margin: -.5rem;
+	
+	.nav-link {
+		margin: .5rem;
+		padding: 0 0 1rem 0;
+		line-height: 1em;
+		font-weight: $font-weight-light;
+		font-size: 1.875rem;
+		z-index: 5;
+
+		&.active {
+			color: $primary;
+			border-color: $primary;
+		}
+
+		&:hover {
+			color: $primary;
+		}
+	}
+}
+
+
+
+// tabs
+.nav-tabs {
+	border: 0;
+
+	.lavalamp-object {
+		display: block;
+		position: absolute;
+		border-width: 0 0 2px 0;
+		border-style: solid;
+		border-color: $primary;
+	}
+	
+	.nav-item  {
+		margin-right: $grid-gutter-width;
+	}
+
+	.nav-link {
+		border: 0;
+		padding-left: 0;
+		padding-right: 0;
+
+		&.active {
+			background-color: transparent;
+		}
+
+	}
+
+	&.nav-vertical {
+		border-width: 0 0 0 $border-width;
+
+		.lavalamp-object {
+			border-width: 0 0 0 2px;
+			border-bottom: 0;
+		}
+
+		.nav-link {
+			padding: .5rem 1rem;
+			margin: 0;
+		}
+	}
+}
+
+
+
+// pills
+.nav-pills {
+	.lavalamp-object {
+		display: block;
+		position: absolute;
+		border: 2px solid $primary;
+		border-radius: 10rem;
+	}
+
+	.nav-link {
+		z-index: 5;
+		padding: .75rem 1.5rem;
+
+		&.active,
+		&:hover {
+			color: $gray-700;
+		}
+	}
+}
+
+
+
+//
+// Switch
+//
+.nav-switch {
+	display: inline-block;
+	border: $border-width solid $border-color;
+	border-radius: 22.5px;
+	overflow: hidden;
+
+	.lavalamp-object {
+		display: block;
+		position: absolute;
+		background: $border-color;
+		border-radius: 10rem;
+	}
+
+	.nav-link {
+		padding: 15px 25px;
+		line-height: 15px;
+		font-size: $font-size-sm;
+		text-transform: uppercase;
+		letter-spacing: $letter-spacing;
+		z-index: 5;
+		cursor: pointer;
+
+		&.active,
+		&:hover {
+			color: $gray-700;
+		}
+	}
+}
+
+
+//
+// Docs
+//
+.nav-docs {
+	display: inline-block;
+
+	.lavalamp-object {
+		@extend %boxed;
+		@include border-radius;
+		display: block;
+		position: absolute;
+	}
+
+	.nav-link {
+		padding: 10px 20px;
+		line-height: 20px;
+		font-size: $font-size-sm;
+		letter-spacing: $letter-spacing-lg;
+		text-transform: uppercase;
+		z-index: 5;
+		cursor: pointer;
+
+		&.active,
+		&:hover {
+			color: $black;
+		}
+
+
+	}
+}
+
+
+// Vertical
+// 
+// vertical direction for .nav-pills and .nav-line
+.nav-vertical {
+	display: inline-block;
+	
+	.nav-link { 
+		display: block;
+	}
+}
+
+
+.tab-content {
+	position: relative;
+
+	.tab-pane {
+		@include transition;
+		width: 100%;
+		display: block;
+
+		&:not(.active) {
+			visibility: hidden;
+			position: absolute;
+			top: 0;
+			animation: fadeOutBottom .25s ease forwards;
+			-webkit-animation: fadeOutBottom .25s ease forwards;
+		}
+
+		&.active {
+			top: 0;
+			position: relative;
+			z-index: 90;
+			animation: fadeInTop .5s ease forwards;
+			-webkit-animation: fadeInTop .5s ease forwards;
+		}
+	}
+}
+
+
+@keyframes fadeOutBottom {
+  from {
+    opacity: 1;
+	@include translate(0,0);
+	@include scale(1);
+  }
+  to {
+    opacity: 0;
+    @include translate(0,10%);
+    @include scale(.8);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+@-webkit-keyframes fadeOutBottom {
+	from {
+		opacity: 1;
+		@include translate(0,0);
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+	to {
+		opacity: 0;
+		@include translate(0,10%);
+		-webkit-font-smoothing: antialiased;
+	}
+}
+@keyframes fadeInTop {
+	from {
+		opacity: 0;
+		@include translate(0,10%);
+	}
+	to {
+		opacity: 1;
+		@include translate(0,0);
+		-webkit-font-smoothing: antialiased;
+	}
+}
+@-webkit-keyframes fadeInTop {
+	from {
+		opacity: 0;
+		@include translate(0,10%);
+	}
+	to {
+		opacity: 1;
+		@include translate(0,0);
+		-webkit-font-smoothing: antialiased;
+	}
+}
+
+
+
+// text-whiteed
+// 
+// styles for colored/image background
+.text-white {
+	.nav-switch {
+		border-color: $text-white-border;
+
+		.lavalamp-object {
+			background: $text-white-border;
+		}
+	}
+}

@@ -1,0 +1,266 @@
+// Cover
+//
+//
+//
+
+.hero {
+	&[class*="-with-header"] {
+		padding-top: ($section-padding * 2);
+	}
+}
+
+
+
+//
+// Box
+//
+.box {
+	@extend %equal;
+
+	> * {
+		@extend %floating;
+		@include border-radius();
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-align: end;
+		align-items: flex-end;
+		padding: 1.875rem;
+	}
+
+	b {
+		display: block;
+		margin-bottom: .5rem;
+		line-height: 1.25;
+		font-family: $headings-font-family;
+		font-size: 1.5rem;
+		font-weight: 400;
+	}
+
+	span {
+		font-size: $font-size-sm;
+		font-weight: 500;
+		letter-spacing: $letter-spacing-lg;
+		text-transform: uppercase;
+		color: inherit;
+	}
+}
+
+
+%text-whiteed-box {
+	b {
+		color: $white;
+	}
+}
+
+
+// Gradient
+.gradient-bg {
+	> * {
+		position: relative;
+		z-index: 40;
+	}
+}
+
+.gradient {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+.image {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-size: cover;
+	background-position: center;
+	
+
+	&[class*="-overlay"] {
+		&::after {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			content: "";
+			background: rgba($black, 0.25)
+		}
+	}
+
+	&[class*="-overlay-dark"] {
+		&::after {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			content: "";
+			background: rgba($black, 0.4)
+		}
+	}
+
+	&[class*="-gradient-vertical"] {
+		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, 
+		from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+	}
+
+	&[class*="-gradient-horizontal"] {
+		-webkit-mask-image: -webkit-gradient(linear, right top, left top, 
+		from(rgba(0,0,0,1)), to(rgba(0,0,0,.5)));
+	}
+
+	&[class*="-gradient-vertical-light"] {
+		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, 
+		from(rgba(0,0,0,1)), to(rgba(0,0,0,.5)));
+	}
+
+	&[class*="-gradient-horizontal-light"] {
+		-webkit-mask-image: -webkit-gradient(linear, right top, left top, 
+		from(rgba(0,0,0,1)), to(rgba(0,0,0,.5)));
+	}
+
+
+	&[class*="-cover"] {
+		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, 
+		from(rgba(0,0,0,.5)), to(rgba(0,0,0,0)));
+	}
+
+	&[class*="-parallax"] {
+		width: 150%;
+	}
+
+
+	&[class*="-blur"] {
+		margin: -20px;
+		@include prefix(filter, blur(10px), webkit moz o ms);
+	}
+}
+
+
+//
+// Image actions
+//
+
+// Zoom
+.image-zoom {
+	@include scale(1.2);
+	@include transition(10s);
+}
+
+.swiper-slide-active {
+	.image-zoom {
+		@include scale(1);
+	}
+}
+
+// Scrolling 
+.image-scrolling {
+	height: 125%;
+	top: -25%;
+}
+
+
+.caption {
+	position: relative;
+	z-index: 50;
+	height: 100%;
+}
+
+.caption-background {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 25;
+
+	.container,
+	.container-fluid,
+	.container-full {
+		height: 100%;
+
+		.row {
+			height: 100%;
+		}
+	}
+}
+
+
+//
+// Scrolling Indicator
+//
+.mouse {
+	position: relative;
+	display: inline-block;
+	width: 1.875rem;
+	height: 3.125rem;
+	border-radius: 10rem;
+	border: 2px solid $gray-300;
+
+	&::after {
+		@include translate(-50%, 0);
+		content: "";
+		position: absolute;
+		display: block;
+		top: 25%;
+		left: 50%;
+		width: 6px;
+		height: 6px;
+		background: $black;
+		border-radius: 50%;
+		-webkit-animation: mouse 2s linear infinite;
+		-moz-animation: mouse 2s linear infinite;
+		animation: mouse 2s linear infinite;
+	}
+}
+
+.text-white {
+	.mouse {
+		border-color: $white;
+
+		&::after {
+			background: $white;
+		}
+	}
+}
+
+
+@-webkit-keyframes mouse {
+  0% {
+    opacity: 1;
+    @include translate(-50%,0);
+  }
+  100% {
+    opacity: 0;
+    @include translate(-50%,20px);
+  }
+}
+
+@-moz-keyframes mouse {
+  0% {
+    opacity: 1;
+    @include translate(-50%,0);
+  }
+  100% {
+    opacity: 0;
+    @include translate(-50%,20px);
+  }
+}
+
+@keyframes mouse {
+  0% {
+    opacity: 1;
+    @include translate(-50%,0);
+  }
+  100% {
+    opacity: 0;
+    @include translate(-50%,20px);
+  }
+}

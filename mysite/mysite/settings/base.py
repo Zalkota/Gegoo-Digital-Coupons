@@ -151,6 +151,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'mysite.processors.SiteName',
+                'mysite.processors.PromotionProcessor',
                 #'allauth.account.context_processors',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',

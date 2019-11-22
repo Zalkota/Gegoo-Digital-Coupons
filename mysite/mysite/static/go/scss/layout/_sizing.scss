@@ -1,0 +1,114 @@
+//
+// Sizing
+//
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $prop, $abbrev in (margin: m, padding: p) {
+      @each $size, $length in $sizes {
+
+        .#{$abbrev}#{$infix}-#{$size} { #{$prop}: $length !important; }
+        .#{$abbrev}t#{$infix}-#{$size},
+        .#{$abbrev}y#{$infix}-#{$size} {
+          #{$prop}-top: $length !important;
+        }
+        .#{$abbrev}r#{$infix}-#{$size},
+        .#{$abbrev}x#{$infix}-#{$size} {
+          #{$prop}-right: $length !important;
+        }
+        .#{$abbrev}b#{$infix}-#{$size},
+        .#{$abbrev}y#{$infix}-#{$size} {
+          #{$prop}-bottom: $length !important;
+        }
+        .#{$abbrev}l#{$infix}-#{$size},
+        .#{$abbrev}x#{$infix}-#{$size} {
+          #{$prop}-left: $length !important;
+        }
+      }
+    }
+  }
+}
+
+
+// Vertical Height
+$height-list: ( 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100);
+
+@each $value in $height-list {
+	.vh-#{$value} {
+    height: #{$value}vh;
+		min-height: #{$value}vh;
+	}
+}
+
+@each $value in $height-list {
+  .vh-max-#{$value} {
+    max-height: #{$value}vh;
+  }
+}
+
+@include media-breakpoint-down(sm) { 
+  [class*="vh-"] {
+    height: auto;
+  }
+}
+
+
+
+
+
+// Gutter
+$gutter-list: ();
+$gutter-list: map-merge((
+  1: 10,
+  2: 20,
+  3: 30,
+  4: 40,
+  5: 50,
+), $gutter-list);
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $name, $value in $gutter-list {
+      .gutter#{$infix}-#{$name} {
+        margin: -#{$value/2}px;
+
+        > * {
+          margin-bottom: 0!important;
+          padding: #{$value/2}px;
+        }
+      }
+    }
+
+  }
+}
+
+
+
+.gutter-0 {
+  padding: 1px 1px 0 0;
+  margin-left: 0;
+  margin-right: 0;
+  
+  > * {
+    padding: 0;
+    margin: -1px -1px 0 0!important;
+  }
+}
+
+.gutter-1 [class*="-double"]::before { padding-top: calc(200% + 10px); }
+.gutter-2 [class*="-double"]::before { padding-top: calc(200% + 20px); }
+.gutter-3 [class*="-double"]::before { padding-top: calc(200% + 30px); }
+
+
+
+// Flex Width
+@each $size, $length in $sizes {
+  .fw-#{$size} {
+    flex: 0 0 $length!important;
+    width: $length!important;
+  }
+}

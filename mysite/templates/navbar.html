@@ -40,6 +40,9 @@
                         <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'users:userPage' %}">
                           Support
                         </a>
+                        <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'shoppingcart:refund-select' %}">
+                          Returns
+                        </a>
                         {% if request.user.is_superuser %}
                         <a class="dropdown-item" href="/admin/">
                           Admin Panel

@@ -1,0 +1,113 @@
+//
+// Video
+//
+
+.video-js {
+	@extend %floating;
+	@include border-radius;
+	position: absolute;
+	width: 100% !important;
+	height: 100% !important;
+	left: 0;
+	top: 0;
+	z-index: 50;
+	background: transparent;
+}
+
+.video-3-4 {
+	position: relative;
+	width: 100%;
+	height: 0;
+	padding-bottom: 42.6%;
+}
+
+.video-16-9 {
+	position: relative;
+	width: 100%;
+	height: 0;
+	padding-bottom: 56.25%;
+	overflow: hidden;
+}
+
+.youtube {
+	.vjs-control-bar {
+		display: none;
+	}
+}
+
+
+.video-js .vjs-big-play-button {
+	top: 50%;
+	left: 50%;
+	width: 80px;
+	height: 80px;
+	margin: -40px 0 0 -40px;
+	line-height: 80px;
+	font-size:40px;
+	background: none;
+	color: $white;
+	border: 0;
+	z-index: 5;
+	@include transition();
+
+	&::before {
+		@include transition();
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -40px;
+		margin-left: -40px;
+		display: block;
+		width: 80px;
+		height: 80px;
+		line-height: 80px;
+		text-align: center;
+		cursor: pointer;
+		border: 2px solid $white;
+		content: "";
+		font-size: 20px;
+		color: $black;
+		border-radius: 50%;
+	}
+}
+
+.video-js:hover .vjs-big-play-button {
+	background: none;
+
+	&::before {
+		@include scale(1.2);
+	}
+}
+
+
+
+
+// Background Video
+.jquery-background-video-wrapper {
+	@include prefix(background-size, cover, webkit moz);
+	position: relative;
+	overflow: hidden;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.jquery-background-video {
+	@include prefix(object-fit, contain, o);
+	position: absolute;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	top: 0;
+	left: 0;
+}
+/**
+ * Fade in videos
+ * Note the .js class - so non js users still
+ * see the video
+ */
+.js .video-bg video {
+	opacity: 0;
+}
+.js .video-bg video.is-playing {
+	opacity: 1;
+}

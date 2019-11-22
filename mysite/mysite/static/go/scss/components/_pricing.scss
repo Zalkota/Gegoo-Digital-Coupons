@@ -1,0 +1,111 @@
+//
+//	Pricing
+//
+
+
+.card-price {
+	.svg-icon {
+		margin-bottom: ($card-spacer-x * 1.5);
+	}
+
+	// .card-title {
+	// 	margin-bottom: ($card-spacer-y / 2);
+	// 	font-size: 1.25rem;
+	// 	font-weight: 400;
+	// }
+
+	.card-footer {
+		@include transition;
+		position: relative;
+		padding: $card-spacer-x!important;
+		border-top: $border-width solid $border-color;
+		color: $body-color;
+
+		&::after {
+			@include transition;
+			@include translate(0,-50%);
+			position: absolute;
+			top: 50%;
+			right: 2.875rem;
+			display: block;
+			content: "\ebde";
+			font-size: 1.375rem;
+			font-family: $font-icon;
+		}
+
+		&:hover {
+			background: $gray-200;
+
+			&::after {
+				right: 1.875rem;
+				color: inherit;
+			}
+		}
+	}
+
+	.card-price {
+		font-size: 2.5rem;
+		font-weight: 400;
+	}
+}
+
+
+
+// card 2
+.card-price-2 {
+	.card-title {
+		margin-top: $card-spacer-x;
+		margin-bottom: ($card-spacer-y / 2);
+		font-size: 1.25rem;
+		font-weight: 400;
+	}
+
+	.card-price {
+		font-size: 3.125rem;
+		font-weight: 400;
+	}
+
+	.card-footer {
+		padding-top: 0;
+	}
+}
+
+
+
+// card 3
+.card-price-3 {
+	text-align: center;
+
+	.card-title {
+		@extend %eyebrow;
+		display: block;
+		color: $body-color;
+		margin-bottom: ($card-spacer-x * 1.5);
+	}
+
+	.card-price {
+		font-size: 3.75rem;
+		font-weight: 400;
+	}
+
+	.card-body {
+		padding-bottom: ($card-spacer-x * 1.5);
+	}
+}
+
+
+
+// text-whiteed colors
+//
+//
+.text-white {
+	.card-price {
+		.card-footer {
+			border-color: $text-white-border;
+
+			&:hover {
+				background-color: $text-white-border;
+			}
+		}
+	}
+}

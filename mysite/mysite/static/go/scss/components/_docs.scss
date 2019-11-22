@@ -1,0 +1,107 @@
+// Docs
+//
+//
+//
+
+
+.component {
+  padding-bottom: 0;
+  overflow: visible;
+  
+
+  > .container {
+    margin-bottom: 20px;
+  }
+
+  [class*="container"] {
+    .row:not(:last-child) {
+      margin-bottom: 30px;
+    }
+  }
+
+  @include media-breakpoint-up(lg) { 
+    max-width: 95%; 
+  }
+
+  @include media-breakpoint-up(xl) { 
+    max-width: 80%; 
+  }
+
+  > .tab-content {
+    > .tab-pane {
+      @extend %boxed;
+      @include border-radius;
+      overflow: hidden;
+
+      &[class*="bg-light"] {
+        border: $border-width solid $border-color;
+      }
+    }
+  }
+}
+
+//
+// Example
+//
+.component-example {
+  position: relative;
+  padding: 75px 0;
+  overflow: hidden;
+
+  &[class*="-fit"] {
+    padding: 0;
+  }
+
+  &[class*="-fluid"] {
+    padding: $grid-gutter-width ($grid-gutter-width / 2);
+  }
+}
+
+
+//
+// Details
+//
+.component-details {
+  position: relative;
+  padding: 40px 0;
+  border-top: $border-width solid $border-color;
+}
+
+.component-details-markup,
+.component-details-reference {
+  position: relative;
+  padding-top: 30px;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: ($grid-gutter-width / 2);
+    content: "Markup";
+    font-size: 12px;
+    letter-spacing: $letter-spacing-lg;
+    text-transform: uppercase;
+  }
+}
+
+.component-details-reference {
+  &::before {
+    content: "Reference";
+  }
+}
+
+
+
+//
+// Demo
+//
+.btn-demo {
+  > .btn {
+    margin: 0 .5rem .5rem 0;
+  }
+}
+
+.text-white {
+  &.component-details {
+    border-color: $text-white-border;
+  }
+}

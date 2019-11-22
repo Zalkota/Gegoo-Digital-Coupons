@@ -1,0 +1,239 @@
+// Swiper
+//
+//
+//
+
+.swiper-container,
+.gallery-container {
+	.swiper-slide {
+		height: auto;
+		overflow: hidden;
+	}
+
+	.container,
+	.container-fluid {
+		height: 100%;
+
+		> .row {
+			height: 100%;
+			padding-top: $section-padding;
+			padding-bottom: $section-padding;
+		}
+	}
+}
+
+.swiper-wrapper {
+	z-index: 20;
+}
+
+
+// Swiper instances that doesnt fit to the viewport
+.container,
+.container-fluid {
+	
+	.swiper-container,
+	.gallery-container {
+		.swiper-slide {
+			@extend %boxed;
+			@include border-radius;
+		}
+	}
+}
+
+
+// swiper footer
+.swiper-footer {
+	@include translate(0,50%);
+	width: 100%;
+	position: absolute;
+	bottom: ($section-padding / 2);
+	z-index: 40;
+
+	.container,
+	.container-fluid {
+		> .row {
+			padding: 0;
+		}
+	}
+}
+
+
+//
+// gallery
+//
+.gallery {
+
+	// bigger bottom padding for gallery thumbs
+	.container,
+	.container-fluid {
+		> .row {
+			padding-bottom: ($section-padding * 1.5);
+		}
+	}
+}
+
+.gallery-thumbs {
+	border-top: $border-width solid $text-white-border;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	z-index: 25;
+
+	.swiper-slide {
+		@include transition;
+		padding: 2.5rem 0;
+		text-align: center;
+		cursor: pointer;
+
+		h5 {
+			@extend %text-shadow;
+			font-size: $font-size-base;
+			letter-spacing: $letter-spacing-sm;
+			color: $white;
+			line-height: 1rem;
+			font-weight: 400;
+		}
+
+		&:hover {
+			background: rgba($white, .1);
+		}
+	}
+
+	.swiper-slide-active {
+		margin-top: -$border-width;
+		border-top: $border-width solid $white;
+	}
+}
+
+
+
+//
+// carousel
+//
+.swiper-container-carousel {
+	overflow: visible;
+}
+
+
+// Pagination
+.swiper-container-horizontal {
+	.swiper-pagination-bullets {
+		@include translate(-50%,50%);
+		width: auto;
+		bottom: ($section-padding / 2);
+		left: 50%;
+		z-index: 25;
+		
+		.swiper-pagination-bullet {
+			@include selection(none);
+			position: relative;
+			float: left;
+			width: 2rem;
+			height: 2rem;
+			margin: 0;
+			opacity: 1;
+			background: transparent;
+			@include transition();
+			outline: none;
+
+			&::after {
+				@include transition();
+				position: absolute;
+				content: "";
+				display: block;
+				top: 50%;
+				left: 50%;
+				width: 8px;
+				height: 8px;
+				margin: -4px 0 0 -4px;
+				border-radius: 50%;
+				background: rgba($white, .2);
+			}
+
+			&:hover {
+				&::after {
+					background: rgba($white, .4);
+				} 
+			}
+
+			&.swiper-pagination-bullet-active {
+				&::after {
+					background: $white;
+					@include scale(1.5);
+					@include shadow();
+				} 
+			}
+		}
+	}
+
+	.swiper-pagination-vertical {
+		@include translate(0,50%);
+		right: ($grid-gutter-width / 2 );
+		bottom: 50%;
+		left: auto;
+		width: 2rem;
+	}
+}
+
+
+// Navigation
+.swiper-button-prev,
+.swiper-button-next {
+	@include transition;
+	float: left;
+	position: relative;
+	display: block;
+    width: 3.75rem;
+    height: 3.75rem;
+    margin-top: ($grid-gutter-width / 2);
+    text-align: center;
+    background-image: none!important;
+    border: $border-width solid transparent;
+    z-index: 20;
+    outline: none;
+
+    &::before {
+    	display: block;
+    	position: absolute;
+    	top: 0;
+    	right: 0;
+    	bottom: 0;
+    	left: 0;
+    	color: $black;
+    	line-height: 3.75rem;
+    	font-family: 'icomoon';
+    	font-size: 1.5rem;
+    }
+
+    &:hover {
+    	border-color: $border-color;
+    	
+    	&::before {
+    		color: $black;
+    	}
+    }
+}
+
+.swiper-button-prev {
+	left: 0;
+	&::before { content: "\ebfb" }
+}
+
+.swiper-button-next {
+	right: 0;
+	&::before { content: "\ebfc" }
+}
+
+
+
+
+
+// Responsive
+//
+//
+@include media-breakpoint-down(md) {
+	.swiper-button-prev,
+	.swiper-button-next {
+		display: none;
+	}
+}

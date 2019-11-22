@@ -1,0 +1,53 @@
+// Icons
+// 
+//
+//
+//
+
+
+//
+// Icomoon
+//
+[class^="icon-"], [class*=" icon-"] {
+	display: inline-block;
+	width: 1em;
+	line-height: 1em;
+	box-sizing: content-box;
+	text-align: center;
+	border: 1px solid transparent;
+
+	&[class*="-bordered"] {
+		border-color: currentColor;
+		border-radius: 50%;
+		border-width: 2px;
+		padding: .5em;
+
+	}
+
+	&[class*="-filled"] {
+		border-radius: 50%;
+		border-color: transparent;
+		padding: .5em;
+	}
+
+}
+
+
+//
+// SVG
+//
+.svg-icon {
+	display: inline-block;
+
+	svg {
+		display: block;
+		height: 1em;
+		width: 1em;
+		stroke: currentColor;
+		fill: currentColor; // maybe remove ?
+
+		* {
+			stroke: currentColor;
+		}
+	}
+}
