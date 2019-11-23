@@ -16,11 +16,11 @@ input[type=checkbox]:checked + label {
 //=========== PLACE HOLDER ===========
 
 ::placeholder {
-  color: $color-gray-500 !important;
+  color: $color-gray-900 !important;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: $color-gray-500;
+    color: $color-gray-900;
  }
  ::-moz-placeholder { /* Firefox 19+ */
      color: $color-gray-500;
@@ -35,15 +35,17 @@ input[type=checkbox]:checked + label {
 //============ AUTO FILL ==============
 
  :-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px $color-gray-200 inset !important;
+    -webkit-box-shadow: 0 0 0 1000px $color-gray-300 inset !important;
     font-size: 1.1rem !important;
  }
 
  :-webkit-autofill {
-    -webkit-text-fill-color: $color-primary !important;
+    -webkit-text-fill-color: $color-dark !important;
     font-size: 1.1rem !important;
  }
 
+
+//============== Generic Form Attributes ===========
 
 .form-control, .custom-file-control,
 .is-focused .form-control,
@@ -147,13 +149,16 @@ color: #3a3a3a;
     <**************************************************************************>
 */
 
+
+// ************** NAVBAR SEARCH BAR ****************
+
 .search-form-container {
+    width: 100%;
+    max-width: 500px !important;
 
     .waves-input-wrapper {
         display: block !important;
-        width: 100% !important;
     }
-
 
     input {
     -webkit-appearance: textfield;
@@ -165,19 +170,19 @@ color: #3a3a3a;
     -webkit-rtl-ordering: logical;
     cursor: text;
     color: #222 !important;
-    padding: .65rem .75rem 0.65rem 2.5rem;
+    padding: .65rem .75rem 0.65rem 3rem;
 
     &:hover, &:active, &:focus{
       transition: .3s;
       border: 1px solid #d1d1d1;
       }
-}
+    }
 }
 
 .search-icon {
     position: absolute;
-    left: 2rem;
-    top: 22%;
+    left: 1.8rem;
+    top: 20%;
     z-index: 2;
 
     i {
@@ -189,8 +194,6 @@ color: #3a3a3a;
   color: $color-gray-600 !important;
   font-size: 16px !important;
 }
-
-
 
 
 // ************** MOBILE SEARCH BAR ****************

@@ -17,7 +17,7 @@
               <div class="ml-3" style="width: 100%;">
                   <div class="icon-addon addon-lg" style="width: 100%;">
                       <input type="text" placeholder="Search for bumper stickers" name="q" id="q" autocomplete="off">
-                       <a class="search-icon" href="#"><i class="fa fa-search fs-20" aria-hidden="true"></i></a>
+                       <button type="submit" class="search-icon" href="#"><i class="fa fa-search fs-20" aria-hidden="true"></i></button>
                       <div id="selction-ajax"></div>
 
                   </div>
@@ -41,7 +41,7 @@
                         <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'users:userPage' %}">
                           Profile
                         </a>
-                        <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'users:userPage' %}">
+                        <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'contact-page' %}">
                           Support
                         </a>
                         <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'shoppingcart:refund-select' %}">

@@ -699,49 +699,32 @@ hr.hr-2 {
     <**************************************************************************>
 */
 
+@each $color, $value in $colors {
+  .hr-#{$color} {
+    background-color: $value;
+    height:3px;
+    width: 100%;
+  }
 
-    .hr-primary {
-      background-color: $color-primary;
-      height:3px;
-      width: 100%;
-    }
-
-    .hr-secondary {
-      background-color: $color-secondary;
-      height:3px;
-      width: 100%;
-    }
-
-    .hr-accent {
-      background-color: $color-accent;
-      height:3px;
-      width: 100%;
-    }
-
-    .hr-white {
-      background-color: $color-white;
-      height:3px;
-      width: 100%;
-    }
-
-
-    .hr-primary-sm {
-      background-color: $color-primary;
+  .hr-#{$color}-sm {
+      background-color: $value;
       height:4px;
       width: 8rem;
-    }
+  }
 
-    .hr-primary-md {
-      background-color: $color-primary;
+  .hr-#{$color}-md {
+      background-color: $value;
       height:4px;
-      width: 8rem;
-    }
+      width: 12rem;
+  }
 
-    .hr-primary-lg {
-      background-color: $color-primary;
-      height: 3px;
-      width: 15rem;
-    }
+  .hr-#{$color}-lg {
+      background-color: $value;
+      height:4px;
+      width: 14rem;
+  }
+}
+
 
     .hr-primary-gradient-sm, {
       background-image: -webkit-linear-gradient($color-primary-light, $color-primary-dark);
@@ -841,7 +824,7 @@ hr.hr-2 {
         font-size: 2rem;
         width: 100%;
         height: 65px;
-    
+
         top: 0%;
 
     }

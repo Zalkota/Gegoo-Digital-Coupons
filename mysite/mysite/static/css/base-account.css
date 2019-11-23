@@ -1,8 +1,15 @@
-/* ANIMATION */
 /*  <**************************************************************************>
     <*****                           MISC                                 *****>
     <**************************************************************************>
 */
+/*  <**************************************************************************>
+    <*****                            LOGIN                             *****>
+    <**************************************************************************>
+*/
+input, input:-internal-autofill-selected, input:-webkit-autofill, select:-webkit-autofill {
+  font-size: 1.1rem;
+  background-color: #f1f1f1 !important; }
+
 @media screen and (min-width: 1220px) {
   .hero-login {
     height: 100vh;
@@ -849,35 +856,3 @@ select:-webkit-autofill {
     border-radius: 6px; }
   #confirmation h1 {
     text-align: center; } }
-
-html {
-  scroll-behavior: smooth !important; }
-
-body {
-  margin: 0;
-  font-family: Montserrat, sans-serif !important;
-  background-color: #fafafa !important;
-  color: #3a3a3a; }
-  body h1 h2 h3 h4 h5 h6 {
-    color: #1a1a1a; }
-  body p {
-    color: #2D3748; }
-  body li {
-    color: #C53030; }
-  body a {
-    color: #C53030; }
-
-a:hover {
-  color: #C53030; }
-
-.text-primary {
-  color: #C53030; }
-
-.text-success {
-  color: #48BB78; }
-
-.text-danger {
-  color: #E53E3E; }
-
-.text-muted {
-  color: #2A4365; }

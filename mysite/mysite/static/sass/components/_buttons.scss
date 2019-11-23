@@ -18,12 +18,11 @@
 // ============ CUSTOM BUTTON CONFIGURATION ==========//
     button {
       display: block;
-      background: #666ee8;
+      background: transparent;
       color: #fff;
       box-shadow: 0;
       border-radius: $border-radius;
       border: 0;
-
       font-weight: 700;
       outline: none;
       cursor: pointer;

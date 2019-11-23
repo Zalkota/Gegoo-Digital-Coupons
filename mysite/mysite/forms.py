@@ -31,18 +31,17 @@ class ContactForm(forms.ModelForm):
         self.helper.layout = Layout(
             #Div('first_name', style="background: white;", title="Explication title", css_class="bigdivs")
             Field(
-
+                Div(
+                'reason',
+                css_class="col-lg-12 pb-4"
+                ),
                 Div(
                 'name',
-                css_class="col-lg-6"
+                css_class="col-lg-6 pb-4"
                 ),
                 Div(
                 'email',
-                css_class="col-lg-6"
-                ),
-                Div(
-                'reason',
-                css_class="col-lg-6 py-4"
+                css_class="col-lg-6 pb-4"
                 ),
                 Div(
                 'description',
