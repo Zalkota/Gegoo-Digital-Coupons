@@ -51,27 +51,3 @@ body {
 @import "./generic/navigation_button";
 @import "./utility/text";
 @import "./utility/autocomplete";
-
-
-
-
-a:hover {
-  color: $color-primary;
-  text-decoration: none;
-}
-
-.text-primary {
-  color: $color-primary;
-}
-
-.text-success {
-  color: $color-success;
-}
-
-.text-danger {
-  color: $color-danger;
-}
-
-.text-muted {
-  color: $color-dark;
-}

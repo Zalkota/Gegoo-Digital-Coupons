@@ -74,66 +74,22 @@ h2 {
 }
 
 
+@each $color, $value in $colors {
+  .text-#{$color} {
+    color: $value !important;
+  }
+}
+
+@each $color, $value in $colors {
+  .bg-#{$color} {
+    background-color: $value !important;
+  }
+}
+
 a:hover {
   color: $color-primary;
 }
 
-.text-primary {
-  color: $color-primary !important;
-}
-
-.bg-primary {
-  background-color: $color-primary;
-}
-
-
-.text-primary-light {
-  color: $color-primary-light;
-}
-
-
-.text-success {
-  color: $color-success !important;
-}
-
-.bg-success {
-  background-color: $color-success !important;
-}
-
-.text-danger {
-  color: $color-danger;
-}
-
-.text-alt {
-  color: $color-alt;
-}
-
-.bg-alt {
-  background-color: $color-alt;
-}
-
-.text-muted {
-  color: $color-dark;
-}
-
-.text-secondary {
-  color:  #c1c1c1 !important;
-}
-
-.bg-main {
-  background-color: $color-main;
-}
-
-.bg-gray {
-  background-color: #fafbfc;
-}
-.bg-gray-2 {
-  background-color: $color-gray-300;
-}
-
-.bg-gray-3 {
-  background-color: $color-gray-400;
-}
 
 .text-gradient {
   background: -webkit-linear-gradient($color-primary-light, $color-primary-dark);
