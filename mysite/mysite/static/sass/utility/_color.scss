@@ -140,6 +140,7 @@ $color-info-dark: darken( $color-info, 10% );
 */
 
 $border-radius: 0.1rem;
+$border-radius-100: 0.25rem;
 $border-radius-200: 0.5rem;
 $border-radius-300: 1rem;
 
@@ -147,15 +148,9 @@ $border-color: rgba(0, 0, 0, 0.06);
 
 $box-shadow-1: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
 $box-shadow-2: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
-$box-shadow-3 {
-  -webkit-box-shadow: 0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19)!important;
-  box-shadow: 0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19)!important;
-}
+$box-shadow-3: 0 5px 10px 0 rgba(0,0,0,.14),0 3px 10px 0 rgba(0,0,0,.14);
+$box-shadow-4: 0 5px 10px rgba(154,160,185,.15), 0 15px 40px rgba(166,173,201,.3);
 
-$box-shadow-4: box-shadow: 0 5px 10px rgba(154,160,185,.15), 0 15px 40px rgba(166,173,201,.3) !important;
-  -webkit-box-shadow: 0 5px 10px rgba(154,160,185,.15), 0 15px 40px rgba(166,173,201,.3) !important;
-  box-shadow: 0 5px 10px rgba(154,160,185,.15), 0 15px 40px rgba(166,173,201,.3) !important;
-}
 
 $colors: ();
 $colors: map-merge((

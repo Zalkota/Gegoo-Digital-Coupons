@@ -4682,54 +4682,6 @@ a.navbar-brand.scrolled:hover {
     text-align: center;
     box-shadow: none; }
 
-.form-check-label {
-  margin: 1rem; }
-
-.form-check-input {
-  display: none; }
-
-.form-check span {
-  font-weight: 400;
-  font-size: 1rem;
-  padding: .75rem;
-  margin: 1rem; }
-
-#id_span_appointment_time_0_1,
-#id_span_appointment_time_0_2,
-#id_span_appointment_time_0_3,
-#id_span_appointment_time_0_4,
-#id_span_appointment_time_0_5,
-#id_span_appointment_time_0_6,
-#id_span_appointment_time_0_7,
-#id_span_appointment_time_0_8,
-#id_span_appointment_time_0_9,
-#id_span_appointment_time_0_10,
-#id_span_appointment_time_0_11,
-#id_span_appointment_time_0_12 {
-  border: 2px solid #48BB78 !important;
-  color: #48BB78;
-  padding: .75rem;
-  font-weight: 500;
-  font-size: 1rem; }
-
-.navigation__checkbox:checked ~ .navigation__background {
-  transform: scale(80); }
-
-.navigation__checkbox:checked ~ .navigation__nav {
-  opacity: 1;
-  width: 100%; }
-
-.navigation__checkbox:checked + .navigation__button .navigation__icon {
-  background-color: transparent; }
-
-.navigation__checkbox:checked + .navigation__button .navigation__icon::before {
-  top: 0;
-  transform: rotate(45deg); }
-
-.navigation__checkbox:checked + .navigation__button .navigation__icon::after {
-  top: 0;
-  transform: rotate(-45deg); }
-
 /*      HERO       */
 @media screen and (min-width: 992px) {
   .hero {
@@ -4761,7 +4713,7 @@ a.navbar-brand.scrolled:hover {
       margin-left: auto;
       text-align: center;
       max-width: 60rem;
-      padding-top: 18rem;
+      padding-top: 10rem;
       padding-bottom: 10rem;
       width: 70%; }
     .hero h1 {
@@ -5882,16 +5834,35 @@ input[type=checkbox]:checked + label {
     <*****                     SEARCH FORM INPUT                          *****>
     <**************************************************************************>
 */
+.search-form-container .waves-input-wrapper {
+  display: block !important;
+  width: 100% !important; }
+
 .search-form-container input {
   -webkit-appearance: textfield;
-  border: 2px solid #d8d8d8;
+  border: 1px solid #fafafa;
+  transition: .3s;
+  width: 100% !important;
+  background-color: #f1f3f4;
+  border-radius: 0.25rem;
   -webkit-rtl-ordering: logical;
   cursor: text;
   color: #222 !important;
-  padding: .35rem .75rem 0.35rem 0.75rem; }
+  padding: .65rem .75rem 0.65rem 2.5rem; }
+  .search-form-container input:hover, .search-form-container input:active, .search-form-container input:focus {
+    transition: .3s;
+    border: 1px solid #d1d1d1; }
+
+.search-icon {
+  position: absolute;
+  left: 2rem;
+  top: 22%;
+  z-index: 2; }
+  .search-icon i {
+    color: #718096; }
 
 .search-form-container input::placeholder {
-  color: #2D3748 !important;
+  color: #718096 !important;
   font-size: 16px !important; }
 
 .search-form-background {
@@ -5924,7 +5895,20 @@ input[type=checkbox]:checked + label {
   color: #222 !important;
   width: 100%;
   margin-bottom: 0;
-  padding: .25rem .5rem 0.25rem 0.5rem; }
+  padding: .25rem .5rem 0.25rem 1rem; }
+
+.search-form-background-hero {
+  padding: .75rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.13);
+  transition: .3s;
+  width: 100%;
+  border-radius: 3rem; }
+  .search-form-background-hero:hover, .search-form-background-hero:active, .search-form-background-hero:focus {
+    transition: .3s;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.14), 0 3px 10px 0 rgba(0, 0, 0, 0.14); }
+  .search-form-background-hero form {
+    margin-bottom: 0; }
 
 .search-form-container-hero input::placeholder {
   color: #718096 !important;
@@ -5938,7 +5922,7 @@ input[type=checkbox]:checked + label {
   width: 35%; }
   .search-form .search-icon {
     position: absolute;
-    right: 4%;
+    left: 6%;
     top: 28%; }
     .search-form .search-icon i {
       color: #718096; }

@@ -5706,16 +5706,35 @@ input[type=checkbox]:checked + label {
     <*****                     SEARCH FORM INPUT                          *****>
     <**************************************************************************>
 */
+.search-form-container .waves-input-wrapper {
+  display: block !important;
+  width: 100% !important; }
+
 .search-form-container input {
   -webkit-appearance: textfield;
-  border: 2px solid #d8d8d8;
+  border: 1px solid #fafafa;
+  transition: .3s;
+  width: 100% !important;
+  background-color: #f1f3f4;
+  border-radius: 0.25rem;
   -webkit-rtl-ordering: logical;
   cursor: text;
   color: #222 !important;
-  padding: .35rem .75rem 0.35rem 0.75rem; }
+  padding: .65rem .75rem 0.65rem 2.5rem; }
+  .search-form-container input:hover, .search-form-container input:active, .search-form-container input:focus {
+    transition: .3s;
+    border: 1px solid #d1d1d1; }
+
+.search-icon {
+  position: absolute;
+  left: 2rem;
+  top: 22%;
+  z-index: 2; }
+  .search-icon i {
+    color: #718096; }
 
 .search-form-container input::placeholder {
-  color: #2D3748 !important;
+  color: #718096 !important;
   font-size: 16px !important; }
 
 .search-form-background {
@@ -5748,7 +5767,20 @@ input[type=checkbox]:checked + label {
   color: #222 !important;
   width: 100%;
   margin-bottom: 0;
-  padding: .25rem .5rem 0.25rem 0.5rem; }
+  padding: .25rem .5rem 0.25rem 1rem; }
+
+.search-form-background-hero {
+  padding: .75rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.13);
+  transition: .3s;
+  width: 100%;
+  border-radius: 3rem; }
+  .search-form-background-hero:hover, .search-form-background-hero:active, .search-form-background-hero:focus {
+    transition: .3s;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.14), 0 3px 10px 0 rgba(0, 0, 0, 0.14); }
+  .search-form-background-hero form {
+    margin-bottom: 0; }
 
 .search-form-container-hero input::placeholder {
   color: #718096 !important;
@@ -5762,7 +5794,7 @@ input[type=checkbox]:checked + label {
   width: 35%; }
   .search-form .search-icon {
     position: absolute;
-    right: 4%;
+    left: 6%;
     top: 28%; }
     .search-form .search-icon i {
       color: #718096; }
