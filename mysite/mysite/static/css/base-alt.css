@@ -5743,13 +5743,12 @@ input[type=checkbox]:checked + label {
 
 .search-form-container-hero input {
   -webkit-appearance: textfield;
-  border-bottom: 1px solid #E2E8F0;
   -webkit-rtl-ordering: logical;
   cursor: text;
   color: #222 !important;
   width: 100%;
   margin-bottom: 0;
-  padding: .35rem .5rem 0.35rem 0.5rem; }
+  padding: .25rem .5rem 0.25rem 0.5rem; }
 
 .search-form-container-hero input::placeholder {
   color: #718096 !important;
