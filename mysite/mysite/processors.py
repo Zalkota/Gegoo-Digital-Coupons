@@ -1,4 +1,5 @@
 from shoppingcart.models import Promotion
+from django.shortcuts import get_list_or_404, get_object_or_404
 
 def SiteName(request):
     # Create fixed data structures to pass to template
@@ -9,17 +10,20 @@ def SiteName(request):
 
 
 def PromotionProcessor(request):
-    try:
-        promotion_qs = Promotion.objects.filter(active=True)
-        if promotion_qs.exists():
-            promotion = promotion_qs.first()
-            message = promotion.message
-            background = promotion.background
-
-            context = {
-            'message': message,
-            'background': background,
-            }
-            return context
-    except:
-        return None
+    promotion_qs = Promotion.objects.filter(active=True)
+    if promotion_qs.exists():
+        promotion = promotion_qs.first()
+        message = promotion.message
+        background = promotion.background
+        promotionActive = True
+        context = {
+        'message': message,
+        'background': background,
+        'promotionActive': promotionActive,
+        }
+    else:
+        promotionActive = False
+        context = {
+        'promotionActive': promotionActive,
+        }
+    return context

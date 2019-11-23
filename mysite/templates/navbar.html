@@ -1,9 +1,11 @@
 {% load static %}
 
 <!-- Generic Navigation !-->
-{% block promotion %}
-  {% include "promotion.html" %}
-{% endblock promotion %}
+{% if promotionActive != False %}
+  {% block promotion %}
+    {% include "promotion.html" %}
+  {% endblock promotion %}
+{% endif %}
     <nav class=" navbar navbar-default shadow-0 navbar-expand-lg hide" id="mynav">
       <div class="container hide" >
           <a class="navbar-brand text-center" href="/">

@@ -1,4 +1,7 @@
-
+/*  <**************************************************************************>
+    <*****                         BUTTONs                                *****>
+    <**************************************************************************>
+*/
 
 // ========================== BASIC CONFIGURATION ========================/
 .btn {
@@ -9,10 +12,7 @@
 &:hover, &:active &:focus {
 
     font-weight: 650;
-
-
-
-}
+  }
 }
 
 // ============ CUSTOM BUTTON CONFIGURATION ==========//
@@ -52,14 +52,10 @@
 
 // USE THIS STYLE OF SASS CONFIGURATION //
 
-@each $color, $value in $colors {
-  .badge-#{$color} {
-    background-color: $color;
-  }
-}
+
 
   .btn-action {
-  background-image: linear-gradient(180deg,#3b8dff, #3469ad 95%);
+  background-image: linear-gradient(180deg, $color-secondary-light, $color-secondary 95%);
   color: #fafafa;
   box-shadow: 0;
   border-radius: $border-radius;
@@ -69,7 +65,7 @@
   padding-bottom: .85rem;
 
   &:hover,&:active,&:focus,&:visited {
-    background-image: linear-gradient(180deg, #3b8dff, #2e5d9a 95%);
+    background-image: linear-gradient(180deg, $color-secondary, $color-secondary-dark 95%);
     color: #e5e5e5;
     box-shadow: none;
     }
@@ -116,6 +112,27 @@
 
 
 /* BUTTON ALT */
+
+@each $color, $value in $colors {
+
+  .btn-#{$color}-alt {
+  background: $value;
+  color: $color-white;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+
+  &:hover, &:active, &:focus{
+    background: $value;
+    color: #e5e5e5;
+    box-shadow: $box-shadow-1;
+    text-decoration: none !important;
+    }
+  }
+}
 
 
 

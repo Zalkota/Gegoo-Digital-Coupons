@@ -31,11 +31,12 @@ body {
     }
 }
 
+@import "./components/buttons";
+@import "./components/badges";
+@import "./components/sections";
 
 @import "./generic/global";
 @import "./generic/navbar";
-@import "./generic/buttons";
-@import "./generic/sections";
 @import "./generic/appointment";
 @import "./generic/hero";
 @import "./generic/mobile";
