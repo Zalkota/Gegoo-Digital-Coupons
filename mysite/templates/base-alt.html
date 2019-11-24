@@ -55,11 +55,6 @@
         {% endblock nav %}
 
 
-        {% block search_form  %}
-            {% include "search/search_form_insert.html" %}
-        {% endblock search_form %}
-
-
         {% if messages %}
           {% include "messages.html" %}
         {% endif %}
@@ -100,7 +95,7 @@
         <script type="text/javascript" src="{% static 'js/button_top.js' %}"></script>-->
 
         <!-- Navbar Color Change on Scroll !-->
-        <script type="text/javascript" src="{% static 'js/navbarscroll.js' %}"></script>
+        <!-- <script type="text/javascript" src="{% static 'js/navbarscroll.js' %}"></script> -->
 
         <!-- Message Timeout button !-->
         <script type="text/javascript" src="{% static 'js/message_timeout.js' %}"></script>

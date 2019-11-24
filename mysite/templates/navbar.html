@@ -19,7 +19,6 @@
                       <input type="text" placeholder="Search for bumper stickers" name="q" id="q" autocomplete="off">
                        <button type="submit" class="search-icon" href="#"><i class="fa fa-search fs-20" aria-hidden="true"></i></button>
                       <div id="selction-ajax"></div>
-
                   </div>
               </div>
           </form>
@@ -86,15 +85,16 @@
     <!-- Custom Navigation 100 !-->
     <div class="unhide" style="width:0; height:0; left:0; top: 0; position; fixed;">
       <div class="navigation__bar"></div>
+
         <input type="checkbox" class="navigation__checkbox" style="display: none;" id="navi-toggle">
+        <input type="checkbox" class="navigation__search__checkbox" style="display: none;" id="navi-search-toggle">
+
         <label for="navi-toggle" class="navigation__button">
             <span class="navigation__icon">&nbsp;</span>
         </label>
 
-        <label for="">
-            <a class="navigation__search" href="{% url 'haystack_search' %}">
-              <span class="mt-5"><i class="fa fa-search" aria-hidden="true"></i></span>
-            </a>
+        <label for="navi-search-toggle" class="navigation__search__icon">
+              <span><i class="fa fa-search" aria-hidden="true"></i></span>
         </label>
         <a class="navigation__logo" href="/">
           <span class="mt-4 fs-18">Brave</span>
@@ -103,9 +103,20 @@
           <span class="mt-4"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
         </a>
 
+
+
         <!-- <div class="navigation__background-search">&nbsp;</div> -->
         <div class="navigation__background">&nbsp;</div>
         <div class="navigation__background-2">&nbsp;</div>
+
+        <div class="navigation__search__bar">
+            <form class="navigation__search__input" action="/find/" method="get" >
+                    <div class="float-center">
+                        <input type="text" placeholder="Search for bumper stickers" name="q" id="q" autocomplete="off">
+                        <div id="selction-ajax"></div>
+                </div>
+            </form>
+        </div>
 
 
         <nav class="navigation__nav">
