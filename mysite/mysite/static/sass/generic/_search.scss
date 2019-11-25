@@ -74,7 +74,7 @@
     -webkit-rtl-ordering: logical;
     cursor: text;
     color: #222 !important;
-    padding: .65rem .75rem 0.65rem 1rem;
+    padding: .65rem 6rem 0.65rem 1rem;
 
     &:hover, &:active, &:focus{
       transition: .3s;
@@ -87,10 +87,9 @@
 .input-button {
     position: absolute;
     right: .9rem;
-    top: 26%;
+    top: 3.5rem;
     z-index: 2;
-    height: 48;
-    padding: .73rem .73rem;
+    height: 49px;
 
     &:hover, &:active, &:focus{
       box-shadow: none;
@@ -187,21 +186,6 @@ width: 35%;
 */
 
 
-// ************** MOBILE SEARCH BAR ****************
-
-// .navigation__search__form__background {
-//     padding: .75rem 2rem;
-//     background-color: $color-white;
-//     box-shadow: $box-shadow-1;
-//     width: 100%;
-//     border-radius: 3rem;
-//
-//     form {
-//         margin-bottom: 0;
-//     }
-// }
-
-
 .navigation__search__input {
     text-align: center;
 
@@ -248,7 +232,7 @@ width: 35%;
   width: 100%;
   position: fixed;
   left: 0;
-  top: 65px;
+  top: -65px;
   background-color: $color-main;
   border-bottom: 1px solid #ddd;
   z-index: 10;
@@ -272,7 +256,7 @@ width: 35%;
 
 
 .navigation__search__checkbox:checked ~ .navigation__search__bar {
-  transform: translateY(-150%);
+  transform: translateY(150%);
   opacity: 1; }
 
 
