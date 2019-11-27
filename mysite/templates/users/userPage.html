@@ -64,14 +64,14 @@ a:hover {
 
 <!-- Body Start -->
 <section class="section-sm container">
-  <h2 class="fw-6 hide">My Account</h2>
-  <span class="fs-14 hide text-muted">Welcome Back, {{ user }}!</span>
+  <h2 class="fw-6 hide mb-2">My Account</h2>
+  <span class="fs-14 hide text-secondary">Welcome Back, {{ user }}!</span>
       {% block component %}
         {% include "users/profile_nav.html" %}
       {% endblock component %}
         <div class="row mt-2">
             <div class="col-lg-12 mb-4">
-                <div class="card shadow-2 card-border unhide">
+                <div class="card shadow-2  unhide">
                     <div class="card-body">
                         <h2 class="fw-6">My Account</h2>
                         <span class="fs-14 text-muted">Welcome Back, {{ user }}!</span>
@@ -116,11 +116,11 @@ a:hover {
 
             <div class="col-lg-8 mb-4">
                 <span class="anchor" id="orders"></span>
-                <div class="card shadow-2 card-border">
+                <div class="card shadow-2 card-border ">
                     <div class="text-center table-responsive">
                         <table class="table table-hover">
                             <thead>
-                                <tr class="text-uppercase ">
+                                <tr class="text-uppercase card-header">
                                   <th scope="col"><span class="fs-14">Order #</span></th>
                                   <th scope="col"><span class="fs-14">Date</span></th>
                                   <th scope="col"><span class="fs-14">Status</span></th>
@@ -143,8 +143,9 @@ a:hover {
                     </div>
                 </div>
       	    </div>
+            {% if address.street != none %}
             <div class="col-lg-4">
-                <div class="card card-border shadow-2">
+                <div class="card shadow-0 card-border">
                     <table class="table">
                     <thead>
                         <tr class="text-uppercase ">
@@ -155,10 +156,12 @@ a:hover {
                     <div class="row px-3 fs-14">
                         <div class="col-lg-6">
                             <address>
+
                                 {{ address.street_address }} <br>
                                 {{ address.city }}, {{ address.state }} <br>
                                 {{ address.zip }}, {{ address.country }}
                                 {{ address.apartment_address }} <br>
+
                             </address>
                         </div>
                         <div class="col-lg-6">
@@ -169,6 +172,7 @@ a:hover {
                     </div>
                 </div>
             </div>
+            {% endif %}
 
       </div>
       <div class="py-5 hide"></div><div class="py-5 hide"></div>

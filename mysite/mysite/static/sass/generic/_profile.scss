@@ -24,7 +24,7 @@
 
 
   &-active {
-      color: $color-dark;
+      color: $color-black;
       border-bottom: 2px solid $color-black;
       padding-bottom: 17px;
       text-decoration: none;
@@ -33,7 +33,7 @@
 
   &:hover, &:active {
     text-decoration: none;
-    color: $color-dark;
+    color: $color-black;
     border-bottom: 2px solid $color-black;
     padding-bottom: 17px;
     }

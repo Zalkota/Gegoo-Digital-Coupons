@@ -59,7 +59,7 @@
                   </li>
                 {% endif %}
                 <li class="nav-item">
-                  <a class="nav-link pt-0" href="{% url 'shoppingcart:order-summary' %}" id=""><i class="fa fa-shopping-cart fs-28" aria-hidden="true"></i></a>
+                  <a class="nav-link pt-0" href="{% url 'shoppingcart:order-summary' %}" id=""><i class="fa fa-shopping-cart " style="font-size: 30px;" aria-hidden="true"></i></a>
                 </li>
               </ul>
           </div>
@@ -104,7 +104,6 @@
         </a>
 
 
-
         <!-- <div class="navigation__background-search">&nbsp;</div> -->
         <div class="navigation__background">&nbsp;</div>
         <div class="navigation__background-2">&nbsp;</div>
@@ -120,7 +119,6 @@
 
 
         <nav class="navigation__nav">
-
             <ul class="navigation__list">
               {% if not request.user.is_authenticated %}
               <li class="navigation__item mb-3"><a href="{% url 'account_signup' %}" class="btn btn-primary-alt px-4 py-2" style="">Join </a></li>

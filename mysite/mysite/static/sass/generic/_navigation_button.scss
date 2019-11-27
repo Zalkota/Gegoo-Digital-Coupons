@@ -81,19 +81,38 @@
     .navigation__list {
       position: absolute;
       top: 10%;
-      left: 45%;
+      left: 62.75%;
       transform: translate(50%, 0%);
       list-style: none;
       text-align: left;
-      width: 100%; }
+      padding-left: 0;
+      width: 75%; }
 
     .navigation__item {
-      margin: 1rem 1rem 1rem 0.5rem;
-      font-size: 1rem;
-      width: 60%;
-      max-width: 8rem;
-    }
+        padding: 1rem 0 1rem 3rem;
+        font-size: 1rem;
+        width: 100%;
 
+        .active {
+          background-color: $color-blue-gray-100;
+          color: $color-primary !important;
+          border-right: 6px solid $color-primary;
+
+          .navigation__link {
+              color: $color-primary !important;
+            }
+        }
+
+        &:hover, &:active, &:focus{
+            background-color: $color-blue-gray-100;
+            color: $color-primary !important;
+            border-right: 6px solid $color-primary;
+
+            .navigation__link {
+                color: $color-primary !important;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 767px) {

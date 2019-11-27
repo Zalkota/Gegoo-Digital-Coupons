@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width ,  user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Refactoring UI Icons Preview</title>
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+
+	<!--
+		Switch between these stylesheets to see some examples of different icon color schemes.
+	-->
+	<link href="samples/css/sample1.css" rel="stylesheet" type="text/css">
+	<!-- <link href="samples/css/sample2.css" rel="stylesheet" type="text/css"> -->
+	<!-- <link href="samples/css/sample3.css" rel="stylesheet" type="text/css"> -->
+	<!-- <link href="samples/css/sample4.css" rel="stylesheet" type="text/css"> -->
+
+</head>
+<body class="font-sans text-grey-darkest leading-tight">
+	<div class="max-w-xl mx-auto px-6 py-10">
+		<div class="flex flex-wrap">
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-add-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13 11h4a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4z"/></svg>
+				<span>icon-add-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-add-square"><rect width="18" height="18" x="3" y="3" class="primary" rx="2"/><path class="secondary" d="M13 11h4a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4z"/></svg>
+				<span>icon-add-square</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-add"><path class="secondary" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>
+				<span>icon-add</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-airplane"><path class="secondary" d="M19 11.9l2.7 1.14c.18.08.3.26.3.46v2a.5.5 0 0 1-.6.49L12 14 2.6 16a.5.5 0 0 1-.6-.49v-2c0-.2.12-.38.3-.46L5 11.9V10a1 1 0 1 1 2 0v1.06l4.8-2.02a.5.5 0 0 1 .4 0l4.8 2.02V10a1 1 0 0 1 2 0v1.9z"/><path class="primary" d="M12 2a2 2 0 0 1 2 2v8l-1 8h-2l-1-8V4c0-1.1.9-2 2-2z"/><path class="secondary" d="M8.64 22.98c-.32.1-.64-.17-.64-.54v-1.1c0-.19.08-.35.2-.46l3.5-2.78c.18-.13.42-.13.6 0l3.5 2.78c.12.1.2.27.2.45v1.11c0 .37-.32.64-.64.54L12 21.9l-3.36 1.07z"/></svg>
+				<span>icon-airplane</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-announcement"><path class="primary" d="M5.04 14.3l-.1-.3H4a2 2 0 0 1-2-2v-2c0-1.1.9-2 2-2h1a1 1 0 0 1 1-1h6.34a3 3 0 0 0 2.12-.88l1.66-1.66A5 5 0 0 1 19.66 3H21a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-1.34a5 5 0 0 1-3.54-1.46l-1.66-1.66a3 3 0 0 0-2.12-.88H11v5a1 1 0 0 1-1 1H8a1 1 0 0 1-.95-.68l-2-5.98a1 1 0 0 1 0-.05z"/><rect width="8" height="10" x="4" y="6" class="secondary" rx="1"/></svg>
+				<span>icon-announcement</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-application"><path class="primary" d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm0 6v10h16V9H4z"/><path class="secondary" d="M5 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm3 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm3 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+				<span>icon-application</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-archive"><path class="primary" d="M5.23 3h13.54a2 2 0 0 1 1.98 2.22l-1.55 14A2 2 0 0 1 17.2 21H6.79a2 2 0 0 1-1.99-1.78l-1.55-14A2 2 0 0 1 5.23 3z"/><path class="secondary" d="M10.59 14l-2.3-2.3a1 1 0 0 1 1.42-1.4L12 12.58l2.3-2.3a1 1 0 0 1 1.4 1.42L13.42 14l2.3 2.3a1 1 0 0 1-1.42 1.4L12 15.42l-2.3 2.3a1 1 0 1 1-1.4-1.42L10.58 14zM4 3h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5c0-1.1.9-2 2-2z"/></svg>
+				<span>icon-archive</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-arrow-thick-down-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M10 12V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h2a1 1 0 0 1 .7 1.7l-4 4a1 1 0 0 1-1.4 0l-4-4A1 1 0 0 1 8 12h2z"/></svg>
+				<span>icon-arrow-thick-down-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-arrow-thick-left-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12 10h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5v2a1 1 0 0 1-1.7.7l-4-4a1 1 0 0 1 0-1.4l4-4A1 1 0 0 1 12 8v2z"/></svg>
+				<span>icon-arrow-thick-left-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-arrow-thick-right-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12 14H7a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h5V8a1 1 0 0 1 1.7-.7l4 4a1 1 0 0 1 0 1.4l-4 4A1 1 0 0 1 12 16v-2z"/></svg>
+				<span>icon-arrow-thick-right-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-arrow-thick-up-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M14 12v5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-5H8a1 1 0 0 1-.7-1.7l4-4a1 1 0 0 1 1.4 0l4 4A1 1 0 0 1 16 12h-2z"/></svg>
+				<span>icon-arrow-thick-up-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-arrow-thin-down-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M11 14.59V7a1 1 0 0 1 2 0v7.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+				<span>icon-arrow-thin-down-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-arrow-thin-left-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M9.41 11H17a1 1 0 0 1 0 2H9.41l2.3 2.3a1 1 0 1 1-1.42 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.42 1.4L9.4 11z"/></svg>
+				<span>icon-arrow-thin-left-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-arrow-thin-right-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M14.59 13H7a1 1 0 0 1 0-2h7.59l-2.3-2.3a1 1 0 1 1 1.42-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-1.42-1.4l2.3-2.3z"/></svg>
+				<span>icon-arrow-thin-right-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-arrow-thin-up-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13 9.41V17a1 1 0 0 1-2 0V9.41l-2.3 2.3a1 1 0 1 1-1.4-1.42l4-4a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1-1.4 1.42L13 9.4z"/></svg>
+				<span>icon-arrow-thin-up-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-arrows-merge"><path class="primary" d="M10 6h4v1.86a8 8 0 0 0 2.34 5.65l5.37 5.37a1 1 0 0 1 0 1.41l-1.42 1.42a1 1 0 0 1-1.41 0l-5.37-5.37A12 12 0 0 1 10 7.86V6z"/><path class="secondary" d="M13.95 9a12 12 0 0 1-3.46 7.34l-5.37 5.37a1 1 0 0 1-1.41 0l-1.42-1.42a1 1 0 0 1 0-1.41l5.37-5.37A8 8 0 0 0 9.92 9H7a1 1 0 0 1-.7-1.7l5-5a1 1 0 0 1 1.4 0l5 5A1 1 0 0 1 17 9h-3.05z"/></svg>
+				<span>icon-arrows-merge</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-arrows-split"><path class="primary" d="M18.7 8.12l-2.36 2.37A8 8 0 0 0 14 16.14V21a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-4.86a12 12 0 0 1 3.51-8.48l2.37-2.37-1.59-1.58A1 1 0 0 1 15 2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1.7.7l-1.6-1.58z"/><path class="secondary" d="M8.12 5.3l2.37 2.36A12 12 0 0 1 14 16.14V21a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-4.86a8 8 0 0 0-2.34-5.65L5.29 8.12 3.71 9.71A1 1 0 0 1 2 9V3a1 1 0 0 1 1-1h6a1 1 0 0 1 .7 1.7L8.13 5.3z"/></svg>
+				<span>icon-arrows-split</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-asterisk"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M11 10.62V7a1 1 0 0 1 2 0v3.62l3.45-1.12a1 1 0 0 1 .61 1.9l-3.44 1.13 2.13 2.93a1 1 0 0 1-1.62 1.17L12 13.7l-2.13 2.93a1 1 0 1 1-1.62-1.17l2.13-2.93-3.44-1.12a1 1 0 1 1 .61-1.9L11 10.61z"/></svg>
+				<span>icon-asterisk</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-at"><path class="secondary" d="M15.6 15.47A4.99 4.99 0 0 1 7 12a5 5 0 0 1 10 0v1.5a1.5 1.5 0 1 0 3 0V12a8 8 0 1 0-4.94 7.4 1 1 0 1 1 .77 1.84A10 10 0 1 1 22 12v1.5a3.5 3.5 0 0 1-6.4 1.97zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+				<span>icon-at</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-attach"><path class="secondary" d="M20.12 11.95l-6.58 6.59a5 5 0 1 1-7.08-7.07l6.59-6.6a3 3 0 0 1 4.24 4.25l-6.58 6.59a1 1 0 1 1-1.42-1.42l6.59-6.58a1 1 0 0 0-1.42-1.42l-6.58 6.59a3 3 0 0 0 4.24 4.24l6.59-6.58a5 5 0 0 0-7.08-7.08l-6.58 6.6a7 7 0 0 0 9.9 9.9l6.59-6.6a1 1 0 0 0-1.42-1.4z"/></svg>
+				<span>icon-attach</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-battery-full"><path class="primary" d="M20 9h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v1zM4 8v8h14V8H4z"/><rect width="10" height="4" x="6" y="10" class="secondary"/></svg>
+				<span>icon-battery-full</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-battery-half"><path class="primary" d="M20 9h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v1zM4 8v8h14V8H4z"/><rect width="6" height="4" x="6" y="10" class="secondary"/></svg>
+				<span>icon-battery-half</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-bolt"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M14 10h2a1 1 0 0 1 .81 1.58l-5 7A1 1 0 0 1 10 18v-4H8a1 1 0 0 1-.81-1.58l5-7A1 1 0 0 1 14 6v4z"/></svg>
+				<span>icon-bolt</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-book-closed"><rect width="18" height="18" x="3" y="3" class="primary" rx="2"/><path class="secondary" d="M7 3h10v11a1 1 0 0 1-1.45.9L12 13.11l-3.55 1.77A1 1 0 0 1 7 14V3z"/></svg>
+				<span>icon-book-closed</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-book-open"><path class="primary" d="M13.41 20.41a2 2 0 0 1-2.82 0l-.83-.82A2 2 0 0 0 8.34 19H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4a5 5 0 0 1 4 2 5 5 0 0 1 4-2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4.34a2 2 0 0 0-1.42.59l-.83.82z"/><path class="secondary" d="M12 21V5a5 5 0 0 1 4-2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4.34a2 2 0 0 0-1.42.59l-.83.82A2 2 0 0 1 12 21z"/></svg>
+				<span>icon-book-open</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-box"><path class="primary" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm4 7a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2H9z"/><path class="secondary" d="M4 3h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5c0-1.1.9-2 2-2z"/></svg>
+				<span>icon-box</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-brick"><path class="primary" d="M3 6l9 4v12l-9-4V6zm14-3v2c0 1.1-2.24 2-5 2s-5-.9-5-2V3c0 1.1 2.24 2 5 2s5-.9 5-2z"/><polygon class="secondary" points="21 6 12 10 12 22 21 18"/></svg>
+				<span>icon-brick</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-bug"><path class="secondary" d="M3 9a1 1 0 1 1 2 0c0 1.1.9 2 2 2h1v2H7a4 4 0 0 1-4-4zm18 0a4 4 0 0 1-4 4h-1v-2h1a2 2 0 0 0 2-2 1 1 0 0 1 2 0zM4 21a4 4 0 0 1 4-4h1v2H8a2 2 0 0 0-2 2 1 1 0 0 1-2 0zm-1-7h4a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2zm14 0h4a1 1 0 0 1 0 2h-4a1 1 0 0 1 0-2zm3 7a1 1 0 0 1-2 0 2 2 0 0 0-2-2h-1v-2h1a4 4 0 0 1 4 4zM8.27 3.67a5 5 0 0 1 7.46 0A2 2 0 0 1 14.23 7H9.77a2 2 0 0 1-1.49-3.33z"/><path class="primary" d="M13 19.58V13a1 1 0 0 0-2 0v6.58a1 1 0 0 1-1.4.92A6 6 0 0 1 6 15v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3a6 6 0 0 1-3.6 5.5 1 1 0 0 1-1.4-.92z"/></svg>
+				<span>icon-bug</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-buoy"><path class="primary" d="M9.08 21.57a10.02 10.02 0 0 1-6.65-6.65A2 2 0 0 1 1 13v-2a2 2 0 0 1 1.43-1.92 10.02 10.02 0 0 1 6.65-6.65A2 2 0 0 1 11 1h2a2 2 0 0 1 1.92 1.43c3.17.97 5.68 3.48 6.65 6.65A2 2 0 0 1 23 11v2a2 2 0 0 1-1.43 1.92 10.02 10.02 0 0 1-6.65 6.65A2 2 0 0 1 13 23h-2a2 2 0 0 1-1.92-1.43zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path class="secondary" d="M7.53 3.05a9.96 9.96 0 0 1 8.94 0L13.8 8.42a3.98 3.98 0 0 0-3.58 0L7.53 3.05zM3.05 16.47a9.96 9.96 0 0 1 0-8.94l5.37 2.68a3.98 3.98 0 0 0 0 3.58l-5.37 2.68zm4.48 4.48l2.68-5.37a3.98 3.98 0 0 0 3.58 0l2.68 5.37a9.96 9.96 0 0 1-8.94 0zM20.95 7.53a9.96 9.96 0 0 1 0 8.94l-5.37-2.68a3.98 3.98 0 0 0 0-3.58l5.37-2.68z"/></svg>
+				<span>icon-buoy</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-calculator"><path class="primary" d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2zm2 3a1 1 0 1 0 0 2h8a1 1 0 0 0 0-2H8zm0 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm4 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm4 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-8 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm4 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-4 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm4 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/><rect width="2" height="6" x="15" y="13" class="secondary" rx="1"/></svg>
+				<span>icon-calculator</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-calendar-add"><path class="primary" d="M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2zm0 5v10h14V9H5z"/><path class="secondary" d="M13 13h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H9a1 1 0 0 1 0-2h2v-2a1 1 0 0 1 2 0v2zM7 2a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm10 0a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1z"/></svg>
+				<span>icon-calendar-add</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-calendar-date"><path class="primary" d="M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2zm0 5v10h14V9H5z"/><path class="secondary" d="M13 13h3v3h-3v-3zM7 2a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm10 0a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1z"/></svg>
+				<span>icon-calendar-date</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-calendar-remove"><path class="primary" d="M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2zm0 5v10h14V9H5z"/><path class="secondary" d="M7 2a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm10 0a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm-2 13H9a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2z"/></svg>
+				<span>icon-calendar-remove</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-calendar"><path class="primary" d="M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2zm0 5v10h14V9H5z"/><path class="secondary" d="M7 2a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm10 0a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1z"/></svg>
+				<span>icon-calendar</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-camera"><path class="primary" d="M6.59 6l2.7-2.7A1 1 0 0 1 10 3h4a1 1 0 0 1 .7.3L17.42 6H20a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8c0-1.1.9-2 2-2h2.59zM19 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-7 8a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/><path class="secondary" d="M12 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+				<span>icon-camera</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-certificate"><path class="primary" d="M4 3h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm16 12V7a2 2 0 0 1-2-2H6a2 2 0 0 1-2 2v8a2 2 0 0 1 2 2h12c0-1.1.9-2 2-2zM8 7h8a1 1 0 0 1 0 2H8a1 1 0 1 1 0-2z"/><path class="secondary" d="M11.65 18.23a4 4 0 1 1 4.7 0l2.5 3.44-2.23-.18-1.48 1.68-.59-4.2a4.04 4.04 0 0 1-1.1 0l-.6 4.2-1.47-1.68-2.23.18 2.5-3.44zM14 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+				<span>icon-certificate</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-chart"><path class="primary" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm11 4a1 1 0 0 0-1 1v8a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z"/><path class="secondary" d="M8 11a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm4-2a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0v-6a1 1 0 0 1 1-1z"/></svg>
+				<span>icon-chart</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-chat-group-alt"><rect width="16" height="13" x="2" y="2" class="secondary" rx="2"/><path class="primary" d="M6 16V8c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v13a1 1 0 0 1-1.7.7L16.58 18H8a2 2 0 0 1-2-2z"/></svg>
+				<span>icon-chat-group-alt</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-chat-group"><path class="primary" d="M20.3 12.04l1.01 3a1 1 0 0 1-1.26 1.27l-3.01-1a7 7 0 1 1 3.27-3.27zM11 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path class="secondary" d="M15.88 17.8a7 7 0 0 1-8.92 2.5l-3 1.01a1 1 0 0 1-1.27-1.26l1-3.01A6.97 6.97 0 0 1 5 9.1a9 9 0 0 0 10.88 8.7z"/></svg>
+				<span>icon-chat-group</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-chat"><path class="primary" d="M2 15V5c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v15a1 1 0 0 1-1.7.7L16.58 17H4a2 2 0 0 1-2-2z"/><path class="secondary" d="M6 7h12a1 1 0 0 1 0 2H6a1 1 0 1 1 0-2zm0 4h8a1 1 0 0 1 0 2H6a1 1 0 0 1 0-2z"/></svg>
+				<span>icon-chat</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-check"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+				<span>icon-check</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-cheveron-down-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
+				<span>icon-cheveron-down-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-cheveron-down"><path class="secondary" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
+				<span>icon-cheveron-down</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-cheveron-left-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13.7 15.3a1 1 0 0 1-1.4 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.4 1.4L10.42 12l3.3 3.3z"/></svg>
+				<span>icon-cheveron-left-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-cheveron-right-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M10.3 8.7a1 1 0 0 1 1.4-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-1.4-1.4l3.29-3.3-3.3-3.3z"/></svg>
+				<span>icon-cheveron-right-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-cheveron-selection"><path class="secondary" fill-rule="evenodd" d="M8.7 9.7a1 1 0 1 1-1.4-1.4l4-4a1 1 0 0 1 1.4 0l4 4a1 1 0 1 1-1.4 1.4L12 6.42l-3.3 3.3zm6.6 4.6a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
+				<span>icon-cheveron-selection</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-cheveron-up-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M8.7 13.7a1 1 0 1 1-1.4-1.4l4-4a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1-1.4 1.4L12 10.42l-3.3 3.3z"/></svg>
+				<span>icon-cheveron-up-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-cheveron-up"><path class="secondary" fill-rule="evenodd" d="M8.7 13.7a1 1 0 1 1-1.4-1.4l4-4a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1-1.4 1.4L12 10.42l-3.3 3.3z"/></svg>
+				<span>icon-cheveron-up</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-click-target"><path class="primary" d="M21.97 12.73c-.25-.22-.56-.4-.92-.54L20 11.8a8 8 0 1 0-8.2 8.2l.4 1.06c.12.36.3.67.53.92a10 10 0 1 1 9.25-9.25zm-10.95 5.19a6 6 0 1 1 6.9-6.9l-2.39-.9a4 4 0 1 0-5.41 5.41l.9 2.39z"/><path class="secondary" d="M17.96 16.54l3.75 3.75a1 1 0 0 1-1.42 1.42l-3.75-3.75-.57 2.28a1 1 0 0 1-1.9.11l-3-8a1 1 0 0 1 1.28-1.29l8 3a1 1 0 0 1-.1 1.91l-2.3.57z"/></svg>
+				<span>icon-click-target</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-close-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+				<span>icon-close-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-close-square"><rect width="18" height="18" x="3" y="3" class="primary" rx="2"/><path class="secondary" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+				<span>icon-close-square</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-close"><path class="secondary" fill-rule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z"/></svg>
+				<span>icon-close</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-cloud-download"><path class="primary" d="M15 15v-3a3 3 0 0 0-6 0v3H6a4 4 0 0 1-.99-7.88 5.5 5.5 0 0 1 10.86-.82A4.49 4.49 0 0 1 22 10.5a4.5 4.5 0 0 1-4.5 4.5H15z"/><path class="secondary" d="M11 18.59V12a1 1 0 0 1 2 0v6.59l1.3-1.3a1 1 0 0 1 1.4 1.42l-3 3a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l1.3 1.3z"/></svg>
+				<span>icon-cloud-download</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-cloud-upload"><path class="primary" d="M18 14.97c0-.76-.3-1.51-.88-2.1l-3-3a3 3 0 0 0-4.24 0l-3 3A3 3 0 0 0 6 15a4 4 0 0 1-.99-7.88 5.5 5.5 0 0 1 10.86-.82A4.49 4.49 0 0 1 22 10.5a4.5 4.5 0 0 1-4 4.47z"/><path class="secondary" d="M11 14.41V21a1 1 0 0 0 2 0v-6.59l1.3 1.3a1 1 0 0 0 1.4-1.42l-3-3a1 1 0 0 0-1.4 0l-3 3a1 1 0 0 0 1.4 1.42l1.3-1.3z"/></svg>
+				<span>icon-cloud-upload</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-clouds"><path class="secondary" d="M16.85 6.06A3.52 3.52 0 0 1 21 9.5a3.5 3.5 0 0 1-6.96.5H14a3 3 0 1 1 2.85-3.94z"/><path class="primary" d="M5.03 12.12A5.5 5.5 0 0 1 16 11.26 4.5 4.5 0 1 1 17.5 20H6a4 4 0 0 1-.97-7.88z"/></svg>
+				<span>icon-clouds</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-code"><rect width="18" height="18" x="3" y="3" class="primary" rx="2"/><path class="secondary" d="M8.7 13.3a1 1 0 0 1-1.4 1.4l-2-2a1 1 0 0 1 0-1.4l2-2a1 1 0 1 1 1.4 1.4L7.42 12l1.3 1.3zm6.6 0l1.29-1.3-1.3-1.3a1 1 0 1 1 1.42-1.4l2 2a1 1 0 0 1 0 1.4l-2 2a1 1 0 0 1-1.42-1.4zm-3.32 3.9a1 1 0 0 1-1.96-.4l2-10a1 1 0 0 1 1.96.4l-2 10z"/></svg>
+				<span>icon-code</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-cog"><path class="primary" d="M6.8 3.45c.87-.52 1.82-.92 2.83-1.17a2.5 2.5 0 0 0 4.74 0c1.01.25 1.96.65 2.82 1.17a2.5 2.5 0 0 0 3.36 3.36c.52.86.92 1.8 1.17 2.82a2.5 2.5 0 0 0 0 4.74c-.25 1.01-.65 1.96-1.17 2.82a2.5 2.5 0 0 0-3.36 3.36c-.86.52-1.8.92-2.82 1.17a2.5 2.5 0 0 0-4.74 0c-1.01-.25-1.96-.65-2.82-1.17a2.5 2.5 0 0 0-3.36-3.36 9.94 9.94 0 0 1-1.17-2.82 2.5 2.5 0 0 0 0-4.74c.25-1.01.65-1.96 1.17-2.82a2.5 2.5 0 0 0 3.36-3.36zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><circle cx="12" cy="12" r="2" class="secondary"/></svg>
+				<span>icon-cog</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-collection"><rect width="20" height="12" x="2" y="10" class="primary" rx="2"/><path class="secondary" d="M20 8H4c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2zm-2-4H6c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2z"/></svg>
+				<span>icon-collection</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-compass"><path class="primary" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="secondary" d="M13.71 13.03a2 2 0 0 0-2.75-2.75l5.39-4.03c.92-.7 2.1.48 1.4 1.4l-4.04 5.38zm-.3.38zm-.38.3l-5.38 4.04c-.92.7-2.1-.48-1.4-1.4l4.04-5.38a2 2 0 0 0 2.75 2.75zM10.6 10.6z"/></svg>
+				<span>icon-comp</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-credit-card"><path class="primary" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2zm13 12a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm-6 0a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2z"/><rect width="20" height="4" x="2" y="7" class="secondary"/></svg>
+				<span>icon-credit-card</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-currency-dollar"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13 7.12v3.96c2.25.36 4 1.93 4 3.92 0 2-1.75 3.56-4 3.92V19a1 1 0 0 1-2 0v-.08a4.82 4.82 0 0 1-3.67-2.49 1 1 0 0 1 1.8-.85c.29.6.98 1.09 1.87 1.3v-3.96C8.75 12.56 7 11 7 9c0-2 1.75-3.56 4-3.92V5a1 1 0 0 1 2 0v.08a4.81 4.81 0 0 1 3.68 2.5 1 1 0 0 1-1.81.85c-.28-.6-.98-1.1-1.87-1.31zm-2 3.76V7.12C9.81 7.4 9 8.18 9 9c0 .82.81 1.6 2 1.88zm2 2.24v3.76c1.19-.28 2-1.06 2-1.88 0-.82-.81-1.6-2-1.88z"/></svg>
+				<span>icon-currency-dollar</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-currency-euro"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M7.1 11H13a1 1 0 0 1 0 2H7.1a5 5 0 0 0 8.44 2.54 1 1 0 0 1 1.41 1.41A7 7 0 0 1 5.07 13H5a1 1 0 0 1 0-2h.07a7 7 0 0 1 11.88-3.95 1 1 0 1 1-1.41 1.41A5 5 0 0 0 7.1 11z"/></svg>
+				<span>icon-currency-euro</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-dashboard"><path class="secondary" d="M3 11h2a1 1 0 0 1 0 2H3v-2zm3.34-6.07l1.42 1.41a1 1 0 0 1-1.42 1.42L4.93 6.34l1.41-1.41zM13 3v2a1 1 0 0 1-2 0V3h2zm6.07 3.34l-1.41 1.42a1 1 0 1 1-1.42-1.42l1.42-1.41 1.41 1.41zM21 13h-2a1 1 0 0 1 0-2h2v2z"/><path class="primary" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-6.93-6h13.86a8 8 0 1 0-13.86 0z"/><path class="secondary" d="M11 14.27V9a1 1 0 0 1 2 0v5.27a2 2 0 1 1-2 0z"/></svg>
+				<span>icon-dashboard</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-deliver"><path class="secondary" d="M20 18a3 3 0 0 0-6 0 1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h5.33a1 1 0 0 1 .95.68l1.67 5c.03.1.05.21.05.32v3a1 1 0 0 1-1 1h-1zm-.39-5l-1-3H16v3h3.61zM7 20a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm10 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/><path class="primary" d="M10 18a3 3 0 0 0-6 0H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v12h-4z"/></svg>
+				<span>icon-deliver</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-desktop"><path class="primary" d="M4 2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2zm0 2v10h16V4H4zm4 16a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v.59l.7.7A1 1 0 0 1 16 23H8a1 1 0 0 1-.7-1.7l.7-.71V20z"/><path class="secondary" d="M2 14h20v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2z"/></svg>
+				<span>icon-desktop</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-device-smartphone"><path class="primary" d="M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2z"/><path class="secondary" d="M12 20a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+				<span>icon-device-smartphone</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-device-tablet"><path class="primary" d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2z"/><path class="secondary" d="M12 20a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+				<span>icon-device-tablet</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-discount"><path class="primary" d="M10.75 21.19l-.85.28c-1.21.4-2.53-.15-3.1-1.29l-.4-.8a4 4 0 0 0-1.78-1.77l-.8-.4a2.57 2.57 0 0 1-1.29-3.1l.28-.86a4 4 0 0 0 0-2.5l-.28-.85c-.4-1.21.15-2.53 1.29-3.1l.8-.4a4 4 0 0 0 1.77-1.78l.4-.8a2.57 2.57 0 0 1 3.1-1.29l.86.28a4 4 0 0 0 2.5 0l.85-.28c1.21-.4 2.53.15 3.1 1.29l.4.8a4 4 0 0 0 1.78 1.77l.8.4a2.57 2.57 0 0 1 1.29 3.1l-.28.86a4 4 0 0 0 0 2.5l.28.85c.4 1.21-.15 2.53-1.29 3.1l-.8.4a4 4 0 0 0-1.77 1.78l-.4.8a2.57 2.57 0 0 1-3.1 1.29l-.86-.28a4 4 0 0 0-2.5 0z"/><path class="secondary" d="M8.7 16.7a1 1 0 1 1-1.4-1.4l8-8a1 1 0 0 1 1.4 1.4l-8 8zm6.8.3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-7-7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
+				<span>icon-discount</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-document-add"><path class="primary" d="M6 2h6v6c0 1.1.9 2 2 2h6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2z"/><path class="secondary" d="M13 15h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H9a1 1 0 0 1 0-2h2v-2a1 1 0 0 1 2 0v2z"/><polygon class="secondary" points="14 2 20 8 14 8"/></svg>
+				<span>icon-document-add</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-document-notes"><path class="primary" d="M6 2h6v6c0 1.1.9 2 2 2h6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2zm2 11a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2H8zm0 4a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2H8z"/><polygon class="secondary" points="14 2 20 8 14 8"/></svg>
+				<span>icon-document-notes</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-document-remove"><path class="primary" d="M6 2h6v6c0 1.1.9 2 2 2h6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2z"/><rect width="8" height="2" x="8" y="15" class="secondary" rx="1"/><polygon class="secondary" points="14 2 20 8 14 8"/></svg>
+				<span>icon-document-remove</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-document"><path class="primary" d="M6 2h6v6c0 1.1.9 2 2 2h6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2z"/><polygon class="secondary" points="14 2 20 8 14 8"/></svg>
+				<span>icon-document</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-door-enter"><path class="primary" d="M13 4V3a1 1 0 0 1 1.27-.96l6.98 2A1 1 0 0 1 22 5v14a1 1 0 0 1-.75.97l-6.98 2A1 1 0 0 1 13 21v-1h-3a1 1 0 0 1-1-1v-2a1 1 0 0 1 2 0v1h2V6h-2v1a1 1 0 0 1-2 0V5a1 1 0 0 1 1-1h3z"/><path class="secondary" d="M7.59 11l-1.3-1.3c-.94-.94.47-2.35 1.42-1.4l3 3a1 1 0 0 1 0 1.4l-3 3c-.95.95-2.36-.46-1.42-1.4L7.6 13H3a1 1 0 0 1 0-2h4.59z"/></svg>
+				<span>icon-door-enter</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-door-exit"><path class="primary" d="M11 4h3a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V6h-2v12h2v-2a1 1 0 0 1 2 0v3a1 1 0 0 1-1 1h-3v1a1 1 0 0 1-1.27.96l-6.98-2A1 1 0 0 1 2 19V5a1 1 0 0 1 .75-.97l6.98-2A1 1 0 0 1 11 3v1z"/><path class="secondary" d="M18.59 11l-1.3-1.3c-.94-.94.47-2.35 1.42-1.4l3 3a1 1 0 0 1 0 1.4l-3 3c-.95.95-2.36-.46-1.42-1.4l1.3-1.3H14a1 1 0 0 1 0-2h4.59z"/></svg>
+				<span>icon-door-exit</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-dots-horizontal"><path class="secondary" fill-rule="evenodd" d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+				<span>icon-dots-horizontal</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-dots-vertical"><path class="secondary" fill-rule="evenodd" d="M12 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+				<span>icon-dots-vertical</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-duplicate"><rect width="14" height="14" x="3" y="3" class="secondary" rx="2"/><rect width="14" height="14" x="7" y="7" class="primary" rx="2"/></svg>
+				<span>icon-duplicate</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-edit"><path class="primary" d="M4 14a1 1 0 0 1 .3-.7l11-11a1 1 0 0 1 1.4 0l3 3a1 1 0 0 1 0 1.4l-11 11a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-3z"/><rect width="20" height="2" x="2" y="20" class="secondary" rx="1"/></svg>
+				<span>icon-edit</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-external-window"><path class="primary" d="M12 8a1 1 0 0 1-1 1H5v10h10v-6a1 1 0 0 1 2 0v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9c0-1.1.9-2 2-2h6a1 1 0 0 1 1 1z"/><path class="secondary" d="M19 6.41L8.7 16.71a1 1 0 1 1-1.4-1.42L17.58 5H14a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V6.41z"/></svg>
+				<span>icon-external-window</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-factory"><path class="primary" d="M21 21H3a1 1 0 0 1-1-1.06l1-16A1 1 0 0 1 4 3h2a1 1 0 0 1 1 .94l.39 6.26 2.9-2.9A1 1 0 0 1 12 8v2.59l3.3-3.3A1 1 0 0 1 17 8v2.59l3.3-3.3A1 1 0 0 1 22 8v12a1 1 0 0 1-1 1z"/><path class="secondary" d="M7 13h3v2H7v-2zm5 0h3v2h-3v-2zm5 0h3v2h-3v-2zM7 17h3v2H7v-2zm5 0h3v2h-3v-2zm5 0h3v2h-3v-2z"/></svg>
+				<span>icon-factory</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-fast-forward"><path class="secondary" d="M1 5a1 1 0 0 1 1.5-.86l12 7a1 1 0 0 1 0 1.72l-12 7A1 1 0 0 1 1 19V5z"/><path class="primary" d="M9 5a1 1 0 0 1 1.5-.86l12 7a1 1 0 0 1 0 1.72l-12 7A1 1 0 0 1 9 19V5z"/></svg>
+				<span>icon-fast-forward</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-fast-rewind"><path class="secondary" d="M22 5a1 1 0 0 0-1.5-.86l-12 7a1 1 0 0 0 0 1.72l12 7A1 1 0 0 0 22 19V5z"/><path class="primary" d="M15 5a1 1 0 0 0-1.5-.86l-12 7a1 1 0 0 0 0 1.72l12 7A1 1 0 0 0 15 19V5z"/></svg>
+				<span>icon-fast-rewind</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-film"><path class="primary" d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm0 2v2h2V5H4zm0 4v2h2V9H4zm0 4v2h2v-2H4zm0 4v2h2v-2H4zM18 5v2h2V5h-2zm0 4v2h2V9h-2zm0 4v2h2v-2h-2zm0 4v2h2v-2h-2z"/><path class="secondary" d="M9 5h6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0 8h6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/></svg>
+				<span>icon-film</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-flag"><path class="primary" d="M3 15a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h8a1 1 0 0 1 .7.3L13.42 5H21a1 1 0 0 1 .9 1.45L19.61 11l2.27 4.55A1 1 0 0 1 21 17h-8a1 1 0 0 1-.7-.3L10.58 15H3z"/><rect width="2" height="20" x="2" y="2" class="secondary" rx="1"/></svg>
+				<span>icon-flag</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-folder-add"><path class="secondary" d="M4 4h7l2 2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><rect width="20" height="12" x="2" y="8" class="primary" rx="2"/><path class="secondary" d="M13 13h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H9a1 1 0 0 1 0-2h2v-2a1 1 0 0 1 2 0v2z"/></svg>
+				<span>icon-folder-add</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-folder-remove"><path class="secondary" d="M4 4h7l2 2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><rect width="20" height="12" x="2" y="8" class="primary" rx="2"/><rect width="8" height="2" x="8" y="13" class="secondary" rx="1"/></svg>
+				<span>icon-folder-remove</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-folder"><path class="secondary" d="M4 4h7l2 2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><rect width="20" height="12" x="2" y="8" class="primary" rx="2"/></svg>
+				<span>icon-folder</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-globe"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M2.05 11A10 10 0 0 1 15 2.46V6a2 2 0 0 1-2 2h-1v1a2 2 0 0 1-1 1.73V12h2a2 2 0 0 1 2 2v1h2a2 2 0 0 1 2 2v2.14A9.97 9.97 0 0 1 12 22v-4h-1a2 2 0 0 1-2-2v-2a2 2 0 0 1-2-2v-1H2.05z"/></svg>
+				<span>icon-globe</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 hard-drive"><path class="primary" d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2zm8.12 7.47A5 5 0 1 0 17 14V9a1 1 0 0 0-1.7-.7l-1.18 1.17z"/><path class="secondary" d="M12 16a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6-11a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM6 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm12 16a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM6 21a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM8 6h4a1 1 0 0 1 0 2H8a1 1 0 1 1 0-2z"/></svg>
+				<span>hard-drive</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-headphones"><path class="primary" d="M22 17a1 1 0 0 1-2 0v-5a8 8 0 1 0-16 0v5a1 1 0 0 1-2 0v-5a10 10 0 1 1 20 0v5z"/><path class="secondary" d="M7 12a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6c0-1.1.9-2 2-2zm10 0a2 2 0 0 1 2 2v6a2 2 0 1 1-4 0v-6c0-1.1.9-2 2-2z"/></svg>
+				<span>icon-headphones</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
+				<span>icon-heart</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-help"><path class="primary" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="secondary" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+				<span>icon-help</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-history"><path class="primary" d="M6.55 6.14l1.16 1.15A1 1 0 0 1 7 9H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1.7-.7l1.44 1.42A10 10 0 1 1 2 12a1 1 0 0 1 2 0 8 8 0 1 0 2.55-5.86z"/><path class="secondary" d="M15.7 14.3a1 1 0 0 1-1.4 1.4l-3-3a1 1 0 0 1-.3-.7V7a1 1 0 0 1 2 0v4.59l2.7 2.7z"/></svg>
+				<span>icon-history</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-home"><path class="primary" d="M9 22H5a1 1 0 0 1-1-1V11l8-8 8 8v10a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v4a1 1 0 0 1-1 1zm3-9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="secondary" d="M12.01 4.42l-8.3 8.3a1 1 0 1 1-1.42-1.41l9.02-9.02a1 1 0 0 1 1.41 0l8.99 9.02a1 1 0 0 1-1.42 1.41l-8.28-8.3z"/></svg>
+				<span>icon-home</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-hour-glass"><path class="primary" d="M19 20h1a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2h1c0-1.8.68-3.58 2.05-4.95L9 13.1v-2.2L7.05 8.95A6.98 6.98 0 0 1 5 4H4a1 1 0 1 1 0-2h16a1 1 0 0 1 0 2h-1c0 1.8-.68 3.58-2.05 4.95L15 10.9v2.2l1.95 1.95A6.98 6.98 0 0 1 19 20z"/><path class="secondary" d="M17 20H7l2.83-2.83A4 4 0 0 0 11 14.34v-4.27L8.46 7.54a5 5 0 0 1-.95-1.33c.17-.06.33-.13.49-.21a4.47 4.47 0 0 1 4 0c1.26.63 2.74.63 4 0 .23-.11.46-.2.7-.28a5 5 0 0 1-1.16 1.82L13 10.07v4.27a4 4 0 0 0 1.17 2.83L17 20z"/></svg>
+				<span>icon-hour-glass</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-identification"><path class="primary" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2zm13 3a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm-2 4a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2h-4zm1 4a1 1 0 0 0 0 2h3a1 1 0 0 0 0-2h-3z"/><path class="secondary" d="M8 12a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm-2 2h4a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1c0-1.1.9-2 2-2z"/></svg>
+				<span>icon-identification</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-important"><path class="primary" d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20z"/><path class="secondary" d="M12 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.9c-.13 1.2-1.88 1.2-2 0l-.5-5a1 1 0 0 1 1-1.1h1a1 1 0 0 1 1 1.1l-.5 5z"/></svg>
+				<span>icon-important</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-inbox-check"><path class="primary" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm0 2v10h2a2 2 0 0 1 2 2c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h2V5H5z"/><path class="secondary" d="M11 11.59l3.3-3.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-2-2a1 1 0 0 1 1.4-1.42l1.3 1.3z"/></svg>
+				<span>icon-inbox-check</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-inbox-download"><path class="primary" d="M8 5H5v10h2a2 2 0 0 1 2 2c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h2V5h-3a1 1 0 0 1 0-2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3a1 1 0 1 1 0 2z"/><path class="secondary" d="M11 10.59V4a1 1 0 0 1 2 0v6.59l1.3-1.3a1 1 0 0 1 1.4 1.42l-3 3a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l1.3 1.3z"/></svg>
+				<span>icon-inbox-download</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-inbox-full"><path class="primary" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm0 2v10h2a2 2 0 0 1 2 2c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h2V5H5z"/><path class="secondary" d="M8 7h8a1 1 0 0 1 0 2H8a1 1 0 1 1 0-2zm0 4h8a1 1 0 0 1 0 2H8a1 1 0 0 1 0-2z"/></svg>
+				<span>icon-inbox-full</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-inbox-upload"><path class="primary" d="M8 4a1 1 0 0 1-1 1H5v10h2a2 2 0 0 1 2 2c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h2V5h-2a1 1 0 0 1 0-2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h2a1 1 0 0 1 1 1z"/><path class="secondary" d="M11 6.41V13a1 1 0 0 0 2 0V6.41l1.3 1.3a1 1 0 0 0 1.4-1.42l-3-3a1 1 0 0 0-1.4 0l-3 3a1 1 0 0 0 1.4 1.42L11 6.4z"/></svg>
+				<span>icon-inbox-upload</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-information"><path class="primary" d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20z"/><path class="secondary" d="M11 12a1 1 0 0 1 0-2h2a1 1 0 0 1 .96 1.27L12.33 17H13a1 1 0 0 1 0 2h-2a1 1 0 0 1-.96-1.27L11.67 12H11zm2-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
+				<span>icon-information</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-interface"><path class="primary" d="M4 2h16a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2zm0 4v11h16V6H4z"/><path class="secondary" d="M17.96 16.54l3.75 3.75a1 1 0 0 1-1.42 1.42l-3.75-3.75-.57 2.28a1 1 0 0 1-1.9.11l-3-8a1 1 0 0 1 1.28-1.29l8 3a1 1 0 0 1-.1 1.91l-2.3.57z"/></svg>
+				<span>icon-interface</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-key"><path class="primary" d="M8.23 10.77a7.01 7.01 0 1 1 5 5L11 18H9v2H7v2.03H2V17l6.23-6.23zM17 9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="secondary" d="M6.2 18.7a1 1 0 1 1-1.4-1.4l4-4a1 1 0 1 1 1.4 1.4l-4 4z"/></svg>
+				<span>icon-key</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-launch"><path class="secondary" d="M6.64 6.46h7.07a1 1 0 0 1 .7 1.71l-4.24 4.24a1 1 0 0 1-.7.3H2.38A1 1 0 0 1 1.7 11l4.24-4.24a1 1 0 0 1 .7-.3zm10.9 10.9a1 1 0 0 1-.3.71L13 22.31a1 1 0 0 1-1.7-.7v-7.07a1 1 0 0 1 .29-.71l4.24-4.24a1 1 0 0 1 1.7.7v7.07z"/><path class="primary" d="M5.78 13.19a15.94 15.94 0 0 1 14.39-10.4 1 1 0 0 1 1.04 1.04 15.94 15.94 0 0 1-10.4 14.39 1 1 0 0 1-1.17-.37 14.1 14.1 0 0 0-3.5-3.5 1 1 0 0 1-.36-1.16zm.59 2.57a16.2 16.2 0 0 1 1.87 1.87 1 1 0 0 1-.47 1.6c-.79.25-1.6.42-2.4.54a1 1 0 0 1-1.14-1.13c.12-.82.3-1.62.53-2.41a1 1 0 0 1 1.6-.47z"/><path class="secondary" d="M7.23 10.26a19.04 19.04 0 0 1 6.5 6.51c-.92.58-1.9 1.07-2.92 1.45a1 1 0 0 1-1.17-.37 14.1 14.1 0 0 0-3.5-3.5 1 1 0 0 1-.36-1.16c.38-1.03.87-2 1.45-2.93zM17.62 3.1c.84-.17 1.7-.27 2.55-.3a1 1 0 0 1 1.04 1.04c-.03.86-.13 1.71-.3 2.55a19.2 19.2 0 0 0-3.29-3.29zm-3.91 7.2a2 2 0 1 1 2.83-2.83 2 2 0 0 1-2.83 2.83z"/></svg>
+				<span>icon-launch</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-layers"><path class="primary" d="M2.6 6.09l9-4a1 1 0 0 1 .8 0l9 4a1 1 0 0 1 0 1.82l-9 4a1 1 0 0 1-.8 0l-9-4a1 1 0 0 1 0-1.82z"/><path class="secondary" d="M3.91 10.5l7.68 3.41a1 1 0 0 0 .82 0l7.68-3.41 1.32.59a1 1 0 0 1 0 1.82l-9 4a1 1 0 0 1-.82 0l-9-4a1 1 0 0 1 0-1.82l1.32-.59zm0 5l7.68 3.41a1 1 0 0 0 .82 0l7.68-3.41 1.32.59a1 1 0 0 1 0 1.82l-9 4a1 1 0 0 1-.82 0l-9-4a1 1 0 0 1 0-1.82l1.32-.59z"/></svg>
+				<span>icon-layers</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-library"><path class="primary" d="M3 8h18v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8zm6 3l-1 1v4l1 1H4l1-1v-4l-1-1h5zm5.5 0l-1 1v4l1 1h-5l1-1v-4l-1-1h5zm5.5 0l-1 1v4l1 1h-5l1-1v-4l-1-1h5zM3 20h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2z"/><path class="secondary" d="M4 18h16a1 1 0 0 1 1 1v1H3v-1a1 1 0 0 1 1-1zm8.4-15.91l9 4c1 .43.68 1.91-.4 1.91H3c-1.08 0-1.4-1.48-.4-1.91l9-4a1 1 0 0 1 .8 0z"/></svg>
+				<span>icon-library</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-light"><path class="primary" d="M5 8a7 7 0 1 1 10.62 6l-.64 3.2a1 1 0 0 1-.98.8h-4a1 1 0 0 1-.98-.8L8.38 14A7 7 0 0 1 5 8zm12 0a5 5 0 0 0-5-5 1 1 0 0 0 0 2 3 3 0 0 1 3 3 1 1 0 0 0 2 0z"/><path class="secondary" d="M15 21a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2 1 1 0 0 1 0-2h6a1 1 0 0 1 0 2z"/></svg>
+				<span>icon-light</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-link"><path class="secondary" d="M19.48 13.03l-.02-.03a1 1 0 1 1 1.75-.98A6 6 0 0 1 16 21h-4a6 6 0 1 1 0-12h1a1 1 0 0 1 0 2h-1a4 4 0 1 0 0 8h4a4 4 0 0 0 3.48-5.97z"/><path class="primary" d="M4.52 10.97l.02.03a1 1 0 1 1-1.75.98A6 6 0 0 1 8 3h4a6 6 0 1 1 0 12h-1a1 1 0 0 1 0-2h1a4 4 0 1 0 0-8H8a4 4 0 0 0-3.48 5.97z"/></svg>
+				<span>icon-link</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-location-pin"><path class="primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="secondary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+				<span>icon-location-pin</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-lock-open"><path class="primary" d="M11 16.73V18a1 1 0 0 0 2 0v-1.27a2 2 0 1 0-2 0zM5 10h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2z"/><path class="secondary" d="M12 19a1 1 0 0 0 1-1v-1.27A2 2 0 0 0 12 13v-3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7v-3zm5-12a1 1 0 0 1-2 0 3 3 0 0 0-6 0v3H7V7a5 5 0 1 1 10 0z"/></svg>
+				<span>icon-lock-open</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-lock"><path class="primary" d="M5 10h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2zm6 6.73V18a1 1 0 0 0 2 0v-1.27a2 2 0 1 0-2 0z"/><path class="secondary" d="M12 19a1 1 0 0 0 1-1v-1.27A2 2 0 0 0 12 13v-3h3V7a3 3 0 0 0-6 0v3H7V7a5 5 0 1 1 10 0v3h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7v-3z"/></svg>
+				<span>icon-lock</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-mail"><path class="primary" d="M22 8.62V18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.62l9.55 4.77a1 1 0 0 0 .9 0L22 8.62z"/><path class="secondary" d="M12 11.38l-10-5V6c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v.38l-10 5z"/></svg>
+				<span>icon-mail</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-map"><path class="primary" d="M15 18.12L9.45 20.9a1 1 0 0 1-.9 0l-6-3A1 1 0 0 1 2 17V4a1 1 0 0 1 1.45-.9L9 5.89l5.55-2.77a1 1 0 0 1 .9 0l6 3A1 1 0 0 1 22 7v13a1 1 0 0 1-1.45.89L15 18.12z"/><path class="secondary" d="M9 21V5.88l5.55-2.77A1 1 0 0 1 15 3v15.1L9.45 20.9A1 1 0 0 1 9 21z"/></svg>
+				<span>icon-map</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-menu"><path class="secondary" fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/></svg>
+				<span>icon-menu</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-microphone"><path class="secondary" d="M12 1a4 4 0 0 1 4 4v6a4 4 0 1 1-8 0V5a4 4 0 0 1 4-4z"/><path class="primary" d="M13 18.94V21h3a1 1 0 0 1 0 2H8a1 1 0 0 1 0-2h3v-2.06A8 8 0 0 1 4 11a1 1 0 0 1 2 0 6 6 0 1 0 12 0 1 1 0 0 1 2 0 8 8 0 0 1-7 7.94z"/></svg>
+				<span>icon-microphone</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-money"><path class="secondary" d="M18 14.74a4 4 0 0 0-8 .26H3a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-1 1.74zM10 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="primary" d="M7 9h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2zm7 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+				<span>icon-money</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-monitor"><path class="secondary" d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5h3a1 1 0 0 0 .83-.45L10 8.8l5.17 7.75a1 1 0 0 0 1.66 0l1.7-2.55H21z"/><path class="primary" d="M21 12h-3a1 1 0 0 0-.83.45L16 14.2l-5.17-7.75a1 1 0 0 0-1.66 0L5.47 12H3V5c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v7z"/></svg>
+				<span>icon-monitor</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-mood-happy"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M6.8 14h10.4a1 1 0 0 1 .86 1.5 7 7 0 0 1-12.12 0A1 1 0 0 1 6.8 14zm1.7-3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
+				<span>icon-mood-happy</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-mood-neutral"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M8 15h8a1 1 0 0 1 0 2H8a1 1 0 0 1 0-2zm.5-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
+				<span>icon-mood-neutral</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-mood-sad"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M16.47 18H7.53a1 1 0 0 1-.75-1.67 6.98 6.98 0 0 1 10.44 0 1 1 0 0 1-.75 1.67zM8.5 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
+				<span>icon-mood-sad</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-news"><path class="primary" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm2 3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H7z"/><path class="secondary" d="M7 14h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm7-8h3a1 1 0 0 1 0 2h-3a1 1 0 0 1 0-2zm0 4h3a1 1 0 0 1 0 2h-3a1 1 0 0 1 0-2z"/></svg>
+				<span>icon-news</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-notification-off"><path class="secondary" d="M11.77 16l3.22 3.23a3 3 0 1 1-3.22-3.22zM3.29 4.7a1 1 0 0 1 1.42-1.4l16 16a1 1 0 0 1-1.42 1.4l-16-16z"/><path class="primary" d="M8.94 4.7c.35-.17.7-.3 1.08-.42L10 4a2 2 0 1 1 3.98.28A7 7 0 0 1 19 11v3.76L8.94 4.7zM5.18 9.42L14.76 19H4a1 1 0 0 1 0-2 1 1 0 0 0 1-1v-5c0-.54.06-1.07.18-1.58z"/></svg>
+				<span>icon-notification-off</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-notification"><circle cx="12" cy="19" r="3" class="secondary"/><path class="primary" d="M10.02 4.28L10 4a2 2 0 1 1 3.98.28A7 7 0 0 1 19 11v5a1 1 0 0 0 1 1 1 1 0 0 1 0 2H4a1 1 0 0 1 0-2 1 1 0 0 0 1-1v-5a7 7 0 0 1 5.02-6.72z"/></svg>
+				<span>icon-notification</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-office"><path class="secondary" d="M5 9h15a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2zm12 2v3h3v-3h-3zm0 5v3h3v-3h-3zm-5 0v3h3v-3h-3zm0-5v3h3v-3h-3z"/><path class="primary" d="M9 4h1a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H9v-6H5v6H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2h1a2 2 0 1 1 4 0z"/></svg>
+				<span>icon-office</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-order-horizontal"><path class="secondary" d="M18.59 17H9a1 1 0 0 1 0-2h9.59l-2.3-2.3a1 1 0 0 1 1.42-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-1.42-1.4l2.3-2.3z"/><path class="primary" d="M5.41 7H15a1 1 0 0 1 0 2H5.41l2.3 2.3a1 1 0 0 1-1.42 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.42 1.4L5.4 7z"/></svg>
+				<span>icon-order-horizontal</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-order-vertical"><path class="secondary" d="M7 18.59V9a1 1 0 0 1 2 0v9.59l2.3-2.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42L7 18.6z"/><path class="primary" d="M17 5.41V15a1 1 0 1 1-2 0V5.41l-2.3 2.3a1 1 0 1 1-1.4-1.42l4-4a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1-1.4 1.42L17 5.4z"/></svg>
+				<span>icon-order-vertical</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-package"><polygon class="primary" points="3 6 12 2 21 6 21 18 12 22 3 18"/><path class="secondary" d="M21 6v12l-9 4V10l9-4zM9 8.67v3l-3-1.34v-3l9-4 3 1.34-9 4z"/></svg>
+				<span>icon-package</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-paint"><path class="secondary" d="M13 14a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1v-1.4a3 3 0 0 1 2.35-2.92l5.87-1.3A1 1 0 0 0 20 7.4V7a1 1 0 0 0-1-1h-1V4h1a3 3 0 0 1 3 3v.4a3 3 0 0 1-2.35 2.92l-5.87 1.3a1 1 0 0 0-.78.98V14z"/><rect width="17" height="6" x="2" y="2" class="primary" rx="2"/></svg>
+				<span>icon-paint</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-pause"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M9 8h1a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zm5 0h1a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/></svg>
+				<span>icon-pause</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-play"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M15.51 11.14a1 1 0 0 1 0 1.72l-5 3A1 1 0 0 1 9 15V9a1 1 0 0 1 1.51-.86l5 3z"/></svg>
+				<span>icon-play</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-phone-incoming-call"><path class="primary" d="M4 2h4a1 1 0 0 1 .98.8l1 5a1 1 0 0 1-.27.9l-2.52 2.52a12.05 12.05 0 0 0 5.59 5.59l2.51-2.52a1 1 0 0 1 .9-.27l5 1c.47.1.81.5.81.98v4a2 2 0 0 1-2 2h-2A16 16 0 0 1 2 6V4c0-1.1.9-2 2-2z"/><path class="secondary" d="M19.3 3.3a1 1 0 0 1 1.4 1.4L16.42 9H19a1 1 0 0 1 0 2h-5a1 1 0 0 1-1-1V5a1 1 0 0 1 2 0v2.59l4.3-4.3z"/></svg>
+				<span>icon-phone-incoming-call</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-phone-outgoing-call"><path class="primary" d="M4 2h4a1 1 0 0 1 .98.8l1 5a1 1 0 0 1-.27.9l-2.52 2.52a12.05 12.05 0 0 0 5.59 5.59l2.51-2.52a1 1 0 0 1 .9-.27l5 1c.47.1.81.5.81.98v4a2 2 0 0 1-2 2h-2A16 16 0 0 1 2 6V4c0-1.1.9-2 2-2z"/><path class="secondary" d="M14.7 10.7a1 1 0 0 1-1.4-1.4L17.58 5H15a1 1 0 0 1 0-2h5a1 1 0 0 1 1 1v5a1 1 0 0 1-2 0V6.41l-4.3 4.3z"/></svg>
+				<span>icon-phone-outgoing-call</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-phone-ring"><path class="primary" d="M4 2h4a1 1 0 0 1 .98.8l1 5a1 1 0 0 1-.27.9l-2.52 2.52a12.05 12.05 0 0 0 5.59 5.59l2.51-2.52a1 1 0 0 1 .9-.27l5 1c.47.1.81.5.81.98v4a2 2 0 0 1-2 2h-2A16 16 0 0 1 2 6V4c0-1.1.9-2 2-2z"/><path class="secondary" d="M22 10a1 1 0 0 1-2 0 6 6 0 0 0-6-6 1 1 0 0 1 0-2 8 8 0 0 1 8 8zm-4 0a1 1 0 0 1-2 0 2 2 0 0 0-2-2 1 1 0 0 1 0-2 4 4 0 0 1 4 4z"/></svg>
+				<span>icon-phone-ring</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-photo"><path class="primary" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm9 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="secondary" d="M15.3 12.3a1 1 0 0 1 1.4 0l2 2a1 1 0 0 1 .3.7v3a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-3a1 1 0 0 1 .3-.7l4-4a1 1 0 0 1 1.4 0l3.3 3.29 1.3-1.3z"/></svg>
+				<span>icon-photo</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-pie-chart"><path class="primary" d="M14 13h6.78a1 1 0 0 1 .97 1.22A10 10 0 1 1 9.78 2.25a1 1 0 0 1 1.22.97V10a3 3 0 0 0 3 3z"/><path class="secondary" d="M20.78 11H14a1 1 0 0 1-1-1V3.22a1 1 0 0 1 1.22-.97c3.74.85 6.68 3.79 7.53 7.53a1 1 0 0 1-.97 1.22z"/></svg>
+				<span>icon-pie-chart</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-pin"><path class="secondary" d="M2.24 20.35l6.5-7.5a1 1 0 0 1 1.47-.06l1 1a1 1 0 0 1-.06 1.47l-7.5 6.5c-.93.8-2.22-.48-1.4-1.41z"/><path class="primary" d="M15 15.41V18a1 1 0 0 1-.3.7l-1 1a1 1 0 0 1-1.4 0l-8-8a1 1 0 0 1 0-1.4l1-1A1 1 0 0 1 6 9h2.59L13 4.59V3a1 1 0 0 1 1.7-.7l7 7A1 1 0 0 1 21 11h-1.59L15 15.41z"/></svg>
+				<span>icon-pin</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-presentation-play"><path class="secondary" d="M11 18.62l-6.55 3.27a1 1 0 0 1-.9-1.78L11 16.38V3a1 1 0 0 1 2 0v13.38l7.45 3.73a1 1 0 0 1-.9 1.78L13 18.62V21a1 1 0 0 1-2 0v-2.38z"/><path class="primary" d="M21 14a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2V4a1 1 0 1 1 0-2h18a1 1 0 0 1 0 2v10z"/><path class="secondary" d="M15.51 8.14a1 1 0 0 1 0 1.72l-5 3A1 1 0 0 1 9 12V6a1 1 0 0 1 1.51-.86l5 3z"/></svg>
+				<span>icon-presentation-play</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-presentation"><path class="secondary" d="M11 18.62l-6.55 3.27a1 1 0 0 1-.9-1.78L11 16.38V3a1 1 0 0 1 2 0v13.38l7.45 3.73a1 1 0 0 1-.9 1.78L13 18.62V21a1 1 0 0 1-2 0v-2.38z"/><path class="primary" d="M21 14a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2V4a1 1 0 1 1 0-2h18a1 1 0 0 1 0 2v10z"/></svg>
+				<span>icon-presentation</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-print"><path class="secondary" d="M5 8h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5c0-1.1.9-2 2-2zm1 2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2H6z"/><path class="primary" d="M6 14h12v6a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-6zm0-6V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v4H6z"/></svg>
+				<span>icon-print</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-puzzle"><path class="primary" d="M6 11V8c0-1.1.9-2 2-2h3a1 1 0 0 0 1-1V4a2 2 0 1 1 4 0v1a1 1 0 0 0 1 1h3a2 2 0 0 1 2 2v3a1 1 0 0 1-1 1h-1a2 2 0 1 0 0 4h1a1 1 0 0 1 1 1v3a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-1a2 2 0 1 0-4 0v1a1 1 0 0 1-1 1H8a2 2 0 0 1-2-2v-3a1 1 0 0 0-1-1H4a2 2 0 1 1 0-4h1a1 1 0 0 0 1-1z"/><path class="secondary" d="M22 17v3a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-1a2 2 0 1 0-4 0v1a1 1 0 0 1-1 1H8a2 2 0 0 1-2-2v-3a1 1 0 0 0-1-1H4a2 2 0 1 1 0-4h1a1 1 0 0 0 1-1v-.6c.54-.24 1.18-.4 1.97-.4 4 0 4 4 8.02 4 .84 0 1.5-.18 2.06-.45A2 2 0 0 0 20 16h1a1 1 0 0 1 1 1z"/></svg>
+				<span>icon-puzzle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-receipt"><path class="primary" d="M9 18.41l-2.3 2.3a1 1 0 0 1-1.4 0l-2-2A1 1 0 0 1 3 18V5c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v13a1 1 0 0 1-.3.7l-2 2a1 1 0 0 1-1.4 0L15 18.42l-2.3 2.3a1 1 0 0 1-1.4 0L9 18.4z"/><path class="secondary" d="M7 7h10a1 1 0 0 1 0 2H7a1 1 0 1 1 0-2zm0 4h10a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2z"/></svg>
+				<span>icon-receipt</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-refresh"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M8.52 7.11a5.98 5.98 0 0 1 8.98 2.5 1 1 0 1 1-1.83.8 4 4 0 0 0-5.7-1.86l.74.74A1 1 0 0 1 10 11H7a1 1 0 0 1-1-1V7a1 1 0 0 1 1.7-.7l.82.81zm5.51 8.34l-.74-.74A1 1 0 0 1 14 13h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1.7.7l-.82-.81A5.98 5.98 0 0 1 6.5 14.4a1 1 0 1 1 1.83-.8 4 4 0 0 0 5.7 1.85z"/></svg>
+				<span>icon-refresh</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-remove-circle"><circle cx="12" cy="12" r="10" class="primary"/><rect width="12" height="2" x="6" y="11" class="secondary" rx="1"/></svg>
+				<span>icon-remove-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-remove-square"><rect width="18" height="18" x="3" y="3" class="primary" rx="2"/><rect width="12" height="2" x="6" y="11" class="secondary" rx="1"/></svg>
+				<span>icon-remove-square</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-remove"><path class="secondary" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2h10z"/></svg>
+				<span>icon-remove</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-scale"><path class="primary" d="M11 6.39L6.32 7.95a1 1 0 0 1-.64 0l-3-1a1 1 0 0 1 .64-1.9l2.68.9 5-1.67V3a1 1 0 0 1 2 0v1.28l5 1.67 2.68-.9a1 1 0 0 1 .64 1.9l-3 1a1 1 0 0 1-.64 0L13 6.39V18c0 1.1.9 2 2 2h1v2H8v-2h1a2 2 0 0 0 2-2V6.39z"/><path class="secondary" d="M17.05 6.68a1 1 0 0 1 1.9 0l3 9a1 1 0 0 1-.4 1.15A6.36 6.36 0 0 1 18 18c-1.2 0-2.4-.4-3.55-1.17a1 1 0 0 1-.4-1.15l3-9zM19.61 15L18 10.16 16.39 15h3.22zM5.05 6.68a1 1 0 0 1 1.9 0l3 9a1 1 0 0 1-.4 1.15A6.36 6.36 0 0 1 6 18c-1.2 0-2.4-.4-3.55-1.17a1 1 0 0 1-.4-1.15l3-9zM7.61 15L6 10.16 4.39 15H7.6z"/></svg>
+				<span>icon-scale</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-search"><circle cx="10" cy="10" r="7" class="primary"/><path class="secondary" d="M16.32 14.9l1.1 1.1c.4-.02.83.13 1.14.44l3 3a1.5 1.5 0 0 1-2.12 2.12l-3-3a1.5 1.5 0 0 1-.44-1.14l-1.1-1.1a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>
+				<span>icon-search</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-security-check"><path class="primary" d="M4 4l8-2 8 2v9.06a8 8 0 0 1-4.42 7.15L12 22l-3.58-1.79A8 8 0 0 1 4 13.06V4z"/><path class="secondary" d="M10.5 12.59l4.3-4.3a1 1 0 0 1 1.4 1.42l-5 5a1 1 0 0 1-1.4 0l-2-2a1 1 0 0 1 1.4-1.42l1.3 1.3z"/></svg>
+				<span>icon-security-check</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-security-important"><path class="primary" d="M4 4l8-2 8 2v9.06a8 8 0 0 1-4.42 7.15L12 22l-3.58-1.79A8 8 0 0 1 4 13.06V4z"/><path class="secondary" d="M12 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.9c-.13 1.2-1.88 1.2-2 0l-.5-5a1 1 0 0 1 1-1.1h1a1 1 0 0 1 1 1.1l-.5 5z"/></svg>
+				<span>icon-security-important</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-security"><path class="primary" d="M4 4l8-2 8 2v9.06a8 8 0 0 1-4.42 7.15L12 22l-3.58-1.79A8 8 0 0 1 4 13.06V4z"/><path class="secondary" d="M6 12V5.56l6-1.5V12H6zm6 7.76V12h6v1.06a6 6 0 0 1-3.32 5.36L12 19.76z"/></svg>
+				<span>icon-security</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-send"><path class="primary" d="M12 20.1L3.4 21.9a1 1 0 0 1-1.3-1.36l9-18a1 1 0 0 1 1.8 0l9 18a1 1 0 0 1-1.3 1.36L12 20.1z"/><path class="secondary" d="M12 2c.36 0 .71.18.9.55l9 18a1 1 0 0 1-1.3 1.36L12 20.1V2z"/></svg>
+				<span>icon-send</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-server"><path class="primary" d="M5 3h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm0 10h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4c0-1.1.9-2 2-2zm2 3a1 1 0 0 0 0 2h3a1 1 0 0 0 0-2H7z"/><rect width="5" height="2" x="6" y="6" class="secondary" rx="1"/></svg>
+				<span>icon-server</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-shopping-bag"><path class="primary" d="M5 8h14a1 1 0 0 1 1 .92l1 12A1 1 0 0 1 20 22H4a1 1 0 0 1-1-1.08l1-12A1 1 0 0 1 5 8z"/><path class="secondary" d="M9 10a1 1 0 0 1-2 0V7a5 5 0 1 1 10 0v3a1 1 0 0 1-2 0V7a3 3 0 0 0-6 0v3z"/></svg>
+				<span>icon-shopping-bag</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-shopping-basket"><path class="primary" d="M21.78 10l-2.81 11.24A1 1 0 0 1 18 22H6a1 1 0 0 1-.97-.76L2.22 10h19.56zM6.03 15.24l1 4a1 1 0 0 0 1.94-.48l-1-4a1 1 0 0 0-1.94.48zm10-.48l-1 4a1 1 0 0 0 1.94.48l1-4a1 1 0 0 0-1.94-.48zM11 15v4a1 1 0 0 0 2 0v-4a1 1 0 0 0-2 0z"/><rect width="20" height="4" x="2" y="8" class="secondary" rx="1"/><path class="primary" d="M9.7 9.7a1 1 0 1 1-1.4-1.4l6-6a1 1 0 0 1 1.4 1.4l-6 6z"/></svg>
+				<span>icon-shopping-basket</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-shopping-cart"><path class="primary" d="M7 4h14a1 1 0 0 1 .9 1.45l-4 8a1 1 0 0 1-.9.55H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path class="secondary" d="M17.73 19a2 2 0 1 1-3.46 0H8.73a2 2 0 1 1-3.42-.08A3 3 0 0 1 5 13.17V4H3a1 1 0 1 1 0-2h3a1 1 0 0 1 1 1v10h11a1 1 0 0 1 0 2H6a1 1 0 0 0 0 2h12a1 1 0 0 1 0 2h-.27z"/></svg>
+				<span>icon-shopping-cart</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-sign"><path class="primary" d="M14 12h5l3 3-3 3h-5v4h-4v-4H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h6v-1h4v1z"/><path class="secondary" d="M10 4a2 2 0 1 1 4 0h6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5L2 7l3-3h5z"/></svg>
+				<span>icon-sign</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-sort-ascending"><path class="secondary" d="M18 13v7a1 1 0 0 1-2 0v-7h-3a1 1 0 0 1-.7-1.7l4-4a1 1 0 0 1 1.4 0l4 4A1 1 0 0 1 21 13h-3z"/><path class="primary" d="M3 3h13a1 1 0 0 1 0 2H3a1 1 0 1 1 0-2zm0 4h9a1 1 0 0 1 0 2H3a1 1 0 1 1 0-2zm0 4h5a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2z"/></svg>
+				<span>icon-sort-ascending</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-sort-decending"><path class="secondary" d="M6 11V4a1 1 0 1 1 2 0v7h3a1 1 0 0 1 .7 1.7l-4 4a1 1 0 0 1-1.4 0l-4-4A1 1 0 0 1 3 11h3z"/><path class="primary" d="M21 21H8a1 1 0 0 1 0-2h13a1 1 0 0 1 0 2zm0-4h-9a1 1 0 0 1 0-2h9a1 1 0 0 1 0 2zm0-4h-5a1 1 0 0 1 0-2h5a1 1 0 0 1 0 2z"/></svg>
+				<span>icon-sort-decending</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-star"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M9.53 16.93a1 1 0 0 1-1.45-1.05l.47-2.76-2-1.95a1 1 0 0 1 .55-1.7l2.77-.4 1.23-2.51a1 1 0 0 1 1.8 0l1.23 2.5 2.77.4a1 1 0 0 1 .55 1.71l-2 1.95.47 2.76a1 1 0 0 1-1.45 1.05L12 15.63l-2.47 1.3z"/></svg>
+				<span>icon-star</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-stop"><circle cx="12" cy="12" r="10" class="primary"/><rect width="7" height="7" x="8.5" y="8.5" class="secondary" rx="1"/></svg>
+				<span>icon-stop</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-store"><path class="primary" d="M5 8h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zm1 2v7h12v-7H6z"/><path class="secondary" d="M6 12a4 4 0 0 1-4-4 1 1 0 0 1 .1-.45l2-4A1 1 0 0 1 5 3h14a1 1 0 0 1 .9.55l2 4c.06.14.1.3.1.45a4 4 0 0 1-7 2.65 3.99 3.99 0 0 1-6 0A3.99 3.99 0 0 1 6 12z"/></svg>
+				<span>icon-store</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-survey"><path class="primary" d="M5 5h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7c0-1.1.9-2 2-2zm3 7a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2H8zm0 4a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2H8z"/><path class="secondary" d="M15 4a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V6c0-1.1.9-2 2-2 0-1.1.9-2 2-2h2a2 2 0 0 1 2 2z"/></svg>
+				<span>icon-survey</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-swatch"><path class="primary" d="M9 22c.19-.14.37-.3.54-.46L17.07 14H20a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H9zM4 2h4a2 2 0 0 1 2 2v14a4 4 0 1 1-8 0V4c0-1.1.9-2 2-2zm2 17.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path class="secondary" d="M11 18.66V7.34l2.07-2.07a2 2 0 0 1 2.83 0l2.83 2.83a2 2 0 0 1 0 2.83L11 18.66z"/></svg>
+				<span>icon-swatch</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-tag"><path class="primary" d="M2.59 13.41A1.98 1.98 0 0 1 2 12V7a5 5 0 0 1 5-5h4.99c.53 0 1.04.2 1.42.59l8 8a2 2 0 0 1 0 2.82l-8 8a2 2 0 0 1-2.82 0l-8-8zM7 9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="secondary" d="M12 18l6-6-4-4-6 6.01L12 18z"/></svg>
+				<span>icon-tag</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-target"><path class="primary" d="M15.23 2.53l-.35.35a3 3 0 0 0-.8 1.4 8.01 8.01 0 1 0 5.64 5.63 3 3 0 0 0 1.4-.79l.35-.35A9.99 9.99 0 0 1 12 22a10 10 0 1 1 3.23-19.47zM13.55 6.2L11.75 8a4 4 0 1 0 4.24 4.25l1.8-1.8a6 6 0 1 1-4.24-4.25z"/><path class="secondary" d="M16 6.59V5a1 1 0 0 1 .3-.7l2-2A1 1 0 0 1 20 3v1h1a1 1 0 0 1 .7 1.7l-2 2a1 1 0 0 1-.7.3h-1.59l-4.7 4.7a1 1 0 0 1-1.42-1.4L16 6.58z"/></svg>
+				<span>icon-target</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-text-cursor"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12 7.35A3.99 3.99 0 0 1 15 6a1 1 0 0 1 0 2 2 2 0 0 0-2 2v4c0 1.1.9 2 2 2a1 1 0 0 1 0 2c-1.2 0-2.27-.52-3-1.35A3.99 3.99 0 0 1 9 18a1 1 0 0 1 0-2 2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2 1 1 0 1 1 0-2c1.2 0 2.27.52 3 1.35z"/></svg>
+				<span>icon-text-cursor</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-thermostat-full"><path class="primary" d="M17 12.1a7 7 0 1 1-10 0V5a5 5 0 1 1 10 0v7.1zm-1.43 1.4l-.57-.58V5a3 3 0 0 0-6 0v7.92l-.57.58a5 5 0 1 0 7.14 0z"/><path class="secondary" d="M11 14.17V5a1 1 0 0 1 2 0v9.17a3 3 0 1 1-2 0z"/></svg>
+				<span>icon-thermostat-full</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-thermostat-half"><path class="primary" d="M17 12.1a7 7 0 1 1-10 0V5a5 5 0 1 1 10 0v7.1zm-1.43 1.4l-.57-.58V5a3 3 0 0 0-6 0v7.92l-.57.58a5 5 0 1 0 7.14 0z"/><path class="secondary" d="M11 14.17V10a1 1 0 0 1 2 0v4.17a3 3 0 1 1-2 0z"/></svg>
+				<span>icon-thermostat-half</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-thumbs-down"><path class="primary" d="M11 19.2l-2.92-6.8A1 1 0 0 1 8 12V4c0-1.1.9-2 2-2h6c1.5 0 3.11 1.06 3.7 2.45l2.22 5.16A1 1 0 0 1 22 10v2a3 3 0 0 1-3 3h-4v4a3 3 0 0 1-3 3 1 1 0 0 1-1-1v-1.8z"/><rect width="4" height="11" x="2" y="2" class="secondary" rx="1" transform="rotate(180 4 7.5)"/></svg>
+				<span>icon-thumbs-down</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-thumbs-up"><path class="primary" d="M13 4.8l2.92 6.8a1 1 0 0 1 .08.4v8a2 2 0 0 1-2 2H8a4.28 4.28 0 0 1-3.7-2.45L2.07 14.4A1 1 0 0 1 2 14v-2a3 3 0 0 1 3-3h4V5a3 3 0 0 1 3-3 1 1 0 0 1 1 1v1.8z"/><rect width="4" height="11" x="18" y="11" class="secondary" rx="1"/></svg>
+				<span>icon-thumbs-up</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-ticket"><path class="primary" d="M22 15v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-4a3 3 0 0 0 0-6V5a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v4a3 3 0 0 0 0 6z"/><path class="secondary" d="M9 20H3a1 1 0 0 1-1-1v-4a3 3 0 0 0 0-6V5a1 1 0 0 1 1-1h6v16z"/></svg>
+				<span>icon-ticket</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-time"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13 11.59l3.2 3.2a1 1 0 0 1-1.4 1.42l-3.5-3.5A1 1 0 0 1 11 12V7a1 1 0 0 1 2 0v4.59z"/></svg>
+				<span>icon-time</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-translate"><path class="primary" d="M10.41 10l1.3 1.3a1 1 0 0 1-1.42 1.4L9 11.42l-3.3 3.3a1 1 0 1 1-1.4-1.42L7.58 10l-1.3-1.3a1 1 0 0 1 1.42-1.4L9 8.58l.54-.54A5 5 0 0 0 10.98 5H3a1 1 0 1 1 0-2h5V2a1 1 0 1 1 2 0v1h5a1 1 0 0 1 0 2h-2.02a7 7 0 0 1-2.03 4.46l-.54.54z"/><path class="secondary" d="M13.33 18l-1.4 3.38a1 1 0 0 1-1.85-.76l5-12a1 1 0 0 1 1.84 0l5 12a1 1 0 0 1-1.84.76L18.67 18h-5.34zm.84-2h3.66L16 11.6 14.17 16z"/></svg>
+				<span>icon-translate</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-trash"><path class="primary" d="M5 5h14l-.89 15.12a2 2 0 0 1-2 1.88H7.9a2 2 0 0 1-2-1.88L5 5zm5 5a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1z"/><path class="secondary" d="M8.59 4l1.7-1.7A1 1 0 0 1 11 2h2a1 1 0 0 1 .7.3L15.42 4H19a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h3.59z"/></svg>
+				<span>icon-trash</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-trending-down"><path class="secondary" d="M3.7 3.3a1 1 0 1 0-1.4 1.4l6 6a1 1 0 0 0 1.4 0L13 7.42l4.3 4.3a1 1 0 0 0 1.4-1.42l-5-5a1 1 0 0 0-1.4 0L9 8.6l-5.3-5.3z"/><path class="primary" d="M16.59 17L13 13.41l-3.3 3.3a1 1 0 0 1-1.4 0l-6-6a1 1 0 0 1 1.4-1.42L9 14.6l3.3-3.3a1 1 0 0 1 1.4 0l4.3 4.3 2.3-2.3A1 1 0 0 1 22 14v6a1 1 0 0 1-1 1h-6a1 1 0 0 1-.7-1.7l2.29-2.3z"/></svg>
+				<span>icon-trending-down</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-trending-up"><path class="primary" d="M3.7 20.7a1 1 0 1 1-1.4-1.4l6-6a1 1 0 0 1 1.4 0l3.3 3.29 4.3-4.3a1 1 0 0 1 1.4 1.42l-5 5a1 1 0 0 1-1.4 0L9 15.4l-5.3 5.3z"/><path class="secondary" d="M16.59 8l-2.3-2.3A1 1 0 0 1 15 4h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1.7.7L18 9.42l-4.3 4.3a1 1 0 0 1-1.4 0L9 10.4l-5.3 5.3a1 1 0 1 1-1.4-1.42l6-6a1 1 0 0 1 1.4 0l3.3 3.3L16.59 8z"/></svg>
+				<span>icon-trending-up</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-trophy"><path class="secondary" d="M7 4v2H4v4c0 1.1.9 2 2 2h1v2H6a4 4 0 0 1-4-4V6c0-1.1.9-2 2-2h3zm10 2V4h3a2 2 0 0 1 2 2v4a4 4 0 0 1-4 4h-1v-2h1a2 2 0 0 0 2-2V6h-3zm-3 14h2a1 1 0 0 1 0 2H8a1 1 0 0 1 0-2h2a1 1 0 0 0 1-1v-3h2v3a1 1 0 0 0 1 1z"/><path class="primary" d="M8 2h8a2 2 0 0 1 2 2v7a6 6 0 1 1-12 0V4c0-1.1.9-2 2-2z"/></svg>
+				<span>icon-trophy</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-tune"><path class="primary" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm11 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-8 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="secondary" d="M9.73 14H17a1 1 0 0 1 0 2H9.73a2 2 0 0 0 0-2zm4.54-6a2 2 0 0 0 0 2H7a1 1 0 1 1 0-2h7.27z"/></svg>
+				<span>icon-tune</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-umbrella"><path class="primary" d="M11 3.05V2a1 1 0 0 1 2 0v1.05A10 10 0 0 1 22 13c0 1.33-2 1.33-2 0a2 2 0 1 0-4 0c0 1.33-2 1.33-2 0a2 2 0 1 0-4 0c0 1.33-2 1.33-2 0a2 2 0 1 0-4 0c0 1.33-2 1.33-2 0a10 10 0 0 1 9-9.95z"/><path class="secondary" d="M11 14a1 1 0 0 1 2 0v5a3 3 0 0 1-6 0 1 1 0 0 1 2 0 1 1 0 0 0 2 0v-5z"/></svg>
+				<span>icon-umbrella</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-user-add"><path class="primary" d="M9 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/><path class="secondary" d="M17 9V7a1 1 0 0 1 2 0v2h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2h-2a1 1 0 0 1 0-2h2zm-1 10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"/></svg>
+				<span>icon-user-add</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-user-check"><path class="primary" d="M9 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/><path class="secondary" d="M16 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1zm1-8.41l3.3-3.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-2-2a1 1 0 1 1 1.4-1.42l1.3 1.3z"/></svg>
+				<span>icon-user-check</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-user-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M3.66 17.52A5 5 0 0 1 8 15h8a5 5 0 0 1 4.34 2.52 10 10 0 0 1-16.68 0zM12 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>
+				<span>icon-user-circle</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-user-couple"><path class="primary" d="M15 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7 8a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"/><path class="secondary" d="M9 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7 8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"/></svg>
+				<span>icon-user-couple</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-user-group"><path class="primary" d="M12 13a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v3a1 1 0 0 1-1 1h-8a1 1 0 0 1-1-1 1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-3a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3zM7 9a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm10 0a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/><path class="secondary" d="M12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm-3 1h6a3 3 0 0 1 3 3v3a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-3a3 3 0 0 1 3-3z"/></svg>
+				<span>icon-user-group</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-user-remove"><path class="primary" d="M9 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/><path class="secondary" d="M15 9h6a1 1 0 0 1 0 2h-6a1 1 0 0 1 0-2zm1 10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"/></svg>
+				<span>icon-user-remove</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-user"><path class="primary" d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/><path class="secondary" d="M21 20v-1a5 5 0 0 0-5-5H8a5 5 0 0 0-5 5v1c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2z"/></svg>
+				<span>icon-user</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-videocam"><path class="secondary" d="M13.59 12l6.7-6.7A1 1 0 0 1 22 6v12a1 1 0 0 1-1.7.7L13.58 12z"/><rect width="14" height="14" x="2" y="5" class="primary" rx="2"/></svg>
+				<span>icon-videocam</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-view-visible"><path class="primary" d="M17.56 17.66a8 8 0 0 1-11.32 0L1.3 12.7a1 1 0 0 1 0-1.42l4.95-4.95a8 8 0 0 1 11.32 0l4.95 4.95a1 1 0 0 1 0 1.42l-4.95 4.95zM11.9 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/><circle cx="12" cy="12" r="3" class="secondary"/></svg>
+				<span>icon-view-visible</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-volume-down"><path class="primary" d="M6.59 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3.59l4.7-4.7A1 1 0 0 1 13 4v16a1 1 0 0 1-1.7.7L6.58 16z"/><path class="secondary" d="M14.83 9.17a1 1 0 1 1 1.41-1.41 6 6 0 0 1 0 8.48 1 1 0 0 1-1.41-1.41 4 4 0 0 0 0-5.66z"/></svg>
+				<span>icon-volume-down</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-volume-mute"><path class="primary" d="M6.59 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3.59l4.7-4.7A1 1 0 0 1 13 4v16a1 1 0 0 1-1.7.7L6.58 16z"/><path class="secondary" d="M17.09 12l-1.8-1.8a1 1 0 1 1 1.42-1.4l1.79 1.79 1.8-1.8a1 1 0 0 1 1.4 1.42L19.92 12l1.8 1.8a1 1 0 0 1-1.42 1.4l-1.79-1.79-1.8 1.8a1 1 0 0 1-1.4-1.42L17.08 12z"/></svg>
+				<span>icon-volume-mute</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-volume-up"><path class="primary" d="M6.59 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3.59l4.7-4.7A1 1 0 0 1 13 4v16a1 1 0 0 1-1.7.7L6.58 16z"/><path class="secondary" d="M17.66 6.34a1 1 0 0 1 1.41-1.41 10 10 0 0 1 0 14.14 1 1 0 0 1-1.41-1.41 8 8 0 0 0 0-11.32zm-2.83 2.83a1 1 0 1 1 1.41-1.41 6 6 0 0 1 0 8.48 1 1 0 0 1-1.41-1.41 4 4 0 0 0 0-5.66z"/></svg>
+				<span>icon-volume-up</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-wallet"><path class="primary" d="M2 5c0 1.1.9 2 2 2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5zm16 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="secondary" d="M4 3h11a2 2 0 0 1 2 2v2H4a2 2 0 1 1 0-4z"/></svg>
+				<span>icon-wallet</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-wallet"><path class="primary" d="M2 5c0 1.1.9 2 2 2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5zm16 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="secondary" d="M4 3h11a2 2 0 0 1 2 2v2H4a2 2 0 1 1 0-4z"/></svg>
+				<span>icon-wallet</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-widget-add"><path class="primary" d="M5 13h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4c0-1.1.9-2 2-2zm10 0h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-4c0-1.1.9-2 2-2zM5 3h4a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2z"/><path class="secondary" d="M18 6h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0V8h-2a1 1 0 0 1 0-2h2V4a1 1 0 0 1 2 0v2z"/></svg>
+				<span>icon-widget-add</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-wifi-off"><path class="primary" d="M9.37 13.6l1.54 1.55c-.64.18-1.24.52-1.74 1.02a1 1 0 1 1-1.41-1.41 6 6 0 0 1 1.6-1.15zm-2.93-2.92l1.45 1.45c-.55.33-1.07.74-1.55 1.21a1 1 0 0 1-1.41-1.41c.47-.47.98-.89 1.51-1.25zm6.9-1.6a9.96 9.96 0 0 1 5.73 2.85 1 1 0 0 1-1.41 1.41 8.09 8.09 0 0 0-.68-.6L13.33 9.1zM3.56 7.83L5 9.25c-.52.37-1.02.8-1.49 1.26a1 1 0 1 1-1.4-1.4c.46-.48.95-.9 1.46-1.3zm5.9-2.6c4.37-.79 9.05.5 12.43 3.88a1 1 0 1 1-1.41 1.41 11.97 11.97 0 0 0-9.22-3.49l-1.8-1.8z"/><path class="secondary" d="M12 20.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM3.3 4.7a1 1 0 0 1 1.4-1.4l16 16a1 1 0 0 1-1.4 1.4l-16-16z"/></svg>
+				<span>icon-wifi-off</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-wifi"><path class="primary" d="M9.17 16.17a1 1 0 1 1-1.41-1.41 6 6 0 0 1 8.48 0 1 1 0 0 1-1.41 1.41 4 4 0 0 0-5.66 0zm-2.83-2.83a1 1 0 0 1-1.41-1.41 10 10 0 0 1 14.14 0 1 1 0 0 1-1.41 1.41 8 8 0 0 0-11.32 0zm-2.83-2.83a1 1 0 1 1-1.4-1.4 14 14 0 0 1 19.79 0 1 1 0 1 1-1.41 1.4 12 12 0 0 0-16.98 0z"/><path class="secondary" d="M12 20.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+				<span>icon-wifi</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-work"><path class="primary" d="M10 14.92V16a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1.08c2.83-.24 5.53-.96 8-2.1V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7.18a23.85 23.85 0 0 0 8 2.1z"/><path class="secondary" d="M14 12.92V12a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v.92a23.85 23.85 0 0 1-8-2.1V8c0-1.1.9-2 2-2h3V5a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1h3a2 2 0 0 1 2 2v2.82a23.85 23.85 0 0 1-8 2.1zM15 6V5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v1h6z"/></svg>
+				<span>icon-work</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-zoom-in"><circle cx="10" cy="10" r="7" class="primary"/><path class="secondary" d="M16.32 14.9l1.1 1.1c.4-.02.83.13 1.14.44l3 3a1.5 1.5 0 0 1-2.12 2.12l-3-3a1.5 1.5 0 0 1-.44-1.14l-1.1-1.1a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm1-7h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H7a1 1 0 0 1 0-2h2V7a1 1 0 1 1 2 0v2z"/></svg>
+				<span>icon-zoom-in</span>
+			</div>
+			<div class="flex w-full md:w-1/2 lg:w-1/3 px-3 mb-8 text-sm items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-zoom-out"><circle cx="10" cy="10" r="7" class="primary"/><path class="secondary" d="M16.32 14.9l1.1 1.1c.4-.02.83.13 1.14.44l3 3a1.5 1.5 0 0 1-2.12 2.12l-3-3a1.5 1.5 0 0 1-.44-1.14l-1.1-1.1a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm4-6a1 1 0 0 1-1 1H7a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1z"/></svg>
+				<span>icon-zoom-out</span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

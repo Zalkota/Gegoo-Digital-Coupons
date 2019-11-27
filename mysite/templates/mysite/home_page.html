@@ -41,11 +41,11 @@
                   <div class="card card-border  border-radius-300 shadow-2">
                       <a href="{{ object.get_absolute_url }}">
                           <img class="card-img-top" style="width: 100%;" src="/media/{{ object.main_image }}" alt="User Uploaded images">
-                          <div class="card-body text-left text-uppercase">
-                              <h3 class="fw-7 fs-14">{{ object.title }}</h3>
-                              <span class="text-muted fs-14 ">${{ object.price }}</span>
-                          </div>
                       </a>
+                  </div>
+                  <div class="px-2 py-3 text-left text-uppercase">
+                      <h3 class="fw-6 fs-16">{{ object.title }}</h3>
+                      <span class="text-danger fs-16 fw-6">${{ object.price }}</span>
                   </div>
               </div>
           {% endfor %}
@@ -69,9 +69,16 @@
           <div class="col-lg-6 offset-lg-3 my-5">
               <div class="card shadow-4">
 
+
+
                     <div class="card-body">
                         <h1>Header 1</h1>
                         <span class="text-secondary fs-14">Text secondary here</span>
+
+                        <div class="">
+            				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-add-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13 11h4a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4z"/></svg>
+            				<span>icon-add-circle</span>
+            			</div>
                     </div>
 
                     <div class="card-footer">

@@ -6197,7 +6197,7 @@ button:focus {
   margin-bottom: 0.3125rem;
   font-size: 0.875rem;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 0;
   cursor: pointer;
   background-color: transparent;

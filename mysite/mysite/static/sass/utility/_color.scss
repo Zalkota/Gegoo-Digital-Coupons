@@ -100,8 +100,9 @@ $color-alt-dark: darken( $color-alt, 10%);
 
 $color-text: $color-black;
 $color-background-100: #f1f1f1;
-$color-background-200: #f1f1f1;
+$color-background-200: #fafafa;
 $color-background-300: #F6FAFD;
+$color-background-400: #fafbfc;
 
 $color-main: #fafafa;
 
@@ -161,6 +162,7 @@ $colors: map-merge((
   "gray-20":  #fafafa,
   "gray-30":  #ddd,
   "gray-40":  #ccc,
+  "gray-50": #fafbfc,
   "gray-100": #F7FAFC,
   "gray-200": #EDF2F7,
   "gray-300": #E2E8F0,

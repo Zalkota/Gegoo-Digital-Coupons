@@ -51,7 +51,7 @@
         <div class="row">
           <div class="offset-lg-2"></div>
             <div class="col-lg-4">
-              <h2 class="text-uppercase">{{ item.title }}</h2>
+              <h2 class="text-uppercase fs-20 fw-6">{{ item.title }}</h2>
               <h3><span class="text-primary fs-20">${{ item.price }}</span></h3>
                 <p class="fs-14 text-left text-muted">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -62,14 +62,14 @@
                 </p>
             </div>
             <div class="col-lg-4 text-right">
-                <form method="POST" class="search-form-container" action="{{ object.get_add_to_cart_url }}">
+                <form method="POST" class="quantity-form" action="{{ object.get_add_to_cart_url }}">
                     <!-- Default input -->
                     {% csrf_token %}
                     <div class="mb-3">
-                        <span class="text-muted fs-14">Quanty:</span>
-                        <input type="number" value="1" aria-label="Search" class="search-form-container" style="width: 70px;" id='quantity' name='quantity'>
+                        <span class="text-muted fs-14 mr-2">Quantity:</span>
+                        <input type="number" value="1" aria-label="Search" class="quantity-form" id='quantity' name='quantity'>
                     </div>
-                    <button class="btn btn-primary-alt my-0 p" type="submit">
+                    <button class="btn btn-primary-alt text-uppercase my-0 p" type="submit">
                       Add to cart
                     </button>
                 </form>
