@@ -111,7 +111,10 @@
     }
 
 
-/* BUTTON ALT */
+/*  <**************************************************************************>
+    <*****                         BUTTONs                                *****>
+    <**************************************************************************>
+*/
 
 @each $color, $value in $colors {
 
@@ -124,6 +127,7 @@
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  border-radius: $border-radius-200
 
   &:hover, &:active, &:focus{
     background: $value;
