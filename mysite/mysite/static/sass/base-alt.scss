@@ -1,5 +1,7 @@
 // BASE-ALT IS THE SAME AS BASE, BUT IS CONTAINS STYLE-ALT.scss
 @import "./utility/color";
+@import "./utility/text";
+@import "./utility/autocomplete";
 /* ANIMATION */
 $mdb-animation-curve-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1) !default;
 $mdb-animation-curve-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1) !default;
@@ -14,7 +16,7 @@ html {
 body {
     margin: 0;
     font-family: Montserrat, sans-serif !important;
-    background-color: $color-background-alt !important;
+    background-color: $color-background-200 !important;
 
     h1 h2 h3 h4 h5 h6 {
       color: #1a1a1a;
@@ -36,6 +38,7 @@ body {
 @import "./components/buttons";
 @import "./components/badges";
 @import "./components/sections";
+@import "./components/cards";
 
 @import "./generic/global";
 //@import "style-alt";
@@ -50,5 +53,3 @@ body {
 @import "./generic/search";
 //@import "form";
 @import "./generic/navigation_button";
-@import "./utility/text";
-@import "./utility/autocomplete";

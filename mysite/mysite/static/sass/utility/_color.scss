@@ -61,20 +61,31 @@ $color-blue-700: #2B6CB0;
 $color-blue-800: #2C5282;
 $color-blue-900: #2A4365;
 
-// Theme Colors
-$color-primary: $color-red-900;
-$color-primary-light: $color-red-400;
-$color-primary-lighter: $color-red-300;
-$color-primary-dark: $color-red-600;
+$color-blue-gray-100: #F0F4F8;
+$color-blue-gray-200: #D9E2EC;
+$color-blue-gray-300: #BCCCDC;
+$color-blue-gray-400: #9FB3C8;
+$color-blue-gray-500: #829AB1;
+$color-blue-gray-600: #627D98;
+$color-blue-gray-700: #486581;
+$color-blue-gray-800: #334E68;
+$color-blue-gray-900: #243B53;
+$color-blue-gray-1000: #102A43;
 
-$color-secondary: #3b3b6d;
-$color-secondary-light: lighten( $color-secondary, 20% );
-$color-secondary-dark: darken( $color-secondary, 10% );
+// Theme Colors
+$color-primary: $color-blue-700;
+$color-primary-light: $color-blue-500;
+$color-primary-dark: $color-blue-900;
+
+$color-secondary: $color-gray-600;
+$color-secondary-light: $color-gray-300;
+$color-secondary-dark: $color-gray-800;
+
+$color-light: $color-gray-300;
+$color-muted: $color-gray-300;
 
 $color-white: #fff;
-$color-light: $color-gray-200;
-$color-light-2: #F7FAFC;
-$color-muted: $color-gray-600;
+
 
 $color-dark:  #2A4365; //#343741
 $color-black: #2D3748;
@@ -86,14 +97,12 @@ $color-alt-light: lighten( $color-alt, 20% );
 $color-alt-lighter: lighten( $color-alt, 25% );
 $color-alt-dark: darken( $color-alt, 10%);
 
-$color-accent: $color-gray-800;
-$color-accent-light: lighten( $color-accent, 13% );
-$color-accent-dark: darken( $color-accent, 5% );
-$color-accent-lighter: lighten( $color-accent, 80% );
 
 $color-text: $color-black;
-$color-background: #f1f1f1;
-$color-background-alt: #f1f1f1;
+$color-background-100: #f1f1f1;
+$color-background-200: #f1f1f1;
+$color-background-300: #F6FAFD;
+
 $color-main: #fafafa;
 
 // Navbar
@@ -113,16 +122,13 @@ $color-footer-background: $color-white;
 $color-footer-text: $color-gray-700;
 $color-footer-title: $color-black;
 
-$keep: #476783;
-$keep1: #5981a4;
-$keep2: #6b81cb;
 
-// Buttons
+// Alerts
 $color-success: $color-green-500;
 $color-success-light: lighten( $color-success, 10% );
 $color-success-dark: darken( $color-success, 10% );
 
-$color-danger: $color-red-600;
+$color-danger: $color-red-500;
 $color-danger-light: lighten( $color-danger, 10% );
 $color-danger-dark: darken( $color-danger, 10% );
 
@@ -133,6 +139,10 @@ $color-warning-dark: $color-orange-700;
 $color-info: $color-blue-400;
 $color-info-light: lighten( $color-info, 10% );
 $color-info-dark: darken( $color-info, 10% );
+
+// $keep: #476783;
+// $keep1: #5981a4;
+// $keep2: #6b81cb;
 
 /*  <**************************************************************************>
     <*****                          Functions                             *****>
@@ -146,10 +156,6 @@ $colors: map-merge((
   "secondary": $color-secondary,
   "alternate": $color-alt,
 
-  "success": $color-success,
-  "danger": $color-danger,
-  "warning": $color-warning,
-  "info": $color-info,
 
   "gray-10":  #f1f1f1,
   "gray-20":  #fafafa,
@@ -214,4 +220,27 @@ $colors: map-merge((
   "blue-700": #2B6CB0,
   "blue-800": #2C5282,
   "blue-900": #2A4365,
+
+  "blue-gray-100": #F0F4F8,
+  "blue-gray-200": #D9E2EC,
+  "blue-gray-300": #BCCCDC,
+  "blue-gray-400": #9FB3C8,
+  "blue-gray-500": #829AB1,
+  "blue-gray-600": #627D98,
+  "blue-gray-700": #486581,
+  "blue-gray-800": #334E68,
+  "blue-gray-900": #243B53,
+  "blue-gray-1000": #102A43,
 ), $colors);
+
+
+$colors-alerts: ();
+$colors-alerts: map-merge((
+
+
+  "success": $color-success,
+  "danger": $color-danger,
+  "warning": $color-warning,
+  "info": $color-info,
+
+), $colors-alerts);

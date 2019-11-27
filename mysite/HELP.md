@@ -89,6 +89,8 @@ docker network rm $(docker network ls -q)
 sudo lsof -nP | grep LISTEN
 sudo kill -9 1511
 
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`
+
 
 # NGINX
 

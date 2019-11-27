@@ -1,5 +1,8 @@
 
 @import "./utility/color";
+@import "./utility/animations";
+@import "./utility/text";
+@import "./utility/autocomplete";
 
 /* ANIMATION */
 $mdb-animation-curve-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1) !default;
@@ -34,6 +37,8 @@ body {
 @import "./components/buttons";
 @import "./components/badges";
 @import "./components/sections";
+@import "./components/cards";
+
 
 @import "./generic/global";
 @import "./generic/navbar";
@@ -48,6 +53,3 @@ body {
 @import "./generic/profile";
 @import "./generic/form";
 @import "./generic/navigation_button";
-@import "./utility/animations";
-@import "./utility/text";
-@import "./utility/autocomplete";

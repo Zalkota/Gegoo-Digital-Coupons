@@ -1,0 +1,156 @@
+/*  <**************************************************************************>
+    <*****                            Cards                               *****>
+    <**************************************************************************>
+*/
+
+
+.card {
+  // box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 3px 2px -2px rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    background-color: #fff !important;
+    border-radius: $border-radius-100;
+
+    .card-body {
+        border-radius: $border-radius-100 $border-radius-100 0 0 !important;
+    }
+
+    .card-footer {
+        border-top: none !important;
+        background-color: #fafafa !important;
+        border-radius: 0 0 $border-radius-100 $border-radius-100  !important;
+    }
+}
+
+.round-edges {
+    border-radius: $border-radius-300 !important;
+}
+
+.card-effects {
+  transition: transform 0.25s;
+}
+.card-effects::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+  content: '';
+  opacity: 0;
+  z-index: -1;
+}
+.card-effects:hover::after, .card__one:focus::after {
+  opacity: 1;
+}
+
+.card-shadow {
+  box-shadow: 0 5px 11px rgba(222,222,222,0.08), 0 10px 10px rgba(0,0,0,0.05)
+}
+
+.card-effects {
+  transition: transform 0.25s;
+}
+.card-effects::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+  content: '';
+  opacity: 0;
+  z-index: -1;
+}
+.card-effects:hover::after, .card__one:focus::after {
+  opacity: 1;
+}
+
+
+/*  <**************************************************************************>
+    <*****                         Card Borders                               *****>
+    <**************************************************************************>
+*/
+
+.card-border {
+  border: solid 1px #ddd;
+}
+
+.card-border-200 {
+  border: solid 2px #ddd;
+}
+
+/*  <**************************************************************************>
+    <*****                         Card Stripes                               *****>
+    <**************************************************************************>
+*/
+
+@each $colors, $value in $colors {
+
+    .stripe-#{$colors} {
+      border-left: 5px solid $value;
+      border-right: solid 1px #d7d7d7;
+      border-bottom: solid 1px #d7d7d7;
+    }
+
+}
+
+@each $colors-alerts, $value in $colors-alerts {
+
+    .stripe-#{$colors-alerts} {
+      border-left: 5px solid $value;
+      border-right: solid 1px #d7d7d7;
+      border-bottom: solid 1px #d7d7d7;
+    }
+
+}
+
+
+@each $colors, $value in $colors {
+
+    .stripe-#{$colors}-top {
+      border-left: 5px solid $value;
+    }
+
+}
+
+@each $colors-alerts, $value in $colors-alerts {
+
+    .stripe-#{$colors-alerts}-top {
+      border-top: 5px solid $value;
+    }
+
+}
+
+
+/*  <**************************************************************************>
+    <*****                   Mod Subscription Cards                       *****>
+    <**************************************************************************>
+*/
+
+
+.card-graphic-middle {
+  background-image: url(/static/img/card_membership.svg);
+  //background-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
+  /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.card-graphic-left {
+  background-image: url(/static/img/card_left.svg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.card-graphic-right {
+  background-image: url(/static/img/card_right.svg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+}

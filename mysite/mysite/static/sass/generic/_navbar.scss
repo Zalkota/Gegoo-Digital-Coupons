@@ -93,10 +93,17 @@
 
 
   .ul-spacing {
-    height: 85px;
+    height: 50px;
 
   }
 
+  li.nav-item {
+    height: 2rem;
+  }
+
+  li.nav-object {
+    height: 1.5rem;
+  }
 
   .nav-link-bold {
       color: $color-navbar-alt-text;
@@ -120,11 +127,11 @@
   .nav-link {
       color: $color-navbar-alt-text;
       font-weight: 400 !important;
-      font-size: 0.8rem;
+      font-size: 1rem;
       line-height: 28px;
       margin-left: .85rem;
       margin-right: .85rem;
-      text-transform: uppercase;
+      text-transform: none;
       display: inline-block;
       padding-top: 0.3125rem;
       padding-bottom: 0.3125rem;
@@ -136,13 +143,7 @@
       color:  $color-navbar-alt-hover;
   }
 
-  li.nav-item {
-    height: 1.5rem;
-  }
 
-  li.nav-object {
-    height: 2rem;
-  }
 
 
   .navbar-brand {

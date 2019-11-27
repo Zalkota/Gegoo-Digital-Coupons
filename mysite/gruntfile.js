@@ -67,7 +67,7 @@ module.exports = function (grunt) {
               '<%= paths.css %>/base.css': '<%= paths.sass %>/base.scss',
               '<%= paths.css %>/base-alt.css': '<%= paths.sass %>/base-alt.scss',
               '<%= paths.css %>/components/base-alt.css': '<%= paths.sass %>/components/base-components.scss',
-              '<%= paths.css %>/base-account.css': '<%= paths.sass %>/base-account.scss',
+    
           },
       },
       dist: {
