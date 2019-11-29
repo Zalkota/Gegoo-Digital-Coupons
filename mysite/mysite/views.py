@@ -116,3 +116,6 @@ def contactLandingPage(request):
 
 def security(request):
     return render(request, 'security.txt')
+
+def components(request):
+    return render(request, 'mysite/components.html')

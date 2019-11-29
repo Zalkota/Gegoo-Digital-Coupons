@@ -5,7 +5,8 @@ from django.contrib import admin
 from .views import (
     home,
     ContactFormView,
-    contactLandingPage
+    contactLandingPage,
+    components,
 )
 from search import views as search_views
 
@@ -37,6 +38,9 @@ urlpatterns = [
     url(r'', include(('users.urls', 'users'), namespace='users')),
 
     path('', home, name='home-page'),
+
+    path('components/', components, name='components-page'),
+
     path('contact/', ContactFormView.as_view(), name='contact-page'),
     path('about/', ContactFormView.as_view(), name='about-page'),
     path('thank-you/', contactLandingPage, name='contact-landing-page'),
