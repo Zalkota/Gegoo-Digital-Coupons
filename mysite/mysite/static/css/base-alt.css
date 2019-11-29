@@ -6415,6 +6415,45 @@ button {
     border-radius: 0 0 0.25rem 0.25rem !important;
     padding: 1rem; }
 
+.card-custom {
+  min-height: 200px;
+  width: 500px;
+  overflow: hidden;
+  box-shadow: 0 0.938em 2.188em rgba(50, 50, 93, 0.1); }
+
+.card-custom img {
+  position: absolute;
+  width: 150px;
+  height: 200px;
+  left: 0rem;
+  top: 0rem; }
+
+.card-custom .card-body-custom {
+  height: 100px;
+  position: relative; }
+  .card-custom .card-body-custom h2 {
+    margin-left: 175px;
+    margin-top: 8px;
+    margin-bottom: 0px; }
+  .card-custom .card-body-custom p {
+    margin-left: 175px;
+    margin-top: 1px;
+    font-size: 16px;
+    font-weight: 100; }
+
+.card-custom .card-footer-custom {
+  height: 100px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3); }
+  .card-custom .card-footer-custom h2 {
+    margin-left: 175px;
+    margin-top: 16px;
+    margin-bottom: 0px; }
+  .card-custom .card-footer-custom p {
+    margin-left: 175px;
+    margin-top: 1px;
+    display: flex; }
+
 .round-edges {
   border-radius: 1.1rem !important; }
 
