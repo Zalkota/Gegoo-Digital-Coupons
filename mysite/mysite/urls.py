@@ -31,9 +31,6 @@ urlpatterns = [
     #Authentication
     url(r'^accounts/', include('allauth.urls')),
     #Portal
-    #Components
-    path('components/', componentsMain, name='components-main'),
-
     #url(r'^portal/', include(('portal.urls', 'portal'), namespace='portal')),
     #shoppingcart
     url(r'^cart/', include(('shoppingcart.urls', 'shoppingcart'), namespace='cart')),
