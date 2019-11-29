@@ -118,4 +118,4 @@ def security(request):
     return render(request, 'security.txt')
 
 def components(request):
-    return render(request, 'mysite/components.html')
+    return render(request, 'components/main.html')
