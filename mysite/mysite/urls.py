@@ -6,11 +6,7 @@ from .views import (
     home,
     ContactFormView,
     contactLandingPage,
-<<<<<<< HEAD
     components,
-=======
-    componentsMain,
->>>>>>> b5842b25006178a515114cd9b1b3849fb06a7f73
 )
 from search import views as search_views
 
