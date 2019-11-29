@@ -11,7 +11,8 @@ input, input:-internal-autofill-selected, input:-webkit-autofill, select:-webkit
   background-color: #fff !important; }
 
 .form-control {
-  border-radius: 0.25rem; }
+  border-radius: 0.25rem;
+  border: 1px solid #eee; }
   .form-control:hover, .form-control:active, .form-control:focus {
     transition: .3s;
     border: 1px solid #ccc;

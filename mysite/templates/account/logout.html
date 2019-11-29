@@ -9,18 +9,18 @@
 
     <section class="section-lg vertical-container">
         <div class="vertical-alignment" style="max-width: 500px;">
-            <div class="card shadow-2 card-border">
+            <div class="card shadow-2 card-border mx-3">
                     <div class="card-body text-center py-4"  style="background-color: #f9fafb;">
                         <h5><strong>{% trans "Sign Out" %}</strong></h5>
                         <p>{% trans 'Are you sure you want to sign out?' %}</p>
                     </div>
-                    <div class="card-footer text-center pb-0 pt-4">
+                    <div class="card-footer text-center p-3">
                         <form method="post" action="{% url 'account_logout' %}">
                           {% csrf_token %}
                           {% if redirect_field_value %}
                           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                           {% endif %}
-                          <button class="btn btn-danger-alt" style="width: 240px;"type="submit">{% trans 'Sign Out' %}</button>
+                          <button class="btn btn-danger-alt btn-block" type="submit">{% trans 'Sign Out' %}</button>
                         </form>
                     </div>
             </div>

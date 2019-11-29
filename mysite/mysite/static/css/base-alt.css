@@ -10147,6 +10147,9 @@ select:-webkit-autofill {
     <*****                     SEARCH FORM INPUT                          *****>
     <**************************************************************************>
 */
+input:focus {
+  outline: -webkit-focus-ring-color auto 0px !important; }
+
 .search-form-container {
   width: 100%;
   max-width: 500px !important; }
@@ -10162,7 +10165,7 @@ select:-webkit-autofill {
     -webkit-rtl-ordering: logical;
     cursor: text;
     color: #222 !important;
-    padding: .65rem .75rem 0.65rem 3rem; }
+    padding: .41rem .75rem 0.41rem 2.9rem; }
     .search-form-container input:hover, .search-form-container input:active, .search-form-container input:focus {
       transition: .3s;
       border: 1px solid #d1d1d1;
@@ -10171,7 +10174,7 @@ select:-webkit-autofill {
 .search-icon {
   position: absolute;
   padding-left: 1rem;
-  padding-top: 0.25rem;
+  padding-top: 0.3rem;
   top: 20%;
   z-index: 2; }
   .search-icon i {
@@ -10220,10 +10223,14 @@ select:-webkit-autofill {
   -webkit-appearance: textfield;
   -webkit-rtl-ordering: logical;
   cursor: text;
+  border: none;
   color: #222 !important;
   width: 100%;
   margin-bottom: 0;
   padding: .25rem .5rem 0.25rem 1rem; }
+  .search-form-container-hero input:hover, .search-form-container-hero input:active, .search-form-container-hero input:focus {
+    border: none !important;
+    outline: -webkit-focus-ring-color auto 0px; }
 
 .search-form-background-hero {
   padding: .75rem 2rem;
@@ -10250,8 +10257,8 @@ select:-webkit-autofill {
   width: 35%; }
   .search-form .search-icon {
     position: absolute;
-    left: 6%;
-    top: 28%; }
+    left: .5rem;
+    top: .75rem; }
     .search-form .search-icon i {
       color: #718096; }
 
@@ -10308,7 +10315,7 @@ select:-webkit-autofill {
     border: 2px solid #fafafa;
     transition: .3s;
     width: 92% !important;
-    background-color: #d1d1d1;
+    background-color: #d5d5d5;
     border-radius: 0.5rem;
     -webkit-rtl-ordering: logical;
     cursor: text;
@@ -10341,7 +10348,7 @@ select:-webkit-autofill {
   color: #2D3748;
   font-size: 24px;
   height: 35px;
-  top: 1rem;
+  top: .9rem;
   left: 5rem;
   position: fixed;
   z-index: 800;
@@ -10349,9 +10356,25 @@ select:-webkit-autofill {
   letter-spacing: 1px;
   text-align: left; }
 
+.navigation__background-3 {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0%;
+  background-color: rgba(50, 50, 50, 0.86);
+  z-index: 0;
+  opacity: 0;
+  transition: 0s; }
+
 .navigation__search__checkbox:checked ~ .navigation__search__bar {
   transform: translateY(150%);
   opacity: 1; }
+
+.navigation__search__checkbox:checked ~ .navigation__background-3 {
+  transition: 0.8s;
+  z-index: 5;
+  opacity: 0.7; }
 
 .navigation__search__checkbox:checked + .navigation__search__icon::before {
   color: #2D3748; }

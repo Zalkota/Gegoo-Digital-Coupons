@@ -12,10 +12,9 @@ input, input:-internal-autofill-selected, input:-webkit-autofill, select:-webkit
     background-color: #fff !important;
 }
 
-
 .form-control {
-
     border-radius: 0.25rem;
+    border: 1px solid #eee;
 
     &:hover, &:active, &:focus {
       transition: .3s;

@@ -7,41 +7,12 @@
 {% block head_title %}{% trans "Login" %}{% endblock %}
 
 {% block content %}
-<style>
-a {
-  color:#3a75c1;
-}
-input {
-  background-color: #fafafa;
-  width: 100%;
-}
 
- input[type="checkbox" i ] {
-  background-color: red;
-  width: 25px;
-}
-
-  .message {
-    left: 61%;
-    top: 68%;
-    border-radius: 8px;
-    position: fixed;
-    opacity: .9;
-  }
-  .terms {
-    color: #3a3a3a;
-    left: 61.25%;
-    bottom: 1%;
-    position: fixed;
-    font-size: .8rem;
-  }
-
-</style>
 
 <div class="hide">
     <section class="section-lg vertical-container">
         <div class="vertical-alignment" style="max-width: 500px;">
-            <div class="card card-border shadow-0">
+            <div class=" card-border shadow-1">
               <div class="card-signup text-center ml-auto mr-auto mt-3" style="width: 25rem;">
                 <h2 class="my-4 fw-6 fs-24 text-dark">Create Account</h2>
                   <div class=" text-left px-4 pb-4 pt-3" style="">
@@ -53,7 +24,7 @@ input {
                       {% endif %}
                       By signing up, you agree to our Terms of Use and Privacy Policy.
                       <br><br>
-                      <div class="btn-div pull-center">
+                      <div class="btn-div pull-center mb-3">
                         <button class="btn btn-primary-alt btn-block" type="submit">{% trans "Create Account" %}</button>
                       </div>
                     </form>
@@ -66,9 +37,6 @@ input {
                     </div>
                   {% endfor %}
                 {% endif %}
-                <div class="terms">
-                  <span class="text-white" style="font-size: 1em;"><a class="text-white" href="/terms-page/" >Terms & Conditons</a> | Copyright 2018 Mod Technologies LLC</span>
-                </div>
             </div>
         </div>
     </section>

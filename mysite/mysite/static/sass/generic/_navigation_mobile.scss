@@ -78,6 +78,8 @@
     z-index: 900;
     transition: 0s ; }
 
+
+
     .navigation__list {
       position: absolute;
       top: 10%;
@@ -233,39 +235,40 @@
   color: $color-black; }
 
 
-  .navigation__icon {
-    position: relative;
-    margin-top: 1.65rem; }
-    .navigation__icon, .navigation__icon::before, .navigation__icon::after {
-      width: 1.5rem;
-      height: 2px;
-      background-color: $color-black;
-      display: inline-block; }
-    .navigation__icon::before, .navigation__icon::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      transition: all 0.1s; }
-    .navigation__icon::before {
+
+    .navigation__icon {
+      position: relative;
+      margin-top: 1.65rem; }
+      .navigation__icon, .navigation__icon::before, .navigation__icon::after {
+        width: 1.5rem;
+        height: 2px;
+        background-color: $color-black;
+        display: inline-block; }
+      .navigation__icon::before, .navigation__icon::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        transition: all 0.1s; }
+      .navigation__icon::before {
+        top: -.56rem; }
+      .navigation__icon::after {
+        top: .56rem; }
+    .navigation__button:hover .navigation__icon::before {
       top: -.56rem; }
-    .navigation__icon::after {
+    .navigation__button:hover .navigation__icon::after {
       top: .56rem; }
-  .navigation__button:hover .navigation__icon::before {
-    top: -.56rem; }
-  .navigation__button:hover .navigation__icon::after {
-    top: .56rem; }
 
 
 
-.navigation__checkbox:checked + .navigation__button .navigation__icon {
-  background-color: transparent; }
+  .navigation__checkbox:checked + .navigation__button .navigation__icon {
+    background-color: transparent; }
 
-.navigation__checkbox:checked + .navigation__button .navigation__icon::before {
-  top: 0;
-  transform: rotate(45deg);
-  background-color: $color-white; }
+  .navigation__checkbox:checked + .navigation__button .navigation__icon::before {
+    top: 0;
+    transform: rotate(45deg);
+    background-color: $color-white; }
 
-.navigation__checkbox:checked + .navigation__button .navigation__icon::after {
-  top: 0;
-  transform: rotate(-45deg);
-  background-color: $color-white; }
+  .navigation__checkbox:checked + .navigation__button .navigation__icon::after {
+    top: 0;
+    transform: rotate(-45deg);
+    background-color: $color-white; }

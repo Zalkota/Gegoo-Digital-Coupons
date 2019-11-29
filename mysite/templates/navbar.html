@@ -107,7 +107,11 @@
         <!-- <div class="navigation__background-search">&nbsp;</div> -->
         <div class="navigation__background">&nbsp;</div>
         <label for="navi-toggle" class="navigation__background-2">
-            <div class="navigation__background-2">&nbsp;</div>
+            <div class="">&nbsp;</div>
+        </label>
+
+        <label for="navi-search" class="navigation__background-3">
+        <div class="">&nbsp;</div>
         </label>
 
         <div class="navigation__search__bar">
@@ -132,7 +136,8 @@
               {% endif %}
               <li class="navigation__item"><a href="{% url 'account_logout' %}" class="navigation__link text-danger" style="">Log Out</a></li>
               {% endif %}
-              <li class="navigation__item text-secondary mt-5 fs-12" style="color: #111; border-bottom: 1px solid #6a6a6a;">General</li>
+              <li class="navigation__item text-secondary mt-5 fs-10" style="color: #111; border-bottom: 2px solid #CBD5E0;"></li>
+              <li class="navigation__item text-secondary text-uppercase fw-5 fs-10" style="font-size: 14px;">General</li>
               <li class="navigation__item "><a href="{% url 'shoppingcart:products' %}" class="navigation__link" style="">Shop</a></li>
               <li class="navigation__item"><a href="{% url 'home-page' %}" class="navigation__link" style="">Home</a></li>
               <li class="navigation__item"><a href="{% url 'shoppingcart:refund-select' %}" class="navigation__link" style="">Return</a></li>
