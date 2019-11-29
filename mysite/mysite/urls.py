@@ -6,7 +6,11 @@ from .views import (
     home,
     ContactFormView,
     contactLandingPage,
+<<<<<<< HEAD
     components,
+=======
+    componentsMain,
+>>>>>>> b5842b25006178a515114cd9b1b3849fb06a7f73
 )
 from search import views as search_views
 
@@ -31,6 +35,9 @@ urlpatterns = [
     #Authentication
     url(r'^accounts/', include('allauth.urls')),
     #Portal
+    #Components
+    path('components/', componentsMain, name='components-main'),
+
     #url(r'^portal/', include(('portal.urls', 'portal'), namespace='portal')),
     #shoppingcart
     url(r'^cart/', include(('shoppingcart.urls', 'shoppingcart'), namespace='cart')),

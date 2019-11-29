@@ -14,7 +14,7 @@ $mdb-animation-curve-default: $mdb-animation-curve-fast-out-slow-in !default;
 body {
     margin: 0;
     font-family: Montserrat, sans-serif !important;
-    background-color: $color-white !important;
+    background-color: $color-background !important;
 
     h1 h2 h3 h4 h5 h6 {
       color: #1a1a1a;
@@ -39,7 +39,6 @@ body {
 @import "./components/sections";
 @import "./components/cards";
 
-
 @import "./generic/global";
 @import "./generic/icons";
 @import "./generic/navbar";
@@ -53,4 +52,4 @@ body {
 @import "./generic/footer";
 @import "./generic/profile";
 @import "./generic/form";
-@import "./generic/navigation_button";
+@import "./generic/navigation_mobile";

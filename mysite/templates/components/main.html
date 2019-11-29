@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% load  %}
+
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+{% endblock extra_styles %}
+
+{% block content %}
+
+<section class="section-lg container">
+    <div class="row">
+
+        <div class="col-lg-6 offset-lg-3 my-5">
+            <div class="card shadow-4">
+
+                <div class="card-body">
+                    <h2 class="display-5 fw-5">Deactivate Account</h2>
+                    <span class="text-secondary fs-14">Text secondary here</span>
+
+                </div>
+                <div class="card-footer">
+                    <div class="text-right">
+                        <a class="btn btn-tertiary mr-2" href="{% url 'contact-page' %}">Cancel</a>
+                        <a class="btn btn-danger-alt mr-2" href="{% url 'contact-page' %}">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 offset-lg-3 my-5">
+            <div class="card card-border shadow-4">
+                <div class="row">
+                    <div class="col-lg-4 px-0">
+                         <img class="img-fluid p-0" style="width: 100%; border-radius: .25rem 0 0 .25rem;" src="{% static 'img/stockImage.png' %}" alt="User Uploaded images">
+                    </div>
+                    <div class="col-lg-8 pl-0">
+                        <div class="py-4 px-3">
+                            <h3 class="fs-20 fw-6">
+                                10% Off Snow Blower
+                            </h3>
+                            <p class="text-secondary fs-14 mb-1">Stay away from font weights under 400 for UI work — they can work for large headings but are too hard to read at smaller sizes.</p>
+                        </div>
+                        <div class="card-footer">
+                            <h4 class="fw-6 fs-14">Free Shipping</h4>
+                            <span class="star-yellow " style="margin-bottom: 9xp;">
+                                <i class="material-icons" style="font-size: 16px;">
+                                star star star star star
+                                </i>
+                            </span>
+                            <p class="text-secondary fs-14 mt-3 mb-1">*Order must be a minimum of $100 to be eligible for discount.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 offset-lg-3 my-5">
+            <div class="card card-border shadow-2">
+                <div class="card-header text-secondary fw-5">
+                    Coupon Stats
+                </div>
+                <div class="card-body">
+                    <p class="text-secondary fs-14 mb-1">Stay away from font weights under 400 for UI work — they can work for large headings but are too hard to read at smaller sizes.</p>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-add-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13 11h4a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4z"/></svg>
+            <span>icon-multiply</span>
+        </div>
+
+    </div>
+</section>
+
+  {% endblock %}
+
+  {% block extrajs %}
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1300,
+    });
+  </script>
+  {% endblock extrajs %}

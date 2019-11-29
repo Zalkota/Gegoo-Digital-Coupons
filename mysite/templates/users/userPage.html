@@ -64,7 +64,7 @@ a:hover {
 
 <!-- Body Start -->
 <section class="section-sm container">
-  <h2 class="fw-6 hide mb-2">My Account</h2>
+  <h2 class="fw-6 hide mb-2">My Account </h2>
   <span class="fs-14 hide text-secondary">Welcome Back, {{ user }}!</span>
       {% block component %}
         {% include "users/profile_nav.html" %}
@@ -117,6 +117,7 @@ a:hover {
             <div class="col-lg-8 mb-4">
                 <span class="anchor" id="orders"></span>
                 <div class="card shadow-2 card-border ">
+
                     <div class="text-center table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -132,7 +133,7 @@ a:hover {
                                     <tr>
                                         <td><a href="{% url 'shoppingcart:order' ref_code=object.ref_code %}" class="text-dark">#{{ object.ref_code}}</a></td>
                                         <td><a href="{{ object.get_absolute_url }}" class="text-dark">{{ object.ordered_date }}</a></td>
-                                        <td class="{% if object.status == 'P' %}text-primary {% elif object.status == 'A' %}text-danger {% else %} text-success {% endif %}">{{ object.get_status_display }}</a></td>
+                                        <td><a href="" class="badge {% if object.status == 'P' %}badge-info {% elif object.status == 'A' %}badge-danger {% else %} badge-success {% endif %}">{{ object.get_status_display }}</a></td>
                                         <td><a href="{{ object.get_absolute_url }}" class="text-dark">$ {{ object.get_total }}0</a></td>
                                     </tr>
                             {% empty %}
