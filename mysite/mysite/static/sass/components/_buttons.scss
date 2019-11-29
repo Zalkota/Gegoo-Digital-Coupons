@@ -128,6 +128,7 @@
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: $border-radius-100;
 
   &:hover, &:active, &:focus{
@@ -152,6 +153,7 @@
     padding-right: 2rem;
     padding-top: .85rem;
     padding-bottom: .85rem;
+    margin-bottom: 0;
     border-radius: $border-radius-100;
 
     &:hover, &:active, &:focus{
@@ -171,7 +173,7 @@
 @each $colors-alerts, $value in $colors-alerts {
 
     .btn-#{$colors-alerts}-inverted {
-    background: transparent;
+    background: #FFF;
     color: $value;
     border: 1px solid $color-gray-300;
     box-shadow: 0;
@@ -181,6 +183,7 @@
     padding-right: 2rem;
     padding-top: .85rem;
     padding-bottom: .85rem;
+    margin-bottom: 0;
     border-radius: $border-radius-100;
 
     &:hover, &:active, &:focus{
@@ -206,6 +209,7 @@
     padding-right: 2rem;
     padding-top: .85rem;
     padding-bottom: .85rem;
+    margin-bottom: 0;
     border-radius: $border-radius-100;
 
     &:hover, &:active, &:focus{

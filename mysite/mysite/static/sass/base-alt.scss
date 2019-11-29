@@ -16,7 +16,8 @@ html {
 body {
     margin: 0;
     font-family: Montserrat, sans-serif !important;
-    background-color: $color-background-200 !important;
+    // background
+    background-color: $color-background-100 !important;
 
     h1 h2 h3 h4 h5 h6 {
       color: #1a1a1a;
@@ -53,4 +54,4 @@ body {
 @import "./generic/form";
 @import "./generic/search";
 //@import "form";
-@import "./generic/navigation_button";
+@import "./generic/navigation_mobile";

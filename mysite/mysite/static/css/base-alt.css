@@ -9,7 +9,6 @@ html {
 
 body {
   margin: 0;
-  background-color: #f1f1f1;
   color: #3a3a3a; }
   body h1 h2 h3 h4 h5 h6 {
     color: #1a1a1a; }
@@ -53,6 +52,9 @@ h2 {
 
 .text-alternate {
   color: #2D3748 !important; }
+
+.text-white {
+  color: #fff !important; }
 
 .text-gray-10 {
   color: #f1f1f1 !important; }
@@ -269,6 +271,9 @@ h2 {
 
 .bg-alternate {
   background-color: #2D3748 !important; }
+
+.bg-white {
+  background-color: #fff !important; }
 
 .bg-gray-10 {
   background-color: #f1f1f1 !important; }
@@ -664,6 +669,9 @@ a:hover {
 .fw-4 {
   font-weight: 400; }
 
+.fw-5 {
+  font-weight: 500; }
+
 .fw-6 {
   font-weight: 600; }
 
@@ -756,7 +764,7 @@ html {
 body {
   margin: 0;
   font-family: Montserrat, sans-serif !important;
-  background-color: #fafafa !important; }
+  background-color: #f1f1f1 !important; }
   body h1 h2 h3 h4 h5 h6 {
     color: #1a1a1a; }
   body p {
@@ -857,6 +865,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-primary-alt:hover, .btn-primary-alt:active, .btn-primary-alt:focus {
     background: #2B6CB0;
@@ -873,6 +882,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-secondary-alt:hover, .btn-secondary-alt:active, .btn-secondary-alt:focus {
     background: #718096;
@@ -889,9 +899,27 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-alternate-alt:hover, .btn-alternate-alt:active, .btn-alternate-alt:focus {
     background: #2D3748;
+    color: #e5e5e5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.13);
+    text-decoration: none !important; }
+
+.btn-white-alt {
+  background: #fff;
+  color: #fff;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  margin-bottom: 0;
+  border-radius: 0.25rem; }
+  .btn-white-alt:hover, .btn-white-alt:active, .btn-white-alt:focus {
+    background: #fff;
     color: #e5e5e5;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.13);
     text-decoration: none !important; }
@@ -905,6 +933,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-10-alt:hover, .btn-gray-10-alt:active, .btn-gray-10-alt:focus {
     background: #f1f1f1;
@@ -921,6 +950,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-20-alt:hover, .btn-gray-20-alt:active, .btn-gray-20-alt:focus {
     background: #fafafa;
@@ -937,6 +967,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-30-alt:hover, .btn-gray-30-alt:active, .btn-gray-30-alt:focus {
     background: #ddd;
@@ -953,6 +984,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-40-alt:hover, .btn-gray-40-alt:active, .btn-gray-40-alt:focus {
     background: #ccc;
@@ -969,6 +1001,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-50-alt:hover, .btn-gray-50-alt:active, .btn-gray-50-alt:focus {
     background: #fafbfc;
@@ -985,6 +1018,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-100-alt:hover, .btn-gray-100-alt:active, .btn-gray-100-alt:focus {
     background: #F7FAFC;
@@ -1001,6 +1035,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-200-alt:hover, .btn-gray-200-alt:active, .btn-gray-200-alt:focus {
     background: #EDF2F7;
@@ -1017,6 +1052,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-300-alt:hover, .btn-gray-300-alt:active, .btn-gray-300-alt:focus {
     background: #E2E8F0;
@@ -1033,6 +1069,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-400-alt:hover, .btn-gray-400-alt:active, .btn-gray-400-alt:focus {
     background: #CBD5E0;
@@ -1049,6 +1086,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-500-alt:hover, .btn-gray-500-alt:active, .btn-gray-500-alt:focus {
     background: #A0AEC0;
@@ -1065,6 +1103,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-600-alt:hover, .btn-gray-600-alt:active, .btn-gray-600-alt:focus {
     background: #718096;
@@ -1081,6 +1120,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-700-alt:hover, .btn-gray-700-alt:active, .btn-gray-700-alt:focus {
     background: #4A5568;
@@ -1097,6 +1137,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-800-alt:hover, .btn-gray-800-alt:active, .btn-gray-800-alt:focus {
     background: #2D3748;
@@ -1113,6 +1154,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-900-alt:hover, .btn-gray-900-alt:active, .btn-gray-900-alt:focus {
     background: #1A202C;
@@ -1129,6 +1171,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-100-alt:hover, .btn-red-100-alt:active, .btn-red-100-alt:focus {
     background: #FEB2B2;
@@ -1145,6 +1188,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-200-alt:hover, .btn-red-200-alt:active, .btn-red-200-alt:focus {
     background: #FC8181;
@@ -1161,6 +1205,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-300-alt:hover, .btn-red-300-alt:active, .btn-red-300-alt:focus {
     background: #FEB2B2;
@@ -1177,6 +1222,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-400-alt:hover, .btn-red-400-alt:active, .btn-red-400-alt:focus {
     background: #FC8181;
@@ -1193,6 +1239,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-500-alt:hover, .btn-red-500-alt:active, .btn-red-500-alt:focus {
     background: #F56565;
@@ -1209,6 +1256,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-600-alt:hover, .btn-red-600-alt:active, .btn-red-600-alt:focus {
     background: #E53E3E;
@@ -1225,6 +1273,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-700-alt:hover, .btn-red-700-alt:active, .btn-red-700-alt:focus {
     background: #C53030;
@@ -1241,6 +1290,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-800-alt:hover, .btn-red-800-alt:active, .btn-red-800-alt:focus {
     background: #E53E3E;
@@ -1257,6 +1307,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-900-alt:hover, .btn-red-900-alt:active, .btn-red-900-alt:focus {
     background: #C53030;
@@ -1273,6 +1324,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-100-alt:hover, .btn-orange-100-alt:active, .btn-orange-100-alt:focus {
     background: #FFFAF0;
@@ -1289,6 +1341,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-200-alt:hover, .btn-orange-200-alt:active, .btn-orange-200-alt:focus {
     background: #FEEBC8;
@@ -1305,6 +1358,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-300-alt:hover, .btn-orange-300-alt:active, .btn-orange-300-alt:focus {
     background: #FBD38D;
@@ -1321,6 +1375,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-400-alt:hover, .btn-orange-400-alt:active, .btn-orange-400-alt:focus {
     background: #F6AD55;
@@ -1337,6 +1392,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-500-alt:hover, .btn-orange-500-alt:active, .btn-orange-500-alt:focus {
     background: #ED8936;
@@ -1353,6 +1409,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-600-alt:hover, .btn-orange-600-alt:active, .btn-orange-600-alt:focus {
     background: #DD6B20;
@@ -1369,6 +1426,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-700-alt:hover, .btn-orange-700-alt:active, .btn-orange-700-alt:focus {
     background: #C05621;
@@ -1385,6 +1443,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-800-alt:hover, .btn-orange-800-alt:active, .btn-orange-800-alt:focus {
     background: #9C4221;
@@ -1401,6 +1460,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-900-alt:hover, .btn-orange-900-alt:active, .btn-orange-900-alt:focus {
     background: #7B341E;
@@ -1417,6 +1477,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-100-alt:hover, .btn-yellow-100-alt:active, .btn-yellow-100-alt:focus {
     background: #FFFFF0;
@@ -1433,6 +1494,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-200-alt:hover, .btn-yellow-200-alt:active, .btn-yellow-200-alt:focus {
     background: #FEFCBF;
@@ -1449,6 +1511,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-300-alt:hover, .btn-yellow-300-alt:active, .btn-yellow-300-alt:focus {
     background: #FAF089;
@@ -1465,6 +1528,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-400-alt:hover, .btn-yellow-400-alt:active, .btn-yellow-400-alt:focus {
     background: #F6E05E;
@@ -1481,6 +1545,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-500-alt:hover, .btn-yellow-500-alt:active, .btn-yellow-500-alt:focus {
     background: #ECC94B;
@@ -1497,6 +1562,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-600-alt:hover, .btn-yellow-600-alt:active, .btn-yellow-600-alt:focus {
     background: #D69E2E;
@@ -1513,6 +1579,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-700-alt:hover, .btn-yellow-700-alt:active, .btn-yellow-700-alt:focus {
     background: #B7791F;
@@ -1529,6 +1596,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-800-alt:hover, .btn-yellow-800-alt:active, .btn-yellow-800-alt:focus {
     background: #975A16;
@@ -1545,6 +1613,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-900-alt:hover, .btn-yellow-900-alt:active, .btn-yellow-900-alt:focus {
     background: #744210;
@@ -1561,6 +1630,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-100-alt:hover, .btn-green-100-alt:active, .btn-green-100-alt:focus {
     background: #F0FFF4;
@@ -1577,6 +1647,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-200-alt:hover, .btn-green-200-alt:active, .btn-green-200-alt:focus {
     background: #C6F6D5;
@@ -1593,6 +1664,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-300-alt:hover, .btn-green-300-alt:active, .btn-green-300-alt:focus {
     background: #9AE6B4;
@@ -1609,6 +1681,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-400-alt:hover, .btn-green-400-alt:active, .btn-green-400-alt:focus {
     background: #68D391;
@@ -1625,6 +1698,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-500-alt:hover, .btn-green-500-alt:active, .btn-green-500-alt:focus {
     background: #48BB78;
@@ -1641,6 +1715,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-600-alt:hover, .btn-green-600-alt:active, .btn-green-600-alt:focus {
     background: #38A169;
@@ -1657,6 +1732,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-700-alt:hover, .btn-green-700-alt:active, .btn-green-700-alt:focus {
     background: #2F855A;
@@ -1673,6 +1749,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-800-alt:hover, .btn-green-800-alt:active, .btn-green-800-alt:focus {
     background: #276749;
@@ -1689,6 +1766,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-900-alt:hover, .btn-green-900-alt:active, .btn-green-900-alt:focus {
     background: #22543D;
@@ -1705,6 +1783,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-100-alt:hover, .btn-blue-100-alt:active, .btn-blue-100-alt:focus {
     background: #EBF8FF;
@@ -1721,6 +1800,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-200-alt:hover, .btn-blue-200-alt:active, .btn-blue-200-alt:focus {
     background: #BEE3F8;
@@ -1737,6 +1817,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-300-alt:hover, .btn-blue-300-alt:active, .btn-blue-300-alt:focus {
     background: #90CDF4;
@@ -1753,6 +1834,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-400-alt:hover, .btn-blue-400-alt:active, .btn-blue-400-alt:focus {
     background: #63B3ED;
@@ -1769,6 +1851,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-500-alt:hover, .btn-blue-500-alt:active, .btn-blue-500-alt:focus {
     background: #4299E1;
@@ -1785,6 +1868,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-600-alt:hover, .btn-blue-600-alt:active, .btn-blue-600-alt:focus {
     background: #3182CE;
@@ -1801,6 +1885,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-700-alt:hover, .btn-blue-700-alt:active, .btn-blue-700-alt:focus {
     background: #2B6CB0;
@@ -1817,6 +1902,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-800-alt:hover, .btn-blue-800-alt:active, .btn-blue-800-alt:focus {
     background: #2C5282;
@@ -1833,6 +1919,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-900-alt:hover, .btn-blue-900-alt:active, .btn-blue-900-alt:focus {
     background: #2A4365;
@@ -1849,6 +1936,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-100-alt:hover, .btn-blue-gray-100-alt:active, .btn-blue-gray-100-alt:focus {
     background: #F0F4F8;
@@ -1865,6 +1953,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-200-alt:hover, .btn-blue-gray-200-alt:active, .btn-blue-gray-200-alt:focus {
     background: #D9E2EC;
@@ -1881,6 +1970,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-300-alt:hover, .btn-blue-gray-300-alt:active, .btn-blue-gray-300-alt:focus {
     background: #BCCCDC;
@@ -1897,6 +1987,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-400-alt:hover, .btn-blue-gray-400-alt:active, .btn-blue-gray-400-alt:focus {
     background: #9FB3C8;
@@ -1913,6 +2004,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-500-alt:hover, .btn-blue-gray-500-alt:active, .btn-blue-gray-500-alt:focus {
     background: #829AB1;
@@ -1929,6 +2021,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-600-alt:hover, .btn-blue-gray-600-alt:active, .btn-blue-gray-600-alt:focus {
     background: #627D98;
@@ -1945,6 +2038,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-700-alt:hover, .btn-blue-gray-700-alt:active, .btn-blue-gray-700-alt:focus {
     background: #486581;
@@ -1961,6 +2055,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-800-alt:hover, .btn-blue-gray-800-alt:active, .btn-blue-gray-800-alt:focus {
     background: #334E68;
@@ -1977,6 +2072,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-900-alt:hover, .btn-blue-gray-900-alt:active, .btn-blue-gray-900-alt:focus {
     background: #243B53;
@@ -1993,6 +2089,7 @@ button {
   padding-right: 1.5rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-1000-alt:hover, .btn-blue-gray-1000-alt:active, .btn-blue-gray-1000-alt:focus {
     background: #102A43;
@@ -2010,6 +2107,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-success-alt:hover, .btn-success-alt:active, .btn-success-alt:focus {
     background: #48BB78;
@@ -2027,6 +2125,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-danger-alt:hover, .btn-danger-alt:active, .btn-danger-alt:focus {
     background: #F56565;
@@ -2044,6 +2143,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-warning-alt:hover, .btn-warning-alt:active, .btn-warning-alt:focus {
     background: #DD6B20;
@@ -2061,6 +2161,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-info-alt:hover, .btn-info-alt:active, .btn-info-alt:focus {
     background: #63B3ED;
@@ -2073,7 +2174,7 @@ button {
     <**************************************************************************>
 */
 .btn-success-inverted {
-  background: transparent;
+  background: #FFF;
   color: #48BB78;
   border: 1px solid #E2E8F0;
   box-shadow: 0;
@@ -2083,6 +2184,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-success-inverted:hover, .btn-success-inverted:active, .btn-success-inverted:focus {
     background-color: #48BB78;
@@ -2091,7 +2193,7 @@ button {
     text-decoration: none !important; }
 
 .btn-danger-inverted {
-  background: transparent;
+  background: #FFF;
   color: #F56565;
   border: 1px solid #E2E8F0;
   box-shadow: 0;
@@ -2101,6 +2203,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-danger-inverted:hover, .btn-danger-inverted:active, .btn-danger-inverted:focus {
     background-color: #F56565;
@@ -2109,7 +2212,7 @@ button {
     text-decoration: none !important; }
 
 .btn-warning-inverted {
-  background: transparent;
+  background: #FFF;
   color: #DD6B20;
   border: 1px solid #E2E8F0;
   box-shadow: 0;
@@ -2119,6 +2222,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-warning-inverted:hover, .btn-warning-inverted:active, .btn-warning-inverted:focus {
     background-color: #DD6B20;
@@ -2127,7 +2231,7 @@ button {
     text-decoration: none !important; }
 
 .btn-info-inverted {
-  background: transparent;
+  background: #FFF;
   color: #63B3ED;
   border: 1px solid #E2E8F0;
   box-shadow: 0;
@@ -2137,6 +2241,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-info-inverted:hover, .btn-info-inverted:active, .btn-info-inverted:focus {
     background-color: #63B3ED;
@@ -2155,6 +2260,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-primary-inverted:hover, .btn-primary-inverted:active, .btn-primary-inverted:focus {
     background-color: #2B6CB0;
@@ -2173,6 +2279,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-secondary-inverted:hover, .btn-secondary-inverted:active, .btn-secondary-inverted:focus {
     background-color: #718096;
@@ -2191,11 +2298,31 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-alternate-inverted:hover, .btn-alternate-inverted:active, .btn-alternate-inverted:focus {
     background-color: #2D3748;
     color: #FFF;
     border: 1px solid #2D3748;
+    text-decoration: none !important; }
+
+.btn-white-inverted {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0;
+  font-weight: 600;
+  font-size: 16px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  margin-bottom: 0;
+  border-radius: 0.25rem; }
+  .btn-white-inverted:hover, .btn-white-inverted:active, .btn-white-inverted:focus {
+    background-color: #fff;
+    color: #FFF;
+    border: 1px solid #fff;
     text-decoration: none !important; }
 
 .btn-gray-10-inverted {
@@ -2209,6 +2336,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-10-inverted:hover, .btn-gray-10-inverted:active, .btn-gray-10-inverted:focus {
     background-color: #f1f1f1;
@@ -2227,6 +2355,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-20-inverted:hover, .btn-gray-20-inverted:active, .btn-gray-20-inverted:focus {
     background-color: #fafafa;
@@ -2245,6 +2374,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-30-inverted:hover, .btn-gray-30-inverted:active, .btn-gray-30-inverted:focus {
     background-color: #ddd;
@@ -2263,6 +2393,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-40-inverted:hover, .btn-gray-40-inverted:active, .btn-gray-40-inverted:focus {
     background-color: #ccc;
@@ -2281,6 +2412,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-50-inverted:hover, .btn-gray-50-inverted:active, .btn-gray-50-inverted:focus {
     background-color: #fafbfc;
@@ -2299,6 +2431,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-100-inverted:hover, .btn-gray-100-inverted:active, .btn-gray-100-inverted:focus {
     background-color: #F7FAFC;
@@ -2317,6 +2450,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-200-inverted:hover, .btn-gray-200-inverted:active, .btn-gray-200-inverted:focus {
     background-color: #EDF2F7;
@@ -2335,6 +2469,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-300-inverted:hover, .btn-gray-300-inverted:active, .btn-gray-300-inverted:focus {
     background-color: #E2E8F0;
@@ -2353,6 +2488,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-400-inverted:hover, .btn-gray-400-inverted:active, .btn-gray-400-inverted:focus {
     background-color: #CBD5E0;
@@ -2371,6 +2507,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-500-inverted:hover, .btn-gray-500-inverted:active, .btn-gray-500-inverted:focus {
     background-color: #A0AEC0;
@@ -2389,6 +2526,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-600-inverted:hover, .btn-gray-600-inverted:active, .btn-gray-600-inverted:focus {
     background-color: #718096;
@@ -2407,6 +2545,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-700-inverted:hover, .btn-gray-700-inverted:active, .btn-gray-700-inverted:focus {
     background-color: #4A5568;
@@ -2425,6 +2564,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-800-inverted:hover, .btn-gray-800-inverted:active, .btn-gray-800-inverted:focus {
     background-color: #2D3748;
@@ -2443,6 +2583,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-gray-900-inverted:hover, .btn-gray-900-inverted:active, .btn-gray-900-inverted:focus {
     background-color: #1A202C;
@@ -2461,6 +2602,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-100-inverted:hover, .btn-red-100-inverted:active, .btn-red-100-inverted:focus {
     background-color: #FEB2B2;
@@ -2479,6 +2621,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-200-inverted:hover, .btn-red-200-inverted:active, .btn-red-200-inverted:focus {
     background-color: #FC8181;
@@ -2497,6 +2640,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-300-inverted:hover, .btn-red-300-inverted:active, .btn-red-300-inverted:focus {
     background-color: #FEB2B2;
@@ -2515,6 +2659,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-400-inverted:hover, .btn-red-400-inverted:active, .btn-red-400-inverted:focus {
     background-color: #FC8181;
@@ -2533,6 +2678,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-500-inverted:hover, .btn-red-500-inverted:active, .btn-red-500-inverted:focus {
     background-color: #F56565;
@@ -2551,6 +2697,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-600-inverted:hover, .btn-red-600-inverted:active, .btn-red-600-inverted:focus {
     background-color: #E53E3E;
@@ -2569,6 +2716,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-700-inverted:hover, .btn-red-700-inverted:active, .btn-red-700-inverted:focus {
     background-color: #C53030;
@@ -2587,6 +2735,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-800-inverted:hover, .btn-red-800-inverted:active, .btn-red-800-inverted:focus {
     background-color: #E53E3E;
@@ -2605,6 +2754,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-red-900-inverted:hover, .btn-red-900-inverted:active, .btn-red-900-inverted:focus {
     background-color: #C53030;
@@ -2623,6 +2773,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-100-inverted:hover, .btn-orange-100-inverted:active, .btn-orange-100-inverted:focus {
     background-color: #FFFAF0;
@@ -2641,6 +2792,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-200-inverted:hover, .btn-orange-200-inverted:active, .btn-orange-200-inverted:focus {
     background-color: #FEEBC8;
@@ -2659,6 +2811,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-300-inverted:hover, .btn-orange-300-inverted:active, .btn-orange-300-inverted:focus {
     background-color: #FBD38D;
@@ -2677,6 +2830,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-400-inverted:hover, .btn-orange-400-inverted:active, .btn-orange-400-inverted:focus {
     background-color: #F6AD55;
@@ -2695,6 +2849,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-500-inverted:hover, .btn-orange-500-inverted:active, .btn-orange-500-inverted:focus {
     background-color: #ED8936;
@@ -2713,6 +2868,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-600-inverted:hover, .btn-orange-600-inverted:active, .btn-orange-600-inverted:focus {
     background-color: #DD6B20;
@@ -2731,6 +2887,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-700-inverted:hover, .btn-orange-700-inverted:active, .btn-orange-700-inverted:focus {
     background-color: #C05621;
@@ -2749,6 +2906,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-800-inverted:hover, .btn-orange-800-inverted:active, .btn-orange-800-inverted:focus {
     background-color: #9C4221;
@@ -2767,6 +2925,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-orange-900-inverted:hover, .btn-orange-900-inverted:active, .btn-orange-900-inverted:focus {
     background-color: #7B341E;
@@ -2785,6 +2944,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-100-inverted:hover, .btn-yellow-100-inverted:active, .btn-yellow-100-inverted:focus {
     background-color: #FFFFF0;
@@ -2803,6 +2963,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-200-inverted:hover, .btn-yellow-200-inverted:active, .btn-yellow-200-inverted:focus {
     background-color: #FEFCBF;
@@ -2821,6 +2982,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-300-inverted:hover, .btn-yellow-300-inverted:active, .btn-yellow-300-inverted:focus {
     background-color: #FAF089;
@@ -2839,6 +3001,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-400-inverted:hover, .btn-yellow-400-inverted:active, .btn-yellow-400-inverted:focus {
     background-color: #F6E05E;
@@ -2857,6 +3020,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-500-inverted:hover, .btn-yellow-500-inverted:active, .btn-yellow-500-inverted:focus {
     background-color: #ECC94B;
@@ -2875,6 +3039,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-600-inverted:hover, .btn-yellow-600-inverted:active, .btn-yellow-600-inverted:focus {
     background-color: #D69E2E;
@@ -2893,6 +3058,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-700-inverted:hover, .btn-yellow-700-inverted:active, .btn-yellow-700-inverted:focus {
     background-color: #B7791F;
@@ -2911,6 +3077,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-800-inverted:hover, .btn-yellow-800-inverted:active, .btn-yellow-800-inverted:focus {
     background-color: #975A16;
@@ -2929,6 +3096,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-yellow-900-inverted:hover, .btn-yellow-900-inverted:active, .btn-yellow-900-inverted:focus {
     background-color: #744210;
@@ -2947,6 +3115,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-100-inverted:hover, .btn-green-100-inverted:active, .btn-green-100-inverted:focus {
     background-color: #F0FFF4;
@@ -2965,6 +3134,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-200-inverted:hover, .btn-green-200-inverted:active, .btn-green-200-inverted:focus {
     background-color: #C6F6D5;
@@ -2983,6 +3153,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-300-inverted:hover, .btn-green-300-inverted:active, .btn-green-300-inverted:focus {
     background-color: #9AE6B4;
@@ -3001,6 +3172,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-400-inverted:hover, .btn-green-400-inverted:active, .btn-green-400-inverted:focus {
     background-color: #68D391;
@@ -3019,6 +3191,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-500-inverted:hover, .btn-green-500-inverted:active, .btn-green-500-inverted:focus {
     background-color: #48BB78;
@@ -3037,6 +3210,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-600-inverted:hover, .btn-green-600-inverted:active, .btn-green-600-inverted:focus {
     background-color: #38A169;
@@ -3055,6 +3229,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-700-inverted:hover, .btn-green-700-inverted:active, .btn-green-700-inverted:focus {
     background-color: #2F855A;
@@ -3073,6 +3248,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-800-inverted:hover, .btn-green-800-inverted:active, .btn-green-800-inverted:focus {
     background-color: #276749;
@@ -3091,6 +3267,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-green-900-inverted:hover, .btn-green-900-inverted:active, .btn-green-900-inverted:focus {
     background-color: #22543D;
@@ -3109,6 +3286,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-100-inverted:hover, .btn-blue-100-inverted:active, .btn-blue-100-inverted:focus {
     background-color: #EBF8FF;
@@ -3127,6 +3305,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-200-inverted:hover, .btn-blue-200-inverted:active, .btn-blue-200-inverted:focus {
     background-color: #BEE3F8;
@@ -3145,6 +3324,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-300-inverted:hover, .btn-blue-300-inverted:active, .btn-blue-300-inverted:focus {
     background-color: #90CDF4;
@@ -3163,6 +3343,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-400-inverted:hover, .btn-blue-400-inverted:active, .btn-blue-400-inverted:focus {
     background-color: #63B3ED;
@@ -3181,6 +3362,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-500-inverted:hover, .btn-blue-500-inverted:active, .btn-blue-500-inverted:focus {
     background-color: #4299E1;
@@ -3199,6 +3381,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-600-inverted:hover, .btn-blue-600-inverted:active, .btn-blue-600-inverted:focus {
     background-color: #3182CE;
@@ -3217,6 +3400,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-700-inverted:hover, .btn-blue-700-inverted:active, .btn-blue-700-inverted:focus {
     background-color: #2B6CB0;
@@ -3235,6 +3419,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-800-inverted:hover, .btn-blue-800-inverted:active, .btn-blue-800-inverted:focus {
     background-color: #2C5282;
@@ -3253,6 +3438,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-900-inverted:hover, .btn-blue-900-inverted:active, .btn-blue-900-inverted:focus {
     background-color: #2A4365;
@@ -3271,6 +3457,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-100-inverted:hover, .btn-blue-gray-100-inverted:active, .btn-blue-gray-100-inverted:focus {
     background-color: #F0F4F8;
@@ -3289,6 +3476,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-200-inverted:hover, .btn-blue-gray-200-inverted:active, .btn-blue-gray-200-inverted:focus {
     background-color: #D9E2EC;
@@ -3307,6 +3495,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-300-inverted:hover, .btn-blue-gray-300-inverted:active, .btn-blue-gray-300-inverted:focus {
     background-color: #BCCCDC;
@@ -3325,6 +3514,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-400-inverted:hover, .btn-blue-gray-400-inverted:active, .btn-blue-gray-400-inverted:focus {
     background-color: #9FB3C8;
@@ -3343,6 +3533,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-500-inverted:hover, .btn-blue-gray-500-inverted:active, .btn-blue-gray-500-inverted:focus {
     background-color: #829AB1;
@@ -3361,6 +3552,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-600-inverted:hover, .btn-blue-gray-600-inverted:active, .btn-blue-gray-600-inverted:focus {
     background-color: #627D98;
@@ -3379,6 +3571,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-700-inverted:hover, .btn-blue-gray-700-inverted:active, .btn-blue-gray-700-inverted:focus {
     background-color: #486581;
@@ -3397,6 +3590,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-800-inverted:hover, .btn-blue-gray-800-inverted:active, .btn-blue-gray-800-inverted:focus {
     background-color: #334E68;
@@ -3415,6 +3609,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-900-inverted:hover, .btn-blue-gray-900-inverted:active, .btn-blue-gray-900-inverted:focus {
     background-color: #243B53;
@@ -3433,6 +3628,7 @@ button {
   padding-right: 2rem;
   padding-top: .85rem;
   padding-bottom: .85rem;
+  margin-bottom: 0;
   border-radius: 0.25rem; }
   .btn-blue-gray-1000-inverted:hover, .btn-blue-gray-1000-inverted:active, .btn-blue-gray-1000-inverted:focus {
     background-color: #102A43;
@@ -3701,221 +3897,57 @@ button {
     <*****                         BADGES                                 *****>
     <**************************************************************************>
 */
-.badge-primary {
-  background-color: #2B6CB0; }
-
-.badge-secondary {
-  background-color: #718096; }
-
-.badge-alternate {
-  background-color: #2D3748; }
-
-.badge-gray-10 {
-  background-color: #f1f1f1; }
-
-.badge-gray-20 {
-  background-color: #fafafa; }
-
-.badge-gray-30 {
-  background-color: #ddd; }
-
-.badge-gray-40 {
-  background-color: #ccc; }
-
-.badge-gray-50 {
-  background-color: #fafbfc; }
-
-.badge-gray-100 {
-  background-color: #F7FAFC; }
-
-.badge-gray-200 {
-  background-color: #EDF2F7; }
-
-.badge-gray-300 {
-  background-color: #E2E8F0; }
-
-.badge-gray-400 {
-  background-color: #CBD5E0; }
-
-.badge-gray-500 {
-  background-color: #A0AEC0; }
-
-.badge-gray-600 {
-  background-color: #718096; }
-
-.badge-gray-700 {
-  background-color: #4A5568; }
-
-.badge-gray-800 {
-  background-color: #2D3748; }
-
-.badge-gray-900 {
-  background-color: #1A202C; }
-
-.badge-red-100 {
-  background-color: #FEB2B2; }
-
-.badge-red-200 {
-  background-color: #FC8181; }
-
-.badge-red-300 {
-  background-color: #FEB2B2; }
-
-.badge-red-400 {
-  background-color: #FC8181; }
-
-.badge-red-500 {
-  background-color: #F56565; }
-
-.badge-red-600 {
-  background-color: #E53E3E; }
-
-.badge-red-700 {
-  background-color: #C53030; }
-
-.badge-red-800 {
-  background-color: #E53E3E; }
-
-.badge-red-900 {
-  background-color: #C53030; }
-
-.badge-orange-100 {
-  background-color: #FFFAF0; }
-
-.badge-orange-200 {
-  background-color: #FEEBC8; }
-
-.badge-orange-300 {
-  background-color: #FBD38D; }
-
-.badge-orange-400 {
-  background-color: #F6AD55; }
-
-.badge-orange-500 {
-  background-color: #ED8936; }
-
-.badge-orange-600 {
-  background-color: #DD6B20; }
-
-.badge-orange-700 {
-  background-color: #C05621; }
-
-.badge-orange-800 {
-  background-color: #9C4221; }
-
-.badge-orange-900 {
-  background-color: #7B341E; }
-
-.badge-yellow-100 {
-  background-color: #FFFFF0; }
-
-.badge-yellow-200 {
-  background-color: #FEFCBF; }
-
-.badge-yellow-300 {
-  background-color: #FAF089; }
-
-.badge-yellow-400 {
-  background-color: #F6E05E; }
-
-.badge-yellow-500 {
-  background-color: #ECC94B; }
-
-.badge-yellow-600 {
-  background-color: #D69E2E; }
-
-.badge-yellow-700 {
-  background-color: #B7791F; }
-
-.badge-yellow-800 {
-  background-color: #975A16; }
-
-.badge-yellow-900 {
-  background-color: #744210; }
-
-.badge-green-100 {
-  background-color: #F0FFF4; }
-
-.badge-green-200 {
-  background-color: #C6F6D5; }
-
-.badge-green-300 {
-  background-color: #9AE6B4; }
-
-.badge-green-400 {
-  background-color: #68D391; }
-
-.badge-green-500 {
-  background-color: #48BB78; }
-
-.badge-green-600 {
-  background-color: #38A169; }
-
-.badge-green-700 {
-  background-color: #2F855A; }
-
-.badge-green-800 {
-  background-color: #276749; }
-
-.badge-green-900 {
-  background-color: #22543D; }
-
-.badge-blue-100 {
-  background-color: #EBF8FF; }
-
-.badge-blue-200 {
-  background-color: #BEE3F8; }
-
-.badge-blue-300 {
-  background-color: #90CDF4; }
-
-.badge-blue-400 {
-  background-color: #63B3ED; }
-
-.badge-blue-500 {
-  background-color: #4299E1; }
-
-.badge-blue-600 {
-  background-color: #3182CE; }
-
-.badge-blue-700 {
-  background-color: #2B6CB0; }
-
-.badge-blue-800 {
-  background-color: #2C5282; }
-
-.badge-blue-900 {
-  background-color: #2A4365; }
-
-.badge-blue-gray-100 {
-  background-color: #F0F4F8; }
-
-.badge-blue-gray-200 {
-  background-color: #D9E2EC; }
-
-.badge-blue-gray-300 {
-  background-color: #BCCCDC; }
-
-.badge-blue-gray-400 {
-  background-color: #9FB3C8; }
-
-.badge-blue-gray-500 {
-  background-color: #829AB1; }
-
-.badge-blue-gray-600 {
-  background-color: #627D98; }
-
-.badge-blue-gray-700 {
-  background-color: #486581; }
-
-.badge-blue-gray-800 {
-  background-color: #334E68; }
-
-.badge-blue-gray-900 {
-  background-color: #243B53; }
-
-.badge-blue-gray-1000 {
-  background-color: #102A43; }
+.badge-success {
+  background-color: #48BB78;
+  border: 1px solid #48BB78;
+  border-radius: 1.1rem;
+  padding: .2rem .5rem; }
+
+.badge-danger {
+  background-color: #F56565;
+  border: 1px solid #F56565;
+  border-radius: 1.1rem;
+  padding: .2rem .5rem; }
+
+.badge-warning {
+  background-color: #DD6B20;
+  border: 1px solid #DD6B20;
+  border-radius: 1.1rem;
+  padding: .2rem .5rem; }
+
+.badge-info {
+  background-color: #63B3ED;
+  border: 1px solid #63B3ED;
+  border-radius: 1.1rem;
+  padding: .2rem .5rem; }
+
+.badge-success {
+  background-color: #F0FFF4;
+  border: 1px solid #68D391;
+  color: #48BB78;
+  border-radius: 1.1rem;
+  padding: .15rem .55rem; }
+
+.badge-danger {
+  background-color: #FEB2B2;
+  border: 1px solid #FC8181;
+  color: #F56565;
+  border-radius: 1.1rem;
+  padding: .15rem .55rem; }
+
+.badge-warning {
+  background-color: #FFFAF0;
+  border: 1px solid #F6AD55;
+  color: #ED8936;
+  border-radius: 1.1rem;
+  padding: .15rem .55rem; }
+
+.badge-info {
+  background-color: #EBF8FF;
+  border: 1px solid #63B3ED;
+  color: #4299E1;
+  border-radius: 1.1rem;
+  padding: .35rem .55rem !important; }
 
 /*  <**************************************************************************>
     <*****                            SECTIONS                             *****>
@@ -4004,6 +4036,34 @@ button {
   padding-top: 10rem;
   padding-bottom: 10rem;
   background-color: #2D3748; }
+
+.section-white {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  background-color: #fff; }
+
+.section-white-sm {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: #fff; }
+
+.section-white-md {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  background-color: #fff; }
+
+.section-white-lg {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  background-color: #fff; }
 
 .section-gray-10 {
   margin-top: 0rem;
@@ -6343,12 +6403,17 @@ button {
 .card {
   background-color: #fff !important;
   border-radius: 0.25rem; }
+  .card .card-header {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem; }
   .card .card-body {
-    border-radius: 0.25rem 0.25rem 0 0 !important; }
+    border-radius: 0.25rem 0.25rem 0 0 !important;
+    padding: 1.5rem 1.5rem; }
   .card .card-footer {
     border-top: none !important;
-    background-color: #fafafa !important;
-    border-radius: 0 0 0.25rem 0.25rem !important; }
+    background-color: #F0F4F8 !important;
+    border-radius: 0 0 0.25rem 0.25rem !important;
+    padding: 1rem; }
 
 .round-edges {
   border-radius: 1.1rem !important; }
@@ -6418,6 +6483,11 @@ button {
 
 .stripe-alternate {
   border-left: 5px solid #2D3748;
+  border-right: solid 1px #d7d7d7;
+  border-bottom: solid 1px #d7d7d7; }
+
+.stripe-white {
+  border-left: 5px solid #fff;
   border-right: solid 1px #d7d7d7;
   border-bottom: solid 1px #d7d7d7; }
 
@@ -6795,6 +6865,9 @@ button {
 .stripe-alternate-top {
   border-left: 5px solid #2D3748; }
 
+.stripe-white-top {
+  border-left: 5px solid #fff; }
+
 .stripe-gray-10-top {
   border-left: 5px solid #f1f1f1; }
 
@@ -7039,6 +7112,9 @@ button {
   background-position: top;
   background-repeat: no-repeat;
   position: relative; }
+
+.border-top-dark {
+  border-top: 1px solid #ccc; }
 
 hr.hr-2 {
   border-top: 2px solid #2B6CB0;
@@ -7505,6 +7581,26 @@ hr.hr-2 {
 
 .hr-alternate-lg {
   background-color: #2D3748;
+  height: 4px;
+  width: 14rem; }
+
+.hr-white {
+  background-color: #fff;
+  height: 3px;
+  width: 100%; }
+
+.hr-white-sm {
+  background-color: #fff;
+  height: 4px;
+  width: 8rem; }
+
+.hr-white-md {
+  background-color: #fff;
+  height: 4px;
+  width: 12rem; }
+
+.hr-white-lg {
+  background-color: #fff;
   height: 4px;
   width: 14rem; }
 
@@ -10176,7 +10272,8 @@ input[type=checkbox]:checked + label {
 
 .search-icon {
   position: absolute;
-  left: 1.8rem;
+  padding-left: 1rem;
+  padding-top: 0.25rem;
   top: 20%;
   z-index: 2; }
   .search-icon i {
