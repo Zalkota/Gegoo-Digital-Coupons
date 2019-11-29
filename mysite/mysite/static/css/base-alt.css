@@ -764,7 +764,7 @@ html {
 body {
   margin: 0;
   font-family: Montserrat, sans-serif !important;
-  background-color: #f1f1f1 !important; }
+  background-color: #f5f5f5 !important; }
   body h1 h2 h3 h4 h5 h6 {
     color: #1a1a1a; }
   body p {
@@ -6411,7 +6411,7 @@ button {
     padding: 1.5rem 1.5rem; }
   .card .card-footer {
     border-top: none !important;
-    background-color: #F0F4F8 !important;
+    background-color: #f5f5f5 !important;
     border-radius: 0 0 0.25rem 0.25rem !important;
     padding: 1rem; }
 
@@ -10142,108 +10142,6 @@ select:-webkit-autofill {
     border-radius: 6px; }
   #confirmation h1 {
     text-align: center; } }
-
-/*       CONTACT PAGE AND FORM        */
-input, input:-internal-autofill-selected, input:-webkit-autofill, select:-webkit-autofill {
-  font-size: 1.1rem; }
-
-input[type=checkbox] + label {
-  color: #ccc;
-  font-style: italic; }
-
-input[type=checkbox]:checked + label {
-  color: #32325d;
-  font-style: normal; }
-
-::placeholder {
-  color: #1A202C !important; }
-
-::-webkit-input-placeholder {
-  /* Chrome/Opera/Safari */
-  color: #1A202C; }
-
-::-moz-placeholder {
-  /* Firefox 19+ */
-  color: #A0AEC0; }
-
-:-ms-input-placeholder {
-  /* IE 10+ */
-  color: #A0AEC0; }
-
-:-moz-placeholder {
-  /* Firefox 18- */
-  color: #A0AEC0; }
-
-:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px #E2E8F0 inset !important;
-  font-size: 1.1rem !important; }
-
-:-webkit-autofill {
-  -webkit-text-fill-color: #2A4365 !important;
-  font-size: 1.1rem !important; }
-
-.form-control, .custom-file-control,
-.is-focused .form-control,
-.is-focused .custom-file-control {
-  background-image: linear-gradient(to top, #2B6CB0 2px, rgba(63, 81, 181, 0) 2px), linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px); }
-
-.form-control:valid, .custom-file-control:valid {
-  color: #3a3a3a !important; }
-
-.form-control, .custom-file-control, .is-focused .form-control, .is-focused .custom-file-control {
-  background-image: linear-gradient(to top, #2B6CB0 2px, rgba(63, 81, 181, 0) 2px), linear-gradient(to top, #c6c7c8 1px, transparent 1px); }
-
-.form-control::placeholder, .custom-file-control::placeholder {
-  color: #c6c7c8;
-  opacity: 1; }
-
-.form-control .custom-file-control {
-  color: #3a3a3a; }
-
-.form-control:invalid {
-  color: #ff7f7f; }
-
-.form-control:focus, .custom-file-control:focus {
-  color: #3a3a3a; }
-
-.form-control:invalid, .custom-file-control:invalid {
-  background-image: linear-gradient(to top, #2B6CB0 2px, rgba(213, 0, 0, 0) 2px), linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px); }
-
-.form-control:valid, .custom-file-control:valid {
-  color: #3a3a3a !important; }
-
-.form-control::placeholder, .custom-file-control::placeholder {
-  color: #c6c7c8;
-  opacity: 1; }
-
-/* Form Landing Page */
-.form-landing {
-  height: 100vh; }
-  .form-landing .card {
-    background-color: #fff; }
-  .form-landing p {
-    color: #2D3748; }
-
-#emailSubscribeForm {
-  -webkit-appearance: textfield;
-  background-color: white;
-  border: 1px solid #2A4365;
-  -webkit-rtl-ordering: logical;
-  cursor: text;
-  padding-left: 0.65rem;
-  border-style: inset !important;
-  border-image: initial; }
-
-.button {
-  margin-bottom: 0; }
-
-@media screen and (max-width: 992px) {
-  .w-100-mobile {
-    width: 100%; } }
-
-@media screen and (min-width: 992px) {
-  .w-100-mobile {
-    width: 500px; } }
 
 /*  <**************************************************************************>
     <*****                     SEARCH FORM INPUT                          *****>

@@ -17,7 +17,7 @@ body {
     margin: 0;
     font-family: Montserrat, sans-serif !important;
     // background
-    background-color: $color-background-100 !important;
+    background-color: $color-background-500 !important;
 
     h1 h2 h3 h4 h5 h6 {
       color: #1a1a1a;
@@ -51,7 +51,7 @@ body {
 @import "./generic/images";
 @import "./generic/profile";
 @import "./generic/store";
-@import "./generic/form";
+
 @import "./generic/search";
 //@import "form";
 @import "./generic/navigation_mobile";

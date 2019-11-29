@@ -64,9 +64,11 @@ module.exports = function (grunt) {
               precision: 10
           },
           files: {
+              '<%= paths.css %>/base-go.css': '<%= paths.app %>/static/go/scss/style.scss',
               '<%= paths.css %>/bootstrap.css': '<%= paths.sass %>/bootstrap.scss',
               '<%= paths.css %>/base.css': '<%= paths.sass %>/base.scss',
               '<%= paths.css %>/base-alt.css': '<%= paths.sass %>/base-alt.scss',
+              '<%= paths.css %>/base-account.css': '<%= paths.sass %>/base-account.scss',
               '<%= paths.css %>/components/base-alt.css': '<%= paths.sass %>/components/base-components.scss',
           },
       },
