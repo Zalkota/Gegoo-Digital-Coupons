@@ -3,9 +3,9 @@ from django.conf.urls import include, url
 from django.urls import path
 from django.contrib import admin
 from .views import (
-    home,
-    ContactFormView,
+    homeView,
     contactLandingPage,
+    ContactFormView,
     components,
 )
 from search import views as search_views
@@ -31,20 +31,18 @@ urlpatterns = [
     #Authentication
     url(r'^accounts/', include('allauth.urls')),
     #Portal
-    #url(r'^portal/', include(('portal.urls', 'portal'), namespace='portal')),
+    url(r'^coupons/', include(('portal.urls', 'portal'), namespace='portal')),
     #shoppingcart
-    url(r'^cart/', include(('shoppingcart.urls', 'shoppingcart'), namespace='cart')),
+    #url(r'^cart/', include(('shoppingcart.urls', 'shoppingcart'), namespace='cart')),
     #users
     url(r'', include(('users.urls', 'users'), namespace='users')),
 
-    path('', home, name='home-page'),
-
-    path('components/', components, name='components-page'),
-
+    path('', homeView.as_view(), name='home-page'),
     path('contact/', ContactFormView.as_view(), name='contact-page'),
     path('about/', ContactFormView.as_view(), name='about-page'),
     path('thank-you/', contactLandingPage, name='contact-landing-page'),
     #path('<slug>/', PageDetailView.as_view(), name='page-detail'),
+
     path('pages', include('django.contrib.flatpages.urls')),
 
     #Search
@@ -54,6 +52,8 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
+    #Development
+    path('components/', components, name='components-page'),
 
     #Ckeditor
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),

@@ -674,3 +674,24 @@ hr.hr-2 {
         margin-top: -92px;
         visibility: hidden;
     }
+
+
+    .coupon-bottom-button-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+         align-items: stretch;
+    }
+
+    .coupon-button {
+        border-top: 1px solid $color-muted;
+        padding: .5rem 0.25rem;
+        flex-grow: 1;
+        align-self: auto;
+        text-align: center;
+
+        svg {
+            text-align: center;
+        }
+    }

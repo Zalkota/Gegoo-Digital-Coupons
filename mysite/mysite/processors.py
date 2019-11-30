@@ -1,11 +1,11 @@
-from shoppingcart.models import Promotion
+from portal.models import Promotion
 from django.shortcuts import get_list_or_404, get_object_or_404
 
 def SiteName(request):
     # Create fixed data structures to pass to template
     # data could equally come from database queries
     # web services or social APIs
-    site_name = 'BravePrinting'
+    site_name = 'Gegoo'
     return {'SITE_NAME': site_name}
 
 

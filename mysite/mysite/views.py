@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
+from django.views.generic import ListView, DetailView, View
 
 # Contact Form
 from django.views.generic.edit import FormView, FormMixin
@@ -16,7 +15,7 @@ from django.utils import timezone
 
 # imports
 from .models import Contact
-from shoppingcart.models import Item
+from portal.models import Offer
 
 #mail
 from django.core.mail import send_mail
@@ -36,43 +35,19 @@ def get_items(request):
         return items_qs
     return None
 
-def home(request):
 
-    if request.method == 'POST':
-        # Create a form instance and populate it with data from the request (binding):
-        form = ContactMiniForm(request.POST)
-        # Check if the form is valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            contact = form.save(commit=False)
-            contact.name = form.cleaned_data['name']
-            contact.phone = form.cleaned_data['phone']
-            contact.email = form.cleaned_data['email']
-            contact.description = form.cleaned_data['description']
-            #print( reservation.email)
-            contact.save()
+class homeView(View):
+    def get(self, *args, **kwargs):
+        try:
+            offer_qs = Offer.objects.all()
 
-            #send_email_reservation(reservation.email)
-            #messages.success(request, "Email Subscribed")
-            #request.session['reservationDate'] = form.cleaned_data['date']
+        except:
+            None
 
-            return HttpResponseRedirect('/contact_landing_page/')
-        # If this is a GET (or any other method) create the default form.
-    else:
-        form = ContactMiniForm()
-
-    #service_list = get_service(request)
-
-    item_list = get_items(request)
-
-
-    context = {
-    'item_list': item_list,
-    }
-    return render(request, 'mysite/home_page.html', context)
-
+        context = {
+            'offer_list': offer_qs,
+        }
+        return render(self.request, 'mysite/home_page.html', context)
 
 
 class ContactFormView(FormView):

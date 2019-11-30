@@ -8,19 +8,17 @@
 {% block inner %}
 <div class="section-md vertical-container">
     <div class="vertical-alignment mr-auto ml-auto text-center p-4"  style="max-width: 800px;">
-            <div class="card shadow-0 card-border">
-                <div class="card-header pt-4">
-                  <h5><strong>{% trans "Confirm E-mail Address" %}</strong></h5>
-                </div>
+            <div class="card shadow-2 card-border">
                 <div class="card-body py-4"  style="background-color: #f9fafb;">
+                    <h5><strong>{% trans "Confirm E-mail Address" %}</strong></h5>
                   {% if confirmation %}
                   {% user_display confirmation.email_address.user as user_display %}
-                  <p>{% blocktrans with confirmation.email_address.email as email %}Welcome to Mod Technologies {{ user_display }}, please confirm your email address{% endblocktrans %}</p>
+                  <p class="text-secondary fs-14">{% blocktrans with confirmation.email_address.email as email %}Welcome to Mod Technologies {{ user_display }}, please confirm your email address{% endblocktrans %}</p>
                 </div>
-                <div class="card-footer text-center pb-0 pt-4">
-                  <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                <div class="card-footer text-center ">
+                  <form method="post" class="text-center" action="{% url 'account_confirm_email' confirmation.key %}">
                   {% csrf_token %}
-                      <button class="btn btn-primary-alt" style="width: 240px;" type="submit">{% trans 'Confirm' %}</button>
+                      <button class="btn btn-primary-alt btn-block"  type="submit">{% trans 'Confirm E-mail' %}</button>
                   </form>
                 </div>
             </div>

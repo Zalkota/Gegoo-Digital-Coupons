@@ -158,7 +158,7 @@ input, input:-internal-autofill-selected, input:-webkit-autofill, select:-webkit
     background-attachment: fixed; }
     .hero-signup-right {
       /* Sizing */
-      background-color: #2B6CB0;
+      background-color: #6B46C1;
       color: #fafafa;
       order: 2;
       flex-grow: 1;

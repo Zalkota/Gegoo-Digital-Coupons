@@ -3,9 +3,9 @@ from django.utils import timezone
 from haystack import indexes
 from haystack.fields import CharField
 
-from shoppingcart.models import Item
+from portal.models import Offer
 
-class ItemIndex(indexes.SearchIndex, indexes.Indexable):
+class OfferIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(
     document=True, use_template=True,
     template_name='/home/dominic/Desktop/projects/estore/mysite/templates/search/item_text.txt')
@@ -23,7 +23,7 @@ class ItemIndex(indexes.SearchIndex, indexes.Indexable):
     suggestions = indexes.FacetCharField()
 
     def get_model(self):
-        return Item
+        return Offer
 
     def index_queryset(self, using=None):
         return self.get_model().objects.filter(timestamp__lte=timezone.now())

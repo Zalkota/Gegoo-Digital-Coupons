@@ -76,8 +76,15 @@ h2 {
 @each $color, $value in $colors {
   .text-#{$color} {
     color: $value !important;
+
+
   }
+
+  a.text-#{$color}:hover, a.text-#{$color}:active, a.text-#{$color}:focus {
+    color: $value !important;
+    }
 }
+
 
 @each $color, $value in $colors {
   .bg-#{$color} {

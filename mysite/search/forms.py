@@ -1,16 +1,16 @@
 from haystack.forms import FacetedSearchForm
-from shoppingcart.models import Category, Item
+from portal.models import Category, Offer
 
 
-class FacetedItemSearchForm(FacetedSearchForm):
+class FacetedOfferSearchForm(FacetedSearchForm):
 
     def __init__(self, *args, **kwargs):
         data = dict(kwargs.get("data", []))
         self.categories = data.get('category', [])
-        super(FacetedItemSearchForm, self).__init__(*args, **kwargs)
+        super(FacetedOfferSearchForm, self).__init__(*args, **kwargs)
 
     def search(self):
-        sqs = super(FacetedItemSearchForm, self).search()
+        sqs = super(FacetedOfferSearchForm, self).search()
         if self.categories:
             query = None
             for category in self.categories:

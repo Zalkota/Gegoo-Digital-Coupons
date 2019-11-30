@@ -4,8 +4,8 @@ from django.http import JsonResponse
 from haystack.generic_views import FacetedSearchView as BaseFacetedSearchView
 from haystack.query import SearchQuerySet
 
-from shoppingcart.models import Item, Category
-from .forms import FacetedItemSearchForm
+from portal.models import Offer, Category
+from .forms import FacetedOfferSearchForm
 
 #class HomeView(TemplateView):
 #  template_name = "home.html"
@@ -25,7 +25,7 @@ def autocomplete(request):
 
 
 class FacetedSearchView(BaseFacetedSearchView):
-    form_class = FacetedItemSearchForm
+    form_class = FacetedOfferSearchForm
     facet_fields = ['category']
     template_name = 'search/search_result.html'
 
@@ -35,5 +35,5 @@ class FacetedSearchView(BaseFacetedSearchView):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
-        context['advert_list'] = Item.objects.all()[:4]
+        context['advert_list'] = Offer.objects.all()[:4]
         return context

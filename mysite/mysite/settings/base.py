@@ -41,8 +41,8 @@ INSTALLED_APPS = [
 
     #APPS
     'users',
-    #'portal',
-    'shoppingcart',
+    'portal',
+    #'shoppingcart',
     #'memberships',
     #'blog',
 
@@ -184,8 +184,8 @@ DATABASES = {
 
 	'default': {
         	'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        	'NAME': 'estore',
-        	'USER': 'estoreadmin',
+        	'NAME': 'gegoo',
+        	'USER': 'gegooadmin',
         	'PASSWORD': '$Django10',
         	'HOST': 'localhost',
         	'PORT': '',
