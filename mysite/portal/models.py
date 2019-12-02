@@ -198,10 +198,10 @@ def setMerchantRefCode(sender, created, instance, **kwargs):
 
 
 class Merchant(models.Model):
-    name = models.CharField(max_length=100)
+    business_name = models.CharField(max_length=100)
     address = models.ForeignKey(Address, related_name='address', on_delete=models.SET_NULL, blank=True, null=True)
     logo = models.ImageField(upload_to='merchant-logos/', null=True)
-    banner = models.ImageField(upload_to='merchant-logos/', null=True)
+    banner = models.ImageField(upload_to='merchant-banners/', null=True)
     phone_number = PhoneNumberField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='category')
     subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, null=True, related_name='subcategory')
@@ -213,7 +213,7 @@ class Merchant(models.Model):
     ref_code = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return '%s located in %s, %s.' % (self.business_name, self.address.city, self.address.state)
 
 post_save.connect(setMerchantRefCode, sender=Merchant)
 

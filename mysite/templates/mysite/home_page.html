@@ -11,10 +11,10 @@
 
 {% block content %}
 
-  <section class="hero">
+  <section class="hero container">
         <div class="text text-center" >
-            <h1 class="text-shadow-1 ls-1" data-aos="fade-in" data-aos-delay="400">Bumper Stickers <br> that Kickass</h1>
-            <h3 class="fs-18 fw-7 text-light text-shadow-1" data-aos="fade-in" data-aos-delay="400">PRINTED IN AMERICA</h3>
+            <h1 class="text-shadow-1 ls-1" data-aos="fade-in" data-aos-delay="400"></h1>
+            <h3 class="fs-18 fw-7 text-light text-shadow-1" data-aos="fade-in" data-aos-delay="400"></h3>
             <div class="search-form">
                 <div class="search-form-background-hero">
                     <form class="search-form-container-hero" action="/find/" method="get" >
@@ -33,7 +33,8 @@
 
   <!-- ****** Picture Gallery ******* -->
 
-  <section class="section-sm container mt-2" data-aos="fade-up" data-aos-delay="400">
+
+  <section class="section container mt-2" data-aos="fade-up" data-aos-delay="400">
     <div class="container">
       <div class="row">
             {% for offer in offer_list %}
@@ -49,14 +50,14 @@
                                   {{ offer.title }}
                               </h4>
                               <div class="mb-3">
-                                  <a href="{% url 'portal:merchant-detail' offer.merchant.ref_code <state>/<city>/<category>/<subcategory>/<title>/<ref_code>
+                                  <a href="
 
                                    %}" class="fs-12">{{ offer.merchant.category }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ offer.merchant.subcategory }}</a>
                               </div>
 
                               <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ offer.end_date }}</span></div>
 
-                              <a class="btn btn-primary-inverted btn-block" href="{% url 'contact-page' %}">View Additional Deals (3)</a>
+                              <a class="btn btn-primary-inverted btn-block" href="{% url 'portal:merchant-detail' offer.merchant.address.state offer.merchant.address.city offer.merchant.category offer.merchant.subcategory offer.merchant.business_name offer.merchant.ref_code %}">View Additional Deals (3)</a>
 
                           </div>
                       </div>
@@ -81,130 +82,14 @@
               </div>
             {% endfor %}
         </div>
-    </section>
 
-
-  <section class="section-sm container mt-2" data-aos="fade-up" data-aos-delay="400">
-    <div class="container">
-      <div class="row">
-          {% for object in item_list %}
-              <div class="col-lg-4 col-md-6 text-center border-radius-300 mb-5">
-                  <div class="card card-border  border-radius-300 shadow-2">
-                      <a href="{{ object.get_absolute_url }}">
-                          <img class="card-img-top" style="width: 100%;" src="/media/{{ object.main_image }}" alt="User Uploaded images">
-                      </a>
-                  </div>
-                  <div class="px-2 py-3 text-left text-uppercase">
-                      <h3 class="fw-6 fs-16">{{ object.title }}</h3>
-                      <span class="text-danger fs-16 fw-6">${{ object.price }}</span>
-                  </div>
-              </div>
-          {% endfor %}
-    </div>
-  </section>
-
-
-  <!-- ****** End Picture Gallery ******* -->
-
-  <section class="section-md dots-container">
-    <div class="hero--dots--right">
-      <img class="img-responsive shadow-0" style="z-index: 22;" src="{% static 'img/dots-lg.svg' %}" alt="TODO">
-    </div>
-    <div class="container">
-      <div class="text-center">
-          <h2 class="fs-50 fw-7 mb-5 ls-1">Search By Category</h2>
-      </div>
-      <div class="row">
-          <div class="col-lg-3 p-3 " data-aos="fade-in">
-            <img class="img-responsive shadow-2" src="{% static 'img/image15.jpg' %}" width="100%" alt="TODO">
-            <div class="mt-4 px-3">
-              <h3 class="fw-7">Trump</h3>
-
-            </div>
-          </div>
-          <div class="col-lg-3 p-3" data-aos="fade-in">
-            <img class="img-responsive shadow-2" src="{% static 'img/image14.jpg' %}" width="100%" alt="TODO">
-            <div class="mt-4 px-3">
-              <h3 class="fw-7">Warren</h3>
-
-            </div>
-          </div>
-          <div class="col-lg-3 p-3 " data-aos="fade-in">
-            <img class="img-responsive shadow-2" src="{% static 'img/image16.png' %}" width="100%" alt="TODO">
-            <div class="mt-4 px-3">
-              <h3 class="fw-7">Republican</h3>
-
-            </div>
-          </div>
-          <div class="col-lg-3 p-3 " data-aos="fade-in">
-            <img class="img-responsive shadow-2" src="{% static 'img/painting.PNG' %}" width="100%" alt="TODO">
-            <div class="mt-4 px-3">
-              <h3 class="fw-7">Democrat</h3>
-
-            </div>
-          </div>
-      </div>
-    </div>
-  </section>
-
-
-    <section class="section-sm dots-container" >
-        <div class="hero--dots--left">
-          <img class="img-responsive shadow-0" style="z-index: 22;" src="{% static 'img/dots.svg' %}" alt="TODO">
-        </div>
-    </section>
-
-    <section class="section-md">
-      <div class="text-center">
-          <h2 class="fs-50 fw-7 mb-5 ls-1">Testimonials</h2>
-      </div>
-      <div class="container text-left" data-aos="fade-up">
-          <div class="text-center card-border p-5">
-            <div class="text-left">
-              <i class="material-icons star-yellow" style="">star star star star star </i><span class="text-dark pull-right fs-14">September 11, 2019, 6:09 p.m.</span>
-                <h4 class="mt-4 ">"From the moment I picked this bracelet up, you could feel the quality of the stainless steel and time that was put into it."</h4>
-                  <div class="row">
-                    <div class="col-lg-12 pull-left">
-                      <h4 class="fs-16 mb-0 mt-3 ">Jacob Gaft <br><span class="text-muted fs-12">Verified Buyer</span></h4>
-                    </div>
-                  </div>
-              </div>
-            <div class="text-center" style="display: none;">
-              <a class="btn btn-primary-round fs-20" href="{% url 'contact-page' %}">View Additional Projects</a>
-            </div>
-          </div>
-      </div>
-    </section>
-
-<!-- blog post -->
-
-
-<section class="section-md">
-    <div class="container text-center">
         <div class="text-center">
-            <h2 class="fs-50 fw-7 mb-5 ls-1">Latest Blog Posts</h2>
+            <a href="" class="btn btn-primary-alt px-5">
+                Load More Offers
+            </a>
         </div>
-        <div class="row">
-            <div class="col-lg-4 p-5" data-aos="fade-in" data-aos-delay="100">
-                <img src="{% static 'img/image11.png' %}" alt="" class="img-fluid">
-            </div>
-            <div class="col-lg-4 p-5" data-aos="fade-in" data-aos-delay="500">
-                <img src="{% static 'img/image12.jpg' %}" alt="" class="img-fluid">
-            </div>
-            <div class="col-lg-4 p-5" data-aos="fade-in" data-aos-delay="1000">
-                <img src="{% static 'img/image13.jpg' %}" alt="" class="img-fluid">
-            </div>
-        </div>
-        <div class="mt-3">
-          <a href="#" class="btn btn-alt text-uppercase">View All Posts</a>
-        </div>
-    </div>
-</section>
+    </section>
 
-
-{% block banner %}
-  {% include "components/html/banner.html" %}
-{% endblock banner %}
 
 {% endblock %}
 

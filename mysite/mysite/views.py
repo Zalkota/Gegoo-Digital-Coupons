@@ -57,7 +57,6 @@ class ContactFormView(FormView):
 
 
     def form_valid(self, form):
-
         ContactForm = form.save(commit=False)
         ContactForm.name = form.cleaned_data['name']
         ContactForm.email = form.cleaned_data['email']
@@ -65,7 +64,6 @@ class ContactFormView(FormView):
         ContactForm.company = form.cleaned_data['company']
         ContactForm.description = form.cleaned_data['description']
         ContactForm.save()
-
         send_email(ContactForm.name, ContactForm.email, ContactForm.phone, ContactForm.company, ContactForm.description)
 
         #template = get_template('contact_template.txt')

@@ -9,6 +9,6 @@ app_name = 'portal'
 
 urlpatterns = [
 
-    path('<state>/<city>/<category>/<subcategory>/<title>/<ref_code>', MerchantDetailView.as_view(), name='merchant-detail'),
+    path('<state>/<city>/<category>/<subcategory>/<name>/<ref_code>', MerchantDetailView.as_view(), name='merchant-detail'),
 
 ]

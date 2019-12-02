@@ -24,12 +24,7 @@
           </form>
           <div class="collapse navbar-collapse  hide" id="navbarResponsive">
               <ul class="nav navbar-nav ml-auto" id="example-one">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#" id="">{% if request.path == '/cart/products/' %}<strong>Deals</strong>{% else %} Deals {% endif %}</a>
-                  </li>
-                  <li class="nav-item pt-1 text-secondary">
-                    <span>|</span>
-                  </li>
+
                 {% if not request.user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link text-primary" href="{% url 'account_signup' %}" id="">Sign Up</a>
@@ -41,6 +36,12 @@
                   <a class="nav-link" href="{% url 'account_login' %}" id="">Sign In</a>
                 </li>
                 {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="#" id="">{% if request.path == '/cart/products/' %}<strong>My Favorites</strong>{% else %} My Favorites {% endif %}</a>
+                </li>
+                <li class="nav-item pt-1 text-secondary">
+                  <span>|</span>
+                </li>
                   <li class="nav-item dropdown " style="z-index: 500;">
                     <a class="nav-link " id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Account
@@ -69,6 +70,24 @@
                 {% endif %}
 
               </ul>
+          </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-lower shadow-0 navbar-expand-lg hide" id="mynav">
+      <div class="container hide merchant-bottom-button-container" >
+          <div class="collapse navbar-collapse  hide" id="navbarResponsive">
+              <div class="navbar-bottom-button" style="border-left: 1px solid #d1d1d1;">
+                  <span>Coupons</span>
+              </div>
+              <div class="navbar-bottom-button">
+                  <span>Cars</span>
+              </div>
+              <div class="navbar-bottom-button">
+                  <span>Restaurants</span>
+              </div>
+              <div class="navbar-bottom-button">
+                  <span>Tools</span>
+              </div>
           </div>
         </div>
     </nav>

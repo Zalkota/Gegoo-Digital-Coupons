@@ -999,7 +999,8 @@ body {
 */
 .btn {
   font-size: 16px;
-  font-weight: 650; }
+  font-weight: 650;
+  text-align: center; }
   .btn:hover, .btn:active .btn:focus {
     font-weight: 650; }
 
@@ -7545,6 +7546,10 @@ hr.hr-2 {
   -webkit-box-shadow: 0 5px 15px rgba(154, 160, 185, 0.15), 0 15px 40px rgba(166, 173, 201, 0.35);
   box-shadow: 0 5px 15px rgba(154, 160, 185, 0.15), 0 15px 40px rgba(166, 173, 201, 0.35); }
 
+.shadow-5 {
+  -webkit-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15); }
+
 .shadow-0 {
   -webkit-box-shadow: none !important;
   box-shadow: none !important; }
@@ -9349,6 +9354,39 @@ hr.hr-2 {
   .coupon-button svg {
     text-align: center; }
 
+.merchant-bottom-button-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  cursor: pointer;
+  /* Add a mouse pointer on hover */ }
+
+.merchant-button {
+  border-top: 1px solid #E2E8F0;
+  border-right: 1px solid #d1d1d1;
+  padding: .5rem 0.25rem;
+  flex-grow: 1;
+  align-self: auto;
+  text-align: center;
+  font-weight: 600;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 5px solid #fff;
+  color: #2D3748; }
+  .merchant-button:hover, .merchant-button:active, .merchant-button:focus, .merchant-button:visited {
+    color: #6B46C1;
+    border-bottom: 5px solid #6B46C1; }
+    .merchant-button:hover a, .merchant-button:active a, .merchant-button:focus a, .merchant-button:visited a {
+      text-decoration: none; }
+
+.merchant-button-active {
+  color: #6B46C1;
+  border-bottom: 5px solid #6B46C1; }
+  .merchant-button-active a {
+    text-decoration: none; }
+
 .primary {
   fill: #E2E8F0; }
 
@@ -9357,6 +9395,9 @@ hr.hr-2 {
 
 .w-4 {
   width: 1rem; }
+
+.w-6 {
+  width: 1.5rem; }
 
 .w-8 {
   width: 2rem; }
@@ -9430,7 +9471,7 @@ a.navbar-brand.scrolled:hover {
   background-color: #fafafa;
   height: 75px;
   z-index: 2;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.16); }
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06); }
   .navbar-default .ul-spacing {
     height: 50px; }
   .navbar-default li.nav-item {
@@ -9489,11 +9530,15 @@ a.navbar-brand.scrolled:hover {
     text-align: center;
     box-shadow: none; }
 
+/*  <**************************************************************************>
+    <*****                        Navbar Lower                            *****>
+    <**************************************************************************>
+*/
 .navbar-lower {
   background-color: #fafafa;
-  height: 40px;
+  height: 50px;
   z-index: 1;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
   box-shadow: none; }
   .navbar-lower .ul-spacing {
     height: 30px; }
@@ -9513,6 +9558,33 @@ a.navbar-brand.scrolled:hover {
   .navbar-lower .navbar .navbar-collapse {
     text-align: center;
     box-shadow: none; }
+  .navbar-lower .navbar-bottom-button-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    cursor: pointer;
+    /* Add a mouse pointer on hover */ }
+  .navbar-lower .navbar-bottom-button {
+    border-right: 1px solid #d1d1d1;
+    padding: .8rem 0.25rem;
+    flex-grow: 1;
+    font-size: 14px;
+    align-self: auto;
+    text-align: center;
+    font-weight: 600;
+    color: #2D3748; }
+    .navbar-lower .navbar-bottom-button:hover, .navbar-lower .navbar-bottom-button:active, .navbar-lower .navbar-bottom-button:focus, .navbar-lower .navbar-bottom-button:visited {
+      color: #6B46C1;
+      border-bottom: 3px solid #6B46C1; }
+      .navbar-lower .navbar-bottom-button:hover a, .navbar-lower .navbar-bottom-button:active a, .navbar-lower .navbar-bottom-button:focus a, .navbar-lower .navbar-bottom-button:visited a {
+        text-decoration: none; }
+  .navbar-lower .navbar-bottom-button-active {
+    color: #6B46C1;
+    border-bottom: 5px solid #6B46C1; }
+    .navbar-lower .navbar-bottom-button-active a {
+      text-decoration: none; }
 
 @media screen and (min-width: 992px) {
   .p-m-5 {
