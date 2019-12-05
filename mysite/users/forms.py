@@ -11,7 +11,7 @@ class SignupForm(forms.Form):
         user.last_name = self.cleaned_data['last_name']
         user.save()
 
-class ProfileImageForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ["image"]
+# class ProfileImageForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         fields = ["image"]

@@ -311,6 +311,13 @@ python3 local.py dumpdata --natural-foreign --indent=4 -e contenttypes -e auth.P
 
 
 
+## GeoDjango
+
+sudo -u postgres psql -d gegoo -c "CREATE EXTENSION IF NOT EXISTS postgis;"
+
+
+
+
 Exclude apps:
 wagtailusers
 wagtailsearch

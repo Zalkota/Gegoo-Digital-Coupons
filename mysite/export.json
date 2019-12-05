@@ -1,0 +1,343 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.55.7 8b86ff77",
+  "osm3s": {
+    "timestamp_osm_base": "2019-12-05T01:24:02Z",
+    "timestamp_areas_base": "2019-12-05T00:35:02Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 383766147,
+      "lat": 42.6789943,
+      "lon": -83.3010153,
+      "tags": {
+        "amenity": "fast_food",
+        "name": "Dairy Queen"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1722516852,
+      "lat": 42.67039,
+      "lon": -83.3008496,
+      "tags": {
+        "addr:housename": "Little Caesars Pizza",
+        "addr:housenumber": "1203",
+        "addr:postcode": "48340",
+        "addr:street": "Baldwin Ave",
+        "amenity": "fast_food",
+        "brand": "Little Caesars",
+        "brand:wikidata": "Q1393809",
+        "brand:wikipedia": "en:Little Caesars",
+        "cuisine": "pizza",
+        "name": "Little Caesars",
+        "website": "https://littlecaesars.com/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2862567658,
+      "lat": 42.6202894,
+      "lon": -83.249262,
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Taco Bell",
+        "brand:wikidata": "Q752941",
+        "brand:wikipedia": "en:Taco Bell",
+        "cuisine": "tex-mex",
+        "name": "Taco Bell",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2862571027,
+      "lat": 42.6206399,
+      "lon": -83.2492994,
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "KFC",
+        "brand:wikidata": "Q524757",
+        "brand:wikipedia": "en:KFC",
+        "cuisine": "chicken",
+        "name": "KFC",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2862571028,
+      "lat": 42.621011,
+      "lon": -83.2493881,
+      "tags": {
+        "addr:state": "MI",
+        "amenity": "fast_food",
+        "brand": "Arby's",
+        "brand:wikidata": "Q630866",
+        "brand:wikipedia": "en:Arby's",
+        "cuisine": "sandwich",
+        "name": "Arby's",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2862571029,
+      "lat": 42.6214646,
+      "lon": -83.2494348,
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Dunkin' Donuts",
+        "brand:wikidata": "Q847743",
+        "brand:wikipedia": "en:Dunkin' Donuts",
+        "cuisine": "donut;coffee",
+        "name": "Dunkin' Donuts",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6573803384,
+      "lat": 42.618729,
+      "lon": -83.2493378,
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Wendy's",
+        "brand:wikidata": "Q550258",
+        "brand:wikipedia": "en:Wendy's",
+        "cuisine": "burger",
+        "drive_through": "yes",
+        "name": "Wendy's",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 666147479,
+      "nodes": [
+        6236664501,
+        6236664502,
+        6236664503,
+        6236664504,
+        6236664505,
+        6236664506,
+        6236664507,
+        6236664508,
+        6236664501
+      ],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "McDonald's",
+        "brand:wikidata": "Q38076",
+        "brand:wikipedia": "en:McDonald's",
+        "building": "yes",
+        "building:levels": "1",
+        "cuisine": "burger",
+        "name": "McDonald's"
+      }
+    },
+    {
+      "type": "way",
+      "id": 666147494,
+      "nodes": [
+        6236664536,
+        6236664537,
+        6236664538,
+        6236664539,
+        6236664536
+      ],
+      "tags": {
+        "amenity": "fast_food",
+        "building": "yes",
+        "building:levels": "1"
+      }
+    },
+    {
+      "type": "way",
+      "id": 678292799,
+      "nodes": [
+        6351222751,
+        6351222752,
+        6351222753,
+        6351222754,
+        6351222755,
+        6351222756,
+        6351222757,
+        6351222758,
+        6351222751
+      ],
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "Burger King",
+        "brand:wikidata": "Q177054",
+        "brand:wikipedia": "en:Burger King",
+        "building": "yes",
+        "building:levels": "1",
+        "cuisine": "burger",
+        "name": "Burger King",
+        "takeaway": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 700029121,
+      "nodes": [
+        6573803380,
+        6573803381,
+        6573803382,
+        6573803383,
+        6573803380
+      ],
+      "tags": {
+        "amenity": "fast_food",
+        "building": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6236664501,
+      "lat": 42.6192893,
+      "lon": -83.2798699
+    },
+    {
+      "type": "node",
+      "id": 6236664502,
+      "lat": 42.6191741,
+      "lon": -83.2798628
+    },
+    {
+      "type": "node",
+      "id": 6236664503,
+      "lat": 42.6191826,
+      "lon": -83.2796088
+    },
+    {
+      "type": "node",
+      "id": 6236664504,
+      "lat": 42.6192036,
+      "lon": -83.2796101
+    },
+    {
+      "type": "node",
+      "id": 6236664505,
+      "lat": 42.6192046,
+      "lon": -83.2795793
+    },
+    {
+      "type": "node",
+      "id": 6236664506,
+      "lat": 42.6192823,
+      "lon": -83.2795841
+    },
+    {
+      "type": "node",
+      "id": 6236664507,
+      "lat": 42.6192814,
+      "lon": -83.2796109
+    },
+    {
+      "type": "node",
+      "id": 6236664508,
+      "lat": 42.6192979,
+      "lon": -83.2796119
+    },
+    {
+      "type": "node",
+      "id": 6236664536,
+      "lat": 42.6190909,
+      "lon": -83.2796194
+    },
+    {
+      "type": "node",
+      "id": 6236664537,
+      "lat": 42.6191397,
+      "lon": -83.2795199
+    },
+    {
+      "type": "node",
+      "id": 6236664538,
+      "lat": 42.618965,
+      "lon": -83.2793603
+    },
+    {
+      "type": "node",
+      "id": 6236664539,
+      "lat": 42.6189152,
+      "lon": -83.2794633
+    },
+    {
+      "type": "node",
+      "id": 6351222751,
+      "lat": 42.6080289,
+      "lon": -83.248869
+    },
+    {
+      "type": "node",
+      "id": 6351222752,
+      "lat": 42.6080213,
+      "lon": -83.2491398
+    },
+    {
+      "type": "node",
+      "id": 6351222753,
+      "lat": 42.6079163,
+      "lon": -83.2491344
+    },
+    {
+      "type": "node",
+      "id": 6351222754,
+      "lat": 42.6079197,
+      "lon": -83.2490146
+    },
+    {
+      "type": "node",
+      "id": 6351222755,
+      "lat": 42.6079111,
+      "lon": -83.2490142
+    },
+    {
+      "type": "node",
+      "id": 6351222756,
+      "lat": 42.6079194,
+      "lon": -83.2487208
+    },
+    {
+      "type": "node",
+      "id": 6351222757,
+      "lat": 42.6080195,
+      "lon": -83.248726
+    },
+    {
+      "type": "node",
+      "id": 6351222758,
+      "lat": 42.6080155,
+      "lon": -83.2488683
+    },
+    {
+      "type": "node",
+      "id": 6573803380,
+      "lat": 42.6187079,
+      "lon": -83.2491776
+    },
+    {
+      "type": "node",
+      "id": 6573803381,
+      "lat": 42.6188974,
+      "lon": -83.2491807
+    },
+    {
+      "type": "node",
+      "id": 6573803382,
+      "lat": 42.6188948,
+      "lon": -83.2494771
+    },
+    {
+      "type": "node",
+      "id": 6573803383,
+      "lat": 42.6187053,
+      "lon": -83.249474
+    }
+  ]
+}

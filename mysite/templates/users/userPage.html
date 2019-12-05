@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %}Profile Page{% endblock %}
+{% block title %}Dashboard | {{ SITE_NAME }}{% endblock %}
 
 {% block extra_styles %}
 <style>
@@ -25,6 +25,10 @@ a:hover {
   text-align: center !important;
 }
 </style>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 {% endblock extra_styles %}
 
 
@@ -64,12 +68,12 @@ a:hover {
 
 <!-- Body Start -->
 <section class="section-sm container">
-  <h2 class="fw-6 hide mb-2">My Account </h2>
+  <h2 class="fw-6 hide mb-2">Dashboard </h2>
   <span class="fs-14 hide text-secondary">Welcome Back, {{ user }}!</span>
       {% block component %}
         {% include "users/profile_nav.html" %}
       {% endblock component %}
-        <div class="row mt-2">
+        <div class="row mt-2" data-aos="fade-up">
             <div class="col-lg-12 mb-4">
                 <div class="card shadow-2  unhide">
                     <div class="card-body">
@@ -98,7 +102,7 @@ a:hover {
                             </li>
                           </a>
                           <hr class="mt-0 mb-3 unhide">
-                          <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'users:update_image' %}" role="button">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="#" role="button">
                             <li class="pb-3">
                                 <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
                             </li>
@@ -114,69 +118,145 @@ a:hover {
                 </div>
             </div>
 
+            <div class="col-lg-3">
+
+                <div class="card card-border shadow-2 mb-3">
+                    <div class="card-header">
+                        <div class="text-center">
+                            <div class="text-uppercase text-muted fw-5">Offer Overview</div>
+                        </div>
+                    </div>
+                    <div class="card-body p-3 py-1 border-bottom" >
+                        <div class="row">
+
+                            <!-- Row One -->
+                            <div class="col-lg-4" style="padding: 0.35rem; padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-car" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Vehicles</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Food</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-scissors" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Beauty</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Row two -->
+                            <div class="col-lg-4" style="padding: 0.35rem; padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Home</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-bicycle" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Outdoors</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-headphones" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Electronics</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Row Three -->
+                            <div class="col-lg-4" style="padding: 0.35rem; padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-plane" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Travel</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Groceries</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-tags" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">All</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                {% block recommendedOffers %}
+                  {% include "components/recommended_offers.html" %}
+                {% endblock recommendedOffers %}
+            </div>
+
             <div class="col-lg-8 mb-4">
                 <span class="anchor" id="orders"></span>
                 <div class="card shadow-2 card-border ">
 
                     <div class="text-center table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr class="text-uppercase card-header">
-                                  <th scope="col"><span class="fs-14">Order #</span></th>
-                                  <th scope="col"><span class="fs-14">Date</span></th>
-                                  <th scope="col"><span class="fs-14">Status</span></th>
-                                  <th scope="col"><span class="fs-14">Total</span></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {% for object in order_list %}
-                                    <tr>
-                                        <td><a href="{% url 'shoppingcart:order' ref_code=object.ref_code %}" class="text-dark">#{{ object.ref_code}}</a></td>
-                                        <td><a href="{{ object.get_absolute_url }}" class="text-dark">{{ object.ordered_date }}</a></td>
-                                        <td><a href="" class="badge {% if object.status == 'P' %}badge-info {% elif object.status == 'A' %}badge-danger {% else %} badge-success {% endif %}">{{ object.get_status_display }}</a></td>
-                                        <td><a href="{{ object.get_absolute_url }}" class="text-dark">$ {{ object.get_total }}0</a></td>
-                                    </tr>
-                            {% empty %}
-                            <tr><th scope="row" class="text-muted fs-14">You have no orders at this time.</th></tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                        <div class="card-header">
+                            <div class="text-center">
+                                <div class="text-uppercase text-muted fw-5">Recommended For You</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
       	    </div>
-            {% if address.street != none %}
-            <div class="col-lg-4">
-                <div class="card shadow-0 card-border">
-                    <table class="table">
-                    <thead>
-                        <tr class="text-uppercase ">
-                            <th scope="col"><span class="fs-14">Shipping Address</span></th>
-                        </tr>
-                    </thead>
-                    </table>
-                    <div class="row px-3 fs-14">
-                        <div class="col-lg-6">
-                            <address>
-
-                                {{ address.street_address }} <br>
-                                {{ address.city }}, {{ address.state }} <br>
-                                {{ address.zip }}, {{ address.country }}
-                                {{ address.apartment_address }} <br>
-
-                            </address>
-                        </div>
-                        <div class="col-lg-6">
-                            <h3 class="fs-14 badge badge-primary">
-                                Default
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-
       </div>
       <div class="py-5 hide"></div><div class="py-5 hide"></div>
 </section>
 
 {% endblock content %}
+{% block extrajs %}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1300,
+  });
+</script>
+{% endblock extrajs %}

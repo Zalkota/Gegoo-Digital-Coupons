@@ -86,62 +86,65 @@
   /* ################ NAVBAR TOP ################ */
 
 .navbar-default {
-  background-color: $color-navbar-alt-background;
-  height: 75px;
-  z-index: 2;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    background-color: $color-navbar-alt-background;
+    height: 75px;
+    z-index: 2;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 
 
-  .ul-spacing {
+    .ul-spacing {
     height: 50px;
 
-  }
+    }
 
-  li.nav-item {
+    li.nav-item {
     height: 2rem;
-  }
+    }
 
-  li.nav-object {
+    li.nav-object {
     height: 1.5rem;
-  }
+    }
 
-  .nav-link-bold {
-      color: $color-navbar-alt-text;
-      font-weight: 700 !important;
-      font-size: 1rem;
-      line-height: 28px;
-      margin-left: .85rem;
-      margin-right: .85rem;
-      text-transform: uppercase;
-      display: inline-block;
-      padding-top: 0.3125rem;
-      padding-bottom: 0.3125rem;
-      line-height: inherit;
-  }
+    .nav-link-bold {
+        color: $color-navbar-alt-text;
+        font-weight: 700 !important;
+        font-size: 1rem;
+        line-height: 28px;
+        margin-left: .85rem;
+        margin-right: .85rem;
+        text-transform: uppercase;
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        line-height: inherit;
+    }
 
-  .nav-link-bold:hover {
-      color:  $color-navbar-alt-hover;
-      text-decoration: none;
-  }
+    .nav-link-bold:hover {
+        color:  $color-navbar-alt-hover;
+        text-decoration: none;
+    }
 
-  .nav-link {
-      color: $color-navbar-alt-text;
-      font-weight: 400 !important;
-      font-size: 1rem;
-      line-height: 28px;
-      margin-left: .85rem;
-      margin-right: .85rem;
-      text-transform: none;
-      display: inline-block;
-      padding-top: 0.3125rem;
-      padding-bottom: 0.3125rem;
-      margin-right: 1rem;
-      line-height: inherit;
-  }
+    .nav-link {
+        color: $color-navbar-alt-text;
+        font-weight: 400 !important;
+        font-size: 1rem;
+        line-height: 28px;
+        margin-left: .85rem;
+        margin-right: .85rem;
+        text-transform: none;
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        line-height: inherit;
 
-  .nav-link:hover {
-      color:  $color-navbar-alt-hover;
-  }
+        &:hover,&:active,&:focus {
+        color:  $color-navbar-alt-hover;
+        }
+    }
+
+
+
 
 
 

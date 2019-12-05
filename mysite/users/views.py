@@ -1,5 +1,5 @@
 from django.urls import reverse, reverse_lazy
-from django.views.generic import DetailView, ListView, RedirectView, UpdateView
+from django.views.generic import DetailView, ListView, RedirectView, UpdateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User
 from django.http import HttpResponseRedirect
@@ -13,29 +13,27 @@ from portal.models import Address
 #from shoppingcart.views import get_user_address_default, get_user_orders
 
 #Profile Image
-from .forms import ProfileImageForm
+# from .forms import ProfileImageForm
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
-    model = User
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
 
-@login_required
-def userPage(request):
-    model = User
-    user = request.user
-    #address = get_user_address_default(request, user)
-    #orders = get_user_orders(request, user)
 
-    context = {
-            'user': user,
-    #        'address': address,
-    #        'order_list': orders,
+class userPage(View):
+    def get(self, *args, **kwargs):
+        try:
+            user = self.request.user
+
+            context = {
+                    'user': user,
             }
-    template = 'users/userPage.html'
-    return render(request, template, context)
+            return render(self.request, "users/userPage.html", context)
+
+        except ObjectDoesNotExist:
+            messages.info(self.request, "Error contact admin")
+            return redirect("home-page")
+
 
 class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
@@ -69,32 +67,3 @@ class RedirectProfileView(LoginRequiredMixin, RedirectView):
         return HttpResponseRedirect(
                     reverse('users:summary',
                             kwargs={'username': self.request.user.username}))
-
-
-def user_jobs_view(request):
-	user_jobs = get_user_jobs(request)
-	context = {
-		'user_jobs': user_jobs
-	}
-	return render(request, "users/user_jobs.html", context)
-
-
-#Profile Image
-@login_required
-def add_image(request):
-    user = request.user
-    instance, status = Profile.objects.get_or_create(user=user)
-    if status:
-        instance = Profile.objects.create(user=user)
-
-    form = ProfileImageForm(instance=instance)
-    if request.method == "POST":
-        form = ProfileImageForm(data=request.POST, files=request.FILES, instance=instance)
-    if form.is_valid():
-        form = form.save(commit=False)
-        #form.user=request.user.pk
-        form.save()
-        return redirect('userPage')
-    else:
-        return render(request, "users/user_image_form.html", {"form": form
-            })

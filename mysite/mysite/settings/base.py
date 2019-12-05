@@ -75,6 +75,11 @@ INSTALLED_APPS = [
     'haystack',
     #'django_elasticsearch_dsl',
 
+    #GeoDjango
+    'location',
+    'django.contrib.gis',
+    'leaflet',
+
 
     #ALLAUTH
     'allauth',
@@ -183,7 +188,7 @@ AUTH_USER_MODEL = 'users.User'
 DATABASES = {
 
 	'default': {
-        	'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        	'ENGINE': 'django.contrib.gis.db.backends.postgis',
         	'NAME': 'gegoo',
         	'USER': 'gegooadmin',
         	'PASSWORD': '$Django10',
@@ -208,7 +213,7 @@ raise_exception = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = 'users.User'
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
 LOGIN_URL = 'account_login'
 
@@ -329,3 +334,13 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True  # The default behaviour is not log u
 
 
 EMAIL_CUSTOMER = 'dominic@modwebservices.com'
+
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (42.3314, -83.0458),
+    'DEFAULT_ZOOM': 5,
+    'MAX_ZOOM': 20,
+    'MIN_ZOOM': 3,
+    'SCALE': 'imperial',
+    'ATTRIBUTION_PREFIX': 'MOD Technologies LLC'
+}

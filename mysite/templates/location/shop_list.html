@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load location_extra %}
+
+{% load leaflet_tags %}
+{% leaflet_js %}
+{% leaflet_css %}
+{% block content %}
+
+<section class="section-md container">
+    <h5><span class="text-muted fs-14">Your Address:</span> <br>
+        <strong>12 S Ascot Rd</strong> <br>
+        Waterford Twp, MI 48328
+    </h5>
+        <div class="card mt-3">
+            <div class="card-body">
+                <h1>Fast Food</h1>
+                {% if shops %}
+                <ul>
+                    {% for shop in shops %}
+                    <li>
+                        {{ shop.name }} : {{ shop.distance.mi|dividebyth }} <span class="text-muted fs-14">miles away</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+</section>
+{% leaflet_map "gis"%}
+
+{% endblock %}

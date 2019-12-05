@@ -44,17 +44,20 @@
                 </li>
                   <li class="nav-item dropdown " style="z-index: 500;">
                     <a class="nav-link " id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Account
+                    Account <i class="arrow down"></i>
                     </a>
                       <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
                         <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'users:userPage' %}">
-                          Profile
+                          Dashboard
                         </a>
                         <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'contact-page' %}">
-                          Support
+                          My Favorites
                         </a>
                         <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="#">
-                          Returns
+                          My Merchants
+                        </a>
+                        <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="#">
+                          My Account
                         </a>
                         {% if request.user.is_superuser %}
                         <a class="dropdown-item" href="/admin/">

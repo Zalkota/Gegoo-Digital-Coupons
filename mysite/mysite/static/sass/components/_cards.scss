@@ -6,7 +6,7 @@
 
 .card {
   // box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12), 0 3px 2px -2px rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    background-color: #fff !important;
+    background-color: #fff;
     border-radius: $border-radius-100;
 
     .card-header {
@@ -17,7 +17,7 @@
 
     .card-body {
         border-radius: $border-radius-100 $border-radius-100 0 0 !important;
-    padding: 1.5rem 1.5rem;
+        padding: 1.5rem 1.5rem;
     }
 
     .card-footer {
@@ -27,6 +27,14 @@
         padding: 1rem;
     }
 }
+
+// .card-body {
+//   background-color: #fff !important;
+// }
+//
+// .card-header {
+//   background-color: #fafbfc !important;
+// }
 
 .card-custom {
   min-height: 200px;

@@ -12,7 +12,7 @@
   }
 
   .profile-link {
-    color: $color-gray-500;
+    color: $color-gray-600;
     font-weight: 500 !important;
     font-size: 1rem;
     line-height:60px;
@@ -24,8 +24,8 @@
 
 
   &-active {
-      color: $color-black;
-      border-bottom: 2px solid $color-black;
+      color: $color-primary;
+      border-bottom: 2px solid $color-primary;
       padding-bottom: 17px;
       text-decoration: none;
       margin-right: 2rem;
@@ -33,17 +33,9 @@
 
   &:hover, &:active {
     text-decoration: none;
-    color: $color-black;
-    border-bottom: 2px solid $color-black;
+    color: $color-primary;
+    border-bottom: 2px solid $color-primary;
     padding-bottom: 17px;
     }
   }
-}
-
-.card-body {
-  background-color: #fff !important;
-}
-
-.card-header {
-  background-color: #fafbfc !important;
 }

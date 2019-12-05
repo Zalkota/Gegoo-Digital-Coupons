@@ -65,3 +65,12 @@ django-haystack==2.8.1
 
 #ImportExport
 django-import-export==1.2.0
+
+
+#GeoDjango
+
+#geos==0.2.2
+#GDAL==3.0.2
+#pyproj
+
+django-leaflet==0.25.0

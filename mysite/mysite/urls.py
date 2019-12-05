@@ -37,6 +37,8 @@ urlpatterns = [
     #users
     url(r'', include(('users.urls', 'users'), namespace='users')),
 
+    url(r'^location/', include(('location.urls', 'location'), namespace='location')),
+
     path('', homeView.as_view(), name='home-page'),
     path('contact/', ContactFormView.as_view(), name='contact-page'),
     path('about/', ContactFormView.as_view(), name='about-page'),

@@ -128,7 +128,7 @@ $color-navbar-hover: $color-black;
 $color-navbar-alt-background: $color-main;
 $color-navbar-alt-background-scrolled: #fdfdfe;
 $color-navbar-alt-text: $color-black;
-$color-navbar-alt-hover: $color-dark;
+$color-navbar-alt-hover: $color-primary;
 
 // Footer
 $color-footer-background: $color-white;
@@ -176,6 +176,7 @@ $colors: map-merge((
   "gray-30":  #ddd,
   "gray-40":  #ccc,
   "gray-50": #fafbfc,
+  "gray-60": #f5f5f5,
   "gray-100": #F7FAFC,
   "gray-200": #EDF2F7,
   "gray-300": #E2E8F0,

@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}My Favorites | {{ SITE_NAME }}{% endblock %}
+
+
+
+{% block content %}
+
+
+<!-- Body Start -->
+<section class="section-sm container">
+  <h2 class="fw-6 hide mb-2">My Favorites </h2>
+  <span class="fs-14 hide text-secondary">Welcome Back, {{ user }}!</span>
+      {% block component %}
+        {% include "users/profile_nav.html" %}
+      {% endblock component %}
+        <div class="row mt-2">
+            <div class="col-lg-12 mb-4">
+                <div class="card shadow-2  unhide">
+                    <div class="card-body">
+                        <h2 class="fw-6">My Account</h2>
+                        <span class="fs-14 text-muted">Welcome Back, {{ user }}!</span>
+                        <br>
+                        <br>
+                        <!-- Action buttons -->
+                        <ul class="pl-0" style="list-style-type: none;">
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none;" href="/" role="button">
+                            <li class="pb-3">
+                                <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2 fw-5">Home</span> <i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="#orders" role="button">
+                            <li class="pb-3">
+                                <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Orders</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_reset_password' %}" role="button">
+                            <li class="pb-3">
+                                <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2 fw-5">Password</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'users:update_image' %}" role="button">
+                            <li class="pb-3">
+                                <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
+                            <li class="pb-0">
+                                <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2 fw-5">Settings</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 mb-4">
+                <span class="anchor" id="orders"></span>
+                <div class="card shadow-2 card-border ">
+
+                    <div class="text-center table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="text-uppercase card-header">
+                                  <th scope="col"><span class="fs-14">Order #</span></th>
+                                  <th scope="col"><span class="fs-14">Date</span></th>
+                                  <th scope="col"><span class="fs-14">Status</span></th>
+                                  <th scope="col"><span class="fs-14">Total</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for object in order_list %}
+                                    <tr>
+                                        <td><a href="{% url 'shoppingcart:order' ref_code=object.ref_code %}" class="text-dark">#{{ object.ref_code}}</a></td>
+                                        <td><a href="{{ object.get_absolute_url }}" class="text-dark">{{ object.ordered_date }}</a></td>
+                                        <td><a href="" class="badge {% if object.status == 'P' %}badge-info {% elif object.status == 'A' %}badge-danger {% else %} badge-success {% endif %}">{{ object.get_status_display }}</a></td>
+                                        <td><a href="{{ object.get_absolute_url }}" class="text-dark">$ {{ object.get_total }}0</a></td>
+                                    </tr>
+                            {% empty %}
+                            <tr><th scope="row" class="text-muted fs-14">You have no orders at this time.</th></tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+      	    </div>
+            {% if address.street != none %}
+            <div class="col-lg-4">
+                <div class="card shadow-0 card-border">
+                    <table class="table">
+                    <thead>
+                        <tr class="text-uppercase ">
+                            <th scope="col"><span class="fs-14">Shipping Address</span></th>
+                        </tr>
+                    </thead>
+                    </table>
+                    <div class="row px-3 fs-14">
+                        <div class="col-lg-6">
+                            <address>
+
+                                {{ address.street_address }} <br>
+                                {{ address.city }}, {{ address.state }} <br>
+                                {{ address.zip }}, {{ address.country }}
+                                {{ address.apartment_address }} <br>
+
+                            </address>
+                        </div>
+                        <div class="col-lg-6">
+                            <h3 class="fs-14 badge badge-primary">
+                                Default
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+      </div>
+      <div class="py-5 hide"></div><div class="py-5 hide"></div>
+</section>
+
+{% endblock content %}
