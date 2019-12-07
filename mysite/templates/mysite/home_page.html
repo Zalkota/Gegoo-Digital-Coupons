@@ -37,11 +37,51 @@
   <section class="section container mt-2" data-aos="fade-up" data-aos-delay="400">
     <div class="container">
       <div class="row">
-            {% for offer in offer_list %}
                 {% block offer %}
-                  {% include "components/offer.html" %}
+                    {% for object in merchant_list %}
+                    <div class="col-lg-3 col-md-6 text-center border-radius-300 mb-5">
+                        <div class="card card-border  border-radius-300 shadow-2">
+                            <a href="{{ object.get_absolute_url }}">
+                                <img class="card-img-top" style="width: 100%;" src="{% static 'img/test.png' %}" alt="User Uploaded images">
+                            </a>
+
+                            <div class="card-body px-3 py-2">
+                                <div class=" text-left ">
+                                    <h3 class="fw-6 fs-14 mb-3">{{ object.business_name }}</h3>
+                                    <h4 class="fw-6 fs-16 mb-3">
+                                        {{ object.offer.first.title }}
+                                    </h4>
+                                    <div class="mb-3">
+                                        <a href="
+                                         %}" class="fs-12">{{ object.category }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ object.subcategory }}</a>
+                                    </div>
+                                    <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.offer.first.end_date }}</span></div>
+                                    <a class="btn btn-primary-inverted btn-block" href="{% url 'portal:merchant-detail' object.address.state object.address.city object.category object.subcategory object.business_name object.ref_code %}">View Additional Deals ({{ object.offer.all.count}})</a>
+                                </div>
+                            </div>
+                              <div class="coupon-bottom-button-container">
+                                  <a class="coupon-button">
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
+                                      <br>
+                                      <span class="fs-14 fw-5 text-primary">Save</span>
+                                  </a>
+                                  <a class="coupon-button">
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-print"><path class="secondary" d="M5 8h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5c0-1.1.9-2 2-2zm1 2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2H6z"/><path class="primary" d="M6 14h12v6a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-6zm0-6V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v4H6z"/></svg>
+                                      <br>
+                                      <span class="fs-14 fw-5 text-primary">Print</span>
+                                  </a>
+                                  <a class="coupon-button">
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-external-window"><path class="primary" d="M12 8a1 1 0 0 1-1 1H5v10h10v-6a1 1 0 0 1 2 0v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9c0-1.1.9-2 2-2h6a1 1 0 0 1 1 1z"/><path class="secondary" d="M19 6.41L8.7 16.71a1 1 0 1 1-1.4-1.42L17.58 5H14a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V6.41z"/></svg>
+                                      <br>
+                                      <span class="fs-14 fw-5 text-primary">Share</span>
+                                  </a>
+                              </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
                 {% endblock offer %}
-            {% endfor %}
+
         </div>
 
         <div class="text-center">

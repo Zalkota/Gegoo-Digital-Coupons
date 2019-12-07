@@ -44,7 +44,7 @@
                 </li>
                   <li class="nav-item dropdown " style="z-index: 500;">
                     <a class="nav-link " id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Account <i class="arrow down"></i>
+                    Account
                     </a>
                       <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
                         <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'users:userPage' %}">

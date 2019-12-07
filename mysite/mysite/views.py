@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Subquery
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, View
 
@@ -15,7 +16,7 @@ from django.utils import timezone
 
 # imports
 from .models import Contact
-from portal.models import Offer
+from portal.models import Offer, Merchant
 
 #mail
 from django.core.mail import send_mail
@@ -29,6 +30,18 @@ from django.contrib import messages
 from django.conf import settings
 EMAIL_CUSTOMER = settings.EMAIL_CUSTOMER
 
+
+#TODO Remove me
+from django.contrib.gis.db import models
+from django.contrib.gis.geos import Point
+from django.contrib.gis.db.models.functions import Distance
+latitude = 42.637740
+longitude = -83.363546
+user_location = Point(longitude, latitude, srid=4326)
+
+from django.db.models import Q, Max
+import operator
+
 def get_items(request):
     items_qs = Item.objects.all()
     if items_qs.exists():
@@ -38,14 +51,13 @@ def get_items(request):
 
 class homeView(View):
     def get(self, *args, **kwargs):
-        try:
-            offer_qs = Offer.objects.all()
 
-        except:
-            None
+        merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
+        #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
 
         context = {
-            'offer_list': offer_qs,
+            'merchant_list': merchant_nearby,
+            # 'offer': offer,
         }
         return render(self.request, 'mysite/home_page.html', context)
 

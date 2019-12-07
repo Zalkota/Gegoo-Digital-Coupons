@@ -5,8 +5,20 @@
       fill: $color-primary; }
 
 
+  @each $color, $value in $colors {
+    .fill-#{$color} {
+      fill: $value;
+
+    }
+  }
+
+  .fa-facebook-square {
+      color: #3b5998 !important;
+  }
+
 .w-4 {width: 1rem;}
 .w-6 {width: 1.5rem;}
 .w-8 {width: 2rem;}
+.w-10 {width: 2.5rem;}
 .w-12 {width: 3rem;}
 .w-316 {width: 4rem;}

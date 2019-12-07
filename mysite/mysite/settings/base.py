@@ -157,6 +157,7 @@ TEMPLATES = [
             'context_processors': [
                 'mysite.processors.SiteName',
                 'mysite.processors.PromotionProcessor',
+                'mysite.processors.classloudFrontURL',
                 #'allauth.account.context_processors',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',

@@ -1,28 +1,26 @@
 {% load static %}
 
 {% block offers %}
-
+{% for object in merchant_list %}
 <div class="col-lg-3 col-md-6 text-center border-radius-300 mb-5">
     <div class="card card-border  border-radius-300 shadow-2">
         <a href="{{ object.get_absolute_url }}">
             <img class="card-img-top" style="width: 100%;" src="{% static 'img/test.png' %}" alt="User Uploaded images">
         </a>
+
         <div class="card-body px-3 py-2">
             <div class=" text-left ">
-                <h3 class="fw-6 fs-14 mb-3">{{ offer.merchant.name }}</h3>
+                <h3 class="fw-6 fs-14 mb-3">{{ object.business_name }}</h3>
                 <h4 class="fw-6 fs-16 mb-3">
-                    {{ offer.title }}
+                    {{ object.offer.first.title }}
                 </h4>
                 <div class="mb-3">
                     <a href="
 
-                     %}" class="fs-12">{{ offer.merchant.category }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ offer.merchant.subcategory }}</a>
+                     %}" class="fs-12">{{ object.category }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ object.subcategory }}</a>
                 </div>
-
-                <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ offer.end_date }}</span></div>
-
-                <a class="btn btn-primary-inverted btn-block" href="{% url 'portal:merchant-detail' offer.merchant.address.state offer.merchant.address.city offer.merchant.category offer.merchant.subcategory offer.merchant.business_name offer.merchant.ref_code %}">View Additional Deals (3)</a>
-
+                <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.offer.first.end_date }}</span></div>
+                <a class="btn btn-primary-inverted btn-block" href="{% url 'portal:merchant-detail' object.address.state object.address.city object.category object.subcategory object.business_name object.ref_code %}">View Additional Deals ({{ object.offer.all.count}})</a>
             </div>
         </div>
           <div class="coupon-bottom-button-container">
@@ -42,7 +40,8 @@
                   <span class="fs-14 fw-5 text-primary">Share</span>
               </a>
           </div>
+
     </div>
 </div>
-
+{% endfor %}
 {% endblock offers %}

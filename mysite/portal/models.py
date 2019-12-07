@@ -18,6 +18,15 @@ from ckeditor_uploader.fields import RichTextUploadingField
 import random
 import string
 
+#GEODJANGO
+from django.contrib.gis.geos import fromstr
+from pathlib import Path
+from django.contrib.gis.db import models
+from django.contrib.gis.geos import Point
+from django.contrib.gis.db.models.functions import Distance
+
+
+
 
 PROMOTION_CHOICES = (
     ('bg-primary', 'primary'),
@@ -130,7 +139,7 @@ class Address(models.Model):
     #                          on_delete=models.CASCADE)
     street_address = models.CharField(max_length=100)
     apartment_address = models.CharField(max_length=100, blank=True)
-    city = models.CharField(max_length=100, default="")
+    city = models.CharField(max_length=100, default="None")
     state = models.CharField(choices=STATES, default='AL', max_length=100)
     #state = models.ForeignKey('States', on_delete=models.CASCADE, null=True, blank=True)
     country = CountryField(multiple=False)
@@ -186,7 +195,7 @@ class About(models.Model):
 
 def setMerchantRefCode(sender, created, instance, **kwargs):
     merchant = instance
-    print(merchant.ref_code)
+    #print(merchant.ref_code)
     if merchant.ref_code == None:
         print('ref_code == None')
         try:
@@ -195,13 +204,28 @@ def setMerchantRefCode(sender, created, instance, **kwargs):
         except:
             print('ERROR REF CODE')
 
+def CalculateLocation(sender, created, instance, **kwargs):
+    merchant = instance
+    #print(merchant.location)
+    if merchant.location == None:
+        try:
+            longitude = merchant.longitude
+            latitude = merchant.latitude
+
+            location = fromstr(
+                f'POINT({longitude} {latitude})', srid=4326
+            )
+            merchant.location = location
+            merchant.save()
+
+        except KeyError:
+            pass
 
 
 class Merchant(models.Model):
     business_name = models.CharField(max_length=100)
-    address = models.ForeignKey(Address, related_name='address', on_delete=models.SET_NULL, blank=True, null=True)
     logo = models.ImageField(upload_to='merchant-logos/', null=True)
-    banner = models.ImageField(upload_to='merchant-banners/', null=True)
+    # banner = models.ImageField(upload_to='merchant-banners/', null=True)
     phone_number = PhoneNumberField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='category')
     subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, null=True, related_name='subcategory')
@@ -210,12 +234,21 @@ class Merchant(models.Model):
     website_url = models.CharField(max_length=500)
     facebook_url = models.CharField(max_length=500)
     about = models.ForeignKey(About, related_name='about', on_delete=models.SET_NULL, blank=True, null=True)
-    ref_code = models.CharField(max_length=20, blank=True, null=True)
+    ref_code = models.CharField(max_length=20, blank=True, null=True, editable=False)
+    promotional_video_file_name = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
+    promotional_video_thumbnail_name = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
+    #Location
+    address = models.ForeignKey(Address, related_name='address', on_delete=models.SET_NULL, blank=True, null=True)
+    latitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True, blank=True)
+    longitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True, blank=True)
+    location = models.PointField(srid=4326, null=True, blank=True)
+
 
     def __str__(self):
-        return '%s located in %s, %s.' % (self.business_name, self.address.city, self.address.state)
+        return '%s located i' % (self.business_name)
 
 post_save.connect(setMerchantRefCode, sender=Merchant)
+post_save.connect(CalculateLocation, sender=Merchant)
 
     #
     # def merchantCallback(sender, request, user, **kwargs):
@@ -228,7 +261,7 @@ post_save.connect(setMerchantRefCode, sender=Merchant)
 
 
 class Offer(models.Model):
-    merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE, null=True, related_name='merchant')
+    merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE, null=True, related_name='offer')
     title = models.TextField()
     description = RichTextUploadingField()
     # ad = models.ForeignKey(Ad, on_delete=models.CASCADE, null=True, related_name='ad')
@@ -238,7 +271,7 @@ class Offer(models.Model):
     end_date = models.DateField()
 
     def __str__(self):
-        return '%s (%s)' % (self.title, self.merchant.name)
+        return '%s (%s)' % (self.title, self.merchant.business_name)
 
 
 

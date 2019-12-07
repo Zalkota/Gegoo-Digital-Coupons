@@ -27,3 +27,11 @@ def PromotionProcessor(request):
         'promotionActive': promotionActive,
         }
     return context
+
+
+def classloudFrontURL(request):
+    # Create fixed data structures to pass to template
+    # data could equally come from database queries
+    # web services or social APIs
+    CloudFrontURL = 'https://d7ge9247f1u94.cloudfront.net/'
+    return {'CloudFrontURL': CloudFrontURL}

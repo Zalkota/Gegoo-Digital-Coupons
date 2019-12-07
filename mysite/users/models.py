@@ -14,10 +14,16 @@ from django.core.validators import FileExtensionValidator
 import datetime
 from django.utils import timezone
 
+MERCHANT_SELECT = (
+    ("NO", "No"),
+    ("YES", "Yes")
+    )
+    
 class User(AbstractUser):
     # First Name and Last Name do not cover name patterns
     # around the globe.
     name = models.CharField(_('Name_of_User'), blank=True, max_length=255)
+    merchant_select = models.CharField(choices=MERCHANT_SELECT, default='NO', max_length=2)
     #accepted_terms_of_service = models.Booleanfield()
 
     def __str__(self):
