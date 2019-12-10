@@ -10,7 +10,7 @@ from allauth.account.signals import user_logged_in, user_signed_up
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 from django.core.validators import FileExtensionValidator
-
+from portal.models import Address
 import datetime
 from django.utils import timezone
 
@@ -18,7 +18,7 @@ MERCHANT_SELECT = (
     ("NO", "No"),
     ("YES", "Yes")
     )
-    
+
 class User(AbstractUser):
     # First Name and Last Name do not cover name patterns
     # around the globe.
@@ -45,8 +45,9 @@ def upload_to(instance, filename):
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_profile')
-    image = models.ImageField(_("Picture"), upload_to=upload_to, null=True, default='blankImage.png', validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Image must be a .PNG or .JPG")
+    # image = models.ImageField(_("Picture"), upload_to=upload_to, null=True, default='blankImage.png', validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Image must be a .PNG or .JPG")
     created_time = models.DateTimeField(('created time'), editable=False, null=True, auto_now_add=True)
+    address = models.OneToOneField(Address, related_name='profile', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.user.username

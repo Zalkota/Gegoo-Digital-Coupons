@@ -79,6 +79,8 @@ INSTALLED_APPS = [
     'location',
     'django.contrib.gis',
     'leaflet',
+    'geolite2',
+
 
 
     #ALLAUTH
@@ -157,6 +159,7 @@ TEMPLATES = [
             'context_processors': [
                 'mysite.processors.SiteName',
                 'mysite.processors.PromotionProcessor',
+                'mysite.processors.AuthenticatedUserLocation',
                 'mysite.processors.classloudFrontURL',
                 #'allauth.account.context_processors',
                 'django.template.context_processors.debug',
@@ -202,6 +205,11 @@ DATABASES = {
 #    }
 #Custom Forms with classes
 }
+
+#GEOIP DATABASE LOCATION
+GEOIP_PATH = '/location/location_db/'
+GEOIP_COUNTRY = 'GeoLite2-Country.mmdb'
+GEOIP_CITY = 'GeoLite2-City.mmdb'
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------

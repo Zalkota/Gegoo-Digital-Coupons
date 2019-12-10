@@ -11,12 +11,11 @@
           <a class="navbar-brand text-center" href="/">
               <!-- <img class="shadow-0 mb-2" src="{% static 'img/logo/logo.png' %}" width="25px" alt="TODO"> -->
               <span class="nav-brand text-gray-700 fw-6"><span class="text-primary fw-7">GE</span>GOO</span>
-
           </a>
           <form class="search-form-container navbar-brand ml-2" action="/find/" method="get" >
               <div class="ml-3" style="width: 100%;">
                   <div class="icon-addon addon-lg" style="width: 100%;">
-                      <input type="text" placeholder="Search for bumper stickers" name="q" id="q" autocomplete="off">
+                      <input type="text" placeholder="Search for Coupons & Merchants" name="q" id="q" autocomplete="off">
                        <button type="submit" class="search-icon" href="#"><i class="fa fa-search fs-20" aria-hidden="true"></i></button>
                       <div id="selction-ajax"></div>
                   </div>
@@ -36,6 +35,21 @@
                   <a class="nav-link" href="{% url 'account_login' %}" id="">Sign In</a>
                 </li>
                 {% else %}
+
+                <li class="nav-item dropdown " style="z-index: 500;">
+                  <a class="nav-link text-primary" id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ city }}, {{ state }}
+                  </a>
+                    <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
+                      <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'users:userPage' %}">
+                        Change Location
+                      </a>
+                  </div>
+                </li>
+
+                <li class="nav-item pt-1 text-secondary">
+                  <span>|</span>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#" id="">{% if request.path == '/cart/products/' %}<strong>My Favorites</strong>{% else %} My Favorites {% endif %}</a>
                 </li>

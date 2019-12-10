@@ -16,7 +16,7 @@ from django.utils import timezone
 
 # imports
 from .models import Contact
-from portal.models import Offer, Merchant
+from portal.models import Offer, Merchant, Category, Address
 
 #mail
 from django.core.mail import send_mail
@@ -30,6 +30,11 @@ from django.contrib import messages
 from django.conf import settings
 EMAIL_CUSTOMER = settings.EMAIL_CUSTOMER
 
+#GeoIP2
+import geoip2.webservice
+
+#GeoIP
+from geolite2 import geolite2
 
 #TODO Remove me
 from django.contrib.gis.db import models
@@ -52,11 +57,22 @@ def get_items(request):
 class homeView(View):
     def get(self, *args, **kwargs):
 
-        merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
+        #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
         #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
 
+        address_qs = Address.objects.filter(city='Pontiac')
+
+        category_list = Category.objects.all()
+
+
+        reader = geolite2.reader()
+        data = reader.get('107.77.193.108')
+        print(data)
+
         context = {
-            'merchant_list': merchant_nearby,
+            'data': data,
+            'address_qs': address_qs,
+            'category_list': category_list,
             # 'offer': offer,
         }
         return render(self.request, 'mysite/home_page.html', context)

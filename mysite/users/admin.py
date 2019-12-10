@@ -28,8 +28,6 @@ class MyUserCreationForm(UserCreationForm):
         raise forms.ValidationError(self.error_messages['duplicate_username'])
 
 
-
-
 @admin.register(User)
 class MyUserAdmin(AuthUserAdmin):
     form = MyUserChangeForm

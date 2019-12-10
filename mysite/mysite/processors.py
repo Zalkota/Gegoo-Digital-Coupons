@@ -1,4 +1,4 @@
-from portal.models import Promotion
+from portal.models import Promotion, Address
 from django.shortcuts import get_list_or_404, get_object_or_404
 
 def SiteName(request):
@@ -28,6 +28,21 @@ def PromotionProcessor(request):
         }
     return context
 
+
+def AuthenticatedUserLocation(request):
+    if request.user.is_authenticated:
+        #use get instead of filter when querying only one object
+        user = request.user
+        city = user.user_profile.address.city
+        state = user.user_profile.address.state
+
+        context = {
+        'city': city,
+        'state': state
+        }
+        return context
+    else:
+        return context
 
 def classloudFrontURL(request):
     # Create fixed data structures to pass to template

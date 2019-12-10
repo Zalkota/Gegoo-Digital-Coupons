@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Merchant
+from .models import Merchant, Subcategory, Category
 from django.views.generic import ListView, DetailView, View
 # Create your views here.
 
@@ -22,6 +22,34 @@ def get_user_orders(request, user):
 		return user_orders_qs
 	return None
 
+class CategoryListView(ListView):
+	model = Category
+
+
+class CategoryDetailView(View):
+
+	def get(self, *args, **kwargs):
+		try:
+			category = Category.objects.get(name=self.kwargs['name'])
+			category_nearby_merchants = Merchant.objects.filter(category=category).annotate(distance = Distance("location", user_location)).order_by("distance")[0:9]
+			all_categories = Category.objects.all()
+
+			context = {
+			'category': category,
+			'category_nearby_merchants': category_nearby_merchants,
+			'all_categories': all_categories,
+			}
+			return render(self.request, "portal/category_detail.html", context)
+
+		except ObjectDoesNotExist:
+			messages.info(self.request, "Error contact admin")
+			return redirect("home-page")
+
+
+# class SubcategoryListView(View):
+# 	def get(self, *args, **kwargs):
+# 		try:
+# 			merchant = Subcategory.objects.filter(category=self.kwargs['category'])
 
 
 class MerchantDetailView(View):
@@ -30,8 +58,11 @@ class MerchantDetailView(View):
 			merchant = Merchant.objects.get(ref_code=self.kwargs['ref_code'])
 			recommended_offers = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:4]
 
+			#data = GeoIP.city('google.com')
+
 
 			context = {
+			#'data': data,
 			'merchant': merchant,
 			'recommended_offers': recommended_offers,
 			}

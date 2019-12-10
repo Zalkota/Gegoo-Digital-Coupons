@@ -34,6 +34,10 @@ PROMOTION_CHOICES = (
     ('bg-alt', 'alt')
 )
 
+CATEGORY_CHOICES = (
+    ('FOOD', 'Food & Dining'),
+    ('VEHICLES', 'Automotive & Transportation'),
+)
 
 
 def random_string_generator(size=10, chars=string.digits):
@@ -155,17 +159,20 @@ class Address(models.Model):
 
 
 class Category(models.Model):
-  name = models.CharField(max_length=40, db_index=True, unique=True)
+    name = models.CharField(choices=CATEGORY_CHOICES, default='FOOD', max_length=20, unique=True, db_index=True,)
 
-  def __str__(self):
-      return self.name
+    def __str__(self):
+        return self.name
 
+    def get_absolute_url(self):
+        return reverse('portal:category_detail', kwargs={'name': self.name})
 
 class Subcategory(models.Model):
   name = models.CharField(max_length=40, db_index=True, unique=True)
+  category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='subcategory')
 
   def __str__(self):
-      return self.name
+      return '%s' % (self.name)
 
 
 
@@ -233,12 +240,12 @@ class Merchant(models.Model):
     downloadable_content_title =  models.CharField(max_length=500, blank=True, null=True, help_text="Examples: menu, brochure, etc.")
     website_url = models.CharField(max_length=500)
     facebook_url = models.CharField(max_length=500)
-    about = models.ForeignKey(About, related_name='about', on_delete=models.SET_NULL, blank=True, null=True)
+    about = models.ForeignKey(About, related_name='about', on_delete=models.CASCADE, blank=True, null=True)
     ref_code = models.CharField(max_length=20, blank=True, null=True, editable=False)
     promotional_video_file_name = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
     promotional_video_thumbnail_name = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
     #Location
-    address = models.ForeignKey(Address, related_name='address', on_delete=models.SET_NULL, blank=True, null=True)
+    address = models.ManyToManyField(Address, related_name='merchant')
     latitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True, blank=True)
     longitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True, blank=True)
     location = models.PointField(srid=4326, null=True, blank=True)
@@ -262,6 +269,7 @@ post_save.connect(CalculateLocation, sender=Merchant)
 
 class Offer(models.Model):
     merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE, null=True, related_name='offer')
+    address = models.ForeignKey(Address, related_name='offer', on_delete=models.CASCADE, blank=True, null=True)
     title = models.TextField()
     description = RichTextUploadingField()
     # ad = models.ForeignKey(Ad, on_delete=models.CASCADE, null=True, related_name='ad')
