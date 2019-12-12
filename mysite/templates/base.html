@@ -22,17 +22,9 @@
         <meta name="description" content="Mod Technology LLC is a web application development company that creates websites and web application for small to medium size companies in the United States of America. We utilize Django Web Framework for our client websites." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <!-- Fonts
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">-->
         <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
         <link rel="stylesheet" href="{% static 'css/font.css' %}" />
-
-        <!-- choose one -->
-        <script src="https://unpkg.com/feather-icons"></script>
-
-        <!-- Icons -->
-        <script src="https://kit.fontawesome.com/51af2b748c.js" crossorigin="anonymous"></script>
 
         {# Global stylesheets #}
 
@@ -42,9 +34,10 @@
 
         <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 
-        <link rel="stylesheet" type="text/css" href="{% static 'css/loader.css' %}">
-        <!-- Material Design for Bootstrap fonts and icons -->
-        <link href="https://fonts.googleapis.com/css?family=Muli:400,700&display=swap" rel="stylesheet">
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/loader.css' %}"> -->
+
+        <!-- Fonts -->
+        <!-- <link href="https://fonts.googleapis.com/css?family=Muli:400,700&display=swap" rel="stylesheet"> -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700,800|Material+Icons">
 
         {% block extra_styles %}
@@ -79,11 +72,13 @@
         <!--
         <script type="text/javascript" src="{% static 'cookielaw/js/cookielaw.js' %}"></script> -->
 
-        <script src="{% static 'js/docs.min.js' %}"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <!-- <script src="{% static 'js/docs.min.js' %}"></script> -->
+        <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+
+        <!-- Trying to replace all of these with the GO JS ASSETS below, keep for now until bug testing is complete -->
 
         <!-- removing the below two packages breaks the dropdown button -->
-        <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+        <!-- <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -91,7 +86,10 @@
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.7/js/mdb.min.js"></script> -->
+
+
+
 
         <!-- Json Autocomplete for Search -->
         <script type="text/javascript" src="{% static 'js/search/jquery.min.js' %}"></script>
@@ -108,6 +106,10 @@
         <script type="text/javascript" src="{% static 'js/navbarscroll.js' %}"></script>!-->
         <!-- Message Timeout button !-->
         <script type="text/javascript" src="{% static 'js/message_timeout.js' %}"></script>
+
+        <!-- Go Assets -->
+        <script type="text/javascript" src="{% static 'js/vendor.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 
         <script>
           feather.replace()

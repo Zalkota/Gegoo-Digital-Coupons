@@ -6,6 +6,7 @@ from django.db.models import Sum
 from django.shortcuts import reverse
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
+from django.utils import timezone
 
 #Image Upload
 from django.core.validators import FileExtensionValidator
@@ -56,7 +57,7 @@ def unique_merchant_id_generator():
 
 # Image Upload Create upload to directory
 def upload_to(instance, filename):
-    now = timezone_now()
+    now = timezone.now()
     base, ext = os.path.splitext(filename)
     ext = ext.lower()
     return '%s' % (now)
@@ -78,6 +79,7 @@ class Images(models.Model):
 class Address(models.Model):
 
     STATES = (
+        ("None", ""),
         ("AL", "Alabama"),
         ("AK", "Alaska"),
         ("AS", "American Samoa"),
@@ -141,13 +143,13 @@ class Address(models.Model):
 
     # user = models.ForeignKey(settings.AUTH_USER_MODEL,
     #                          on_delete=models.CASCADE)
-    street_address = models.CharField(max_length=100)
-    apartment_address = models.CharField(max_length=100, blank=True)
-    city = models.CharField(max_length=100, default="None")
-    state = models.CharField(choices=STATES, default='AL', max_length=100)
+    street_address = models.CharField(max_length=100, blank=True, null=True)
+    apartment_address = models.CharField(max_length=100, blank=True, null=True)
+    city = models.CharField(max_length=100, default="None", blank=True, null=True)
+    state = models.CharField(choices=STATES, default='NA', blank=True, null=True, max_length=30)
     #state = models.ForeignKey('States', on_delete=models.CASCADE, null=True, blank=True)
-    country = CountryField(multiple=False)
-    zip = models.CharField(max_length=100)
+    country = CountryField(multiple=False, blank=True, null=True)
+    zip = models.CharField(max_length=100, blank=True, null=True)
     #address_type = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
     # default = models.BooleanField(default=False)
 
@@ -266,6 +268,14 @@ post_save.connect(CalculateLocation, sender=Merchant)
     #
     # user_signed_up.connect(profileCallback)
 
+class OfferManager(models.Manager):
+    #Grabs first offer and only shows active offers
+    def get_first_active(self):
+        now = timezone.now()
+        object_qs = Offer.objects.filter(end_date__gt=now).order_by('end_date')
+        object = object_qs.first()
+        return object
+
 
 class Offer(models.Model):
     merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE, null=True, related_name='offer')
@@ -275,8 +285,10 @@ class Offer(models.Model):
     # ad = models.ForeignKey(Ad, on_delete=models.CASCADE, null=True, related_name='ad')
     tag = models.ManyToManyField(Tag, blank=True)
     slug = models.SlugField()
-    main_image = models.ImageField(upload_to='photos/', null=True)
+    image = models.ImageField(upload_to='photos/', null=True)
     end_date = models.DateField()
+
+    objects = OfferManager()
 
     def __str__(self):
         return '%s (%s)' % (self.title, self.merchant.business_name)

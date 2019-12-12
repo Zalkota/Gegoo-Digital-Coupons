@@ -23,8 +23,24 @@
           </form>
           <div class="collapse navbar-collapse  hide" id="navbarResponsive">
               <ul class="nav navbar-nav ml-auto" id="example-one">
+                  <li class="nav-item dropdown " style="z-index: 500;">
+                    <a class="nav-link text-primary" id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ ip }} {{ city }}, {{ state }}
+                    </a>
+                      <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
+                        <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'users:userPage' %}">
+                          Change Location
+                        </a>
+                    </div>
+                  </li>
 
                 {% if not request.user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link text-primary" href="" id="">{{ ip }}</a>
+                </li>
+                <li class="nav-item pt-1 text-secondary">
+                  <span>|</span>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link text-primary" href="{% url 'account_signup' %}" id="">Sign Up</a>
                 </li>
@@ -34,18 +50,10 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'account_login' %}" id="">Sign In</a>
                 </li>
+
                 {% else %}
 
-                <li class="nav-item dropdown " style="z-index: 500;">
-                  <a class="nav-link text-primary" id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ city }}, {{ state }}
-                  </a>
-                    <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
-                      <a {% if request.path == url3 %} class="text-success dropdown-item" {% elif request.path == url4 %} class="text-success dropdown-item" {% else %} class="dropdown-item" {% endif %} href="{% url 'users:userPage' %}">
-                        Change Location
-                      </a>
-                  </div>
-                </li>
+
 
                 <li class="nav-item pt-1 text-secondary">
                   <span>|</span>

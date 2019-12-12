@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'leaflet',
     'geolite2',
+    'ipware',
 
 
 
@@ -159,7 +160,8 @@ TEMPLATES = [
             'context_processors': [
                 'mysite.processors.SiteName',
                 'mysite.processors.PromotionProcessor',
-                'mysite.processors.AuthenticatedUserLocation',
+                # 'mysite.processors.AuthenticatedUserLocation',
+                # 'mysite.processors.get_client_ip',
                 'mysite.processors.classloudFrontURL',
                 #'allauth.account.context_processors',
                 'django.template.context_processors.debug',

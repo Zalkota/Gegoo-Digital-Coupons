@@ -7,7 +7,9 @@ from .views import (
     contactLandingPage,
     ContactFormView,
     components,
+
 )
+from .views import set_location_cookies
 from search import views as search_views
 
 #Rerouting django admin through allauth
@@ -38,6 +40,8 @@ urlpatterns = [
     url(r'', include(('users.urls', 'users'), namespace='users')),
 
     url(r'^location/', include(('location.urls', 'location'), namespace='location')),
+
+    path('language/', set_location_cookies, name='language'),
 
     path('', homeView.as_view(), name='home-page'),
     path('contact/', ContactFormView.as_view(), name='contact-page'),

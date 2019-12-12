@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.db.models import Subquery
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, View
-
+import datetime
+from django.utils import timezone
 # Contact Form
 from django.views.generic.edit import FormView, FormMixin
 
@@ -30,11 +31,11 @@ from django.contrib import messages
 from django.conf import settings
 EMAIL_CUSTOMER = settings.EMAIL_CUSTOMER
 
-#GeoIP2
-import geoip2.webservice
 
 #GeoIP
 from geolite2 import geolite2
+import json
+
 
 #TODO Remove me
 from django.contrib.gis.db import models
@@ -54,23 +55,193 @@ def get_items(request):
     return None
 
 
-class homeView(View):
-    def get(self, *args, **kwargs):
 
+
+def set_location_cookies(request, city, state):
+    response = HttpResponse("setting state to %s, city to %s" % (state, city))
+    response.set_cookie('ct', city)
+    response.set_cookie('st', state)
+    print (state, city)
+    return response
+
+
+# Obtain the Users IP Address
+def get_ip(request):
+    x_forward = request.META.get("HTTP_X_FORWARDED_FOR")
+    if x_forward != None:
+        ip = x_forward.split(",")[0]
+    else:
+        ip = request.META.get("REMOTE_ADDR")
+        #We should have IP address at this point
+    reader = geolite2.reader()
+    data = reader.get('107.77.193.143')
+    return data
+
+
+def get_or_set_location(request):
+    if request.user.is_authenticated:
+        #Check if user has address
+        if request.user.user_profile.address.city and request.user.user_profile.address.state != None:
+            city = request.user.user_profile.address.city
+            state = request.user.user_profile.address.state
+
+            context = {
+            'city': city,
+            'state': state,
+            }
+            return context
+        # If it doesnt lets add one from IP address
+        else:
+            try:
+                data = get_ip(request)
+                #Obtain City and State from IP address
+                city = data["city"]['names']['en']
+                state = data["subdivisions"][0]['iso_code']
+                print (city, ', ', state)
+                # Save data to user address
+                user_address = request.user.user_profile.address
+                user_address.state = state
+                user_address.city = city
+                user_address.save()
+
+                context = {
+                'city': city,
+                'state': state,
+                }
+                return context
+            except:
+                pass
+
+    elif not request.user.is_authenticated:
+        #Check cookies for city and state
+        if 'st' and 'ct' in request.COOKIES:
+            state = request.COOKIES['st']
+            city = request.COOKIES['ct']
+            print('location found in cookies')
+
+            context = {
+            'city': city,
+            'state': state,
+            }
+            return context
+        # Else lets use their IP address to find out and then add it to their Cookies
+        else:
+            print('attemtping to obtain IP address location')
+            data = get_ip(request)
+            #Obtain City and State from IP address
+            city = data["city"]['names']['en']
+            state = data["subdivisions"][0]['iso_code']
+            #Add City and State to Cookies for next time
+            set_location_cookies(request, city, state)
+            context = {
+            'city': city,
+            'state': state,
+            }
+            return context
+
+
+
+
+# def post_comment(request):
+#     if request.method != 'POST':
+#         raise Http404('Only POSTs are allowed')
+#
+#     if 'comment' not in request.POST:
+#         raise Http404('Comment not submitted')
+#
+#     if request.session.get('has_commented', False):
+#         return HttpResponse("You've already commented.")
+#
+#     c = comments.Comment(comment=request.POST['comment'])
+#     c.save()
+#     request.session['has_commented'] = True
+#     return HttpResponse('Thanks for your comment!')
+
+
+#
+# data {
+# 'city':
+#     {'geoname_id': 5004062, 'names':
+#         {'en': 'Novi', 'ja': 'ノバイ', 'ru': 'Новый'}
+#     },
+# 'continent':
+#     {'code': 'NA', 'geoname_id': 6255149, 'names':
+#         {'de': 'Nordamerika', 'en': 'North America', 'es': 'Norteamérica', 'fr': 'Amérique du Nord', 'ja': '北アメリカ', 'pt-BR': 'América do Norte', 'ru': 'Северная Америка', 'zh-CN': '北美洲'}
+#     },
+# 'country':
+#     {'geoname_id': 6252001, 'iso_code': 'US', 'names':
+#         {'de': 'USA', 'en': 'United States', 'es': 'Estados Unidos', 'fr': 'États-Unis', 'ja': 'アメリカ合衆国', 'pt-BR': 'Estados Unidos', 'ru': 'США', 'zh-CN': '美国'}
+#     },
+# 'location':
+#     {'accuracy_radius': 200, 'latitude': 42.4634, 'longitude': -83.4646, 'metro_code': 505, 'time_zone': 'America/Detroit'},
+# 'postal':
+#     {'code': '48375'},
+# 'registered_country':
+#     {'geoname_id': 6252001, 'iso_code': 'US', 'names':
+#         {'de': 'USA', 'en': 'United States', 'es': 'Estados Unidos', 'fr': 'États-Unis', 'ja': 'アメリカ合衆国', 'pt-BR': 'Estados Unidos', 'ru': 'США', 'zh-CN': '美国'}
+#     },
+# 'subdivisions': [
+#     {'geoname_id': 5001836, 'iso_code': 'MI', 'names':
+#         {'en': 'Michigan', 'es': 'Michigan', 'fr': 'Michigan', 'ja': 'ミシガン州', 'pt-BR': 'Michigão', 'ru': 'Мичиган', 'zh-CN': '密歇根州'}
+#     }]
+# }
+#
+#
+# class SetLocationMixin(object):
+#     model = None
+#
+#     def main(self):
+#         if "state" in request.GET:
+#
+#             # Create an HttpResponse object...
+#             response = HttpResponse("Your state is %s" % \
+#                 request.GET["state"])
+#
+#             # ... and set a cookie on the response
+#             response.set_cookie("state",
+#                                 request.GET["state"])
+#
+#             return response
+#
+#         else:
+#
+#         return HttpResponse("No state found")
+
+
+
+
+class homeView(View):
+
+    def get(self, *args, **kwargs):
+        city = 'default_city'
+        state = 'default_state'
+        city_state = get_or_set_location(self.request)
+        try:
+            city = city_state["city"]
+            state = city_state["state"]
+        except:
+            pass
+        # city = context["city"]
+        # state = context["subdivisions"]
         #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
         #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
-
         address_qs = Address.objects.filter(city='Pontiac')
-
         category_list = Category.objects.all()
 
 
-        reader = geolite2.reader()
-        data = reader.get('107.77.193.108')
-        print(data)
+        # reader = geolite2.reader()
+        # data = reader.get('107.77.193.143')
+        # print('data', data)
+        #
+        # print('city', data["city"]['names']['en'])
+
+
 
         context = {
-            'data': data,
+            # 'ip': ip,
+            # 'data': data,
+            'city': city,
+            'state': state,
             'address_qs': address_qs,
             'category_list': category_list,
             # 'offer': offer,
@@ -119,4 +290,5 @@ def security(request):
     return render(request, 'security.txt')
 
 def components(request):
+
     return render(request, 'components/main.html')

@@ -82,3 +82,5 @@ maxminddb-geolite2
 
 #GeoIP2
 geoip2==2.9.0
+
+ django-ipware

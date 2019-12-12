@@ -48,6 +48,7 @@ class Profile(models.Model):
     # image = models.ImageField(_("Picture"), upload_to=upload_to, null=True, default='blankImage.png', validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Image must be a .PNG or .JPG")
     created_time = models.DateTimeField(('created time'), editable=False, null=True, auto_now_add=True)
     address = models.OneToOneField(Address, related_name='profile', on_delete=models.CASCADE, blank=True, null=True)
+    ip_address = models.CharField(max_length=120, default='ABC')
 
     def __str__(self):
         return self.user.username
