@@ -193,7 +193,7 @@
 
 .navbar-lower  {
   background-color: $color-navbar-alt-background;
-  height: 50px;
+  height: 40px;
   z-index: 1;
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.16);
@@ -246,14 +246,12 @@
   }
 
   .navbar-bottom-button {
-
-      border-right: 1px solid #d1d1d1;
-      padding: .8rem 0.25rem;
+      padding: .5rem .2rem;
       flex-grow: 1;
       font-size: 14px;
       align-self: auto;
       text-align: center;
-      font-weight: 600;
+      font-weight: 500;
 
 
       color: $color-black;

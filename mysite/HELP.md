@@ -159,6 +159,24 @@ sudo systemctl status gunicorn
 debug:
 systemctl status gunicorn.service
 
+
+# SSH
+
+Log in as root
+Edit ssh config:
+sudo nano /etc/ssh/sshd_config
+
+Change this line:
+PasswordAuthentication no
+
+to
+PasswordAuthentication yes
+
+Restart daemon:
+sudo systemctl restart sshd
+
+
+
 # Letscrypt
 https://www.linode.com/docs/security/ssl/install-lets-encrypt-to-create-ssl-certificates/#create-an-ssl-certificate
 

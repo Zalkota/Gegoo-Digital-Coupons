@@ -12,9 +12,11 @@
 {% block content %}
 
   <section class="hero container">
+    
         <div class="text text-center" >
-            <h1 class="text-shadow-1 ls-1" data-aos="fade-in" data-aos-delay="400"></h1>
+            <h1 class="text-shadow-1 ls-1" ></h1>
             <h3 class="fs-18 fw-7 text-light text-shadow-1" data-aos="fade-in" data-aos-delay="400"></h3>
+
             <div class="search-form">
                 <div class="search-form-background-hero">
                     <form class="search-form-container-hero" action="/find/" method="get" >
@@ -33,9 +35,36 @@
 
   <!-- ****** Picture Gallery ******* -->
 
-  <section class="section container mt-2" data-aos="fade-up" data-aos-delay="400">
+  <section class="section container mt-3" >
     <div class="container">
       <div class="row">
+          <!-- Category Image Carousel -->
+          <div class="col-lg-3 mb-3 text-center">
+              <img class="card-img-top card-effects border-radius-200 shadow-2" style="width: 90%;" src="{% static 'img/home_improvement.jpg' %}" alt="User Uploaded images">
+              <h6 class="img-secondary-text">Deals for your home</h6>
+              <h3 class="img-header-text">Home Improvement</h3>
+          </div>
+
+          <div class="col-lg-3 mb-3 text-center">
+              <img class="card-img-top card-effects border-radius-200 shadow-2" style="width: 90%;" src="{% static 'img/food_ad.jpg' %}" alt="User Uploaded images">
+              <h6 class="img-secondary-text">Deals for your home</h6>
+              <h3 class="img-header-text">Home Improvement</h3>
+          </div>
+
+          <div class="col-lg-3 mb-3 text-center">
+              <img class="card-img-top card-effects border-radius-200 shadow-2" style="width: 90%;" src="{% static 'img/travel_ad.jpg' %}" alt="User Uploaded images">
+              <h6 class="img-secondary-text">Deals for your home</h6>
+              <h3 class="img-header-text">Home Improvement</h3>
+          </div>
+
+          <div class="col-lg-3 mb-3 text-center">
+              <img class="card-img-top card-effects border-radius-200 shadow-2" style="width: 90%;" src="{% static 'img/vehicle_ad.jpg' %}" alt="User Uploaded images">
+              <h6 class="img-secondary-text">Deals for your home</h6>
+              <h3 class="img-header-text">Home Improvement</h3>
+          </div>
+
+
+
         <div class="col-lg-3 mb-4">
             <div class="card card-border shadow-2 mb-3">
                 <div class="card-header">
@@ -147,7 +176,7 @@
 
 
             {% for object in address_qs %}
-            <div class="col-lg-3 col-md-6 text-center border-radius-300 mb-5">
+            <div class="col-lg-3 col-md-6 text-center border-radius-300 mb-5" data-aos="fade-up" data-aos-delay="0">
                 <div class="card card-border card-effects border-radius-300 shadow-2">
                     <a href="{{ object.get_absolute_url }}">
                         <img class="card-img-top" style="width: 100%;" src="media/{{ object.offer.get_first_active.image }}" alt="User Uploaded images">
