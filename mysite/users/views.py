@@ -2,7 +2,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView, View, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User
-from portal.models import Address
+from location.models import Address
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
@@ -12,6 +12,7 @@ import datetime
 from django.utils import timezone
 from location.models import Address
 from .forms import userLocationForm
+from django.contrib import messages
 #from shoppingcart.views import get_user_address_default, get_user_orders
 
 #Profile Image
@@ -20,6 +21,7 @@ from django.shortcuts import get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 
 
+from cities_light.models import Region, City
 
 class userPage(View):
     def get(self, *args, **kwargs):
@@ -36,24 +38,22 @@ class userPage(View):
             return redirect("home-page")
 
 
-class userLocaton(FormView):
-    form_class = userLocationForm
-    template_name = 'users/user_location_form.html'
-    success_url = reverse_lazy('userPage')
-    success_message = "Location Changed!"
+# class userLocaton(FormView):
+#     form_class = userLocationForm
+#     template_name = 'users/user_location_form.html'
+#     success_url = reverse_lazy('userPage')
+#     success_message = "Location Changed!"
+#
+#     def form_valid(self, form):
+#         return super(userLocaton, self).form_valid(form)
 
-    def form_valid(self, form):
-        return super(userLocaton, self).form_valid(form)
 
-
-class RequestRefundView(View):
+class userLocaton(View):
     def get(self, *args, **kwargs):
         form = userLocationForm()
 
-        try:
-            address = Order.objects.get(user=self.request.user)
-        except:
-            pass
+        user = self.request.user
+        address = user.user_profile.address
 
         context = {
             'form': form,
@@ -64,14 +64,21 @@ class RequestRefundView(View):
     def post(self, *args, **kwargs):
         form = userLocationForm(self.request.POST)
         if form.is_valid():
-
             #ref_code = self.kwargs['ref_code']
-            city = form.cleaned_data.get('city')
-            state = form.cleaned_data.get('state')
+            city = form.cleaned_data.get('city_input')
+            state = form.cleaned_data.get('state_input')
+
+            city_qs = City.objects.filter(name=city)
+            city = city_qs.first()
+
+            state_qs = Region.objects.filter(name=state)
+            state = state_qs.first()
+            print(state)
+
             # edit the order
             try:
-                address = Order.objects.get(user=self.request.user)
-
+                user = self.request.user
+                address = user.user_profile.address
 
                 # store the object
                 address = Address()
@@ -79,12 +86,12 @@ class RequestRefundView(View):
                 address.state = state
                 address.save()
 
-                messages.success(self.request, "Location Changed!")
-                return redirect("users:userPage")
+                messages.success(self.request, "Location changed")
+                return redirect("users:user_location")
 
             except ObjectDoesNotExist:
                 messages.info(self.request, "Error")
-                return redirect("users:userPage")
+                return redirect("users:user_location")
 
 
 

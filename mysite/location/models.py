@@ -6,6 +6,12 @@ from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
 
 from cities_light.models import City, Region
+
+# customization
+from cities_light.abstract_models import (AbstractCity, AbstractRegion,
+AbstractCountry)
+from cities_light.receivers import connect_default_signals
+
 #
 # latitude = 42.637740
 # longitude = -83.363546
@@ -27,12 +33,22 @@ from cities_light.models import City, Region
 #         return self.name
 
 
+
+class CityCustom(AbstractCity):
+    # timezone = models.CharField(max_length=40)
+
+    def __str__(self):
+        return '%s, %s' % (self.city, self.region)
+connect_default_signals(City)
+
+
 class Address(models.Model):
     # user = models.ForeignKey(settings.AUTH_USER_MODEL,
     #                          on_delete=models.CASCADE)
     street_address = models.CharField(max_length=100, blank=True, null=True)
     apartment_address = models.CharField(max_length=100, blank=True, null=True)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, blank=True)
+    cityCustom = models.ForeignKey(CityCustom, on_delete=models.CASCADE, null=True, blank=True)
     # state = models.ForeignKey(Country, default='NA', blank=True, null=True, max_length=30)
     state = models.ForeignKey(Region, on_delete=models.CASCADE, null=True, blank=True)
     # country = CountryField(multiple=False, blank=True, null=True)

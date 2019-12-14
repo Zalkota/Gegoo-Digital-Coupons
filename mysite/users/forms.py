@@ -18,15 +18,13 @@ RETURN_CHOICES = (
 )
 
 class userLocationForm(forms.Form):
-    location_input = forms.CharField(label="City, State", initial='Explore coupons in what city?',required=True, widget=forms.Select(choices=RETURN_CHOICES, attrs={
-        'class': ' d-block w-100',
+    city_input = forms.CharField(label="City, State", initial='Explore coupons in what city?',required=True, widget=forms.TextInput(attrs={
+        'style': 'display: none;',
     }))
-    # state = forms.CharField(widget=forms.Textarea(attrs={
-    #     'rows': 4
-    # }))
 
-
-
+    state_input = forms.CharField(label="City, State", initial='Explore coupons in what city?',required=True, widget=forms.TextInput(attrs={
+        'style': 'display: none;',
+    }))
 
 
 class SignupForm(forms.Form):

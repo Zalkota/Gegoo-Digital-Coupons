@@ -42,7 +42,6 @@ def upload_to(instance, filename):
     #return "profile/{{now:%Y/%m/%Y%m%d%H%M%S}{ext}"
 
 
-
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_profile')
     # image = models.ImageField(_("Picture"), upload_to=upload_to, null=True, default='blankImage.png', validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Image must be a .PNG or .JPG")

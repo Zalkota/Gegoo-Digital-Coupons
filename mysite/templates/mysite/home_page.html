@@ -207,7 +207,8 @@
                                  %}" class="fs-12">{{ object.offer.get_first_active.merchant.category.get_name_display }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ object.offer.get_first_active.merchant.subcategory }}</a>
                             </div>
                             <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.offer.get_first_active.end_date }}</span></div>
-                            <a class="btn btn-primary-inverted btn-block" href="{% url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code  %}">View Additional Deals ({{ object.offer.all.count}})</a>
+                            <a class="btn btn-primary-inverted btn-block" href="">View Additional Deals ({{ object.offer.all.count}})</a>
+                            <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
                         </div>
                     </div>
                       <div class="coupon-bottom-button-container">
