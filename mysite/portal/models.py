@@ -8,25 +8,25 @@ from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils import timezone
 
-#Image Upload
+# Image Upload
 from django.core.validators import FileExtensionValidator
 
-#Ckeditor
+# Ckeditor
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
-#random_string_generator
+# random_string_generator
 import random
 import string
 
-#GEODJANGO
+# GEODJANGO
 from django.contrib.gis.geos import fromstr
 from pathlib import Path
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
 
-
+# Cities
 
 
 PROMOTION_CHOICES = (
@@ -76,88 +76,6 @@ class Images(models.Model):
         return '%s (%s)' % (self.file, self.uploaded_at)
 
 
-class Address(models.Model):
-
-    STATES = (
-        ("None", ""),
-        ("AL", "Alabama"),
-        ("AK", "Alaska"),
-        ("AS", "American Samoa"),
-        ("AZ", "Arizona"),
-        ("AR", "Arkansas"),
-        ("CA", "California"),
-        ("CO", "Colorado"),
-        ("CT", "Connecticut"),
-        ("DE", "Delaware"),
-        ("DC", "District Of Columbia"),
-        ("FM", "Federated States Of Micronesia"),  #TODO: WHAT THE FUCK IS THIS?!?!?
-        ("FL", "Florida"),
-        ("GA", "Georgia"),
-        ("GU", "Guam"),
-        ("HI", "Hawaii"),
-        ("ID", "Idaho"),
-        ("IL", "Illinois"),
-        ("IN", "Indiana"),
-        ("IA", "Iowa"),
-        ("KS", "Kansas"),
-        ("KY", "Kentucky"),
-        ("LA", "Louisiana"),
-        ("ME", "Maine"),
-        ("MH", "Marshall Islands"),
-        ("MD", "Maryland"),
-        ("MA", "Massachusetts"),
-        ("MI", "Michigan"),
-        ("MN", "Minnesota"),
-        ("MS", "Mississippi"),
-        ("MO", "Missouri"),
-        ("MT", "Montana"),
-        ("NE", "Nebraska"),
-        ("NV", "Nevada"),
-        ("NH", "New Hampshire"),
-        ("NJ", "New Jersey"),
-        ("NM", "New Mexico"),
-        ("NY", "New York"),
-        ("NC", "North Carolina"),
-        ("ND", "North Dakota"),
-        ("MP", "Northern Mariana Islands"),  #TODO: FIXME: http://thepythondjango.com/list-usa-states-python-django-format/
-        ("OH", "Ohio"),
-        ("OK", "Oklahoma"),
-        ("OR", "Oregon"),
-        ("PW", "Palau"),
-        ("PA", "Pennsylvania"),
-        ("PR", "Puerto Rico"),
-        ("RI", "Rhode Island"),
-        ("SC", "South Carolina"),
-        ("SD", "South Dakota"),
-        ("TN", "Tennessee"),
-        ("TX", "Texas"),
-        ("UT", "Utah"),
-        ("VT", "Vermont"),
-        ("VI", "Virgin Islands"),
-        ("VA", "Virginia"),
-        ("WA", "Washington"),
-        ("WV", "West Virginia"),
-        ("WI", "Wisconsin"),
-        ("WY", "Wyoming")
-        )
-
-    # user = models.ForeignKey(settings.AUTH_USER_MODEL,
-    #                          on_delete=models.CASCADE)
-    street_address = models.CharField(max_length=100, blank=True, null=True)
-    apartment_address = models.CharField(max_length=100, blank=True, null=True)
-    city = models.CharField(max_length=100, default="None", blank=True, null=True)
-    state = models.CharField(choices=STATES, default='NA', blank=True, null=True, max_length=30)
-    #state = models.ForeignKey('States', on_delete=models.CASCADE, null=True, blank=True)
-    country = CountryField(multiple=False, blank=True, null=True)
-    zip = models.CharField(max_length=100, blank=True, null=True)
-    #address_type = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
-    # default = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.street_address
-
-    class Meta:
-        verbose_name_plural = 'Addresses'
 
 
 class Category(models.Model):

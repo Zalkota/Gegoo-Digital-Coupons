@@ -76,11 +76,12 @@ INSTALLED_APPS = [
     #'django_elasticsearch_dsl',
 
     #GeoDjango
-    'location',
+    #'location',
     'django.contrib.gis',
-    'leaflet',
+    #'leaflet',
     'geolite2',
-    'ipware',
+    #'ipware',
+    'cities_light',
 
 
 
@@ -209,9 +210,13 @@ DATABASES = {
 }
 
 #GEOIP DATABASE LOCATION
-GEOIP_PATH = '/location/location_db/'
-GEOIP_COUNTRY = 'GeoLite2-Country.mmdb'
-GEOIP_CITY = 'GeoLite2-City.mmdb'
+# GEOIP_PATH = '/location/location_db/'
+# GEOIP_COUNTRY = 'GeoLite2-Country.mmdb'
+# GEOIP_CITY = 'GeoLite2-City.mmdb'
+
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en']
+CITIES_LIGHT_INCLUDE_COUNTRIES = ['US']
+CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR', 'PPLS', 'STLMT',]
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------

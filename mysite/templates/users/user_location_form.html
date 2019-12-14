@@ -1,0 +1,51 @@
+{% extends "base-alt.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}Dashboard | {{ SITE_NAME }}{% endblock %}
+
+{% block extra_styles %}
+
+{% endblock extra_styles %}
+
+
+{% block content %}
+
+
+<!-- Body Start -->
+<section class="section-sm container">
+    <h2 class="fw-6">Set Location
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-gray-600" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-600" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg></h2>
+    <span class="fs-14 text-muted">Welcome Back, {{ user }}!</span>
+            {% block component %}
+              {% include "users/profile_nav.html" %}
+            {% endblock component %}
+
+      <div class="col-lg-6 offset-lg-3">
+          <div class="card shadow-2 card-border hide mt-5">
+              <div class="card-header text-center">
+                <h3 class="text-uppercase text-muted fw-5 mb-0">Change Location</h3>
+              </div>
+              <div class="card-body">
+                  <p class="text-secondary text-center fs-16">Coupons are shown based on location, setting you location will help us serve you releveant coupons in your local area.</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-primary-alt mt-4 btn-block" type="submit" name="action">Set Location</button>
+                </form>
+              </div>
+          </div>
+      </div>
+</section>
+
+
+{% endblock content %}
+{% block extrajs %}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1300,
+  });
+</script>
+{% endblock extrajs %}

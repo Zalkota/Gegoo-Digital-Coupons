@@ -83,4 +83,9 @@ maxminddb-geolite2
 #GeoIP2
 geoip2==2.9.0
 
- django-ipware
+#django-ipware
+
+#django-cities==0.5.0.6
+
+# Setup https://readthedocs.org/projects/django-cities-light/downloads/pdf/stable-3.x.x/
+django-cities-light==3.5.0

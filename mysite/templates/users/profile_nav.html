@@ -14,6 +14,9 @@
         <a href="{% url 'contact-page' %}" class="{% if 'my-merchants' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Merchants</a>
       </li>
       <li class="list-inline-item">
+        <a href="{% url 'users:user_location' %}" class="{% if 'accounts' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Location</a>
+      </li>
+      <li class="list-inline-item">
         <a href="{% url 'account_set_password' %}" class="{% if 'accounts' in request.path %} profile-link-active {% else %} profile-link {% endif %}">Settings</a>
       </li>
     </ul>

@@ -34,14 +34,9 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     #Portal
     url(r'^coupons/', include(('portal.urls', 'portal'), namespace='portal')),
-    #shoppingcart
-    #url(r'^cart/', include(('shoppingcart.urls', 'shoppingcart'), namespace='cart')),
+
     #users
     url(r'', include(('users.urls', 'users'), namespace='users')),
-
-    url(r'^location/', include(('location.urls', 'location'), namespace='location')),
-
-    path('language/', set_location_cookies, name='language'),
 
     path('', homeView.as_view(), name='home-page'),
     path('contact/', ContactFormView.as_view(), name='contact-page'),

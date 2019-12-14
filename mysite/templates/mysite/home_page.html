@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load  %}
 
 
 {% block body_class %}template-homepage{% endblock %}
@@ -12,7 +11,7 @@
 {% block content %}
 
   <section class="hero container">
-    
+
         <div class="text text-center" >
             <h1 class="text-shadow-1 ls-1" ></h1>
             <h3 class="fs-18 fw-7 text-light text-shadow-1" data-aos="fade-in" data-aos-delay="400"></h3>
@@ -35,156 +34,171 @@
 
   <!-- ****** Picture Gallery ******* -->
 
-  <section class="section container mt-3" >
+<section class="section mt-2" >
     <div class="container">
-      <div class="row">
+        <div class="row">
           <!-- Category Image Carousel -->
-          <div class="col-lg-3 mb-3 text-center">
-              <img class="card-img-top card-effects border-radius-200 shadow-2" style="width: 90%;" src="{% static 'img/home_improvement.jpg' %}" alt="User Uploaded images">
-              <h6 class="img-secondary-text">Deals for your home</h6>
-              <h3 class="img-header-text">Home Improvement</h3>
-          </div>
+            <div class="offset-lg-1"></div>
 
-          <div class="col-lg-3 mb-3 text-center">
-              <img class="card-img-top card-effects border-radius-200 shadow-2" style="width: 90%;" src="{% static 'img/food_ad.jpg' %}" alt="User Uploaded images">
-              <h6 class="img-secondary-text">Deals for your home</h6>
-              <h3 class="img-header-text">Home Improvement</h3>
-          </div>
-
-          <div class="col-lg-3 mb-3 text-center">
-              <img class="card-img-top card-effects border-radius-200 shadow-2" style="width: 90%;" src="{% static 'img/travel_ad.jpg' %}" alt="User Uploaded images">
-              <h6 class="img-secondary-text">Deals for your home</h6>
-              <h3 class="img-header-text">Home Improvement</h3>
-          </div>
-
-          <div class="col-lg-3 mb-3 text-center">
-              <img class="card-img-top card-effects border-radius-200 shadow-2" style="width: 90%;" src="{% static 'img/vehicle_ad.jpg' %}" alt="User Uploaded images">
-              <h6 class="img-secondary-text">Deals for your home</h6>
-              <h3 class="img-header-text">Home Improvement</h3>
-          </div>
-
-
-
-        <div class="col-lg-3 mb-4">
-            <div class="card card-border shadow-2 mb-3">
-                <div class="card-header">
-                    <div class="text-center">
-                        <div class="text-uppercase text-muted fw-5">Categories</div>
-                    </div>
-                </div>
-                <div class="card-body p-3 py-1 border-bottom" >
-                    <div class="row">
-                        <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
-                            <a href="/category/all/">
-                                <div class="card-icon-circle">
-                                    <i class="fa fa-tags" aria-hidden="true"></i>
-                                </div>
-                                <div class="text-center">
-                                    <span class="fs-12 fw-5 text-dark">All</span>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Row One -->
-                        <div class="col-lg-4" style="padding: 0.35rem; padding-right: 1rem;padding-left: 1rem;">
-                            <a href="/coupons/category/VEHICLES">
-                                <div class="card-icon-circle">
-                                    <i class="fa fa-car" aria-hidden="true"></i>
-                                </div>
-                                <div class="text-center">
-                                    <span class="fs-12 fw-5 text-dark">Vehicles</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
-                            <a href="#">
-                                <div class="card-icon-circle">
-                                    <i class="fa fa-cutlery" aria-hidden="true"></i>
-                                </div>
-                                <div class="text-center">
-                                    <span class="fs-12 fw-5 text-dark">Food</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
-                            <a href="#">
-                                <div class="card-icon-circle">
-                                    <i class="fa fa-scissors" aria-hidden="true"></i>
-                                </div>
-                                <div class="text-center">
-                                    <span class="fs-12 fw-5 text-dark">Beauty</span>
-                                </div>
-                            </a>
-                        </div>
-
-                        <!-- Row two -->
-                        <div class="col-lg-4" style="padding: 0.35rem; padding-right: 1rem;padding-left: 1rem;">
-                            <a href="#">
-                                <div class="card-icon-circle">
-                                    <i class="fa fa-home" aria-hidden="true"></i>
-                                </div>
-                                <div class="text-center">
-                                    <span class="fs-12 fw-5 text-dark">Home</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
-                            <a href="#">
-                                <div class="card-icon-circle">
-                                    <i class="fa fa-bicycle" aria-hidden="true"></i>
-                                </div>
-                                <div class="text-center">
-                                    <span class="fs-12 fw-5 text-dark">Outdoors</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
-                            <a href="#">
-                                <div class="card-icon-circle">
-                                    <i class="fa fa-headphones" aria-hidden="true"></i>
-                                </div>
-                                <div class="text-center">
-                                    <span class="fs-12 fw-5 text-dark">Electronics</span>
-                                </div>
-                            </a>
-                        </div>
-
-                        <!-- Row Three -->
-                        <div class="col-lg-4" style="padding: 0.35rem; padding-right: 1rem;padding-left: 1rem;">
-                            <a href="#">
-                                <div class="card-icon-circle">
-                                    <i class="fa fa-plane" aria-hidden="true"></i>
-                                </div>
-                                <div class="text-center">
-                                    <span class="fs-12 fw-5 text-dark">Travel</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
-                            <a href="#">
-                                <div class="card-icon-circle">
-                                    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                </div>
-                                <div class="text-center">
-                                    <span class="fs-12 fw-5 text-dark">Groceries</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-2 mb-3 text-center">
+              <img class="card-img-top card-effects border-radius-200 shadow-1" style="width: 90%;" src="{% static 'img/food_ad.jpg' %}" alt="User Uploaded images">
+              <h6 class="img-secondary-text">Amazing offers on</h6>
+              <h3 class="img-header-text">Food</h3>
             </div>
+
+            <div class="col-lg-2 mb-3 text-center">
+              <img class="card-img-top card-effects border-radius-200 shadow-1" style="width: 90%;" src="{% static 'img/travel_ad.jpg' %}" alt="User Uploaded images">
+              <h6 class="img-secondary-text">Don't book without us</h6>
+              <h3 class="img-header-text">Travel</h3>
+            </div>
+
+            <div class="col-lg-2 mb-3 text-center">
+              <img class="card-img-top card-effects border-radius-200 shadow-1" style="width: 90%;" src="{% static 'img/vehicle_ad.jpg' %}" alt="User Uploaded images">
+              <h6 class="img-secondary-text">Local dealerships</h6>
+              <h3 class="img-header-text">Vehicles</h3>
+            </div>
+
+            <div class="col-lg-2 mb-3 text-center">
+              <img class="card-img-top card-effects border-radius-200 shadow-1" style="width: 90%;" src="{% static 'img/home_improvement.jpg' %}" alt="User Uploaded images">
+              <h6 class="img-secondary-text">Deals for your home</h6>
+              <h3 class="img-header-text">Home Improvement</h3>
+            </div>
+
+            <div class="col-lg-2 mb-3 text-center">
+              <img class="card-img-top card-effects border-radius-200 shadow-1" style="width: 90%;" src="{% static 'img/travel_ad.jpg' %}" alt="User Uploaded images">
+              <h6 class="img-secondary-text">Don't book without us</h6>
+              <h3 class="img-header-text">Travel</h3>
+            </div>
+
+
+            <div class="offset-lg-1"></div>
         </div>
+        <hr>
+        <div class="row mt-4">
+
+
+
+<!--
+            <div class="col-lg-3 mb-4">
+                <div class="card card-border shadow-2 mb-3">
+                    <div class="card-header">
+                        <div class="text-center">
+                            <div class="text-uppercase text-muted fw-5">Categories</div>
+                        </div>
+                    </div>
+                    <div class="card-body p-3 py-1 border-bottom" >
+                        <div class="row">
+                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
+                                <a href="/category/all/">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-tags" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">All</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4" style="padding: 0.35rem; padding-right: 1rem;padding-left: 1rem;">
+                                <a href="/coupons/category/VEHICLES">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-car" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Vehicles</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Food</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-scissors" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Beauty</span>
+                                    </div>
+                                </a>
+                            </div>
+
+
+                            <div class="col-lg-4" style="padding: 0.35rem; padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Home</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-bicycle" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Outdoors</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-headphones" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Electronics</span>
+                                    </div>
+                                </a>
+                            </div>
+
+
+                            <div class="col-lg-4" style="padding: 0.35rem; padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-plane" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Travel</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
+                                <a href="#">
+                                    <div class="card-icon-circle">
+                                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="fs-12 fw-5 text-dark">Groceries</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
 
 
             {% for object in address_qs %}
-            <div class="col-lg-3 col-md-6 text-center border-radius-300 mb-5" data-aos="fade-up" data-aos-delay="0">
+            <div class="col-lg-3 col-md-6 text-center border-radius-300 mb-5" >
                 <div class="card card-border card-effects border-radius-300 shadow-2">
                     <a href="{{ object.get_absolute_url }}">
                         <img class="card-img-top" style="width: 100%;" src="media/{{ object.offer.get_first_active.image }}" alt="User Uploaded images">
                     </a>
 
                     <div class="card-body px-3 py-2">
-                        <div class=" text-left ">
-                            <h3 class="fw-6 fs-14 mb-3">{{ object.offer.get_first_active.merchant.business_name }}</h3>
+                        <div class=" text-left mt-2">
+                            <h3 class="fw-4 fs-14 mb-3">{{ object.offer.get_first_active.merchant.business_name }}</h3>
                             <h4 class="fw-6 fs-16 mb-3">
                                 {{ object.offer.get_first_active.title }}
                             </h4>
