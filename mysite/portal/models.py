@@ -19,6 +19,9 @@ from ckeditor_uploader.fields import RichTextUploadingField
 import random
 import string
 
+# Locations
+from location.models import Address
+
 # GEODJANGO
 from django.contrib.gis.geos import fromstr
 from pathlib import Path

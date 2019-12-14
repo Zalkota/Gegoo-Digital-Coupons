@@ -10,7 +10,7 @@ from allauth.account.signals import user_logged_in, user_signed_up
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 from django.core.validators import FileExtensionValidator
-from portal.models import Address
+from location.models import Address
 import datetime
 from django.utils import timezone
 

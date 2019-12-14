@@ -5,6 +5,7 @@ from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
 
+from cities_light.models import City, Region
 #
 # latitude = 42.637740
 # longitude = -83.363546
@@ -26,26 +27,21 @@ from django.contrib.gis.db.models.functions import Distance
 #         return self.name
 
 
-
-
-
 class Address(models.Model):
-
-
     # user = models.ForeignKey(settings.AUTH_USER_MODEL,
     #                          on_delete=models.CASCADE)
     street_address = models.CharField(max_length=100, blank=True, null=True)
     apartment_address = models.CharField(max_length=100, blank=True, null=True)
-    city = models.ForeignKey(Cities, default="None", blank=True, null=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, blank=True)
     # state = models.ForeignKey(Country, default='NA', blank=True, null=True, max_length=30)
-    state = models.ForeignKey('States', on_delete=models.CASCADE, null=True, blank=True)
+    state = models.ForeignKey(Region, on_delete=models.CASCADE, null=True, blank=True)
     # country = CountryField(multiple=False, blank=True, null=True)
     zip = models.CharField(max_length=100, blank=True, null=True)
     #address_type = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
     # default = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.street_address
+        return '%s' % (self.city)
 
     class Meta:
         verbose_name_plural = 'Addresses'

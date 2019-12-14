@@ -76,7 +76,7 @@ INSTALLED_APPS = [
     #'django_elasticsearch_dsl',
 
     #GeoDjango
-    #'location',
+    'location',
     'django.contrib.gis',
     #'leaflet',
     'geolite2',

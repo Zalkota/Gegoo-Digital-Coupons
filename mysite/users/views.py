@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 import datetime
 from django.utils import timezone
-from portal.models import Address
+from location.models import Address
 from .forms import userLocationForm
 #from shoppingcart.views import get_user_address_default, get_user_orders
 
