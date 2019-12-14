@@ -69,6 +69,10 @@ If that works then congratulations, open your internet browser and go to 127.0.0
 
 
 
+14. Importing data for Django Cities
+run 'python3 local.py cities_light'
+
+
 #############################################################3
 # Common Commands
 
