@@ -76,22 +76,22 @@ class userLocaton(View):
             print(state)
 
             # edit the order
-            try:
-                user = self.request.user
-                address = user.user_profile.address
 
-                # store the object
-                address = Address()
-                address.city = city
-                address.state = state
-                address.save()
+            user = self.request.user
 
-                messages.success(self.request, "Location changed")
-                return redirect("users:user_location")
 
-            except ObjectDoesNotExist:
-                messages.info(self.request, "Error")
-                return redirect("users:user_location")
+
+            # store the object
+            user_address = user.user_profile.address
+            user_address.state = state
+            user_address.city = city
+            # user_address.user =
+            user_address.save()
+            print("saved")
+
+            messages.success(self.request, "Location changed")
+            return redirect("users:user_location")
+
 
 
 

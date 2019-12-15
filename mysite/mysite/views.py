@@ -7,7 +7,6 @@ from django.utils import timezone
 # Contact Form
 from django.views.generic.edit import FormView, FormMixin
 
-# Reservation form
 from django.http import HttpResponse
 from .forms import ContactForm, ContactMiniForm
 import datetime
@@ -156,7 +155,7 @@ class homeView(FormView):
         # state = context["subdivisions"]
         #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
         #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
-        address_qs = Address.objects.filter(city=city, state=state)
+        address_qs = Address.objects.filter(city__name=city, state__name=state)
         # if address_qs = None:
         #     address_qs = Address.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
         category_list = Category.objects.all()

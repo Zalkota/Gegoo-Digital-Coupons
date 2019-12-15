@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
-
+from django.conf import settings
 from cities_light.models import City, Region
 
 # customization
@@ -43,8 +43,8 @@ connect_default_signals(City)
 
 
 class Address(models.Model):
-    # user = models.ForeignKey(settings.AUTH_USER_MODEL,
-    #                          on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE, blank=True, null=True)
     street_address = models.CharField(max_length=100, blank=True, null=True)
     apartment_address = models.CharField(max_length=100, blank=True, null=True)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, blank=True)

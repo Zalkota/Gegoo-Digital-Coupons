@@ -1,3 +1,14 @@
+#GeoIP
+from geolite2 import geolite2
+import json
+from django.shortcuts import render
+from django.db.models import Subquery
+from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.utils import timezone
+from django.http import HttpResponse
+
 def set_location_cookies(request, city, state):
     response = HttpResponse("setting state to %s, city to %s" % (state, city))
     response.set_cookie('ct', city)
@@ -43,6 +54,7 @@ def get_or_set_location(request):
                 user_address = request.user.user_profile.address
                 user_address.state = state
                 user_address.city = city
+                # user_address.user =
                 user_address.save()
 
                 context = {
