@@ -34,30 +34,17 @@ from cities_light.receivers import connect_default_signals
 
 
 
-class CityCustom(AbstractCity):
-    # timezone = models.CharField(max_length=40)
-
-    def __str__(self):
-        return '%s, %s' % (self.city, self.region)
-connect_default_signals(City)
-
-
 class Address(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE, blank=True, null=True)
+                             on_delete=models.CASCADE, blank=True, null=True, related_name='address')
     street_address = models.CharField(max_length=100, blank=True, null=True)
     apartment_address = models.CharField(max_length=100, blank=True, null=True)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, blank=True)
-    cityCustom = models.ForeignKey(CityCustom, on_delete=models.CASCADE, null=True, blank=True)
-    # state = models.ForeignKey(Country, default='NA', blank=True, null=True, max_length=30)
     state = models.ForeignKey(Region, on_delete=models.CASCADE, null=True, blank=True)
-    # country = CountryField(multiple=False, blank=True, null=True)
     zip = models.CharField(max_length=100, blank=True, null=True)
-    #address_type = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
-    # default = models.BooleanField(default=False)
 
     def __str__(self):
-        return '%s' % (self.city)
+        return '%s in %s' % (self.user.username, self.city)
 
     class Meta:
         verbose_name_plural = 'Addresses'

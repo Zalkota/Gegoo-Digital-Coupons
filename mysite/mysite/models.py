@@ -22,7 +22,6 @@ class BaseModel(models.Model):
         abstract = True
 
 class Contact(models.Model):
-
     REASON_CHOICES = (
         ("RT", "I Would Like to Return an Item"),
         ("QT", "I have a Question"),

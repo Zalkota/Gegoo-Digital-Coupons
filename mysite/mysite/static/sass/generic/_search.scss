@@ -16,9 +16,6 @@ input {
     width: 100%;
     max-width: 500px !important;
 
-    .waves-input-wrapper {
-        display: block !important;
-    }
 
     input {
     -webkit-appearance: textfield;
@@ -29,7 +26,7 @@ input {
     border-radius: $border-radius-100;
     -webkit-rtl-ordering: logical;
     cursor: text;
-    color: #222 !important;
+    color: $color-gray-600 !important;
     padding: .41rem .75rem 0.41rem 2.9rem;
 
     &:hover, &:active, &:focus{
@@ -39,6 +36,15 @@ input {
       }
     }
 
+    .search-form-container input::placeholder {
+      color: $color-gray-300 !important;
+      font-size: 16px !important;
+    }
+
+
+    .waves-input-wrapper {
+        display: block !important;
+    }
 
     .search-icon {
         position: absolute;
@@ -52,10 +58,7 @@ input {
         }
     }
 
-    .search-form-container input::placeholder {
-      color: $color-gray-600 !important;
-      font-size: 16px !important;
-    }
+
 }
 
 // ************** GENERIC SEARCH BAR ****************

@@ -19,7 +19,6 @@ class MerchantAdmin(OSMGeoAdmin):
     list_display = ('business_name', 'category')
 
 admin.site.register(Merchant, MerchantAdmin)
-
 admin.site.register(Offer)
 admin.site.register(Address)
 admin.site.register(Promotion)

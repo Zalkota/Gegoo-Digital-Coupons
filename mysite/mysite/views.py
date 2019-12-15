@@ -146,11 +146,10 @@ class homeView(FormView):
         city = 'default_city'
         state = 'default_state'
         city_state = get_or_set_location(self.request)
-        try:
-            city = city_state["city"]
-            state = city_state["state"]
-        except:
-            pass
+
+        city = city_state["city"]
+        state = city_state["state"]
+
         # city = context["city"]
         # state = context["subdivisions"]
         #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]

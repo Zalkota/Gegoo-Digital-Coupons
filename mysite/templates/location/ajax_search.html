@@ -1,18 +1,15 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-{% block ajax_search %}
 
-{% for object in address_test%}
- {{ object.name }}
-{% endfor %}
+    <!-- Search Results for Set Location -->
     {% if address.count > 0 %}
         <ul class="list-unstyled px-3" style="width: 100%;">
             {% for object in address %}
             <form method="POST" action="/dashboard/location/">
                 {% csrf_token %}
-                <input type="text" name="city_input" value="{{ object }}" style="display: none;" class="textinput textInput form-control" required id="id_city_input" />
-                <input type="text" name="state_input" value="{{ object.region }}" style="display: none;" class="textinput textInput form-control" required id="id_state_input" />
+                <input type="text" name="city_input" value="{{ object.name }}" style="display: none;" class="textinput textInput form-control" required id="id_city_input" />
+                <input type="text" name="state_input" value="{{ object.region.name }}" style="display: none;" class="textinput textInput form-control" required id="id_state_input" />
                 <li class="border-bottom  py-3">{{ object.name }}, {{ object.region }}<span class="text-right">
                     <button type='submit' value="{{ object.name }}" class="btn-primary-alt py-1 px-3 pull-right fs-16">Select</a></button>
                 </li>
@@ -23,9 +20,3 @@
         {% elif address.count == 0 %}
         <p class="pb-3 pt-3 mb-0 ml-3  search">Sorry, no results were found. </p>
     {% endif %}
-
-{% endblock ajax_search %}
-
-{% block extrajs %}
-<!-- <script src="{% static 'js/search/ajax_search/ajax_search.js' %}"></script> -->
-{% endblock extrajs %}
