@@ -6,4 +6,12 @@
 // @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
 @import "../../../node_modules/bootstrap/scss/functions";
+@import "../go/scss/variables";
+@import "../go/scss/variables-custom";
 @import "../../../node_modules/bootstrap/scss/bootstrap";
+
+@import "../go/scss/layout/_layout";
+@import "../go/scss/components/_components";
+
+// @import "variables";
+// @import "variables-custom";

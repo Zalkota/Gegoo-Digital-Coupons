@@ -10759,7 +10759,7 @@ a.navbar-brand.scrolled:hover {
 /* ################ NAVBAR TOP ################ */
 .navbar-default {
   background-color: #fafafa;
-  height: 75px;
+  height: 80px;
   z-index: 2;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06); }
   .navbar-default .ul-spacing {
@@ -11080,14 +11080,14 @@ footer {
 .img-secondary-text {
   position: absolute;
   top: 1rem;
-  left: 3rem;
+  left: 2.3rem;
   font-size: 12px;
   color: #fff; }
 
 .img-header-text {
   position: absolute;
   top: 2rem;
-  left: 3rem;
+  left: 2.3rem;
   font-size: 16px;
   font-weight: 600;
   color: #fff; }
@@ -11790,14 +11790,15 @@ input:focus {
     border-radius: 0.25rem;
     -webkit-rtl-ordering: logical;
     cursor: text;
-    color: #718096 !important;
-    padding: .41rem .75rem 0.41rem 2.9rem; }
+    color: #1A202C !important;
+    font-size: 16px !important;
+    padding: .5rem .75rem 0.3rem 2.9rem; }
     .search-form-container-navbar input:hover, .search-form-container-navbar input:active, .search-form-container-navbar input:focus {
       transition: .3s;
       border: 1px solid #d1d1d1;
       box-shadow: inset 0 1px 2px #ccc; }
-  .search-form-container-navbar .search-form-container input::placeholder {
-    color: #E2E8F0 !important;
+  .search-form-container-navbar input::placeholder {
+    color: #718096 !important;
     font-size: 16px !important; }
   .search-form-container-navbar .waves-input-wrapper {
     display: block !important; }
@@ -11805,7 +11806,7 @@ input:focus {
     position: absolute;
     padding-left: 1rem;
     padding-top: 0.3rem;
-    top: 20%;
+    top: 27%;
     z-index: 2; }
     .search-form-container-navbar .search-icon i {
       color: #718096; }
@@ -11857,7 +11858,7 @@ input:focus {
     border-radius: 0.25rem;
     -webkit-rtl-ordering: logical;
     cursor: text;
-    color: #222 !important;
+    color: #1A202C !important;
     padding: .65rem 6rem 0.65rem 1rem; }
     .search-form-container-footer input:hover, .search-form-container-footer input:active, .search-form-container-footer input:focus {
       transition: .3s;
@@ -11883,7 +11884,7 @@ input:focus {
   -webkit-rtl-ordering: logical;
   cursor: text;
   border: none;
-  color: #222 !important;
+  color: #1A202C !important;
   width: 100%;
   margin-bottom: 0;
   padding: .25rem .5rem 0.25rem 1rem; }
@@ -11916,8 +11917,8 @@ input:focus {
   width: 35%; }
   .search-form .search-icon {
     position: absolute;
-    left: .5rem;
-    top: .75rem; }
+    left: 1.5rem;
+    bottom: 1rem; }
     .search-form .search-icon i {
       color: #718096; }
 

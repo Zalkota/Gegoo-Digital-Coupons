@@ -26,8 +26,9 @@ input {
     border-radius: $border-radius-100;
     -webkit-rtl-ordering: logical;
     cursor: text;
-    color: $color-gray-600 !important;
-    padding: .41rem .75rem 0.41rem 2.9rem;
+    color: $color-gray-900 !important;
+    font-size: 16px !important;
+    padding: .5rem .75rem 0.3rem 2.9rem;
 
     &:hover, &:active, &:focus{
       transition: .3s;
@@ -36,10 +37,11 @@ input {
       }
     }
 
-    .search-form-container input::placeholder {
-      color: $color-gray-300 !important;
+    input::placeholder {
+      color: $color-gray-600 !important;
       font-size: 16px !important;
     }
+
 
 
     .waves-input-wrapper {
@@ -50,7 +52,7 @@ input {
         position: absolute;
         padding-left: 1rem;
         padding-top: 0.3rem;
-        top: 20%;
+        top: 27%;
         z-index: 2;
 
         i {
@@ -131,7 +133,7 @@ input {
     border-radius: $border-radius-100;
     -webkit-rtl-ordering: logical;
     cursor: text;
-    color: #222 !important;
+    color: $color-gray-900 !important;
     padding: .65rem 6rem 0.65rem 1rem;
 
     &:hover, &:active, &:focus{
@@ -172,7 +174,7 @@ input {
     -webkit-rtl-ordering: logical;
     cursor: text;
     border: none;
-    color: #222 !important;
+    color: $color-gray-900 !important;
     width: 100%;
     margin-bottom: 0;
     padding: .25rem .5rem 0.25rem 1rem;
@@ -218,8 +220,8 @@ width: 35%;
 
     .search-icon {
         position: absolute;
-        left: .5rem;
-        top: .75rem;
+        left: 1.5rem;
+        bottom: 1rem;
 
         i {
             color: $color-gray-600;
