@@ -32,8 +32,6 @@ from cities_light.receivers import connect_default_signals
 #     def __unicode__(self):
 #         return self.name
 
-
-
 class Address(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, blank=True, null=True, related_name='address')
@@ -44,7 +42,7 @@ class Address(models.Model):
     zip = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return '%s in %s' % (self.user.username, self.city)
+        return '%s' % (self.city)
 
     class Meta:
         verbose_name_plural = 'Addresses'

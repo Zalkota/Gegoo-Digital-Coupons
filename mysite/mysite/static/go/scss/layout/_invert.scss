@@ -71,10 +71,10 @@
 		@extend %bordered-text-whiteed;
 	}
 
-	// Box
-	.box {
-		@extend %text-whiteed-box;
-	}
+	// // Box
+	// .box {
+	// 	@extend %text-whiteed-box;
+	// }
 
 
 	// Text Decorated
@@ -83,15 +83,15 @@
 	}
 
 
-	// Blockquote
-	.blockquote {
-		@extend %blockquote-text-white;
-	}
+	// // Blockquote
+	// .blockquote {
+	// 	@extend %blockquote-text-white;
+	// }
 
-	// Breadcrumb
-	.breadcrumb {
-		@extend %breadcrumb-text-whiteed;
-	}
+	// // Breadcrumb
+	// .breadcrumb {
+	// 	@extend %breadcrumb-text-whiteed;
+	// }
 
 
 	// Separator
@@ -105,9 +105,9 @@
 
 
 
-
-	// Progress
-	@extend %progress-text-white;
+	//
+	// // Progress
+	// @extend %progress-text-white;
 
 
 	// Owl Carousel Dots
@@ -171,15 +171,15 @@
 	}
 
 
-	// Table
-	.table {
-		@extend %table-text-whiteed;
-	}
+	// // Table
+	// .table {
+	// 	@extend %table-text-whiteed;
+	// }
+	//
+	//
 
 
-	
-
-	// SVG ICON 
+	// SVG ICON
 	.svg-icon {
 		color: $white;
 	}

@@ -4,7 +4,7 @@
 //
 
 .owl-carousel {
-	&[data-dots="true"] { 
+	&[data-dots="true"] {
 	    margin-bottom: 60px;
 	}
 
@@ -48,6 +48,7 @@
 
 		.owl-prev {
 			@include translate(0,-50%);
+			visibility: hidden;
 			left: ($grid-gutter-width / 2);
 
 			&::before { content: "\ebfb" }
@@ -63,6 +64,7 @@
 
 		.owl-next {
 			@include translate(0,-50%);
+			visibility: hidden;
 			right: ($grid-gutter-width / 2);
 
 			&::before { content: "\ebfc" }
@@ -115,7 +117,7 @@
 
 		&.active {
 			span {
-				background: $black; 
+				background: $black;
 				@include scale(1.5);
 			}
 		}
@@ -123,7 +125,7 @@
 	}
 }
 
-.owl-carousel-single { 
+.owl-carousel-single {
     .owl-stage-outer {
     	@extend %floating;
     	border-radius: $border-radius;
@@ -222,7 +224,7 @@
 .owl-carousel {
 
 	.owl-stage-outer {
-		
+
 		.owl-stage {
 
 			.owl-item {

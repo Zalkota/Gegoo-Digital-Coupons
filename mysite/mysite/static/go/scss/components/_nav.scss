@@ -1,5 +1,5 @@
 // Navs
-//	
+//
 //
 //
 
@@ -11,7 +11,7 @@
 		@include transition;
 		position: relative;
 		display: inline-block;
-		color: $gray-300;
+		color: $gray-900;
 		z-index: 5;
 		font-size: 14px;
 		font-weight: 400;
@@ -31,7 +31,7 @@
 //
 .nav-text {
 	margin: -.5rem;
-	
+
 	.nav-link {
 		margin: .5rem;
 		padding: 0 0 1rem 0;
@@ -64,7 +64,7 @@
 		border-style: solid;
 		border-color: $primary;
 	}
-	
+
 	.nav-item  {
 		margin-right: $grid-gutter-width;
 	}
@@ -185,12 +185,12 @@
 
 
 // Vertical
-// 
+//
 // vertical direction for .nav-pills and .nav-line
 .nav-vertical {
 	display: inline-block;
-	
-	.nav-link { 
+
+	.nav-link {
 		display: block;
 	}
 }
@@ -274,7 +274,7 @@
 
 
 // text-whiteed
-// 
+//
 // styles for colored/image background
 .text-white {
 	.nav-switch {

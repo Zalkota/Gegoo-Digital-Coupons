@@ -10950,7 +10950,8 @@ a.navbar-brand.scrolled:hover {
     color: #2D3748; }
     .navbar-lower .navbar-bottom-button:hover, .navbar-lower .navbar-bottom-button:active, .navbar-lower .navbar-bottom-button:focus, .navbar-lower .navbar-bottom-button:visited {
       color: #7505AB;
-      border-bottom: 3px solid #7505AB; }
+      border-bottom: 3px solid #7505AB;
+      padding-bottom: .35rem; }
       .navbar-lower .navbar-bottom-button:hover a, .navbar-lower .navbar-bottom-button:active a, .navbar-lower .navbar-bottom-button:focus a, .navbar-lower .navbar-bottom-button:visited a {
         text-decoration: none; }
   .navbar-lower .navbar-bottom-button-active {
@@ -11200,14 +11201,14 @@ a.navbar-brand.scrolled:hover {
 .img-secondary-text {
   position: absolute;
   top: 1rem;
-  left: 2.3rem;
+  left: 1.7rem;
   font-size: 12px;
   color: #fff; }
 
 .img-header-text {
   position: absolute;
   top: 2rem;
-  left: 2.3rem;
+  left: 1.7rem;
   font-size: 16px;
   font-weight: 600;
   color: #fff; }
@@ -12034,10 +12035,11 @@ input:focus {
 
 .search-form {
   position: absolute;
-  bottom: -5%;
+  bottom: -8%;
   left: 50%;
   transform: translateX(-50%);
-  width: 35%; }
+  width: 35%;
+  z-index: 10000; }
   .search-form .search-icon {
     position: absolute;
     left: 1.5rem;
@@ -12193,7 +12195,7 @@ footer {
   footer .title-footer {
     color: #2D3748;
     letter-spacing: 2px;
-    font-size: .9rem;
+    font-size: 1.1rem;
     font-weight: 500; }
   @media screen and (max-width: 992px) {
     footer .text-align-responsive {

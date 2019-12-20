@@ -67,12 +67,10 @@ class userLocaton(View):
             #ref_code = self.kwargs['ref_code']
             city = form.cleaned_data.get('city_input')
             state = form.cleaned_data.get('state_input')
-            print(city, state)
 
             city_qs = City.objects.get(name=city)
-
             state_qs = Region.objects.get(name=state)
-            print('state and city', state_qs.name, city_qs.name)
+
 
             # edit the order
 

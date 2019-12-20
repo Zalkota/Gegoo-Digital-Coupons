@@ -21,7 +21,6 @@ from cities_light.models import City, Region
 #     template_name = "shops/index.html"
 #
 #
-
 def SearchAddress(request):
     if request.method == "POST":
         search_text = request.POST['search_text']

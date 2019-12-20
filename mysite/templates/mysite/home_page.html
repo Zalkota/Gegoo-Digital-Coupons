@@ -35,7 +35,7 @@
 
   <!-- ****** Picture Gallery ******* -->
 
-<section class="section mt-2" >
+<section class="section mt-2 pb-0" >
     <div class="container">
         <!-- <div class="row">
 
@@ -74,7 +74,10 @@
             <div class="offset-lg-1"></div>
         </div> -->
 
-        <section id="default" >
+
+        <h3 class="fs-20 fw-6 text-primary mb-0 ml-2">Categories</h3>
+        <br>
+        <div id="default" >
           <div class="tab-content" id="component-1">
             <div class="tab-pane shadow-0 show active" style="background-color: transparent;" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
               <div class="">
@@ -91,6 +94,11 @@
                           <img class="border-radius-200" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
                           <h6 class="img-secondary-text">Don't book without us</h6>
                           <h3 class="img-header-text">Travel</h3>
+                        </figure>
+                        <figure class="photo px-1">
+                          <img class="border-radius-200" src="{% static 'img/vehicle_ad.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Local dealerships</h6>
+                          <h3 class="img-header-text">Vehicles</h3>
                         </figure>
                         <figure class="photo px-1">
                           <img class="border-radius-200" src="{% static 'img/vehicle_ad.jpg' %}" alt="Image">
@@ -117,22 +125,26 @@
                           <h6 class="img-secondary-text">Local dealerships</h6>
                           <h3 class="img-header-text">Vehicles</h3>
                         </figure>
+                        <figure class="photo px-1">
+                          <img class="border-radius-200" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Local dealerships</h6>
+                          <h3 class="img-header-text">Vehicles</h3>
+                        </figure>
+                        <figure class="photo px-1">
+                          <img class="border-radius-200" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Local dealerships</h6>
+                          <h3 class="img-header-text">Vehicles</h3>
+                        </figure>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
-        </section>
-        <hr>
+        </div>
 
 
-
-
-
-        <div class="row mt-4">
 
 
 
@@ -246,166 +258,74 @@
                 </div>
             </div> -->
 
+    </div>
+</section>
 
-            {% for object in address_qs %}
-            <div class="col-lg-3 col-md-6 text-center border-radius-300 mb-5" >
-                <div class="card card-border card-effects border-radius-300 shadow-2">
-                    <a href="{{ object.get_absolute_url }}">
-                        <img class="card-img-top" style="width: 100%;" src="media/{{ object.offer.get_first_active.image }}" alt="User Uploaded images">
-                    </a>
+<section class="section pt-0">
+    <div class="container">
+        <h3 class="fs-20 fw-6 text-primary mb-0 ml-2">Local Deals
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-4 icon-tag"><path class="secondary" d="M2.59 13.41A1.98 1.98 0 0 1 2 12V7a5 5 0 0 1 5-5h4.99c.53 0 1.04.2 1.42.59l8 8a2 2 0 0 1 0 2.82l-8 8a2 2 0 0 1-2.82 0l-8-8zM7 9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="primary" d="M12 18l6-6-4-4-6 6.01L12 18z"/></svg>
+        </h3>
+        <br>
+            <div class="row">
 
-                    <div class="card-body px-3 py-2">
-                        <div class=" text-left mt-2">
-                            <h3 class="fw-4 fs-14 mb-3">{{ object.offer.get_first_active.merchant.business_name }}</h3>
-                            <h4 class="fw-6 fs-16 mb-3">
-                                {{ object.offer.get_first_active.title }}
-                            </h4>
-                            <div class="mb-3">
-                                <a href="
-                                 %}" class="fs-12">{{ object.offer.get_first_active.merchant.category.get_name_display }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ object.offer.get_first_active.merchant.subcategory }}</a>
+                {% for object in address_qs %}
+                <div class="col-lg-3 col-md-6 text-center border-radius-300 mb-5" >
+                    <div class="card card-border card-effects border-radius-300 shadow-2">
+                        <a href="{{ object.get_absolute_url }}">
+                            <img class="card-img-top" style="width: 100%;" src="media/{{ object.offer.get_first_active.image }}" alt="User Uploaded images">
+                        </a>
+
+                        <div class="card-body px-3 py-2">
+                            <div class=" text-left mt-2">
+                                <h3 class="fw-4 fs-14 mb-3">{{ object.offer.get_first_active.merchant.business_name }}</h3>
+                                <h4 class="fw-6 fs-16 mb-3">
+                                    {{ object.offer.get_first_active.title }}
+                                </h4>
+                                <div class="mb-3">
+                                    <a href="
+                                     %}" class="fs-12">{{ object.offer.get_first_active.merchant.category.get_name_display }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ object.offer.get_first_active.merchant.subcategory }}</a>
+                                </div>
+                                <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.offer.get_first_active.end_date }}</span></div>
+                                <a class="btn btn-primary-inverted btn-block" href="">View Additional Deals ({{ object.offer.all.count}})</a>
+                                <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
                             </div>
-                            <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.offer.get_first_active.end_date }}</span></div>
-                            <a class="btn btn-primary-inverted btn-block" href="">View Additional Deals ({{ object.offer.all.count}})</a>
-                            <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
                         </div>
+                          <div class="coupon-bottom-button-container">
+                              <a class="coupon-button">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
+                                  <br>
+                                  <span class="fs-14 fw-5 text-primary">Save</span>
+                              </a>
+                              <a class="coupon-button">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-print"><path class="secondary" d="M5 8h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5c0-1.1.9-2 2-2zm1 2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2H6z"/><path class="primary" d="M6 14h12v6a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-6zm0-6V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v4H6z"/></svg>
+                                  <br>
+                                  <span class="fs-14 fw-5 text-primary">Print</span>
+                              </a>
+                              <a class="coupon-button">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-external-window"><path class="primary" d="M12 8a1 1 0 0 1-1 1H5v10h10v-6a1 1 0 0 1 2 0v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9c0-1.1.9-2 2-2h6a1 1 0 0 1 1 1z"/><path class="secondary" d="M19 6.41L8.7 16.71a1 1 0 1 1-1.4-1.42L17.58 5H14a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V6.41z"/></svg>
+                                  <br>
+                                  <span class="fs-14 fw-5 text-primary">Share</span>
+                              </a>
+                          </div>
+
                     </div>
-                      <div class="coupon-bottom-button-container">
-                          <a class="coupon-button">
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
-                              <br>
-                              <span class="fs-14 fw-5 text-primary">Save</span>
-                          </a>
-                          <a class="coupon-button">
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-print"><path class="secondary" d="M5 8h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5c0-1.1.9-2 2-2zm1 2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2H6z"/><path class="primary" d="M6 14h12v6a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-6zm0-6V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v4H6z"/></svg>
-                              <br>
-                              <span class="fs-14 fw-5 text-primary">Print</span>
-                          </a>
-                          <a class="coupon-button">
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-external-window"><path class="primary" d="M12 8a1 1 0 0 1-1 1H5v10h10v-6a1 1 0 0 1 2 0v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9c0-1.1.9-2 2-2h6a1 1 0 0 1 1 1z"/><path class="secondary" d="M19 6.41L8.7 16.71a1 1 0 1 1-1.4-1.42L17.58 5H14a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V6.41z"/></svg>
-                              <br>
-                              <span class="fs-14 fw-5 text-primary">Share</span>
-                          </a>
-                      </div>
-
                 </div>
-            </div>
-            {% endfor %}
-
+                {% endfor %}
         </div>
         <div class="text-center">
             <a href="" class="btn btn-primary-alt px-5">
                 Load More Offers
             </a>
         </div>
-
         <div class="py-5"></div>
-
-            <!-- destinations carousel -->
-            <section class="section-decorated-bottom pt-0">
-              <div class="decorated-bottom text-light">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 40"  preserveAspectRatio="none">
-                  <path d="">
-                    <animate
-                      attributeName="d"
-                      begin="0s"
-                      dur="5s"
-                      repeatCount="indefinite"
-                      values="
-                      M0,0 C200,7.11236625e-15 200,40 400,40 C600,40 800,0 1000,0 L1000,50 L0,50 L0,0 Z;
-                      M0,40 C200,40 400,0 600,0 C800,0 800,40 1000,40 L1000,50 L0,50 L0,40 Z;
-                      M0,30 C200,30 200,0 400,0 C600,0 800,40 1000,40 L1000,50 L0,50 L0,30 Z;
-                      M0,0 C200,7.11236625e-15 200,40 400,40 C600,40 800,0 1000,0 L1000,50 L0,50 L0,0 Z;"></animate>
-                  </path>
-                </svg>
-              </div>
-              <div class="container">
-                <div class="row" data-aos="fade-left" data-aos-delay="500">
-                  <div class="col">
-                    <div class="owl-carousel visible" data-items="[4,3,2,1]" data-margin="20" data-dots="true" data-loop="true" data-center="true">
-                      <article class="tile tile-long">
-                        <div class="tile-image" style="background-image: url(../../assets/images/demo/travel/travel-1.jpg)"></div>
-                        <a href="" class="tile-content">
-                          <div class="tile-header on-hover text-right">
-                            <h4 class="fs-30 text-white">$259</h4>
-                          </div>
-                          <div class="tile-footer">
-                            <span class="eyebrow">5 Day City Tour</span>
-                            <h3>California, USA</h3>
-                          </div>
-                        </a>
-                      </article>
-                      <article class="tile tile-long">
-                        <div class="tile-image" style="background-image: url({% static 'img/travel_ad.jpg' %})"></div>
-                        <a href="" class="tile-content">
-                          <div class="tile-header on-hover text-right">
-                            <h4 class="fs-30 text-white">$259</h4>
-                          </div>
-                          <div class="tile-footer">
-                            <span class="eyebrow">5 Day City Tour</span>
-                            <h3>Oahu, Hawaii</h3>
-                          </div>
-                        </a>
-                      </article>
-                      <article class="tile tile-long">
-                        <div class="tile-image" style="background-image: url({% static 'img/travel_ad.jpg' %})"></div>
-                        <a href="" class="tile-content">
-                          <div class="tile-header on-hover text-right">
-                            <h4 class="fs-30 text-white">$259</h4>
-                          </div>
-                          <div class="tile-footer">
-                            <span class="eyebrow">5 Day City Tour</span>
-                            <h3>Bali, Indonesia</h3>
-                          </div>
-                        </a>
-                      </article>
-                      <article class="tile tile-long">
-                        <div class="tile-image" style="background-image: url({% static 'img/travel_ad.jpg' %})"></div>
-                        <a href="" class="tile-content">
-                          <div class="tile-header on-hover text-right">
-                            <h4 class="fs-30 text-white">$259</h4>
-                          </div>
-                          <div class="tile-footer">
-                            <span class="eyebrow">5 Day City Tour</span>
-                            <h3>Arizona, USA</h3>
-                          </div>
-                        </a>
-                      </article>
-                      <article class="tile tile-long">
-                        <div class="tile-image" style="background-image: url({% static 'img/travel_ad.jpg' %})"></div>
-                        <a href="" class="tile-content">
-                          <div class="tile-header on-hover text-right">
-                            <h4 class="fs-30 text-white">$259</h4>
-                          </div>
-                          <div class="tile-footer">
-                            <span class="eyebrow">5 Day City Tour</span>
-                            <h3>Yellowstone, USA</h3>
-                          </div>
-                        </a>
-                      </article>
-                      <article class="tile tile-long">
-                        <div class="tile-image" style="background-image: url({% static 'img/travel_ad.jpg' %})"></div>
-                        <a href="" class="tile-content">
-                          <div class="tile-header on-hover text-right">
-                            <h4 class="fs-30 text-white">$259</h4>
-                          </div>
-                          <div class="tile-footer">
-                            <span class="eyebrow">5 Day City Tour</span>
-                            <h3>Cappadocia, Turkey</h3>
-                          </div>
-                        </a>
-                      </article>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <!-- / destinations carousel -->
-    </section>
+    </div>
+</section>
 {% endblock %}
 
 {% block extrajs %}
 
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
 <script>
   AOS.init({
     duration: 1300,

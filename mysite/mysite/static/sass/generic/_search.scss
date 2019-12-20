@@ -16,7 +16,6 @@ input {
     width: 100%;
     max-width: 500px !important;
 
-
     input {
     -webkit-appearance: textfield;
     border: 1px solid #dfdfdf;
@@ -183,9 +182,9 @@ input {
           border: none !important;
           // Blue input Outline
           outline: -webkit-focus-ring-color auto 0px;
-          }
-      }
+        }
     }
+}
 
 .search-form-background-hero {
     padding: .75rem 2rem;
@@ -211,12 +210,12 @@ input {
 }
 
 .search-form {
-position: absolute;
-bottom: -5%;
-left: 50%;
-transform: translateX(-50%);
-width: 35%;
-
+    position: absolute;
+    bottom: -8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35%;
+    z-index: 10000;
 
     .search-icon {
         position: absolute;
@@ -227,8 +226,6 @@ width: 35%;
             color: $color-gray-600;
         }
     }
-
-
 }
 
 

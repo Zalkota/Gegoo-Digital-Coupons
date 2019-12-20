@@ -30,7 +30,7 @@
 // Swiper instances that doesnt fit to the viewport
 .container,
 .container-fluid {
-	
+
 	.swiper-container,
 	.gallery-container {
 		.swiper-slide {
@@ -123,7 +123,7 @@
 		bottom: ($section-padding / 2);
 		left: 50%;
 		z-index: 25;
-		
+
 		.swiper-pagination-bullet {
 			@include selection(none);
 			position: relative;
@@ -153,7 +153,7 @@
 			&:hover {
 				&::after {
 					background: rgba($white, .4);
-				} 
+				}
 			}
 
 			&.swiper-pagination-bullet-active {
@@ -161,7 +161,7 @@
 					background: $white;
 					@include scale(1.5);
 					@include shadow();
-				} 
+				}
 			}
 		}
 	}
@@ -207,7 +207,7 @@
 
     &:hover {
     	border-color: $border-color;
-    	
+
     	&::before {
     		color: $black;
     	}

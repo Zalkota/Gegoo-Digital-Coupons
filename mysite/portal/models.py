@@ -21,6 +21,7 @@ import string
 
 # Locations
 from location.models import Address
+from cities_light.models import City, Region
 
 # GEODJANGO
 from django.contrib.gis.geos import fromstr
@@ -168,7 +169,8 @@ class Merchant(models.Model):
     promotional_video_file_name = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
     promotional_video_thumbnail_name = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
     #Location
-    address = models.ManyToManyField(Address, related_name='merchant')
+    # address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='merchant')
+    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='merchant', null=True)
     latitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True, blank=True)
     longitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True, blank=True)
     location = models.PointField(srid=4326, null=True, blank=True)
