@@ -17,7 +17,7 @@ class AboutAdmin(ImportExportModelAdmin):
 class MerchantAdmin(OSMGeoAdmin):
     search_fields = ['city__name', 'business_name']
     autocomplete_fields = ['city']
-    list_display = ('business_name', 'category')
+    list_display = ('business_name', 'category', 'subcategory')
 
 
 class LocationAdmin(admin.ModelAdmin):

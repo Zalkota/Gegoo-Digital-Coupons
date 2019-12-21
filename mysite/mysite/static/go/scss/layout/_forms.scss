@@ -9,7 +9,7 @@ label {
 	margin-bottom: .25rem;
 	font-size: 12px;
 	text-transform: uppercase;
-	color: $gray-300;
+	color: $gray-900;
 	letter-spacing: $letter-spacing-lg;
 }
 
@@ -57,20 +57,20 @@ label {
 //
 .text-white {
 
-	// input group
-	// .input-group {
-	// 	background: rgba($black, .1);
+	input group
+	.input-group {
+		background: rgba($black, .1);
 
-	// 	.form-control {
-	// 		background: transparent;
-	// 	}
-	// }
+		.form-control {
+			background: transparent;
+		}
+	}
 
-	// .form-group {
-	// 	label {
-	// 		color: rgba($white, .4);
-	// 	}
-	// }
+	.form-group {
+		label {
+			color: rgba($white, .4);
+		}
+	}
 
 	.form-control {
 		border-color: transparent;
@@ -87,17 +87,17 @@ label {
 		}
 	}
 
-	// .form-control-minimal {
-	// 	border-bottom: $border-width solid $text-white-border;
+	.form-control-minimal {
+		border-bottom: $border-width solid $text-white-border;
 
-	// 	&::placeholder {
-	// 		color: rgba($white, .5);
-	// 	}
-	// }
+		&::placeholder {
+			color: rgba($white, .5);
+		}
+	}
 
 
-	// .input-group-text {
-	// 	background-color: $text-white-border;
-	// }
+	.input-group-text {
+		background-color: $text-white-border;
+	}
 
 }

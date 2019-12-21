@@ -1,0 +1,35 @@
+{% extends 'base-alt.html' %}
+{% load flatpages %}
+
+{% load static %}<!DOCTYPE html>
+
+{% block content %}
+<!-- Start Colored Header Section -->
+
+<div class="section-header-primary">
+  <div class="container">
+    <div class="text">
+      <h1 class="text-white">{{ flatpage.title }}</h1>
+      <h6 class="text-white">Effective date: July 13, 2019</h6>
+    </div>
+  </div>
+</div>
+
+<!-- End Colored Header Section -->
+<section class="section-md">
+    <div class="container">
+      <div class="container">
+        <div class="card my-3">
+          <div class="card-body p-4">
+
+            <p>{{ SITE_NAME }} ("us", "we", or "our") operates the {{ WEBSITE_URL }} website (the "Service").</p>
+
+            {{ flatpage.content }}
+
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+{% endblock content%}

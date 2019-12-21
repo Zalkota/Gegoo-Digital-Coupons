@@ -170,14 +170,29 @@ class Merchant(models.Model):
     promotional_video_thumbnail_name = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
     #Location
     # address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='merchant')
-    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='merchant', null=True)
+    city = models.ManyToManyField(City, related_name='merchant')
     latitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True, blank=True)
     longitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True, blank=True)
     location = models.PointField(srid=4326, null=True, blank=True)
 
+    @property
+    def get_first_active(self):
+        now = timezone.now()
+        object_qs = self.offer.filter(end_date__gt=now).order_by('end_date')
+        object = object_qs.first()
+        return object
+
+    def get_absolute_url(self):
+        return reverse('portal:merchant_detail',
+        kwargs={
+        'category': self.category.name,
+        'subcategory': self.subcategory,
+        'name': self.business_name,
+        'ref_code': self.ref_code
+        })
 
     def __str__(self):
-        return '%s located i' % (self.business_name)
+        return '%s located in %s' % (self.business_name, self.city)
 
 post_save.connect(setMerchantRefCode, sender=Merchant)
 post_save.connect(CalculateLocation, sender=Merchant)
@@ -190,19 +205,19 @@ post_save.connect(CalculateLocation, sender=Merchant)
     #         userProfile.save()
     #
     # user_signed_up.connect(profileCallback)
-
-class OfferManager(models.Manager):
-    #Grabs first offer and only shows active offers
-    def get_first_active(self):
-        now = timezone.now()
-        object_qs = Offer.objects.filter(end_date__gt=now).order_by('end_date')
-        object = object_qs.first()
-        return object
+#
+# class OfferManager(models.Manager):
+#     #Grabs first offer and only shows active offers
+#     def get_first_active(self):
+#         now = timezone.now()
+#         object_qs = Offer.objects.filter(end_date__gt=now).order_by('end_date')
+#         object = object_qs.first()
+#         return object
 
 
 class Offer(models.Model):
     merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE, null=True, related_name='offer')
-    address = models.ForeignKey(Address, related_name='offer', on_delete=models.CASCADE, blank=True, null=True)
+    # address = models.ForeignKey(Address, related_name='offer', on_delete=models.CASCADE, blank=True, null=True)
     title = models.TextField()
     description = RichTextUploadingField()
     # ad = models.ForeignKey(Ad, on_delete=models.CASCADE, null=True, related_name='ad')
@@ -210,8 +225,8 @@ class Offer(models.Model):
     slug = models.SlugField()
     image = models.ImageField(upload_to='photos/', null=True)
     end_date = models.DateField()
-
-    objects = OfferManager()
+    #
+    # objects = OfferManager()
 
     def __str__(self):
         return '%s (%s)' % (self.title, self.merchant.business_name)

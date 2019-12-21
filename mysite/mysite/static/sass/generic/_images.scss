@@ -111,6 +111,8 @@
   }
 
 
+// Category Image Text
+@media screen and (min-width: 992px) {
   .img-secondary-text {
       position: absolute;
       top: 1rem;
@@ -130,3 +132,21 @@
       color: $color-white;
 
   }
+}
+@media screen and (max-width: 992px) {
+  .img-secondary-text {
+      display: none;
+
+
+  }
+
+  .img-header-text {
+      position: absolute;
+      top: 0.65rem;
+      left: 0.65rem;
+      font-size: 16px;
+      font-weight: 600;
+      color: $color-white;
+
+  }
+}

@@ -1,0 +1,23 @@
+{% extends 'base-alt.html' %}
+{% load flatpages %}
+
+{% load static %}<!DOCTYPE html>
+
+{% block content %}
+
+
+<!-- End Colored Header Section -->
+<section class="section-md">
+      <div class="container">
+        <div class="card shadow-2">
+            <div class="card-header">
+                <h1 class="fw-6">{{ flatpage.title }}</h1>
+            </div>
+          <div class="card-body p-4">
+            {{ flatpage.content }}
+          </div>
+        </div>
+      </div>
+</section>
+
+{% endblock content%}

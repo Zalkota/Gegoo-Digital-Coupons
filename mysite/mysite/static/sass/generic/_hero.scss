@@ -4,9 +4,8 @@
     .hero {
         /* Sizing */
 
-        border-radius: .3rem;// HACK:
-        height: 350px;
-        margin-top: 1rem;
+        // border-radius: .3rem;// HACK:
+        // height: 350px;
 
         text-transform: capitalize;
         /* Flexbox stuff */
@@ -19,9 +18,9 @@
 
         /* Text styles */
         /* Background styles */
-        background: url(/static/img/headers/generic_banner_2.jpg);
+        // background: url(/static/img/headers/banner.jpg);
         //back: ;ground-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
-        background-color: $color-secondary;
+        // background-color: $color-secondary;
         /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
         background-size: cover;
         background-position: center;
@@ -34,13 +33,6 @@
           margin-right: auto;
           margin-left: auto;
           text-align: center;
-          max-width: 60rem;
-          padding-top: 10rem;
-          padding-bottom: 10rem;
-          width: 70%;
-          hr {
-
-          }
         }
 
         & h1 {
@@ -73,15 +65,14 @@
         }
 
         img {
-          margin-top: 4rem;
-          border-radius: $border-radius;
+
+
         }
     }
   }
 @media screen and (max-width: 992px) {
     .hero {
         /* Sizing */
-        height: 100vh;
         /* Flexbox stuff */
         display: flex;
         justify-content: center;
@@ -90,20 +81,14 @@
         text-align: center;
         /* Background styles */
         /* background-image: url(/static/img/background_waves_6.svg); */
-        background: url(/static/img/headers/wave.svg);
+
         background-size: cover;
         background-position: left;
         background-repeat: no-repeat;
         position: relative;
 
     .text {
-      position: absolute;
       text-align: center;
-      top: 17%;
-      max-width: 40rem;
-      padding: 0 10% 0 5%;
-      color: $color-main;
-
     }
 
     h1 {

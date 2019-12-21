@@ -1,4 +1,4 @@
-{% extends "base-alt.html" %}
+{% extends "base.html" %}
 {% load honeypot %}
 {% load static %}
 {% load crispy_forms_tags %}
@@ -15,49 +15,58 @@
      <*****                       CUSTOMER SUPPORT CARD                      *****>
      <**************************************************************************>
 -->
-
-    <section class="section-md container">
-        <div class="text text-center mb-5">
-           <h2 class="fw-6 fs-32 mb-4">Customer support</h2>
-          <div class="hr-primary-sm mr-auto ml-auto"></div>
+<section class="section-header-waves">
+    <div class="container">
+        <div class="pb-5">
+            <h2 class="py-1 ls-3 text-purple-400" style=" font-weight: 700;">CONTACT US</h2>
+            <h3 class="fs-60 fw-7 mb-0 hide text-white">Have a Question?</h3>
+            <h3 class="fs-40 fw-7  unhide text-white">Let's Build Something</h3>
+            <p class="hide">Have a question for our team? Whether you’re interested in working with us, need an expert opinion — or just want to find out more about what we do, we’d love to hear from you.</p>
         </div>
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-                <div class="card p-4 shadow-2 card-border">
-                <form class="card-body" action="{% url 'contact-page' %}" method="POST">
-                    {% csrf_token %}
-                    {% render_honeypot_field "phonenumber" %}
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            {% if form.non_field_errors %}
-                            <div class="alert alert-danger" role="alert">
-                                {% for error in form.non_field_errors %}
-                                {{ error }}
-                                {% endfor %}
-                            </div>
-                            {% endif %}
+    </div>
+ </section>
 
+<section class="section-sm container">
+    <div class="text text-center mb-5">
+       <h2 class="fw-6 fs-32 mb-4">Send Us a Message</h2>
+      <div class="hr-primary-sm mr-auto ml-auto"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="card p-4 shadow-2 card-border">
+            <form class="card-body" action="{% url 'contact-page' %}" method="POST">
+                {% csrf_token %}
+                {% render_honeypot_field "phonenumber" %}
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in form.non_field_errors %}
+                            {{ error }}
+                            {% endfor %}
                         </div>
-                        {% crispy form %}
-
-                        {{ form.media }}
-
-                        {% if form.errors %}
-                        {% for field in form %}
-                        {% for error in field.errors %}
-                        <p class="text-primary"> {{ error }} </p>
-                        {% endfor %}
-                        {% endfor %}
                         {% endif %}
-                        <div class="col-lg-12">
-                            <button value="Submit" type="submit" class="btn btn-primary-alt btn-block mt-4">Submit</button>
-                        </div>
                     </div>
-                </form>
-            </div>
-            </div>
+                    {% crispy form %}
+
+                    {{ form.media }}
+
+                    {% if form.errors %}
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <p class="text-primary"> {{ error }} </p>
+                    {% endfor %}
+                    {% endfor %}
+                    {% endif %}
+                    <div class="col-lg-12">
+                        <button value="Submit" type="submit" class="btn btn-primary-alt btn-block mt-4">Submit</button>
+                    </div>
+                </div>
+            </form>
         </div>
-  </section>
+        </div>
+    </div>
+</section>
 
 
  <!--  <**************************************************************************>
@@ -102,7 +111,7 @@
                     <img class="img-fluid p-3" style="height: 160px;" src="{% static 'img/undraw/mail.svg' %}" alt="Customer Support Image Contact Us">
                     <div class="text-center">
                         <h3 class="fs-24 fw-6 text-primary mt-2">Email Us</h3>
-                        <span class="text-muted fs-14"><strong>365 days a year </strong><br><br>
+                        <span class="text-muted fs-14">365 days a year <br><br>
                         We will respond within 1 business day.
                         </span>
                         <br>
