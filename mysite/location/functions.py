@@ -38,8 +38,8 @@ def get_or_set_location(request):
         #Check if user has address
         try:
             if request.user.user_profile.address.city and request.user.user_profile.address.state != None:
-                city = request.user.user_profile.address.city
-                state = request.user.user_profile.address.state
+                city = request.user.user_profile.address.city.name
+                state = request.user.user_profile.address.state.name
 
                 context = {
                 'city': city,
@@ -54,6 +54,7 @@ def get_or_set_location(request):
                 state = data["subdivisions"][0]['names']['en']
                 print (city, ', ', state)
 
+                # Query object so that we can save it into the database
                 city_qs = City.objects.get(name=city)
                 state_qs = Region.objects.get(name=state)
 

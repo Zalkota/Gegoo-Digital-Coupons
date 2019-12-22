@@ -155,7 +155,7 @@ class homeView(FormView):
         # state = context["subdivisions"]
         #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
         #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
-        address_qs = Merchant.objects.filter(city=city)
+        address_qs = Merchant.objects.filter(city__name=city)
         # if address_qs = None:
         #     address_qs = Address.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
         category_list = Category.objects.all()
