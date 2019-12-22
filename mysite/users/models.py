@@ -27,10 +27,10 @@ class User(AbstractUser):
     #accepted_terms_of_service = models.Booleanfield()
 
     def __str__(self):
-        return self.username
+        return self.name
 
     def get_absolute_url(self):
-        return reverse('users:detail', kwargs={'username': self.username})
+        return reverse('users:detail', kwargs={'username': self.name})
 
 # Profile Image
 def upload_to(instance, filename):
@@ -50,7 +50,7 @@ class Profile(models.Model):
     ip_address = models.CharField(max_length=120, default='ABC')
 
     def __str__(self):
-        return self.user.username
+        return self.user.name
 
 
 class userStripe(models.Model):
@@ -61,7 +61,7 @@ class userStripe(models.Model):
         if self.stripe_id:
             return str(self.stripe_id)
         else:
-            return self.user.username
+            return self.user.name
 
     def __str__(self):
         return'%s (%s)' % (self.stripe_id, self.user)
@@ -79,7 +79,7 @@ def stripeCallback(sender, request, user, **kwargs):
 def profileCallback(sender, request, user, **kwargs):
     userProfile, is_created = Profile.objects.get_or_create(user=user)
     if is_created:
-        userProfile.name = user.username
+        userProfile.name = user.name
         userProfile.save()
 
 user_logged_in.connect(stripeCallback)
