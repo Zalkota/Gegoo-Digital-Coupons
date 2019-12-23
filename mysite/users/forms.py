@@ -1,6 +1,6 @@
 from django import forms
 from .models import Profile
-from portal.models import Address
+from location.models import Address
 
 
 # Customize Crispy forms

@@ -46,12 +46,6 @@
 
                     {% if not request.user.is_authenticated %}
                     <li class="nav-item">
-                      <a class="nav-link text-primary" href="" id="">{{ ip }}</a>
-                    </li>
-                    <li class="nav-item pt-1 text-secondary">
-                      <span>|</span>
-                    </li>
-                    <li class="nav-item">
                       <a class="nav-link text-primary" href="{% url 'account_signup' %}" id="">Sign Up</a>
                     </li>
                     <li class="nav-item pt-1 text-secondary">
@@ -62,7 +56,6 @@
                     </li>
 
                     {% else %}
-
 
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="#" id="">{% if request.path == '/cart/products/' %}<strong>My Favorites</strong>{% else %} My Favorites {% endif %}</a>
@@ -101,7 +94,6 @@
                     </div>
                   </li>
                 {% endif %}
-
               </ul>
           </div>
         </div>
@@ -137,20 +129,7 @@
         </div>
     </nav>
 
-<!--
-    <div class="navbar navbar-expand-lg hide navbar-lower">
-        <div class="container-fluid hide" style="padding-left: 10%; padding-right: 10%;">
-            <ul class="nav navbar-nav" id="example-one">
-                <li class="nav-item">
-                  <a class="nav-link"  id="">Messages</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link"  id="">Orders</a>
-                </li>
-            </ul>
-        </div>
-    </div>
--->
+
 
 
     <!-- Custom Navigation 100 !-->
@@ -198,7 +177,7 @@
         <div class="navigation__search__bar">
             <form class="navigation__search__input" action="/find/" method="get" >
                     <div class="float-center">
-                        <input type="text" placeholder="Search for bumper stickers" name="q" id="q" autocomplete="off">
+                        <input type="text" placeholder="Search for coupons" name="q" id="q" autocomplete="off">
                         <div id="selction-ajax"></div>
                 </div>
             </form>
@@ -238,8 +217,6 @@
               <li class="navigation__item"><a href="{% url 'contact-page' %}" class="navigation__link" style="">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-help"><path class="fill-gray-400" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="secondary" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
                   Contact</a></li>
-
-
             </ul>
         </nav>
     </div>

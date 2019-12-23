@@ -20,7 +20,7 @@ import random
 import string
 
 # Locations
-from location.models import Address
+
 from cities_light.models import City, Region
 
 # GEODJANGO
@@ -169,8 +169,8 @@ class Merchant(models.Model):
     promotional_video_file_name = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
     promotional_video_thumbnail_name = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
     #Location
-    # address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='merchant')
-    city = models.ManyToManyField(City, related_name='merchant')
+    #address = models.OneToOneField(Merchant_Address, on_delete=models.CASCADE, related_name='merchant_address', null=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True, related_name='merchant')
     latitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True, blank=True)
     longitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True, blank=True)
     location = models.PointField(srid=4326, null=True, blank=True)
@@ -217,11 +217,9 @@ post_save.connect(CalculateLocation, sender=Merchant)
 
 class Offer(models.Model):
     merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE, null=True, related_name='offer')
-    # address = models.ForeignKey(Address, related_name='offer', on_delete=models.CASCADE, blank=True, null=True)
     title = models.TextField()
     description = RichTextUploadingField()
-    # ad = models.ForeignKey(Ad, on_delete=models.CASCADE, null=True, related_name='ad')
-    tag = models.ManyToManyField(Tag, blank=True)
+    code_coupon = models.CharField(max_length=40, blank=True, null=True)
     slug = models.SlugField()
     image = models.ImageField(upload_to='photos/', null=True)
     end_date = models.DateField()

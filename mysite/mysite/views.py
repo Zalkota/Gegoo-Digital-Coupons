@@ -16,7 +16,8 @@ from django.utils import timezone
 
 # imports
 from .models import Contact
-from portal.models import Offer, Merchant, Category, Address
+from portal.models import Offer, Merchant, Category
+from location.models import Address
 
 #mail
 from django.core.mail import send_mail
@@ -42,9 +43,6 @@ from location.functions import set_location_cookies, get_ip, get_or_set_location
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
-latitude = 42.637740
-longitude = -83.363546
-user_location = Point(longitude, latitude, srid=4326)
 
 from django.db.models import Q, Max
 import operator
@@ -146,19 +144,18 @@ class homeView(FormView):
         city = 'default_city'
         state = 'default_state'
         city_state = get_or_set_location(self.request)
-
         city = city_state["city"]
         state = city_state["state"]
-
-        print(city)
+        address_qs = Merchant.objects.filter(city__name=city)
+        category_list = Category.objects.all()
         # city = context["city"]
         # state = context["subdivisions"]
         #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
         #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
-        address_qs = Merchant.objects.filter(city__name=city)
+
         # if address_qs = None:
         #     address_qs = Address.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
-        category_list = Category.objects.all()
+
 
 
         # reader = geolite2.reader()
@@ -170,13 +167,10 @@ class homeView(FormView):
 
 
         context = {
-            # 'ip': ip,
-            # 'data': data,
             'city': city,
             'state': state,
             'address_qs': address_qs,
             'category_list': category_list,
-            # 'offer': offer,
         }
         return render(self.request, 'mysite/home_page.html', context)
 

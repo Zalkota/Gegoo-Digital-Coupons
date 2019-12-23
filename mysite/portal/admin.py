@@ -1,7 +1,8 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from .models import Merchant, Offer, Address, Promotion, Images, Category, Subcategory, Tag, About, Favorite
+from .models import Merchant, Offer, Promotion, Images, Category, Subcategory, Tag, About, Favorite
+from location.models import Merchant_Address, Address
 # Register your models here.
 from django.contrib.gis.admin import OSMGeoAdmin
 
@@ -13,11 +14,16 @@ class AboutAdmin(ImportExportModelAdmin):
      model= About
      filter_horizontal = ('images',) #If you don't specify this, you will get a multiple select widget.
 
+class MerchantAddressInline(admin.TabularInline):
+    model = Merchant_Address
 
 class MerchantAdmin(OSMGeoAdmin):
     search_fields = ['city__name', 'business_name']
     autocomplete_fields = ['city']
-    list_display = ('business_name', 'category', 'subcategory')
+    list_display = ('business_name', 'city', 'category', 'subcategory')
+    inlines = [
+        MerchantAddressInline,
+    ]
 
 
 class LocationAdmin(admin.ModelAdmin):

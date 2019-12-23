@@ -18,63 +18,87 @@
         <div class="col-lg-6">
             <h2 class="fw-6">{{ merchant.business_name }}</h2>
             <span class="text-primary fs-14">
-                {{merchant.address.city }}, {{ merchant.address.state }}
+                {{ city }}, {{ state }}
             </span>
-            <h5 class="fs-14 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt <br> ut labore et dolore magna aliqua. </h5>
+            <h3 class="fs-14 text-muted">Free {{ merchant.business_name }} coupons, deals & sweepstakes from GEGOO help you save money on {{ merchant.category.get_name_display }} and more. <a href="#TODO">Click here</a> to search for {{ merchant.subcategory }} coupons in your local area.</h3>
         </div>
         <div class="col-lg-6">
             <div class="fs-14 text-right hide">
-                <a href="{% url 'home-page' %}" class="text-dark">{{ merchant.address.state }}</a>
+                <a href="{% url 'home-page' %}" class="text-dark">{{ state }}</a>
                 <span class="text-primary px-1">&#8226;</span>
-                <a href="{% url 'users:userPage' %}" class="text-dark">{{ merchant.address.city }}</a>
+                <a href="{% url 'users:userPage' %}" class="text-dark">{{ city }}</a>
                 <span class="text-primary px-1">&#8226;</span>
-                <a href="" class="text-dark">{{ merchant.category }}</a>
+                <a href="" class="text-dark">{{ merchant.category.get_name_display }}</a>
                 <span class="text-primary px-1">&#8226;</span>
                 <a href="" class="text-dark">{{ merchant.subcategory }}</a>
                 <span class="text-primary px-1">&#8226;</span>
                 <a href="" class="text-dark">{{ merchant.business_name }}</a>
             </div>
             <br>
-            <div class="text-right">
+            <!-- <div class="text-right">
                 <a href="#" class=" mb-2 text-decoration-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10  icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
                     <span class="text-secondary fs-14 mr-4">
                         Favorite This
                     </span>
                 </a>
                 <a href="#" class="mb-2 text-decoration-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10 icon-globe"><circle cx="12" cy="12" r="10" class="fill-blue-500"/><path class="fill-green-500" d="M2.05 11A10 10 0 0 1 15 2.46V6a2 2 0 0 1-2 2h-1v1a2 2 0 0 1-1 1.73V12h2a2 2 0 0 1 2 2v1h2a2 2 0 0 1 2 2v2.14A9.97 9.97 0 0 1 12 22v-4h-1a2 2 0 0 1-2-2v-2a2 2 0 0 1-2-2v-1H2.05z"/></svg>
+
                     <span class="text-secondary fs-14 mr-4">
                         Website
                     </span>
                 </a>
-
                 <a href="" class="pt-2 mt-2 text-decoration-none" style="text-alignment: center;">
-                    <i class="fa fa-facebook-square fs-32 " aria-hidden="true"></i>
+                    <i class="fa fa-facebook-square fs-24 " aria-hidden="true"></i>
                     <span class="text-secondary fs-14 mr-4">
                         Facebook
                     </span>
                 </a>
-
-            </div>
+            </div> -->
         </div>
     </div>
 
 
-
-
-
-    <h6 class="fs-14 mb-4"></h6>
         <div class="row mt-4">
             <div class="col-lg-3 mb-4">
+
+                <a href="#" class="btn btn-primary-inverted btn-block shadow-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-globe"><circle cx="12" cy="12" r="10" class="fill-purple-300"/><path class="fill-purple-600" d="M2.05 11A10 10 0 0 1 15 2.46V6a2 2 0 0 1-2 2h-1v1a2 2 0 0 1-1 1.73V12h2a2 2 0 0 1 2 2v1h2a2 2 0 0 1 2 2v2.14A9.97 9.97 0 0 1 12 22v-4h-1a2 2 0 0 1-2-2v-2a2 2 0 0 1-2-2v-1H2.05z"/></svg>
+                    Visit Website
+                </a>
                 <a href="#" class="btn btn-primary-inverted btn-block shadow-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
-                    My Coupons
+                    Save to Favorites
+                </a>
+                <a href="#" class="btn btn-primary-inverted btn-block shadow-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
+                    My Saved Coupons
                 </a>
                 <a href="#" class="btn btn-primary-inverted btn-block mb-2 shadow-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-search"><circle cx="10" cy="10" r="7" class="primary"/><path class="secondary" d="M16.32 14.9l1.1 1.1c.4-.02.83.13 1.14.44l3 3a1.5 1.5 0 0 1-2.12 2.12l-3-3a1.5 1.5 0 0 1-.44-1.14l-1.1-1.1a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>
                     Explore Coupons
                 </a>
+                <div class="card card-border shadow-2">
+                    <div class="card-header">
+                        <div class="row text-center">
+                            <div class="col-lg-12 ">
+                                <div class="vertical-container" style="height: 100%;">
+                                    <div class="vertical-alignment text-uppercase text-muted fw-5">Store Location</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-3 py-1 border-bottom" >
+                        <div class="px-3 text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10  icon-location-pin"><path class="fill-gray-600" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-600" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                            <address>
+                                {{ merchant.merchant_address.street_address }}<br>
+                                {{ merchant.merchant_address.city }} <br>
+                                {{ merchant.merchant_address.zip }}
+                            </address>
+                        </div>
+                    </div>
+                </div>
                 <div class="card card-border shadow-2">
                     <div class="card-header">
                         <div class="row text-center">
@@ -93,7 +117,6 @@
                         </div>
                     </a>
                     {% endfor %}
-
                 </div>
             </div>
 
@@ -151,10 +174,9 @@
                                     <div class="col-lg-6 py-4">
                                         <h3 class="fw-6 fs-24">Location: </h3>
                                         <address>
-                                            {{ merchant.address.street_address }} <br>
-                                            {{ merchant.address.city }}, {{ merchant.address.state }} <br>
-                                            {{ merchant.address.zip }}, {{ merchant.address.country }}
-                                            {{ merchant.address.apartment_address }} <br>
+                                            {{ merchant.merchant_address.street_address }}<br>
+                                            {{ merchant.merchant_address.city }} <br>
+                                            {{ merchant.merchant_address.zip }}
                                         </address>
                                     </div>
                                     <div class="col-lg-6 py-4 border-left">

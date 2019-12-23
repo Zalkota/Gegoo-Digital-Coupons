@@ -6,6 +6,7 @@ from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
 from django.conf import settings
 from cities_light.models import City, Region
+from portal.models import Merchant
 
 # customization
 from cities_light.abstract_models import (AbstractCity, AbstractRegion,
@@ -34,15 +35,26 @@ from cities_light.receivers import connect_default_signals
 
 class Address(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE, blank=True, null=True, related_name='address')
-    street_address = models.CharField(max_length=100, blank=True, null=True)
-    apartment_address = models.CharField(max_length=100, blank=True, null=True)
+                             on_delete=models.CASCADE, null=True, related_name='address')
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, blank=True)
     state = models.ForeignKey(Region, on_delete=models.CASCADE, null=True, blank=True)
-    zip = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return '%s' % (self.city)
 
     class Meta:
         verbose_name_plural = 'Addresses'
+
+
+class Merchant_Address(models.Model):
+    merchant = models.OneToOneField(Merchant, on_delete=models.CASCADE, null=True, related_name="merchant_address")
+    street_address = models.CharField(max_length=100, null=True)
+    apartment_address = models.CharField(max_length=100, blank=True, null=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
+    zip = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return '%s in %s, %s' % (self.merchant.business_name, self.city.name, self.city.region.name)
+
+    class Meta:
+        verbose_name_plural = 'Merchant_Addresses'

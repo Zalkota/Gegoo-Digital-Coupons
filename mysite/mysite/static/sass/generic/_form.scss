@@ -1,4 +1,7 @@
-/*       CONTACT PAGE AND FORM        */
+/*  <**************************************************************************>
+    <*****                          FORMS                                 *****>
+    <**************************************************************************>
+*/
 
 input, input:-internal-autofill-selected, input:-webkit-autofill, select:-webkit-autofill {
     font-size: 1.1rem;
@@ -13,7 +16,10 @@ input[type=checkbox]:checked + label {
   font-style: normal;
 }
 
-//=========== PLACE HOLDER ===========
+/*  <**************************************************************************>
+    <*****                      FORM PLACEHOLDER                          *****>
+    <**************************************************************************>
+*/
 
 ::placeholder {
   color: $color-gray-900 !important;
@@ -32,7 +38,10 @@ input[type=checkbox]:checked + label {
      color: $color-gray-500;
  }
 
-//============ AUTO FILL ==============
+ /*  <**************************************************************************>
+     <*****                        AUTO FILL                               *****>
+     <**************************************************************************>
+ */
 
  :-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px $color-gray-300 inset !important;
@@ -45,7 +54,10 @@ input[type=checkbox]:checked + label {
  }
 
 
-//============== Generic Form Attributes ===========
+ /*  <**************************************************************************>
+     <*****                   Generic Form Attributes                      *****>
+     <**************************************************************************>
+ */
 
 // .form-control, .custom-file-control,
 // .is-focused .form-control,
@@ -102,43 +114,7 @@ color: #3a3a3a;
     background-color: $color-white;
   }
 
-
-
   p {
     color: $color-text;
-  }
-}
-
-
-
-// ========= MailChimp EMAIL SUBSCRIPTION FORM ===========
-
-#emailSubscribeForm {
-  -webkit-appearance: textfield;
-  background-color: white;
-  border: 1px solid $color-dark;
-  -webkit-rtl-ordering: logical;
-  cursor: text;
-  padding-left: 0.65rem;
-  border-style: inset !important;
-  border-image: initial;
-
-}
-
-  .button {
-    margin-bottom: 0;
-  }
-
-// =======================================================
-
-@media screen and (max-width: 992px) {
-   .w-100-mobile {
-    width: 100%;
-  }
-}
-
-@media screen and (min-width: 992px) {
-   .w-100-mobile {
-    width: 500px;
   }
 }

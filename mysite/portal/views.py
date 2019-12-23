@@ -11,10 +11,8 @@ from django.views.generic import ListView, DetailView, View
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
-latitude = 42.637740
-longitude = -83.363546
-user_location = Point(longitude, latitude, srid=4326)
 
+from location.functions import set_location_cookies, get_ip, get_or_set_location
 
 def get_user_orders(request, user):
 	user_orders_qs = Order.objects.filter(user=user)
@@ -31,7 +29,7 @@ class CategoryDetailView(View):
 	def get(self, *args, **kwargs):
 		try:
 			category = Category.objects.get(name=self.kwargs['name'])
-			category_nearby_merchants = Merchant.objects.filter(category=category).annotate(distance = Distance("location", user_location)).order_by("distance")[0:9]
+			#category_nearby_merchants = Merchant.objects.filter(category=category).annotate(distance = Distance("location", user_location)).order_by("distance")[0:9]
 			all_categories = Category.objects.all()
 
 			context = {
@@ -56,15 +54,20 @@ class MerchantDetailView(View):
 	def get(self, *args, **kwargs):
 		try:
 			merchant = Merchant.objects.get(ref_code=self.kwargs['ref_code'])
-			recommended_offers = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:4]
+			city = 'default_city'
+			state = 'default_state'
+			city_state = get_or_set_location(self.request)
+			city = city_state["city"]
+			state = city_state["state"]
 
 			#data = GeoIP.city('google.com')
 
 
 			context = {
 			#'data': data,
+            'city': city,
+            'state': state,
 			'merchant': merchant,
-			'recommended_offers': recommended_offers,
 			}
 			return render(self.request, "portal/merchant_detail.html", context)
 

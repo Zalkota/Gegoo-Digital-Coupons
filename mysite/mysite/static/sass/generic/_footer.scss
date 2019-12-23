@@ -1,5 +1,8 @@
 
-/*         FOOTER GHOST       */
+/*  <**************************************************************************>
+    <*****                       Footer                                   *****>
+    <**************************************************************************>
+*/
 
 footer {
 
@@ -38,17 +41,17 @@ footer {
     color: $color-footer-title;
   }
 
-  .font-footer {
-  color: $color-footer-text;
-  font-size: .85rem;
-  }
+.font-footer {
+    color: $color-footer-text;
+    font-size: .85rem;
+}
 
-  .title-footer {
-  color: $color-footer-title;
-  letter-spacing: 2px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  }
+.title-footer {
+    color: $color-footer-title;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
 
 @media screen and (max-width: 992px) {
   .text-align-responsive {
@@ -82,7 +85,6 @@ footer {
 }
 
 
-/* ## FOOTER 200  ## */
 
   .hr-footer-sm {
     border-bottom: 1px solid  $color-secondary;

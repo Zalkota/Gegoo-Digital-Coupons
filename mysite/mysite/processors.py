@@ -1,4 +1,5 @@
-from portal.models import Promotion, Address
+from portal.models import Promotion
+from location.models import Address
 from django.shortcuts import get_list_or_404, get_object_or_404
 
 def SiteName(request):
