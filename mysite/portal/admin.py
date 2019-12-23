@@ -5,7 +5,7 @@ from .models import Merchant, Offer, Address, Promotion, Images, Category, Subca
 # Register your models here.
 from django.contrib.gis.admin import OSMGeoAdmin
 
-
+from cities_light.models import City, Region
 
 
 
@@ -15,13 +15,20 @@ class AboutAdmin(ImportExportModelAdmin):
 
 
 class MerchantAdmin(OSMGeoAdmin):
-    #pass
-    list_display = ('business_name', 'category')
+    search_fields = ['city__name', 'business_name']
+    autocomplete_fields = ['city']
+    list_display = ('business_name', 'category', 'subcategory')
+
+
+class LocationAdmin(admin.ModelAdmin):
+    search_fields = ['city__name', 'state__name', 'user__username']
+    autocomplete_fields = ['city', 'state']
+
+
 
 admin.site.register(Merchant, MerchantAdmin)
-
 admin.site.register(Offer)
-admin.site.register(Address)
+admin.site.register(Address, LocationAdmin)
 admin.site.register(Promotion)
 admin.site.register(Images)
 admin.site.register(Category)

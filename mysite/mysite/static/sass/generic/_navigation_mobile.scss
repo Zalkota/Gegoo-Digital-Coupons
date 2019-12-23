@@ -154,11 +154,20 @@
     .navigation__list {
         position: absolute;
         top: 10%;
-        left: 33%;
-        transform: translate(75%, 0%);
+        left: 30%;
+        transform: translate(80.35%, 0%);
         list-style: none;
         text-align: left;
-        width: 100%; }
+        width: 80.35%; }
+
+        // position: absolute;
+        // top: 10%;
+        // left: 62.75%;
+        // transform: translate(50%, 0%);
+        // list-style: none;
+        // text-align: left;
+        // padding-left: 0;
+        // width: 75%; }
 
     .navigation__item {
         padding: 1rem 0 1rem 3rem;

@@ -27,7 +27,7 @@
 	}
 
 	span {
-		color: $gray-800;
+		color: $gray-900;
 		font-size: $font-size-base;
 	}
 }
@@ -73,7 +73,7 @@
 
 				&:not(:first-child) {
 					border-left: $border-width solid $border-color;
-				} 
+				}
 			}
 		}
 	}
@@ -101,7 +101,7 @@
 			display: block;
 			font-size: $font-size-sm;
 			padding: $dropdown-item-padding-y;
-			color: $gray-300;
+			color: $gray-600;
 
 			&:hover {
 				background-color: rgba($black, .05);

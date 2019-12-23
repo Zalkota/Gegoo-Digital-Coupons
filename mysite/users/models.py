@@ -14,23 +14,22 @@ from location.models import Address
 import datetime
 from django.utils import timezone
 
-MERCHANT_SELECT = (
-    ("NO", "No"),
-    ("YES", "Yes")
-    )
 
 class User(AbstractUser):
     # First Name and Last Name do not cover name patterns
     # around the globe.
     name = models.CharField(_('Name_of_User'), blank=True, max_length=255)
-    merchant_select = models.CharField(choices=MERCHANT_SELECT, default='NO', max_length=2)
     #accepted_terms_of_service = models.Booleanfield()
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
+<<<<<<< HEAD
         return reverse('users:detail', kwargs={'username': self.name})
+=======
+        return reverse('users:detail', kwargs={'user': self.username})
+>>>>>>> master
 
 # Profile Image
 def upload_to(instance, filename):
@@ -45,9 +44,9 @@ def upload_to(instance, filename):
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_profile')
     # image = models.ImageField(_("Picture"), upload_to=upload_to, null=True, default='blankImage.png', validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Image must be a .PNG or .JPG")
-    created_time = models.DateTimeField(('created time'), editable=False, null=True, auto_now_add=True)
     address = models.OneToOneField(Address, related_name='profile', on_delete=models.CASCADE, blank=True, null=True)
-    ip_address = models.CharField(max_length=120, default='ABC')
+    ip_address = models.CharField(max_length=120, default='ABC', blank=True, null=True)
+    created_time = models.DateTimeField(('created time'), editable=False, null=True, auto_now_add=True)
 
     def __str__(self):
         return self.user.name
@@ -76,12 +75,40 @@ def stripeCallback(sender, request, user, **kwargs):
         user_stripe_account.save()
 
 
+def addressCallback(sender, request, user, **kwargs):
+    profileAddress, is_created = Address.objects.get_or_create(user=user)
+    print('addressCallBack')
+    if is_created:
+        profileAddress.user = user
+        profileAddress.save()
+        print('addressCallBack', is_created, profileAddress)
+
+
 def profileCallback(sender, request, user, **kwargs):
     userProfile, is_created = Profile.objects.get_or_create(user=user)
+<<<<<<< HEAD
     if is_created:
         userProfile.name = user.name
         userProfile.save()
+=======
+    try:
+        userAddress = Address.objects.get(user=user)
+        print('user.address', userAddress)
+        userProfile.address = userAddress
+    except:
+        pass
 
-user_logged_in.connect(stripeCallback)
+    userProfile.save()
+    print("profileCallback Created")
+
+
+
+
+# user_logged_in.connect(addressCallback)
+# user_logged_in.connect(profileCallback)
+# user_logged_in.connect(stripeCallback)
+>>>>>>> master
+
+user_signed_up.connect(addressCallback)
 user_signed_up.connect(profileCallback)
-user_signed_up.connect(stripeCallback)
+# user_signed_up.connect(stripeCallback)

@@ -8,6 +8,9 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.http import HttpResponse
+from allauth.account.signals import user_logged_in, user_signed_up
+from location.models import Address
+from cities_light.models import Region, City
 
 def set_location_cookies(request, city, state):
     response = HttpResponse("setting state to %s, city to %s" % (state, city))
@@ -33,28 +36,31 @@ def get_ip(request):
 def get_or_set_location(request):
     if request.user.is_authenticated:
         #Check if user has address
-        if request.user.user_profile.address.city and request.user.user_profile.address.state != None:
-            city = request.user.user_profile.address.city
-            state = request.user.user_profile.address.state
+        try:
+            if request.user.user_profile.address.city and request.user.user_profile.address.state != None:
+                city = request.user.user_profile.address.city
+                state = request.user.user_profile.address.state
 
-            context = {
-            'city': city,
-            'state': state,
-            }
-            return context
-        # If it doesnt lets add one from IP address
-        else:
-            try:
+                context = {
+                'city': city,
+                'state': state,
+                }
+                return context
+
+            else:
                 data = get_ip(request)
                 #Obtain City and State from IP address
                 city = data["city"]['names']['en']
-                state = data["subdivisions"][0]['iso_code']
+                state = data["subdivisions"][0]['names']['en']
                 print (city, ', ', state)
+
+                city_qs = City.objects.get(name=city)
+                state_qs = Region.objects.get(name=state)
+
                 # Save data to user address
                 user_address = request.user.user_profile.address
-                user_address.state = state
-                user_address.city = city
-                # user_address.user =
+                user_address.state = state_qs
+                user_address.city = city_qs
                 user_address.save()
 
                 context = {
@@ -62,10 +68,11 @@ def get_or_set_location(request):
                 'state': state,
                 }
                 return context
-            except:
-                pass
+        except:
+            pass
 
-    elif not request.user.is_authenticated:
+
+    if not request.user.is_authenticated:
         #Check cookies for city and state
         if 'st' and 'ct' in request.COOKIES:
             state = request.COOKIES['st']
@@ -91,3 +98,44 @@ def get_or_set_location(request):
             'state': state,
             }
             return context
+
+
+#
+# def setAddressCallback(sender, request, user, **kwargs):
+#     user_address, is_created = Address.objects.get_or_create(user=user)
+#
+#     print('Lets try to get ip from database')
+#     #Check if user has address
+#     if user_address.city and user_address.state != None:
+#         city = user_address.city
+#         state = user_address.state
+#
+#         context = {
+#         'city': city,
+#         'state': state,
+#         }
+#         return context
+#     # If it doesnt lets add one from IP address
+#     else:
+#         print('Lets try to get ip from geo database')
+#         data = get_ip(request)
+#         #Obtain City and State from IP address
+#         city = data["city"]['names']['en']
+#         state = data["subdivisions"][0]['names']['en']
+#         print (city, ', ', state)
+#
+#         city_qs = City.objects.get(name=city)
+#         state_qs = Region.objects.get(name=state)
+#
+#         # Save data to user address
+#         user_address.state = state_qs
+#         user_address.city = city_qs
+#         user_address.save()
+#
+#         context = {
+#         'city': city,
+#         'state': state,
+#         }
+#
+#
+# user_logged_in.connect(setAddressCallback)

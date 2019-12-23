@@ -68,23 +68,18 @@ class userLocaton(View):
             city = form.cleaned_data.get('city_input')
             state = form.cleaned_data.get('state_input')
 
-            city_qs = City.objects.filter(name=city)
-            city = city_qs.first()
+            city_qs = City.objects.get(name=city)
+            state_qs = Region.objects.get(name=state)
 
-            state_qs = Region.objects.filter(name=state)
-            state = state_qs.first()
-            print(state)
 
             # edit the order
 
             user = self.request.user
 
-
-
             # store the object
             user_address = user.user_profile.address
-            user_address.state = state
-            user_address.city = city
+            user_address.state = state_qs
+            user_address.city = city_qs
             # user_address.user =
             user_address.save()
             print("saved")

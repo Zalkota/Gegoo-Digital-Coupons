@@ -5,39 +5,34 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block extra_styles %}
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
 {% endblock extra_styles %}
 
 {% block content %}
 
-  <section class="hero container">
-
-        <div class="text text-center" >
-            <h1 class="text-shadow-1 ls-1" ></h1>
-            <h3 class="fs-18 fw-7 text-light text-shadow-1" data-aos="fade-in" data-aos-delay="400"></h3>
-
-            <div class="search-form">
-                <div class="search-form-background-hero">
-                    <form class="search-form-container-hero" action="/find/" method="get" >
-                        <div class="ml-2">
-                            <div class="icon-addon addon-lg">
-                                <input type="text" class="font-italic" placeholder="Search for Coupons & Merchants" name="q" id="q" autocomplete="off">
-                                <div id="selction-ajax"></div>
-                            </div>
+<section class="hero container">
+    <div class="text text-center" >
+        <img class="img-fluid border-radius-100" style="width: 100%;" src="{% static 'img/headers/banner.jpg' %}" alt="User Uploaded images">
+        <div class="search-form hide">
+            <div class="search-form-background-hero">
+                <form class="search-form-container-hero" action="/find/" method="get" >
+                    <div class="ml-2">
+                        <div class="icon-addon addon-lg">
+                            <input type="text" class="font-italic" placeholder="Search for Coupons & Merchants" name="q" id="q" autocomplete="off">
+                            <div id="selction-ajax"></div>
                         </div>
-                    </form>
-                    <div class="search-icon"><i class="fa fa-search fs-20" aria-hidden="true"></i></div>
-                </div>
+                    </div>
+                </form>
+                <div class="search-icon"><i class="fa fa-search fs-20" aria-hidden="true"></i></div>
             </div>
         </div>
-  </section>
+    </div>
+</section>
 
-  <!-- ****** Picture Gallery ******* -->
-
-<section class="section mt-2" >
+<section class="section pb-0" >
     <div class="container">
-        <div class="row">
-          <!-- Category Image Carousel -->
+        <!-- <div class="row">
+
             <div class="offset-lg-1"></div>
 
             <div class="col-lg-2 mb-3 text-center">
@@ -70,11 +65,79 @@
               <h3 class="img-header-text">Travel</h3>
             </div>
 
-
             <div class="offset-lg-1"></div>
+        </div> -->
+
+        <h3 class="fs-20 fw-6 text-primary mb-0 ml-2">Categories</h3>
+        <br>
+        <div id="default" >
+          <div class="tab-content" id="component-1">
+            <div class="tab-pane shadow-0 show active" style="background-color: transparent;" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+              <div class="">
+                <div class="container">
+                  <div class="row">
+                    <div class="col px-0">
+                      <div class="owl-carousel" data-items="[6,5,4,3,2,1]" data-margin="10" data-dots="true" data-nav="true">
+                        <figure class="photo  px-1">
+                          <img class="border-radius-100" src="{% static 'img/food_ad.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Local dealerships</h6>
+                          <h3 class="img-header-text">Vehicles</h3>
+                        </figure>
+                        <figure class="photo px-1">
+                          <img class="border-radius-100" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Don't book without us</h6>
+                          <h3 class="img-header-text">Travel</h3>
+                        </figure>
+                        <figure class="photo px-1">
+                          <img class="border-radius-100" src="{% static 'img/vehicle_ad.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Local dealerships</h6>
+                          <h3 class="img-header-text">Vehicles</h3>
+                        </figure>
+                        <figure class="photo px-1">
+                          <img class="border-radius-100" src="{% static 'img/vehicle_ad.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Local dealerships</h6>
+                          <h3 class="img-header-text">Vehicles</h3>
+                        </figure>
+                        <figure class="photo px-1">
+                          <img class="border-radius-100" src="{% static 'img/home_improvement.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Deals for your home</h6>
+                          <h3 class="img-header-text">Home Improvement</h3>
+                        </figure>
+                        <figure class="photo px-1">
+                          <img class="border-radius-100" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Don't book without us</h6>
+                          <h3 class="img-header-text">Travel</h3>
+                        </figure>
+                        <figure class="photo px-1">
+                          <img class="border-radius-100" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Local dealerships</h6>
+                          <h3 class="img-header-text">Vehicles</h3>
+                        </figure>
+                        <figure class="photo px-1">
+                          <img class="border-radius-100" src="{% static 'img/food_ad.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Local dealerships</h6>
+                          <h3 class="img-header-text">Vehicles</h3>
+                        </figure>
+                        <figure class="photo px-1">
+                          <img class="border-radius-100" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Local dealerships</h6>
+                          <h3 class="img-header-text">Vehicles</h3>
+                        </figure>
+                        <figure class="photo px-1">
+                          <img class="border-radius-100" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Local dealerships</h6>
+                          <h3 class="img-header-text">Vehicles</h3>
+                        </figure>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <hr>
-        <div class="row mt-4">
+
+
 
 
 
@@ -188,26 +251,34 @@
                 </div>
             </div> -->
 
+    </div>
+</section>
 
+<section class="section pt-0">
+    <div class="container">
+        <h3 class="fs-20 fw-6 text-primary mb-0 ml-2">Local Deals in {{ city.name }}, {{ city.region.name }}
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-4 icon-tag"><path class="secondary" d="M2.59 13.41A1.98 1.98 0 0 1 2 12V7a5 5 0 0 1 5-5h4.99c.53 0 1.04.2 1.42.59l8 8a2 2 0 0 1 0 2.82l-8 8a2 2 0 0 1-2.82 0l-8-8zM7 9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="primary" d="M12 18l6-6-4-4-6 6.01L12 18z"/></svg>
+        </h3>
+        <br>
+        <div class="row">
             {% for object in address_qs %}
-            <div class="col-lg-3 col-md-6 text-center border-radius-300 mb-5" >
-                <div class="card card-border card-effects border-radius-300 shadow-2">
+            <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
+                <div class="card card-border card-effects border-radius-300 shadow-0">
                     <a href="{{ object.get_absolute_url }}">
-                        <img class="card-img-top" style="width: 100%;" src="media/{{ object.offer.get_first_active.image }}" alt="User Uploaded images">
+                        <img class="card-img-top" style="width: 100%;" src="media/{{ object.get_first_active.image }}" alt="User Uploaded images">
                     </a>
-
                     <div class="card-body px-3 py-2">
                         <div class=" text-left mt-2">
-                            <h3 class="fw-4 fs-14 mb-3">{{ object.offer.get_first_active.merchant.business_name }}</h3>
+                            <h3 class="fw-4 fs-14 mb-3">{{ object.business_name }}</h3>
                             <h4 class="fw-6 fs-16 mb-3">
-                                {{ object.offer.get_first_active.title }}
+                                {{ object.get_first_active.title }}
                             </h4>
                             <div class="mb-3">
                                 <a href="
-                                 %}" class="fs-12">{{ object.offer.get_first_active.merchant.category.get_name_display }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ object.offer.get_first_active.merchant.subcategory }}</a>
+                                 %}" class="fs-12">{{ object.category.get_name_display }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ object.subcategory }}</a>
                             </div>
-                            <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.offer.get_first_active.end_date }}</span></div>
-                            <a class="btn btn-primary-inverted btn-block" href="">View Additional Deals ({{ object.offer.all.count}})</a>
+                            <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.get_first_active.end_date }}</span></div>
+                            <a class="btn btn-primary-inverted btn-block" href="{{ object.get_absolute_url }}">View Additional Deals ({{ object.offer.all.count}})</a>
                             <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
                         </div>
                     </div>
@@ -228,22 +299,28 @@
                               <span class="fs-14 fw-5 text-primary">Share</span>
                           </a>
                       </div>
-
                 </div>
             </div>
             {% endfor %}
-
         </div>
         <div class="text-center">
             <a href="" class="btn btn-primary-alt px-5">
                 Load More Offers
             </a>
         </div>
-    </section>
+        <div class="py-5"></div>
+    </div>
+</section>
+
+{% block email_section %}
+    {% include "components/html/email_section.html" %}
+{% endblock email_section %}
+
 {% endblock %}
 
 {% block extrajs %}
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
 <script>
   AOS.init({
     duration: 1300,

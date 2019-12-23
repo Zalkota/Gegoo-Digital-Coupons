@@ -106,7 +106,8 @@ $box-shadow-3: 0 5px 10px 0 rgba(0,0,0,.14),0 3px 10px 0 rgba(0,0,0,.14);
 $box-shadow-4: 0 5px 15px rgba(154,160,185,.15), 0 15px 40px rgba(166,173,201,.35);
 $box-shadow-5: 0 5px 15px 0 hsla(0,0,0,0.15);
 
-
+$text-shadow-1: 1px 1px 2px #212121;
+$text-shadow-2: 1px 1px 3px #212121;
 
 a:hover {
   color: $color-primary;
@@ -128,6 +129,10 @@ a:hover {
 
 .border-radius {
     border-radius: $border-radius;
+}
+
+.border-radius-100 {
+    border-radius: $border-radius-100;
 }
 
 .border-radius-200 {

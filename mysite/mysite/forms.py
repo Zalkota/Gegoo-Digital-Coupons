@@ -19,8 +19,6 @@ from crispy_forms.bootstrap import (
     PrependedText, PrependedAppendedText, FormActions, StrictButton)
 
 
-
-
 class ContactForm(forms.ModelForm):
     class Meta:
        model = Contact
