@@ -1,27 +1,6 @@
 {% extends 'base-alt.html' %}
 
 {% block content %}
-<<<<<<< HEAD
-<div class="container">
-    <div class="row mb-2">
-        <div class="col-12">
-            <h3>Search Gegoo Support</h3>
-            <input type="text">
-            <h3>Popular Articles</h3>
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col-8">
-            {% for question in object_list %}
-            <div class="card card-custom-faq">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h3>
-                            <a class="card-link" href="{{ question.get_absolute_url }}">
-                                {{ question.title }}
-                            </a>  
-                        </h3>
-=======
 <section class="section-sm">
     <div class="container">
         <div class="row mt-2">
@@ -60,7 +39,6 @@
                         </div>
 
                         {% endfor %}
->>>>>>> d169e31710af989c2d36fc404ca2621f45414ece
                     </div>
                 </div>
             </div>
