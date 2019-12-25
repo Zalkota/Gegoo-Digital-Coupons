@@ -2,15 +2,15 @@
 
 {% block content %}
 <div class="container">
+    <div class="row mb-2">
+        <div class="col-12">
+            <h3>Search Gegoo Support</h3>
+            <input type="text">
+            <h3>Popular Articles</h3>
+        </div>
+    </div>
     <div class="row mt-2">
         <div class="col-8">
-            <div class="row mb-2">
-                <div class="col-12">
-                    <h3>Search Gegoo Support</h3>
-                    <input type="text">
-                    <h3>Popular Articles</h3>
-                </div>
-            </div>
             {% for question in object_list %}
             <div class="card card-custom-faq">
                 <div class="card-body">
