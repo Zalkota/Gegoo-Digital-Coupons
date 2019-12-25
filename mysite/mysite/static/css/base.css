@@ -8424,9 +8424,32 @@ button {
 .card-custom-faq {
   background-color: #fff;
   border: none;
-  border-radius: 0; }
-  .card-custom-faq .custom-faq-footer {
-    background: #fff; }
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.06), 0px 15px 35px rgba(55, 84, 170, 0.1); }
+  .card-custom-faq .card-header {
+    background: #fff;
+    border: none;
+    padding: 24px; }
+  .card-custom-faq .card-body {
+    border-top: 2px solid #f1f3f6; }
+  .card-custom-faq .card-footer {
+    background: #fff;
+    border: none; }
+
+.card-custom-faq-alt {
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.06), 0px 15px 35px rgba(55, 84, 170, 0.1);
+  padding: 16px; }
+  .card-custom-faq-alt h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px; }
+  .card-custom-faq-alt input {
+    background: #f1f3f6;
+    width: 50%;
+    height: 40px;
+    border-radius: 40px; }
 
 hr.hr-2 {
   border-top: 2px solid #7505AB;
