@@ -19,7 +19,7 @@ class TopicDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(TopicDetailView, self).get_context_data(**kwargs)
-        context['questions'] = Question.objects.all()
+        context['questions'] = Question.objects.all().filter(topic__slug=self.kwargs['slug'])
         return context
 
 
