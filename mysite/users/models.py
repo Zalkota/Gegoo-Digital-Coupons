@@ -25,11 +25,8 @@ class User(AbstractUser):
         return self.name
 
     def get_absolute_url(self):
-<<<<<<< HEAD
         return reverse('users:detail', kwargs={'username': self.name})
-=======
         return reverse('users:detail', kwargs={'user': self.username})
->>>>>>> master
 
 # Profile Image
 def upload_to(instance, filename):
@@ -86,11 +83,9 @@ def addressCallback(sender, request, user, **kwargs):
 
 def profileCallback(sender, request, user, **kwargs):
     userProfile, is_created = Profile.objects.get_or_create(user=user)
-<<<<<<< HEAD
     if is_created:
         userProfile.name = user.name
         userProfile.save()
-=======
     try:
         userAddress = Address.objects.get(user=user)
         print('user.address', userAddress)
@@ -107,7 +102,6 @@ def profileCallback(sender, request, user, **kwargs):
 # user_logged_in.connect(addressCallback)
 # user_logged_in.connect(profileCallback)
 # user_logged_in.connect(stripeCallback)
->>>>>>> master
 
 user_signed_up.connect(addressCallback)
 user_signed_up.connect(profileCallback)

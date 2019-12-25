@@ -1686,11 +1686,7 @@ textarea.form-control {
     text-decoration: none; }
   .btn:focus, .btn.focus {
     outline: 0;
-<<<<<<< HEAD
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
-=======
     box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.25); }
->>>>>>> master
   .btn.disabled, .btn:disabled {
     opacity: 0.65; }
 
@@ -3485,15 +3481,6 @@ input[type="button"].btn-block {
 
 .badge-primary {
   color: #fff;
-<<<<<<< HEAD
-  background-color: #007bff; }
-  a.badge-primary:hover, a.badge-primary:focus {
-    color: #fff;
-    background-color: #0062cc; }
-  a.badge-primary:focus, a.badge-primary.focus {
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
-=======
   background-color: #6f42c1; }
   a.badge-primary:hover, a.badge-primary:focus {
     color: #fff;
@@ -3501,7 +3488,6 @@ input[type="button"].btn-block {
   a.badge-primary:focus, a.badge-primary.focus {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.5); }
->>>>>>> master
 
 .badge-secondary {
   color: #fff;

@@ -1,0 +1,54 @@
+{% extends 'base-alt.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-8">
+            <div class="row mb-2">
+                <div class="col-12">
+                    <h3>Search Gegoo Support</h3>
+                    <input type="text">
+                    <h3>Popular Articles</h3>
+                </div>
+            </div>
+            {% for question in object_list %}
+            <div class="card card-custom-faq">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3>
+                            <a class="card-link" href="{{ question.get_absolute_url }}">
+                                {{ question.title }}
+                            </a>  
+                        </h3>
+                    </div>
+                    <p class="card-text text-truncate">{{ question.body }}</p>
+                    <a href="#" class="card-link">{{ question.topic }}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <a href="" class="card-link text-decoration-none">
+                        Contact Support
+                    </a>
+                    <p class="card-text">Please let us know how we can improve our support</p>
+                    <hr>
+                    <h3 class="card-title">Popular Topics</h3>
+                    <ul class="list-group list-unstyled">
+                        {% for topic in topics %}
+                        <li>
+                            <a href="{{ topic.get_absolute_url }}" class="text-decoration-none">
+                                {{ topic.title }}
+                            </a>
+                            <!-- <span class="badge badge-pill">1</span> -->
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %} 

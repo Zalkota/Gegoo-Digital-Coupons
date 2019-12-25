@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-8">
+            <div class="card card-custom-faq">
+                <div class="card-body">
+                    <h3 class="card-title">{{ object.title }}</h3>
+                    <p class="card-subtitle mb-2 text-muted">
+                        <a href="{{ object.topic.get_absolute_url }}">
+                            {{ object.topic }}  
+                        </a>
+                    </p>
+                    <p class="card-text text-justify">{{ object.body }}</p>
+                </div>
+                <div class="card-footer custom-faq-footer">
+                    <h3>Did this answer your question?</h3>
+                    <button class="btn btn-success">Yes</button>
+                    <button class="btn btn-danger">No</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="container">
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-custom-faq">
+                <div class="card-body">
+                    <h3 class="card-title">{{ object.title }}</h3>
+                    <p class="card-subtitle mb-2 text-muted">
+                        <a href="">
+                            {{ object.topic }}  
+                        </a>
+                    </p>
+                    <p class="card-text text-justify">{{ object.body }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %} 

@@ -8252,6 +8252,17 @@ button {
 .border-top-dark {
   border-top: 1px solid #ccc; }
 
+/*  <**************************************************************************>
+    <*****                            FAQ Cards                           *****>
+    <**************************************************************************>
+*/
+.card-custom-faq {
+  background-color: #fff;
+  border: none;
+  border-radius: 0; }
+  .card-custom-faq .custom-faq-footer {
+    background: #fff; }
+
 hr.hr-2 {
   border-top: 2px solid #7505AB;
   width: 30px;

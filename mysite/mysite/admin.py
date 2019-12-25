@@ -16,11 +16,7 @@ class FlatPageAdmin(FlatPageAdmin):
         models.TextField: {'widget': CKEditorWidget}
     }
 
-<<<<<<< HEAD
 admin.site.register(Contact)
-=======
 # Re-register FlatPageAdmin
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)
-admin.site.register(Contact)
->>>>>>> master
