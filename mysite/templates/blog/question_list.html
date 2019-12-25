@@ -23,10 +23,25 @@
 </section>
 <section class="section">
     <div class="container">
-        <div class="row mt-2">
-            <div class="col-8">
-                <div class="card">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-custom-faq-alt text-center">
                     <div class="card-body">
+                        <h3 class="fw-5 fs-28">Hello, How can we help?</h3>
+                        <input type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-8">
+                <div class="card card-custom-faq">
+                    <div class="card-header">
+                        <h3 class="fs-20">Popular Questions</h3>
+                    </div>
+                    {% for question in object_list %}
+                    <div class="card-body">
+<<<<<<< HEAD
                         <div class="row mb-2">
                             <div class="col-12">
                                 <input type="text">
@@ -58,11 +73,41 @@
                         </div>
 
                         {% endfor %}
+=======
+                        <h3 class="card-title">
+                            <a class="card-link" href="{{ question.get_absolute_url }}">
+                                <span class="fs-20 fw-4">
+                                    {{ question.title }}
+                                </span>
+                            </a>
+                        </h3>
+                        <h3 class="card-subtitle">
+                            <a class="card-link" href="{{ question.get_absolute_url }}">
+                                <span class="fs-14 fw-1">
+                                    {{ question.topic }}
+                                </span>
+                            </a>
+                        </h3>
+                        <p class="fs-18 text-truncate">{{ question.body }}</p>
+                        <a href="#" class="fs-14 fw-1">{{ question.topic }}</a>
+                    </div>
+                    {% endfor %}
+                    <div class="card-footer text-center text-muted">
+                        <h3 class="fs-20 fw-1">
+                            <a href="">
+                                Load More
+                            </a>
+                        </h3>
+>>>>>>> 1ac9880e9370fd62b36b7997590205c8090f91ab
                     </div>
                 </div>
             </div>
             <div class="col-4">
+<<<<<<< HEAD
                 <div class="card stripe-primary">
+=======
+                <div class="card card-custom-faq">
+>>>>>>> 1ac9880e9370fd62b36b7997590205c8090f91ab
                     <div class="card-body">
                         <a href="" class="card-link text-decoration-none fs-14 fw-6">
                             Contact Support
@@ -73,8 +118,8 @@
                         <h3 class="card-title fs-14 fw-6">Popular Topics</h3>
                         <ul class="list-group list-unstyled">
                             {% for topic in topics %}
-                            <li>
-                                <a href="{{ topic.get_absolute_url }}" class="text-decoration-none fs-14 fw-6">
+                            <li class="py-1">
+                                <a href="{{ topic.get_absolute_url }}" class="text-decoration-none fs-18 fw-4">
                                     {{ topic.title }}
                                 </a>
                                 <!-- <span class="badge badge-pill">1</span> -->

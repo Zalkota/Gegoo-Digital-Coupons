@@ -20,6 +20,7 @@ class TopicDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(TopicDetailView, self).get_context_data(**kwargs)
         context['questions'] = Question.objects.all().filter(topic__slug=self.kwargs['slug'])
+        context['topics'] = Topic.objects.all()
         return context
 
 
@@ -38,15 +39,15 @@ class QuestionDetailView(DetailView):
     # def form_valid(self, form):
     #     return super().form_valid(form)
 
-class QuestionUpdateView(UpdateView):
-    model = Question
-    fields = [
-        'title',
-        'body',
-    ]
-    template_name = 'blog/question_update.html'
+# class QuestionUpdateView(UpdateView):
+#     model = Question
+#     fields = [
+#         'title',
+#         'body',
+#     ]
+#     template_name = 'blog/question_update.html'
 
-class QuestionDeleteView(DeleteView):
-    model = Question
-    template_name = 'blog/question_delete.html'
-    success_url = reverse_lazy('question_list')
+# class QuestionDeleteView(DeleteView):
+#     model = Question
+#     template_name = 'blog/question_delete.html'
+#     success_url = reverse_lazy('question_list')
