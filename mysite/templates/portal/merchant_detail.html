@@ -131,7 +131,7 @@
                 <div class="card shadow-2 mt-3">
                     <div class="merchant-bottom-button-container hide shadow-2">
                         <div class="merchant-button merchant-button-active" id="ViewOfferBtn">
-                            <span>View Offers (#)</span>
+                            <span>View Offers ({{ merchant.offer.count }})</span>
                         </div>
                         <div class="merchant-button" id="DownloadContentBtn">
                             <span>View Menu</span>
@@ -197,10 +197,10 @@
                 <!-- ViewOffers -->
                 <div class="row" id="ViewOffer">
                     {% for object in merchant.offer.all %}
-                    <div class="col-lg-3 col-md-6 text-center border-radius-300 my-3">
+                    <div class="col-lg-4 col-md-6 text-center border-radius-300 my-3">
                         <div class="card card-border  border-radius-300 shadow-2">
                             <a href="{{ object.get_absolute_url }}">
-                                <img class="card-img-top" style="width: 100%;" src="{% static 'img/test.png' %}" alt="User Uploaded images">
+                                <img class="card-img-top" style="width: 100%;" src="/media/{{ object.image }}" alt="Coupon Image Banner">
                             </a>
 
                             <div class="card-body px-3 py-2">
@@ -212,9 +212,9 @@
                                     <div class="mb-3">
                                         <a href="
 
-                                         %}" class="fs-12">{{ merchant.category }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ merchant.subcategory }}</a>
+                                         %}" class="fs-12">{{ merchant.category.get_name_display }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ merchant.subcategory }}</a>
                                     </div>
-                                    <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.first.end_date }}</span></div>
+                                    <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.end_date }}</span></div>
                                 </div>
                             </div>
                               <div class="coupon-bottom-button-container">

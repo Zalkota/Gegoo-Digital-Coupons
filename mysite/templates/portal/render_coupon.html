@@ -1,0 +1,24 @@
+{% load static %}
+
+    <!-- Search Results for Set Location -->
+    {% if offer.count > 0 %}
+        <div class="p-3" style="border-color: #ccc; border-width:5px; border-style:dashed;">
+            <div class="row">
+                <div class="col-6">
+                    <img class="card-img-top" src="media/{{ object.logo }}" alt="User Uploaded images">
+                </div>
+                <div class="col-6">
+                    <img class="img-fluid" src="{% static 'img/logo/logo3.jpg' %}" alt="GEGOO LOGO">
+                </div>
+            </div>
+            <h4 class="fs-14 fw-6 text-primary">{{ object.business_name }} in {{ city }}</h4>
+            <h3>{{ object.get_first_active.title }}</h3>
+          <p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias alias ipsam minima, dolore! Modi enim porro neque quaerat blanditiis. Ipsa aliquam quam maxime rerum eum accusamus nulla, molestiae soluta repellendus!</p>
+          {{ object.get_first_active.title }}
+          <div class="bg-gray-30 text-primary text-uppercase p-3">
+              <span class="fw-6 fs-24">Code: {{ object.get_first_active.code_coupon }}</span>
+          </div>
+        </div>
+        {% elif offer.count == 0 %}
+        <p class="pb-3 pt-3 mb-0 ml-3  search">Sorry, no results were found.</p>
+    {% endif %}

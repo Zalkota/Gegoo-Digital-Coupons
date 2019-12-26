@@ -70,7 +70,7 @@
 
 
         <div class="py-3 hide"></div>
-        <div class="mt-3" id="default" >
+        <div class="mt-3 unhide" id="default" >
           <div class="tab-content" id="component-1">
             <div class="tab-pane shadow-0 show active" style="background-color: transparent;" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
               <div class="">
@@ -79,54 +79,34 @@
                     <div class="col px-0">
                       <div class="owl-carousel" data-items="[6,5,4,3,2,1]" data-margin="10" data-dots="true" data-nav="true">
                         <figure class="photo  px-1">
-                          <img class="border-radius-100" src="{% static 'img/food_ad.jpg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Local dealerships</h6>
-                          <h3 class="img-header-text">Vehicles</h3>
+                          <img class="border-radius-100" src="{% static 'img/food.svg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Local Restaurants</h6>
+                          <h3 class="img-header-text">Food</h3>
                         </figure>
                         <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Don't book without us</h6>
+                          <img class="border-radius-100" src="{% static 'img/travel2.svg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Cheap Flights</h6>
                           <h3 class="img-header-text">Travel</h3>
                         </figure>
                         <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/vehicle_ad.jpg' %}" alt="Image">
+                          <img class="border-radius-100" src="{% static 'img/car.svg' %}" alt="Image">
                           <h6 class="img-secondary-text">Local dealerships</h6>
-                          <h3 class="img-header-text">Vehicles</h3>
+                          <h3 class="img-header-text">Cars</h3>
                         </figure>
                         <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/vehicle_ad.jpg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Local dealerships</h6>
-                          <h3 class="img-header-text">Vehicles</h3>
+                          <img class="border-radius-100" src="{% static 'img/apparel.svg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Popular brands</h6>
+                          <h3 class="img-header-text">Apparel</h3>
                         </figure>
                         <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/home_improvement.jpg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Deals for your home</h6>
+                          <img class="border-radius-100" src="{% static 'img/home.svg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Interior Design</h6>
                           <h3 class="img-header-text">Home</h3>
                         </figure>
                         <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Don't book without us</h6>
-                          <h3 class="img-header-text">Travel</h3>
-                        </figure>
-                        <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Local dealerships</h6>
-                          <h3 class="img-header-text">Vehicles</h3>
-                        </figure>
-                        <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/food_ad.jpg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Local dealerships</h6>
-                          <h3 class="img-header-text">Vehicles</h3>
-                        </figure>
-                        <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Local dealerships</h6>
-                          <h3 class="img-header-text">Vehicles</h3>
-                        </figure>
-                        <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/travel_ad.jpg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Local dealerships</h6>
-                          <h3 class="img-header-text">Vehicles</h3>
+                          <img class="border-radius-100" src="{% static 'img/tool.svg' %}" alt="Image">
+                          <h6 class="img-secondary-text">Tools & Accessories</h6>
+                          <h3 class="img-header-text">Tools</h3>
                         </figure>
                       </div>
                     </div>
@@ -250,7 +230,6 @@
                     </div>
                 </div>
             </div> -->
-
     </div>
 </section>
 
@@ -261,83 +240,137 @@
         <br>
         <div class="row">
             {% for object in address_qs %}
-            <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
-                <div class="card card-border card-effects border-radius-300 shadow-0">
-                    <a href="{{ object.get_absolute_url }}">
-                        <img class="card-img-top" style="width: 100%;" src="media/{{ object.get_first_active.image }}" alt="User Uploaded images">
-                    </a>
-                    <div class="card-body px-3 py-2">
-                        <div class=" text-left mt-2">
-                            <h3 class="fw-4 fs-14 mb-3">{{ object.business_name }}</h3>
-                            <h4 class="fw-6 fs-16 mb-3">
-                                {{ object.get_first_active.title }}
-                            </h4>
-                            <div class="mb-3">
-                                <a href="
-                                 %}" class="fs-12">{{ object.category.get_name_display }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ object.subcategory }}</a>
+                {% if object.get_first_active %}
+                    <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
+                        <div class="card card-border card-effects border-radius-300 shadow-0">
+                            <a href="{{ object.get_absolute_url }}">
+                                <img class="card-img-top" style="width: 100%;" src="media/{{ object.get_first_active.image }}" alt="User Uploaded images">
+                                </a>
+                            <div class="card-body px-3 py-2">
+                                <div class=" text-left mt-2">
+                                    <h3 class="fw-4 fs-14 mb-3">{{ object.business_name }}</h3>
+                                    <h4 class="fw-6 fs-16 mb-3">
+                                        {{ object.get_first_active.title }}
+                                    </h4>
+                                    <div class="mb-3">
+                                        <a href="
+                                         %}" class="fs-12">{{ object.category.get_name_display }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ object.subcategory }}</a>
+                                    </div>
+                                    <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.get_first_active.end_date }}</span></div>
+                                    <a class="btn btn-primary-inverted btn-block" href="{{ object.get_absolute_url }}">View Additional Deals ({{ object.offer.all.count}})</a>
+                                    <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
+                                </div>
                             </div>
-                            <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.get_first_active.end_date }}</span></div>
-                            <a class="btn btn-primary-inverted btn-block" href="{{ object.get_absolute_url }}">View Additional Deals ({{ object.offer.all.count}})</a>
-                            <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
+                            <div class="coupon-bottom-button-container">
+                                <a class="coupon-button">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
+                                  <br>
+                                  <span class="fs-14 fw-5 text-primary">Save</span>
+                                </a>
+                                <button class="coupon-button" data-toggle="modal" data-target="#exampleModal">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-print"><path class="secondary" d="M5 8h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5c0-1.1.9-2 2-2zm1 2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2H6z"/><path class="primary" d="M6 14h12v6a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-6zm0-6V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v4H6z"/></svg>
+                                  <br>
+                                  <span class="fs-14 fw-5 text-primary">Print</span>
+                                </button>
+                                <a class="coupon-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-external-window"><path class="primary" d="M12 8a1 1 0 0 1-1 1H5v10h10v-6a1 1 0 0 1 2 0v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9c0-1.1.9-2 2-2h6a1 1 0 0 1 1 1z"/><path class="secondary" d="M19 6.41L8.7 16.71a1 1 0 1 1-1.4-1.42L17.58 5H14a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V6.41z"/></svg>
+                                    <br>
+                                    <span class="fs-14 fw-5 text-primary">Share</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="coupon-bottom-button-container">
-                        <a class="coupon-button">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
-                          <br>
-                          <span class="fs-14 fw-5 text-primary">Save</span>
-                        </a>
-                        <button class="coupon-button" data-toggle="modal" data-target="#exampleModal">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-print"><path class="secondary" d="M5 8h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5c0-1.1.9-2 2-2zm1 2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2H6z"/><path class="primary" d="M6 14h12v6a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-6zm0-6V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v4H6z"/></svg>
-                          <br>
-                          <span class="fs-14 fw-5 text-primary">Print</span>
-                        </button>
-                        <a class="coupon-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-external-window"><path class="primary" d="M12 8a1 1 0 0 1-1 1H5v10h10v-6a1 1 0 0 1 2 0v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9c0-1.1.9-2 2-2h6a1 1 0 0 1 1 1z"/><path class="secondary" d="M19 6.41L8.7 16.71a1 1 0 1 1-1.4-1.42L17.58 5H14a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V6.41z"/></svg>
-                            <br>
-                            <span class="fs-14 fw-5 text-primary">Share</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Print Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header justify-content-end">
-                      <h3 class="text-primary">Coupon</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-close-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                      <div class="p-3" style="border-color: #ccc; border-width:5px; border-style:dashed;">
-                          <div class="row">
-                              <div class="col-6">
-                                  <img class="card-img-top" src="media/{{ object.logo }}" alt="User Uploaded images">
-                              </div>
-                              <div class="col-6">
-                                  <img class="img-fluid" src="{% static 'img/logo/logo3.jpg' %}" alt="GEGOO LOGO">
-                              </div>
+
+                    <!-- Print Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header justify-content-end">
+                              <h3 class="text-primary">Coupon</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-close-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+                            </button>
                           </div>
-                          <h4 class="fs-14 fw-6 text-primary">{{ object.business_name }} in {{ city }}</h4>
-                          <h3>{{ object.get_first_active.title }}</h3>
-                        <p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias alias ipsam minima, dolore! Modi enim porro neque quaerat blanditiis. Ipsa aliquam quam maxime rerum eum accusamus nulla, molestiae soluta repellendus!</p>
-                        {{ object.get_first_active.title }}
-                        <div class="bg-gray-30 text-primary text-uppercase p-3">
-                            <span class="fw-6 fs-24">Code: {{ object.get_first_active.code_coupon }}</span>
+                          <div class="modal-body">
+
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary-alt btn-block mt-0">Save It</button>
+                            <button type="button" class="btn btn-primary-alt btn-block mt-0">Print It</button>
+                            <button type="button" class="btn btn-alternate-alt btn-block mt-0">Share It</button>
+                          </div>
                         </div>
                       </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-primary-alt btn-block mt-0">Save It</button>
-                    <button type="button" class="btn btn-primary-alt btn-block mt-0">Print It</button>
-                    <button type="button" class="btn btn-alternate-alt btn-block mt-0">Share It</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+                    </div>
+            {% else %}
+            {% endif %}
+            {% empty %}
+                {% for object in merchant_empty_qs %}
+                {% if object.get_first_active  %}
+                    <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
+                        <div class="card card-border card-effects border-radius-300 shadow-0">
+                            <a href="{{ object.get_absolute_url }}">
+                                <img class="card-img-top" style="width: 100%;" src="media/{{ object.get_first_active.image }}" alt="User Uploaded images">
+                                </a>
+                            <div class="card-body px-3 py-2">
+                                <div class=" text-left mt-2">
+                                    <h3 class="fw-4 fs-14 mb-3">{{ object.business_name }}</h3>
+                                    <h4 class="fw-6 fs-16 mb-3">
+                                        {{ object.get_first_active.title }}
+                                    </h4>
+                                    <div class="mb-3">
+                                        <a href="
+                                         %}" class="fs-12">{{ object.category.get_name_display }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ object.subcategory }}</a>
+                                    </div>
+                                    <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.get_first_active.end_date }}</span></div>
+                                    <a class="btn btn-primary-inverted btn-block" href="{{ object.get_absolute_url }}">View Additional Deals ({{ object.offer.all.count}})</a>
+                                    <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
+                                </div>
+                            </div>
+                            <div class="coupon-bottom-button-container">
+                                <a class="coupon-button">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
+                                  <br>
+                                  <span class="fs-14 fw-5 text-primary">Save</span>
+                                </a>
+                                <button class="coupon-button" data-toggle="modal" data-target="#exampleModal">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-print"><path class="secondary" d="M5 8h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5c0-1.1.9-2 2-2zm1 2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2H6z"/><path class="primary" d="M6 14h12v6a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-6zm0-6V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v4H6z"/></svg>
+                                  <br>
+                                  <span class="fs-14 fw-5 text-primary">Print</span>
+                                </button>
+                                <a class="coupon-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-external-window"><path class="primary" d="M12 8a1 1 0 0 1-1 1H5v10h10v-6a1 1 0 0 1 2 0v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9c0-1.1.9-2 2-2h6a1 1 0 0 1 1 1z"/><path class="secondary" d="M19 6.41L8.7 16.71a1 1 0 1 1-1.4-1.42L17.58 5H14a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V6.41z"/></svg>
+                                    <br>
+                                    <span class="fs-14 fw-5 text-primary">Share</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Print Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header justify-content-end">
+                              <h3 class="text-primary">Coupon</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-close-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary-alt btn-block mt-0">Save It</button>
+                            <button type="button" class="btn btn-primary-alt btn-block mt-0">Print It</button>
+                            <button type="button" class="btn btn-alternate-alt btn-block mt-0">Share It</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
         </div>
         <div class="text-center">
