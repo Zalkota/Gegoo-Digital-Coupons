@@ -4671,6 +4671,30 @@ button {
     <*****                            SECTIONS                             *****>
     <**************************************************************************>
 */
+.jumbotron-custom {
+  background: linear-gradient(to right, #7505ab, #9435c1);
+  height: 300px;
+  color: #fff !important;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.06), 0px 15px 35px rgba(55, 84, 170, 0.1);
+  align-items: center;
+  text-align: center; }
+  .jumbotron-custom h1 {
+    color: #fff;
+    letter-spacing: 1px; }
+  .jumbotron-custom p {
+    color: #fff; }
+
+.scale {
+  height: 64px !important;
+  width: 80%;
+  box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+  margin-top: -40px; }
+  .scale input {
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px; }
+
 .section-primary {
   margin-top: 0rem;
   margin-bottom: 0rem;
@@ -8338,10 +8362,11 @@ button {
     <**************************************************************************>
 */
 .card-custom-faq {
-  background-color: #fff;
+  background: #fff;
   border: none;
-  border-radius: 5px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.06), 0px 15px 35px rgba(55, 84, 170, 0.1); }
+  border-radius: 8px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.06), 0px 15px 35px rgba(55, 84, 170, 0.1);
+  margin: 32px 0px !important; }
   .card-custom-faq .card-header {
     background: #fff;
     border: none;
@@ -8349,23 +8374,9 @@ button {
   .card-custom-faq .card-body {
     border-top: 2px solid #f1f3f6; }
   .card-custom-faq .card-footer {
-    background: #fff;
-    border: none; }
-
-.card-custom-faq-alt {
-  background-color: #fff;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.06), 0px 15px 35px rgba(55, 84, 170, 0.1);
-  padding: 16px; }
-  .card-custom-faq-alt h3 {
-    text-transform: uppercase;
-    letter-spacing: 1px; }
-  .card-custom-faq-alt input {
-    background: #f1f3f6;
-    width: 50%;
-    height: 40px;
-    border-radius: 40px; }
+    background: #fff !important;
+    border-top: 2px solid #f1f3f6 !important;
+    padding: 24px; }
 
 hr.hr-2 {
   border-top: 2px solid #7505AB;

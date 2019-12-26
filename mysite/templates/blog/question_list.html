@@ -1,77 +1,89 @@
 {% extends 'base-alt.html' %}
 
 {% block content %}
-<section class="section-sm">
+<div class="jumbotron jumbotron-custom jumbotron-fluid mb-0">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card card-custom-faq-alt text-center">
-                    <div class="card-body">
-                        <h3 class="fw-5 fs-28">Hello, How can we help?</h3>
-                        <input type="text">
-                    </div>
+        <h1 class="fs-50 fw-4 mb-2">FAQ</h1>
+        <p>Here you can find articles based on our frequently asked questions!</p>
+    </div>
+</div>
+
+<div class="container scale">
+    <input type="text" placeholder="Search Articles Here...">
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <div class="card card-custom-faq">
+                <div class="card-header">
+                    <h3 class="fs-24">Popular Questions</h3>
+                </div>
+                {% for question in object_list %}
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a class="card-link" href="{{ question.get_absolute_url }}">
+                            <span class="fs-20 fw-4">
+                                {{ question.title }}
+                            </span>
+                        </a>
+                    </h3>
+                    <p class="fs-18 ">{{ question.body|slice:'150' }} ...
+                        <span class="text-muted">
+                            <a href="" class="fs-14 text-muted">
+                                Show More
+                            </a>
+                        </span>
+                    </p> 
+                    <p class="text-muted fs-14">Topic: <span><a href="{{ question.topic.get_absolute_url }}" class="text-muted fs-14 fw-1">{{ question.topic }}</a></span></p>
+                </div>
+                {% endfor %}
+                <div class="card-footer text-center">
+                    {% if is_paginated %}
+
+                        {% if page_obj.has_previous %}
+                          <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page=1">First</a>
+                          <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        {% endif %}
+                  
+                        {% for num in page_obj.paginator.page_range %}
+                          {% if page_obj.number == num %}
+                            <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ num }}">{{ num }}</a>
+                          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ num }}">{{ num }}</a>
+                          {% endif %}
+                        {% endfor %}
+                  
+                        {% if page_obj.has_next %}
+                          <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ page_obj.next_page_number }}">Next</a>
+                          <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                        {% endif %}
+                  
+                    {% endif %}
                 </div>
             </div>
         </div>
-        <div class="row mt-5">
-            <div class="col-8">
-                <div class="card card-custom-faq">
-                    <div class="card-header">
-                        <h3 class="fs-20">Popular Questions</h3>
-                    </div>
-                    {% for question in object_list %}
-                    <div class="card-body">
-                        <h3 class="card-title">
-                            <a class="card-link" href="{{ question.get_absolute_url }}">
-                                <span class="fs-20 fw-4">
-                                    {{ question.title }}
-                                </span>
+        <div class="col-4">
+            <div class="card card-custom-faq">
+                <div class="card-body">
+                    <h3 class="fs-24 fw-2 mb-1">Contact Support</h3>
+                    <p class="text-muted fs-14 mb-3">Please let us know how we can improve our support</p>
+                    <a href="{% url 'contact-page' %}" class="btn btn-primary-alt px-3 py-3 fs-12 text-uppercase">Send Us a Message</a>
+                    <hr>
+                    <h3 class="card-title fs-24 fw-1">Popular Topics</h3>
+                    <ul class="list-group list-unstyled">
+                        {% for topic in topics %}
+                        <li class="py-1">
+                            <a href="{{ topic.get_absolute_url }}" class="text-decoration-none fs-18 fw-4">
+                                {{ topic.title }}
                             </a>
-                        </h3>
-                        <h3 class="card-subtitle">
-                            <a class="card-link" href="{{ question.get_absolute_url }}">
-                                <span class="fs-14 fw-1">
-                                    {{ question.topic }}
-                                </span>
-                            </a>
-                        </h3>
-                        <p class="fs-18 text-truncate">{{ question.body }}</p>
-                        <a href="#" class="fs-14 fw-1">{{ question.topic }}</a>
-                    </div>
-                    {% endfor %}
-                    <div class="card-footer text-center text-muted">
-                        <h3 class="fs-20 fw-1">
-                            <a href="">
-                                Load More
-                            </a>
-                        </h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card card-custom-faq">
-                    <div class="card-body">
-                        <a href="" class="card-link text-decoration-none fs-14 fw-6">
-                            Contact Support
-                        </a>
-                        <p class="text-alternate fs-14">Please let us know how we can improve our support</p>
-                        <a href="{% url 'contact-page' %}" class="btn btn-primary-alt px-2 py-1 fs-12">Send Us a Message</a>
-                        <hr>
-                        <h3 class="card-title fs-14 fw-6">Popular Topics</h3>
-                        <ul class="list-group list-unstyled">
-                            {% for topic in topics %}
-                            <li class="py-1">
-                                <a href="{{ topic.get_absolute_url }}" class="text-decoration-none fs-18 fw-4">
-                                    {{ topic.title }}
-                                </a>
-                                <!-- <span class="badge badge-pill">1</span> -->
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+                            <!-- <span class="badge badge-pill">1</span> -->
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 {% endblock content %}
