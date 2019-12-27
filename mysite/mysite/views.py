@@ -147,6 +147,7 @@ class homeView(FormView):
         city = city_state["city"]
         state = city_state["state"]
         address_qs = Merchant.objects.filter(city__name=city)
+        merchant_empty_qs = Merchant.objects.all()[0:6]
         category_list = Category.objects.all()
         # city = context["city"]
         # state = context["subdivisions"]
@@ -170,6 +171,7 @@ class homeView(FormView):
             'city': city,
             'state': state,
             'address_qs': address_qs,
+            'merchant_empty_qs': merchant_empty_qs,
             'category_list': category_list,
         }
         return render(self.request, 'mysite/home_page.html', context)
