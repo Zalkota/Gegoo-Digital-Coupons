@@ -62,6 +62,9 @@ urlpatterns = [
     #Ckeditor
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 
+    #FAQ
+    path('questions/', include('blog.urls')),
+
 ]
 
 if settings.DEBUG:

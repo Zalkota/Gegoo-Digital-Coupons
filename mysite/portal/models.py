@@ -245,9 +245,6 @@ class Favorite(models.Model):
     def __str__(self):
         return '%s (%s)' % (self.name, self.offer)
 
-
-
-
 class Promotion(models.Model):
     message = models.CharField(max_length=64)
     background = models.CharField(choices=PROMOTION_CHOICES, default='Primary', max_length=12)
@@ -256,3 +253,25 @@ class Promotion(models.Model):
 
     def __str__(self):
         return '%s' '(%s, ends=%s)' % (self.message, self.active, self.end_date)
+
+#FAQ Models
+class Context(models.Model):
+    created_at = models.DateTimeField(default=timezone.now, verbose_name="Created at")
+    updated_at = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
+    title = models.CharField(max_length=255, blank=True, verbose_name="Title")
+
+    def __str__(self):
+        return self.title
+
+class FAQ(models.Model):
+    created_at = models.DateTimeField(default=timezone.now, verbose_name="Created at")
+    updated_at = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
+    question = models.CharField(max_length=100)
+    context = models.ForeignKey(Context, on_delete=models.CASCADE, verbose_name='Context', null=False, blank=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.question
+
+    def get_absolute_url(self):
+        return reverse('portal:faq-detail', args=[str(self.id)])

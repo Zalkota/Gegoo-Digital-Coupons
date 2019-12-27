@@ -3,6 +3,58 @@
     <**************************************************************************>
 */
 
+.jumbotron-custom{
+  background: linear-gradient(to right, #7505ab, #9435c1);
+  height: 300px;
+  color: #fff !important;
+  box-shadow: 0px 5px 15px rgba($color: #000000, $alpha: .06),
+              0px 15px 35px rgba($color: #3754aa, $alpha: .1);
+  align-items: center;
+  text-align: center;
+
+  h3{
+    color: #fff;
+    letter-spacing: 2px;
+    font-weight: 200;
+  }
+
+  p{
+    color: #fff;
+  }
+}
+
+.scale{
+  height: 72px !important;
+  width: 80%;
+  background: #fff;
+  box-shadow: 0px 5px 15px rgba($color: #000000, $alpha: .06),
+              0px 15px 35px rgba($color: #3754aa, $alpha: .1);
+  margin-top: -40px;
+  overflow: hidden;
+  border-radius: 72px;
+
+  // .box{
+  //   height: 64px;
+  //   width: 100%;
+  //   background: #fff;
+  //   transition: 0.4s ease;
+  //   text-align: center;
+  // }
+
+  .fa-search { 
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-size: 15px;
+  }
+
+  input{
+    height: 100%;
+    width: 100%;
+    background: #fff;
+  }
+}
+
 
 @each $color, $value in $colors {
   .section-#{$color} {

@@ -22,9 +22,10 @@ class User(AbstractUser):
     #accepted_terms_of_service = models.Booleanfield()
 
     def __str__(self):
-        return self.username
+        return self.name
 
     def get_absolute_url(self):
+        return reverse('users:detail', kwargs={'username': self.name})
         return reverse('users:detail', kwargs={'user': self.username})
 
 # Profile Image
@@ -45,7 +46,7 @@ class Profile(models.Model):
     created_time = models.DateTimeField(('created time'), editable=False, null=True, auto_now_add=True)
 
     def __str__(self):
-        return self.user.username
+        return self.user.name
 
 
 class userStripe(models.Model):
@@ -56,7 +57,7 @@ class userStripe(models.Model):
         if self.stripe_id:
             return str(self.stripe_id)
         else:
-            return self.user.username
+            return self.user.name
 
     def __str__(self):
         return'%s (%s)' % (self.stripe_id, self.user)
@@ -82,6 +83,9 @@ def addressCallback(sender, request, user, **kwargs):
 
 def profileCallback(sender, request, user, **kwargs):
     userProfile, is_created = Profile.objects.get_or_create(user=user)
+    if is_created:
+        userProfile.name = user.name
+        userProfile.save()
     try:
         userAddress = Address.objects.get(user=user)
         print('user.address', userAddress)

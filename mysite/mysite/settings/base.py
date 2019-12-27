@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #APPS
     'users',
     'portal',
+    'blog.apps.BlogConfig',
     #'shoppingcart',
     #'memberships',
     #'blog',
@@ -315,7 +316,11 @@ ACCOUNT_EMAIL_CONFIRMATION_HMAC = True
 # In order to verify an email address a key is mailed identifying the email address to be verified. In previous versions, a record was stored in the database for each ongoing email confirmation, keeping track of these keys. Current versions use HMAC based keys that do not require server side state.
 ACCOUNT_EMAIL_REQUIRED = True
 # Determines the e-mail verification method during signup – choose one of "mandatory", "optional", or "none". When set to “mandatory” the user is blocked from logging in until the email address is verified. Choose “optional” or “none” to allow logins with an unverified e-mail address. In case of “optional”, the e-mail verification mail is still sent, whereas in case of “none” no e-mail verification mails are sent.
+
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 # Determines the e-mail verification method during signup – choose one of "mandatory", "optional", or "none". When set to “mandatory” the user is blocked from logging in until the email address is verified. Choose “optional” or “none” to allow logins with an unverified e-mail address. In case of “optional”, the e-mail verification mail is still sent, whereas in case of “none” no e-mail verification mails are sent.
 ACCOUNT_EMAIL_SUBJECT_PREFIX =''
 # Subject-line prefix to use for email messages sent. By default, the name of the current Site (django.contrib.sites) is used.
