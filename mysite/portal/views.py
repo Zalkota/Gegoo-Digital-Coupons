@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Merchant, Subcategory, Category, FAQ, Context
+from .models import Merchant, Subcategory, Category
 from django.views.generic import ListView, DetailView, View
 # Create your views here.
 
@@ -79,63 +79,3 @@ class MerchantDetailView(View):
     #def post(self, *args, **kwargs):
 
     #return redirect("/payment/stripe/")
-
-class FAQView(ListView):
-	model = FAQ
-	template_name = 'mysite/faq/faq.html'
-	# paginate_by = 3
-
-	def get_context_data(self, **kwargs):
-		context = super(FAQView, self).get_context_data(**kwargs)
-		context['context1'] = Context.objects.get(title='Accounts')
-		context['context2'] = Context.objects.get(title='Payment')
-		context['context3'] = Context.objects.get(title='Acceptable Offers')
-		context['context4'] = Context.objects.get(title='Registration')
-		context['context5'] = Context.objects.get(title='User Terms and Conditions')
-		return context
-
-class FAQDetailView(DetailView):
-	model = FAQ
-	template_name = 'mysite/faq/faq-detail.html'
-
-class FAQAccountView(ListView):
-	model = FAQ
-	template_name = 'mysite/faq/accounts.html'
-	queryset = FAQ.objects.filter(context__title = 'Accounts')
-
-	def get_context_data(self, **kwargs):
-		context = super(FAQAccountView, self).get_context_data(**kwargs)
-		context['context1'] = Context.objects.get(title='Accounts')
-		context['context2'] = Context.objects.get(title='Payment')
-		context['context3'] = Context.objects.get(title='Acceptable Offers')
-		context['context4'] = Context.objects.get(title='Registration')
-		context['context5'] = Context.objects.get(title='User Terms and Conditions')
-		return context
-
-class FAQPaymentView(ListView):
-	model = FAQ
-	template_name = 'mysite/faq/payment.html'
-	queryset = FAQ.objects.filter(context__title = 'Payment')
-
-	def get_context_data(self, **kwargs):
-		context = super(FAQPaymentView, self).get_context_data(**kwargs)
-		context['context1'] = Context.objects.get(title='Accounts')
-		context['context2'] = Context.objects.get(title='Payment')
-		context['context3'] = Context.objects.get(title='Acceptable Offers')
-		context['context4'] = Context.objects.get(title='Registration')
-		context['context5'] = Context.objects.get(title='User Terms and Conditions')
-		return context
-
-class FAQAcceptableOffersView(ListView):
-	model = FAQ
-	template_name = 'mysite/faq/acceptable-offers.html'
-	queryset = FAQ.objects.filter(context__title = 'Acceptable Offers')
-
-	def get_context_data(self, **kwargs):
-		context = super(FAQAcceptableOffersView, self).get_context_data(**kwargs)
-		context['context1'] = Context.objects.get(title='Accounts')
-		context['context2'] = Context.objects.get(title='Payment')
-		context['context3'] = Context.objects.get(title='Acceptable Offers')
-		context['context4'] = Context.objects.get(title='Registration')
-		context['context5'] = Context.objects.get(title='User Terms and Conditions')
-		return context
