@@ -12,9 +12,10 @@
   align-items: center;
   text-align: center;
 
-  h1{
+  h3{
     color: #fff;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    font-weight: 200;
   }
 
   p{
@@ -23,12 +24,14 @@
 }
 
 .scale{
-  height: 64px !important;
+  height: 72px !important;
   width: 80%;
-  box-shadow: 0 13px 27px -5px rgba(50,50,93,.25), 
-              0 8px 16px -8px rgba(0,0,0,.3), 
-              0 -6px 16px -6px rgba(0,0,0,.025);
+  background: #fff;
+  box-shadow: 0px 5px 15px rgba($color: #000000, $alpha: .06),
+              0px 15px 35px rgba($color: #3754aa, $alpha: .1);
   margin-top: -40px;
+  overflow: hidden;
+  border-radius: 72px;
 
   // .box{
   //   height: 64px;
@@ -38,11 +41,17 @@
   //   text-align: center;
   // }
 
+  .fa-search { 
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-size: 15px;
+  }
+
   input{
     height: 100%;
     width: 100%;
     background: #fff;
-    border-radius: 8px;
   }
 }
 

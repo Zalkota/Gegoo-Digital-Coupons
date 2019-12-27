@@ -4678,22 +4678,30 @@ button {
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.06), 0px 15px 35px rgba(55, 84, 170, 0.1);
   align-items: center;
   text-align: center; }
-  .jumbotron-custom h1 {
+  .jumbotron-custom h3 {
     color: #fff;
-    letter-spacing: 1px; }
+    letter-spacing: 2px;
+    font-weight: 200; }
   .jumbotron-custom p {
     color: #fff; }
 
 .scale {
-  height: 64px !important;
+  height: 72px !important;
   width: 80%;
-  box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
-  margin-top: -40px; }
+  background: #fff;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.06), 0px 15px 35px rgba(55, 84, 170, 0.1);
+  margin-top: -40px;
+  overflow: hidden;
+  border-radius: 72px; }
+  .scale .fa-search {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-size: 15px; }
   .scale input {
     height: 100%;
     width: 100%;
-    background: #fff;
-    border-radius: 8px; }
+    background: #fff; }
 
 .section-primary {
   margin-top: 0rem;
