@@ -42,6 +42,7 @@ PROMOTION_CHOICES = (
 CATEGORY_CHOICES = (
     ('FOOD', 'Food & Dining'),
     ('VEHICLES', 'Automotive & Transportation'),
+    ('HOME', 'Home Improvement'),
 )
 
 
@@ -85,6 +86,9 @@ class Images(models.Model):
 class Category(models.Model):
     name = models.CharField(choices=CATEGORY_CHOICES, default='FOOD', max_length=20, unique=True, db_index=True,)
 
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     def __str__(self):
         return self.name
 
@@ -92,10 +96,13 @@ class Category(models.Model):
         return reverse('portal:category_detail', kwargs={'name': self.name})
 
 class Subcategory(models.Model):
-  name = models.CharField(max_length=40, db_index=True, unique=True)
-  category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='subcategory')
+    name = models.CharField(max_length=40, db_index=True, unique=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='subcategory')
 
-  def __str__(self):
+    class Meta:
+        verbose_name_plural = 'Subcategories'
+
+    def __str__(self):
       return '%s' % (self.name)
 
 

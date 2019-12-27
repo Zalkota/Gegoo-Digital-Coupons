@@ -6,7 +6,7 @@
 3. VirtualEnv
 4. Postgres Database
 
-How to install 1-3: https://www.digitalocean.com/community/tutorials/how-to-install-django-and-set-up-a-development-environment-on-ubuntu-16-04
+How to install 1-3 above: https://www.digitalocean.com/community/tutorials/how-to-install-django-and-set-up-a-development-environment-on-ubuntu-16-04
 
 How to install postgres: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04
 
@@ -39,12 +39,12 @@ This will install all of the requirements for the website_url
 9. Now we need to create a database in postgresql, run the next 10 commands below.
 sudo su postgres
 psql
-CREATE DATABASE estore;
-psql -c "'CREATE USER estoreadmin WITH PASSWORD '$Django10';
-ALTER ROLE estoreadmin SET client_encoding TO 'utf8';
-ALTER ROLE estoreadmin SET default_transaction_isolation TO 'read committed';
-ALTER ROLE estoreadmin SET timezone TO 'UTC';
-GRANT ALL PRIVILEGES ON DATABASE estore TO estoreadmin;
+CREATE DATABASE gegoo;
+psql -c "'CREATE USER gegooadmin WITH PASSWORD '$Django10';
+ALTER ROLE gegooadmin SET client_encoding TO 'utf8';
+ALTER ROLE gegooadmin SET default_transaction_isolation TO 'read committed';
+ALTER ROLE gegooadmin SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE gegoo TO gegooadmin;
 \q
 exit
 
@@ -60,14 +60,12 @@ run 'grunt watch'
 
 Now your sass files are compiling
 
-
+<!--
 13. run elasticsearch 1.7.6
 go to extracted file of elasticsearch
 run 'bin/elasticsearch'
 
-If that works then congratulations, open your internet browser and go to 127.0.0.1:8000 in the address bar.
-
-
+If that works then congratulations, open your internet browser and go to 127.0.0.1:8000 in the address bar. -->
 
 14. Importing data for Django Cities
 run 'python3 local.py cities_light'

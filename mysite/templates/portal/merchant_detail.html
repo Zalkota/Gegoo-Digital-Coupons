@@ -78,7 +78,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-search"><circle cx="10" cy="10" r="7" class="primary"/><path class="secondary" d="M16.32 14.9l1.1 1.1c.4-.02.83.13 1.14.44l3 3a1.5 1.5 0 0 1-2.12 2.12l-3-3a1.5 1.5 0 0 1-.44-1.14l-1.1-1.1a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>
                     Explore Coupons
                 </a>
-                <div class="card card-border shadow-2">
+                <div class="card card-border shadow-2 mb-2">
                     <div class="card-header">
                         <div class="row text-center">
                             <div class="col-lg-12 ">
@@ -109,11 +109,13 @@
                             </div>
                         </div>
                     </div>
+
+
                     {% for object in recommended_offers %}
                     <a href="">
                         <div class="card-body p-3 py-1 border-bottom" >
                             <span class="fs-10 text-dark fw-6">{{ object.business_name }}</span>
-                            <p class="fs-14 fw-6 text-primary mb-1">{{ object.offer.first.title }}</p>
+                            <p class="fs-14 fw-6 text-primary mb-1">{{ object.get_first_active.title }}</p>
                         </div>
                     </a>
                     {% endfor %}

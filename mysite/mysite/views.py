@@ -188,10 +188,9 @@ class ContactFormView(FormView):
         ContactForm.name = form.cleaned_data['name']
         ContactForm.email = form.cleaned_data['email']
         ContactForm.phone = form.cleaned_data['phone']
-        ContactForm.company = form.cleaned_data['company']
         ContactForm.description = form.cleaned_data['description']
         ContactForm.save()
-        send_email(ContactForm.name, ContactForm.email, ContactForm.phone, ContactForm.company, ContactForm.description)
+        #send_email(ContactForm.name, ContactForm.email, ContactForm.phone, ContactForm.description)
 
         #template = get_template('contact_template.txt')
         #context = Context({

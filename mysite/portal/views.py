@@ -53,14 +53,13 @@ class CategoryDetailView(View):
 class MerchantDetailView(View):
 	def get(self, *args, **kwargs):
 		try:
-			merchant = Merchant.objects.get(ref_code=self.kwargs['ref_code'])
 			city = 'default_city'
 			state = 'default_state'
 			city_state = get_or_set_location(self.request)
 			city = city_state["city"]
 			state = city_state["state"]
-
-			#data = GeoIP.city('google.com')
+			merchant = Merchant.objects.get(ref_code=self.kwargs['ref_code'])
+			recommended_offers = Merchant.objects.filter(city__name=city)
 
 
 			context = {
@@ -68,6 +67,7 @@ class MerchantDetailView(View):
             'city': city,
             'state': state,
 			'merchant': merchant,
+			'recommended_offers': recommended_offers,
 			}
 			return render(self.request, "portal/merchant_detail.html", context)
 

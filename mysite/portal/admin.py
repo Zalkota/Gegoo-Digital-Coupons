@@ -25,6 +25,8 @@ class MerchantAdmin(OSMGeoAdmin):
         MerchantAddressInline,
     ]
 
+class OfferAdmin(admin.ModelAdmin):
+    autocomplete_fields = ['merchant']
 
 class LocationAdmin(admin.ModelAdmin):
     search_fields = ['city__name', 'state__name', 'user__username']
@@ -33,7 +35,7 @@ class LocationAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Merchant, MerchantAdmin)
-admin.site.register(Offer)
+admin.site.register(Offer, OfferAdmin)
 admin.site.register(Address, LocationAdmin)
 admin.site.register(Promotion)
 admin.site.register(Images)

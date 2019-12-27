@@ -558,10 +558,48 @@
         }
     }
 
+    @media screen and (min-width: 1200px) {
+        .section-header-waves {
+            height: 700px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("/static/img/headers/wave_header.svg");
+            background-size: cover;
+            background-position: top;
+            background-repeat: no-repeat;
+
+            & .text {
+              position: absolute;
+              text-align: center;
+              color: $color-alt;
+              bottom: 15%;
+              left: 5%;
+              animation: moveInTop 1.5s;
+              animation-fill-mode: forwards
+            }
+
+            & h1 {
+                font-size: 3em;
+                font-weight: 700;
+                opacity: .95;
+                margin-top: 0;
+                margin-bottom: 0.5em;
+                padding-right: 10%;
+            }
+            & p {
+                font-size: 1em;
+                color: $color-light;
+                margin-top: 0;
+                margin-bottom: 2em;
+                padding-right: 4rem;
+            }
+        }
+    }
 
     @media screen and (min-width: 992px) {
         .section-header-waves {
-            height: 700px;
+            height: 520px;
             display: flex;
             justify-content: center;
             align-items: center;

@@ -23,13 +23,12 @@ class BaseModel(models.Model):
 
 class Contact(models.Model):
     REASON_CHOICES = (
-        ("RT", "I Would Like to Return an Item"),
         ("QT", "I have a Question"),
-        ("FD", "General Feedback on a Product"),
-        ("DS", "Dissatisfied with a Product")
+        ("DS", "Dissatisfied with a Coupon"),
+        ("BM", "I Would Like to post my own Coupons"),
         )
 
-    reason = models.CharField(choices=REASON_CHOICES, default='AL', max_length=100)
+    reason = models.CharField(choices=REASON_CHOICES, default='QT', max_length=100)
     name = models.CharField(max_length=200)
     email = models.EmailField()
     phone = PhoneNumberField(null=True, blank=True)   #USE THIS https://github.com/stefanfoulis/django-phonenumber-field\

@@ -235,20 +235,20 @@
 
 <section class="section pt-0">
     <div class="container">
-        <h3 class="fs-20 fw-5 text-primary mb-0 ml-2">Local Deals in {{ city }}, {{ state }}
+        <h3 class="fs-20 fw-6 text-dark mb-0 ml-2">Local Deals in {{ city }}, {{ state }}
         </h3>
         <br>
         <div class="row">
             {% for object in address_qs %}
                 {% if object.get_first_active %}
                     <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
-                        <div class="card card-border card-effects border-radius-300 shadow-0">
+                        <div class="card card-border card-effects border-radius-300 shadow-2">
                             <a href="{{ object.get_absolute_url }}">
                                 <img class="card-img-top" style="width: 100%;" src="media/{{ object.get_first_active.image }}" alt="User Uploaded images">
                                 </a>
                             <div class="card-body px-3 py-2">
                                 <div class=" text-left mt-2">
-                                    <h3 class="fw-4 fs-14 mb-3">{{ object.business_name }}</h3>
+                                    <h3 class="fw-6 text-primary fs-14 mb-3">{{ object.business_name }}</h3>
                                     <h4 class="fw-6 fs-16 mb-3">
                                         {{ object.get_first_active.title }}
                                     </h4>
@@ -281,7 +281,6 @@
                         </div>
                     </div>
 
-
                     <!-- Print Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -293,7 +292,23 @@
                             </button>
                           </div>
                           <div class="modal-body">
-
+                              <div class="p-3" style="border-color: #ccc; border-width:5px; border-style:dashed;">
+                                  <div class="row">
+                                      <div class="col-6">
+                                          <img class="card-img-top" src="media/{{ object.logo }}" alt="User Uploaded images">
+                                      </div>
+                                      <div class="col-6">
+                                          <img class="img-fluid" src="{% static 'img/logo/logo3.jpg' %}" alt="GEGOO LOGO">
+                                      </div>
+                                  </div>
+                                  <h4 class="fs-14 fw-6 text-primary">{{ object.business_name }} in {{ city }}</h4>
+                                  <h3>{{ object.get_first_active.title }}</h3>
+                                <p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias alias ipsam minima, dolore! Modi enim porro neque quaerat blanditiis. Ipsa aliquam quam maxime rerum eum accusamus nulla, molestiae soluta repellendus!</p>
+                                {{ object.get_first_active.title }}
+                                <div class="bg-gray-30 text-primary text-uppercase p-3">
+                                    <span class="fw-6 fs-24">Code: {{ object.get_first_active.code_coupon }}</span>
+                                </div>
+                              </div>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-primary-alt btn-block mt-0">Save It</button>
