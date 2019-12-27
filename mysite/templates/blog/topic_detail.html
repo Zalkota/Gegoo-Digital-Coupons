@@ -1,14 +1,13 @@
 {% extends 'base-support.html' %}
 
 {% block content %}
-<div class="jumbotron jumbotron-custom jumbotron-fluid mb-0">
-    <div class="container">
-        <div class="row">
-            <div class="col align-self-center">
-                <h1 class="fs-50 fw-4 mb-2">{{ topic.title }}</h1>
-                <p>{{ topic.body }}</p>
-            </div>
-        </div>
+
+
+<div class="section-primary-sm mb-0">
+    <div class="container ">
+        <h3 class="fs-18 fw-6 text-purple-400">TOPIC</h3>
+        <h1 class="fs-50 text-white fw-4 mb-2">{{ topic.title }}</h1>
+
     </div>
 </div>
 
@@ -16,7 +15,7 @@
     <p>{{ topic.body }}</p>
 </div> -->
 
-<div class="container">
+<div class="section-sm container">
     <div class="row">
         <div class="col-8">
             <!-- <div class="card card-custom-faq">
@@ -27,12 +26,13 @@
                     <p class="card-text fs-18">{{ topic.body }}</p>
                 </div>
             </div> -->
-            <div class="card card-custom-faq">
+            <div class="card shadow-2">
                 <div class="card-header">
-                    <h3 class="fs-24">{{ topic.title }} Questions</h3>
+                    <h3 class="fs-18 fw-6 py-2">{{ topic.title }} Questions</h3>
                 </div>
+
                 {% for question in questions %}
-                <div class="card-body">
+                <div class="card-body pb-0">
                     <h3 class="card-title">
                         <a class="card-link" href="{{ question.get_absolute_url }}">
                             <span class="fs-20 fw-4">
@@ -42,9 +42,10 @@
                     </h3>
                     <p class="fs-18 text-truncate">{{ question.body }}</p>
                     <a href="#" class="fs-14 fw-1">{{ question.topic }}</a>
+                    <hr class="mb-0">
                 </div>
                 {% endfor %}
-                <div class="card-footer text-center text-muted">
+                <div class="py-4 text-center text-muted">
                     <h3 class="fs-14 fw-1">
                         <a href="">
                             Load More
@@ -54,17 +55,17 @@
             </div>
         </div>
         <div class="col-4">
-            <div class="card card-custom-faq">
+            <div class="card shadow-2 stripe-primary">
                 <div class="card-body">
-                    <h3 class="fs-24 fw-2 mb-1">Contact Support</h3>
+                    <h3 class="fs-18 fw-6 mb-1">Contact Support</h3>
                     <p class="text-muted fs-14 mb-3">Please let us know how we can improve our support</p>
                     <a href="{% url 'contact-page' %}" class="btn btn-primary-alt px-3 py-3 fs-12 text-uppercase">Send Us a Message</a>
                     <hr>
-                    <h3 class="card-title fs-24 fw-1">Popular Topics</h3>
+                    <h3 class="card-title fs-18 fw-6">Popular Topics</h3>
                     <ul class="list-group list-unstyled">
                         {% for topic in topics %}
                         <li class="py-1">
-                            <a href="{{ topic.get_absolute_url }}" class="text-decoration-none fs-18 fw-4">
+                            <a href="{{ topic.get_absolute_url }}" class="text-decoration-none fs-16 fw-4">
                                 {{ topic.title }}
                             </a>
                             <!-- <span class="badge badge-pill">1</span> -->
@@ -76,4 +77,4 @@
         </div>
     </div>
 </div>
-{% endblock content %} 
+{% endblock content %}

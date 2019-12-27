@@ -163,10 +163,11 @@ input {
 .search-form-faq {
     width: 100%;
     z-index: 1000;
+    position:relative;
 
     .search-icon {
         position: absolute;
-        left: 2.3rem;
+        left: 1.5rem;
         bottom: .9rem;
 
         i {
