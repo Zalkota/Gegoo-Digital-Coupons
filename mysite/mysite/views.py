@@ -218,3 +218,4 @@ def security(request):
 def components(request):
 
     return render(request, 'components/main.html')
+

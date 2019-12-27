@@ -34,3 +34,4 @@ class Contact(models.Model):
     email = models.EmailField()
     phone = PhoneNumberField(null=True, blank=True)   #USE THIS https://github.com/stefanfoulis/django-phonenumber-field\
     description = models.TextField()
+

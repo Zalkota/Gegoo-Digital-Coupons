@@ -225,3 +225,33 @@
 .border-top-dark {
     border-top: 1px solid #ccc;
 }
+
+/*  <**************************************************************************>
+    <*****                            FAQ Cards                           *****>
+    <**************************************************************************>
+*/
+
+.card-custom-faq {
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 5px 15px rgba($color: #000000, $alpha: .06),
+              0px 15px 35px rgba($color: #3754aa, $alpha: .1);
+  margin: 32px 0px !important;
+
+  .card-header{
+    background: #fff;
+    border: none;
+    padding: 24px;
+  }
+
+  .card-body{
+    border-top: 2px solid rgba($color: #f1f3f6, $alpha: 1.0);
+  }
+
+  .card-footer{
+    background: #fff !important;
+    border-top: 2px solid rgba($color: #f1f3f6, $alpha: 1.0) !important;
+    padding: 24px;
+  }
+}

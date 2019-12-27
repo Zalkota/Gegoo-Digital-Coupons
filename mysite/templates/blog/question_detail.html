@@ -1,0 +1,72 @@
+{% extends 'base-support.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-custom jumbotron-fluid mb-0">
+    <div class="container">
+        <h1 class="fs-50 fw-4 mb-2">FAQ</h1>
+        <p>Here you can find articles based on our frequently asked questions!</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-custom-faq">
+                <div class="card-body">
+                    <h3 class="card-title fs-24 fw-2">
+                        {{ object.title }}
+                    </h3>
+                    <p class="card-subtitle text-muted mb-2">Updated: {{ object.updated_at|date:"F d, Y" }}</p>
+                    <p class="fs-18 text-justify">{{ object.body }}</p>
+                    <p class="card-text text-muted mt-2">Topics Mentioned: 
+                        <a href="{{ object.topic.get_absolute_url }}">
+                            {{ object.topic }}
+                        </a>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <h3>Did this answer your question?
+                        <span>
+                            <a href="" class="btn btn-primary-alt px-3 py-1">
+                                Yes
+                            </a>
+                            <a href="" class="btn btn-primary-alt px-3 py-1">
+                                No
+                            </a>
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-custom-faq">
+                <div class="card-header">
+                    <h3 class="fs-24">Related Questions</h3>
+                </div>
+                {% for question in questions %}
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a class="card-link" href="{{ question.get_absolute_url }}">
+                            <span class="fs-20 fw-4">
+                                {{ question.title }}
+                            </span>
+                        </a>
+                    </h3>
+                    <p class="fs-18 text-truncate">{{ question.body }}</p>
+                    <a href="#" class="fs-14 fw-1">{{ question.topic }}</a>
+                </div>
+                {% endfor %}
+                <div class="card-footer text-center text-muted">
+                    <h3 class="fs-14 fw-1">
+                        <a href="">
+                            Load More
+                        </a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

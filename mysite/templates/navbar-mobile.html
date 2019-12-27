@@ -1,139 +1,8 @@
 {% load static %}
-
-<!-- Generic Navigation !-->
-{% if promotionActive != False %}
-  {% block promotion %}
-    {% include "promotion.html" %}
-  {% endblock promotion %}
-{% endif %}
-    <nav class=" navbar navbar-default shadow-0 navbar-expand-lg hide" id="mynav">
-      <div class="container hide" >
-          <a class="navbar-brand text-center" href="/">
-              <!-- <img class="shadow-0 mb-2" src="{% static 'img/logo/logo.png' %}" width="25px" alt="TODO"> -->
-              <span class="nav-brand text-gray-700 fw-6"><span class="text-primary fw-7">GE</span>GOO</span>
-          </a>
-
-            <div class="collapse navbar-collapse  hide" id="navbarResponsive">
-                <form class="search-form-container-navbar ml-2" action="/find/" method="get" >
-                      <div class="ml-3">
-                          <div class="icon-addon addon-lg">
-                              <input type="text" placeholder="Search for Coupons & Merchants" name="q" id="q" autocomplete="off">
-                                  <button type="submit" class="search-icon" href="#"><i class="fa fa-search fs-20" aria-hidden="true"></i></button>
-                              <div id="selction-ajax"></div>
-                          </div>
-                      </div>
-                  </form>
-                <ul class="navbar-nav ml-auto" id="example-one">
-                   <li class="nav-item dropdown " style="z-index: 500;">
-                        <a class="nav-link text-primary" id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ city }}, {{ state }}
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-gray-600" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-600" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
-                        </a>
-                        {% if not request.user.is_authenticated %}
-                        <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
-                            <a class="dropdown-item" href="">
-                              Change Location
-                            </a>
-                        </div>
-                        {% else %}
-                        <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
-                            <a class="dropdown-item" href="{% url 'users:user_location' %}">
-                              Change Location
-                            </a>
-                        </div>
-                        {% endif %}
-                    </li>
-
-                    {% if not request.user.is_authenticated %}
-                    <li class="nav-item">
-                      <a class="nav-link text-primary" href="{% url 'account_signup' %}" id="">Sign Up</a>
-                    </li>
-                    <li class="nav-item pt-1 text-secondary">
-                      <span>|</span>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="{% url 'account_login' %}" id="">Sign In</a>
-                    </li>
-
-                    {% else %}
-
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="#" id="">{% if request.path == '/cart/products/' %}<strong>My Favorites</strong>{% else %} My Favorites {% endif %}</a>
-                </li> -->
-
-                  <li class="nav-item dropdown " style="z-index: 500;">
-                    <a class="nav-link " id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ user }}
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 pb-1 icon-cheveron-down-circle"><circle cx="12" cy="12" r="10" class="fill-white"/><path class="secondary" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
-                    </a>
-                      <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
-                        <a class="dropdown-item" href="{% url 'users:userPage' %}">
-                          Dashboard
-                        </a>
-                        <a class="dropdown-item" href="{% url 'contact-page' %}">
-                          My Favorites
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          My Merchants
-                        </a>
-                        <a class="dropdown-item" href="{% url 'users:user_location' %}">
-                          My Location
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          Settings
-                        </a>
-                        {% if request.user.is_superuser %}
-                        <a class="dropdown-item" href="/admin/">
-                          Admin Panel
-                        </a>
-                        {% endif %}
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="{% url 'account_logout' %}">
-                          Logout
-                      </a>
-                    </div>
-                  </li>
-                {% endif %}
-              </ul>
-          </div>
-        </div>
-    </nav>
-    <nav class="navbar navbar-lower shadow-0 navbar-expand-lg hide" id="mynav">
-      <div class="container hide merchant-bottom-button-container" >
-          <div class="collapse navbar-collapse  hide" id="navbarResponsive">
-              <div class="navbar-bottom-button">
-                  <span>All Coupons</span>
-              </div>
-              <div class="navbar-bottom-button">
-                  <span>Food</span>
-              </div>
-              <div class="navbar-bottom-button">
-                  <span>Automotive</span>
-              </div>
-              <div class="navbar-bottom-button">
-                  <span>Beauty</span>
-              </div>
-              <div class="navbar-bottom-button">
-                  <span>Restaurants</span>
-              </div>
-              <div class="navbar-bottom-button">
-                  <span>Tools</span>
-              </div>
-              <div class="navbar-bottom-button">
-                  <span>Travel</span>
-              </div>
-              <div class="navbar-bottom-button">
-                  <span>House</span>
-              </div>
-          </div>
-        </div>
-    </nav>
-<<<<<<< HEAD
+{% block navigation-mobile %}
 
 
-
-
-    <!-- Custom Navigation 100 !-->
+    <!-- Mobile Navigation !-->
     <div class="unhide" style="width:0; height:0; left:0; top: 0; position; fixed;">
       <div class="navigation__bar"></div>
 
@@ -152,16 +21,15 @@
         </a> -->
         {% if not request.user.is_authenticated %}
         <a class="navigation__cart fs-16 mt-1 fw-4" id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ city }}, {{ state }}
+            {{ city.name }}, {{ city.region.name }}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-location-pin"><path class="fill-gray-600" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-600" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
         </a>
         {% else %}
         <a class="navigation__cart fs-16 mt-1 fw-4" id="messagesDropdown"  href="{% url 'users:user_location' %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ city }}, {{ state }}
+            {{ city.name }}, {{ city.region.name }}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-location-pin"><path class="fill-gray-600" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-600" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
         </a>
         {% endif %}
-
 
 
 
@@ -178,7 +46,7 @@
         <div class="navigation__search__bar">
             <form class="navigation__search__input" action="/find/" method="get" >
                     <div class="float-center">
-                        <input type="text" placeholder="Search for coupons" name="q" id="q" autocomplete="off">
+                        <input type="text" placeholder="Search for bumper stickers" name="q" id="q" autocomplete="off">
                         <div id="selction-ajax"></div>
                 </div>
             </form>
@@ -187,6 +55,9 @@
 
         <nav class="navigation__nav">
             <ul class="navigation__list">
+            <li class="navigation__item"><a href="{% url 'users:userPage' %}" class="navigation__link" style="">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-home"><path class="fill-gray-400" d="M9 22H5a1 1 0 0 1-1-1V11l8-8 8 8v10a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v4a1 1 0 0 1-1 1zm3-9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="secondary" d="M12.01 4.42l-8.3 8.3a1 1 0 1 1-1.42-1.41l9.02-9.02a1 1 0 0 1 1.41 0l8.99 9.02a1 1 0 0 1-1.42 1.41l-8.28-8.3z"/></svg>
+                Home</a></li>
               {% if not request.user.is_authenticated %}
               <li class="navigation__item mb-3"><a href="{% url 'account_signup' %}" class="btn btn-primary-alt px-4 py-2" style="">Join </a></li>
               <li class="navigation__item"><a href="{% url 'account_login' %}" class="navigation__link" style="">Sign In</a></li>
@@ -221,5 +92,4 @@
             </ul>
         </nav>
     </div>
-=======
->>>>>>> alpha
+ {% endblock navigation-mobile %}
