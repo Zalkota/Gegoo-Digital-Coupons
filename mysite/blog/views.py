@@ -7,6 +7,8 @@ from blog.models import Question, Topic
 class QuestionListView(ListView):
     model = Question
     template_name = 'blog/question_list.html'
+    ordering = ['-created_at']
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super(QuestionListView, self).get_context_data(**kwargs)
@@ -27,6 +29,12 @@ class TopicDetailView(DetailView):
 class QuestionDetailView(DetailView):
     model = Question
     template_name = 'blog/question_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(QuestionDetailView, self).get_context_data(**kwargs)
+        context['questions'] = Question.objects.all().filter(topic=self.object.topic)
+        context['topics'] = Topic.objects.all()
+        return context
 
 # class QuestionCreateView(CreateView):
 #     model = Question
