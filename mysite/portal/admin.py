@@ -20,7 +20,7 @@ class MerchantAddressInline(admin.TabularInline):
 class MerchantAdmin(OSMGeoAdmin):
     search_fields = ['city__name', 'business_name']
     autocomplete_fields = ['city']
-    list_display = ('business_name', 'city', 'category', 'subcategory')
+    list_display = ('business_name', 'city', 'category', 'subcategory', 'active')
     inlines = [
         MerchantAddressInline,
     ]

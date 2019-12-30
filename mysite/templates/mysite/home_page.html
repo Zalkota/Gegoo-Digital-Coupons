@@ -233,9 +233,55 @@
     </div>
 </section>
 
+<section class="pt-3 pb-5 container">
+    <h2 class="header fs-20">Filter By Category</h2>
+    <div class="flex-container">
+        <div class="flex-box mx-2">
+            <div class="card-pill shadow-1">
+                Food
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill shadow-1">
+                Travel
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill shadow-1">
+                Barber
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill shadow-1">
+                Salon
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill shadow-1">
+                Dealership
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill shadow-1">
+                Home
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill shadow-1">
+                Landscaping
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill shadow-1">
+                Tools
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="section pt-0">
     <div class="container">
-        <h3 class="fs-20 fw-6 text-dark mb-0 ml-2">Local Deals in {{ city }}, {{ state }}
+        <h3 class="fs-20 fw-6 text-dark mb-0 ml-2">Services in {{ city }}, {{ state }}
         </h3>
         <br>
         <div class="row">
@@ -246,38 +292,24 @@
                             <a href="{{ object.get_absolute_url }}">
                                 <img class="card-img-top" style="width: 100%;" src="media/{{ object.get_first_active.image }}" alt="User Uploaded images">
                                 </a>
-                            <div class="card-body px-3 py-2">
+                            <div class="card-body border-top px-3 py-2">
                                 <div class=" text-left mt-2">
-                                    <h3 class="fw-6 text-primary fs-14 mb-3">{{ object.business_name }}</h3>
-                                    <h4 class="fw-6 fs-16 mb-3">
+                                    <h3 class="fw-6 text-primary fs-16 mb-3">{{ object.business_name }}</h3>
+                                    <h4 class="fw-4 fs-14 ">
                                         {{ object.get_first_active.title }}
                                     </h4>
                                     <div class="mb-3">
-                                        <a href="
-                                         %}" class="fs-12">{{ object.category.get_name_display }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ object.subcategory }}</a>
+                                        <a href="" class="fs-12">{{ object.category.get_name_display }}</a><span class="text-secondary fs-12"> / </span><a href="" class="fs-12">{{ object.subcategory }}</a>
                                     </div>
-                                    <div class="fw-5 fs-14 mb-2">Good until <span class="text-secondary fw-4">{{ object.get_first_active.end_date }}</span></div>
-                                    <a class="btn btn-primary-inverted btn-block" href="{{ object.get_absolute_url }}">View Additional Deals ({{ object.offer.all.count}})</a>
+                                    <div class="fw-5 fs-14 mb-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mb-1 icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                                        <span class="text-secondary fw-4">{{ city }}, {{ state }}</span>
+                                    </div>
+
                                     <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
                                 </div>
                             </div>
-                            <div class="coupon-bottom-button-container">
-                                <a class="coupon-button">
-                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
-                                  <br>
-                                  <span class="fs-14 fw-5 text-primary">Save</span>
-                                </a>
-                                <button class="coupon-button" data-toggle="modal" data-target="#exampleModal">
-                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-print"><path class="secondary" d="M5 8h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5c0-1.1.9-2 2-2zm1 2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2H6z"/><path class="primary" d="M6 14h12v6a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-6zm0-6V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v4H6z"/></svg>
-                                  <br>
-                                  <span class="fs-14 fw-5 text-primary">Print</span>
-                                </button>
-                                <a class="coupon-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-external-window"><path class="primary" d="M12 8a1 1 0 0 1-1 1H5v10h10v-6a1 1 0 0 1 2 0v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9c0-1.1.9-2 2-2h6a1 1 0 0 1 1 1z"/><path class="secondary" d="M19 6.41L8.7 16.71a1 1 0 1 1-1.4-1.42L17.58 5H14a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V6.41z"/></svg>
-                                    <br>
-                                    <span class="fs-14 fw-5 text-primary">Share</span>
-                                </a>
-                            </div>
+
                         </div>
                     </div>
 

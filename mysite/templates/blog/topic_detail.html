@@ -5,9 +5,8 @@
 
 <div class="section-primary-sm mb-0">
     <div class="container ">
-        <h3 class="fs-18 fw-6 text-purple-400">TOPIC</h3>
-        <h1 class="fs-50 text-white fw-4 mb-2">{{ topic.title }}</h1>
-
+        <h3 class="mini-header">TOPIC</h3>
+        <h1 class="jumbo-header text-white mb-2">{{ topic.title }}</h1>
     </div>
 </div>
 
@@ -17,7 +16,7 @@
 
 <div class="section-sm container">
     <div class="row">
-        <div class="col-8">
+        <div class="col-lg-8">
             <!-- <div class="card card-custom-faq">
                 <div class="card-header">
                     <h3 class="card-title fs-24">{{ topic.title }}</h3>
@@ -54,12 +53,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="card shadow-2 stripe-primary">
+
+        <!-- Secondary Helper Card -->
+        <div class="col-lg-4">
+            <div class="">
                 <div class="card-body">
-                    <h3 class="fs-18 fw-6 mb-1">Contact Support</h3>
+                    <h3 class="header mb-1">Contact Support</h3>
                     <p class="text-muted fs-14 mb-3">Please let us know how we can improve our support</p>
-                    <a href="{% url 'contact-page' %}" class="btn btn-primary-alt px-3 py-3 fs-12 text-uppercase">Send Us a Message</a>
+                    <a href="{% url 'contact-page' %}" class="btn btn-primary-alt px-3 py-2 fs-12 text-uppercase">Send Us a Message</a>
                     <hr>
                     <h3 class="card-title fs-18 fw-6">Popular Topics</h3>
                     <ul class="list-group list-unstyled">

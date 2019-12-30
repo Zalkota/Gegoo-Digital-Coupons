@@ -300,15 +300,36 @@ python manage.py generate_secret_key [--replace] [secretkey.txt]
 
 # Elastic search
 
-how to run elastic search Server
+Dependencies:
+Elastic 1.7.6
+Sudo apt install openjdk-8-jre-headless
+elasticsearch==5.5.3
+django-haystack==2.8.1
+
+Extract files:
+
+tar -xvf elasticsearch-5.6.16.tar.gz
+
+how to run elastic search Server:
 
     bin/elasticsearch
 
-https://knowpapa.com/haystack-elasticsearch/
+Download This:
+https://www.elastic.co/downloads/past-releases/elasticsearch-5-6-16
+
+https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04
+or
+https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+Run search_index --rebuild
+
+//old
 https://www.elastic.co/downloads/past-releases/elasticsearch-1-7-6
 
-
-search_index --rebuild
+You should cron up a ./manage.py update_index job at whatever interval works best for your site (using --age=<num_hours> reduces the number of things to update).
+Alternatively, if you have low traffic and/or your search engine can handle it, the RealtimeSignalProcessor automatically handles updates/deletes for you.
+https://django-haystack.readthedocs.io/en/v2.4.1/tutorial.html
+https://knowpapa.com/haystack-elasticsearch/
 
 # DUMP DATABASE #
 

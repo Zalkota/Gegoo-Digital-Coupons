@@ -630,6 +630,28 @@ hr.hr-2 {
         color: $color-main;
     }
 
+    /*  <**************************************************************************>
+        <*****                     List Tabs                                  *****>
+        <**************************************************************************>
+    */
+
+    .interactive-list  {
+
+        li {
+        padding-left: 1rem;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        color: $color-primary !important;
+
+        &:hover, &:active, &:focus{
+            background-color: $color-white;
+            border-right: 6px solid $color-primary;
+
+            }
+        }
+
+    }
 
     /*  <**************************************************************************>
         <*****                     Nav Tabs                                   *****>
@@ -764,3 +786,11 @@ hr.hr-2 {
           transform: rotate(45deg);
           -webkit-transform: rotate(45deg);
         }
+
+
+.subscription-card-left {
+    background-image: -webkit-linear-gradient(120deg, $color-purple-600, $color-primary);
+    background-image: -o-linear-gradient(120deg, $color-purple-600, $color-primary);
+    background-image: linear-gradient(120deg, $color-purple-600, $color-primary);
+    color: #fafafa;
+}

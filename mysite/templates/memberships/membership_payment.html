@@ -1,7 +1,6 @@
 {% extends 'base-alt.html' %}
-{% load static wagtailuserbar %}
-{% load wagtailcore_tags wagtailimages_tags %}
-{% block title %} Checkout for Monthly Subscription Plans | Video Courses{% endblock title %}
+{% load static %}
+{% block title %} Checkout for Monthly Subscription Plans {% endblock title %}
 
 
 {% block script %}
@@ -141,36 +140,35 @@ table.table thead {
 </style>
 
 
-  <div class="container mt-5" >
+<div class="container mt-5" >
     <div class="row">
-    <div class="col-lg-8 ">
-      <div class="px-0">
-        <h1><strong>Your Order</strong></h1>
-      </div>
-      <div class="py-3 px-0 mt-5">
-          <div class="row">
-            <div class="col-lg-8 <py></py>-4 px-0">
-              <p class="text-left ml-3"><span  style="font-size: 1.4em; margin-bottom: 2rem;">{{ selected_membership }} Subscription</span><br>
-              <div class="accordion" id="myAccordion">
-                  <div id="headingThree">
-                      <button type="button" class="text-left btn-information-dropdown collapsed" data-toggle="collapse" data-target="#collapseThree">view whats included <i class="fa fa-info-circle" aria-hidden="true"></i></button>
-                  </div>
-                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myAccordion">
-                      <div class="px-3">
-                          <p>{{ selected_membership.description }}</p>
+        <div class="col-lg-8 ">
+            <div class="px-0">
+            <h1><strong>Your Order</strong></h1>
+            </div>
+            <div class="py-3 px-0 mt-5">
+              <div class="row">
+                <div class="col-lg-8 <py></py>-4 px-0">
+                  <p class="text-left ml-3"><span  style="font-size: 1.4em; margin-bottom: 2rem;">{{ selected_membership }} Subscription</span><br>
+                  <div class="accordion" id="myAccordion">
+                      <div id="headingThree">
+                          <button type="button" class="text-left btn-information-dropdown collapsed" data-toggle="collapse" data-target="#collapseThree">view whats included <i class="fa fa-info-circle" aria-hidden="true"></i></button>
+                      </div>
+                      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myAccordion">
+                          <div class="px-3">
+                              <p>{{ selected_membership.description }}</p>
+                          </div>
                       </div>
                   </div>
-              </div>
-              </p>
+                </div>
+                <div class="col-lg-4 p-4 hide">
+                  <p class="text-center ml-3"><span  style="font-size: 1.4em; margin-bottom: 2rem;">${{ selected_membership.price }}/mo</span><br>
+                  </p>
+                </div>
             </div>
-            <div class="col-lg-4 p-4 hide">
-              <p class="text-center ml-3"><span  style="font-size: 1.4em; margin-bottom: 2rem;">${{ selected_membership.price }}/mo</span><br>
-              </p>
+            <hr class="hide">
             </div>
         </div>
-        <hr class="hide">
-      </div>
-    </div>
     <div class="offset-lg-1"></div>
     <div class="col-lg-3 p-0">
       <div class=" p-4 m-1" style="border: 1px solid #ccc;">
@@ -192,7 +190,7 @@ table.table thead {
             data-amount="{{ selected_membership.stripe_total }}"
             data-name="{{ SITE_NAME }}"
             data-description="{{ selected_membership }} Monthly Subscription"
-            data-image="{% static 'img/logo/logo.jpeg' %}"
+            data-image="{% static 'img/logo/logo2.png' %}"
             data-locale="auto"
             data-zip-code="true">PROCEED TO CHECKOUT
           </script>
@@ -201,7 +199,7 @@ table.table thead {
             // have more than 1 button of that class
             document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
           </script>
-          <button type="submit" class="btn btn-primary-alt">Order Now</button>
+          <button type="submit" class="btn btn-primary-alt btn-block">Order Now</button>
         </form>
       </div>
 
@@ -220,9 +218,8 @@ table.table thead {
         <span class="text-muted" style="font-size: 14px;">Your information is protected by 256-bit SSL encryption</span>
       </div>
     </div>
-  </div>
-
-
+    </div>
+</div>
   <div class="py-5 hide"></div>
   <div class="py-5 hide"></div>
   <div class="py-4"></div>

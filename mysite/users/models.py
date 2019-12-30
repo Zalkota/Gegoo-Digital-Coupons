@@ -22,7 +22,7 @@ class User(AbstractUser):
     #accepted_terms_of_service = models.Booleanfield()
 
     def __str__(self):
-        return self.name
+        return self.username
 
     def get_absolute_url(self):
         return reverse('users:detail', kwargs={'username': self.name})
@@ -46,7 +46,7 @@ class Profile(models.Model):
     created_time = models.DateTimeField(('created time'), editable=False, null=True, auto_now_add=True)
 
     def __str__(self):
-        return self.user.name
+        return self.user.username
 
 
 class userStripe(models.Model):
@@ -105,4 +105,4 @@ def profileCallback(sender, request, user, **kwargs):
 
 user_signed_up.connect(addressCallback)
 user_signed_up.connect(profileCallback)
-# user_signed_up.connect(stripeCallback)
+user_signed_up.connect(stripeCallback)

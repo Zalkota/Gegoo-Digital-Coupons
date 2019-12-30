@@ -1,150 +1,122 @@
-{% extends 'base-minimal.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
-{% load static wagtailuserbar %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load static %}
 
-{% block title %} Monthly Subscription Plans for Stemletics LLC | Video Courses{% endblock title %}
+
+{% block title %} Monthly Subscription Plans for {{ SITE_NAME }}{% endblock title %}
 {% block extra_head %}{% endblock extra_head %}
 <!-- TODO: Add a alert message if trailer is overdue -->
 {% block content %}
 
-<style>
-body {
-  background-color: #fafafa;
-}
-
-.special-card {
-width: 100%;
-border: 1px solid #f1f1f1;
-box-shadow: 0 6px 6px rgba(0,0,0,0.07), 0 6px 6px rgba(0,0,0,0.07);
-}
-
-.special-card h4 {
-  color: #4caf50;
-}
-
-.special-card p {
-  color: #4caf50;
-}
-
-.regular-card {
-  width: 100%;
-  border: 1px solid #f1f1f1;
-  box-shadow: none;
-}
-
-.regular-card h4 {
-  color: #3a75c1;
-}
-
-.regular-card p {
-  color: #3a75c1;
-}
 
 
-table.table tbody tr td,
-table.table thead tr th,
-table.table thead {
-  border-left: 1px solid #cecece;
-  border-right: 1px solid #cecece;
-  border-bottom: 1px solid #cecece;
-  border-top: 1px solid #cecece;
-}
-th {
-  font-size: 14px;
-}
-tr {
-   line-height: 50px;
-   min-height: 25px;
-   height: 25px;
-}
-
-.btn-action-alt {
-  width: 12rem;
-  height: 50px;
-}
-
-
-.btn-action {
-  width: 12rem;
-  height: 50px;
-}
-
-</style>
-
-
-<div class="section-card-parent">
-    <div class="container-fluid section-card-overlay-top" style="border-bottom: 1px solid #d4d4d4;">
-      <div class="pt-5 hide"></div>
+<div class="section">
+    <div class="container">
         <div class="container text-center mb-5">
-            <h1 class="text-alt mt-5 hide fw-5">Bring Customers to your Website</h1>
-            <h1 class="jumbo-dark mt-5 unhide fw-6" style="font-size: 1.75rem;">Bring Clients to your Website</h1>
-            <br>
-            <p class="lead">Websites are only as good as their <span class="fw-6">user experience</span>, <span class="fw-6">search engine optimization</span>, and <span class="fw-6">advertising algorithms</span></p>
+            <h1 class="jumbo-header text-alt mt-5 hide">
+                <span class="subscription-card-left px-3 text-white">Pays for itself</span> within the first month</h1>
+            <h3 class="fs-16 text-secondary hide">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt<br> ut labore et dolore magna aliqua.</h3>
         </div>
-        <div class="container text-center card-overlayed">
+        <div class="container text-center">
             <div class="row">
+                <div class="offset-lg-2"></div>
             {% for object in membership_list %}
-                <div class="col-lg-4 mb-5 pb-5  {% if object.position == 2 %} mt-1 {% else %} mt-4 {% endif %}">
-                    <div class="card card-effects shadow-4 mt-4 {% if object.position == 1 %} card-graphic-left {% elif object.position == 2 %} card-graphic-middle {% else %} card-graphic-right {% endif %}">
+            {% if object.position == 1 %}
+                <div class="col-lg-4 mb-5 pb-5 mt-1">
+                    <div class="card card-effects subscription-card-left shadow-4 mt-4">
                         <div class="card-body">
-                            <h4 class="py-3 text-white fs-28" style="font-weight: 700;">{{ object.membership_type }}</h4>
-                            <p class="pb-4" style="font-weight: 700;"><span class="text-white" style="font-size: 4rem; ">${{ object.price }}</span><span class="text-primary">/ </span><span class="text-primary">Month</span> <br>
+                            <h4 class="py-3 text-white fs-18 fw-6 mb-5">{{ object.get_membership_type_display }}</h4>
+                            <p class="pb-4 text-gray-300" style="font-weight: 700;">
+                                <span class="text-white" style="font-size: 4rem; ">${{ object.price }}</span>
+                                <span class="fs-14">per month</span><br>
                             </p>
-                            <div class="py-3"></div>
-                            <h5 class="py-2 text-dark mt-5">
-                              {{ object.description }}
-                            </h5>
                             <hr>
-                            <h4 class="py-3 text-dark" style="font-weight: 500;">Plan Benefits</h4>
-                            <p class="text-dark">
+                            <div class="ml-auto text-left pl-3">
                               {% for object in object.all_benefits %}
-                                  <span class="py-3">{{ object.name }}</span><br>
+                                  <span class="py-3 text-gray-300">
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mb-2 mr-2 icon-check"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                                      {{ object.name }}
+                                  </span>
+                                  <br>
                               {% endfor %}
-                            </p>
+                            </div>
                             <div class="py-3"></div>
                             {% if request.user.is_authenticated %}
                   						<form method="POST" action="{% url 'memberships:select' %}">
                   							{% csrf_token %}
                   								{% if object.membership_type != current_membership %}
-                                  	<button class="btn {% if object.special == True %} btn-action-alt {% else %} btn-action {% endif %}">Select</button>
+                                  	<button class="btn btn-purple-600-alt btn-block">Purchase</button>
                   								{% else %}
                                     <a style="padding-top: .85rem; padding-bottom: .85rem; border-radius: 5px;" class="btn btn-action-disabled">Purchased</a>
                   								{% endif %}
                   							<input type="hidden" name="membership_type" value="{{ object.membership_type }}">
                   						</form>
                             {% else %}
-                                    <a href="{% url 'account_login' %}" class="btn mb-4 {% if object.special == True %} btn-action-alt {% else %} btn-action {% endif %}">Select</a>
+                                    <a href="{% url 'account_login' %}" class="btn btn-purple-500-alt btn-block mb-4">Select</a>
                             {% endif %}
                         </div>
                     </div>
                 </div>
+
+                {% else %}
+                <div class="col-lg-4 mb-5 pb-5 mt-3">
+                    <div class="card card-effects shadow-0 mt-4">
+                        <div class="card-body">
+                            <h4 class="py-3 text-gray-800 fs-18 fw-6 mb-5">{{ object.get_membership_type_display }}</h4>
+                            <p class="pb-4 fw-6">
+                                <span class="text-gray-800" style="font-size: 3rem; ">${{ object.price }}</span>
+                                <span class="fs-14 text-gray-700">per month</span><br>
+                            </p>
+                            <hr>
+                            <div class="ml-auto text-left pl-3">
+                              {% for object in object.all_benefits %}
+                                  <span class="py-3 text-gray-800">
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mb-2 mr-2 icon-check"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                                      {{ object.name }}
+                                  </span>
+                                  <br>
+                              {% endfor %}
+                            </div>
+                            <div class="py-3"></div>
+                            {% if request.user.is_authenticated %}
+                                          <form method="POST" action="{% url 'memberships:select' %}">
+                                              {% csrf_token %}
+                                                  {% if object.membership_type != current_membership %}
+                                      <button class="btn btn-gray-800-alt btn-block">Purchase</button>
+                                                  {% else %}
+                                    <a style="padding-top: .85rem; padding-bottom: .85rem; border-radius: 5px;" class="btn btn-action-disabled">Purchased</a>
+                                                  {% endif %}
+                                              <input type="hidden" name="membership_type" value="{{ object.membership_type }}">
+                                          </form>
+                            {% else %}
+                                    <a href="{% url 'account_login' %}" class="btn btn-gray-800-alt btn-block mb-4">Select</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
               {% endfor %}
+              <div class="offset-lg-2"></div>
             </div>
-            <p class="text-muted " style="font-size: 14px;">Your membership will renew automatically every month. You may cancel your membership at any time from your member dashboard.</p>
-        </div>
-    </div>
-    <div class="container-fluid section-card-overlay-bottom">
-      <div class="container text-center">
-          <div class="py-5"></div><div class="py-3"></div> <div class="py-5"></div><div class="py-5"></div><div class="py-5 "></div>
-          </div>
+            <!-- <p class="text-muted " style="font-size: 14px;">Your membership will renew automatically every month. You may cancel your membership at any time from your member dashboard.</p> -->
         </div>
     </div>
 </div>
+<!--
 <section class="section-light-md ">
   <div class="container text-center my-5">
       <h2 class="fs-36 fw-6 mt-5 mb-4">Web Application Development</h2>
       <p class="mb-4">Web Application projects come in all shapes and sizes, <br>which means that projects are billed at an hourly rate of $75/hr.</p>
       <div class="text-center">
-        <a class="btn btn-primary-round px-5" role="button" href="{% slugurl 'contact' %}">Schedule a meeting</a>
+        <a class="btn btn-primary-round px-5" role="button" href="{% url 'contact-page' %}">Schedule a meeting</a>
         <br><br><span class="text-muted fs-16"></span>
       </div>
   </div>
-</section>
+</section> -->
 
-<section class="section-alt-sm shadow-2">
+<section class="section-primary-sm subscription-card-left shadow-2">
   <div class="text-center px-3" id="faq">
-    <h2 class="fs-50 fw-7 text-light" style="font-size: 36px;"><strong>Join hundreds of business owners</strong></h2>
+    <h3 class="jumbo-header fw-7 text-gray-200">Join hundreds of business owners</h3>
   </div>
 </section>
 
@@ -152,7 +124,8 @@ tr {
   <div class="py-5"></div>
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
-            <h2 class="text-dark py-5 text-center" style="font-size: 36px"><strong>Frequently Asked Questions</strong></h2>
+            <h2 class="text-dark pt-5 text-center" style="font-size: 36px"><strong>Frequently Asked Questions</strong></h2>
+              <div class="hr-primary-sm mr-auto ml-auto mt-4"></div>
             <div class="text-left">
                 <h3 class="pt-5 pb-2">
                     Will I have a say in the graphic design process?
@@ -195,15 +168,23 @@ tr {
                 </p>
             </div>
         </div>
-        <div class="col-lg-8 offset-lg-2 py-5 mt-5 text-center">
-            <h2 class="text-dark" style="font-size: 36px"><strong>Need help with your project?</strong></h2>
-            <div class="hide">
-              <a class="btn btn-success-round px-5 mt-5 mx-2" role="button" href="{% slugurl 'contact' %}">Schedule Consultation</a>
-            </div>
-            <div class="unhide">
-              <a class="btn btn-success-round  mt-5 mx-2" role="button" href="{% slugurl 'contact' %}">Schedule Consultation</a>
+        <div class="col-lg-8 offset-lg-2 py-5 my-5 text-center">
+            <div class="bordered p-4">
+              <div class="row justify-content-between align-items-center text-center text-md-left">
+                <div class="col-md-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12 ml-4 icon-chat-group"><path class="fill-gray-400" d="M20.3 12.04l1.01 3a1 1 0 0 1-1.26 1.27l-3.01-1a7 7 0 1 1 3.27-3.27zM11 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path class="secondary" d="M15.88 17.8a7 7 0 0 1-8.92 2.5l-3 1.01a1 1 0 0 1-1.27-1.26l1-3.01A6.97 6.97 0 0 1 5 9.1a9 9 0 0 0 10.88 8.7z"/></svg>
+                </div>
+                <div class="col-md-6">
+                  <h3 class="mb-1">Get in touch with us.</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="col-md-4 text-lg-right">
+                  <a href="" class="btn btn-primary-alt px-5">Contact Us</a>
+                </div>
+              </div>
             </div>
         </div>
+
     </div>
 </div>
 <div class="body-light"></div>

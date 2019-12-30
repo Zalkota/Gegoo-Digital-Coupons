@@ -1,0 +1,5 @@
+@each $color-alerts, $value in $colors-alerts {
+  .border-#{$color-alerts} {
+    border: 1px solid $value;
+  }
+}

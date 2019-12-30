@@ -1,7 +1,6 @@
 {% extends 'base-alt.html' %}
-{% load static wagtailuserbar %}
-{% load wagtailcore_tags wagtailimages_tags %}
-{% block title %} Payment Successful | Thank you | Stemletics LLC{% endblock title %}
+{% load static %}
+{% block title %} Payment Successful | Thank you | {{ SITE_NAME }}{% endblock title %}
 
 {% block content %}
 <div class="container mobile-margin" style="height: 100vh; min-height: 850px;">
@@ -9,7 +8,7 @@
       <div class="card-body p-5">
         <div class="card-title">
           <h1><strong>Transaction Complete</strong><span class="float-right"><img src="{% static 'img/undraw_check.svg' %}" width=" 100px;" alt=""></span></h1>
-          <h5>Order Number: {{ transaction.order_id }}</h5>
+          <h5>Order Number: {{ transaction.id }}</h5>
           <hr>
         </div>
 
@@ -41,7 +40,7 @@
 
       <div class="card-footer">
         <p class="text-muted">Thank you for choosing Mod Technologies for your Website Services. We pride ourselves in exceptional services and high customer satisifaction.
-          If you have any questions or concerns please feel free to contact Dominic Mazzola directly by clicking <a href="{% slugurl 'contact-us' %}">here</a>.</p>
+          If you have any questions or concerns please feel free to contact Dominic Mazzola directly by clicking <a href="{% url 'contact-page' %}">here</a>.</p>
 
       </div>
     </div>
@@ -53,7 +52,6 @@
     <h3>What's next?</h3>
     <p class=" fs-16">Sit back, relax, and let the customers flow in! <br>
       If your assitance is needed, you will be contacted via phone or email.</p>
-      <a class="btn btn-xl btn-success-round " role="button" href="{% url 'userPage' %}">Go To Profile</a>
   </div>
 </div>
 {% endblock content %}

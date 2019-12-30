@@ -8,7 +8,7 @@ from portal.models import Offer
 class OfferIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(
     document=True, use_template=True,
-    template_name='/home/dominic/Desktop/projects/estore/mysite/templates/search/item_text.txt')
+    template_name='/home/dom/Desktop/projects/estore/mysite/templates/search/item_text.txt')
 
     title = indexes.EdgeNgramField(model_attr='title')
     description = indexes.EdgeNgramField(model_attr="description", null=True)

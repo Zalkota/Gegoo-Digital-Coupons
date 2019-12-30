@@ -1,3 +1,7 @@
+# <**************************************************************************>
+# <*****                         IMPORTS                                *****>
+# <**************************************************************************>
+
 from django.db import models
 from django.db.models.signals import post_save
 from django.conf import settings
@@ -20,7 +24,6 @@ import random
 import string
 
 # Locations
-
 from cities_light.models import City, Region
 
 # GEODJANGO
@@ -30,8 +33,15 @@ from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
 
-# Cities
+# <**************************************************************************>
+# <*****                         CHOICE LISTS                          *****>
+# <**************************************************************************>
 
+PAYMENT_OPTION = (
+    ('ST', 'Stripe Payment'),
+    ('CA', 'Cash Payment'),
+    ('OT', 'Other Method')
+)
 
 PROMOTION_CHOICES = (
     ('bg-primary', 'primary'),
@@ -45,8 +55,14 @@ CATEGORY_CHOICES = (
     ('HOME', 'Home Improvement'),
 )
 
+# <**************************************************************************>
+# <*****                         MISC FUNCTIONS                         *****>
+# <**************************************************************************>
 
-def random_string_generator(size=10, chars=string.digits):
+def random_string_generator(size=7, chars=string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
+def random_coupon_generator(size=4, chars=string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 
@@ -58,6 +74,9 @@ def unique_merchant_id_generator():
         return unique_merchant_id_generator(instance)
     return new_ref_code
 
+def unique_coupon_generator():
+    new_coupon_code = random_coupon_generator()
+    return new_coupon_code
 
 
 # Image Upload Create upload to directory
@@ -71,11 +90,61 @@ def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return 'user_{0}/{1}'.format(instance.job.id, filename)
 
+
+def setMerchantRefCode(sender, created, instance, **kwargs):
+    merchant = instance
+    #print(merchant.ref_code)
+    if merchant.ref_code == None:
+        try:
+            merchant.ref_code = unique_merchant_id_generator()
+            merchant.save()
+        except:
+            print('ERROR REF CODE')
+
+def setCouponCode(sender, created, instance, **kwargs):
+    merchant = instance
+    #print(merchant.ref_code)
+    if merchant.code_coupon == None:
+        try:
+            coupon_code = str(unique_coupon_generator())
+            designation = 'GEGOO'
+            code_coupon = designation + coupon_code
+            merchant.code_coupon = code_coupon
+            merchant.save()
+        except:
+            print('ERROR COUPON CODE')
+
+
+def CalculateLocation(sender, created, instance, **kwargs):
+    merchant = instance
+    #print(merchant.location)
+    if merchant.location == None:
+        try:
+            longitude = merchant.longitude
+            latitude = merchant.latitude
+
+            location = fromstr(
+                f'POINT({longitude} {latitude})', srid=4326
+            )
+            merchant.location = location
+            merchant.save()
+
+        except KeyError:
+            pass
+
+# <**************************************************************************>
+# <*****                         MODELS                                 *****>
+# <**************************************************************************>
+
+
 class Images(models.Model):
     title = models.CharField(max_length=255, blank=True)
     file = models.FileField(upload_to='photos/', validators=[FileExtensionValidator(['jpg', 'png', 'jpeg'])], help_text="Image must be a .PNG or .JPG")
     uploaded_at = models.DateTimeField(auto_now_add=True)
     main_photo = models.BooleanField()
+
+    class Meta:
+        verbose_name_plural = 'Images'
 
     def __str__(self):
         return '%s (%s)' % (self.file, self.uploaded_at)
@@ -117,7 +186,6 @@ class Tag(models.Model):
         ordering = ['-name']
 
 
-
 class About(models.Model):
     header = models.TextField()
     subheader = models.TextField()
@@ -131,36 +199,11 @@ class About(models.Model):
 
 
 
-def setMerchantRefCode(sender, created, instance, **kwargs):
-    merchant = instance
-    #print(merchant.ref_code)
-    if merchant.ref_code == None:
-        print('ref_code == None')
-        try:
-            merchant.ref_code = unique_merchant_id_generator()
-            merchant.save()
-        except:
-            print('ERROR REF CODE')
-
-def CalculateLocation(sender, created, instance, **kwargs):
-    merchant = instance
-    #print(merchant.location)
-    if merchant.location == None:
-        try:
-            longitude = merchant.longitude
-            latitude = merchant.latitude
-
-            location = fromstr(
-                f'POINT({longitude} {latitude})', srid=4326
-            )
-            merchant.location = location
-            merchant.save()
-
-        except KeyError:
-            pass
-
 
 class Merchant(models.Model):
+    ref_code = models.AutoField(primary_key=True)
+    end_date = models.DateField(null=True)
+    active = models.BooleanField(default=False)
     business_name = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='merchant-logos/', null=True)
     # banner = models.ImageField(upload_to='merchant-banners/', null=True)
@@ -169,10 +212,10 @@ class Merchant(models.Model):
     subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, null=True, related_name='subcategory')
     downloadable_content_url =  models.CharField(max_length=500, blank=True, null=True, help_text="Link to AWS download url goes here")
     downloadable_content_title =  models.CharField(max_length=500, blank=True, null=True, help_text="Examples: menu, brochure, etc.")
-    website_url = models.CharField(max_length=500)
-    facebook_url = models.CharField(max_length=500)
+    website_url = models.CharField(max_length=500, blank=True)
+    facebook_url = models.CharField(max_length=500, blank=True)
     about = models.ForeignKey(About, related_name='about', on_delete=models.CASCADE, blank=True, null=True)
-    ref_code = models.CharField(max_length=20, blank=True, null=True, editable=False)
+    code_coupon = models.CharField(max_length=40, blank=True, null=True, help_text="NOTE: Leave blank and a GEGOO coupon code will be generated")
     promotional_video_file_name = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
     promotional_video_thumbnail_name = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
     #Location
@@ -201,7 +244,8 @@ class Merchant(models.Model):
     def __str__(self):
         return '%s located in %s' % (self.business_name, self.city)
 
-post_save.connect(setMerchantRefCode, sender=Merchant)
+# post_save.connect(setMerchantRefCode, sender=Merchant)
+post_save.connect(setCouponCode, sender=Merchant)
 post_save.connect(CalculateLocation, sender=Merchant)
 
     #

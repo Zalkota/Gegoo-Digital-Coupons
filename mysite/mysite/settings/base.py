@@ -43,8 +43,7 @@ INSTALLED_APPS = [
     'users',
     'portal',
     'blog.apps.BlogConfig',
-    #'shoppingcart',
-    #'memberships',
+    'memberships',
     #'blog',
 
     #Payment

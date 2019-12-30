@@ -7,7 +7,6 @@ from .views import (
     contactLandingPage,
     ContactFormView,
     components,
-
 )
 from .views import set_location_cookies
 from search import views as search_views
@@ -33,11 +32,13 @@ urlpatterns = [
     #Authentication
     url(r'^accounts/', include('allauth.urls')),
     #Portal
-    url(r'^coupons/', include(('portal.urls', 'portal'), namespace='portal')),
-
+    url(r'^services/', include(('portal.urls', 'portal'), namespace='portal')),
+    #Location
     url(r'^', include(('location.urls', 'location'), namespace='location')),
-
-
+    #Portal
+    url(r'^membership', include(('memberships.urls', 'memberships'), namespace='memberships')),
+    #FAQ
+    path('questions/', include('blog.urls')),
     #users
     url(r'', include(('users.urls', 'users'), namespace='users')),
 
@@ -46,7 +47,7 @@ urlpatterns = [
     path('about/', ContactFormView.as_view(), name='about-page'),
     path('thank-you/', contactLandingPage, name='contact-landing-page'),
     #path('<slug>/', PageDetailView.as_view(), name='page-detail'),
-
+    #FlatPages
     path('pages', include('django.contrib.flatpages.urls')),
 
     #Search
@@ -62,8 +63,6 @@ urlpatterns = [
     #Ckeditor
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 
-    #FAQ
-    path('questions/', include('blog.urls')),
 
 ]
 

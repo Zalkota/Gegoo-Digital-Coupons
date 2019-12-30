@@ -75,7 +75,6 @@ class MerchantDetailView(View):
 			messages.info(self.request, "Error contact admin")
 			return redirect("home-page")
 
-
     #def post(self, *args, **kwargs):
 
     #return redirect("/payment/stripe/")
