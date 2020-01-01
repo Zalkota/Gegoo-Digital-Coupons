@@ -29,6 +29,7 @@
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: left;
+    height: 100%;
 
 
 
@@ -41,6 +42,15 @@
     .flex-box {
         flex-grow: 1;
         align-self: center;
+        width: 100%;
+        flex-basis: 74%;
+    }
+
+    .flex-footer {
+        flex-grow: 1;
+        align-self: center;
+        width: 100%;
+        flex-basis: 26%;
     }
 }
 

@@ -831,16 +831,16 @@ a:hover {
   text-shadow: 1px 1px 3px #212121; }
 
 .border-radius {
-  border-radius: 0.1rem; }
+  border-radius: 0.1rem !important; }
 
 .border-radius-100 {
-  border-radius: 0.25rem; }
+  border-radius: 0.25rem !important; }
 
 .border-radius-200 {
-  border-radius: 0.5rem; }
+  border-radius: 0.5rem !important; }
 
 .border-radius-300 {
-  border-radius: 1.1rem; }
+  border-radius: 1.1rem !important; }
 
 .color-gray-100 {
   color: #F7FAFC; }
@@ -8722,7 +8722,7 @@ hr.hr-2 {
 
 @media screen and (min-width: 992px) {
   .star-yellow {
-    color: #f3c840; }
+    color: #FFD700; }
   .service-spacer {
     padding-bottom: 6rem; } }
 
@@ -10744,17 +10744,15 @@ hr.hr-2 {
   /* Add a mouse pointer on hover */ }
 
 .merchant-button {
-  border-top: 1px solid #E2E8F0;
-  border-right: 1px solid #d1d1d1;
   padding: .5rem 0.25rem;
   flex-grow: 1;
   align-self: auto;
   text-align: center;
   font-weight: 600;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 5px solid #fff;
-  color: #2D3748; }
+  padding-top: 0.5rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid #d7d7d7;
+  color: #A0AEC0; }
   .merchant-button:hover, .merchant-button:active, .merchant-button:focus, .merchant-button:visited {
     color: #7505AB;
     border-bottom: 5px solid #7505AB; }
@@ -11104,14 +11102,22 @@ hr.hr-2 {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: left; }
+  justify-content: left;
+  height: 100%; }
   .flex-container-vertical .flex-icon {
     flex-grow: 1;
     align-self: left;
     flex-basis: 3%; }
   .flex-container-vertical .flex-box {
     flex-grow: 1;
-    align-self: center; }
+    align-self: center;
+    width: 100%;
+    flex-basis: 74%; }
+  .flex-container-vertical .flex-footer {
+    flex-grow: 1;
+    align-self: center;
+    width: 100%;
+    flex-basis: 26%; }
 
 .vertical-container {
   display: flex;

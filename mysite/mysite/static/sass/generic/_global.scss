@@ -254,7 +254,7 @@ hr.hr-2 {
   @media screen and (min-width: 992px) {
 
     .star-yellow {
-      color: #f3c840;
+      color: #FFD700;
     }
     .service-spacer {
        padding-bottom: 6rem;
@@ -725,18 +725,15 @@ hr.hr-2 {
         }
 
         .merchant-button {
-            border-top: 1px solid $color-muted;
-            border-right: 1px solid #d1d1d1;
             padding: .5rem 0.25rem;
             flex-grow: 1;
             align-self: auto;
             text-align: center;
             font-weight: 600;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-
-            border-bottom: 5px solid $color-white;
-            color: $color-black;
+            padding-top: 0.5rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px solid #d7d7d7;
+            color: $color-gray-500;
 
             &:hover,&:active,&:focus,&:visited {
               color: $color-primary;

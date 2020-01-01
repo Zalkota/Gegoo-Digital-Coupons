@@ -1,0 +1,43 @@
+{% load static %}
+
+{% block component %}
+
+<!-- Print Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header justify-content-end">
+          <h3 class="text-primary">Coupon</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-close-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="p-3" style="border-color: #ccc; border-width:5px; border-style:dashed;">
+              <div class="row">
+                  <div class="col-6">
+                      <img class="card-img-top" src="media/{{ object.logo }}" alt="User Uploaded images">
+                  </div>
+                  <div class="col-6">
+                      <img class="img-fluid" src="{% static 'img/logo/logo3.jpg' %}" alt="GEGOO LOGO">
+                  </div>
+              </div>
+              <h4 class="fs-14 fw-6 text-primary">{{ object.business_name }} in {{ city }}</h4>
+              <h3>{{ object.get_first_active.title }}</h3>
+            <p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias alias ipsam minima, dolore! Modi enim porro neque quaerat blanditiis. Ipsa aliquam quam maxime rerum eum accusamus nulla, molestiae soluta repellendus!</p>
+            {{ object.get_first_active.title }}
+            <div class="bg-gray-30 text-primary text-uppercase p-3">
+                <span class="fw-6 fs-24">Code: {{ object.get_first_active.code_coupon }}</span>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary-alt btn-block mt-0">Save It</button>
+        <button type="button" class="btn btn-primary-alt btn-block mt-0">Print It</button>
+        <button type="button" class="btn btn-alternate-alt btn-block mt-0">Share It</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+{% endblock component %}
