@@ -10,7 +10,7 @@
 
 
 
-<div class="section">
+<div class="section-sm">
     <div class="container">
         <div class="container text-center mb-5">
             <h1 class="jumbo-header text-alt mt-5 hide">
@@ -23,9 +23,9 @@
             {% for object in membership_list %}
             {% if object.position == 1 %}
                 <div class="col-lg-4 mb-5 pb-5 mt-1">
-                    <div class="card card-effects subscription-card-left shadow-4 mt-4">
+                    <div class="card card-effects subscription-card-left shadow-2 mt-4">
                         <div class="card-body">
-                            <h4 class="py-3 text-white fs-18 fw-6 mb-5">{{ object.get_membership_type_display }}</h4>
+                            <h4 class="py-3 text-white header fw-6 mb-5">{{ object.get_membership_type_display }}</h4>
                             <p class="pb-4 text-gray-300" style="font-weight: 700;">
                                 <span class="text-white" style="font-size: 4rem; ">${{ object.price }}</span>
                                 <span class="fs-14">per month</span><br>
@@ -62,7 +62,7 @@
                 <div class="col-lg-4 mb-5 pb-5 mt-3">
                     <div class="card card-effects shadow-0 mt-4">
                         <div class="card-body">
-                            <h4 class="py-3 text-gray-800 fs-18 fw-6 mb-5">{{ object.get_membership_type_display }}</h4>
+                            <h4 class="py-3 text-gray-800 header mb-5">{{ object.get_membership_type_display }}</h4>
                             <p class="pb-4 fw-6">
                                 <span class="text-gray-800" style="font-size: 3rem; ">${{ object.price }}</span>
                                 <span class="fs-14 text-gray-700">per month</span><br>
@@ -71,7 +71,7 @@
                             <div class="ml-auto text-left pl-3">
                               {% for object in object.all_benefits %}
                                   <span class="py-3 text-gray-800">
-                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mb-2 mr-2 icon-check"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mb-2 mr-2 icon-check"><circle cx="12" cy="12" r="10" class="primary"/><path class="fill-gray-800" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
                                       {{ object.name }}
                                   </span>
                                   <br>
@@ -114,60 +114,155 @@
   </div>
 </section> -->
 
+<section class="section-white-md border-top">
+    <div class="container">
+        <div class="row">
+            <div class="offset-lg-2"></div>
+            <div class="col-lg-4">
+                <ul class="list-unstyled subscription-chart my-3">
+                    <li><h3 class="header">Features
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                        </h3>
+                    </li>
+                    <li>Cost
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Billing Period
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Unlimited Services
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Upload Promotion Video
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Customer Reviews
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Multiple Locations
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Multiple Locations
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Multiple Locations
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <div class="flex-container">
+                    <div class="subscription-chart-right flex-box gegoo-gradient mx-2 ">
+                        <ul class="list-unstyled my-3">
+                            <li class="fw-6" >Standard</li>
+                            <li class="fw-6" >$50</li>
+                            <li class="fw-6" >30 Days</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                        </ul>
+                    </div>
+                    <div class="list-unstyled subscription-chart-right flex-box mx-2 " style="background-color: rgb(204,204,204, 0.24);">
+                        <ul class="list-unstyled my-3">
+                            <li class="text-dark fw-6">Premium</li>
+                            <li class="text-dark fw-6">$50</li>
+                            <li class="text-dark fw-6">30 Days</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-900" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-900" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-900" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-900" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-900" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-900" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="offset-lg-2"></div>
+        </div>
+    </div>
+
+</section>
+
 <section class="section-primary-sm subscription-card-left shadow-2">
   <div class="text-center px-3" id="faq">
     <h3 class="jumbo-header fw-7 text-gray-200">Join hundreds of business owners</h3>
   </div>
 </section>
 
-<div class="container">
-  <div class="py-5"></div>
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <h2 class="text-dark pt-5 text-center" style="font-size: 36px"><strong>Frequently Asked Questions</strong></h2>
-              <div class="hr-primary-sm mr-auto ml-auto mt-4"></div>
-            <div class="text-left">
-                <h3 class="pt-5 pb-2">
-                    Will I have a say in the graphic design process?
-                </h3>
-                <p class="lead text-muted">
-                  Of course, our team of trained frontend and backend developers will work with you every step of the way to ensure that you are happy with your design.
-                  We will have frequent in person and over the phone meetings to share the progress of our work as each milestone progresses before the final design is completed.
-                </p>
-                <h3 class="pt-5 pb-2">
-                    What Payment Options to do you offer?
-                </h3>
-                <p class="text-muted lead">
-                  Our websites offer three methods of payment: <a target="_blank" class="text-primary" href="https://stripe.com/">Stripe</a>, <a target="_blank" class="text-primary" href="paypal.com">Paypal</a>, and <a target="_blank" class="text-primary" href="https://bitpay.com/">Bitpay</a>.
-                  These providers are industry leading in security, reliablity, and support.
-                  These providers handle all of the credit card and transaction information on the frontend and encrypt the credit card information as soon as it is submitted.
-                  This maximizes security for your customers and your business.
-                </p>
-                <h3 class="pt-5 pb-2">
-                    Where do you host your servers?
-                </h3>
-                <p class="text-muted lead">
-                  Your website will be hosted on Amazon Web Services, an industry leader in this space, that can easily scale to thousands of users for affordable prices if necessary.
-                </p>
-                <h3 class="pt-5 pb-2">
-                    Do you accept every client?
-                </h3>
-                <p class="text-muted lead">
-                  Absolutely not, there are times that a client is simply not a good fit for our business model. Mod Technology creates extensive and high quality frontend and backend systems for
-                  medium sized companies that are willing to put in the teamwork and effort to help us help them.
-                  Creating a customer driven, value add website requires a lot of input, information, and product knowledge from the client.
-                </p>
+<section class="section-sm container" >
+    <div class="row my-5">
+        <div class="col-xl-5 px-0 img-shadow-2">
+          <img class="img-fluid" src="{% static 'img/Selection_030.png' %}" width="100%" height="100%" alt="Injection mold machine">
+        </div>
+        <div class="offset-lg-1"></div>
+        <div class="col-xl-6 vertical-container">
+            <div class="container vertical-alignment ml-auto py-5">
+              <h3 class="section-header">Get Noticed</h3>
+              <div class="hr-primary-sm mt-3"></div>
+              <p class="pb-4 pt-3 mb-0" style="max-width: 650px;">Started by Dan Brown in 1999, ATP is a injection molding company that specializes in low to high production and test specimen applications.
+                 Our 40+ years of experience in injection mold manufacturing allows ATP to focus on what we excel at;
+                product quality, low cost pricing strategies, decreasing lead times, and lean manufacturing.</p>
+            </div>
+        </div>
+    </div>
 
-                <h3 class="pt-5 pb-2">
-                    Do you use WordPress?
-                </h3>
-                <p class="text-muted lead">
-                  No, we use a high-end web application framework called Django - which runs on Python 3.0. Django was created in 2005 by the Django Software Foundation.
-                  Django is extremely scalable and is used by Instragram.com, BitBucket.com, Curse.com, and many other leading technology companies.
-                  With the correct configuration and support Django can handle over 50,000 users a day, is extremely secure, and ridiculously fast. <br>For more information visit <a target="_blank" class="text-primary" href="https://www.djangoproject.com/">djangoproject.com</a>
+    <div class="row my-5">
+        <div class="col-xl-5 px-0 img-shadow-2">
+            <img class="img-fluid" src="{% static 'img/Selection_028.png' %}" width="100%" height="100%" alt="Injection mold tooling" >
+        </div>
+        <div class="offset-lg-1"></div>
+        <div class="col-xl-6 vertical-container">
+            <div class="container vertical-alignment ml-auto py-5">
+                <h3 class="section-header">High Visibility</h3>
+                <div class="hr-primary-sm mt-3"></div>
+                <p class="pb-4 pt-3 mb-0" style="max-width: 650px;">Looking for common plaque molds? We have 30+ common plaque molds in our inventory at our facility in Livonia, MI.
+                  For a complete list of our common mold inventory click the link below or visit our 'plaques' page.
                 </p>
             </div>
         </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-xl-5 px-0 img-shadow-2">
+            <img class="img-fluid" src="{% static 'img/Selection_029.png' %}" width="100%" height="100%" alt="Picture of injectin molding machine located at ATP" >
+        </div>
+        <div class="offset-lg-1"></div>
+        <div class="col-xl-6 vertical-container">
+            <div class="container vertical-alignment mr-auto ml-auto py-5">
+                <h3 class="section-header">Unique Customer Experience</h3>
+                <div class="hr-primary-sm mt-3"></div>
+                <p class="pb-4 pt-3 mb-0" style="max-width: 650px;">Being in the injection mold industry for over 40 years has enabled our company to
+                   provide expert knowledge and experience in building parts for automotive and consumer businesses across North and South America.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ****** End Picture Gallery ******* -->
+
+<div class="container">
+    <div class="row">
         <div class="col-lg-8 offset-lg-2 py-5 my-5 text-center">
             <div class="bordered p-4">
               <div class="row justify-content-between align-items-center text-center text-md-left">
@@ -184,7 +279,6 @@
               </div>
             </div>
         </div>
-
     </div>
 </div>
 <div class="body-light"></div>

@@ -121,11 +121,14 @@ body {
     color: #2D3748; }
   body a {
     color: #7505AB; }
+  body .section-header {
+    font-size: 24px;
+    font-weight: 600; }
   body .header {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600; }
   body .subheader {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600; }
   body .jumbo-header {
     font-size: 48px;
@@ -1243,7 +1246,7 @@ a:hover {
 body {
   margin: 0;
   font-family: Nunito, sans-serif !important;
-  background-color: #f5f5f5 !important; }
+  background-color: #F8F9FA !important; }
   body h1 h2 h3 h4 h5 h6 {
     color: #1a1a1a; }
   body p {
@@ -8561,20 +8564,33 @@ button {
   border-radius: 2rem;
   display: inline-block;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   width: 100%;
   color: #2A4365;
-  padding: 1rem 0.5rem 1rem 0.5rem;
+  padding: .6rem 0.5rem .6rem 0.5rem;
   cursor: pointer;
-  background-color: #fafafa;
+  background-color: transparent;
   border: 1px solid #CBD5E0;
-  transition: transform 0.25s; }
+  transition: transform 0.25s;
+  box-shadow: 0; }
   .card-pill:hover, .card-pill:focus {
     box-shadow: 0;
     color: #7505AB; }
-  .card-pill .active {
-    background-color: #7505AB;
-    color: white; }
+
+.card-pill-active {
+  text-align: center;
+  border-radius: 2rem;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  width: 100%;
+  padding: .6rem 0.5rem .6rem 0.5rem;
+  cursor: pointer;
+  border: 1px solid #CBD5E0;
+  transition: transform 0.25s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0, 0, 0, 0.13);
+  background-color: white;
+  color: #7505AB; }
 
 .card-pill::before {
   border-radius: 2rem;
@@ -8599,6 +8615,24 @@ button {
 
 .border-info {
   border: 1px solid #63B3ED; }
+
+.subscription-chart li {
+  text-decoration: none;
+  color: #4A5568;
+  font-size: 20px;
+  padding-top: 1rem;
+  height: 54px; }
+
+.subscription-chart-right {
+  padding-left: 1rem;
+  padding-right: 1rem; }
+  .subscription-chart-right li {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    padding-top: 1rem;
+    text-align: center;
+    height: 54px; }
 
 hr.hr-2 {
   border-top: 2px solid #7505AB;
@@ -10863,6 +10897,11 @@ hr.hr-2 {
   background-image: linear-gradient(120deg, #805AD5, #7505AB);
   color: #fafafa; }
 
+.gegoo-gradient {
+  background-image: -webkit-linear-gradient(120deg, #805AD5, #7505AB);
+  background-image: -o-linear-gradient(120deg, #805AD5, #7505AB);
+  background-image: linear-gradient(120deg, #805AD5, #7505AB); }
+
 /*  <**************************************************************************>
     <*****                    Refactoring UI Icons                        *****>
     <**************************************************************************>
@@ -11125,6 +11164,9 @@ hr.hr-2 {
 .fill-blue-gray-1000 {
   fill: #102A43; }
 
+.fill-transparent {
+  fill: transparent; }
+
 .fa-facebook-square {
   color: #3b5998 !important; }
 
@@ -11159,6 +11201,19 @@ hr.hr-2 {
     flex-grow: 1;
     align-self: left;
     flex-basis: 97%; }
+
+.flex-container-vertical {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: left; }
+  .flex-container-vertical .flex-icon {
+    flex-grow: 1;
+    align-self: left;
+    flex-basis: 3%; }
+  .flex-container-vertical .flex-box {
+    flex-grow: 1;
+    align-self: center; }
 
 .vertical-container {
   display: flex;

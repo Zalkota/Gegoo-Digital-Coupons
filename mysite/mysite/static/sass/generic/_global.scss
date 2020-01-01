@@ -794,3 +794,9 @@ hr.hr-2 {
     background-image: linear-gradient(120deg, $color-purple-600, $color-primary);
     color: #fafafa;
 }
+
+.gegoo-gradient {
+    background-image: -webkit-linear-gradient(120deg, $color-purple-600, $color-primary);
+    background-image: -o-linear-gradient(120deg, $color-purple-600, $color-primary);
+    background-image: linear-gradient(120deg, $color-purple-600, $color-primary);
+}

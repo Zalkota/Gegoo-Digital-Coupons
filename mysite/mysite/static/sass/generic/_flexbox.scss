@@ -24,6 +24,27 @@
 }
 
 
+.flex-container-vertical {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: left;
+
+
+
+    .flex-icon {
+        flex-grow: 1;
+        align-self: left;
+        flex-basis: 3%;
+    }
+
+    .flex-box {
+        flex-grow: 1;
+        align-self: center;
+    }
+}
+
+
 // Vertical Alignement FlexBox
 
 .vertical-container {

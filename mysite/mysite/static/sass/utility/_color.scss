@@ -107,7 +107,7 @@ $color-alt-lighter: lighten( $color-alt, 25% );
 $color-alt-dark: darken( $color-alt, 10%);
 
 
-$color-text: $color-black;
+$color-text: $color-gray-800;
 $color-background: #FFF;
 $color-background-100: #f1f1f1;
 $color-background-200: #fafafa;
@@ -115,6 +115,7 @@ $color-background-300: #F6FAFD;
 $color-background-400: #fafbfc;
 $color-background-500: #f5f5f5;
 $color-background-600: #F1F3F6;
+$color-background-700: #F8F9FA;
 
 $color-main: #fafafa;
 

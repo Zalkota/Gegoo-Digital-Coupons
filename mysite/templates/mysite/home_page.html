@@ -10,6 +10,55 @@
 
 {% block content %}
 
+
+
+
+<section class="pt-5 pb-4 container">
+    <div class="flex-container">
+        <div class="flex-box mx-2">
+            <div class="card-pill-active">
+                All
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill">
+                Food
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill">
+                Travel
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill">
+                Barber
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill">
+                Salon
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill ">
+                Home
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill">
+                Landscaping
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill">
+                Tools
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <section class="hero container">
     <div class="text text-center" >
         <img class="img-fluid border-radius-100" style="width: 100%;" src="{% static 'img/headers/banner.jpg' %}" alt="User Uploaded images">
@@ -29,262 +78,48 @@
     </div>
 </section>
 
-<section class="section py-0" >
+<section class="section-sm">
     <div class="container">
-        <!-- <div class="row">
-
-            <div class="offset-lg-1"></div>
-
-            <div class="col-lg-2 mb-3 text-center">
-              <img class="card-img-top card-effects border-radius-200 shadow-1" style="width: 90%;" src="{% static 'img/food_ad.jpg' %}" alt="User Uploaded images">
-              <h6 class="img-secondary-text">Amazing offers on</h6>
-              <h3 class="img-header-text">Food</h3>
-            </div>
-
-            <div class="col-lg-2 mb-3 text-center">
-              <img class="card-img-top card-effects border-radius-200 shadow-1" style="width: 90%;" src="{% static 'img/travel_ad.jpg' %}" alt="User Uploaded images">
-              <h6 class="img-secondary-text">Don't book without us</h6>
-              <h3 class="img-header-text">Travel</h3>
-            </div>
-
-            <div class="col-lg-2 mb-3 text-center">
-              <img class="card-img-top card-effects border-radius-200 shadow-1" style="width: 90%;" src="{% static 'img/vehicle_ad.jpg' %}" alt="User Uploaded images">
-              <h6 class="img-secondary-text">Local dealerships</h6>
-              <h3 class="img-header-text">Vehicles</h3>
-            </div>
-
-            <div class="col-lg-2 mb-3 text-center">
-              <img class="card-img-top card-effects border-radius-200 shadow-1" style="width: 90%;" src="{% static 'img/home_improvement.jpg' %}" alt="User Uploaded images">
-              <h6 class="img-secondary-text">Deals for your home</h6>
-              <h3 class="img-header-text">Home Improvement</h3>
-            </div>
-
-            <div class="col-lg-2 mb-3 text-center">
-              <img class="card-img-top card-effects border-radius-200 shadow-1" style="width: 90%;" src="{% static 'img/travel_ad.jpg' %}" alt="User Uploaded images">
-              <h6 class="img-secondary-text">Don't book without us</h6>
-              <h3 class="img-header-text">Travel</h3>
-            </div>
-
-            <div class="offset-lg-1"></div>
-        </div> -->
-
-
-        <div class="py-3 hide"></div>
-        <div class="mt-3 unhide" id="default" >
-          <div class="tab-content" id="component-1">
-            <div class="tab-pane shadow-0 show active" style="background-color: transparent;" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
-              <div class="">
-                <div class="container">
-                  <div class="row">
-                    <div class="col px-0">
-                      <div class="owl-carousel" data-items="[6,5,4,3,2,1]" data-margin="10" data-dots="true" data-nav="true">
-                        <figure class="photo  px-1">
-                          <img class="border-radius-100" src="{% static 'img/food.svg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Local Restaurants</h6>
-                          <h3 class="img-header-text">Food</h3>
-                        </figure>
-                        <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/travel2.svg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Cheap Flights</h6>
-                          <h3 class="img-header-text">Travel</h3>
-                        </figure>
-                        <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/car.svg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Local dealerships</h6>
-                          <h3 class="img-header-text">Cars</h3>
-                        </figure>
-                        <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/apparel.svg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Popular brands</h6>
-                          <h3 class="img-header-text">Apparel</h3>
-                        </figure>
-                        <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/home.svg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Interior Design</h6>
-                          <h3 class="img-header-text">Home</h3>
-                        </figure>
-                        <figure class="photo px-1">
-                          <img class="border-radius-100" src="{% static 'img/tool.svg' %}" alt="Image">
-                          <h6 class="img-secondary-text">Tools & Accessories</h6>
-                          <h3 class="img-header-text">Tools</h3>
-                        </figure>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
-
-<!--
-            <div class="col-lg-3 mb-4">
-                <div class="card card-border shadow-2 mb-3">
-                    <div class="card-header">
-                        <div class="text-center">
-                            <div class="text-uppercase text-muted fw-5">Categories</div>
-                        </div>
-                    </div>
-                    <div class="card-body p-3 py-1 border-bottom" >
-                        <div class="row">
-                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
-                                <a href="/category/all/">
-                                    <div class="card-icon-circle">
-                                        <i class="fa fa-tags" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <span class="fs-12 fw-5 text-dark">All</span>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-lg-4" style="padding: 0.35rem; padding-right: 1rem;padding-left: 1rem;">
-                                <a href="/coupons/category/VEHICLES">
-                                    <div class="card-icon-circle">
-                                        <i class="fa fa-car" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <span class="fs-12 fw-5 text-dark">Vehicles</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
-                                <a href="#">
-                                    <div class="card-icon-circle">
-                                        <i class="fa fa-cutlery" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <span class="fs-12 fw-5 text-dark">Food</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
-                                <a href="#">
-                                    <div class="card-icon-circle">
-                                        <i class="fa fa-scissors" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <span class="fs-12 fw-5 text-dark">Beauty</span>
-                                    </div>
-                                </a>
-                            </div>
-
-
-                            <div class="col-lg-4" style="padding: 0.35rem; padding-right: 1rem;padding-left: 1rem;">
-                                <a href="#">
-                                    <div class="card-icon-circle">
-                                        <i class="fa fa-home" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <span class="fs-12 fw-5 text-dark">Home</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
-                                <a href="#">
-                                    <div class="card-icon-circle">
-                                        <i class="fa fa-bicycle" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <span class="fs-12 fw-5 text-dark">Outdoors</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
-                                <a href="#">
-                                    <div class="card-icon-circle">
-                                        <i class="fa fa-headphones" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <span class="fs-12 fw-5 text-dark">Electronics</span>
-                                    </div>
-                                </a>
-                            </div>
-
-
-                            <div class="col-lg-4" style="padding: 0.35rem; padding-right: 1rem;padding-left: 1rem;">
-                                <a href="#">
-                                    <div class="card-icon-circle">
-                                        <i class="fa fa-plane" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <span class="fs-12 fw-5 text-dark">Travel</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-4" style="padding: 0.35rem;padding-right: 1rem;padding-left: 1rem;">
-                                <a href="#">
-                                    <div class="card-icon-circle">
-                                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <span class="fs-12 fw-5 text-dark">Groceries</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-    </div>
-</section>
-
-<section class="pt-3 pb-5 container">
-    <h2 class="header fs-20">Filter By Category</h2>
-    <div class="flex-container">
-        <div class="flex-box mx-2">
-            <div class="card-pill shadow-1">
-                Food
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill shadow-1">
-                Travel
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill shadow-1">
-                Barber
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill shadow-1">
-                Salon
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill shadow-1">
-                Dealership
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill shadow-1">
-                Home
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill shadow-1">
-                Landscaping
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill shadow-1">
-                Tools
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section pt-0">
-    <div class="container">
-        <h3 class="fs-20 fw-6 text-dark mb-0 ml-2">Services in {{ city }}, {{ state }}
-        </h3>
+        <h3 class="section-header text-dark">Services in {{ city }}, {{ state }}</h3>
         <br>
         <div class="row">
+            <div class="col-lg-2">
+
+                <h3 class="subheader ml-3">Filter Options:</h3>
+                <ul class="list-unstyled ml-3 mr-3 fs-16">
+                    <li class="mb-1">Food
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
+                        </span>
+                    </li>
+                    <li class="mb-1">Travel
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
+                        </span>
+                    </li>
+                    <li class="mb-1">Barbershop
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
+                        </span>
+                    </li>
+                    <li class="mb-1">Salon
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
+                        </span>
+                    </li>
+                    <li class="mb-1">Home
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
+                        </span>
+                    </li>
+                    <li class="mb-1">Tools
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="offset-lg-1"></div>
             {% for object in address_qs %}
                 {% if object.get_first_active %}
                     <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >

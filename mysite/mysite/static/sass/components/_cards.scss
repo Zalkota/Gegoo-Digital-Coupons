@@ -242,24 +242,36 @@
     border-radius: 2rem;
     display: inline-block;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     width: 100%;
     color: $color-dark;
-    padding: 1rem 0.5rem 1rem 0.5rem;
+    padding: .6rem 0.5rem .6rem 0.5rem;
     cursor: pointer;
-    background-color: #fafafa;
+    background-color: transparent;
     border: 1px solid $color-gray-400;
     transition: transform 0.25s;
+    box-shadow: 0;
 
-    &:hover, &:focus{
+    &:hover, &:focus {
         box-shadow: 0;
         color: $color-primary;
         }
-        
-    .active {
-        background-color: $color-primary;
-        color: white;
-    }
+}
+
+.card-pill-active {
+    text-align: center;
+    border-radius: 2rem;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    width: 100%;
+    padding: .6rem 0.5rem .6rem 0.5rem;
+    cursor: pointer;
+    border: 1px solid $color-gray-400;
+    transition: transform 0.25s;
+    box-shadow: $box-shadow-1;
+    background-color: white;
+    color: $color-primary;
 }
 
 

@@ -1,0 +1,25 @@
+.subscription-chart {
+
+    li {
+        text-decoration: none;
+        color: $color-gray-700;
+        font-size: 20px;
+        padding-top: 1rem;
+        height: 54px;
+    }
+
+}
+
+.subscription-chart-right {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    li {
+        text-decoration: none;
+        color: $color-white;
+        font-size: 20px;
+        padding-top: 1rem;
+        text-align: center;
+        height: 54px;
+    }
+
+}
