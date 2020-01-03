@@ -4,8 +4,6 @@ from django.urls import path
 from django.contrib import admin
 from .views import (
     homeView,
-    contactLandingPage,
-    ContactFormView,
     components,
 )
 from .views import set_location_cookies
@@ -38,14 +36,12 @@ urlpatterns = [
     #Portal
     url(r'^membership', include(('memberships.urls', 'memberships'), namespace='memberships')),
     #FAQ
-    path('questions/', include('blog.urls')),
+    url(r'^support', include(('blog.urls', 'blog'), namespace='support')),
     #users
     url(r'', include(('users.urls', 'users'), namespace='users')),
 
     path('', homeView.as_view(), name='home-page'),
-    path('contact/', ContactFormView.as_view(), name='contact-page'),
-    path('about/', ContactFormView.as_view(), name='about-page'),
-    path('thank-you/', contactLandingPage, name='contact-landing-page'),
+
     #path('<slug>/', PageDetailView.as_view(), name='page-detail'),
     #FlatPages
     path('pages', include('django.contrib.flatpages.urls')),

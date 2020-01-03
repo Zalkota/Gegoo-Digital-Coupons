@@ -2922,7 +2922,7 @@ button {
 .btn-primary-inverted {
   background: transparent;
   color: #7505AB;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #7505AB;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -2941,7 +2941,7 @@ button {
 .btn-secondary-inverted {
   background: transparent;
   color: #718096;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #718096;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -2960,7 +2960,7 @@ button {
 .btn-alternate-inverted {
   background: transparent;
   color: #5b5b5b;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #5b5b5b;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -2979,7 +2979,7 @@ button {
 .btn-white-inverted {
   background: transparent;
   color: #fff;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #fff;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -2998,7 +2998,7 @@ button {
 .btn-gray-10-inverted {
   background: transparent;
   color: #f1f1f1;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #f1f1f1;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3017,7 +3017,7 @@ button {
 .btn-gray-20-inverted {
   background: transparent;
   color: #fafafa;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #fafafa;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3036,7 +3036,7 @@ button {
 .btn-gray-30-inverted {
   background: transparent;
   color: #ddd;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #ddd;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3055,7 +3055,7 @@ button {
 .btn-gray-40-inverted {
   background: transparent;
   color: #ccc;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #ccc;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3074,7 +3074,7 @@ button {
 .btn-gray-50-inverted {
   background: transparent;
   color: #fafbfc;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #fafbfc;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3093,7 +3093,7 @@ button {
 .btn-gray-60-inverted {
   background: transparent;
   color: #f5f5f5;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #f5f5f5;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3112,7 +3112,7 @@ button {
 .btn-gray-70-inverted {
   background: transparent;
   color: #F1F3F6;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #F1F3F6;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3131,7 +3131,7 @@ button {
 .btn-gray-100-inverted {
   background: transparent;
   color: #F7FAFC;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #F7FAFC;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3150,7 +3150,7 @@ button {
 .btn-gray-200-inverted {
   background: transparent;
   color: #EDF2F7;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #EDF2F7;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3188,7 +3188,7 @@ button {
 .btn-gray-400-inverted {
   background: transparent;
   color: #CBD5E0;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #CBD5E0;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3207,7 +3207,7 @@ button {
 .btn-gray-500-inverted {
   background: transparent;
   color: #A0AEC0;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #A0AEC0;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3226,7 +3226,7 @@ button {
 .btn-gray-600-inverted {
   background: transparent;
   color: #718096;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #718096;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3245,7 +3245,7 @@ button {
 .btn-gray-700-inverted {
   background: transparent;
   color: #4A5568;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #4A5568;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3264,7 +3264,7 @@ button {
 .btn-gray-800-inverted {
   background: transparent;
   color: #2D3748;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #2D3748;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3283,7 +3283,7 @@ button {
 .btn-gray-900-inverted {
   background: transparent;
   color: #1A202C;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #1A202C;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3302,7 +3302,7 @@ button {
 .btn-red-100-inverted {
   background: transparent;
   color: #FEB2B2;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #FEB2B2;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3321,7 +3321,7 @@ button {
 .btn-red-200-inverted {
   background: transparent;
   color: #FC8181;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #FC8181;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3340,7 +3340,7 @@ button {
 .btn-red-300-inverted {
   background: transparent;
   color: #FEB2B2;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #FEB2B2;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3359,7 +3359,7 @@ button {
 .btn-red-400-inverted {
   background: transparent;
   color: #FC8181;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #FC8181;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3378,7 +3378,7 @@ button {
 .btn-red-500-inverted {
   background: transparent;
   color: #F56565;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #F56565;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3397,7 +3397,7 @@ button {
 .btn-red-600-inverted {
   background: transparent;
   color: #E53E3E;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #E53E3E;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3416,7 +3416,7 @@ button {
 .btn-red-700-inverted {
   background: transparent;
   color: #C53030;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #C53030;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3435,7 +3435,7 @@ button {
 .btn-red-800-inverted {
   background: transparent;
   color: #E53E3E;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #E53E3E;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3454,7 +3454,7 @@ button {
 .btn-red-900-inverted {
   background: transparent;
   color: #C53030;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #C53030;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3473,7 +3473,7 @@ button {
 .btn-orange-100-inverted {
   background: transparent;
   color: #FFFAF0;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #FFFAF0;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3492,7 +3492,7 @@ button {
 .btn-orange-200-inverted {
   background: transparent;
   color: #FEEBC8;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #FEEBC8;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3511,7 +3511,7 @@ button {
 .btn-orange-300-inverted {
   background: transparent;
   color: #FBD38D;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #FBD38D;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3530,7 +3530,7 @@ button {
 .btn-orange-400-inverted {
   background: transparent;
   color: #F6AD55;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #F6AD55;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3549,7 +3549,7 @@ button {
 .btn-orange-500-inverted {
   background: transparent;
   color: #ED8936;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #ED8936;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3568,7 +3568,7 @@ button {
 .btn-orange-600-inverted {
   background: transparent;
   color: #DD6B20;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #DD6B20;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3587,7 +3587,7 @@ button {
 .btn-orange-700-inverted {
   background: transparent;
   color: #C05621;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #C05621;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3606,7 +3606,7 @@ button {
 .btn-orange-800-inverted {
   background: transparent;
   color: #9C4221;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #9C4221;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3625,7 +3625,7 @@ button {
 .btn-orange-900-inverted {
   background: transparent;
   color: #7B341E;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #7B341E;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3644,7 +3644,7 @@ button {
 .btn-yellow-100-inverted {
   background: transparent;
   color: #FFFFF0;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #FFFFF0;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3663,7 +3663,7 @@ button {
 .btn-yellow-200-inverted {
   background: transparent;
   color: #FEFCBF;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #FEFCBF;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3682,7 +3682,7 @@ button {
 .btn-yellow-300-inverted {
   background: transparent;
   color: #FAF089;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #FAF089;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3701,7 +3701,7 @@ button {
 .btn-yellow-400-inverted {
   background: transparent;
   color: #F6E05E;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #F6E05E;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3720,7 +3720,7 @@ button {
 .btn-yellow-500-inverted {
   background: transparent;
   color: #ECC94B;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #ECC94B;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3739,7 +3739,7 @@ button {
 .btn-yellow-600-inverted {
   background: transparent;
   color: #D69E2E;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #D69E2E;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3758,7 +3758,7 @@ button {
 .btn-yellow-700-inverted {
   background: transparent;
   color: #B7791F;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #B7791F;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3777,7 +3777,7 @@ button {
 .btn-yellow-800-inverted {
   background: transparent;
   color: #975A16;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #975A16;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3796,7 +3796,7 @@ button {
 .btn-yellow-900-inverted {
   background: transparent;
   color: #744210;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #744210;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3815,7 +3815,7 @@ button {
 .btn-green-100-inverted {
   background: transparent;
   color: #F0FFF4;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #F0FFF4;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3834,7 +3834,7 @@ button {
 .btn-green-200-inverted {
   background: transparent;
   color: #C6F6D5;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #C6F6D5;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3853,7 +3853,7 @@ button {
 .btn-green-300-inverted {
   background: transparent;
   color: #9AE6B4;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #9AE6B4;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3872,7 +3872,7 @@ button {
 .btn-green-400-inverted {
   background: transparent;
   color: #68D391;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #68D391;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3891,7 +3891,7 @@ button {
 .btn-green-500-inverted {
   background: transparent;
   color: #48BB78;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #48BB78;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3910,7 +3910,7 @@ button {
 .btn-green-600-inverted {
   background: transparent;
   color: #38A169;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #38A169;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3929,7 +3929,7 @@ button {
 .btn-green-700-inverted {
   background: transparent;
   color: #2F855A;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #2F855A;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3948,7 +3948,7 @@ button {
 .btn-green-800-inverted {
   background: transparent;
   color: #276749;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #276749;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3967,7 +3967,7 @@ button {
 .btn-green-900-inverted {
   background: transparent;
   color: #22543D;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #22543D;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -3986,7 +3986,7 @@ button {
 .btn-blue-100-inverted {
   background: transparent;
   color: #EBF8FF;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #EBF8FF;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4005,7 +4005,7 @@ button {
 .btn-blue-200-inverted {
   background: transparent;
   color: #BEE3F8;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #BEE3F8;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4024,7 +4024,7 @@ button {
 .btn-blue-300-inverted {
   background: transparent;
   color: #90CDF4;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #90CDF4;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4043,7 +4043,7 @@ button {
 .btn-blue-400-inverted {
   background: transparent;
   color: #63B3ED;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #63B3ED;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4062,7 +4062,7 @@ button {
 .btn-blue-500-inverted {
   background: transparent;
   color: #4299E1;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #4299E1;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4081,7 +4081,7 @@ button {
 .btn-blue-600-inverted {
   background: transparent;
   color: #3182CE;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #3182CE;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4100,7 +4100,7 @@ button {
 .btn-blue-700-inverted {
   background: transparent;
   color: #2B6CB0;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #2B6CB0;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4119,7 +4119,7 @@ button {
 .btn-blue-800-inverted {
   background: transparent;
   color: #2C5282;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #2C5282;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4138,7 +4138,7 @@ button {
 .btn-blue-900-inverted {
   background: transparent;
   color: #2A4365;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #2A4365;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4157,7 +4157,7 @@ button {
 .btn-purple-100-inverted {
   background: transparent;
   color: #FAF5FF;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #FAF5FF;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4176,7 +4176,7 @@ button {
 .btn-purple-200-inverted {
   background: transparent;
   color: #E9D8FD;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #E9D8FD;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4195,7 +4195,7 @@ button {
 .btn-purple-300-inverted {
   background: transparent;
   color: #D6BCFA;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #D6BCFA;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4214,7 +4214,7 @@ button {
 .btn-purple-400-inverted {
   background: transparent;
   color: #B794F4;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #B794F4;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4233,7 +4233,7 @@ button {
 .btn-purple-500-inverted {
   background: transparent;
   color: #9F7AEA;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #9F7AEA;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4252,7 +4252,7 @@ button {
 .btn-purple-600-inverted {
   background: transparent;
   color: #805AD5;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #805AD5;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4271,7 +4271,7 @@ button {
 .btn-purple-700-inverted {
   background: transparent;
   color: #6B46C1;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #6B46C1;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4290,7 +4290,7 @@ button {
 .btn-purple-800-inverted {
   background: transparent;
   color: #553C9A;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #553C9A;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4309,7 +4309,7 @@ button {
 .btn-purple-900-inverted {
   background: transparent;
   color: #44337A;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #44337A;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4328,7 +4328,7 @@ button {
 .btn-blue-gray-100-inverted {
   background: transparent;
   color: #F0F4F8;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #F0F4F8;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4347,7 +4347,7 @@ button {
 .btn-blue-gray-200-inverted {
   background: transparent;
   color: #D9E2EC;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #D9E2EC;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4366,7 +4366,7 @@ button {
 .btn-blue-gray-300-inverted {
   background: transparent;
   color: #BCCCDC;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #BCCCDC;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4385,7 +4385,7 @@ button {
 .btn-blue-gray-400-inverted {
   background: transparent;
   color: #9FB3C8;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #9FB3C8;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4404,7 +4404,7 @@ button {
 .btn-blue-gray-500-inverted {
   background: transparent;
   color: #829AB1;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #829AB1;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4423,7 +4423,7 @@ button {
 .btn-blue-gray-600-inverted {
   background: transparent;
   color: #627D98;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #627D98;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4442,7 +4442,7 @@ button {
 .btn-blue-gray-700-inverted {
   background: transparent;
   color: #486581;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #486581;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4461,7 +4461,7 @@ button {
 .btn-blue-gray-800-inverted {
   background: transparent;
   color: #334E68;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #334E68;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4480,7 +4480,7 @@ button {
 .btn-blue-gray-900-inverted {
   background: transparent;
   color: #243B53;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #243B53;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -4499,7 +4499,7 @@ button {
 .btn-blue-gray-1000-inverted {
   background: transparent;
   color: #102A43;
-  border: 1px solid #E2E8F0;
+  border: 1px solid #102A43;
   box-shadow: 0;
   font-weight: 600;
   font-size: 16px;
@@ -8242,256 +8242,256 @@ button {
   border-bottom: solid 1px #d7d7d7; }
 
 .stripe-primary-top {
-  border-left: 5px solid #7505AB; }
+  border-top: 5px solid #7505AB; }
 
 .stripe-secondary-top {
-  border-left: 5px solid #718096; }
+  border-top: 5px solid #718096; }
 
 .stripe-alternate-top {
-  border-left: 5px solid #5b5b5b; }
+  border-top: 5px solid #5b5b5b; }
 
 .stripe-white-top {
-  border-left: 5px solid #fff; }
+  border-top: 5px solid #fff; }
 
 .stripe-gray-10-top {
-  border-left: 5px solid #f1f1f1; }
+  border-top: 5px solid #f1f1f1; }
 
 .stripe-gray-20-top {
-  border-left: 5px solid #fafafa; }
+  border-top: 5px solid #fafafa; }
 
 .stripe-gray-30-top {
-  border-left: 5px solid #ddd; }
+  border-top: 5px solid #ddd; }
 
 .stripe-gray-40-top {
-  border-left: 5px solid #ccc; }
+  border-top: 5px solid #ccc; }
 
 .stripe-gray-50-top {
-  border-left: 5px solid #fafbfc; }
+  border-top: 5px solid #fafbfc; }
 
 .stripe-gray-60-top {
-  border-left: 5px solid #f5f5f5; }
+  border-top: 5px solid #f5f5f5; }
 
 .stripe-gray-70-top {
-  border-left: 5px solid #F1F3F6; }
+  border-top: 5px solid #F1F3F6; }
 
 .stripe-gray-100-top {
-  border-left: 5px solid #F7FAFC; }
+  border-top: 5px solid #F7FAFC; }
 
 .stripe-gray-200-top {
-  border-left: 5px solid #EDF2F7; }
+  border-top: 5px solid #EDF2F7; }
 
 .stripe-gray-300-top {
-  border-left: 5px solid #E2E8F0; }
+  border-top: 5px solid #E2E8F0; }
 
 .stripe-gray-400-top {
-  border-left: 5px solid #CBD5E0; }
+  border-top: 5px solid #CBD5E0; }
 
 .stripe-gray-500-top {
-  border-left: 5px solid #A0AEC0; }
+  border-top: 5px solid #A0AEC0; }
 
 .stripe-gray-600-top {
-  border-left: 5px solid #718096; }
+  border-top: 5px solid #718096; }
 
 .stripe-gray-700-top {
-  border-left: 5px solid #4A5568; }
+  border-top: 5px solid #4A5568; }
 
 .stripe-gray-800-top {
-  border-left: 5px solid #2D3748; }
+  border-top: 5px solid #2D3748; }
 
 .stripe-gray-900-top {
-  border-left: 5px solid #1A202C; }
+  border-top: 5px solid #1A202C; }
 
 .stripe-red-100-top {
-  border-left: 5px solid #FEB2B2; }
+  border-top: 5px solid #FEB2B2; }
 
 .stripe-red-200-top {
-  border-left: 5px solid #FC8181; }
+  border-top: 5px solid #FC8181; }
 
 .stripe-red-300-top {
-  border-left: 5px solid #FEB2B2; }
+  border-top: 5px solid #FEB2B2; }
 
 .stripe-red-400-top {
-  border-left: 5px solid #FC8181; }
+  border-top: 5px solid #FC8181; }
 
 .stripe-red-500-top {
-  border-left: 5px solid #F56565; }
+  border-top: 5px solid #F56565; }
 
 .stripe-red-600-top {
-  border-left: 5px solid #E53E3E; }
+  border-top: 5px solid #E53E3E; }
 
 .stripe-red-700-top {
-  border-left: 5px solid #C53030; }
+  border-top: 5px solid #C53030; }
 
 .stripe-red-800-top {
-  border-left: 5px solid #E53E3E; }
+  border-top: 5px solid #E53E3E; }
 
 .stripe-red-900-top {
-  border-left: 5px solid #C53030; }
+  border-top: 5px solid #C53030; }
 
 .stripe-orange-100-top {
-  border-left: 5px solid #FFFAF0; }
+  border-top: 5px solid #FFFAF0; }
 
 .stripe-orange-200-top {
-  border-left: 5px solid #FEEBC8; }
+  border-top: 5px solid #FEEBC8; }
 
 .stripe-orange-300-top {
-  border-left: 5px solid #FBD38D; }
+  border-top: 5px solid #FBD38D; }
 
 .stripe-orange-400-top {
-  border-left: 5px solid #F6AD55; }
+  border-top: 5px solid #F6AD55; }
 
 .stripe-orange-500-top {
-  border-left: 5px solid #ED8936; }
+  border-top: 5px solid #ED8936; }
 
 .stripe-orange-600-top {
-  border-left: 5px solid #DD6B20; }
+  border-top: 5px solid #DD6B20; }
 
 .stripe-orange-700-top {
-  border-left: 5px solid #C05621; }
+  border-top: 5px solid #C05621; }
 
 .stripe-orange-800-top {
-  border-left: 5px solid #9C4221; }
+  border-top: 5px solid #9C4221; }
 
 .stripe-orange-900-top {
-  border-left: 5px solid #7B341E; }
+  border-top: 5px solid #7B341E; }
 
 .stripe-yellow-100-top {
-  border-left: 5px solid #FFFFF0; }
+  border-top: 5px solid #FFFFF0; }
 
 .stripe-yellow-200-top {
-  border-left: 5px solid #FEFCBF; }
+  border-top: 5px solid #FEFCBF; }
 
 .stripe-yellow-300-top {
-  border-left: 5px solid #FAF089; }
+  border-top: 5px solid #FAF089; }
 
 .stripe-yellow-400-top {
-  border-left: 5px solid #F6E05E; }
+  border-top: 5px solid #F6E05E; }
 
 .stripe-yellow-500-top {
-  border-left: 5px solid #ECC94B; }
+  border-top: 5px solid #ECC94B; }
 
 .stripe-yellow-600-top {
-  border-left: 5px solid #D69E2E; }
+  border-top: 5px solid #D69E2E; }
 
 .stripe-yellow-700-top {
-  border-left: 5px solid #B7791F; }
+  border-top: 5px solid #B7791F; }
 
 .stripe-yellow-800-top {
-  border-left: 5px solid #975A16; }
+  border-top: 5px solid #975A16; }
 
 .stripe-yellow-900-top {
-  border-left: 5px solid #744210; }
+  border-top: 5px solid #744210; }
 
 .stripe-green-100-top {
-  border-left: 5px solid #F0FFF4; }
+  border-top: 5px solid #F0FFF4; }
 
 .stripe-green-200-top {
-  border-left: 5px solid #C6F6D5; }
+  border-top: 5px solid #C6F6D5; }
 
 .stripe-green-300-top {
-  border-left: 5px solid #9AE6B4; }
+  border-top: 5px solid #9AE6B4; }
 
 .stripe-green-400-top {
-  border-left: 5px solid #68D391; }
+  border-top: 5px solid #68D391; }
 
 .stripe-green-500-top {
-  border-left: 5px solid #48BB78; }
+  border-top: 5px solid #48BB78; }
 
 .stripe-green-600-top {
-  border-left: 5px solid #38A169; }
+  border-top: 5px solid #38A169; }
 
 .stripe-green-700-top {
-  border-left: 5px solid #2F855A; }
+  border-top: 5px solid #2F855A; }
 
 .stripe-green-800-top {
-  border-left: 5px solid #276749; }
+  border-top: 5px solid #276749; }
 
 .stripe-green-900-top {
-  border-left: 5px solid #22543D; }
+  border-top: 5px solid #22543D; }
 
 .stripe-blue-100-top {
-  border-left: 5px solid #EBF8FF; }
+  border-top: 5px solid #EBF8FF; }
 
 .stripe-blue-200-top {
-  border-left: 5px solid #BEE3F8; }
+  border-top: 5px solid #BEE3F8; }
 
 .stripe-blue-300-top {
-  border-left: 5px solid #90CDF4; }
+  border-top: 5px solid #90CDF4; }
 
 .stripe-blue-400-top {
-  border-left: 5px solid #63B3ED; }
+  border-top: 5px solid #63B3ED; }
 
 .stripe-blue-500-top {
-  border-left: 5px solid #4299E1; }
+  border-top: 5px solid #4299E1; }
 
 .stripe-blue-600-top {
-  border-left: 5px solid #3182CE; }
+  border-top: 5px solid #3182CE; }
 
 .stripe-blue-700-top {
-  border-left: 5px solid #2B6CB0; }
+  border-top: 5px solid #2B6CB0; }
 
 .stripe-blue-800-top {
-  border-left: 5px solid #2C5282; }
+  border-top: 5px solid #2C5282; }
 
 .stripe-blue-900-top {
-  border-left: 5px solid #2A4365; }
+  border-top: 5px solid #2A4365; }
 
 .stripe-purple-100-top {
-  border-left: 5px solid #FAF5FF; }
+  border-top: 5px solid #FAF5FF; }
 
 .stripe-purple-200-top {
-  border-left: 5px solid #E9D8FD; }
+  border-top: 5px solid #E9D8FD; }
 
 .stripe-purple-300-top {
-  border-left: 5px solid #D6BCFA; }
+  border-top: 5px solid #D6BCFA; }
 
 .stripe-purple-400-top {
-  border-left: 5px solid #B794F4; }
+  border-top: 5px solid #B794F4; }
 
 .stripe-purple-500-top {
-  border-left: 5px solid #9F7AEA; }
+  border-top: 5px solid #9F7AEA; }
 
 .stripe-purple-600-top {
-  border-left: 5px solid #805AD5; }
+  border-top: 5px solid #805AD5; }
 
 .stripe-purple-700-top {
-  border-left: 5px solid #6B46C1; }
+  border-top: 5px solid #6B46C1; }
 
 .stripe-purple-800-top {
-  border-left: 5px solid #553C9A; }
+  border-top: 5px solid #553C9A; }
 
 .stripe-purple-900-top {
-  border-left: 5px solid #44337A; }
+  border-top: 5px solid #44337A; }
 
 .stripe-blue-gray-100-top {
-  border-left: 5px solid #F0F4F8; }
+  border-top: 5px solid #F0F4F8; }
 
 .stripe-blue-gray-200-top {
-  border-left: 5px solid #D9E2EC; }
+  border-top: 5px solid #D9E2EC; }
 
 .stripe-blue-gray-300-top {
-  border-left: 5px solid #BCCCDC; }
+  border-top: 5px solid #BCCCDC; }
 
 .stripe-blue-gray-400-top {
-  border-left: 5px solid #9FB3C8; }
+  border-top: 5px solid #9FB3C8; }
 
 .stripe-blue-gray-500-top {
-  border-left: 5px solid #829AB1; }
+  border-top: 5px solid #829AB1; }
 
 .stripe-blue-gray-600-top {
-  border-left: 5px solid #627D98; }
+  border-top: 5px solid #627D98; }
 
 .stripe-blue-gray-700-top {
-  border-left: 5px solid #486581; }
+  border-top: 5px solid #486581; }
 
 .stripe-blue-gray-800-top {
-  border-left: 5px solid #334E68; }
+  border-top: 5px solid #334E68; }
 
 .stripe-blue-gray-900-top {
-  border-left: 5px solid #243B53; }
+  border-top: 5px solid #243B53; }
 
 .stripe-blue-gray-1000-top {
-  border-left: 5px solid #102A43; }
+  border-top: 5px solid #102A43; }
 
 .stripe-success-top {
   border-top: 5px solid #48BB78; }
@@ -8633,6 +8633,24 @@ button {
     padding-top: 1rem;
     text-align: center;
     height: 54px; }
+
+.component-list-100 {
+  list-style-type: none;
+  padding-left: 0; }
+  .component-list-100 li a {
+    text-decoration: none;
+    color: #2D3748;
+    font-size: 18px;
+    vertical-align: baseline;
+    display: block;
+    display: inline-block;
+    margin-top: 1rem;
+    height: 25px;
+    padding-left: .9rem; }
+  .component-list-100 .active {
+    color: #7505AB;
+    border-left: 3px solid #7505AB;
+    padding-left: .7rem; }
 
 hr.hr-2 {
   border-top: 2px solid #7505AB;

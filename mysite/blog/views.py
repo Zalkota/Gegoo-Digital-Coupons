@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-
+from django.views.generic.edit import FormView, FormMixin
+from .forms import ContactForm
 from blog.models import Question, Topic
 
 class QuestionListView(ListView):
@@ -36,26 +37,39 @@ class QuestionDetailView(DetailView):
         context['topics'] = Topic.objects.all()
         return context
 
-# class QuestionCreateView(CreateView):
-#     model = Question
-#     fields = [
-#         'title',
-#         'body',
-#     ]
-#     template_name = 'blog/question_create.html'
 
-    # def form_valid(self, form):
-    #     return super().form_valid(form)
+class ContactFormView(FormView):
+    form_class = ContactForm
+    success_url = reverse_lazy('contact-landing-page')
+    template_name = 'mysite/contact_page.html'
 
-# class QuestionUpdateView(UpdateView):
-#     model = Question
-#     fields = [
-#         'title',
-#         'body',
-#     ]
-#     template_name = 'blog/question_update.html'
 
-# class QuestionDeleteView(DeleteView):
-#     model = Question
-#     template_name = 'blog/question_delete.html'
-#     success_url = reverse_lazy('question_list')
+    def form_valid(self, form):
+        ContactForm = form.save(commit=False)
+        ContactForm.name = form.cleaned_data['name']
+        ContactForm.email = form.cleaned_data['email']
+        ContactForm.phone = form.cleaned_data['phone']
+        ContactForm.description = form.cleaned_data['description']
+        ContactForm.save()
+        #send_email(ContactForm.name, ContactForm.email, ContactForm.phone, ContactForm.description)
+
+        #template = get_template('contact_template.txt')
+        #context = Context({
+        #    'contact_name': contact_name,
+        #    'contact_email': contact_email,
+        #    'form_content': form_content
+        #})
+        #content = template.render(context)
+
+        #email = EmailMessage(
+        #    'New contact form submission',
+        #    content,
+        #    'Your website ' + '',
+        #    ['youremail@gmail.com'],
+        #    headers = {'Reply-To': contact_email}
+        #
+        #email.send()
+        return super(ContactFormView, self).form_valid(form)
+
+def contactLandingPage(request):
+    return render(request, 'mysite/form_page_landing.html')

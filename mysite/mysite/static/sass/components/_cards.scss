@@ -150,7 +150,7 @@
 @each $colors, $value in $colors {
 
     .stripe-#{$colors}-top {
-      border-left: 5px solid $value;
+      border-top: 5px solid $value;
     }
 
 }

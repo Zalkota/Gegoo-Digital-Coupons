@@ -20,17 +20,3 @@ class BaseModel(models.Model):
     #  id = models.BigAutoField(primary_key=True)
     class Meta:
         abstract = True
-
-class Contact(models.Model):
-    REASON_CHOICES = (
-        ("QT", "I have a Question"),
-        ("DS", "Dissatisfied with a Coupon"),
-        ("BM", "I Would Like to post my own Coupons"),
-        )
-
-    reason = models.CharField(choices=REASON_CHOICES, default='QT', max_length=100)
-    name = models.CharField(max_length=200)
-    email = models.EmailField()
-    phone = PhoneNumberField(null=True, blank=True)   #USE THIS https://github.com/stefanfoulis/django-phonenumber-field\
-    description = models.TextField()
-

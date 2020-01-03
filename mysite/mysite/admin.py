@@ -1,7 +1,4 @@
-
-
 from django.contrib import admin
-from .models import Contact
 
 # Define a new FlatPageAdmin
 from django.db import models
@@ -16,7 +13,7 @@ class FlatPageAdmin(FlatPageAdmin):
         models.TextField: {'widget': CKEditorWidget}
     }
 
-admin.site.register(Contact)
+
 # Re-register FlatPageAdmin
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)

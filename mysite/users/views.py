@@ -89,6 +89,46 @@ class userLocaton(View):
 
 
 
+class userRewards(View):
+    def get(self, *args, **kwargs):
+        # form = userLocationForm()
+        #
+        # user = self.request.user
+        # address = user.user_profile.address
+
+        context = {
+            # 'form': form,
+            # 'address': address
+        }
+        return render(self.request, "users/user_rewards.html", context)
+    #
+    # def post(self, *args, **kwargs):
+    #     form = userLocationForm(self.request.POST)
+    #     if form.is_valid():
+    #         #ref_code = self.kwargs['ref_code']
+    #         city = form.cleaned_data.get('city_input')
+    #         state = form.cleaned_data.get('state_input')
+    #
+    #         city_qs = City.objects.get(name=city)
+    #         state_qs = Region.objects.get(name=state)
+    #
+    #
+    #         # edit the order
+    #
+    #         user = self.request.user
+    #
+    #         # store the object
+    #         user_address = user.user_profile.address
+    #         user_address.state = state_qs
+    #         user_address.city = city_qs
+    #         # user_address.user =
+    #         user_address.save()
+    #         print("saved")
+    #
+    #         messages.success(self.request, "Location changed")
+    #         return redirect("users:user_location")
+
+
 
 class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
