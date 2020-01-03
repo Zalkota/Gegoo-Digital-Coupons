@@ -34,18 +34,18 @@
                                     Show More
                                 </a>
                             </span>
-                        </p> 
+                        </p>
                         <p class="text-muted fs-14">Topic: <span><a href="{{ question.topic.get_absolute_url }}" class="fs-14 fw-1">{{ question.topic }}</a></span></p>
                     </div>
                     {% endfor %}
                     <div class="card-footer text-center">
                         {% if is_paginated %}
-    
+
                             {% if page_obj.has_previous %}
                                 <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page=1">First</a>
                                 <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ page_obj.previous_page_number }}">Previous</a>
                             {% endif %}
-                        
+
                             {% for num in page_obj.paginator.page_range %}
                                 {% if page_obj.number == num %}
                                 <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ num }}">{{ num }}</a>
@@ -53,12 +53,12 @@
                                 <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ num }}">{{ num }}</a>
                                 {% endif %}
                             {% endfor %}
-                        
+
                             {% if page_obj.has_next %}
                                 <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ page_obj.next_page_number }}">Next</a>
                                 <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
                             {% endif %}
-                        
+
                         {% endif %}
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                         <ul class="list-group list-unstyled">
                             {% for topic in topics %}
                             <li class="py-1">
-                                <a href="{{ topic.get_absolute_url }}" class="text-decoration-none fs-16 fw-4">
+                                <a href="{{ topic.get_absolute_url }}" class="text-decoration-none fs-14 fw-6">
                                     {{ topic.title }}
                                 </a>
                                 <!-- <span class="badge badge-pill">1</span> -->
@@ -86,5 +86,5 @@
         </div>
     </div>
 </div>
-    
+
 {% endblock content %}

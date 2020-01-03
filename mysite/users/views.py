@@ -23,6 +23,9 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from cities_light.models import Region, City
 
+from allauth.account.views import SignupView
+from users.forms import ConsumerSignupForm, MerchantSignupForm
+
 class userPage(View):
     def get(self, *args, **kwargs):
         try:
@@ -122,3 +125,27 @@ class RedirectProfileView(LoginRequiredMixin, RedirectView):
         return HttpResponseRedirect(
                     reverse('users:summary',
                             kwargs={'username': self.request.user.username}))
+
+class MerchantSignUpView(SignupView):
+
+    template_name = 'account/merchant_signup.html'
+    form_class = MerchantSignupForm
+    view_name = 'merchant-signup'
+    success_url = 'login'
+
+    def get_context_data(self, **kwargs):
+        ret = super(MerchantSignUpView, self).get_context_data(**kwargs)
+        ret.update(self.kwargs)
+        return ret
+
+class ConsumerSignUpView(SignupView):
+
+    template_name = 'account/consumer_signup.html'
+    form_class = ConsumerSignupForm
+    view_name = 'consumer-signup'
+    success_url = 'login'
+
+    def get_context_data(self, **kwargs):
+        ret = super(ConsumerSignUpView, self).get_context_data(**kwargs)
+        ret.update(self.kwargs)
+        return ret

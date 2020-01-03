@@ -58,6 +58,10 @@
           {% include "navbar.html" %}
         {% endblock nav %}
 
+        {% block navigation-mobile %}
+            {% include "navbar-mobile.html" %}
+         {% endblock navigation-mobile %}
+
         {% if messages %}
           {% include "messages.html" %}
         {% endif %}

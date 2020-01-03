@@ -32,6 +32,7 @@ urlpatterns = [
     path('.well-known/security.txt', security, name='security'),
     #Authentication
     url(r'^accounts/', include('allauth.urls')),
+    path('users/', include('users.urls')),
     #Portal
     url(r'^coupons/', include(('portal.urls', 'portal'), namespace='portal')),
 
