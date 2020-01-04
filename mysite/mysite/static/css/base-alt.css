@@ -4724,8 +4724,8 @@ button {
   padding: .15rem .55rem; }
 
 .badge-danger {
-  background-color: #FEB2B2;
-  border: 1px solid #FC8181;
+  background-color: #FEB2B255;
+  border: 1px solid #F56565;
   color: #F56565;
   border-radius: 1.1rem;
   padding: .15rem .55rem; }
@@ -4770,11 +4770,6 @@ button {
   margin-top: -40px;
   overflow: hidden;
   border-radius: 72px; }
-  .scale .fa-search {
-    position: absolute;
-    top: 24px;
-    left: 24px;
-    font-size: 15px; }
   .scale input {
     height: 100%;
     width: 100%;

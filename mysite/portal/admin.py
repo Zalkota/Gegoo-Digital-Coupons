@@ -1,8 +1,12 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
+<<<<<<< HEAD
 from .models import Merchant, Offer, Promotion, Images, Category, Subcategory, Tag, About, Favorite
 from location.models import Merchant_Address, Address
+=======
+from .models import Merchant, Offer, Address, Promotion, Images, Category, Subcategory, Tag, About, Favorite
+>>>>>>> alpha
 # Register your models here.
 from django.contrib.gis.admin import OSMGeoAdmin
 

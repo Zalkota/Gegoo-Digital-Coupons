@@ -16,17 +16,24 @@ from django.utils import timezone
 
 
 class User(AbstractUser):
-    # First Name and Last Name do not cover name patterns
-    # around the globe.
     name = models.CharField(_('Name_of_User'), blank=True, max_length=255)
-    #accepted_terms_of_service = models.Booleanfield()
+
+    is_merchant     = models.BooleanField('is_merchant', default=False)
+    is_approved     = models.BooleanField('merchant_is_approved', default=False)
+    has_paid     = models.BooleanField('payment_status', default=False) #Is this necesarry?
+    # is_consumer     = models.BooleanField('ConsumerStatus', default=False)
+    # slug            = models.SlugField(max_length=100, null=True)
+    
+
+    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
+    updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
 
     def __str__(self):
         return self.username
 
-    def get_absolute_url(self):
-        return reverse('users:detail', kwargs={'username': self.name})
-        return reverse('users:detail', kwargs={'user': self.username})
+    # def get_absolute_url(self):
+    #     return reverse('users:detail', kwargs={'username': self.name})
+    #     return reverse('users:detail', kwargs={'user': self.username})
 
 # Profile Image
 def upload_to(instance, filename):
@@ -38,12 +45,20 @@ def upload_to(instance, filename):
     #return "profile/{{now:%Y/%m/%Y%m%d%H%M%S}{ext}"
 
 
+<<<<<<< HEAD
 class Profile(models.Model): #Is a Profile Necessary?
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_profile')
     # image = models.ImageField(_("Picture"), upload_to=upload_to, null=True, default='blankImage.png', validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Image must be a .PNG or .JPG")
     address = models.OneToOneField(Address, related_name='profile', on_delete=models.CASCADE, blank=True, null=True)
     points = models.PositiveSmallIntegerField(default=0) #Should this be in the user?
     created_time = models.DateTimeField(('created time'), editable=False, null=True, auto_now_add=True)
+=======
+class Profile(models.Model):
+    user            = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_profile')
+    # image = models.ImageField(_("Picture"), upload_to=upload_to, null=True, default='blankImage.png', validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Image must be a .PNG or .JPG")
+    address         = models.OneToOneField(Address, related_name='profile', on_delete=models.CASCADE, blank=True, null=True)
+    created_time    = models.DateTimeField(('created time'), editable=False, null=True, auto_now_add=True)
+>>>>>>> alpha
 
     def __str__(self):
         return self.user.username

@@ -58,7 +58,7 @@ class MerchantDetailView(View):
 			city_state = get_or_set_location(self.request)
 			city = city_state["city"]
 			state = city_state["state"]
-			merchant = Merchant.objects.get(ref_code=self.kwargs['ref_code'])
+			merchant = Merchant.objects.get(id=self.kwargs['id'])
 			recommended_offers = Merchant.objects.filter(city__name=city)
 
 

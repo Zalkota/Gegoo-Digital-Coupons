@@ -1,7 +1,9 @@
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView, View, FormView
+# from memberships.views import get_user_memberships, get_user_subscriptions #TODO
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User
+from portal.models import Merchant
 from location.models import Address
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -23,12 +25,19 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from cities_light.models import Region, City
 
+<<<<<<< HEAD
 # def get_reward_data(request, *args, **kwargs):
 #     UserRewardData = self.request.user.profile.points
 #     data = {
 #         "points": UserRewardData,
 #     }
 #     return JsonResponse(data)
+=======
+from allauth.account.views import SignupView
+from users.forms import MerchantSignupForm
+
+
+>>>>>>> alpha
 
 class userPage(View):
     def get(self, *args, **kwargs):
@@ -38,10 +47,22 @@ class userPage(View):
             data = user.user_profile.points
 
             context = {
+<<<<<<< HEAD
                     'user': user,
                     'data': data,
+=======
+                'user': user,
+>>>>>>> alpha
             }
-            return render(self.request, "users/userPage.html", context)
+
+            #Render Merchant Page
+            if user.is_merchant == True:
+                return render(self.request, "users/user_merchant_profile.html", context)
+
+            #Render Normal User Profile Page
+            elif user.is_merchant == False:
+                    return render(self.request, "users/userPage.html", context)
+
 
         except ObjectDoesNotExist:
             messages.info(self.request, "Error contact admin")
@@ -57,6 +78,9 @@ class userPage(View):
 #     def form_valid(self, form):
 #         return super(userLocaton, self).form_valid(form)
 
+# <**************************************************************************>
+# <*****                     User Non Merchant Views                    *****>
+# <**************************************************************************>
 
 class userLocaton(View):
     def get(self, *args, **kwargs):
@@ -99,6 +123,7 @@ class userLocaton(View):
 
 
 
+<<<<<<< HEAD
 class userRewards(View):
     def get(self, *args, **kwargs):
         # form = userLocationForm()
@@ -140,6 +165,8 @@ class userRewards(View):
 
 
 
+=======
+>>>>>>> alpha
 class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
@@ -149,7 +176,6 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
-
     fields = ['name', ]
 
     # we already imported User in the view code above, remember?
@@ -172,3 +198,52 @@ class RedirectProfileView(LoginRequiredMixin, RedirectView):
         return HttpResponseRedirect(
                     reverse('users:summary',
                             kwargs={'username': self.request.user.username}))
+
+
+# <**************************************************************************>
+# <*****                     User Merchant Views                        *****>
+# <**************************************************************************>
+
+
+class MerchantStoreListView(LoginRequiredMixin, ListView): #TODO this should only be viewable by merchants
+    model = Merchant
+    template_name = 'users/user_merchant_store_list.html'
+
+    def get_queryset(self):
+        return Merchant.objects.filter(user=self.request.user)
+
+
+class MerchantSignUpView(SignupView):
+
+    template_name = 'account/signup_merchant.html'
+    form_class = MerchantSignupForm
+    view_name = 'merchant-signup'
+    success_url = '/dashboard/'
+
+    def get_context_data(self, **kwargs):
+        ret = super(MerchantSignUpView, self).get_context_data(**kwargs)
+        ret.update(self.kwargs)
+        return ret
+
+
+class MerchantSubscriptionsView(LoginRequiredMixin, View):
+    def get(self):
+        # user_membership_list = get_user_memberships(request)
+        # user_subscription_list = get_user_subscriptions(request)
+        context = {
+            'user_membership_list': user_membership_list,
+            'user_subscription_list': user_subscription_list
+        }
+        return render(request, "users/user_merchant_subscription.html", context)
+
+# class ConsumerSignUpView(SignupView):
+#
+#     template_name = 'account/consumer_signup.html'
+#     form_class = ConsumerSignupForm
+#     view_name = 'consumer-signup'
+#     success_url = '/'
+#
+#     def get_context_data(self, **kwargs):
+#         ret = super(ConsumerSignUpView, self).get_context_data(**kwargs)
+#         ret.update(self.kwargs)
+#         return ret

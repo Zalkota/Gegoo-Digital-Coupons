@@ -1,0 +1,79 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% load static %}
+{% load account %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Login" %}{% endblock %}
+
+{% block content %}
+
+<div class="hide">
+    <section class="section-lg vertical-container">
+        <div class="vertical-alignment" style="max-width: 500px;">
+            <div class=" card-border shadow-1">
+              <div class="card-signup text-center ml-auto mr-auto mt-3" style="width: 25rem;">
+                <h2 class="my-4 fw-6 fs-24 text-dark">Merchant Create Account</h2>
+                  <div class=" text-left px-4 pb-4 pt-3" style="">
+                    <form class="signup" id="signup_form" method="post" action="{% url 'merchant-signup' %}" style="list-style-type: none;">
+                      {% csrf_token %}
+                      {{ form|crispy }}
+                      {% if redirect_field_value %}
+                      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                      {% endif %}
+                      By signing up, you agree to our Terms of Use and Privacy Policy.
+                      <br><br>
+                      <div class="btn-div pull-center mb-3">
+                        <button class="btn btn-primary-alt btn-block" type="submit">{% trans "Create Account" %}</button>
+                      </div>
+                    </form>
+                  </div>
+              </div>
+                {% if form.errors %}
+                  {% for error in form.non_field_errors %}
+                    <div class="alert alert-error alert-danger alert-dismissible moveInTop message" style="width: 25rem;" role="alert">
+                    {{ error|escape }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+</div>
+
+
+  <!-- Mobile View -->
+   <div class=" unhide">
+     <div class="text-center px-4">
+       <h2 class="mt-5">Merchant Account Creation</h2>
+       <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+     </div>
+     <div class="text-left px-4">
+       <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}" style="list-style-type: none;">
+         {% csrf_token %}
+         {{ form|crispy }}
+         {% if redirect_field_value %}
+         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+         {% endif %}
+         By signing up, you agree to our Terms of Use and Privacy Policy.
+         <br><br>
+         <div class="btn-div pull-center">
+           <button class="btn btn-primary-alt btn-block" type="submit">{% trans "Create Account" %}</button>
+         </div>
+       </form>
+     </div>
+     {% if form.errors %}
+     {% for error in form.non_field_errors %}
+       <div class="alert alert-error alert-danger alert-dismissible moveInTop message" style="width: 18.5rem;" role="alert">
+       {{ error|escape }}
+       </div>
+     {% endfor %}
+     {% endif %}
+     <div class="hide" style="padding-top: 4rem; margin: auto;">
+         <span class="terms" style="font-size: .65em;"><a href="" class="terms">Terms & Conditons</a> | Copyright 2018 <br class="unhide"> Mod Technologies LLC</span>
+     </div>
+     <div class="py-5"></div>
+  </div>
+
+
+{% endblock %}

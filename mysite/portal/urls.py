@@ -15,4 +15,8 @@ urlpatterns = [
     path('category/<name>', CategoryDetailView.as_view(), name='category_detail'),
     path('category/all/', CategoryListView.as_view(), name='category_list'),
     # path('/category/', CategoryListView.as_view(), name='category-list'),
+<<<<<<< HEAD
+=======
+
+>>>>>>> alpha
 ]
