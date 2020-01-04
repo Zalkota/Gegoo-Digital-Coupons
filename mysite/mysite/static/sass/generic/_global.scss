@@ -467,7 +467,7 @@ hr.hr-2 {
       bottom: 0%;
       background-color: transparent !important;
       color: $color-black;
-      font-family: Montserrat, sans-serif;
+      font-family: Nunito, sans-serif;
       font-size: .9em;
       font-weight: 600;
       padding: 1em 1em 1em 2em;
@@ -480,17 +480,16 @@ hr.hr-2 {
 
     .alert {
       background-color: #fafafa;
+      border: 1px solid #fafafa;
       color: $color-black;
-      font-family: Montserrat, sans-serif;
+      font-family: Nunito, sans-serif;
       font-size: .9em;
       font-weight: 600;
       padding: 1em 1em 1em 2em;
       z-index: 999;
       position: fixed;
-      left: 3%;
+      left: 1%;
       bottom: 0%;
-      -webkit-box-shadow: 0 !important;
-      box-shadow: 0 !important;
       -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.09), 0 2px 4px rgba(0,0,0,0.09) !important;
       box-shadow: 0 2px 4px rgba(0,0,0,0.09), 0 2px 4px rgba(0,0,0,0.09) !important;
     }

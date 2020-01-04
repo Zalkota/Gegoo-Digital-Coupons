@@ -38,18 +38,18 @@ def upload_to(instance, filename):
     #return "profile/{{now:%Y/%m/%Y%m%d%H%M%S}{ext}"
 
 
-class Profile(models.Model):
+class Profile(models.Model): #Is a Profile Necessary?
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_profile')
     # image = models.ImageField(_("Picture"), upload_to=upload_to, null=True, default='blankImage.png', validators=[FileExtensionValidator(['jpg', 'png'])], help_text="Image must be a .PNG or .JPG")
     address = models.OneToOneField(Address, related_name='profile', on_delete=models.CASCADE, blank=True, null=True)
-    ip_address = models.CharField(max_length=120, default='ABC', blank=True, null=True)
+    points = models.PositiveSmallIntegerField(default=0) #Should this be in the user?
     created_time = models.DateTimeField(('created time'), editable=False, null=True, auto_now_add=True)
 
     def __str__(self):
         return self.user.username
 
 
-class userStripe(models.Model):
+class userStripe(models.Model): #This should only be created for Merchants
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete='CASCADE', related_name='user_stripe')
     stripe_id = models.CharField(max_length=200, null=True, blank=True)
 

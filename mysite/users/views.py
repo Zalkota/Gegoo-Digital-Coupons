@@ -23,13 +23,23 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from cities_light.models import Region, City
 
+# def get_reward_data(request, *args, **kwargs):
+#     UserRewardData = self.request.user.profile.points
+#     data = {
+#         "points": UserRewardData,
+#     }
+#     return JsonResponse(data)
+
 class userPage(View):
     def get(self, *args, **kwargs):
         try:
             user = self.request.user
 
+            data = user.user_profile.points
+
             context = {
                     'user': user,
+                    'data': data,
             }
             return render(self.request, "users/userPage.html", context)
 

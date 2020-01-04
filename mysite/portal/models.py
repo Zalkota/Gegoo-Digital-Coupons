@@ -190,7 +190,6 @@ class About(models.Model):
     header = models.TextField()
     subheader = models.TextField()
     body = RichTextUploadingField()
-    # services_header = models.CharField(max_length=100)
     images = models.ManyToManyField(Images, blank=True, help_text="Alternate Photos of Product")
     #services = models.TextField()
 
