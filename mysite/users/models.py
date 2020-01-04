@@ -23,6 +23,7 @@ class User(AbstractUser):
     has_paid     = models.BooleanField('payment_status', default=False) #Is this necesarry?
     # is_consumer     = models.BooleanField('ConsumerStatus', default=False)
     # slug            = models.SlugField(max_length=100, null=True)
+    
 
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
     updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
