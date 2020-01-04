@@ -39,19 +39,14 @@ class MerchantSignupForm(SignupForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.is_merchant = True
-        user.is_active = False
-        user.save()
-        return user
-
-class ConsumerSignupForm(SignupForm):
-    first_name = forms.CharField(max_length=30, label='First Name')
-    last_name = forms.CharField(max_length=30, label='Last Name')
-
-    def save(self, request):
-        user = super(ConsumerSignupForm, self).save(request)
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
-        user.is_consumer = True
         user.is_active = True
         user.save()
         return user
+
+# class ConsumerSignupForm(SignupForm):
+#     def save(self, request):
+#         user = super(ConsumerSignupForm, self).save(request)
+#         user.is_consumer = True
+#         user.is_active = True
+#         user.save()
+#         return user

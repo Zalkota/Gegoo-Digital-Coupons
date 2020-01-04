@@ -154,6 +154,8 @@ def CalculateLocation(sender, created, instance, **kwargs):
 
 
 class Merchant(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    # ref_code = models.AutoField(primary_key=True, blank=True)
     business_name = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='merchant-logos/', null=True)
     # banner = models.ImageField(upload_to='merchant-banners/', null=True)
@@ -165,14 +167,13 @@ class Merchant(models.Model):
     website_url = models.CharField(max_length=500)
     facebook_url = models.CharField(max_length=500)
     about = models.ForeignKey(About, related_name='about', on_delete=models.CASCADE, blank=True, null=True)
-    ref_code = models.CharField(max_length=20, blank=True, null=True, editable=False)
     promotional_video_file_name = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
     promotional_video_thumbnail_name = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
     #Location
     # address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='merchant')
     city = models.ManyToManyField(City, related_name='merchant')
-    latitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True, blank=True)
-    longitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True, blank=True)
+    latitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True)
+    longitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True)
     location = models.PointField(srid=4326, null=True, blank=True)
 
     @property
@@ -188,13 +189,13 @@ class Merchant(models.Model):
         'category': self.category.name,
         'subcategory': self.subcategory,
         'name': self.business_name,
-        'ref_code': self.ref_code
+        'ref_code': self.id
         })
 
     def __str__(self):
         return '%s located in %s' % (self.business_name, self.city)
 
-post_save.connect(setMerchantRefCode, sender=Merchant)
+# post_save.connect(setMerchantRefCode, sender=Merchant)
 post_save.connect(CalculateLocation, sender=Merchant)
 
     #
@@ -248,25 +249,3 @@ class Promotion(models.Model):
 
     def __str__(self):
         return '%s' '(%s, ends=%s)' % (self.message, self.active, self.end_date)
-
-#FAQ Models
-class Context(models.Model):
-    created_at = models.DateTimeField(default=timezone.now, verbose_name="Created at")
-    updated_at = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
-    title = models.CharField(max_length=255, blank=True, verbose_name="Title")
-
-    def __str__(self):
-        return self.title
-
-class FAQ(models.Model):
-    created_at = models.DateTimeField(default=timezone.now, verbose_name="Created at")
-    updated_at = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
-    question = models.CharField(max_length=100)
-    context = models.ForeignKey(Context, on_delete=models.CASCADE, verbose_name='Context', null=False, blank=True)
-    content = models.TextField()
-
-    def __str__(self):
-        return self.question
-
-    def get_absolute_url(self):
-        return reverse('portal:faq-detail', args=[str(self.id)])

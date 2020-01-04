@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Dashboard | {{ SITE_NAME }}{% endblock %}
+
+{% block extra_styles %}
+<style>
+a:hover {
+    text-decoration: none;
+}
+
+.modal-header {
+  background-color: #fff !important;
+  padding-bottom: 2rem !important;
+}
+
+.modal-body {
+  background-color: #f9fafb !important;
+}
+
+.modal-footer {
+  padding: 1rem 1rem 1rem 1rem !important;
+  background-color: #fff !important;
+  text-align: center !important;
+}
+</style>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+{% endblock extra_styles %}
+
+
+{% block content %}
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header justify-content-end">
+          <h3 class="text-primary">Coupon</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-close-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="p-3" style="border-color: #ccc; border-width:5px; border-style:dashed;">
+              <div class="row">
+                  <div class="col-6">
+                      <img class="card-img-top" src="media/{{ object.logo }}" alt="User Uploaded images">
+                  </div>
+                  <div class="col-6">
+                      <img class="img-fluid" src="{% static 'img/logo/logo3.jpg' %}" alt="GEGOO LOGO">
+                  </div>
+              </div>
+              <h4 class="fs-14 fw-6 text-primary">{{ object.business_name }} in {{ city }}</h4>
+              <h3>{{ object.get_first_active.title }}</h3>
+            <p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias alias ipsam minima, dolore! Modi enim porro neque quaerat blanditiis. Ipsa aliquam quam maxime rerum eum accusamus nulla, molestiae soluta repellendus!</p>
+            {{ object.get_first_active.title }}
+            <div class="bg-gray-30 text-primary text-uppercase p-3">
+                <span class="fw-6 fs-24">Code: {{ object.get_first_active.code_coupon }}</span>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary-alt btn-block mt-0">Save It</button>
+        <button type="button" class="btn btn-primary-alt btn-block mt-0">Print It</button>
+        <button type="button" class="btn btn-alternate-alt btn-block mt-0">Share It</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal End -->
+
+<!-- Body Start -->
+<section class="section-sm container">
+  <div class="row">
+      <div class="col-lg-6">
+          <h2 class="fw-6 hide mb-2">Merchant Dashboard </h2>
+      </div>
+      <div class="col-lg-6 text-right">
+          {% if user.is_approved == True %}
+          <span class="badge-success px-3 fs-16 fw-6 mr-2">Account Approved</span>
+          {% else %}
+          <span class="badge-danger px-3 fw-6 fs-16 mr-2">Account Not Approved
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-help"><path class="fill-transparent" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-red-600" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+          </span>
+          {% endif %}
+
+          {% if user.has_paid == True %}
+          <span class="badge-success px-3 fs-16 fw-6">Subscription Active</span>
+          {% else %}
+          <span class="badge-danger px-3 fw-6 fs-16">No Subscription Active
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-help"><path class="fill-transparent" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-red-600" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+          </span>
+          {% endif %}
+      </div>
+  </div>
+  <span class="fs-14 hide text-secondary">Welcome Back, {{ user }}!</span>
+      {% block component %}
+        {% include "users/user_merchant_profile_nav.html" %}
+      {% endblock component %}
+        <div class="row mt-2" data-aos="fade-up">
+            <div class="col-lg-12 mb-4">
+                <div class="card shadow-2  unhide">
+                    <div class="card-body">
+                        <h2 class="fw-6">My Account</h2>
+                        <span class="fs-14 text-muted">Welcome Back, {{ user }}!</span>
+                        <br>
+                        <br>
+                        <!-- Action buttons -->
+                        <ul class="pl-0" style="list-style-type: none;">
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none;" href="/" role="button">
+                            <li class="pb-3">
+                                <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2 fw-5">Home</span> <i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="#orders" role="button">
+                            <li class="pb-3">
+                                <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Orders</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_reset_password' %}" role="button">
+                            <li class="pb-3">
+                                <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2 fw-5">Password</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="#" role="button">
+                            <li class="pb-3">
+                                <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                          <hr class="mt-0 mb-3 unhide">
+                          <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
+                            <li class="pb-0">
+                                <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2 fw-5">Settings</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
+                            </li>
+                          </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-2">
+                    <div class="card-body">
+                        <h3 class="header">Lets Get Started</h3>
+                        <p class="fs-16">Welcome to your Gegoo Merchant Dashboard. This dashboard has all the tools and information you need to start advertising your business on Gegoo.</p>
+                        <hr>
+                        <h3 class="subheader">What is Gegoo?</h3>
+                        <p>Gegoo is an Online Marketing tool that makes it extremely easy for Businesses to advertise their goods and services to local customers at a competitive flat monthly rate.
+                        To start advertising your business on Gegoo you will need to do the following:</p>
+                    </div>
+                </div>
+      	    </div>
+            <div class="col-lg-6">
+                <div class="card my-2">
+                    <div class="card-body">
+                        <h3 class="header">
+                            Step One
+                            {% if user.is_approved == True %}
+                            <span class="badge-success px-3 fs-16 fw-6 pull-right">Complete</span>
+                            {% else %}
+                            <span class="badge-danger px-3 fw-6 fs-16 pull-right">Incomplete
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-help"><path class="fill-transparent" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-red-600" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                            </span>
+                            {% endif %}
+                        </h3>
+                        <p><span class="fw-6"></span><a href="">Click here</a> to fill out the Merchant Approval form</p>
+                        <a href="" class="btn btn-primary-alt">Get Approved</a>
+                    </div>
+                </div>
+
+                <div class="card my-2">
+                    <div class="card-body">
+                        <h3 class="header">
+                            Step Two
+                        </h3>
+                        <p><span class="fw-6"></span>Once Approved by the Gegoo Staff, you can create a Store with all of you business's information, location, hours, and services.</p>
+                        <br>
+                        <a href="" class="btn btn-alternate-alt">Create Store</a>
+                    </div>
+                </div>
+
+                <div class="card my-2">
+                    <div class="card-body">
+                        <h3 class="header">
+                            Step Three
+                        </h3>
+                        <p><span class="fw-6"></span>Once your store has been created, you will need to purchase a subscription package. <a href="">Click here</a> to see our pricing page.</p>
+                        <a href="" class="btn btn-alternate-alt">Purchase Subscription</a>
+                    </div>
+                </div>
+            </div>
+      </div>
+      <div class="py-5 hide"></div><div class="py-5 hide"></div>
+</section>
+
+{% endblock content %}
+{% block extrajs %}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1300,
+  });
+</script>
+{% endblock extrajs %}

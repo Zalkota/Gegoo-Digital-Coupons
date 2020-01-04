@@ -4647,8 +4647,8 @@ button {
   padding: .15rem .55rem; }
 
 .badge-danger {
-  background-color: #FEB2B2;
-  border: 1px solid #FC8181;
+  background-color: #FEB2B255;
+  border: 1px solid #F56565;
   color: #F56565;
   border-radius: 1.1rem;
   padding: .15rem .55rem; }
