@@ -1,10 +1,6 @@
 from django import forms
-<<<<<<< HEAD
 from .models import Profile
 from location.models import Address
-=======
-from portal.models import Address
->>>>>>> alpha
 
 from allauth.account.forms import SignupForm
 from django import forms
