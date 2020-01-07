@@ -28,10 +28,10 @@ body {
   body h6 {
     color: #2D3748; }
   body p {
-    color: #2D3748;
+    color: #4A5568;
     font-size: 1rem; }
   body li {
-    color: #2D3748; }
+    color: #4A5568; }
   body a {
     color: #7505AB; }
   body .section-header {
@@ -1166,7 +1166,7 @@ body {
   body h1 h2 h3 h4 h5 h6 {
     color: #1a1a1a; }
   body p {
-    color: #2D3748; }
+    color: #4A5568; }
   body li {
     color: #2A4365; }
   body a {
@@ -8153,268 +8153,268 @@ button {
   border-bottom: solid 1px #d7d7d7; }
 
 .stripe-primary-top {
-  border-top: 5px solid #7505AB; }
+  border-top: 4px solid #7505AB; }
 
 .stripe-secondary-top {
-  border-top: 5px solid #718096; }
+  border-top: 4px solid #718096; }
 
 .stripe-alternate-top {
-  border-top: 5px solid #5b5b5b; }
+  border-top: 4px solid #5b5b5b; }
 
 .stripe-white-top {
-  border-top: 5px solid #fff; }
+  border-top: 4px solid #fff; }
 
 .stripe-gray-10-top {
-  border-top: 5px solid #f1f1f1; }
+  border-top: 4px solid #f1f1f1; }
 
 .stripe-gray-20-top {
-  border-top: 5px solid #fafafa; }
+  border-top: 4px solid #fafafa; }
 
 .stripe-gray-30-top {
-  border-top: 5px solid #ddd; }
+  border-top: 4px solid #ddd; }
 
 .stripe-gray-40-top {
-  border-top: 5px solid #ccc; }
+  border-top: 4px solid #ccc; }
 
 .stripe-gray-50-top {
-  border-top: 5px solid #fafbfc; }
+  border-top: 4px solid #fafbfc; }
 
 .stripe-gray-60-top {
-  border-top: 5px solid #f5f5f5; }
+  border-top: 4px solid #f5f5f5; }
 
 .stripe-gray-70-top {
-  border-top: 5px solid #F1F3F6; }
+  border-top: 4px solid #F1F3F6; }
 
 .stripe-gray-100-top {
-  border-top: 5px solid #F7FAFC; }
+  border-top: 4px solid #F7FAFC; }
 
 .stripe-gray-200-top {
-  border-top: 5px solid #EDF2F7; }
+  border-top: 4px solid #EDF2F7; }
 
 .stripe-gray-300-top {
-  border-top: 5px solid #E2E8F0; }
+  border-top: 4px solid #E2E8F0; }
 
 .stripe-gray-400-top {
-  border-top: 5px solid #CBD5E0; }
+  border-top: 4px solid #CBD5E0; }
 
 .stripe-gray-500-top {
-  border-top: 5px solid #A0AEC0; }
+  border-top: 4px solid #A0AEC0; }
 
 .stripe-gray-600-top {
-  border-top: 5px solid #718096; }
+  border-top: 4px solid #718096; }
 
 .stripe-gray-700-top {
-  border-top: 5px solid #4A5568; }
+  border-top: 4px solid #4A5568; }
 
 .stripe-gray-800-top {
-  border-top: 5px solid #2D3748; }
+  border-top: 4px solid #2D3748; }
 
 .stripe-gray-900-top {
-  border-top: 5px solid #1A202C; }
+  border-top: 4px solid #1A202C; }
 
 .stripe-red-100-top {
-  border-top: 5px solid #FEB2B2; }
+  border-top: 4px solid #FEB2B2; }
 
 .stripe-red-200-top {
-  border-top: 5px solid #FC8181; }
+  border-top: 4px solid #FC8181; }
 
 .stripe-red-300-top {
-  border-top: 5px solid #FEB2B2; }
+  border-top: 4px solid #FEB2B2; }
 
 .stripe-red-400-top {
-  border-top: 5px solid #FC8181; }
+  border-top: 4px solid #FC8181; }
 
 .stripe-red-500-top {
-  border-top: 5px solid #F56565; }
+  border-top: 4px solid #F56565; }
 
 .stripe-red-600-top {
-  border-top: 5px solid #E53E3E; }
+  border-top: 4px solid #E53E3E; }
 
 .stripe-red-700-top {
-  border-top: 5px solid #C53030; }
+  border-top: 4px solid #C53030; }
 
 .stripe-red-800-top {
-  border-top: 5px solid #E53E3E; }
+  border-top: 4px solid #E53E3E; }
 
 .stripe-red-900-top {
-  border-top: 5px solid #C53030; }
+  border-top: 4px solid #C53030; }
 
 .stripe-orange-100-top {
-  border-top: 5px solid #FFFAF0; }
+  border-top: 4px solid #FFFAF0; }
 
 .stripe-orange-200-top {
-  border-top: 5px solid #FEEBC8; }
+  border-top: 4px solid #FEEBC8; }
 
 .stripe-orange-300-top {
-  border-top: 5px solid #FBD38D; }
+  border-top: 4px solid #FBD38D; }
 
 .stripe-orange-400-top {
-  border-top: 5px solid #F6AD55; }
+  border-top: 4px solid #F6AD55; }
 
 .stripe-orange-500-top {
-  border-top: 5px solid #ED8936; }
+  border-top: 4px solid #ED8936; }
 
 .stripe-orange-600-top {
-  border-top: 5px solid #DD6B20; }
+  border-top: 4px solid #DD6B20; }
 
 .stripe-orange-700-top {
-  border-top: 5px solid #C05621; }
+  border-top: 4px solid #C05621; }
 
 .stripe-orange-800-top {
-  border-top: 5px solid #9C4221; }
+  border-top: 4px solid #9C4221; }
 
 .stripe-orange-900-top {
-  border-top: 5px solid #7B341E; }
+  border-top: 4px solid #7B341E; }
 
 .stripe-yellow-100-top {
-  border-top: 5px solid #FFFFF0; }
+  border-top: 4px solid #FFFFF0; }
 
 .stripe-yellow-200-top {
-  border-top: 5px solid #FEFCBF; }
+  border-top: 4px solid #FEFCBF; }
 
 .stripe-yellow-300-top {
-  border-top: 5px solid #FAF089; }
+  border-top: 4px solid #FAF089; }
 
 .stripe-yellow-400-top {
-  border-top: 5px solid #F6E05E; }
+  border-top: 4px solid #F6E05E; }
 
 .stripe-yellow-500-top {
-  border-top: 5px solid #ECC94B; }
+  border-top: 4px solid #ECC94B; }
 
 .stripe-yellow-600-top {
-  border-top: 5px solid #D69E2E; }
+  border-top: 4px solid #D69E2E; }
 
 .stripe-yellow-700-top {
-  border-top: 5px solid #B7791F; }
+  border-top: 4px solid #B7791F; }
 
 .stripe-yellow-800-top {
-  border-top: 5px solid #975A16; }
+  border-top: 4px solid #975A16; }
 
 .stripe-yellow-900-top {
-  border-top: 5px solid #744210; }
+  border-top: 4px solid #744210; }
 
 .stripe-green-100-top {
-  border-top: 5px solid #F0FFF4; }
+  border-top: 4px solid #F0FFF4; }
 
 .stripe-green-200-top {
-  border-top: 5px solid #C6F6D5; }
+  border-top: 4px solid #C6F6D5; }
 
 .stripe-green-300-top {
-  border-top: 5px solid #9AE6B4; }
+  border-top: 4px solid #9AE6B4; }
 
 .stripe-green-400-top {
-  border-top: 5px solid #68D391; }
+  border-top: 4px solid #68D391; }
 
 .stripe-green-500-top {
-  border-top: 5px solid #48BB78; }
+  border-top: 4px solid #48BB78; }
 
 .stripe-green-600-top {
-  border-top: 5px solid #38A169; }
+  border-top: 4px solid #38A169; }
 
 .stripe-green-700-top {
-  border-top: 5px solid #2F855A; }
+  border-top: 4px solid #2F855A; }
 
 .stripe-green-800-top {
-  border-top: 5px solid #276749; }
+  border-top: 4px solid #276749; }
 
 .stripe-green-900-top {
-  border-top: 5px solid #22543D; }
+  border-top: 4px solid #22543D; }
 
 .stripe-blue-100-top {
-  border-top: 5px solid #EBF8FF; }
+  border-top: 4px solid #EBF8FF; }
 
 .stripe-blue-200-top {
-  border-top: 5px solid #BEE3F8; }
+  border-top: 4px solid #BEE3F8; }
 
 .stripe-blue-300-top {
-  border-top: 5px solid #90CDF4; }
+  border-top: 4px solid #90CDF4; }
 
 .stripe-blue-400-top {
-  border-top: 5px solid #63B3ED; }
+  border-top: 4px solid #63B3ED; }
 
 .stripe-blue-500-top {
-  border-top: 5px solid #4299E1; }
+  border-top: 4px solid #4299E1; }
 
 .stripe-blue-600-top {
-  border-top: 5px solid #3182CE; }
+  border-top: 4px solid #3182CE; }
 
 .stripe-blue-700-top {
-  border-top: 5px solid #2B6CB0; }
+  border-top: 4px solid #2B6CB0; }
 
 .stripe-blue-800-top {
-  border-top: 5px solid #2C5282; }
+  border-top: 4px solid #2C5282; }
 
 .stripe-blue-900-top {
-  border-top: 5px solid #2A4365; }
+  border-top: 4px solid #2A4365; }
 
 .stripe-purple-100-top {
-  border-top: 5px solid #FAF5FF; }
+  border-top: 4px solid #FAF5FF; }
 
 .stripe-purple-200-top {
-  border-top: 5px solid #E9D8FD; }
+  border-top: 4px solid #E9D8FD; }
 
 .stripe-purple-300-top {
-  border-top: 5px solid #D6BCFA; }
+  border-top: 4px solid #D6BCFA; }
 
 .stripe-purple-400-top {
-  border-top: 5px solid #B794F4; }
+  border-top: 4px solid #B794F4; }
 
 .stripe-purple-500-top {
-  border-top: 5px solid #9F7AEA; }
+  border-top: 4px solid #9F7AEA; }
 
 .stripe-purple-600-top {
-  border-top: 5px solid #805AD5; }
+  border-top: 4px solid #805AD5; }
 
 .stripe-purple-700-top {
-  border-top: 5px solid #6B46C1; }
+  border-top: 4px solid #6B46C1; }
 
 .stripe-purple-800-top {
-  border-top: 5px solid #553C9A; }
+  border-top: 4px solid #553C9A; }
 
 .stripe-purple-900-top {
-  border-top: 5px solid #44337A; }
+  border-top: 4px solid #44337A; }
 
 .stripe-blue-gray-100-top {
-  border-top: 5px solid #F0F4F8; }
+  border-top: 4px solid #F0F4F8; }
 
 .stripe-blue-gray-200-top {
-  border-top: 5px solid #D9E2EC; }
+  border-top: 4px solid #D9E2EC; }
 
 .stripe-blue-gray-300-top {
-  border-top: 5px solid #BCCCDC; }
+  border-top: 4px solid #BCCCDC; }
 
 .stripe-blue-gray-400-top {
-  border-top: 5px solid #9FB3C8; }
+  border-top: 4px solid #9FB3C8; }
 
 .stripe-blue-gray-500-top {
-  border-top: 5px solid #829AB1; }
+  border-top: 4px solid #829AB1; }
 
 .stripe-blue-gray-600-top {
-  border-top: 5px solid #627D98; }
+  border-top: 4px solid #627D98; }
 
 .stripe-blue-gray-700-top {
-  border-top: 5px solid #486581; }
+  border-top: 4px solid #486581; }
 
 .stripe-blue-gray-800-top {
-  border-top: 5px solid #334E68; }
+  border-top: 4px solid #334E68; }
 
 .stripe-blue-gray-900-top {
-  border-top: 5px solid #243B53; }
+  border-top: 4px solid #243B53; }
 
 .stripe-blue-gray-1000-top {
-  border-top: 5px solid #102A43; }
+  border-top: 4px solid #102A43; }
 
 .stripe-success-top {
-  border-top: 5px solid #48BB78; }
+  border-top: 4px solid #48BB78; }
 
 .stripe-danger-top {
-  border-top: 5px solid #F56565; }
+  border-top: 4px solid #F56565; }
 
 .stripe-warning-top {
-  border-top: 5px solid #DD6B20; }
+  border-top: 4px solid #DD6B20; }
 
 .stripe-info-top {
-  border-top: 5px solid #63B3ED; }
+  border-top: 4px solid #63B3ED; }
 
 /*  <**************************************************************************>
     <*****                   Mod Subscription Cards                       *****>
@@ -8852,13 +8852,13 @@ hr.hr-2 {
     padding: 1rem 3rem 1rem 0;
     margin-bottom: 0;
     order: 1;
-    color: #2D3748;
+    color: #4A5568;
     flex-grow: 0;
     font-weight: 700;
     line-height: normal;
     font-size: 1.25rem; }
   .payment-crumb-text {
-    color: #2D3748;
+    color: #4A5568;
     order: 1;
     flex-grow: 0;
     padding: 0.75rem 1rem 1rem 1rem;
@@ -10787,7 +10787,7 @@ hr.hr-2 {
   background-image: linear-gradient(120deg, #805AD5, #7505AB);
   color: #fafafa; }
 
-.gegoo-gradient {
+.gradient-primary {
   background-image: -webkit-linear-gradient(120deg, #805AD5, #7505AB);
   background-image: -o-linear-gradient(120deg, #805AD5, #7505AB);
   background-image: linear-gradient(120deg, #805AD5, #7505AB); }
@@ -11053,6 +11053,11 @@ hr.hr-2 {
 
 .fill-blue-gray-1000 {
   fill: #102A43; }
+
+.fill-gradient-primary {
+  fill: -webkit-linear-gradient(120deg, #805AD5, #7505AB);
+  fill: -o-linear-gradient(120deg, #805AD5, #7505AB);
+  fill: linear-gradient(120deg, #805AD5, #7505AB); }
 
 .fill-transparent {
   fill: transparent; }

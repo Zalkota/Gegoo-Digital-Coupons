@@ -150,7 +150,7 @@
 @each $colors, $value in $colors {
 
     .stripe-#{$colors}-top {
-      border-top: 5px solid $value;
+      border-top: 4px solid $value;
     }
 
 }
@@ -158,7 +158,7 @@
 @each $colors-alerts, $value in $colors-alerts {
 
     .stripe-#{$colors-alerts}-top {
-      border-top: 5px solid $value;
+      border-top: 4px solid $value;
     }
 
 }

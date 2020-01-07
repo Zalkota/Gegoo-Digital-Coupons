@@ -107,7 +107,7 @@ $color-alt-lighter: lighten( $color-alt, 25% );
 $color-alt-dark: darken( $color-alt, 10%);
 
 
-$color-text: $color-gray-800;
+$color-text: $color-gray-700;
 $color-background: #FFF;
 $color-background-100: #f1f1f1;
 $color-background-200: #fafafa;
@@ -154,6 +154,8 @@ $color-info: $color-blue-400;
 $color-info-light: lighten( $color-info, 10% );
 $color-info-dark: darken( $color-info, 10% );
 
+// Gradients
+$gradient-primary: 120deg, $color-purple-600, $color-primary;
 // $keep: #476783;
 // $keep1: #5981a4;
 // $keep2: #6b81cb;
@@ -171,6 +173,9 @@ $colors: map-merge((
   "alternate": $color-alt,
 
   "white": $color-white,
+
+
+
 
   "gray-10":  #f1f1f1,
   "gray-20":  #fafafa,

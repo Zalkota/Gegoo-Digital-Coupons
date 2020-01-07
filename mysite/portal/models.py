@@ -55,6 +55,12 @@ CATEGORY_CHOICES = (
     ('HOME', 'Home Improvement'),
 )
 
+STATUS_CHOICES = {
+    ('draft', 'Draft'),
+    ('published', 'Published'),
+}
+
+
 # <**************************************************************************>
 # <*****                         MISC FUNCTIONS                         *****>
 # <**************************************************************************>
@@ -150,8 +156,6 @@ class Images(models.Model):
         return '%s (%s)' % (self.file, self.uploaded_at)
 
 
-
-
 class Category(models.Model):
     name = models.CharField(choices=CATEGORY_CHOICES, default='FOOD', max_length=20, unique=True, db_index=True,)
 
@@ -197,17 +201,13 @@ class About(models.Model):
         return '%s' % (self.header)
 
 
-
-
 class Merchant(models.Model):
-<<<<<<< HEAD
-    ref_code = models.AutoField(primary_key=True)
+
+
     end_date = models.DateField(null=True)
     active = models.BooleanField(default=False)
-=======
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    # ref_code = models.AutoField(primary_key=True, blank=True)
->>>>>>> alpha
+    #id = models.AutoField(primary_key=True, default="")
     business_name = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='merchant-logos/', null=True)
     # banner = models.ImageField(upload_to='merchant-banners/', null=True)
@@ -219,7 +219,6 @@ class Merchant(models.Model):
     website_url = models.CharField(max_length=500, blank=True)
     facebook_url = models.CharField(max_length=500, blank=True)
     about = models.ForeignKey(About, related_name='about', on_delete=models.CASCADE, blank=True, null=True)
-<<<<<<< HEAD
     code_coupon = models.CharField(max_length=40, blank=True, null=True, help_text="NOTE: Leave blank and a GEGOO coupon code will be generated")
     promotional_video_file_name = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
     promotional_video_thumbnail_name = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
@@ -228,16 +227,8 @@ class Merchant(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True, related_name='merchant')
     latitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True, blank=True)
     longitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True, blank=True)
-=======
-    promotional_video_file_name = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
-    promotional_video_thumbnail_name = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
-    #Location
-    # address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='merchant')
-    city = models.ManyToManyField(City, related_name='merchant')
-    latitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True)
-    longitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True)
->>>>>>> alpha
     location = models.PointField(srid=4326, null=True, blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
 
     @property
     def get_first_active(self):
@@ -252,17 +243,15 @@ class Merchant(models.Model):
         'category': self.category.name,
         'subcategory': self.subcategory,
         'name': self.business_name,
-        'ref_code': self.id
+        'id': self.id
         })
 
     def __str__(self):
         return '%s located in %s' % (self.business_name, self.city)
 
 # post_save.connect(setMerchantRefCode, sender=Merchant)
-<<<<<<< HEAD
+
 post_save.connect(setCouponCode, sender=Merchant)
-=======
->>>>>>> alpha
 post_save.connect(CalculateLocation, sender=Merchant)
 
     #
@@ -291,8 +280,7 @@ class Offer(models.Model):
     slug = models.SlugField()
     image = models.ImageField(upload_to='photos/', null=True)
     end_date = models.DateField()
-    #
-    # objects = OfferManager()
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
 
     def __str__(self):
         return '%s (%s)' % (self.title, self.merchant.business_name)
@@ -314,28 +302,3 @@ class Promotion(models.Model):
 
     def __str__(self):
         return '%s' '(%s, ends=%s)' % (self.message, self.active, self.end_date)
-<<<<<<< HEAD
-
-#FAQ Models
-class Context(models.Model):
-    created_at = models.DateTimeField(default=timezone.now, verbose_name="Created at")
-    updated_at = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
-    title = models.CharField(max_length=255, blank=True, verbose_name="Title")
-
-    def __str__(self):
-        return self.title
-
-class FAQ(models.Model):
-    created_at = models.DateTimeField(default=timezone.now, verbose_name="Created at")
-    updated_at = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
-    question = models.CharField(max_length=100)
-    context = models.ForeignKey(Context, on_delete=models.CASCADE, verbose_name='Context', null=False, blank=True)
-    content = models.TextField()
-
-    def __str__(self):
-        return self.question
-
-    def get_absolute_url(self):
-        return reverse('portal:faq-detail', args=[str(self.id)])
-=======
->>>>>>> alpha

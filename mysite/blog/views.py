@@ -73,3 +73,6 @@ class ContactFormView(FormView):
 
 def contactLandingPage(request):
     return render(request, 'mysite/form_page_landing.html')
+
+def AboutPageView(request):
+    return render(request, 'blog/about_page.html')

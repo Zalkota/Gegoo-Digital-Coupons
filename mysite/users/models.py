@@ -16,17 +16,24 @@ from django.utils import timezone
 
 
 class User(AbstractUser):
-    # First Name and Last Name do not cover name patterns
-    # around the globe.
     name = models.CharField(_('Name_of_User'), blank=True, max_length=255)
-    #accepted_terms_of_service = models.Booleanfield()
+
+    is_merchant     = models.BooleanField('is_merchant', default=False)
+    is_approved     = models.BooleanField('merchant_is_approved', default=False)
+    has_paid     = models.BooleanField('payment_status', default=False) #Is this necesarry?
+    # is_consumer     = models.BooleanField('ConsumerStatus', default=False)
+    # slug            = models.SlugField(max_length=100, null=True)
+
+
+    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
+    updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
 
     def __str__(self):
         return self.username
-
-    def get_absolute_url(self):
-        return reverse('users:detail', kwargs={'username': self.name})
-        return reverse('users:detail', kwargs={'user': self.username})
+    #
+    # def get_absolute_url(self):
+    #     return reverse('users:detail', kwargs={'username': self.name})
+    #     return reverse('users:detail', kwargs={'user': self.username})
 
 # Profile Image
 def upload_to(instance, filename):

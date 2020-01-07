@@ -16,6 +16,12 @@
     }
   }
 
+  .fill-gradient-primary {
+    fill: -webkit-linear-gradient($gradient-primary);
+    fill: -o-linear-gradient($gradient-primary);
+    fill: linear-gradient($gradient-primary);
+  }
+
   .fill-transparent {
       fill: transparent;
   }

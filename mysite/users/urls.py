@@ -1,11 +1,8 @@
 from django.conf.urls import url
 from django.urls import path
 from . import views
-<<<<<<< HEAD
-from .views import  UserRedirectView, UserUpdateView, RedirectProfileView, userPage, userLocaton, userRewards
-=======
-from .views import  UserRedirectView, UserUpdateView, RedirectProfileView, userPage, userLocaton, MerchantSignUpView, MerchantStoreListView, MerchantSubscriptionsView
->>>>>>> alpha
+from .views import  UserRedirectView, UserUpdateView, RedirectProfileView, userPage, userLocaton, MerchantSignUpView, MerchantStoreListView, MerchantSubscriptionsView, userRewards
+
 
 
 urlpatterns = [

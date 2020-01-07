@@ -15,6 +15,7 @@ from django.utils import timezone
 from location.models import Address
 from .forms import userLocationForm
 from django.contrib import messages
+from memberships.views import get_user_membership, get_user_subscriptions
 #from shoppingcart.views import get_user_address_default, get_user_orders
 
 #Profile Image
@@ -25,43 +26,40 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from cities_light.models import Region, City
 
-<<<<<<< HEAD
+
 # def get_reward_data(request, *args, **kwargs):
 #     UserRewardData = self.request.user.profile.points
 #     data = {
 #         "points": UserRewardData,
 #     }
 #     return JsonResponse(data)
-=======
+
 from allauth.account.views import SignupView
 from users.forms import MerchantSignupForm
 
 
->>>>>>> alpha
+
 
 class userPage(View):
     def get(self, *args, **kwargs):
         try:
             user = self.request.user
 
-            data = user.user_profile.points
-
-            context = {
-<<<<<<< HEAD
-                    'user': user,
-                    'data': data,
-=======
-                'user': user,
->>>>>>> alpha
-            }
-
             #Render Merchant Page
             if user.is_merchant == True:
+                context = {
+                    'user': user,
+                }
                 return render(self.request, "users/user_merchant_profile.html", context)
 
             #Render Normal User Profile Page
             elif user.is_merchant == False:
-                    return render(self.request, "users/userPage.html", context)
+                data = user.user_profile.points
+                context = {
+                    'user': user,
+                    'data': data,
+                }
+                return render(self.request, "users/userPage.html", context)
 
 
         except ObjectDoesNotExist:
@@ -122,8 +120,6 @@ class userLocaton(View):
             return redirect("users:user_location")
 
 
-
-<<<<<<< HEAD
 class userRewards(View):
     def get(self, *args, **kwargs):
         # form = userLocationForm()
@@ -164,9 +160,6 @@ class userRewards(View):
     #         return redirect("users:user_location")
 
 
-
-=======
->>>>>>> alpha
 class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
@@ -227,14 +220,15 @@ class MerchantSignUpView(SignupView):
 
 
 class MerchantSubscriptionsView(LoginRequiredMixin, View):
-    def get(self):
-        # user_membership_list = get_user_memberships(request)
-        # user_subscription_list = get_user_subscriptions(request)
+    def get(self, *args, **kwargs):
+        user_membership = get_user_membership(self.request)
+        user_subscription_list = get_user_subscriptions(self.request)
+
         context = {
-            'user_membership_list': user_membership_list,
+            'user_membership': user_membership,
             'user_subscription_list': user_subscription_list
         }
-        return render(request, "users/user_merchant_subscription.html", context)
+        return render(self.request, "users/user_merchant_subscription.html", context)
 
 # class ConsumerSignUpView(SignupView):
 #
