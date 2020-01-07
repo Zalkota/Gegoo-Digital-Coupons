@@ -11,6 +11,9 @@ from django.shortcuts import reverse
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils import timezone
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from django.utils.text import slugify
 
 # Image Upload
 from django.core.validators import FileExtensionValidator
@@ -178,8 +181,6 @@ class Subcategory(models.Model):
     def __str__(self):
       return '%s' % (self.name)
 
-
-
 class Tag(models.Model):
     name = models.CharField(max_length=32)
 
@@ -189,7 +190,10 @@ class Tag(models.Model):
     class Meta:
         ordering = ['-name']
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> alpha
 class About(models.Model):
     header = models.TextField()
     subheader = models.TextField()
@@ -200,10 +204,54 @@ class About(models.Model):
     def __str__(self):
         return '%s' % (self.header)
 
+<<<<<<< HEAD
 
 class Merchant(models.Model):
+=======
+def setMerchantRefCode(sender, created, instance, **kwargs):
+    merchant = instance
+    #print(merchant.ref_code)
+    if merchant.ref_code == None:
+        print('ref_code == None')
+        try:
+            merchant.ref_code = unique_merchant_id_generator()
+            merchant.save()
+        except:
+            print('ERROR REF CODE')
 
+def CalculateLocation(sender, created, instance, **kwargs):
+    merchant = instance
+    #print(merchant.location)
+    if merchant.location == None:
+        try:
+            longitude = merchant.longitude
+            latitude = merchant.latitude
 
+            location = fromstr(
+                f'POINT({longitude} {latitude})', srid=4326
+            )
+            merchant.location = location
+            merchant.save()
+
+        except KeyError:
+            pass
+>>>>>>> alpha
+
+class Offer(models.Model):
+    author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    title           = models.CharField(max_length=100, blank=False)
+    description     = models.TextField(max_length=500, blank=False)
+    tag             = models.ManyToManyField(Tag, blank=True)
+    slug            = models.SlugField(unique=True)
+    image           = models.ImageField(upload_to='photos/', null=True)
+    end_date        = models.DateField()
+    likes           = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
+
+    # Creation Fields
+    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
+    updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
+
+<<<<<<< HEAD
     end_date = models.DateField(null=True)
     active = models.BooleanField(default=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
@@ -230,6 +278,72 @@ class Merchant(models.Model):
     location = models.PointField(srid=4326, null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
 
+
+=======
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('portal:offer_detail', kwargs={'slug': self.slug})
+
+@receiver(pre_save, sender=Offer)
+def pre_save_offer(sender, **kwargs):
+    slug = slugify(kwargs['instance'].title)
+    kwargs['instance'].slug = slug
+
+class Store(models.Model):
+    end_date = models.DateField(null=True)
+    active = models.BooleanField(default=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+
+    # URL Pattern
+    slug        = models.SlugField(unique=True)
+
+    # Offers
+    offers      = models.ManyToManyField(Offer)
+
+    # Store Attributes
+    business_name       = models.CharField(max_length=100)
+    website_url         = models.URLField(max_length=500, blank=True, null=True)
+    facebook_url        = models.URLField(max_length=500, blank=True, null=True)
+    logo                = models.ImageField(upload_to='merchant-logos/', blank=True, null=True)
+    category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, related_name='category')
+
+
+    # Store Bio
+    title               = models.CharField(max_length=100)
+    description         = models.TextField(max_length=500)
+
+    # Store Location Info
+    phone_number        = PhoneNumberField(max_length=20, blank=True, null=True)
+    country             = models.CharField(max_length=40, blank=True)
+    state               = models.CharField(max_length=165, blank=True)
+    city                = models.ManyToManyField(City, related_name='merchant', blank=True)
+    postal_code         = models.CharField(max_length=12, blank=True)
+    latitude            = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True, blank=True)
+    longitude           = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True, blank=True)
+    location            = models.PointField(srid=4326, null=True, blank=True)
+
+    # AWS3 Services
+    downloadable_content_url            = models.URLField(max_length=500, blank=True, null=True, help_text="Link to AWS download url goes here")
+    downloadable_content_title          = models.CharField(max_length=500, blank=True, null=True, help_text="Examples: menu, brochure, etc.")
+    promotional_video_file_name         = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
+    promotional_video_thumbnail_name    = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
+
+    ref_code = models.CharField(max_length=20, blank=True, null=True, editable=False)
+
+    # Creation Fields
+    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
+    updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
+>>>>>>> alpha
+
+    def __str__(self):
+        return self.business_name
+
+    def get_absolute_url(self):
+        return reverse('portal:store_detail', kwargs={'slug': self.slug})
+
     @property
     def get_first_active(self):
         now = timezone.now()
@@ -237,22 +351,21 @@ class Merchant(models.Model):
         object = object_qs.first()
         return object
 
-    def get_absolute_url(self):
-        return reverse('portal:merchant_detail',
-        kwargs={
-        'category': self.category.name,
-        'subcategory': self.subcategory,
-        'name': self.business_name,
-        'id': self.id
-        })
 
-    def __str__(self):
-        return '%s located in %s' % (self.business_name, self.city)
-
+<<<<<<< HEAD
 # post_save.connect(setMerchantRefCode, sender=Merchant)
 
 post_save.connect(setCouponCode, sender=Merchant)
 post_save.connect(CalculateLocation, sender=Merchant)
+=======
+@receiver(pre_save, sender=Store)
+def pre_save_store(sender, **kwargs):
+    slug = slugify(kwargs['instance'].business_name)
+    kwargs['instance'].slug = slug
+
+# post_save.connect(setMerchantRefCode, sender=Store)
+# post_save.connect(CalculateLocation, sender=Store)
+>>>>>>> alpha
 
     #
     # def merchantCallback(sender, request, user, **kwargs):
@@ -271,6 +384,7 @@ post_save.connect(CalculateLocation, sender=Merchant)
 #         object = object_qs.first()
 #         return object
 
+<<<<<<< HEAD
 
 class Offer(models.Model):
     merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE, null=True, related_name='offer')
@@ -294,6 +408,8 @@ class Favorite(models.Model):
     def __str__(self):
         return '%s (%s)' % (self.name, self.offer)
 
+=======
+>>>>>>> alpha
 class Promotion(models.Model):
     message = models.CharField(max_length=64)
     background = models.CharField(choices=PROMOTION_CHOICES, default='Primary', max_length=12)

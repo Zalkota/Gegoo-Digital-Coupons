@@ -6,10 +6,18 @@ from users import models as users_models
 from .models import User, Profile, userStripe
 
 class UserAdmin(admin.ModelAdmin):
+<<<<<<< HEAD
+    list_display            = ('username', 'first_name', 'last_name', 'slug', 'is_approved', 'is_merchant', 'created_at', 'updated_at')
+    list_filter             = ('created_at', 'updated_at')     
+    search_fields           = ('username', 'first_name', 'last_name')
+    prepopulated_fields     = {'slug':('username',)}
+    list_editable           = ('is_merchant', 'is_approved')
+=======
     list_display            = ('username', 'first_name', 'last_name', 'is_merchant', 'is_superuser', 'created_at', 'updated_at')
     list_filter             = ('created_at', 'updated_at')
     search_fields           = ('username', 'first_name', 'last_name')
     list_editable           = ('is_merchant',)
+>>>>>>> d7a59c76afbdbfd71c04e0a71d553cf071a87857
     date_hierarchy          = ('created_at')
 
 admin.site.register(users_models.User, UserAdmin)

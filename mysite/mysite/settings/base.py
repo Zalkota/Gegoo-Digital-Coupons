@@ -314,6 +314,7 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_CONFIRMATION_HMAC = True
 # In order to verify an email address a key is mailed identifying the email address to be verified. In previous versions, a record was stored in the database for each ongoing email confirmation, keeping track of these keys. Current versions use HMAC based keys that do not require server side state.
 ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
 # Determines the e-mail verification method during signup – choose one of "mandatory", "optional", or "none". When set to “mandatory” the user is blocked from logging in until the email address is verified. Choose “optional” or “none” to allow logins with an unverified e-mail address. In case of “optional”, the e-mail verification mail is still sent, whereas in case of “none” no e-mail verification mails are sent.
 
 # ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -338,7 +339,6 @@ ACCOUNT_USER_MODEL_EMAIL_FIELD ='email'
 ACCOUNT_USER_MODEL_USERNAME_FIELD ='username'
 
 ACCOUNT_USERNAME_MIN_LENGTH = 5
-ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True  # The default behaviour is not log users in and to redirect them to ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL
 #By changing this setting to True, users will automatically be logged in once they confirm their email address. Note however that this only works when confirming the email address immediately after signing up, assuming users didn’t close their browser or used some sort of private browsing mode.
 
@@ -364,3 +364,5 @@ LEAFLET_CONFIG = {
     'SCALE': 'imperial',
     'ATTRIBUTION_PREFIX': 'MOD Technologies LLC'
 }
+
+DATE_INPUT_FORMATS = ['%d/%m/%Y']

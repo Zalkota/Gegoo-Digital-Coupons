@@ -1,0 +1,24 @@
+{% extends 'base-alt.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h3>{{ object.title }}</h3>
+                    <p>{{ object.created_at|date:'F d, Y' }}</p>
+                    <h3>{{ object.description }}</h3>
+                    <h3>{{ object.author }}</h3>
+                    <h3>likes {{ object.likes.count }}</h3>
+                    <form action="{% url 'portal:offer_like' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" name="offer_slug" value="{{ object.slug }}" class="btn btn-primary">Like</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %} 

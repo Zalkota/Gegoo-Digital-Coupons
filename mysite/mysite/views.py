@@ -14,8 +14,9 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 
 # imports
-from portal.models import Offer, Merchant, Category
 from location.models import Address
+from .models import Contact
+from portal.models import Offer, Store, Category, Address
 
 #mail
 from django.core.mail import send_mail
@@ -139,6 +140,7 @@ def get_items(request):
 class homeView(View):
 
     def get(self, *args, **kwargs):
+<<<<<<< HEAD
 
         city = 'default_city'
         state = 'default_state'
@@ -155,6 +157,55 @@ class homeView(View):
 
         # if address_qs = None:
         #     address_qs = Address.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
+=======
+<<<<<<< HEAD
+        city = 'default_city'
+        state = 'default_state'
+        city_state = get_or_set_location(self.request)
+
+        city = city_state["city"]
+        state = city_state["state"]
+
+        print(city)
+        # city = context["city"]
+        # state = context["subdivisions"]
+        #Store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
+        #Store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
+        address_qs = Store.objects.filter(city=city)
+        # if address_qs = None:
+        #     address_qs = Address.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
+        category_list = Category.objects.all()
+=======
+        try:
+            city = 'default_city'
+            state = 'default_state'
+            city_state = get_or_set_location(self.request)
+
+            city = city_state["city"]
+            state = city_state["state"]
+
+            print(city)
+            # city = context["city"]
+            # state = context["subdivisions"]
+            #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
+            #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
+            address_qs = Merchant.objects.filter(city=city)
+            # if address_qs = None:
+            #     address_qs = Address.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
+            category_list = Category.objects.all()
+            context = {
+                # 'ip': ip,
+                # 'data': data,
+                'city': city,
+                'state': state,
+                'address_qs': address_qs,
+                'category_list': category_list,
+                # 'offer': offer,
+            }
+        except:
+            context = {}
+>>>>>>> d7a59c76afbdbfd71c04e0a71d553cf071a87857
+>>>>>>> alpha
 
 
         # reader = geolite2.reader()
