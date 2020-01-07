@@ -16,7 +16,7 @@ from django.utils import timezone
 
 # imports
 from .models import Contact
-from portal.models import Offer, Merchant, Category, Address
+from portal.models import Offer, Store, Category, Address
 
 #mail
 from django.core.mail import send_mail
@@ -153,9 +153,9 @@ class homeView(FormView):
         print(city)
         # city = context["city"]
         # state = context["subdivisions"]
-        #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
-        #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
-        address_qs = Merchant.objects.filter(city=city)
+        #Store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
+        #Store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
+        address_qs = Store.objects.filter(city=city)
         # if address_qs = None:
         #     address_qs = Address.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
         category_list = Category.objects.all()

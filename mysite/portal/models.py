@@ -7,6 +7,9 @@ from django.shortcuts import reverse
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils import timezone
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from django.utils.text import slugify
 
 # Image Upload
 from django.core.validators import FileExtensionValidator
@@ -79,9 +82,6 @@ class Images(models.Model):
     def __str__(self):
         return '%s (%s)' % (self.file, self.uploaded_at)
 
-
-
-
 class Category(models.Model):
     name = models.CharField(choices=CATEGORY_CHOICES, default='FOOD', max_length=20, unique=True, db_index=True,)
 
@@ -98,8 +98,6 @@ class Subcategory(models.Model):
   def __str__(self):
       return '%s' % (self.name)
 
-
-
 class Tag(models.Model):
     name = models.CharField(max_length=32)
 
@@ -108,8 +106,6 @@ class Tag(models.Model):
 
     class Meta:
         ordering = ['-name']
-
-
 
 class About(models.Model):
     header = models.TextField()
@@ -121,8 +117,6 @@ class About(models.Model):
 
     def __str__(self):
         return '%s' % (self.header)
-
-
 
 def setMerchantRefCode(sender, created, instance, **kwargs):
     merchant = instance
@@ -152,50 +146,87 @@ def CalculateLocation(sender, created, instance, **kwargs):
         except KeyError:
             pass
 
+class Offer(models.Model):
+    author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    title           = models.CharField(max_length=100, blank=False)
+    description     = models.TextField(max_length=500, blank=False)
+    tag             = models.ManyToManyField(Tag, blank=True)
+    slug            = models.SlugField(unique=True)
+    image           = models.ImageField(upload_to='photos/', null=True)
+    end_date        = models.DateField()
+    likes           = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
 
-class Merchant(models.Model):
-    business_name = models.CharField(max_length=100)
-    logo = models.ImageField(upload_to='merchant-logos/', null=True)
-    # banner = models.ImageField(upload_to='merchant-banners/', null=True)
-    phone_number = PhoneNumberField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='category')
-    subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, null=True, related_name='subcategory')
-    downloadable_content_url =  models.CharField(max_length=500, blank=True, null=True, help_text="Link to AWS download url goes here")
-    downloadable_content_title =  models.CharField(max_length=500, blank=True, null=True, help_text="Examples: menu, brochure, etc.")
-    website_url = models.CharField(max_length=500)
-    facebook_url = models.CharField(max_length=500)
-    about = models.ForeignKey(About, related_name='about', on_delete=models.CASCADE, blank=True, null=True)
-    ref_code = models.CharField(max_length=20, blank=True, null=True, editable=False)
-    promotional_video_file_name = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
-    promotional_video_thumbnail_name = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
-    #Location
-    # address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='merchant')
-    city = models.ManyToManyField(City, related_name='merchant')
-    latitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True, blank=True)
-    longitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True, blank=True)
-    location = models.PointField(srid=4326, null=True, blank=True)
-
-    @property
-    def get_first_active(self):
-        now = timezone.now()
-        object_qs = self.offer.filter(end_date__gt=now).order_by('end_date')
-        object = object_qs.first()
-        return object
-
-    def get_absolute_url(self):
-        return reverse('portal:merchant_detail',
-        kwargs={
-        'category': self.category.name,
-        'subcategory': self.subcategory,
-        'name': self.business_name,
-        'ref_code': self.ref_code
-        })
+    # Creation Fields
+    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
+    updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
 
     def __str__(self):
-        return '%s located in %s' % (self.business_name, self.city)
+        return self.title
 
-post_save.connect(setMerchantRefCode, sender=Merchant)
-post_save.connect(CalculateLocation, sender=Merchant)
+    def get_absolute_url(self):
+        return reverse('portal:offer_detail', kwargs={'slug': self.slug})
+    
+@receiver(pre_save, sender=Offer)
+def pre_save_offer(sender, **kwargs):
+    slug = slugify(kwargs['instance'].title)
+    kwargs['instance'].slug = slug
+
+class Store(models.Model):
+    merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+
+    # URL Pattern
+    slug        = models.SlugField(unique=True)
+
+    # Offers
+    offers      = models.ManyToManyField(Offer)
+
+    # Store Attributes
+    business_name       = models.CharField(max_length=100)
+    website_url         = models.URLField(max_length=500, blank=True, null=True)
+    facebook_url        = models.URLField(max_length=500, blank=True, null=True)
+    logo                = models.ImageField(upload_to='merchant-logos/', blank=True, null=True)
+    category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, related_name='category')
+
+
+    # Store Bio
+    title               = models.CharField(max_length=100)
+    description         = models.TextField(max_length=500)
+
+    # Store Location Info
+    phone_number        = PhoneNumberField(max_length=20, blank=True, null=True)
+    country             = models.CharField(max_length=40, blank=True)
+    state               = models.CharField(max_length=165, blank=True)
+    city                = models.ManyToManyField(City, related_name='merchant', blank=True)
+    postal_code         = models.CharField(max_length=12, blank=True)
+    latitude            = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True, blank=True)
+    longitude           = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True, blank=True)
+    location            = models.PointField(srid=4326, null=True, blank=True)
+
+    # AWS3 Services
+    downloadable_content_url            = models.URLField(max_length=500, blank=True, null=True, help_text="Link to AWS download url goes here")
+    downloadable_content_title          = models.CharField(max_length=500, blank=True, null=True, help_text="Examples: menu, brochure, etc.")
+    promotional_video_file_name         = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
+    promotional_video_thumbnail_name    = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
+
+    ref_code = models.CharField(max_length=20, blank=True, null=True, editable=False)
+
+    # Creation Fields
+    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
+    updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
+
+    def __str__(self):
+        return self.business_name
+
+    def get_absolute_url(self):
+        return reverse('portal:store_detail', kwargs={'slug': self.slug})
+
+@receiver(pre_save, sender=Store)
+def pre_save_store(sender, **kwargs):
+    slug = slugify(kwargs['instance'].business_name)
+    kwargs['instance'].slug = slug
+
+# post_save.connect(setMerchantRefCode, sender=Store)
+# post_save.connect(CalculateLocation, sender=Store)
 
     #
     # def merchantCallback(sender, request, user, **kwargs):
@@ -214,32 +245,6 @@ post_save.connect(CalculateLocation, sender=Merchant)
 #         object = object_qs.first()
 #         return object
 
-
-class Offer(models.Model):
-    merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE, null=True, related_name='offer')
-    # address = models.ForeignKey(Address, related_name='offer', on_delete=models.CASCADE, blank=True, null=True)
-    title = models.TextField()
-    description = RichTextUploadingField()
-    # ad = models.ForeignKey(Ad, on_delete=models.CASCADE, null=True, related_name='ad')
-    tag = models.ManyToManyField(Tag, blank=True)
-    slug = models.SlugField()
-    image = models.ImageField(upload_to='photos/', null=True)
-    end_date = models.DateField()
-    #
-    # objects = OfferManager()
-
-    def __str__(self):
-        return '%s (%s)' % (self.title, self.merchant.business_name)
-
-
-
-class Favorite(models.Model):
-    offer = models.ForeignKey(Offer, related_name='offer', on_delete=models.SET_NULL, blank=True, null=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return '%s (%s)' % (self.name, self.offer)
-
 class Promotion(models.Model):
     message = models.CharField(max_length=64)
     background = models.CharField(choices=PROMOTION_CHOICES, default='Primary', max_length=12)
@@ -248,25 +253,3 @@ class Promotion(models.Model):
 
     def __str__(self):
         return '%s' '(%s, ends=%s)' % (self.message, self.active, self.end_date)
-
-#FAQ Models
-class Context(models.Model):
-    created_at = models.DateTimeField(default=timezone.now, verbose_name="Created at")
-    updated_at = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
-    title = models.CharField(max_length=255, blank=True, verbose_name="Title")
-
-    def __str__(self):
-        return self.title
-
-class FAQ(models.Model):
-    created_at = models.DateTimeField(default=timezone.now, verbose_name="Created at")
-    updated_at = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
-    question = models.CharField(max_length=100)
-    context = models.ForeignKey(Context, on_delete=models.CASCADE, verbose_name='Context', null=False, blank=True)
-    content = models.TextField()
-
-    def __str__(self):
-        return self.question
-
-    def get_absolute_url(self):
-        return reverse('portal:faq-detail', args=[str(self.id)])

@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 
 ## DEBUG:
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Merchant, Subcategory, Category, FAQ, Context
-from django.views.generic import ListView, DetailView, View
+from portal import models as portal_models
+from django.views.generic import ListView, DetailView, View, CreateView, DeleteView, UpdateView
 # Create your views here.
 
 from django.contrib.gis.db import models
@@ -17,26 +19,26 @@ user_location = Point(longitude, latitude, srid=4326)
 
 
 def get_user_orders(request, user):
-	user_orders_qs = Order.objects.filter(user=user)
+	user_orders_qs = portal_modedls.Order.objects.filter(user=user)
 	if user_orders_qs.exists():
 		return user_orders_qs
 	return None
 
 class CategoryListView(ListView):
-	model = Category
+	model = portal_models.Category
 
 
 class CategoryDetailView(View):
 
 	def get(self, *args, **kwargs):
 		try:
-			category = Category.objects.get(name=self.kwargs['name'])
-			category_nearby_merchants = Merchant.objects.filter(category=category).annotate(distance = Distance("location", user_location)).order_by("distance")[0:9]
-			all_categories = Category.objects.all()
+			category = portal_models.Category.objects.get(name=self.kwargs['name'])
+			category_nearby_stores = portal_models.Store.objects.filter(category=category).annotate(distance = Distance("location", user_location)).order_by("distance")[0:9]
+			all_categories = portal_models.Category.objects.all()
 
 			context = {
 			'category': category,
-			'category_nearby_merchants': category_nearby_merchants,
+			'category_nearby_stores': category_nearby_storess,
 			'all_categories': all_categories,
 			}
 			return render(self.request, "portal/category_detail.html", context)
@@ -45,94 +47,104 @@ class CategoryDetailView(View):
 			messages.info(self.request, "Error contact admin")
 			return redirect("home-page")
 
+class StoreListView(ListView):
+	model = portal_models.Store
+	template_name = 'store/store_list.html'
 
-# class SubcategoryListView(View):
-# 	def get(self, *args, **kwargs):
-# 		try:
-# 			merchant = Subcategory.objects.filter(category=self.kwargs['category'])
+	def get_queryset(self):
+		store_list = portal_models.Store.objects.filter(merchant=self.request.user)
+		return store_list
 
-
-class MerchantDetailView(View):
-	def get(self, *args, **kwargs):
-		try:
-			merchant = Merchant.objects.get(ref_code=self.kwargs['ref_code'])
-			recommended_offers = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:4]
-
-			#data = GeoIP.city('google.com')
-
-
-			context = {
-			#'data': data,
-			'merchant': merchant,
-			'recommended_offers': recommended_offers,
-			}
-			return render(self.request, "portal/merchant_detail.html", context)
-
-		except ObjectDoesNotExist:
-			messages.info(self.request, "Error contact admin")
-			return redirect("home-page")
-
-
-    #def post(self, *args, **kwargs):
-
-    #return redirect("/payment/stripe/")
-
-class FAQView(ListView):
-	model = FAQ
-	template_name = 'mysite/faq/faq.html'
-	# paginate_by = 3
+class StoreDetailView(DetailView):
+	model = portal_models.Store
+	template_name = 'store/store_detail.html'
 
 	def get_context_data(self, **kwargs):
-		context = super(FAQView, self).get_context_data(**kwargs)
-		context['context1'] = Context.objects.get(title='Accounts')
-		context['context2'] = Context.objects.get(title='Payment')
-		context['context3'] = Context.objects.get(title='Acceptable Offers')
-		context['context4'] = Context.objects.get(title='Registration')
-		context['context5'] = Context.objects.get(title='User Terms and Conditions')
+		context = super(StoreDetailView, self).get_context_data(**kwargs)
+		context['offers'] = portal_models.Offer.objects.filter(author=self.request.user).exclude(slug__in=self.object.offers.all().values_list('slug'))
 		return context
 
-class FAQDetailView(DetailView):
-	model = FAQ
-	template_name = 'mysite/faq/faq-detail.html'
+class StoreCreateView(CreateView):
+	model = portal_models.Store
+	fields = [
+		'business_name',
+		'title',
+		'description',
+	]
+	
+	template_name = 'store/store_create.html'
 
-class FAQAccountView(ListView):
-	model = FAQ
-	template_name = 'mysite/faq/accounts.html'
-	queryset = FAQ.objects.filter(context__title = 'Accounts')
+	def form_valid(self, form):
+		form.instance.merchant = self.request.user
+		return super(StoreCreateView, self).form_valid(form)
 
-	def get_context_data(self, **kwargs):
-		context = super(FAQAccountView, self).get_context_data(**kwargs)
-		context['context1'] = Context.objects.get(title='Accounts')
-		context['context2'] = Context.objects.get(title='Payment')
-		context['context3'] = Context.objects.get(title='Acceptable Offers')
-		context['context4'] = Context.objects.get(title='Registration')
-		context['context5'] = Context.objects.get(title='User Terms and Conditions')
-		return context
+class StoreUpdateView(UpdateView):
+    model = portal_models.Store
+    fields = [
+		'business_name',
+		'title',
+		'description',
+    ]
 
-class FAQPaymentView(ListView):
-	model = FAQ
-	template_name = 'mysite/faq/payment.html'
-	queryset = FAQ.objects.filter(context__title = 'Payment')
+    template_name = 'store/store_update.html'
 
-	def get_context_data(self, **kwargs):
-		context = super(FAQPaymentView, self).get_context_data(**kwargs)
-		context['context1'] = Context.objects.get(title='Accounts')
-		context['context2'] = Context.objects.get(title='Payment')
-		context['context3'] = Context.objects.get(title='Acceptable Offers')
-		context['context4'] = Context.objects.get(title='Registration')
-		context['context5'] = Context.objects.get(title='User Terms and Conditions')
-		return context
+class StoreDeleteView(DeleteView):
+    model = portal_models.Offer
+    template_name = 'store/store_delete.html'
+    success_url = reverse_lazy('portal:store_list')
 
-class FAQAcceptableOffersView(ListView):
-	model = FAQ
-	template_name = 'mysite/faq/acceptable-offers.html'
-	queryset = FAQ.objects.filter(context__title = 'Acceptable Offers')
+class OfferListView(ListView):
+	model = portal_models.Offer
+	template_name = 'offer/offer_list.html'
 
-	def get_context_data(self, **kwargs):
-		context = super(FAQAcceptableOffersView, self).get_context_data(**kwargs)
-		context['context1'] = Context.objects.get(title='Accounts')
-		context['context2'] = Context.objects.get(title='Payment')
-		context['context3'] = Context.objects.get(title='Acceptable Offers')
-		context['context4'] = Context.objects.get(title='Registration')
-		context['context5'] = Context.objects.get(title='User Terms and Conditions')
-		return context
+	def get_queryset(self):
+		offer_list = portal_models.Offer.objects.filter(author=self.request.user)
+		return offer_list
+
+class OfferDetailView(DetailView):
+	model = portal_models.Offer
+	template_name = 'offer/offer_detail.html'
+
+class OfferCreateView(CreateView):
+	model = portal_models.Offer
+	fields = [
+		'title',
+		'description',
+		'end_date',
+	]
+	
+	template_name = 'offer/offer_create.html'
+
+	def form_valid(self, form):
+		form.instance.author = self.request.user
+		return super(OfferCreateView, self).form_valid(form)
+
+class OfferUpdateView(UpdateView):
+    model = portal_models.Offer
+    fields = [
+		'title',
+		'description',
+		'end_date',
+    ]
+
+    template_name = 'offer/offer_update.html'
+
+class OfferDeleteView(DeleteView):
+    model = portal_models.Offer
+    template_name = 'offer/offer_delete.html'
+    success_url = reverse_lazy('portal:offer_list')
+
+def OfferLike(request):
+	offer = get_object_or_404(portal_models.Offer, slug=request.POST.get('offer_slug'))
+	offer.likes.add(request.user)
+	return HttpResponseRedirect(offer.get_absolute_url())
+
+def OfferAdd(request, store_id, offer_id):
+	store = portal_models.Store.objects.get(id=store_id)
+	store.offers.add(offer_id)
+	return HttpResponseRedirect(store.get_absolute_url())
+
+def OfferRemove(request, store_id, offer_id):
+	store = portal_models.Store.objects.get(id=store_id)
+	store.offers.remove(offer_id)
+	return HttpResponseRedirect(store.get_absolute_url())
