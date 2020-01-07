@@ -251,35 +251,6 @@ class Offer(models.Model):
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
     updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
 
-<<<<<<< HEAD
-    end_date = models.DateField(null=True)
-    active = models.BooleanField(default=False)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    #id = models.AutoField(primary_key=True, default="")
-    business_name = models.CharField(max_length=100)
-    logo = models.ImageField(upload_to='merchant-logos/', null=True)
-    # banner = models.ImageField(upload_to='merchant-banners/', null=True)
-    phone_number = PhoneNumberField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='category')
-    subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, null=True, related_name='subcategory')
-    downloadable_content_url =  models.CharField(max_length=500, blank=True, null=True, help_text="Link to AWS download url goes here")
-    downloadable_content_title =  models.CharField(max_length=500, blank=True, null=True, help_text="Examples: menu, brochure, etc.")
-    website_url = models.CharField(max_length=500, blank=True)
-    facebook_url = models.CharField(max_length=500, blank=True)
-    about = models.ForeignKey(About, related_name='about', on_delete=models.CASCADE, blank=True, null=True)
-    code_coupon = models.CharField(max_length=40, blank=True, null=True, help_text="NOTE: Leave blank and a GEGOO coupon code will be generated")
-    promotional_video_file_name = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
-    promotional_video_thumbnail_name = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
-    #Location
-    #address = models.OneToOneField(Merchant_Address, on_delete=models.CASCADE, related_name='merchant_address', null=True)
-    city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True, related_name='merchant')
-    latitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True, blank=True)
-    longitude = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True, blank=True)
-    location = models.PointField(srid=4326, null=True, blank=True)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
-
-
-=======
     def __str__(self):
         return self.title
 
@@ -336,7 +307,6 @@ class Store(models.Model):
     # Creation Fields
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
     updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
->>>>>>> alpha
 
     def __str__(self):
         return self.business_name
@@ -352,12 +322,6 @@ class Store(models.Model):
         return object
 
 
-<<<<<<< HEAD
-# post_save.connect(setMerchantRefCode, sender=Merchant)
-
-post_save.connect(setCouponCode, sender=Merchant)
-post_save.connect(CalculateLocation, sender=Merchant)
-=======
 @receiver(pre_save, sender=Store)
 def pre_save_store(sender, **kwargs):
     slug = slugify(kwargs['instance'].business_name)
@@ -365,7 +329,6 @@ def pre_save_store(sender, **kwargs):
 
 # post_save.connect(setMerchantRefCode, sender=Store)
 # post_save.connect(CalculateLocation, sender=Store)
->>>>>>> alpha
 
     #
     # def merchantCallback(sender, request, user, **kwargs):
@@ -384,32 +347,6 @@ def pre_save_store(sender, **kwargs):
 #         object = object_qs.first()
 #         return object
 
-<<<<<<< HEAD
-
-class Offer(models.Model):
-    merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE, null=True, related_name='offer')
-    title = models.TextField()
-    description = RichTextUploadingField()
-    code_coupon = models.CharField(max_length=40, blank=True, null=True)
-    slug = models.SlugField()
-    image = models.ImageField(upload_to='photos/', null=True)
-    end_date = models.DateField()
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
-
-    def __str__(self):
-        return '%s (%s)' % (self.title, self.merchant.business_name)
-
-
-
-class Favorite(models.Model):
-    offer = models.ForeignKey(Offer, related_name='offer', on_delete=models.SET_NULL, blank=True, null=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return '%s (%s)' % (self.name, self.offer)
-
-=======
->>>>>>> alpha
 class Promotion(models.Model):
     message = models.CharField(max_length=64)
     background = models.CharField(choices=PROMOTION_CHOICES, default='Primary', max_length=12)

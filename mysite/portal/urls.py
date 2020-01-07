@@ -7,12 +7,6 @@ app_name = 'portal'
 
 urlpatterns = [
 
-<<<<<<< HEAD
-    path('<category>/<subcategory>/<name>/<id>', MerchantDetailView.as_view(), name='merchant_detail'),
-    path('category/<name>', CategoryDetailView.as_view(), name='category_detail'),
-    path('category/all/', CategoryListView.as_view(), name='category_list'),
-    # path('/category/', CategoryListView.as_view(), name='category-list'),
-=======
     path('category/<name>', portal_views.CategoryDetailView.as_view(), name='category_detail'),
     path('category/all/', portal_views.CategoryListView.as_view(), name='category_list'),
 
@@ -32,5 +26,4 @@ urlpatterns = [
     path('offer/like', portal_views.OfferLike, name='offer_like'),
     path('store/<int:store_id>/add/<slug:offer_id>', portal_views.OfferAdd, name='offer_add'),
     path('store/<int:store_id>/remove/<slug:offer_id>', portal_views.OfferRemove, name='offer_remove'),
->>>>>>> alpha
 ]
