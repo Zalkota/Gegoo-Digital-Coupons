@@ -17,6 +17,8 @@ urlpatterns = [
     path('store/<slug:slug>/update', portal_views.StoreUpdateView.as_view(), name='store_update'),
     path('store/<slug:slug>/delete', portal_views.StoreDeleteView.as_view(), name='store_delete'),
 
+    path('mystores/', portal_views.StoreList, name='store_function'),
+
     # Offer Views
     path('offers', portal_views.OfferListView.as_view(), name='offer_list'),
     path('offer/create', portal_views.OfferCreateView.as_view(), name='offer_create'),

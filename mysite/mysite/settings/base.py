@@ -343,7 +343,7 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True  # The default behaviour is not log u
 #By changing this setting to True, users will automatically be logged in once they confirm their email address. Note however that this only works when confirming the email address immediately after signing up, assuming users didn’t close their browser or used some sort of private browsing mode.
 
 #ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = 'True'  # Default is false
-#ACCOUNT_SESSION_REMEMBER = 'None' # Default is None. Controls the life time of the session. Set to None to ask the user 'Remember me?', False to not remember, and True to always remember.
+ACCOUNT_SESSION_REMEMBER = 'None' # Default is None. Controls the life time of the session. Set to None to ask the user 'Remember me?', False to not remember, and True to always remember.
 #ACCOUNT_SIGNUP_FORM_CLASS = 'None'  # A string pointing to a custom form class (e.g. ‘myapp.forms.SignupForm’) that is used during signup to ask the user for additional input (e.g. newsletter signup, birth date). This class should implement a def signup(self, request, user) method, where user represents the newly signed up user.
 #ACCOUNT_USERNAME_BLACKLIST = []
 #ACCOUNT_USERNAME_MIN_LENGTH = 1

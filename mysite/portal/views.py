@@ -14,7 +14,12 @@ from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
 
+<<<<<<< HEAD
 from location.functions import set_location_cookies, get_ip, get_or_set_location
+=======
+from users.decorators import user_is_merchant
+
+>>>>>>> alpha
 
 def get_user_orders(request, user):
 	user_orders_qs = portal_modedls.Order.objects.filter(user=user)
@@ -72,6 +77,14 @@ class CategoryDetailView(View):
 # 			messages.info(self.request, "Error contact admin")
 # 			return redirect("home-page")
 
+
+@user_is_merchant
+def StoreList(request):
+	stores = portal_models.Store.objects.all()
+	context = {
+		'stores': stores
+	}
+	return render(request, 'store/func_store_list_view.html', context)
 
 class StoreListView(ListView):
 	model = portal_models.Store

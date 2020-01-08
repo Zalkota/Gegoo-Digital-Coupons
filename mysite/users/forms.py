@@ -35,6 +35,18 @@ class MerchantSignupForm(SignupForm):
     first_name = forms.CharField(max_length=30, label='First Name')
     last_name = forms.CharField(max_length=30, label='Last Name')
 
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.helper = FormHelper(self)
+    #     self.helper.layout = Layout(
+    #         Row(
+    #             Column('first_name', css_class='form-group col-md-6 mb-0'),
+    #             Column('last_name', css_class='form-group col-md-6 mb-0'),
+    #             css_class='form-row'
+    #         ),
+    #         Submit('submit', 'Sign in')
+    #     )
+
     def save(self, request):
         user = super(MerchantSignupForm, self).save(request)
         user.first_name = self.cleaned_data['first_name']
