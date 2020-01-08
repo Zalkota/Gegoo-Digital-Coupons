@@ -17,6 +17,8 @@ latitude = 42.637740
 longitude = -83.363546
 user_location = Point(longitude, latitude, srid=4326)
 
+from users.decorators import user_is_merchant
+
 
 def get_user_orders(request, user):
 	user_orders_qs = portal_modedls.Order.objects.filter(user=user)
@@ -46,6 +48,14 @@ class CategoryDetailView(View):
 		except ObjectDoesNotExist:
 			messages.info(self.request, "Error contact admin")
 			return redirect("home-page")
+
+@user_is_merchant
+def StoreList(request):
+	stores = portal_models.Store.objects.all()
+	context = {
+		'stores': stores
+	}
+	return render(request, 'store/func_store_list_view.html', context)
 
 class StoreListView(ListView):
 	model = portal_models.Store

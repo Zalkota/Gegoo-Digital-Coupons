@@ -3,7 +3,7 @@ from django.views.generic import DetailView, ListView, RedirectView, UpdateView,
 # from memberships.views import get_user_memberships, get_user_subscriptions #TODO
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User
-from portal.models import Merchant
+from portal.models import Store
 from location.models import Address
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -145,12 +145,12 @@ class RedirectProfileView(LoginRequiredMixin, RedirectView):
 # <**************************************************************************>
 
 
-class MerchantStoreListView(LoginRequiredMixin, ListView): #TODO this should only be viewable by merchants
-    model = Merchant
-    template_name = 'users/user_merchant_store_list.html'
+# class MerchantStoreListView(LoginRequiredMixin, ListView): #TODO this should only be viewable by merchants
+#     # model = Merchant
+#     # template_name = 'users/user_merchant_store_list.html'
 
-    def get_queryset(self):
-        return Merchant.objects.filter(user=self.request.user)
+#     # def get_queryset(self):
+#     #     return Merchant.objects.filter(user=self.request.user)
 
 
 class MerchantSignUpView(SignupView):
@@ -166,15 +166,15 @@ class MerchantSignUpView(SignupView):
         return ret
 
 
-class MerchantSubscriptionsView(LoginRequiredMixin, View):
-    def get(self):
-        # user_membership_list = get_user_memberships(request)
-        # user_subscription_list = get_user_subscriptions(request)
-        context = {
-            'user_membership_list': user_membership_list,
-            'user_subscription_list': user_subscription_list
-        }
-        return render(request, "users/user_merchant_subscription.html", context)
+# class MerchantSubscriptionsView(LoginRequiredMixin, View):
+#     def get(self):
+#         # user_membership_list = get_user_memberships(request)
+#         # user_subscription_list = get_user_subscriptions(request)
+#         context = {
+#             'user_membership_list': user_membership_list,
+#             'user_subscription_list': user_subscription_list
+#         }
+#         return render(request, "users/user_merchant_subscription.html", context)
 
 # class ConsumerSignUpView(SignupView):
 #

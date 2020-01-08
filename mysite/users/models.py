@@ -16,20 +16,10 @@ from django.utils import timezone
 
 
 class User(AbstractUser):
-    name = models.CharField(_('Name_of_User'), blank=True, max_length=255)
 
-<<<<<<< HEAD
     is_merchant     = models.BooleanField('MerchantStatus', default=False)
     is_approved     = models.BooleanField('ConsumerStatus', default=False)
     slug            = models.SlugField(max_length=100, null=True)
-=======
-    is_merchant     = models.BooleanField('is_merchant', default=False)
-    is_approved     = models.BooleanField('merchant_is_approved', default=False)
-    has_paid     = models.BooleanField('payment_status', default=False) #Is this necesarry?
-    # is_consumer     = models.BooleanField('ConsumerStatus', default=False)
-    # slug            = models.SlugField(max_length=100, null=True)
-    
->>>>>>> d7a59c76afbdbfd71c04e0a71d553cf071a87857
 
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
     updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
@@ -61,52 +51,52 @@ class Profile(models.Model):
         return self.user.username
 
 
-class userStripe(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete='CASCADE', related_name='user_stripe')
-    stripe_id = models.CharField(max_length=200, null=True, blank=True)
+# class userStripe(models.Model):
+#     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete='CASCADE', related_name='user_stripe')
+#     stripe_id = models.CharField(max_length=200, null=True, blank=True)
 
-    def __unicode__(self):
-        if self.stripe_id:
-            return str(self.stripe_id)
-        else:
-            return self.user.name
+#     def __unicode__(self):
+#         if self.stripe_id:
+#             return str(self.stripe_id)
+#         else:
+#             return self.user.name
 
-    def __str__(self):
-        return'%s (%s)' % (self.stripe_id, self.user)
+#     def __str__(self):
+#         return'%s (%s)' % (self.stripe_id, self.user)
 
-def stripeCallback(sender, request, user, **kwargs):
-    user_stripe_account, created = userStripe.objects.get_or_create(user=user)
-    if created:
-        print ('test')
-    if user_stripe_account.stripe_id is None or user_stripe_account.stripe_id == '':
-        new_stripe_id = stripe.Customer.create(email=user.email)
-        user_stripe_account.stripe_id = new_stripe_id['id']
-        user_stripe_account.save()
-
-
-def addressCallback(sender, request, user, **kwargs):
-    profileAddress, is_created = Address.objects.get_or_create(user=user)
-    print('addressCallBack')
-    if is_created:
-        profileAddress.user = user
-        profileAddress.save()
-        print('addressCallBack', is_created, profileAddress)
+# def stripeCallback(sender, request, user, **kwargs):
+#     user_stripe_account, created = userStripe.objects.get_or_create(user=user)
+#     if created:
+#         print ('test')
+#     if user_stripe_account.stripe_id is None or user_stripe_account.stripe_id == '':
+#         new_stripe_id = stripe.Customer.create(email=user.email)
+#         user_stripe_account.stripe_id = new_stripe_id['id']
+#         user_stripe_account.save()
 
 
-def profileCallback(sender, request, user, **kwargs):
-    userProfile, is_created = Profile.objects.get_or_create(user=user)
-    if is_created:
-        userProfile.name = user.name
-        userProfile.save()
-    try:
-        userAddress = Address.objects.get(user=user)
-        print('user.address', userAddress)
-        userProfile.address = userAddress
-    except:
-        pass
+# def addressCallback(sender, request, user, **kwargs):
+#     profileAddress, is_created = Address.objects.get_or_create(user=user)
+#     print('addressCallBack')
+#     if is_created:
+#         profileAddress.user = user
+#         profileAddress.save()
+#         print('addressCallBack', is_created, profileAddress)
 
-    userProfile.save()
-    print("profileCallback Created")
+
+# def profileCallback(sender, request, user, **kwargs):
+#     userProfile, is_created = Profile.objects.get_or_create(user=user)
+#     if is_created:
+#         userProfile.name = user.name
+#         userProfile.save()
+#     try:
+#         userAddress = Address.objects.get(user=user)
+#         print('user.address', userAddress)
+#         userProfile.address = userAddress
+#     except:
+#         pass
+
+#     userProfile.save()
+#     print("profileCallback Created")
 
 
 
@@ -115,6 +105,6 @@ def profileCallback(sender, request, user, **kwargs):
 # user_logged_in.connect(profileCallback)
 # user_logged_in.connect(stripeCallback)
 
-user_signed_up.connect(addressCallback)
-user_signed_up.connect(profileCallback)
-user_signed_up.connect(stripeCallback)
+# user_signed_up.connect(addressCallback)
+# user_signed_up.connect(profileCallback)
+# user_signed_up.connect(stripeCallback)
