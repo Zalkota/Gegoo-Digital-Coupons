@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, DetailView, ListView, RedirectView, UpdateView, DeleteView, UpdateView, View
 from .models import Membership, UserMembership, Subscription, Transaction
-from portal.models import Merchant
+from portal.models import Store
 from users.models import User
 from django.urls import reverse, reverse_lazy
 #messages

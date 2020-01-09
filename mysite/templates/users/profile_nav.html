@@ -8,10 +8,10 @@
         <a href="{% url 'users:userPage' %}" class="{% if '/dashboard/' == request.path %} profile-link-active {% else %} profile-link {% endif %}">Dashboard</a>
         </li>
       <li>
-        <a href="{% url 'users:userPage' %}" class="{% if 'my-favorites' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Favorites</a>
+        <a href="{% url 'users:user_favorites' %}" class="{% if 'favorite' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Favorites</a>
       </li>
       <li class="list-inline-item">
-        <a href=" {% url 'support:contact-page' %}" class="{% if 'my-merchants' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Merchants</a>
+        <a href=" {% url 'users:user_merchants' %}" class="{% if 'merchant' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Merchants</a>
       </li>
       <li class="list-inline-item">
         <a href="{% url 'users:user_location' %}" class="{% if '/location/' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Location</a>

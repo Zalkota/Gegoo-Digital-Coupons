@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Dashboard | {{ SITE_NAME }}{% endblock %}
+
+{% block extra_styles %}
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+{% endblock extra_styles %}
+
+
+{% block content %}
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header justify-content-end">
+          <h3 class="text-primary">Coupon</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-close-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="p-3" style="border-color: #ccc; border-width:5px; border-style:dashed;">
+              <div class="row">
+                  <div class="col-6">
+                      <img class="card-img-top" src="media/{{ object.logo }}" alt="User Uploaded images">
+                  </div>
+                  <div class="col-6">
+                      <img class="img-fluid" src="{% static 'img/logo/logo3.jpg' %}" alt="GEGOO LOGO">
+                  </div>
+              </div>
+              <h4 class="fs-14 fw-6 text-primary">{{ object.business_name }} in {{ city }}</h4>
+              <h3>{{ object.get_first_active.title }}</h3>
+            <p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias alias ipsam minima, dolore! Modi enim porro neque quaerat blanditiis. Ipsa aliquam quam maxime rerum eum accusamus nulla, molestiae soluta repellendus!</p>
+            {{ object.get_first_active.title }}
+            <div class="bg-gray-30 text-primary text-uppercase p-3">
+                <span class="fw-6 fs-24">Code: {{ object.get_first_active.code_coupon }}</span>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary-alt btn-block mt-0">Save It</button>
+        <button type="button" class="btn btn-primary-alt btn-block mt-0">Print It</button>
+        <button type="button" class="btn btn-alternate-alt btn-block mt-0">Share It</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal End -->
+
+<!-- Body Start -->
+<section class="section-sm container">
+  <h2 class="fw-6 hide mb-2">Dashboard</h2>
+  <span class="fs-14 hide text-secondary">Welcome Back, {{ user }}!</span>
+      {% block component %}
+        {% include "users/profile_nav.html" %}
+      {% endblock component %}
+        <div class="row mt-2" data-aos="fade-up">
+            <div class="col-lg-12 mb-4">
+                <div class="card shadow-2  unhide">
+                    <div class="card-body">
+                        <h2 class="fw-6">My Account</h2>
+                        <span class="fs-14 text-muted">Welcome Back, {{ user }}!</span>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            {% for object in address_qs %}
+                    <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
+                        <div class="">
+                            <a href="{{ object.get_absolute_url }}">
+                                <img class="img-fluid" style="width: 100%;" src="media/{{ object.logo }}" alt="User Uploaded images">
+                            </a>
+                            <div class="py-1">
+                                <div class=" text-left mt-2">
+                                    <h3 class="fw-6 text-dark fs-18 mb-1">{{ object.business_name }}</h3>
+                                    <i class="material-icons star-yellow fs-18" style="">star star star star star </i>
+                                    <h4 class="fw-4 fs-14">
+                                        {{ object.get_first_active.title|truncatewords:8 }}
+                                    </h4>
+                                    <div class="fw-5 fs-14 mt-2 mb-2">
+                                        <span class="text-gray-600 fw-4">{{ object.city.name }}, {{ object.city.region.name }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mb-1 icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                                    </div>
+                                    <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+            {% empty %}
+            <div class="col-lg-6 offset-3 text-center py-4">
+                Oops, you have not favorited any active offers yet or the offers have expired. <br> <a href="/">Click here</a> to view offers.
+            </div>
+            {% endfor %}
+      </div>
+      <div class="py-5 hide"></div><div class="py-5 hide"></div>
+</section>
+
+{% endblock content %}
+{% block extrajs %}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1300,
+  });
+</script>
+{% endblock extrajs %}

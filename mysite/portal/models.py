@@ -75,12 +75,12 @@ def random_coupon_generator(size=4, chars=string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 
-def unique_merchant_id_generator():
+def unique_store_id_generator():
     new_ref_code= random_string_generator()
 
-    qs_exists= Merchant.objects.filter(ref_code=new_ref_code).exists()
+    qs_exists= store.objects.filter(ref_code=new_ref_code).exists()
     if qs_exists:
-        return unique_merchant_id_generator(instance)
+        return unique_store_id_generator(instance)
     return new_ref_code
 
 def unique_coupon_generator():
@@ -100,43 +100,44 @@ def user_directory_path(instance, filename):
     return 'user_{0}/{1}'.format(instance.job.id, filename)
 
 
-def setMerchantRefCode(sender, created, instance, **kwargs):
-    merchant = instance
-    #print(merchant.ref_code)
-    if merchant.ref_code == None:
+def setStoreRefCode(sender, created, instance, **kwargs):
+    store = instance
+    #print(store.ref_code)
+    if store.ref_code == None:
         try:
-            merchant.ref_code = unique_merchant_id_generator()
-            merchant.save()
+            store.ref_code = unique_store_id_generator()
+            store.save()
         except:
             print('ERROR REF CODE')
 
+
 def setCouponCode(sender, created, instance, **kwargs):
-    merchant = instance
-    #print(merchant.ref_code)
-    if merchant.code_coupon == None:
+    store = instance
+    #print(store.ref_code)
+    if store.code_coupon == None:
         try:
             coupon_code = str(unique_coupon_generator())
             designation = 'GEGOO'
             code_coupon = designation + coupon_code
-            merchant.code_coupon = code_coupon
-            merchant.save()
+            store.code_coupon = code_coupon
+            store.save()
         except:
             print('ERROR COUPON CODE')
 
 
 def CalculateLocation(sender, created, instance, **kwargs):
-    merchant = instance
-    #print(merchant.location)
-    if merchant.location == None:
+    store = instance
+    #print(store.location)
+    if store.location == None:
         try:
-            longitude = merchant.longitude
-            latitude = merchant.latitude
+            longitude = store.longitude
+            latitude = store.latitude
 
             location = fromstr(
                 f'POINT({longitude} {latitude})', srid=4326
             )
-            merchant.location = location
-            merchant.save()
+            store.location = location
+            store.save()
 
         except KeyError:
             pass
@@ -190,10 +191,7 @@ class Tag(models.Model):
     class Meta:
         ordering = ['-name']
 
-<<<<<<< HEAD
 
-=======
->>>>>>> alpha
 class About(models.Model):
     header = models.TextField()
     subheader = models.TextField()
@@ -204,38 +202,7 @@ class About(models.Model):
     def __str__(self):
         return '%s' % (self.header)
 
-<<<<<<< HEAD
 
-class Merchant(models.Model):
-=======
-def setMerchantRefCode(sender, created, instance, **kwargs):
-    merchant = instance
-    #print(merchant.ref_code)
-    if merchant.ref_code == None:
-        print('ref_code == None')
-        try:
-            merchant.ref_code = unique_merchant_id_generator()
-            merchant.save()
-        except:
-            print('ERROR REF CODE')
-
-def CalculateLocation(sender, created, instance, **kwargs):
-    merchant = instance
-    #print(merchant.location)
-    if merchant.location == None:
-        try:
-            longitude = merchant.longitude
-            latitude = merchant.latitude
-
-            location = fromstr(
-                f'POINT({longitude} {latitude})', srid=4326
-            )
-            merchant.location = location
-            merchant.save()
-
-        except KeyError:
-            pass
->>>>>>> alpha
 
 class Offer(models.Model):
     author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
@@ -257,6 +224,9 @@ class Offer(models.Model):
     def get_absolute_url(self):
         return reverse('portal:offer_detail', kwargs={'slug': self.slug})
 
+
+
+
 @receiver(pre_save, sender=Offer)
 def pre_save_offer(sender, **kwargs):
     slug = slugify(kwargs['instance'].title)
@@ -266,7 +236,7 @@ class Store(models.Model):
     end_date = models.DateField(null=True)
     active = models.BooleanField(default=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    # merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern
     slug        = models.SlugField(unique=True)
@@ -278,8 +248,10 @@ class Store(models.Model):
     business_name       = models.CharField(max_length=100)
     website_url         = models.URLField(max_length=500, blank=True, null=True)
     facebook_url        = models.URLField(max_length=500, blank=True, null=True)
-    logo                = models.ImageField(upload_to='merchant-logos/', blank=True, null=True)
+    logo                = models.ImageField(upload_to='store-logos/', blank=True, null=True)
     category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, related_name='category')
+    subcategory         = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=True, null=True, related_name='subcategory')
+    code_coupon         = models.CharField(max_length=15, blank=True, null=True, help_text="This will be auto-generated as GEGOO####, if left blank. Set as 'NONE' if no coupon code is desired.")
 
 
     # Store Bio
@@ -288,12 +260,12 @@ class Store(models.Model):
 
     # Store Location Info
     phone_number        = PhoneNumberField(max_length=20, blank=True, null=True)
-    country             = models.CharField(max_length=40, blank=True)
-    state               = models.CharField(max_length=165, blank=True)
-    city                = models.ManyToManyField(City, related_name='merchant', blank=True)
+    # country             = models.CharField(max_length=40, blank=True) #Not necessary, City covers this.
+    # state               = models.CharField(max_length=165, blank=True) #Not necessary, City covers this.
+    city                = models.ForeignKey(City, related_name='store', on_delete=models.CASCADE)
     postal_code         = models.CharField(max_length=12, blank=True)
-    latitude            = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of merchant's location.", null=True, blank=True)
-    longitude           = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of merchant's location.", null=True, blank=True)
+    latitude            = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of store's location.", null=True, blank=True)
+    longitude           = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of store's location.", null=True, blank=True)
     location            = models.PointField(srid=4326, null=True, blank=True)
 
     # AWS3 Services
@@ -317,9 +289,27 @@ class Store(models.Model):
     @property
     def get_first_active(self):
         now = timezone.now()
-        object_qs = self.offer.filter(end_date__gt=now).order_by('end_date')
+        object_qs = self.offers.filter(end_date__gt=now).order_by('end_date')
         object = object_qs.first()
         return object
+
+
+def CalculateLocation(sender, created, instance, **kwargs):
+    store = instance
+    #print(store.location)
+    if store.location == None:
+        try:
+            longitude = store.longitude
+            latitude = store.latitude
+
+            location = fromstr(
+                f'POINT({longitude} {latitude})', srid=4326
+            )
+            store.location = location
+            store.save()
+
+        except KeyError:
+            pass
 
 
 @receiver(pre_save, sender=Store)
@@ -327,11 +317,12 @@ def pre_save_store(sender, **kwargs):
     slug = slugify(kwargs['instance'].business_name)
     kwargs['instance'].slug = slug
 
-# post_save.connect(setMerchantRefCode, sender=Store)
+post_save.connect(setCouponCode, sender=Store)
+# post_save.connect(setStoreRefCode, sender=Store)
 # post_save.connect(CalculateLocation, sender=Store)
 
     #
-    # def merchantCallback(sender, request, user, **kwargs):
+    # def storeCallback(sender, request, user, **kwargs):
     #     userProfile, is_created = Profile.objects.get_or_create(user=user)
     #     if is_created:
     #         userProfile.name = user.username

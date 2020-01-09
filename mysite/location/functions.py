@@ -9,7 +9,6 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.http import HttpResponse
 from allauth.account.signals import user_logged_in, user_signed_up
-from location.models import Address
 from cities_light.models import Region, City
 
 def set_location_cookies(request, city, state):
@@ -29,7 +28,7 @@ def get_ip(request):
         ip = request.META.get("REMOTE_ADDR")
         #We should have IP address at this point
     reader = geolite2.reader()
-    data = reader.get('107.77.193.143')
+    data = reader.get('107.77.193.143') #TODO remove this
     return data
 
 
@@ -37,13 +36,12 @@ def get_or_set_location(request):
     if request.user.is_authenticated:
         #Check if user has address
         try:
-            if request.user.user_profile.address.city and request.user.user_profile.address.state != None:
-                city = request.user.user_profile.address.city.name
-                state = request.user.user_profile.address.state.name
+            if request.user.user_profile.city != None:
+                city = request.user.user_profile.city
 
                 context = {
-                'city': city,
-                'state': state,
+                'city': city.name,
+                'state': city.region.name,
                 }
                 return context
 
@@ -55,18 +53,16 @@ def get_or_set_location(request):
                 print (city, ', ', state)
 
                 # Query object so that we can save it into the database
-                city_qs = City.objects.get(name=city)
-                state_qs = Region.objects.get(name=state)
+                city_qs = City.objects.get(name=city, region__name=state)
 
                 # Save data to user address
-                user_address = request.user.user_profile.address
-                user_address.state = state_qs
-                user_address.city = city_qs
-                user_address.save()
+                user_profile = request.user.user_profile
+                user_profile.city = city_qs
+                user_profile.save()
 
                 context = {
-                'city': city,
-                'state': state,
+                'city': city_qs.name,
+                'state': city_qs.region,
                 }
                 return context
         except:
@@ -91,7 +87,7 @@ def get_or_set_location(request):
             data = get_ip(request)
             #Obtain City and State from IP address
             city = data["city"]['names']['en']
-            state = data["subdivisions"][0]['iso_code']
+            state = data["subdivisions"][0]['names']['en']
             #Add City and State to Cookies for next time
             set_location_cookies(request, city, state)
             context = {

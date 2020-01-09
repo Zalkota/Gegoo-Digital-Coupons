@@ -133,7 +133,7 @@ a:hover {
 
                         <canvas id="doughnut-chart" width="100%" height="100%"></canvas>
 
-                        <a href="" class="fs-16 text-primary">Redeem Rewards</a>
+                        <a href="" class="fs-16 fw-6 text-primary">{{ data }} Points</a>
                     </div>
                 </div>
 
@@ -161,15 +161,38 @@ a:hover {
 {% endblock content %}
 
 {% block jquery %}
-var UserRewardData = parseInt("{{ data }}")
-console.log(UserRewardData)
+$(document).ready(function() {
+
+    var UserRewardData = parseInt("{{ data }}")
+    console.log(UserRewardData)
+
+    new Chart(document.getElementById("doughnut-chart"), {
+        type: 'doughnut',
+        data: {
+
+          datasets: [
+            {
+              label: "Population (millions)",
+              backgroundColor: ["#7505AB"],
+              data: [UserRewardData, 100],
+              weight: 0.5,
+            }
+          ]
+        },
+        options: {
+
+          title: {
+            display: false,
+          }
+        }
+    });
 
 
-
+});
 {% endblock %}
 
 {% block extrajs %}
-<script type="text/javascript" src="{% static 'js/reward_chart.js' %}"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

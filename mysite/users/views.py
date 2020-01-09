@@ -3,8 +3,7 @@ from django.views.generic import DetailView, ListView, RedirectView, UpdateView,
 # from memberships.views import get_user_memberships, get_user_subscriptions #TODO
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User
-from portal.models import Store
-from location.models import Address
+from portal import models as portal_models
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
@@ -12,7 +11,6 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 import datetime
 from django.utils import timezone
-from location.models import Address
 from .forms import userLocationForm
 from django.contrib import messages
 from memberships.views import get_user_membership, get_user_subscriptions
@@ -85,11 +83,13 @@ class userLocaton(View):
         form = userLocationForm()
 
         user = self.request.user
-        address = user.user_profile.address
+        city = user.user_profile.city.name
+        state = user.user_profile.city.region.name
 
         context = {
             'form': form,
-            'address': address
+            'city': city,
+            'state': state,
         }
         return render(self.request, "users/user_location_form.html", context)
 
@@ -100,8 +100,7 @@ class userLocaton(View):
             city = form.cleaned_data.get('city_input')
             state = form.cleaned_data.get('state_input')
 
-            city_qs = City.objects.get(name=city)
-            state_qs = Region.objects.get(name=state)
+            city_qs = City.objects.get(name=city, region__name=state)
 
 
             # edit the order
@@ -109,12 +108,9 @@ class userLocaton(View):
             user = self.request.user
 
             # store the object
-            user_address = user.user_profile.address
-            user_address.state = state_qs
+            user_address = user.user_profile
             user_address.city = city_qs
-            # user_address.user =
             user_address.save()
-            print("saved")
 
             messages.success(self.request, "Location changed")
             return redirect("users:user_location")
@@ -132,6 +128,25 @@ class userRewards(View):
             # 'address': address
         }
         return render(self.request, "users/user_rewards.html", context)
+
+
+class userFavorites(ListView):
+    model = portal_models.Offer
+    template_name = 'users/user_favorites.html'
+
+    def get_queryset(self):
+        favorite_list = portal_models.Offer.objects.filter(likes=self.request.user)
+        return favorite_list
+
+
+class userMerchants(ListView):
+    model = portal_models.Offer
+    template_name = 'users/user_merchants.html'
+
+    def get_queryset(self):
+        favorite_list = portal_models.Store.objects.filter(offer__likes=self.request.user)
+        return favorite_list
+
     #
     # def post(self, *args, **kwargs):
     #     form = userLocationForm(self.request.POST)
@@ -207,7 +222,6 @@ class RedirectProfileView(LoginRequiredMixin, RedirectView):
 
 
 class MerchantSignUpView(SignupView):
-
     template_name = 'account/signup_merchant.html'
     form_class = MerchantSignupForm
     view_name = 'merchant-signup'
@@ -219,17 +233,7 @@ class MerchantSignUpView(SignupView):
         return ret
 
 
-class MerchantSubscriptionsView(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        user_membership = get_user_membership(self.request)
-        user_subscription_list = get_user_subscriptions(self.request)
-
-        context = {
-            'user_membership': user_membership,
-            'user_subscription_list': user_subscription_list
-        }
-        return render(self.request, "users/user_merchant_subscription.html", context)
-
+#
 # class ConsumerSignUpView(SignupView):
 #
 #     template_name = 'account/consumer_signup.html'

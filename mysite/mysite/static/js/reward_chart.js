@@ -11,7 +11,7 @@ $(document).ready(function() {
             {
               label: "Population (millions)",
               backgroundColor: ["#7505AB"],
-              data: [UserRewardData, 21],
+              data: [UserRewardData, 100],
               weight: 0.5,
             }
           ]

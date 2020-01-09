@@ -1,7 +1,6 @@
 from django import forms
 import datetime
 from .models import Contact
-from location.models import Address
 from phonenumber_field.formfields import PhoneNumberField
 from django.contrib.admin.widgets import AdminDateWidget
 from django.forms.widgets import SelectDateWidget

@@ -2,7 +2,6 @@ from django.views import generic
 from django.shortcuts import render, redirect
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
-from .models import Address
 from cities_light.models import City, Region
 
 # latitude = 42.637740

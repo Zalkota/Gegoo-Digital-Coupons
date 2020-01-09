@@ -24,13 +24,17 @@
           <span class="title-footer text-uppercase" style="line-height: 2rem;">Services</span>
 
             <br>
-            <a class="font-footer" style="line-height: 2rem;" href="{% url 'account_login' %}">Redeem Points</a>
+            <a class="font-footer" style="line-height: 2rem;" href="{% url 'users:user_rewards' %}">Redeem Points</a>
             <br>
             <a class="font-footer" style="line-height: 2rem;" href="{% url 'account_login' %}">Categories</a>
             <br>
             <a class="font-footer" style="line-height: 2rem;" href="{% url 'account_login' %}">Services</a>
             <br>
+            {% if user.is_authenticated == False %}
+            <a class="font-footer" style="line-height: 2rem;" href="{% url 'users:merchant-signup' %}">Become a Merchant</a>
+            {% else %}
             <a class="font-footer" style="line-height: 2rem;" href="{% url 'memberships:select' %}">Become a Merchant</a>
+            {% endif %}
             <br>
             <a class="font-footer" style="line-height: 2rem;" href="{% url 'account_signup' %}">Pricing</a>
 

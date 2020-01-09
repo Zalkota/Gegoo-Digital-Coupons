@@ -14,9 +14,8 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 
 # imports
-from location.models import Address
-from .models import Contact
-from portal.models import Offer, Store, Category, Address
+from blog.models import Contact
+from portal.models import Offer, Store, Category
 
 #mail
 from django.core.mail import send_mail
@@ -138,44 +137,28 @@ def get_items(request):
 
 
 class homeView(View):
-
     def get(self, *args, **kwargs):
-<<<<<<< HEAD
-
         city = 'default_city'
         state = 'default_state'
         city_state = get_or_set_location(self.request)
         city = city_state["city"]
         state = city_state["state"]
-        address_qs = Merchant.objects.filter(city__name=city)
-        merchant_empty_qs = Merchant.objects.all()[0:6]
+        address_qs = Store.objects.filter(city__name=city, city__region__name=state)
+        store_empty_qs = Store.objects.all()[0:6]
         category_list = Category.objects.all()
         # city = context["city"]
         # state = context["subdivisions"]
-        #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
-        #merchant_nearby = Merchant.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
+        #store_nearby = store.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
+        #store_nearby = store.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
 
         # if address_qs = None:
         #     address_qs = Address.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
-        city = 'default_city'
-        state = 'default_state'
-        city_state = get_or_set_location(self.request)
-
-        city = city_state["city"]
-        state = city_state["state"]
-
-        print(city)
         # city = context["city"]
         # state = context["subdivisions"]
         #Store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
         #Store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
-        address_qs = Store.objects.filter(city=city)
         # if address_qs = None:
         #     address_qs = Address.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
-        category_list = Category.objects.all()
->>>>>>> alpha
-=======
->>>>>>> alpha
 
 
         # reader = geolite2.reader()
@@ -188,7 +171,7 @@ class homeView(View):
             'city': city,
             'state': state,
             'address_qs': address_qs,
-            'merchant_empty_qs': merchant_empty_qs,
+            'store_empty_qs': store_empty_qs,
             'category_list': category_list,
         }
         return render(self.request, 'mysite/home_page.html', context)

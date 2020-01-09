@@ -14,12 +14,9 @@ from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
 
-<<<<<<< HEAD
 from location.functions import set_location_cookies, get_ip, get_or_set_location
-=======
 from users.decorators import user_is_merchant
 
->>>>>>> alpha
 
 def get_user_orders(request, user):
 	user_orders_qs = portal_modedls.Order.objects.filter(user=user)
@@ -32,50 +29,33 @@ class CategoryListView(ListView):
 
 
 class CategoryDetailView(View):
-
 	def get(self, *args, **kwargs):
 		try:
-			category = portal_models.Category.objects.get(name=self.kwargs['name'])
-			category_nearby_stores = portal_models.Store.objects.filter(category=category).annotate(distance = Distance("location", user_location)).order_by("distance")[0:9]
-			all_categories = portal_models.Category.objects.all()
+			category_list = portal_models.Store.objects.filter(category__name=self.kwargs['category'])
+			#category_nearby_stores = portal_models.Store.objects.filter(category=category).annotate(distance = Distance("location", user_location)).order_by("distance")[0:9]
+			#all_categories = portal_models.Category.objects.all()
+			print(category_list)
 
 			context = {
-			'category': category,
-			'category_nearby_stores': category_nearby_storess,
-			'all_categories': all_categories,
+			'category_list': category_list,
+			#'category_nearby_stores': category_nearby_storess,
+			#'all_categories': all_categories,
 			}
 			return render(self.request, "portal/category_detail.html", context)
 
 		except ObjectDoesNotExist:
 			messages.info(self.request, "Error contact admin")
 			return redirect("home-page")
-#
-#
-#
-# class MerchantDetailView(View): #TODO
-# 	def get(self, *args, **kwargs):
-# 		try:
-# 			city = 'default_city'
-# 			state = 'default_state'
-# 			city_state = get_or_set_location(self.request)
-# 			city = city_state["city"]
-# 			state = city_state["state"]
-# 			merchant = Merchant.objects.get(id=self.kwargs['id'])
-# 			recommended_offers = Merchant.objects.filter(city__name=city)
-#
-#
-# 			context = {
-# 			#'data': data,
-#             'city': city,
-#             'state': state,
-# 			'merchant': merchant,
-# 			'recommended_offers': recommended_offers,
-# 			}
-# 			return render(self.request, "portal/merchant_detail.html", context)
-#
-# 		except ObjectDoesNotExist:
-# 			messages.info(self.request, "Error contact admin")
-# 			return redirect("home-page")
+
+
+class StoreDetailView(DetailView): #This needs to filter by user city or distance
+	model = portal_models.Store
+	template_name = 'portal/store/store_detail.html'
+
+
+# <**************************************************************************>
+# <*****                      Visible by Merchants only                 *****>
+# <**************************************************************************>
 
 
 @user_is_merchant
@@ -86,7 +66,7 @@ def StoreList(request):
 	}
 	return render(request, 'store/func_store_list_view.html', context)
 
-class StoreListView(ListView):
+class MerchantStoreListView(ListView):
 	model = portal_models.Store
 	template_name = 'store/store_list.html'
 
@@ -94,7 +74,7 @@ class StoreListView(ListView):
 		store_list = portal_models.Store.objects.filter(merchant=self.request.user)
 		return store_list
 
-class StoreDetailView(DetailView):
+class MerchantStoreDetailView(DetailView):
 	model = portal_models.Store
 	template_name = 'store/store_detail.html'
 
@@ -103,7 +83,19 @@ class StoreDetailView(DetailView):
 		context['offers'] = portal_models.Offer.objects.filter(author=self.request.user).exclude(slug__in=self.object.offers.all().values_list('slug'))
 		return context
 
-class StoreCreateView(CreateView):
+
+class MerchantSubscriptionsView(View):
+    def get(self, *args, **kwargs):
+        user_membership = get_user_membership(self.request)
+        user_subscription_list = get_user_subscriptions(self.request)
+
+        context = {
+            'user_membership': user_membership,
+            'user_subscription_list': user_subscription_list
+        }
+        return render(self.request, "users/user_merchant_subscription.html", context)
+
+class MerchantStoreCreateView(CreateView):
 	model = portal_models.Store
 	fields = [
 		'business_name',
@@ -117,7 +109,7 @@ class StoreCreateView(CreateView):
 		form.instance.merchant = self.request.user
 		return super(StoreCreateView, self).form_valid(form)
 
-class StoreUpdateView(UpdateView):
+class MerchantStoreUpdateView(UpdateView):
     model = portal_models.Store
     fields = [
 		'business_name',
@@ -127,12 +119,12 @@ class StoreUpdateView(UpdateView):
 
     template_name = 'store/store_update.html'
 
-class StoreDeleteView(DeleteView):
+class MerchantStoreDeleteView(DeleteView):
     model = portal_models.Offer
     template_name = 'store/store_delete.html'
     success_url = reverse_lazy('portal:store_list')
 
-class OfferListView(ListView):
+class MerchantOfferListView(ListView):
 	model = portal_models.Offer
 	template_name = 'offer/offer_list.html'
 
@@ -140,11 +132,11 @@ class OfferListView(ListView):
 		offer_list = portal_models.Offer.objects.filter(author=self.request.user)
 		return offer_list
 
-class OfferDetailView(DetailView):
+class MerchantOfferDetailView(DetailView):
 	model = portal_models.Offer
 	template_name = 'offer/offer_detail.html'
 
-class OfferCreateView(CreateView):
+class MerchantOfferCreateView(CreateView):
 	model = portal_models.Offer
 	fields = [
 		'title',
@@ -158,7 +150,7 @@ class OfferCreateView(CreateView):
 		form.instance.author = self.request.user
 		return super(OfferCreateView, self).form_valid(form)
 
-class OfferUpdateView(UpdateView):
+class MerchantOfferUpdateView(UpdateView):
     model = portal_models.Offer
     fields = [
 		'title',
@@ -168,7 +160,7 @@ class OfferUpdateView(UpdateView):
 
     template_name = 'offer/offer_update.html'
 
-class OfferDeleteView(DeleteView):
+class MerchantOfferDeleteView(DeleteView):
     model = portal_models.Offer
     template_name = 'offer/offer_delete.html'
     success_url = reverse_lazy('portal:offer_list')
