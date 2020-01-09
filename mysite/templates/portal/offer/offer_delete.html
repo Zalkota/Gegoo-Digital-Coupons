@@ -5,12 +5,12 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-12">
-                <h3>Delete Store - {{ object.business_name }}</h3>
-                <h3>{{ object.merchant }} Are you sure you want to delete this Store?</h3>
+                <h3>Delete Store - {{ object.title }}</h3>
+                <h3>{{ object.author }} Are you sure you want to delete this Store?</h3>
                 <form action="" method="POST">
                     {% csrf_token %}
                     <button class="btn btn-danger" type="submit">Delete</button>
-                    <a class="btn btn-warning" href="{% url 'portal:store_detail' object.slug %}">Cancel</a>
+                    <a class="btn btn-warning" href="{% url 'portal:merchant_offer_detail' object.slug %}">Cancel</a>
                 </form>
             </div>
         </div>

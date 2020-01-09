@@ -13,12 +13,13 @@
     </div>
     <div class="row mt-5">
         <div class="col-12">
-            {% for store in stores %}
+            {% for store in object_list %}
             <div class="card faq-card">
                 <div class="card-body">
                     <div class="card-title">
-                        <a class="card-link" href="{{ store.get_absolute_url }}">
+                        <a class="card-link" href="{{ store.get_consumer_absolute_url }}">
                             <h3>{{ store.business_name }}</h3>
+                            <h3>{{ store.merchant }}</h3>
                         </a>
                     </div>
                     <p class="card-text">{{ store.description }}</p>

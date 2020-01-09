@@ -155,6 +155,7 @@ class Offer(models.Model):
     image           = models.ImageField(upload_to='photos/', null=True)
     end_date        = models.DateField()
     likes           = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
+    # is_featured     = models.BooleanField('FeaturedStatus', default=False)
 
     # Creation Fields
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
@@ -164,7 +165,10 @@ class Offer(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('portal:offer_detail', kwargs={'slug': self.slug})
+        return reverse('portal:merchant_offer_detail', kwargs={'slug': self.slug})
+    
+    def get_consumer_absolute_url(self):
+        return reverse('portal:consumer_offer_detail', kwargs={'slug': self.slug})
     
 @receiver(pre_save, sender=Offer)
 def pre_save_offer(sender, **kwargs):
@@ -218,7 +222,10 @@ class Store(models.Model):
         return self.business_name
 
     def get_absolute_url(self):
-        return reverse('portal:store_detail', kwargs={'slug': self.slug})
+        return reverse('portal:merchant_store_detail', kwargs={'slug': self.slug})
+
+    def get_consumer_absolute_url(self):
+        return reverse('portal:consumer_store_detail', kwargs={'slug': self.slug})
 
 @receiver(pre_save, sender=Store)
 def pre_save_store(sender, **kwargs):

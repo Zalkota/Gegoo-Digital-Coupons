@@ -17,8 +17,7 @@ latitude = 42.637740
 longitude = -83.363546
 user_location = Point(longitude, latitude, srid=4326)
 
-from users.decorators import user_is_merchant
-
+from users.decorators import IsMerchantMixin, IsUserObject
 
 def get_user_orders(request, user):
 	user_orders_qs = portal_modedls.Order.objects.filter(user=user)
@@ -49,32 +48,24 @@ class CategoryDetailView(View):
 			messages.info(self.request, "Error contact admin")
 			return redirect("home-page")
 
-@user_is_merchant
-def StoreList(request):
-	stores = portal_models.Store.objects.all()
-	context = {
-		'stores': stores
-	}
-	return render(request, 'store/func_store_list_view.html', context)
-
-class StoreListView(ListView):
+class MerchantStoreListView(IsMerchantMixin, ListView):
 	model = portal_models.Store
-	template_name = 'store/store_list.html'
+	template_name = 'portal/store/store_list.html'
 
 	def get_queryset(self):
 		store_list = portal_models.Store.objects.filter(merchant=self.request.user)
 		return store_list
 
-class StoreDetailView(DetailView):
+class MerchantStoreDetailView(IsMerchantMixin, IsUserObject, DetailView):
 	model = portal_models.Store
-	template_name = 'store/store_detail.html'
+	template_name = 'portal/store/store_detail.html'
 
 	def get_context_data(self, **kwargs):
-		context = super(StoreDetailView, self).get_context_data(**kwargs)
+		context = super(MerchantStoreDetailView, self).get_context_data(**kwargs)
 		context['offers'] = portal_models.Offer.objects.filter(author=self.request.user).exclude(slug__in=self.object.offers.all().values_list('slug'))
 		return context
 
-class StoreCreateView(CreateView):
+class MerchantStoreCreateView(IsMerchantMixin, CreateView):
 	model = portal_models.Store
 	fields = [
 		'business_name',
@@ -82,40 +73,39 @@ class StoreCreateView(CreateView):
 		'description',
 	]
 	
-	template_name = 'store/store_create.html'
+	template_name = 'portal/store/store_create.html'
 
 	def form_valid(self, form):
 		form.instance.merchant = self.request.user
-		return super(StoreCreateView, self).form_valid(form)
+		return super(MerchantStoreCreateView, self).form_valid(form)
 
-class StoreUpdateView(UpdateView):
-    model = portal_models.Store
-    fields = [
+class MerchantStoreUpdateView(IsMerchantMixin, UpdateView):
+	model = portal_models.Store
+	template_name = 'portal/store/store_update.html'
+	fields = [
 		'business_name',
 		'title',
 		'description',
-    ]
+	]
 
-    template_name = 'store/store_update.html'
+class MerchantStoreDeleteView(IsMerchantMixin, DeleteView):
+    model = portal_models.Store
+    template_name = 'portal/store/store_delete.html'
+    success_url = reverse_lazy('portal:merchant_store_list')
 
-class StoreDeleteView(DeleteView):
-    model = portal_models.Offer
-    template_name = 'store/store_delete.html'
-    success_url = reverse_lazy('portal:store_list')
-
-class OfferListView(ListView):
+class MerchantOfferListView(IsMerchantMixin, ListView):
 	model = portal_models.Offer
-	template_name = 'offer/offer_list.html'
+	template_name = 'portal/offer/offer_list.html'
 
 	def get_queryset(self):
 		offer_list = portal_models.Offer.objects.filter(author=self.request.user)
 		return offer_list
 
-class OfferDetailView(DetailView):
+class MerchantOfferDetailView(IsMerchantMixin, DetailView):
 	model = portal_models.Offer
-	template_name = 'offer/offer_detail.html'
+	template_name = 'portal/offer/offer_detail.html'
 
-class OfferCreateView(CreateView):
+class MerchantOfferCreateView(IsMerchantMixin, CreateView):
 	model = portal_models.Offer
 	fields = [
 		'title',
@@ -123,13 +113,13 @@ class OfferCreateView(CreateView):
 		'end_date',
 	]
 	
-	template_name = 'offer/offer_create.html'
+	template_name = 'portal/offer/offer_create.html'
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user
-		return super(OfferCreateView, self).form_valid(form)
+		return super(MerchantOfferCreateView, self).form_valid(form)
 
-class OfferUpdateView(UpdateView):
+class MerchantOfferUpdateView(IsMerchantMixin, UpdateView):
     model = portal_models.Offer
     fields = [
 		'title',
@@ -137,11 +127,11 @@ class OfferUpdateView(UpdateView):
 		'end_date',
     ]
 
-    template_name = 'offer/offer_update.html'
+    template_name = 'portal/offer/offer_update.html'
 
-class OfferDeleteView(DeleteView):
+class MerchantOfferDeleteView(IsMerchantMixin, DeleteView):
     model = portal_models.Offer
-    template_name = 'offer/offer_delete.html'
+    template_name = 'portal/offer/offer_delete.html'
     success_url = reverse_lazy('portal:offer_list')
 
 def OfferLike(request):
@@ -158,3 +148,16 @@ def OfferRemove(request, store_id, offer_id):
 	store = portal_models.Store.objects.get(id=store_id)
 	store.offers.remove(offer_id)
 	return HttpResponseRedirect(store.get_absolute_url())
+
+# Consumer Views
+class ConsumerStoreListView(ListView):
+	model = portal_models.Store
+	template_name = 'portal/consumer/consumer_store_list.html'
+
+	def get_queryset(self):
+		store_list = portal_models.Store.objects.all()
+		return store_list
+
+class ConsumerStoreDetailView(DetailView):
+	model = portal_models.Store
+	template_name = 'portal/consumer/consumer_store_detail.html'

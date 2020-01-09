@@ -1,0 +1,14 @@
+{% extends 'base-alt.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-8">
+            <h3>{{ object.business_name }}</h3>
+            <p>{{ object.created_at|date:'F d, Y' }}</p>
+            <h3>{{ object.description }}</h3>
+            <h3>{{ object.merchant }}</h3>
+        </div>
+    </div>
+</div>
+{% endblock content %} 
