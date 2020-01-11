@@ -3,11 +3,11 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.edit import FormView, FormMixin
 from .forms import ContactForm
-from blog.models import Question, Topic
+from support.models import Question, Topic
 
 class QuestionListView(ListView):
     model = Question
-    template_name = 'blog/question_list.html'
+    template_name = 'support/question_list.html'
     ordering = ['-created_at']
     paginate_by = 4
 
@@ -18,7 +18,7 @@ class QuestionListView(ListView):
 
 class TopicDetailView(DetailView):
     model = Topic
-    template_name = 'blog/topic_detail.html'
+    template_name = 'support/topic_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(TopicDetailView, self).get_context_data(**kwargs)
@@ -29,7 +29,7 @@ class TopicDetailView(DetailView):
 
 class QuestionDetailView(DetailView):
     model = Question
-    template_name = 'blog/question_detail.html'
+    template_name = 'support/question_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(QuestionDetailView, self).get_context_data(**kwargs)
@@ -75,4 +75,4 @@ def contactLandingPage(request):
     return render(request, 'mysite/form_page_landing.html')
 
 def AboutPageView(request):
-    return render(request, 'blog/about_page.html')
+    return render(request, 'support/about_page.html')

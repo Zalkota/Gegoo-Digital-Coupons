@@ -29,7 +29,7 @@ class Question(models.Model):
     title       = models.CharField(max_length=100)
     topic       = models.ForeignKey(Topic, on_delete=models.CASCADE, blank=True, null=True)
     slug        = models.SlugField(max_length=100)
-    # author      = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='blog_post')
+    # author      = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='support_post')
     body        = models.TextField()
     status      = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
     created_at  = models.DateTimeField(default=timezone.now, verbose_name="Created at")

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Contact
 
-from blog import models as blog_models
+from support import models as support_models
 
 class QuestionAdmin(admin.ModelAdmin):
     list_display            = ('title', 'topic', 'slug', 'status', 'created_at', 'updated_at')
@@ -18,6 +18,6 @@ class TopicAdmin(admin.ModelAdmin):
     search_fields           = ('title',)
     date_hierarchy          = ('created_at')
 
-admin.site.register(blog_models.Question, QuestionAdmin)
-admin.site.register(blog_models.Topic, TopicAdmin)
+admin.site.register(support_models.Question, QuestionAdmin)
+admin.site.register(support_models.Topic, TopicAdmin)
 admin.site.register(Contact)

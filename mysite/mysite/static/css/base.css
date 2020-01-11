@@ -10869,13 +10869,13 @@ hr.hr-2 {
   color: #A0AEC0; }
   .merchant-button:hover, .merchant-button:active, .merchant-button:focus, .merchant-button:visited {
     color: #7505AB;
-    border-bottom: 5px solid #7505AB; }
+    border-bottom: 3px solid #7505AB; }
     .merchant-button:hover a, .merchant-button:active a, .merchant-button:focus a, .merchant-button:visited a {
       text-decoration: none; }
 
 .merchant-button-active {
   color: #7505AB;
-  border-bottom: 5px solid #7505AB; }
+  border-bottom: 3px solid #7505AB; }
   .merchant-button-active a {
     text-decoration: none; }
 

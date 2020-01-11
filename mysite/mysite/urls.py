@@ -37,7 +37,7 @@ urlpatterns = [
     #Portal
     url(r'^membership', include(('memberships.urls', 'memberships'), namespace='memberships')),
     #FAQ
-    url(r'^support/', include(('blog.urls', 'blog'), namespace='support')),
+    url(r'^support/', include(('support.urls', 'support'), namespace='support')),
     #users
     url(r'', include(('users.urls', 'users'), namespace='users')),
 

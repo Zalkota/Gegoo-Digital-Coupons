@@ -14,7 +14,7 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 
 # imports
-from blog.models import Contact
+from support.models import Contact
 from portal.models import Offer, Store, Category
 
 #mail

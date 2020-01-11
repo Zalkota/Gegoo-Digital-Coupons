@@ -42,9 +42,8 @@ INSTALLED_APPS = [
     #APPS
     'users',
     'portal',
-    'blog.apps.BlogConfig',
+    'support',
     'memberships',
-    #'blog',
 
     #Payment
     'stripe',

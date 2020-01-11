@@ -736,7 +736,7 @@ hr.hr-2 {
 
             &:hover,&:active,&:focus,&:visited {
               color: $color-primary;
-              border-bottom: 5px solid $color-primary;
+              border-bottom: 3px solid $color-primary;
 
                 a {
                     text-decoration: none;
@@ -748,7 +748,7 @@ hr.hr-2 {
 
         .merchant-button-active {
             color: $color-primary;
-            border-bottom: 5px solid $color-primary;
+            border-bottom: 3px solid $color-primary;
 
               a {
                   text-decoration: none;
