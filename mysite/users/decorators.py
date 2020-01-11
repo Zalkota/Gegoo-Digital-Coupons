@@ -1,6 +1,7 @@
 from functools import wraps
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import render, redirect
 
 def user_is_merchant(function):
     @wraps(function)

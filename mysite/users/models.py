@@ -14,6 +14,9 @@ from location.models import Address
 import datetime
 from django.utils import timezone
 
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import receiver
+
 
 class User(AbstractUser):
 
@@ -49,6 +52,14 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+# @receiver(post_save, sender=User)
+# def post_save_user(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user = instance)
+#     instance.Profile.save()
+
 
 
 # class userStripe(models.Model):

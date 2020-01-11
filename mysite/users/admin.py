@@ -4,8 +4,15 @@ from django.contrib import admin
 # from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from users import models as users_models
 
+class ProfileInline(admin.StackedInline):
+    model = users_models.Profile
+    can_delete = False
+    verbose_name_plural = 'Profile'
+
 
 class UserAdmin(admin.ModelAdmin):
+    # inlines = (ProfileInline,)
+
     list_display            = ('username', 'first_name', 'last_name', 'slug', 'is_approved', 'is_merchant', 'created_at', 'updated_at')
     list_filter             = ('created_at', 'updated_at')     
     search_fields           = ('username', 'first_name', 'last_name')
