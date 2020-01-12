@@ -23,7 +23,7 @@ from cities_light.models import City, Region
 def SearchAddress(request):
     if request.method == "POST":
         search_text = request.POST['search_text']
-        if search_text == '':
+        if search_text == '' or search_text == None:
             address = None
         else:
             address = City.objects.filter(name__contains=search_text)

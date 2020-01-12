@@ -16,11 +16,17 @@ from django.core.validators import FileExtensionValidator
 import datetime
 from django.utils import timezone
 
+STATUS_CHOICES = (
+    ('APPROVED', 'Approved'),
+    ('PENDING', 'Pending Approval'),
+    ('NOT APPROVED', 'Not Approved'),
+)
 
 class User(AbstractUser):
     is_merchant     = models.BooleanField('is_merchant', default=False)
     is_approved     = models.BooleanField('merchant_is_approved', default=False)
-    has_paid     = models.BooleanField('payment_status', default=False) #Is this necesarry?
+    status          = models.CharField(choices=STATUS_CHOICES, default='NOT APPROVED', max_length=20)
+    has_paid        = models.BooleanField('payment_status', default=False) #Is this necesarry?
     # is_consumer     = models.BooleanField('ConsumerStatus', default=False)
     # slug            = models.SlugField(max_length=100, null=True)
 

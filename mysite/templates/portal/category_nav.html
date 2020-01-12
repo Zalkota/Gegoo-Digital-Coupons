@@ -1,0 +1,51 @@
+{% load static %}
+
+{% block category_nav %}
+<section class="pt-5 pb-4 container">
+    <!-- <h3 class="section-header text-dark">Search By Category</h3> -->
+    <div class="flex-container">
+        <div class="flex-box mx-2">
+            <div class="{% if request.path == null %} card-pill-active {% else %} card-pill {% endif %}">
+                <a href="{% url 'home-page' %}">All</a>
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="{% if 'vehicles' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                <a href="{% url 'portal:category_detail' slug='vehicles' %}">Vehicles</a>
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="flex-box mx-2">
+                <div class="{% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}%">
+                    <a href="{% url 'portal:category_detail' slug='food' %}">Food</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill">
+                Barber
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill">
+                Salon
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill ">
+                Home
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill">
+                Landscaping
+            </div>
+        </div>
+        <div class="flex-box mx-2">
+            <div class="card-pill">
+                Tools
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock category_nav %}

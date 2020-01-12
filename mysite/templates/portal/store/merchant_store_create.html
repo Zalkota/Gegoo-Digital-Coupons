@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-<div class="section">
+<div class="section-sm">
     <div class="container">
-        <form action="" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn btn-primary" type="submit">Create</button>
-        </form>
+        <div class="row">
+            <div class="col-lg-8 offset-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="section-header">Create Store</h2>
+                        <p class="fs-14">Create your store listing for one location. If you have multiple locations create additional stores after.</p>
+                        <hr>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button class="btn btn-primary-alt btn-block mt-3" type="submit">Create Store</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-{% endblock content %} 
+{% endblock content %}

@@ -8484,6 +8484,8 @@ button {
   border: 1px solid #CBD5E0;
   transition: transform 0.25s;
   box-shadow: 0; }
+  .card-pill a {
+    color: #4A5568 !important; }
   .card-pill:hover, .card-pill:focus {
     box-shadow: 0;
     color: #7505AB; }
@@ -10791,6 +10793,9 @@ hr.hr-2 {
   background-image: -webkit-linear-gradient(120deg, #805AD5, #7505AB);
   background-image: -o-linear-gradient(120deg, #805AD5, #7505AB);
   background-image: linear-gradient(120deg, #805AD5, #7505AB); }
+
+.display-none {
+  display: none; }
 
 /*  <**************************************************************************>
     <*****                    Refactoring UI Icons                        *****>

@@ -53,8 +53,8 @@ PROMOTION_CHOICES = (
 )
 
 CATEGORY_CHOICES = (
-    ('FOOD', 'Food & Dining'),
-    ('VEHICLES', 'Automotive & Transportation'),
+    ('FOOD', 'Food'),
+    ('VEHICLES', 'Automotive'),
     ('HOME', 'Home Improvement'),
 )
 
@@ -162,6 +162,7 @@ class Images(models.Model):
 
 class Category(models.Model):
     name = models.CharField(choices=CATEGORY_CHOICES, default='FOOD', max_length=20, unique=True, db_index=True,)
+    slug = models.SlugField(unique=True, blank=True )
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -170,10 +171,16 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('portal:category_detail', kwargs={'name': self.name})
+        return reverse('portal:category_detail', kwargs={'slug': self.slug})
+
+@receiver(pre_save, sender=Category)
+def pre_save_category(sender, **kwargs):
+    slug = slugify(kwargs['instance'].name)
+    kwargs['instance'].slug = slug
 
 class Subcategory(models.Model):
-    name = models.CharField(max_length=40, db_index=True, unique=True)
+    name = models.CharField(max_length=15)
+    slug = models.SlugField(unique=True, blank=True, editable=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='subcategory')
 
     class Meta:
@@ -181,6 +188,14 @@ class Subcategory(models.Model):
 
     def __str__(self):
       return '%s' % (self.name)
+
+    def get_absolute_url(self):
+        return reverse('portal:subcategory_detail', kwargs={'category': self.category.slug, 'slug': self.slug})
+
+@receiver(pre_save, sender=Subcategory)
+def pre_save_subcategory(sender, **kwargs):
+    slug = slugify(kwargs['instance'].name)
+    kwargs['instance'].slug = slug
 
 class Tag(models.Model):
     name = models.CharField(max_length=32)
@@ -205,14 +220,14 @@ class About(models.Model):
 
 
 class Offer(models.Model):
-    author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    # author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     title           = models.CharField(max_length=100, blank=False)
     description     = models.TextField(max_length=500, blank=False)
-    tag             = models.ManyToManyField(Tag, blank=True)
-    slug            = models.SlugField(unique=True)
+    # tag             = models.ManyToManyField(Tag, blank=True)
+    slug            = models.SlugField(unique=True, blank=True, editable=False)
     image           = models.ImageField(upload_to='photos/', null=True)
     end_date        = models.DateField()
-    likes           = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
+    likes           = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes', editable=False)
 
     # Creation Fields
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
@@ -225,12 +240,11 @@ class Offer(models.Model):
         return reverse('portal:offer_detail', kwargs={'slug': self.slug})
 
 
-
-
 @receiver(pre_save, sender=Offer)
 def pre_save_offer(sender, **kwargs):
-    slug = slugify(kwargs['instance'].title)
+    slug = slugify(kwargs['instance'].title, kwargs['instance'].id)
     kwargs['instance'].slug = slug
+
 
 class Store(models.Model):
     end_date = models.DateField(null=True)
@@ -249,8 +263,8 @@ class Store(models.Model):
     website_url         = models.URLField(max_length=500, blank=True, null=True)
     facebook_url        = models.URLField(max_length=500, blank=True, null=True)
     logo                = models.ImageField(upload_to='store-logos/', blank=True, null=True)
-    category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, related_name='category')
-    subcategory         = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=True, null=True, related_name='subcategory')
+    category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
+    subcategory         = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=True, null=True)
     code_coupon         = models.CharField(max_length=15, blank=True, null=True, help_text="This will be auto-generated as GEGOO####, if left blank. Set as 'NONE' if no coupon code is desired.")
 
 

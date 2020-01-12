@@ -252,6 +252,10 @@
     transition: transform 0.25s;
     box-shadow: 0;
 
+    a {
+        color: $color-text !important;
+    }
+
     &:hover, &:focus {
         box-shadow: 0;
         color: $color-primary;

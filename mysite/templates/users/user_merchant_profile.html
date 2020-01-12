@@ -138,39 +138,88 @@ a:hover {
       	    </div>
             <div class="col-lg-6">
                 <div class="card my-2">
+
+                    {% if user.status == 'NOT APPROVED' %}
                     <div class="card-body">
                         <h3 class="header">
                             Step One
-                            {% if user.is_approved == True %}
-                            <span class="badge-success px-3 fs-16 fw-6 pull-right">Complete</span>
-                            {% else %}
                             <span class="badge-danger px-3 fw-6 fs-16 pull-right">Incomplete
                             </span>
-                            {% endif %}
                         </h3>
+                        <br>
                         <p><span class="fw-6"></span>Fill out the Merchant Approval form</p>
-                        <a href="" class="btn btn-primary-alt">Get Approved</a>
+                        <a href="{% url 'portal:merchant-approval-page' %}" class="btn btn-primary-alt">Get Approved</a>
                     </div>
+
+                    {% elif user.status == 'PENDING' %}
+                    <div class="card-body">
+                        <h3 class="section-header">
+                            Step One
+                            <span class="badge-danger px-3 fw-6 fs-16 pull-right">Incomplete</span>
+                        </h3>
+                        <br>
+                        <p><span class="fw-6"></span>Thank you for filling out the approval form, check back in 24-48 hours!</p>
+                        <a class="btn btn-primary-alt disabled text-white">Submission Sent</a>
+
+                    </div>
+
+                    {% else %}
+                    <div class="card-body">
+                        <h3 class="section-header">
+
+                            <span class="badge-success px-3 fs-16 fw-6 pull-right">Complete</span>
+                        </h3>
+                            <br>
+                        <p><span class="fw-6"></span>Fill out the Merchant Approval form</p>
+                        <a class="btn btn-success-alt text-white disabled">All Set!</a>
+                    </div>
+                    {% endif %}
                 </div>
 
                 <div class="card my-2">
+                    {% if user.status == 'APPROVED' %}
                     <div class="card-body">
-                        <h3 class="header">
+                        <h3 class="section-header">
                             Step Two
                         </h3>
                         <p><span class="fw-6"></span>Once Approved by the Gegoo Staff, you can create a Store with all of you business's information, location, hours, and services.</p>
                         <br>
-                        <a href="" class="btn btn-alternate-alt">Create Store</a>
+                        <a href="{% url 'portal:merchant_store_create' %}" class="btn btn-primary-alt">Create Store</a>
+                            {% if user.store %}
+                            <a href="{% url 'portal:merchant_store_update' %}" class="btn btn-primary-alt">Create Store</a>
+                            {% else %}
+                            <a href="{% url 'portal:merchant_store_create' %}" class="btn btn-primary-alt">Create Store</a>
+                            {% endif %}
                     </div>
+                    {% endif %}
+
+                    {% if user.status != 'APPROVED' %}
+                    <div class="card-body">
+                        <h3 class="section-header">
+                            Step Two
+                        </h3>
+                        <p><span class="fw-6"></span>Once Approved by the Gegoo Staff, you can create a Store with all of you business's information, location, hours, and services.</p>
+                        <br>
+                        <a  class="btn btn-gray-400-alt text-gray-700 disabled">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mr-1 icon-lock"><path class="fill-gray-700" d="M5 10h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2zm6 6.73V18a1 1 0 0 0 2 0v-1.27a2 2 0 1 0-2 0z"/><path class="fill-gray-700" d="M12 19a1 1 0 0 0 1-1v-1.27A2 2 0 0 0 12 13v-3h3V7a3 3 0 0 0-6 0v3H7V7a5 5 0 1 1 10 0v3h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7v-3z"/></svg>
+                            Create Store
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
 
                 <div class="card my-2">
                     <div class="card-body">
-                        <h3 class="header">
+                        <h3 class="section-header">
                             Step Three
                         </h3>
                         <p><span class="fw-6"></span>Once your store has been created, you will need to purchase a subscription package. <a href="">Click here</a> to see our pricing page.</p>
-                        <a href="" class="btn btn-alternate-alt">Purchase Subscription</a>
+                        <a href="{% url 'memberships:select' %}" class="btn btn-primary-alt">Purchase Subscription</a>
+                        <a class="btn btn-gray-400-alt text-gray-700 disabled">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mr-1 icon-lock"><path class="fill-gray-700" d="M5 10h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2zm6 6.73V18a1 1 0 0 0 2 0v-1.27a2 2 0 1 0-2 0z"/><path class="fill-gray-700" d="M12 19a1 1 0 0 0 1-1v-1.27A2 2 0 0 0 12 13v-3h3V7a3 3 0 0 0-6 0v3H7V7a5 5 0 1 1 10 0v3h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7v-3z"/></svg>
+                            Purchase Subscription
+                        </a>
+
                     </div>
                 </div>
             </div>

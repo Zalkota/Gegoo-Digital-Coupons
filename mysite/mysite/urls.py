@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     path('users/', include('users.urls')),
     #Portal
-    url(r'^services/', include(('portal.urls', 'portal'), namespace='portal')),
+    url(r'^shop/', include(('portal.urls', 'portal'), namespace='portal')),
     #Location
     url(r'^', include(('location.urls', 'location'), namespace='location')),
     #Portal

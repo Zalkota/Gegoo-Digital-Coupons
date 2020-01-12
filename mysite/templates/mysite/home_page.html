@@ -10,51 +10,9 @@
 
 {% block content %}
 
-<section class="pt-5 pb-4 container">
-    <!-- <h3 class="section-header text-dark">Search By Category</h3> -->
-    <div class="flex-container">
-        <div class="flex-box mx-2">
-            <div class="card-pill-active">
-                All
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill">
-                <a href="{% url 'portal:category_detail' category='VEHICLES' %}">Vehicles</a>
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill">
-                Travel
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill">
-                Barber
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill">
-                Salon
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill ">
-                Home
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill">
-                Landscaping
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card-pill">
-                Tools
-            </div>
-        </div>
-    </div>
-</section>
+{% block category_nav %}
+  {% include "portal/category_nav.html" %}
+{% endblock category_nav %}
 
 
 <section class="hero">
@@ -81,58 +39,6 @@
         <h3 class="section-header text-dark">Services in {{ city }}, {{ state }}</h3>
         <br>
         <div class="row">
-            <div class="col-lg-2">
-
-                <h3 class="subheader ml-3">Filter Options:</h3>
-                <ul class="list-unstyled ml-3 mr-3 fs-16">
-                    <li class="mb-2">Food
-                        <span class="pull-right">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
-                        </span>
-                    </li>
-                    <li class="mb-2">Travel
-                        <span class="pull-right">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
-                        </span>
-                    </li>
-                    <li class="mb-2">Barbershop
-                        <span class="pull-right">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
-                        </span>
-                    </li>
-                    <li class="mb-2">Salon
-                        <span class="pull-right">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
-                        </span>
-                    </li>
-                    <li class="mb-2">Home
-                        <span class="pull-right">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
-                        </span>
-                    </li>
-                    <li class="mb-2">Tools
-                        <span class="pull-right">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
-                        </span>
-                    </li>
-                    <li class="mb-2">Fitness
-                        <span class="pull-right">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
-                        </span>
-                    </li>
-                    <li class="mb-2">Vehicles
-                        <span class="pull-right">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
-                        </span>
-                    </li>
-                    <li class="mb-2">Lawn
-                        <span class="pull-right">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
-                        </span>
-                    </li>
-                </ul>
-            </div>
-            <div class="offset-lg-1"></div>
             {% for object in address_qs %}
                 {% if object.get_first_active %}
                     <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
@@ -201,8 +107,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     {% endif %}
                 {% endfor %}
             {% endfor %}
@@ -239,25 +143,7 @@
         <h3 class="section-header text-dark">Featured Services</h3>
         <br>
         <div class="row">
-            <div class="col-lg-2">
-                <div class="pr-4">
-                    <h3 class="subheader">
-                        GEGOO Rewards
-                    </h3>
-                    <p class="fs-14 text-gray-700">Earn points and gift cards by using GEGOO code with one of listed merchants.
-                    <a href="#TODO">Learn More</a></p>
-                </div>
-                <div class="my-5 pr-4">
-                    <h3 class="subheader">
-                        Location
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mb-1 icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
-                    </h3>
-                    <p class="fs-14 text-gray-700">Services and Businesses are shown based on your location.
-                    <a href="#TODO">Click here</a> to change location.</p>
-                </div>
-            </div>
-
-            <div class="col-lg-5">
+            <div class="col-lg-6">
                 {% for object in address_qs %}
                     {% if object.get_first_active %}
                         <div class="card card-border card-effects shadow-4">
@@ -310,6 +196,37 @@
                         </div>
                     {% endif %}
                 {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section-gray-50-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="text-center my-4 pr-4">
+                    <h3 class="section-header mb-4">
+                        GEGOO Rewards
+                    </h3>
+                    <p class="fs-14 text-gray-700">Earn points and gift cards by using GEGOO code with one of listed merchants.
+                    <a href="#TODO">Learn More</a></p>
+                </div>
+
+            </div>
+            <div class="col-lg-1 border-right">
+            </div>
+            <div class="offset-lg-1"></div>
+            <div class="col-lg-5">
+                <div class="text-center my-4 pr-4">
+                    <h3 class="section-header mb-4">
+                        Location
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mb-1 icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                    </h3>
+                    <p class="fs-14 text-gray-700">Services and Businesses are shown based on your location.
+                    <a href="#TODO">Click here</a> to change location.</p>
+                </div>
             </div>
         </div>
     </div>

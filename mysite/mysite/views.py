@@ -135,7 +135,6 @@ def get_items(request):
 # >>> City.objects.filter(country__name="United States", subregion__name="Orange County")
 
 
-
 class homeView(View):
     def get(self, *args, **kwargs):
         city = 'default_city'

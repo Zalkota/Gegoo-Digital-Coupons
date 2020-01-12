@@ -1,0 +1,27 @@
+{% extends "base-alt.html" %}
+{% load static %}
+
+
+{% block body_class %} Form Submission Success{% endblock %}
+
+{% block content %}
+
+    <div class="section-lg container" >
+      <div class="row">
+        <div class="offset-md-3 col-lg-6 text-center pull-center">
+          <div class="card stripe-primary">
+            <div class="card-body text-center">
+              <div class="card-title"><i class="material-icons text-primary mt-2" style="font-size: 64px;">check</i><h2 class="text-dark mt-2 mb-3">Submitted Successfully</h2>
+                  <p class="text-muted fs-14 pb-4">You should hear back from us within 48 hours!</p></div>
+            </div>
+          </div>
+          <div class="p-5">
+              <a class="btn btn-primary-alt" role="button" href="/">Return to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+{% endblock %}
