@@ -13,11 +13,11 @@ class ProfileInline(admin.StackedInline):
 class UserAdmin(admin.ModelAdmin):
     # inlines = (ProfileInline,)
 
-    list_display            = ('username', 'first_name', 'last_name', 'slug', 'is_approved', 'is_merchant', 'created_at', 'updated_at')
+    list_display            = ('username', 'first_name', 'last_name', 'slug', 'is_approved', 'is_merchant', 'has_paid', 'created_at', 'updated_at')
     list_filter             = ('created_at', 'updated_at')     
     search_fields           = ('username', 'first_name', 'last_name')
     prepopulated_fields     = {'slug':('username',)}
-    list_editable           = ('is_merchant', 'is_approved')
+    list_editable           = ('is_merchant', 'is_approved', 'has_paid')
     date_hierarchy          = ('created_at')
 
 admin.site.register(users_models.User, UserAdmin)

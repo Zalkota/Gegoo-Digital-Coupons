@@ -28,24 +28,31 @@ from cities_light.models import Region, City
 from allauth.account.views import SignupView
 from users.forms import MerchantSignupForm
 
+from portal import models as portal_models
+
 
 
 class userPage(View):
     def get(self, *args, **kwargs):
         try:
             user = self.request.user
-
+            stores = portal_models.Store.objects.filter(merchant=user)
+            offers = portal_models.Offer.objects.filter(author=user)
+            current_date = timezone.now
             context = {
                 'user': user,
+                'stores': stores,
+                'offers': offers,
+                'current_date': current_date,
             }
 
             #Render Merchant Page
             if user.is_merchant == True:
-                return render(self.request, "users/user_merchant_profile.html", context)
+                return render(self.request, "users/merchant_profile_mpm.html", context)
 
             #Render Normal User Profile Page
             elif user.is_merchant == False:
-                    return render(self.request, "users/userPage.html", context)
+                    return render(self.request, "users/merchant_profile_mpm.html", context)
 
 
         except ObjectDoesNotExist:

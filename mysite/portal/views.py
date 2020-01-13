@@ -48,7 +48,7 @@ class CategoryDetailView(View):
 			messages.info(self.request, "Error contact admin")
 			return redirect("home-page")
 
-class MerchantStoreListView(IsMerchantMixin, ListView):
+class MerchantStoreListView(ListView):
 	model = portal_models.Store
 	template_name = 'portal/store/store_list.html'
 
@@ -56,16 +56,22 @@ class MerchantStoreListView(IsMerchantMixin, ListView):
 		store_list = portal_models.Store.objects.filter(merchant=self.request.user)
 		return store_list
 
-class MerchantStoreDetailView(IsMerchantMixin, IsUserObject, DetailView):
+class MerchantStoreDetailView(DetailView):
 	model = portal_models.Store
 	template_name = 'portal/store/store_detail.html'
+
+	# def get_object(self):
+	# 	obj = super(MerchantStoreDetailView, self).get_object()
+	# 	obj.views += 1
+	# 	obj.save()
+	# 	return obj
 
 	def get_context_data(self, **kwargs):
 		context = super(MerchantStoreDetailView, self).get_context_data(**kwargs)
 		context['offers'] = portal_models.Offer.objects.filter(author=self.request.user).exclude(slug__in=self.object.offers.all().values_list('slug'))
 		return context
 
-class MerchantStoreCreateView(IsMerchantMixin, CreateView):
+class MerchantStoreCreateView(CreateView):
 	model = portal_models.Store
 	fields = [
 		'business_name',
@@ -79,7 +85,7 @@ class MerchantStoreCreateView(IsMerchantMixin, CreateView):
 		form.instance.merchant = self.request.user
 		return super(MerchantStoreCreateView, self).form_valid(form)
 
-class MerchantStoreUpdateView(IsMerchantMixin, UpdateView):
+class MerchantStoreUpdateView(UpdateView):
 	model = portal_models.Store
 	template_name = 'portal/store/store_update.html'
 	fields = [
@@ -88,12 +94,12 @@ class MerchantStoreUpdateView(IsMerchantMixin, UpdateView):
 		'description',
 	]
 
-class MerchantStoreDeleteView(IsMerchantMixin, DeleteView):
+class MerchantStoreDeleteView(DeleteView):
     model = portal_models.Store
     template_name = 'portal/store/store_delete.html'
     success_url = reverse_lazy('portal:merchant_store_list')
 
-class MerchantOfferListView(IsMerchantMixin, ListView):
+class MerchantOfferListView(ListView):
 	model = portal_models.Offer
 	template_name = 'portal/offer/offer_list.html'
 
@@ -158,6 +164,18 @@ class ConsumerStoreListView(ListView):
 		store_list = portal_models.Store.objects.all()
 		return store_list
 
+	def get_context_data(self, **kwargs):
+		context = super(ConsumerStoreListView, self).get_context_data(**kwargs)
+		context['trending_stores'] = portal_models.Store.objects.all().order_by('-views')[0:4]
+		return context
+
+
 class ConsumerStoreDetailView(DetailView):
 	model = portal_models.Store
 	template_name = 'portal/consumer/consumer_store_detail.html'
+
+	def get_object(self):
+		obj = super(ConsumerStoreDetailView, self).get_object()
+		obj.views += 1
+		obj.save()
+		return obj

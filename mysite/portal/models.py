@@ -214,6 +214,9 @@ class Store(models.Model):
 
     ref_code = models.CharField(max_length=20, blank=True, null=True, editable=False)
 
+    #views
+    views = models.PositiveIntegerField(default=0)
+
     # Creation Fields
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
     updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")

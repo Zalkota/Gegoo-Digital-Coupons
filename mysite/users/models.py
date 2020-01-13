@@ -21,7 +21,8 @@ from django.dispatch import receiver
 class User(AbstractUser):
 
     is_merchant     = models.BooleanField('MerchantStatus', default=False)
-    is_approved     = models.BooleanField('ConsumerStatus', default=False)
+    is_approved     = models.BooleanField('AccountApprovalStatus', default=False)
+    has_paid        = models.BooleanField('PaymentStatus', default=False)
     slug            = models.SlugField(max_length=100, null=True)
 
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
@@ -54,8 +55,8 @@ class Profile(models.Model):
         return self.user.username
 
 
-# @receiver(post_save, sender=User)
-# def post_save_user(sender, instance, created, **kwargs):
+# @receiver(pre_save, sender=User)
+# def pre_save_user(sender, instance, created, **kwargs):
 #     if created:
 #         Profile.objects.create(user = instance)
 #     instance.Profile.save()

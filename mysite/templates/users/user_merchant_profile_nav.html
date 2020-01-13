@@ -8,7 +8,7 @@
         <a href="{% url 'users:userPage' %}" class="{% if '/dashboard/' == request.path %} profile-link-active {% else %} profile-link {% endif %}">Dashboard</a>
         </li>
       <li>
-        <a href="{% url 'users:merchant-store-list' %}" class="{% if 'my-stores' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Stores</a>
+        <a href="{% url 'portal:merchant_store_list' %}" class="{% if 'my-stores' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Stores</a>
       </li>
       <li class="list-inline-item">
         <a href="{% url 'contact-page' %}" class="{% if 'my-merchants' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Offers</a>
@@ -17,7 +17,7 @@
         <a href="" class="{% if 'rewards' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Reviews</a>
       </li>
       <li class="list-inline-item">
-        <a href="{% url 'users:subscription-list' %}" class="{% if 'rewards' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Subscription</a>
+        <a href="" class="{% if 'rewards' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Subscription</a>
       </li>
       <li class="list-inline-item">
         <a href="{% url 'account_set_password' %}" class="{% if 'accounts' in request.path %} profile-link-active {% else %} profile-link {% endif %}">Settings</a>

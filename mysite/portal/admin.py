@@ -17,7 +17,7 @@ class AboutAdmin(ImportExportModelAdmin):
 class StoreAdmin(admin.ModelAdmin):
     search_fields = ['city__name', 'business_name']
     autocomplete_fields = ['city']
-    list_display = ('business_name', 'merchant')
+    list_display = ('business_name', 'merchant', 'ref_code')
 
 
 class LocationAdmin(admin.ModelAdmin):

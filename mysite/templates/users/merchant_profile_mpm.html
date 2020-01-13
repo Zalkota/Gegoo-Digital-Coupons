@@ -1,0 +1,287 @@
+{% extends "base-alt.html" %}
+{% load static %}
+
+{% block title %}Dashboard | {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron jumbotron-custom jumbotron-fluid mb-0">
+    <div class="container">
+        <div class="row mx-3 my-3">
+            <div class="col-6">
+                <h1 class="">Welcome Back! {{ user.first_name }} {{ user.last_name }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mt-3 px-3">
+        <div class="col-12">
+            <h1 class="mb-1 fs-18 fw-4">
+                Approval Process
+                {% if user.is_approved == True %}
+                    {% if user.has_paid == True %}
+                    <span class="badge badge-success fs-16 fw-6 mt-1 pull-right">Complete</span>
+                    {% else %}
+                    <span class="badge badge-warning fs-16 fw-6 mt-1 pull-right">Pending</span>
+                    {% endif %}
+                {% else %}
+                <span class="badge badge-danger fs-16 fw-6 mt-1 pull-right">Not Started</span>
+                {% endif %}
+            </h1>
+            <p class="fs-14 lead text-muted">You must complete the GEGOO application Process Before Activation</p>
+        </div>
+        <div class="col-12">
+            <div class="card-deck mt-2">
+                {% if user.is_approved == True %}
+                <div class="card" style="border: 2px solid #26bc9b;">
+                    <div class="card-body">
+                        <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                            Step One
+                            <span class="badge-success px-3 fs-14 fw-6 pull-right">svg</span>
+                        </h3>
+                        <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">Merchant Approval</h1>
+                        <p class="card-text lead fs-14 fw-2 text-muted">The GEGOO team has approved your business. Please move onto the next step: Purchasing a subscription.</p>
+                    </div>
+                    <div class="card-footer text-center mt-1">
+                        <p class="fs-14 fw-6 text-uppercase ls-1 disabled" style="color: #26bc9b;">
+                            Complete
+                        </p>
+                    </div>
+                </div>
+                {% else %}
+                <div class="card" style="border: 2px solid #f56564;">
+                    <div class="card-body">
+                        <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                            Step One
+                            <span class="badge-danger px-3 fw-6 fs-16 pull-right">svg</span>
+                        </h3>
+                        <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">Merchant Approval</h1>
+                        <p class="card-text lead fs-14 fw-2 text-muted">The GEGOO team must actiavte your account before you can add stores and offers to the site. Please complete the approval form.</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="" class="card-link fs-14 fw-6 text-uppercase ls-1">
+                            View Step One
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if user.has_paid == True %}
+                <div class="card" style="border: 2px solid #26bc9b;">
+                    <div class="card-body">
+                        <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                            Step Two
+                            {% if user.has_paid == True %}
+                            <span class="badge-success px-3 fs-14 fw-6 pull-right">svg</span>
+                            {% else %}
+                            <span class="badge-danger px-3 fw-6 fs-16 pull-right">svg
+                    
+                            </span>
+                            {% endif %}
+                        </h3>
+                        <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">Purchase Subscription</h1>
+                        <p class="card-text lead fs-14 fw-2 text-muted">You must purchase a subscription to the GEGOO services in ordeer to create stores and advertise your offers.</p>
+                    </div>
+                    <div class="card-footer text-center mt-1">
+                        <p class="fs-14 fw-6 text-uppercase ls-1 disabled" style="color: #26bc9b;">
+                            Complete
+                        </p>
+                    </div>
+                </div>
+                {% else %}
+                <div class="card" style="border: 2px solid #f56564;">
+                    <div class="card-body">
+                        <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                            Step Two
+                            <span class="badge-danger px-3 fw-6 fs-16 pull-right">svg</span>
+                        </h3>
+                        <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">Purchase Subscription</h1>
+                        <p class="card-text lead fs-14 fw-2 text-muted">You must purchase a subscription to the GEGOO services in ordeer to create stores and advertise your offers.</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="" class="card-link fs-14 fw-6 text-uppercase ls-1">
+                            View Step Two
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if user.store_set.count %}
+                <div class="card" style="border: 2px solid #26bc9b;">
+                    <div class="card-body">
+                        <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                            Step Three
+                            <span class="badge-success px-3 fs-14 fw-6 pull-right">svg</span>
+                        </h3>
+                        <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">Store Creation</h1>
+                        <p class="card-text lead fs-14 fw-2 text-muted">After you have completed steps 1 and 2. You account will be granted merchant access to the GEGOO services.</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="fs-14 fw-6 text-uppercase ls-1 disabled" style="color: #26bc9b;">
+                            Complete
+                        </p>
+                    </div>
+                </div>
+                {% else %}
+                <div class="card" style="border: 2px solid #f56564;">
+                    <div class="card-body">
+                        <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                            Step Two
+                            <span class="badge-danger px-3 fw-6 fs-16 pull-right">svg</span>
+                        </h3>
+                        <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">Purchase Subscription</h1>
+                        <p class="card-text lead fs-14 fw-2 text-muted">You must purchase a subscription to the GEGOO services in ordeer to create stores and advertise your offers.</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="" class="card-link fs-14 fw-6 text-uppercase ls-1">
+                            View Step Three
+                        </a>
+                    </div>
+                </div> 
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3 px-3">
+        <div class="col-12">
+            <h1 class="mb-1 fs-18 fw-4">Active Stores</h1>
+        </div>
+        {% if user.is_approved == True and user.has_paid == True and user.store_set.count %}
+        <div class="col-12"> 
+            <div class="card-deck">
+                {% for store in stores %}
+                <div class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="https://source.unsplash.com/random" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                                    Step One
+                                </h3>
+                                <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">{{ store.business_name }}</h1>
+                                <p class="card-text lead fs-14 fw-2 text-muted">{{ store.description }}</p>
+                                <a href="{{ store.get_absolute_url }}" class="btn btn-primary fs-14 fw-4 pull-right">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>  
+        {% elif user.is_approved == True and user.has_paid == True and user.store_set.count %}
+        <div class="col-12"> 
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                            Oops!
+                        </h3>
+                        <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">You Need To Create A Store</h1>
+                        <p class="card-text lead fs-14 fw-2 text-muted">Please navigate to the store creation link to create a store!</p>
+                        <a href="{{ store.get_absolute_url }}" class="btn btn-primary fs-14 fw-4 pull-right">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12"> 
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                            Oops!
+                        </h3>
+                        <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">You Need Approval</h1>
+                        <p class="card-text lead fs-14 fw-2 text-muted">Please complete the GEGOO approval process to become an active merchant to view this data!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="row mt-3 px-3">
+        <div class="col-12">
+            <h1 class="mb-1 fs-18 fw-4">Active Offers</h1>
+        </div>
+        {% if user.is_approved == True and user.has_paid == True and user.offer_set.count %}
+        <div class="col-12">
+            <div class="card">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Offer</th>
+                        <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Location</th>
+                        <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Description</th>
+                        <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">End Date</th>
+                        <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for offer in offers %}
+                            <tr>
+                                <th scope="row" class="fs-14 fw-2">{{ offer.title }}</th>
+                                <td class="fs-14 fw-2">{{ offer.store_set.first }}</td>
+                                <td class="fs-14 fw-2">{{ offer.description|truncatechars:25 }}</td>
+                                <td class="fs-14 fw-2">{{ offer.end_date }}</td>
+                                {% if offer.end_date <= current_date  %}
+                                <td><span class="badge-success px-3 fs-14 fw-6">Active</span></td>
+                                {% else %}
+                                <td><span class="badge-danger px-3 fs-14 fw-6">Not Active</span></td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% elif user.is_approved == True and user.has_paid == True and user.offer_set.count %}
+        <div class="col-12"> 
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                            Oops!
+                        </h3>
+                        <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">You Need Approval</h1>
+                        <p class="card-text lead fs-14 fw-2 text-muted">Please complete the GEGOO approval process to become an active merchant to view this data!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12"> 
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                            Oops!
+                        </h3>
+                        <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">You Need Approval</h1>
+                        <p class="card-text lead fs-14 fw-2 text-muted">Please complete the GEGOO approval process to become an active merchant to view this data!</p>
+                    </div>
+                </div>
+            </div>
+        </div>            
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
+
+<div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h3 class="card-subtitle fs-14 fw-4 mb-1">
+            Step One
+        </h3>
+        <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">{{ store.business_name }}</h1>
+        <p class="card-text lead fs-14 fw-2 text-muted">{{ store.description }}</p>
+        <a href="{% url 'portal:merchant_store_update' store.slug %}" class="card-link fs-14 fw-6">Edit</a>
+        <a href="{{ store.get_absolute_url }}" class="btn btn-primary fs-14 fw-4 pull-right">View</a>
+    </div>
+</div>
