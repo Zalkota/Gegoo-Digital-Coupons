@@ -36,7 +36,7 @@ class userPage(View):
     def get(self, *args, **kwargs):
         try:
             user = self.request.user
-            stores = portal_models.Store.objects.filter(merchant=user)
+            stores = portal_models.Store.objects.filter(merchant=user).order_by('-views')
             offers = portal_models.Offer.objects.filter(author=user)
             current_date = timezone.now
             context = {

@@ -12,7 +12,7 @@ from django.dispatch import receiver
 from django.utils.text import slugify
 
 # Image Upload
-from django.core.validators import FileExtensionValidator
+from django.core.validators import FileExtensionValidator, MaxValueValidator, MinValueValidator
 
 # Ckeditor
 from ckeditor.fields import RichTextField
@@ -147,6 +147,12 @@ def CalculateLocation(sender, created, instance, **kwargs):
             pass
 
 class Offer(models.Model):
+
+    STATUS_CHOCIES = [
+        ('DR', 'Drafted'),
+        ('PR', 'Published')
+    ]
+
     author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     title           = models.CharField(max_length=100, blank=False)
     description     = models.TextField(max_length=500, blank=False)
@@ -156,6 +162,8 @@ class Offer(models.Model):
     end_date        = models.DateField()
     likes           = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
     # is_featured     = models.BooleanField('FeaturedStatus', default=False)
+
+    status          = models.CharField(max_length=50, choices = STATUS_CHOCIES, default='Drafted')
 
     # Creation Fields
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
@@ -176,6 +184,12 @@ def pre_save_offer(sender, **kwargs):
     kwargs['instance'].slug = slug
 
 class Store(models.Model):
+
+    STATUS_CHOCIES = [
+        ('A', 'Active'),
+        ('N', 'Not Active')
+    ]
+
     merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern
@@ -190,7 +204,7 @@ class Store(models.Model):
     facebook_url        = models.URLField(max_length=500, blank=True, null=True)
     logo                = models.ImageField(upload_to='merchant-logos/', blank=True, null=True)
     category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, related_name='category')
-
+    status              = models.CharField(max_length=50, choices=STATUS_CHOCIES, default='Active')
 
     # Store Bio
     title               = models.CharField(max_length=100)
@@ -234,6 +248,21 @@ class Store(models.Model):
 def pre_save_store(sender, **kwargs):
     slug = slugify(kwargs['instance'].business_name)
     kwargs['instance'].slug = slug
+
+class Testimonial(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    store  = models.ForeignKey(Store, on_delete=models.CASCADE, null=True)
+    review = models.TextField()
+    rating = models.PositiveIntegerField(
+        default=0,
+        validators = [
+            MaxValueValidator(5),
+            MinValueValidator(0)
+        ]
+    )
+    # Creation Fields
+    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
+    updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
 
 # post_save.connect(setMerchantRefCode, sender=Store)
 # post_save.connect(CalculateLocation, sender=Store)
