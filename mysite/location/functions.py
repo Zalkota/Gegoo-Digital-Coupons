@@ -36,8 +36,8 @@ def get_or_set_location(request):
     if request.user.is_authenticated:
         #Check if user has address
         try:
-            if request.user.user_profile.city != None:
-                city = request.user.user_profile.city
+            if request.user.city != None:
+                city = request.user.city
 
                 context = {
                 'city': city.name,
@@ -56,9 +56,9 @@ def get_or_set_location(request):
                 city_qs = City.objects.get(name=city, region__name=state)
 
                 # Save data to user address
-                user_profile = request.user.user_profile
-                user_profile.city = city_qs
-                user_profile.save()
+                user = request.user
+                user.city = city_qs
+                user.save()
 
                 context = {
                 'city': city_qs.name,

@@ -14,6 +14,12 @@ from datetime import datetime
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+PAYMENT_METHOD_CHOICES = (
+('CH', 'Cash'),
+('CK', 'Check'),
+('CC', 'Stripe'),
+)
+
 # <**************************************************************************>
 # <*****                         MODELS                                 *****>
 # <**************************************************************************>
@@ -105,6 +111,10 @@ class Subscription(models.Model):
 
 class Transaction(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="user_transaction")
+	payment_method = models.CharField(
+			choices=PAYMENT_METHOD_CHOICES,
+			default='stripe',
+			max_length=12)
 	id = models.AutoField(max_length=7, unique=True, primary_key=True, editable=False)
 	subscription = models.OneToOneField(Subscription, on_delete=models.SET_NULL, null=True, related_name="subscription_transaction")
 	amount = models.DecimalField(max_digits=6, decimal_places=2)

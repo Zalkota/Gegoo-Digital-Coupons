@@ -95,7 +95,7 @@ def StoreList(request):
 
 class MerchantStoreListView(ListView):
 	model = portal_models.Store
-	template_name = 'store/store_list.html'
+	template_name = 'portal/store/merchant_store_list.html'
 
 	def get_queryset(self):
 		store_list = portal_models.Store.objects.filter(merchant=self.request.user)
@@ -131,7 +131,7 @@ class MerchantStoreCreateView(CreateView):
 		user = self.request.user
 		user.status = 'PENDING'
 		user.save()
-		
+
 		form.instance.merchant = self.request.user
 		return super(StoreCreateView, self).form_valid(form)
 

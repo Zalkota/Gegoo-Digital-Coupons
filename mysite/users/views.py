@@ -2,12 +2,11 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView, View, FormView
 # from memberships.views import get_user_memberships, get_user_subscriptions #TODO
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import User
 from portal import models as portal_models
+from users import models as users_models
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
-from django.contrib.auth.models import User
 from django.shortcuts import render
 import datetime
 from django.utils import timezone
@@ -34,8 +33,6 @@ from cities_light.models import Region, City
 
 from allauth.account.views import SignupView
 from users.forms import MerchantSignupForm
-
-
 
 
 class userPage(View):
@@ -187,7 +184,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     fields = ['name', ]
 
     # we already imported User in the view code above, remember?
-    model = User
+    model = users_models
 
     # send the user back to their own page after a successful update
     def get_success_url(self):

@@ -159,7 +159,7 @@ def PaymentView(request):
 					messages.info(request, "You already have this membership")
 					return redirect(reverse('memberships:select'))
 
-	cus_stripe_id = request.user.user_stripe.stripe_id
+	cus_stripe_id = request.user.user_stripe.stripe_id #TODO Create Stripe ID at this point
 	publishKey = settings.STRIPE_PUBLISHABLE_KEY
 
 

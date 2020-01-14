@@ -15,7 +15,7 @@ class UserAdmin(admin.ModelAdmin):
 
 admin.site.register(users_models.User, UserAdmin)
 admin.site.register(users_models.Profile)
-admin.site.register(users_models.userStripe)
+admin.site.register(users_models.MerchantProfile)
 
 # @admin.register(userStripe)
 # class userStripeAdmin(admin.ModelAdmin):

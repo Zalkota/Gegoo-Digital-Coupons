@@ -139,7 +139,7 @@ a:hover {
             <div class="col-lg-6">
                 <div class="card my-2">
 
-                    {% if user.status == 'NOT APPROVED' %}
+                    {% if user.merchant_profile.status == 'NOT APPROVED' %}
                     <div class="card-body">
                         <h3 class="header">
                             Step One
@@ -148,10 +148,10 @@ a:hover {
                         </h3>
                         <br>
                         <p><span class="fw-6"></span>Fill out the Merchant Approval form</p>
-                        <a href="{% url 'portal:merchant-approval-page' %}" class="btn btn-primary-alt">Get Approved</a>
+                        <a href="{{ user.merchant_profile.get_absolute_url }}" class="btn btn-primary-alt">Get Approved</a>
                     </div>
 
-                    {% elif user.status == 'PENDING' %}
+                    {% elif user.merchant_profile.status == 'PENDING' %}
                     <div class="card-body">
                         <h3 class="section-header">
                             Step One
@@ -160,6 +160,8 @@ a:hover {
                         <br>
                         <p><span class="fw-6"></span>Thank you for filling out the approval form, check back in 24-48 hours!</p>
                         <a class="btn btn-primary-alt disabled text-white">Submission Sent</a>
+
+                        <a href="{{ user.merchant_profile.get_absolute_url }}" class="btn btn-primary-alt">Get Approved</a>
 
                     </div>
 

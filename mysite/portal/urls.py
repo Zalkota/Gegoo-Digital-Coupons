@@ -1,7 +1,6 @@
 from django.urls import path
 
 from portal import views as portal_views
-from portal import views_approval as portal_approval_views
 
 app_name = 'portal'
 
@@ -41,7 +40,5 @@ urlpatterns = [
     path('store/<int:store_id>/add/<slug:offer_id>', portal_views.OfferAdd, name='offer_add'),
     path('store/<int:store_id>/remove/<slug:offer_id>', portal_views.OfferRemove, name='offer_remove'),
 
-    #Merchant Approval Views
-    path('merchant-approval-form/', portal_approval_views.MerchantApprovalFormView.as_view(), name='merchant-approval-page'),
-    path('form-submission/',  portal_approval_views.MerchantApprovalFormLandingView, name='merchant-approval-landing-page'),
+
 ]

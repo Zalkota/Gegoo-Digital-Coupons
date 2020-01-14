@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 #from django.core.urlresolvers import reverse
 from location.models import City
-
+from django.shortcuts import reverse
 import os
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
@@ -12,6 +12,7 @@ from allauth.account.signals import user_logged_in, user_signed_up
 import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 from django.core.validators import FileExtensionValidator
+from phonenumber_field.modelfields import PhoneNumberField
 
 import datetime
 from django.utils import timezone
@@ -22,11 +23,74 @@ STATUS_CHOICES = (
     ('NOT APPROVED', 'Not Approved'),
 )
 
+STATES = (
+        ("NA", "-"),
+        ("AL", "Alabama"),
+        ("AK", "Alaska"),
+        ("AS", "American Samoa"),
+        ("AZ", "Arizona"),
+        ("AR", "Arkansas"),
+        ("CA", "California"),
+        ("CO", "Colorado"),
+        ("CT", "Connecticut"),
+        ("DE", "Delaware"),
+        ("DC", "District Of Columbia"),
+        ("FM", "Federated States Of Micronesia"),  #TODO: WHAT THE FUCK IS THIS?!?!?
+        ("FL", "Florida"),
+        ("GA", "Georgia"),
+        ("GU", "Guam"),
+        ("HI", "Hawaii"),
+        ("ID", "Idaho"),
+        ("IL", "Illinois"),
+        ("IN", "Indiana"),
+        ("IA", "Iowa"),
+        ("KS", "Kansas"),
+        ("KY", "Kentucky"),
+        ("LA", "Louisiana"),
+        ("ME", "Maine"),
+        ("MH", "Marshall Islands"),
+        ("MD", "Maryland"),
+        ("MA", "Massachusetts"),
+        ("MI", "Michigan"),
+        ("MN", "Minnesota"),
+        ("MS", "Mississippi"),
+        ("MO", "Missouri"),
+        ("MT", "Montana"),
+        ("NE", "Nebraska"),
+        ("NV", "Nevada"),
+        ("NH", "New Hampshire"),
+        ("NJ", "New Jersey"),
+        ("NM", "New Mexico"),
+        ("NY", "New York"),
+        ("NC", "North Carolina"),
+        ("ND", "North Dakota"),
+        ("MP", "Northern Mariana Islands"),  #TODO: FIXME: http://thepythondjango.com/list-usa-states-python-django-format/
+        ("OH", "Ohio"),
+        ("OK", "Oklahoma"),
+        ("OR", "Oregon"),
+        ("PW", "Palau"),
+        ("PA", "Pennsylvania"),
+        ("PR", "Puerto Rico"),
+        ("RI", "Rhode Island"),
+        ("SC", "South Carolina"),
+        ("SD", "South Dakota"),
+        ("TN", "Tennessee"),
+        ("TX", "Texas"),
+        ("UT", "Utah"),
+        ("VT", "Vermont"),
+        ("VI", "Virgin Islands"),
+        ("VA", "Virginia"),
+        ("WA", "Washington"),
+        ("WV", "West Virginia"),
+        ("WI", "Wisconsin"),
+        ("WY", "Wyoming")
+        )
+
 class User(AbstractUser):
     is_merchant     = models.BooleanField('is_merchant', default=False)
     is_approved     = models.BooleanField('merchant_is_approved', default=False)
-    status          = models.CharField(choices=STATUS_CHOICES, default='NOT APPROVED', max_length=20)
-    has_paid        = models.BooleanField('payment_status', default=False) #Is this necesarry?
+    city = models.ForeignKey(City, related_name='user_city', on_delete=models.CASCADE, null=True, blank=True)
+     #Is this necesarry?
     # is_consumer     = models.BooleanField('ConsumerStatus', default=False)
     # slug            = models.SlugField(max_length=100, null=True)
 
@@ -52,52 +116,90 @@ def upload_to(instance, filename):
 
 class Profile(models.Model): #Is a Profile Necessary?
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_profile')
-    city = models.ForeignKey(City, related_name='profile', on_delete=models.CASCADE, null=True, blank=True)
     points = models.PositiveSmallIntegerField(default=0) #Should this be in the user?
 
     def __str__(self):
         return self.user.username
 
 
-
-class userStripe(models.Model): #This should only be created for Merchants
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete='CASCADE', related_name='user_stripe')
+class MerchantProfile(models.Model): #Is a Profile Necessary?
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='merchant_profile')
     stripe_id = models.CharField(max_length=200, null=True, blank=True)
+    status          = models.CharField(choices=STATUS_CHOICES, default='NOT APPROVED', max_length=20)
+    has_paid        = models.BooleanField('payment_status', default=False)
 
-    def __unicode__(self):
-        if self.stripe_id:
-            return str(self.stripe_id)
-        else:
-            return self.user.name
+    #Basic information
+    business_name       = models.CharField(max_length=100, null=True)
+    description         = models.TextField(max_length=500, null=True)
+
+    #Address
+    street_address = models.CharField(max_length=100, null=True)
+    city = models.CharField(max_length=100, null=True)
+    state = models.CharField(choices=STATES, default='NA', max_length=100)
+    zip = models.CharField(max_length=100, null=True)
+    phone_number        = PhoneNumberField(max_length=20, blank=True, null=True)
+
+    #Online links
+    website_url         = models.CharField(max_length=500, blank=True, null=True)
+    facebook_url         = models.CharField(max_length=500, blank=True, null=True)
+
+    #Misc
+    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
+    updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
+
+    def get_absolute_url(self):
+        return reverse('merchant_profile_update', kwargs={'pk': self.pk})
+
 
     def __str__(self):
-        return'%s (%s)' % (self.stripe_id, self.user)
+        return self.user.username
+
+
+# class userStripe(models.Model): #This should only be created for Merchants
+#     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete='CASCADE', related_name='user_stripe')
+#     stripe_id = models.CharField(max_length=200, null=True, blank=True)
+#
+#     def __unicode__(self):
+#         if self.stripe_id:
+#             return str(self.stripe_id)
+#         else:
+#             return self.user.name
+#
+#     def __str__(self):
+#         return'%s (%s)' % (self.stripe_id, self.user)
 
 
 # TODO Only created for merchants
-def stripeCallback(sender, request, user, **kwargs):
-    if user.is_merchant == True:
-        user_stripe_account, created = userStripe.objects.get_or_create(user=user)
-        try:
-            if user_stripe_account.stripe_id is None or user_stripe_account.stripe_id == '':
-                new_stripe_id = stripe.Customer.create(email=user.email)
-                user_stripe_account.stripe_id = new_stripe_id['id']
-                user_stripe_account.save()
-                print("stripeCallback Created")
-        except:
-            pass
+# def stripeCallback(sender, request, user, **kwargs):
+#     if user.is_merchant == True:
+#         user_stripe_account, created = userStripe.objects.get_or_create(user=user)
+#         try:
+#             if user_stripe_account.stripe_id is None or user_stripe_account.stripe_id == '':
+#                 new_stripe_id = stripe.Customer.create(email=user.email)
+#                 user_stripe_account.stripe_id = new_stripe_id['id']
+#                 user_stripe_account.save()
+#                 print("stripeCallback Created")
+#         except:
+#             pass
 
 
 #TODO Only created for non-merchants
-def profileCallback(sender, request, user, **kwargs):
+def ProfileCallback(sender, request, user, **kwargs):
     if user.is_merchant == False:
         userProfile, is_created = Profile.objects.get_or_create(user=user)
-        print("profileCallback Created")
+
+
+#TODO Only created for merchants
+def MerchantProfileCallback(sender, request, user, **kwargs):
+    if user.is_merchant == True:
+        merchantProfile, is_created = MerchantProfile.objects.get_or_create(user=user)
+
 
 
 # user_logged_in.connect(addressCallback)
 # user_logged_in.connect(profileCallback)
 # user_logged_in.connect(stripeCallback)
 
-user_signed_up.connect(profileCallback)
-user_signed_up.connect(stripeCallback)
+user_signed_up.connect(ProfileCallback)
+user_signed_up.connect(MerchantProfileCallback)
+# user_signed_up.connect(stripeCallback)

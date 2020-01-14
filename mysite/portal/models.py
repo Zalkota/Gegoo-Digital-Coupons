@@ -161,7 +161,7 @@ class Images(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(choices=CATEGORY_CHOICES, default='FOOD', max_length=20, unique=True, db_index=True,)
+    name = models.CharField(choices=CATEGORY_CHOICES, default='FOOD', max_length=20, unique=True, db_index=True)
     slug = models.SlugField(unique=True, blank=True )
 
     class Meta:
@@ -247,10 +247,8 @@ def pre_save_offer(sender, **kwargs):
 
 
 class Store(models.Model):
-    end_date = models.DateField(null=True)
-    active = models.BooleanField(default=False)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    # merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    active = models.BooleanField(default=True) #TODO This is not needed, we can just verify
+    merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern
     slug        = models.SlugField(unique=True)
@@ -264,7 +262,7 @@ class Store(models.Model):
     facebook_url        = models.URLField(max_length=500, blank=True, null=True)
     logo                = models.ImageField(upload_to='store-logos/', blank=True, null=True)
     category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
-    subcategory         = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=True, null=True)
+    subcategory         = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=True, null=True    )
     code_coupon         = models.CharField(max_length=15, blank=True, null=True, help_text="This will be auto-generated as GEGOO####, if left blank. Set as 'NONE' if no coupon code is desired.")
 
 

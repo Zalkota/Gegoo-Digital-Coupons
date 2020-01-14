@@ -3,3 +3,15 @@
     border: 1px solid $value;
   }
 }
+
+@each $color-alerts, $value in $colors-alerts {
+  .border-#{$color-alerts}-md {
+    border: 2px solid $value;
+  }
+}
+
+@each $color, $value in $colors {
+  .border-#{$color}-md {
+    border: 2px solid $value;
+  }
+}

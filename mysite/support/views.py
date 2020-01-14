@@ -41,7 +41,7 @@ class QuestionDetailView(DetailView):
 class ContactFormView(FormView):
     form_class = ContactForm
     success_url = reverse_lazy('contact-landing-page')
-    template_name = 'mysite/contact_page.html'
+    template_name = 'support/contact_page.html'
 
 
     def form_valid(self, form):
