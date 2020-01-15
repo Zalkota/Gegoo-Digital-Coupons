@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-alt.html" %}
 {% load static %}
 
 
@@ -79,7 +79,7 @@ a:hover {
       {% block component %}
         {% include "users/user_merchant_profile_nav.html" %}
       {% endblock component %}
-        <div class="row mt-2" data-aos="fade-up">
+        <div class="row mt-2">
             <div class="col-lg-12 mb-4">
                 <div class="card shadow-2  unhide">
                     <div class="card-body">
@@ -238,3 +238,5 @@ a:hover {
   });
 </script>
 {% endblock extrajs %}
+
+

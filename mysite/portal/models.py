@@ -16,7 +16,7 @@ from django.dispatch import receiver
 from django.utils.text import slugify
 
 # Image Upload
-from django.core.validators import FileExtensionValidator
+from django.core.validators import FileExtensionValidator, MaxValueValidator, MinValueValidator
 
 # Ckeditor
 from ckeditor.fields import RichTextField
@@ -220,14 +220,23 @@ class About(models.Model):
 
 
 class Offer(models.Model):
-    # author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+
+    STATUS_CHOCIES = [
+        ('DR', 'Drafted'),
+        ('PR', 'Published')
+    ]
+
+    author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     title           = models.CharField(max_length=100, blank=False)
     description     = models.TextField(max_length=500, blank=False)
     # tag             = models.ManyToManyField(Tag, blank=True)
     slug            = models.SlugField(unique=True, blank=True, editable=False)
     image           = models.ImageField(upload_to='photos/', null=True)
     end_date        = models.DateField()
-    likes           = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes', editable=False)
+    likes           = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
+    # is_featured     = models.BooleanField('FeaturedStatus', default=False)
+
+    status          = models.CharField(max_length=50, choices = STATUS_CHOCIES, default='Drafted')
 
     # Creation Fields
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
@@ -237,8 +246,10 @@ class Offer(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('portal:offer_detail', kwargs={'slug': self.slug})
+        return reverse('portal:merchant_offer_detail', kwargs={'slug': self.slug})
 
+    def get_consumer_absolute_url(self):
+        return reverse('portal:consumer_offer_detail', kwargs={'slug': self.slug})
 
 @receiver(pre_save, sender=Offer)
 def pre_save_offer(sender, **kwargs):
@@ -288,6 +299,9 @@ class Store(models.Model):
 
     ref_code = models.CharField(max_length=20, blank=True, null=True, editable=False)
 
+    #views
+    views = models.PositiveIntegerField(default=0)
+
     # Creation Fields
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
     updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
@@ -296,7 +310,10 @@ class Store(models.Model):
         return self.business_name
 
     def get_absolute_url(self):
-        return reverse('portal:store_detail', kwargs={'slug': self.slug})
+        return reverse('portal:merchant_store_detail', kwargs={'slug': self.slug})
+
+    def get_consumer_absolute_url(self):
+        return reverse('portal:consumer_store_detail', kwargs={'slug': self.slug})
 
     @property
     def get_first_active(self):
@@ -329,8 +346,25 @@ def pre_save_store(sender, **kwargs):
     slug = slugify(kwargs['instance'].business_name)
     kwargs['instance'].slug = slug
 
+
 post_save.connect(setCouponCode, sender=Store)
-# post_save.connect(setStoreRefCode, sender=Store)
+
+class Testimonial(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    store  = models.ForeignKey(Store, on_delete=models.CASCADE, null=True)
+    review = models.TextField()
+    rating = models.PositiveIntegerField(
+        default=0,
+        validators = [
+            MaxValueValidator(5),
+            MinValueValidator(0)
+        ]
+    )
+    # Creation Fields
+    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
+    updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
+
+# post_save.connect(setMerchantRefCode, sender=Store)
 # post_save.connect(CalculateLocation, sender=Store)
 
     #

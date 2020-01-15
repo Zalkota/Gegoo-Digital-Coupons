@@ -13,7 +13,8 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 from django.core.validators import FileExtensionValidator
 from phonenumber_field.modelfields import PhoneNumberField
-
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import receiver
 import datetime
 from django.utils import timezone
 

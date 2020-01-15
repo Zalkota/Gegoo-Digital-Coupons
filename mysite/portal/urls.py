@@ -27,18 +27,18 @@ urlpatterns = [
     path('mystores/', portal_views.StoreList, name='store_function'),
 
 
-    #Consumer Offer Views
-    path('offers', portal_views.MerchantOfferListView.as_view(), name='offer_list'),
-    path('offer/<slug:slug>/', portal_views.MerchantOfferDetailView.as_view(), name='offer_detail'),
-
-
     #Merchant Offer Views
-    path('offer/create', portal_views.MerchantOfferCreateView.as_view(), name='merchant_offer_create'),
-    path('offer/<slug:slug>/update', portal_views.MerchantOfferUpdateView.as_view(), name='merchant_offer_update'),
-    path('offer/<slug:slug>/delete', portal_views.MerchantOfferDeleteView.as_view(), name='merchant_offer_delete'),
-    path('offer/like', portal_views.OfferLike, name='offer_like'),
-    path('store/<int:store_id>/add/<slug:offer_id>', portal_views.OfferAdd, name='offer_add'),
-    path('store/<int:store_id>/remove/<slug:offer_id>', portal_views.OfferRemove, name='offer_remove'),
+    path('my-offers/', portal_views.MerchantOfferListView.as_view(), name='merchant_offer_list'),
+    path('my-offer/create', portal_views.MerchantOfferCreateView.as_view(), name='merchant_offer_create'),
+    path('my-offer/<slug:slug>/', portal_views.MerchantOfferDetailView.as_view(), name='merchant_offer_detail'),
+    path('my-offer/<slug:slug>/update', portal_views.MerchantOfferUpdateView.as_view(), name='merchant_offer_update'),
+    path('my-offer/<slug:slug>/delete', portal_views.MerchantOfferDeleteView.as_view(), name='merchant_offer_delete'),
+    path('my-offer/like', portal_views.OfferLike, name='offer_like'),
+    path('my-store/<int:store_id>/add/<int:offer_id>', portal_views.OfferAdd, name='offer_add'),
+    path('my-store/<int:store_id>/remove/<int:offer_id>', portal_views.OfferRemove, name='offer_remove'),
 
+    #Consumer Views
+    path('stores/', portal_views.ConsumerStoreListView.as_view(), name='consumer_store_list'),
+    path('store/<slug:slug>', portal_views.ConsumerStoreDetailView.as_view(), name='consumer_store_detail')
 
 ]

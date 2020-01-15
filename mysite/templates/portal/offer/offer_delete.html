@@ -10,7 +10,7 @@
                 <form action="" method="POST">
                     {% csrf_token %}
                     <button class="btn btn-danger" type="submit">Delete</button>
-                    <a class="btn btn-warning" href="{% url 'portal:offer_detail' object.slug %}">Cancel</a>
+                    <a class="btn btn-warning" href="{% url 'portal:merchant_offer_detail' object.slug %}">Cancel</a>
                 </form>
             </div>
         </div>

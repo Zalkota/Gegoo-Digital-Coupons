@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=100)),
                 ('slug', models.SlugField(max_length=100)),
                 ('body', models.TextField()),
-                ('status', models.CharField(choices=[('draft', 'Draft'), ('published', 'Published')], default='draft', max_length=20)),
+                ('status', models.CharField(choices=[('published', 'Published'), ('draft', 'Draft')], default='draft', max_length=20)),
                 ('created_at', models.DateTimeField(default=django.utils.timezone.now, verbose_name='Created at')),
                 ('updated_at', models.DateTimeField(default=django.utils.timezone.now, verbose_name='Updated at')),
             ],

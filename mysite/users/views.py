@@ -34,6 +34,8 @@ from cities_light.models import Region, City
 from allauth.account.views import SignupView
 from users.forms import MerchantSignupForm
 
+from portal import models as portal_models
+
 
 class userPage(View):
     def get(self, *args, **kwargs):
@@ -42,8 +44,13 @@ class userPage(View):
 
             #Render Merchant Page
             if user.is_merchant == True:
+                stores = portal_models.Store.objects.filter(merchant=user).order_by('-views')
+                offers = portal_models.Offer.objects.filter(author=user) #TODO ADD TIME TO FILTER USING GREAT THAN FILTER
+
                 context = {
                     'user': user,
+                    'stores': stores,
+                    'offers': offers,
                 }
                 return render(self.request, "users/user_merchant_profile.html", context)
 
