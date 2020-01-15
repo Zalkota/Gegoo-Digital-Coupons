@@ -24,7 +24,7 @@ urlpatterns = [
 
 
     path('my-subscription/', portal_views.MerchantSubscriptionsView.as_view(), name='subscription_list'),
-    path('mystores/', portal_views.StoreList, name='store_function'),
+    # path('mystores/', portal_views.StoreList, name='store_function'),
 
 
     #Merchant Offer Views

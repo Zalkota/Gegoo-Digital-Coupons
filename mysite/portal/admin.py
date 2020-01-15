@@ -42,7 +42,7 @@ class TestimonialAdmin(admin.ModelAdmin):
 admin.site.register(Store, StoreAdmin)
 admin.site.register(Offer)
 admin.site.register(Testimonial, TestimonialAdmin)
-admin.site.register(LocationAdmin)
+admin.site.register(store_address)
 admin.site.register(Promotion)
 admin.site.register(Images)
 admin.site.register(Category)

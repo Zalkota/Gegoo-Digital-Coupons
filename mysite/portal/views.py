@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 ## DEBUG:
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from portal import models as portal_models
 from django.views.generic import ListView, DetailView, View, CreateView, DeleteView, UpdateView
 # Create your views here.
@@ -79,14 +79,12 @@ class StoreDetailView(DetailView): #This needs to filter by user city or distanc
 		return context
 
 
-
-
 # <**************************************************************************>
 # <*****                      Visible by Merchants only                 *****>
 # <**************************************************************************>
 
 
-class MerchantStoreListView(ListView):
+class MerchantStoreListView(LoginRequiredMixin, ListView):
 	model = portal_models.Store
 	template_name = 'portal/store/merchant_store_list.html'
 
@@ -94,7 +92,7 @@ class MerchantStoreListView(ListView):
 		store_list = portal_models.Store.objects.filter(merchant=self.request.user)
 		return store_list
 
-class MerchantStoreDetailView(DetailView):
+class MerchantStoreDetailView(LoginRequiredMixin, DetailView):
 	model = portal_models.Store
 	template_name = 'portal/store/store_detail.html'
 
@@ -110,7 +108,7 @@ class MerchantStoreDetailView(DetailView):
 		return context
 
 
-class MerchantSubscriptionsView(View):
+class MerchantSubscriptionsView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         user_membership = get_user_membership(self.request)
         user_subscription_list = get_user_subscriptions(self.request)
@@ -121,7 +119,7 @@ class MerchantSubscriptionsView(View):
         }
         return render(self.request, "users/user_merchant_subscription.html", context)
 
-class MerchantStoreCreateView(CreateView):
+class MerchantStoreCreateView(LoginRequiredMixin, CreateView):
 	model = portal_models.Store
 	form_class = MerchantApprovalForm
 	template_name = 'portal/store/merchant_store_create.html'
@@ -134,7 +132,7 @@ class MerchantStoreCreateView(CreateView):
 		form.instance.merchant = self.request.user
 		return super(MerchantStoreCreateView, self).form_valid(form)
 
-class MerchantStoreUpdateView(UpdateView):
+class MerchantStoreUpdateView(LoginRequiredMixin, UpdateView):
     model = portal_models.Store
     fields = [
 		'business_name',
@@ -144,12 +142,12 @@ class MerchantStoreUpdateView(UpdateView):
 
     template_name = 'portal/store/merchant_store_update.html'
 
-class MerchantStoreDeleteView(DeleteView):
+class MerchantStoreDeleteView(LoginRequiredMixin, DeleteView):
     model = portal_models.Offer
     template_name = 'portal/store/merchant_store_delete.html'
     success_url = reverse_lazy('portal:store_list')
 
-class MerchantOfferListView(ListView):
+class MerchantOfferListView(LoginRequiredMixin, ListView):
 	model = portal_models.Offer
 	template_name = 'portal/offer/offer_list.html'
 
@@ -157,25 +155,25 @@ class MerchantOfferListView(ListView):
 		offer_list = portal_models.Offer.objects.filter(author=self.request.user)
 		return offer_list
 
-class MerchantOfferDetailView(IsMerchantMixin, DetailView):
+class MerchantOfferDetailView(LoginRequiredMixin, IsMerchantMixin, DetailView):
 	model = portal_models.Offer
 	template_name = 'portal/offer/offer_detail.html'
 
-class MerchantOfferCreateView(IsMerchantMixin, CreateView):
+class MerchantOfferCreateView(LoginRequiredMixin, IsMerchantMixin, CreateView):
 	model = portal_models.Offer
 	fields = [
 		'title',
 		'description',
 		'end_date',
 	]
-	
+
 	template_name = 'portal/offer/offer_create.html'
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		return super(MerchantOfferCreateView, self).form_valid(form)
 
-class MerchantOfferUpdateView(IsMerchantMixin, UpdateView):
+class MerchantOfferUpdateView(LoginRequiredMixin, IsMerchantMixin, UpdateView):
     model = portal_models.Offer
     fields = [
 		'title',
@@ -185,7 +183,7 @@ class MerchantOfferUpdateView(IsMerchantMixin, UpdateView):
 
     template_name = 'portal/offer/offer_update.html'
 
-class MerchantOfferDeleteView(IsMerchantMixin, DeleteView):
+class MerchantOfferDeleteView(LoginRequiredMixin, IsMerchantMixin, DeleteView):
     model = portal_models.Offer
     template_name = 'portal/offer/offer_delete.html'
     success_url = reverse_lazy('portal:offer_list')
@@ -205,7 +203,10 @@ def OfferRemove(request, store_id, offer_id):
 	store.offers.remove(offer_id)
 	return HttpResponseRedirect(store.get_absolute_url())
 
-# Consumer Views
+# <**************************************************************************>
+# <*****                        CONSUMER VIEWS                          *****>
+# <**************************************************************************>
+
 class ConsumerStoreListView(ListView):
 	model = portal_models.Store
 	template_name = 'portal/consumer/consumer_store_list.html'

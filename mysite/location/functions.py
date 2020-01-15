@@ -62,7 +62,7 @@ def get_or_set_location(request):
 
                 context = {
                 'city': city_qs.name,
-                'state': city_qs.region,
+                'state': city_qs.region.name,
                 }
                 return context
         except:

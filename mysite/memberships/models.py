@@ -47,7 +47,7 @@ class Membership(models.Model):
 	stripe_price = models.PositiveIntegerField(default=0)
 	tax = models.DecimalField(null=True, max_digits=6, decimal_places=2)
 	stripe_plan_id = models.CharField(max_length=40)
-	image = models.ImageField(null=True)
+
 
 	#def get_total(self):
     #    return sum([item.product.price for item in self.tax])

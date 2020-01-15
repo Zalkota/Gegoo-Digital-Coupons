@@ -37,7 +37,7 @@ from users.forms import MerchantSignupForm
 from portal import models as portal_models
 
 
-class userPage(View):
+class userPage(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
             user = self.request.user
