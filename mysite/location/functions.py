@@ -11,6 +11,15 @@ from django.http import HttpResponse
 from allauth.account.signals import user_logged_in, user_signed_up
 from cities_light.models import Region, City
 
+
+# GEODJANGO
+from django.contrib.gis.geos import fromstr
+from pathlib import Path
+from django.contrib.gis.db import models
+from django.contrib.gis.geos import Point
+from django.contrib.gis.db.models.functions import Distance
+
+
 def set_location_cookies(request, city, state):
     response = HttpResponse("setting state to %s, city to %s" % (state, city))
     response.set_cookie('ct', city)
@@ -33,15 +42,20 @@ def get_ip(request):
 
 
 def get_or_set_location(request):
+    user = request.user
     if request.user.is_authenticated:
         #Check if user has address
+
         try:
-            if request.user.city != None:
+            if request.user.city and user.location != None:
                 city = request.user.city
+                location = request.user.location
+                print('1')
 
                 context = {
                 'city': city.name,
                 'state': city.region.name,
+                'user_location': location,
                 }
                 return context
 
@@ -50,35 +64,38 @@ def get_or_set_location(request):
                 #Obtain City and State from IP address
                 city = data["city"]['names']['en']
                 state = data["subdivisions"][0]['names']['en']
-                print (city, ', ', state)
-
                 # Query object so that we can save it into the database
                 city_qs = City.objects.get(name=city, region__name=state)
+
+                # Use City to set spacial database location
+                location_data = CalculateCityLocation(request, city_qs)
 
                 # Save data to user address
                 user = request.user
                 user.city = city_qs
+                user.location = location_data
                 user.save()
 
                 context = {
                 'city': city_qs.name,
                 'state': city_qs.region.name,
+                'user_location': location_data,
                 }
                 return context
         except:
             pass
-
 
     if not request.user.is_authenticated:
         #Check cookies for city and state
         if 'st' and 'ct' in request.COOKIES:
             state = request.COOKIES['st']
             city = request.COOKIES['ct']
-            print('location found in cookies')
+            location = request.COOKIES['loc']
 
             context = {
             'city': city,
             'state': state,
+            'user_location': location,
             }
             return context
         # Else lets use their IP address to find out and then add it to their Cookies
@@ -88,13 +105,35 @@ def get_or_set_location(request):
             #Obtain City and State from IP address
             city = data["city"]['names']['en']
             state = data["subdivisions"][0]['names']['en']
+
+            city_qs = City.objects.get(name=city, region__name=state)
+
+            location_data = CalculateCityLocation(request, city_qs)
             #Add City and State to Cookies for next time
             set_location_cookies(request, city, state)
             context = {
             'city': city,
             'state': state,
+            'user_location': location_data
             }
             return context
+
+
+
+def CalculateCityLocation(request, city):
+    try:
+        longitude = city.longitude
+        latitude = city.latitude
+
+        print('long,lat', longitude, latitude)
+
+        location = fromstr(
+            f'POINT({longitude} {latitude})', srid=4326
+        )
+        return location
+
+    except KeyError:
+        pass
 
 
 #

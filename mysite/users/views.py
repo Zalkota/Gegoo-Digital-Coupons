@@ -13,12 +13,11 @@ from django.utils import timezone
 from .forms import userLocationForm
 from django.contrib import messages
 from memberships.views import get_user_membership, get_user_subscriptions
-#from shoppingcart.views import get_user_address_default, get_user_orders
-
 #Profile Image
 # from .forms import ProfileImageForm
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
+from location.functions import CalculateCityLocation
 
 
 from cities_light.models import Region, City
@@ -44,15 +43,15 @@ class userPage(LoginRequiredMixin, View):
 
             #Render Merchant Page
             if user.is_merchant == True:
-                stores = portal_models.Store.objects.filter(merchant=user).order_by('-views')
-                offers = portal_models.Offer.objects.filter(author=user) #TODO ADD TIME TO FILTER USING GREAT THAN FILTER
+                store_qs = portal_models.Store.objects.filter(merchant=user).order_by('-views')
+                offer_qs = portal_models.Offer.objects.filter(author=user) #TODO ADD TIME TO FILTER USING GREAT THAN FILTER
 
                 context = {
                     'user': user,
-                    'stores': stores,
-                    'offers': offers,
+                    'store_list': store_qs,
+                    'offer_list': offer_qs,
                 }
-                return render(self.request, "users/user_merchant_profile.html", context)
+                return render(self.request, "users/merchant/merchant_profile.html", context)
 
             #Render Normal User Profile Page
             elif user.is_merchant == False:
@@ -87,8 +86,8 @@ class userLocaton(View):
         form = userLocationForm()
 
         user = self.request.user
-        city = user.user_profile.city.name
-        state = user.user_profile.city.region.name
+        city = user.city.name
+        state = user.city.region.name
 
         context = {
             'form': form,
@@ -106,15 +105,14 @@ class userLocaton(View):
 
             city_qs = City.objects.get(name=city, region__name=state)
 
+            # Use City to set spacial database location
+            location_data = CalculateCityLocation(self.request, city_qs)
 
-            # edit the order
-
+            # saving data to user object
             user = self.request.user
-
-            # store the object
-            user_address = user.user_profile
-            user_address.city = city_qs
-            user_address.save()
+            user.city = city_qs
+            user.location = location_data
+            user.save()
 
             messages.success(self.request, "Location changed")
             return redirect("users:user_location")
@@ -150,6 +148,7 @@ class userMerchants(ListView):
     def get_queryset(self):
         favorite_list = portal_models.Store.objects.filter(offer__likes=self.request.user)
         return favorite_list
+
 
     #
     # def post(self, *args, **kwargs):
@@ -236,6 +235,17 @@ class MerchantSignUpView(SignupView):
         ret.update(self.kwargs)
         return ret
 
+
+class MerchantSubscriptionsView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        user_membership = get_user_membership(self.request)
+        user_subscription_list = get_user_subscriptions(self.request)
+
+        context = {
+            'user_membership': user_membership,
+            'user_subscription_list': user_subscription_list
+        }
+        return render(self.request, "users/merchant/merchant_subscription.html", context)
 
 #
 # class ConsumerSignUpView(SignupView):

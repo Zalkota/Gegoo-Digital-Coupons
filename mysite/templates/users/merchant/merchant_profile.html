@@ -1,0 +1,299 @@
+{% extends "base-alt.html" %}
+{% load static %}
+
+
+{% block title %}Dashboard | {{ SITE_NAME }}{% endblock %}
+
+{% block extra_styles %}
+<style>
+a:hover {
+    text-decoration: none;
+}
+
+.modal-header {
+  background-color: #fff !important;
+  padding-bottom: 2rem !important;
+}
+
+.modal-body {
+  background-color: #f9fafb !important;
+}
+
+.modal-footer {
+  padding: 1rem 1rem 1rem 1rem !important;
+  background-color: #fff !important;
+  text-align: center !important;
+}
+</style>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+{% endblock extra_styles %}
+
+
+{% block content %}
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header justify-content-end">
+          <h3 class="text-primary">Coupon</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-close-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="p-3" style="border-color: #ccc; border-width:5px; border-style:dashed;">
+              <div class="row">
+                  <div class="col-6">
+                      <img class="card-img-top" src="media/{{ object.logo }}" alt="User Uploaded images">
+                  </div>
+                  <div class="col-6">
+                      <img class="img-fluid" src="{% static 'img/logo/logo3.jpg' %}" alt="GEGOO LOGO">
+                  </div>
+              </div>
+              <h4 class="fs-14 fw-6 text-primary">{{ object.business_name }} in {{ city }}</h4>
+              <h3>{{ object.get_first_active.title }}</h3>
+            <p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias alias ipsam minima, dolore! Modi enim porro neque quaerat blanditiis. Ipsa aliquam quam maxime rerum eum accusamus nulla, molestiae soluta repellendus!</p>
+            {{ object.get_first_active.title }}
+            <div class="bg-gray-30 text-primary text-uppercase p-3">
+                <span class="fw-6 fs-24">Code: {{ object.get_first_active.code_coupon }}</span>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary-alt btn-block mt-0">Save It</button>
+        <button type="button" class="btn btn-primary-alt btn-block mt-0">Print It</button>
+        <button type="button" class="btn btn-alternate-alt btn-block mt-0">Share It</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal End -->
+
+<!-- Body Start -->
+<section class="section container">
+      {% block desktop_nav %}
+        {% include "users/merchant/merchant_profile_nav.html" %}
+      {% endblock desktop_nav %}
+
+      {% block mobile_nav %}
+        {% include "users/merchant/merchant_profile_mobile_nav.html" %}
+      {% endblock mobile_nav %}
+
+        <div class="row mt-4">
+            <div class="col-lg-12">
+                <h3 class="header my-2">Lets Get Approved</h3>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card shadow-2 my-2">
+                    {% if user.merchant_profile.status == 'NOT APPROVED' %}
+                    <div class="card-body">
+                        <h3 class="header">
+                            Step One
+                            <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
+                        </h3>
+                        <br>
+                        <p><span class="fw-6"></span>Fill out the Merchant Approval form</p>
+                        <a href="{{ user.merchant_profile.get_absolute_url }}" class="btn btn-primary-alt btn-block">Get Approved</a>
+                    </div>
+
+                    {% elif user.merchant_profile.status == 'PENDING' %}
+                    <div class="card-body">
+                        <h3 class="header">
+                            Step One
+                            <span class="badge-warning px-3 fw-6 fs-12 pull-right">Pending</span>
+                        </h3>
+                        <br>
+                        <p><span class="fw-6"></span>Form submitted, check back in 48 hours!</p>
+                        <a class="btn btn-primary-alt disabled text-white btn-block">Submission Sent</a>
+                    </div>
+
+                    {% else %}
+                    <div class="card-body">
+                        <h3 class="header">
+                            Step One
+                            <span class="badge-success px-3 fs-12 fw-6 pull-right">Complete</span>
+                        </h3>
+                        <br>
+                        <p><span class="fw-6"></span>Fill out the Merchant Approval form</p>
+                        <a class="btn btn-success-alt text-white disabled btn-block">You've Been Approved!</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card shadow-2 my-2">
+                    {% if user.merchant_profile.status != 'APPROVED' %}
+                    <div class="card-body">
+                        <h3 class="header">
+                            Step Two
+                            <span class="badge-muted px-3 fw-6 fs-12 pull-right">Locked</span>
+                        </h3>
+                        <br>
+                        <p><span class="fw-6"></span>Purchase Advertising subscription.</p>
+                        <a class="btn btn-gray-400-alt text-gray-700 disabled btn-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mr-1 icon-lock"><path class="fill-gray-700" d="M5 10h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2zm6 6.73V18a1 1 0 0 0 2 0v-1.27a2 2 0 1 0-2 0z"/><path class="fill-gray-700" d="M12 19a1 1 0 0 0 1-1v-1.27A2 2 0 0 0 12 13v-3h3V7a3 3 0 0 0-6 0v3H7V7a5 5 0 1 1 10 0v3h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7v-3z"/></svg>
+                            Purchase Subscription
+                        </a>
+                    </div>
+                    {% elif user.merchant_profile.status == 'APPROVED' and user.merchant_profile.payment_status == False %}
+                    <div class="card-body">
+                        <h3 class="header">
+                            Step Two
+                            <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
+                        </h3>
+                        <br>
+                        <p><span class="fw-6"></span>Purchase Advertising subscription.</p>
+                        <a href="{% url 'memberships:select' %}" class="btn btn-primary-alt btn-block">Purchase Subscription</a>
+                    </div>
+
+                    {% elif user.merchant_profile.payment_status == True %}
+                    <div class="card-body">
+                        <h3 class="header">
+                            Step Two
+                            <span class="badge-success px-3 fw-6 fs-12 pull-right">Complete</span>
+                        </h3>
+                        <br>
+                        <p><span class="fw-6"></span>Purchase Advertising subscription.</p>
+                        <a href="{% url 'memberships:select' %}" class="btn btn-success-alt text-white disabled btn-block">Subscription Active!</a>
+                    </div>
+
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card shadow-2 my-2">
+                    {% if user.merchant_profile.payment_status == False %}
+                    <div class="card-body">
+                        <h3 class="header">
+                            Step Three
+                            <span class="badge-muted px-3 fw-6 fs-12 pull-right">Locked</span>
+                        </h3>
+                        <br>
+                        <p><span class="fw-6"></span>Create your store and start advertising.</p>
+                        <a  class="btn btn-gray-400-alt text-gray-700 disabled btn-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mr-1 icon-lock"><path class="fill-gray-700" d="M5 10h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2zm6 6.73V18a1 1 0 0 0 2 0v-1.27a2 2 0 1 0-2 0z"/><path class="fill-gray-700" d="M12 19a1 1 0 0 0 1-1v-1.27A2 2 0 0 0 12 13v-3h3V7a3 3 0 0 0-6 0v3H7V7a5 5 0 1 1 10 0v3h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7v-3z"/></svg>
+                            Create Store
+                        </a>
+                    </div>
+                    {% endif %}
+
+                    {% if user.merchant_profile.payment_status == True %}
+                    <div class="card-body">
+                        <h3 class="header">
+                            Step Three
+                            <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
+                        </h3>
+                        <br>
+                        <p><span class="fw-6"></span>Create your store and start advertising!</p>
+                        <a href="{% url 'portal:merchant_store_create' %}" class="btn btn-primary-alt btn-block">Create Store</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if stores in store_list %}
+            <h3 class="header">
+                My Stores
+            </h3>
+            <div class="col-lg-12">
+                {% for store in store_list %}
+                <div class="card mt-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-2">
+                            <img src="https://source.unsplash.com/random" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-3">
+                            <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">{{ store.business_name }}</h1>
+                            <p class="card-text lead fs-14 fw-2 text-muted">Category</p>
+                        </div>
+                        <div class="col-md-2">
+                            <span class="badge-danger px-3 fw-6 fs-16">{{ store.status }}</span>
+                            <p class="card-text lead fs-14 fw-2 text-muted">{{ store.created_at }}</p>
+                        </div>
+                        <div class="col-md-1">
+                            <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">{{ store.views }}</h1>
+                            <p class="card-text lead fs-14 fw-2 text-muted">Total Views</p>
+                        </div>
+                        <div class="col-md-1">
+                            <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">{{ store.offers.count }}</h1>
+                            <p class="card-text lead fs-14 fw-2 text-muted">Total Offers</p>
+                        </div>
+                        <div class="col-md-2">
+                            <span>
+                                <a href="" class="btn btn-primary">View</a>
+                                <a href="" class="btn btn-primary">Edit</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if offer in offer_list %}
+            <h3 class="header">
+                My Offers
+            </h3>
+            <div class="col-12">
+                <div class="card">
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Offer</th>
+                            <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Location</th>
+                            <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Description</th>
+                            <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">End Date</th>
+                            <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for offer in offer_list %}
+                                <tr>
+                                    <th scope="row" class="fs-14 fw-2">
+                                        <a href="{{ offer.get_absolute_url }}" class="fs-14 fw-2">{{ offer.title }}</a>
+                                    </th>
+                                    <td class="fs-14 fw-2">
+                                        {% if offer.store_set.count %}
+                                        {% for item in offer.store_set.all %}
+                                            <p>{{ item }}</p>
+                                        {% endfor %}
+                                        {% else %}
+                                            <p>No Loction Selected</p>
+                                        {% endif %}
+                                    </td>
+                                    <td class="fs-14 fw-2">{{ offer.description|truncatechars:25 }}</td>
+                                    <td class="fs-14 fw-2">{{ offer.end_date }}</td>
+                                    {% if offer.end_date <= current_date  %}
+                                    <td><span class="badge-success px-3 fs-14 fw-6">Active</span></td>
+                                    {% else %}
+                                    <td><span class="badge-danger px-3 fs-14 fw-6">Not Active</span></td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+
+      </div>
+      <div class="py-5 hide"></div><div class="py-5 hide"></div>
+</section>
+
+{% endblock content %}
+{% block extrajs %}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1300,
+  });
+</script>
+{% endblock extrajs %}

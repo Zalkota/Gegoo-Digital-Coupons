@@ -63,6 +63,66 @@ STATUS_CHOICES = {
     ('published', 'Published'),
 }
 
+STATES = (
+        ("NA", "-"),
+        ("AL", "Alabama"),
+        ("AK", "Alaska"),
+        ("AS", "American Samoa"),
+        ("AZ", "Arizona"),
+        ("AR", "Arkansas"),
+        ("CA", "California"),
+        ("CO", "Colorado"),
+        ("CT", "Connecticut"),
+        ("DE", "Delaware"),
+        ("DC", "District Of Columbia"),
+        ("FL", "Florida"),
+        ("GA", "Georgia"),
+        ("GU", "Guam"),
+        ("HI", "Hawaii"),
+        ("ID", "Idaho"),
+        ("IL", "Illinois"),
+        ("IN", "Indiana"),
+        ("IA", "Iowa"),
+        ("KS", "Kansas"),
+        ("KY", "Kentucky"),
+        ("LA", "Louisiana"),
+        ("ME", "Maine"),
+        ("MH", "Marshall Islands"),
+        ("MD", "Maryland"),
+        ("MA", "Massachusetts"),
+        ("MI", "Michigan"),
+        ("MN", "Minnesota"),
+        ("MS", "Mississippi"),
+        ("MO", "Missouri"),
+        ("MT", "Montana"),
+        ("NE", "Nebraska"),
+        ("NV", "Nevada"),
+        ("NH", "New Hampshire"),
+        ("NJ", "New Jersey"),
+        ("NM", "New Mexico"),
+        ("NY", "New York"),
+        ("NC", "North Carolina"),
+        ("ND", "North Dakota"),
+        ("OH", "Ohio"),
+        ("OK", "Oklahoma"),
+        ("OR", "Oregon"),
+        ("PW", "Palau"),
+        ("PA", "Pennsylvania"),
+        ("PR", "Puerto Rico"),
+        ("RI", "Rhode Island"),
+        ("SC", "South Carolina"),
+        ("SD", "South Dakota"),
+        ("TN", "Tennessee"),
+        ("TX", "Texas"),
+        ("UT", "Utah"),
+        ("VT", "Vermont"),
+        ("VI", "Virgin Islands"),
+        ("VA", "Virginia"),
+        ("WA", "Washington"),
+        ("WV", "West Virginia"),
+        ("WI", "Wisconsin"),
+        ("WY", "Wyoming")
+        )
 
 # <**************************************************************************>
 # <*****                         MISC FUNCTIONS                         *****>
@@ -162,7 +222,7 @@ class Images(models.Model):
 
 class Category(models.Model):
     name = models.CharField(choices=CATEGORY_CHOICES, default='FOOD', max_length=20, unique=True, db_index=True)
-    slug = models.SlugField(unique=True, blank=True )
+    slug = models.SlugField(unique=True, blank=True, editable=False)
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -265,7 +325,7 @@ class Store(models.Model):
     slug        = models.SlugField(unique=True)
 
     # Offers
-    offers      = models.ManyToManyField(Offer)
+    offers      = models.ManyToManyField(Offer, blank=True)
 
     # Store Attributes
     business_name       = models.CharField(max_length=100)
@@ -274,19 +334,20 @@ class Store(models.Model):
     logo                = models.ImageField(upload_to='store-logos/', blank=True, null=True)
     category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     subcategory         = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=True, null=True    )
-    code_coupon         = models.CharField(max_length=15, blank=True, null=True, help_text="This will be auto-generated as GEGOO####, if left blank. Set as 'NONE' if no coupon code is desired.")
-
+    code_coupon         = models.CharField(max_length=15, blank=True, null=True, help_text="If left blank, this will be auto-generated as GEGOO####. Set as 'NONE' if no coupon code is desired for your store.")
 
     # Store Bio
-    title               = models.CharField(max_length=100)
-    description         = models.TextField(max_length=500)
+    title               = models.CharField(max_length=40, null=True, help_text="Company Slogan or catchy short description")
+    description         = models.TextField(max_length=500, help_text="Write a summary about your business and its services. Don't list out every service, a short summary will do.")
 
-    # Store Location Info
-    phone_number        = PhoneNumberField(max_length=20, blank=True, null=True)
-    # country             = models.CharField(max_length=40, blank=True) #Not necessary, City covers this.
-    # state               = models.CharField(max_length=165, blank=True) #Not necessary, City covers this.
-    city                = models.ForeignKey(City, related_name='store', on_delete=models.CASCADE)
-    postal_code         = models.CharField(max_length=12, blank=True)
+    # Store Location Info - User fills out
+    street_address      = models.CharField(max_length=100, null=True)
+    city                = models.CharField(max_length=100, null=True)
+    state               = models.CharField(choices=STATES, default='NA', max_length=100)
+    zip                 = models.CharField(max_length=100, null=True)
+    phone_number        = PhoneNumberField(max_length=20, blank=True, null=True, region='US')
+
+    # Store Location Info - Admin fills out
     latitude            = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of store's location.", null=True, blank=True)
     longitude           = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of store's location.", null=True, blank=True)
     location            = models.PointField(srid=4326, null=True, blank=True)
@@ -321,24 +382,11 @@ class Store(models.Model):
         object_qs = self.offers.filter(end_date__gt=now).order_by('end_date')
         object = object_qs.first()
         return object
+    #
+    # def GetDistance(self):
+    #     return self.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
+    #
 
-
-def CalculateLocation(sender, created, instance, **kwargs):
-    store = instance
-    #print(store.location)
-    if store.location == None:
-        try:
-            longitude = store.longitude
-            latitude = store.latitude
-
-            location = fromstr(
-                f'POINT({longitude} {latitude})', srid=4326
-            )
-            store.location = location
-            store.save()
-
-        except KeyError:
-            pass
 
 
 @receiver(pre_save, sender=Store)
@@ -346,7 +394,7 @@ def pre_save_store(sender, **kwargs):
     slug = slugify(kwargs['instance'].business_name)
     kwargs['instance'].slug = slug
 
-
+post_save.connect(CalculateLocation, sender=Store)
 post_save.connect(setCouponCode, sender=Store)
 
 class Testimonial(models.Model):

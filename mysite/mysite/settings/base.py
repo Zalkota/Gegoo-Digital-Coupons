@@ -122,6 +122,8 @@ INTERNAL_IPS = [
 #honeypot
 HONEYPOT_FIELD_NAME = 'phonenumber'
 
+PHONENUMBER_DEFAULT_REGION = 'US'
+
 ROOT_URLCONF = 'mysite.urls'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"

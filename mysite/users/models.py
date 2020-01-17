@@ -18,6 +18,13 @@ from django.dispatch import receiver
 import datetime
 from django.utils import timezone
 
+# GEODJANGO
+from django.contrib.gis.geos import fromstr
+from pathlib import Path
+from django.contrib.gis.db import models
+from django.contrib.gis.geos import Point
+from django.contrib.gis.db.models.functions import Distance
+
 STATUS_CHOICES = (
     ('APPROVED', 'Approved'),
     ('PENDING', 'Pending Approval'),
@@ -87,13 +94,16 @@ STATES = (
         ("WY", "Wyoming")
         )
 
+
+
+
 class User(AbstractUser):
     is_merchant     = models.BooleanField('is_merchant', default=False)
     is_approved     = models.BooleanField('merchant_is_approved', default=False)
     city = models.ForeignKey(City, related_name='user_city', on_delete=models.CASCADE, null=True, blank=True)
-     #Is this necesarry?
-    # is_consumer     = models.BooleanField('ConsumerStatus', default=False)
-    # slug            = models.SlugField(max_length=100, null=True)
+
+    # User Location
+    location            = models.PointField(srid=4326, null=True, blank=True)
 
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
     updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
@@ -127,7 +137,7 @@ class MerchantProfile(models.Model): #Is a Profile Necessary?
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='merchant_profile')
     stripe_id = models.CharField(max_length=200, null=True, blank=True)
     status          = models.CharField(choices=STATUS_CHOICES, default='NOT APPROVED', max_length=20)
-    has_paid        = models.BooleanField('payment_status', default=False)
+    payment_status        = models.BooleanField(default=False)
 
     #Basic information
     business_name       = models.CharField(max_length=100, null=True)

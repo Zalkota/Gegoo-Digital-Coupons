@@ -19,7 +19,7 @@ from django.contrib.gis.db.models.functions import Distance
 
 from location.functions import set_location_cookies, get_ip, get_or_set_location
 from users.decorators import user_is_merchant
-from .forms import MerchantApprovalForm
+from .forms import MerchantStoreForm
 from users.decorators import IsMerchantMixin, IsUserObject
 
 def get_user_orders(request, user):
@@ -69,9 +69,9 @@ class SubcategoryDetailView(DetailView):
 	# 		return redirect("home-page")
 
 
-class StoreDetailView(DetailView): #This needs to filter by user city or distance
+class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or distance
 	model = portal_models.Store
-	template_name = 'portal/store/store_detail.html'
+	template_name = 'portal/consumer/consumer_store_detail.html'
 
 	def get_context_data(self, **kwargs):
 		context = super(StoreDetailView, self).get_context_data(**kwargs)
@@ -83,18 +83,11 @@ class StoreDetailView(DetailView): #This needs to filter by user city or distanc
 # <*****                      Visible by Merchants only                 *****>
 # <**************************************************************************>
 
-
-class MerchantStoreListView(LoginRequiredMixin, ListView):
-	model = portal_models.Store
-	template_name = 'portal/store/merchant_store_list.html'
-
-	def get_queryset(self):
-		store_list = portal_models.Store.objects.filter(merchant=self.request.user)
-		return store_list
+# Merchant Store
 
 class MerchantStoreDetailView(LoginRequiredMixin, DetailView):
 	model = portal_models.Store
-	template_name = 'portal/store/store_detail.html'
+	template_name = 'portal/merchant/merchant_store_detail.html'
 
 	# def get_object(self):
 	# 	obj = super(MerchantStoreDetailView, self).get_object()
@@ -108,21 +101,19 @@ class MerchantStoreDetailView(LoginRequiredMixin, DetailView):
 		return context
 
 
-class MerchantSubscriptionsView(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        user_membership = get_user_membership(self.request)
-        user_subscription_list = get_user_subscriptions(self.request)
+class MerchantStoreListView(LoginRequiredMixin, ListView):
+	model = portal_models.Store
+	template_name = 'portal/merchant/merchant_store_list.html'
 
-        context = {
-            'user_membership': user_membership,
-            'user_subscription_list': user_subscription_list
-        }
-        return render(self.request, "users/user_merchant_subscription.html", context)
+	def get_queryset(self):
+		store_list = portal_models.Store.objects.filter(merchant=self.request.user)
+		return store_list
+
 
 class MerchantStoreCreateView(LoginRequiredMixin, CreateView):
 	model = portal_models.Store
-	form_class = MerchantApprovalForm
-	template_name = 'portal/store/merchant_store_create.html'
+	form_class = MerchantStoreForm
+	template_name = 'portal/merchant/merchant_store_create.html'
 
 	def form_valid(self, form):
 		user = self.request.user
@@ -132,6 +123,7 @@ class MerchantStoreCreateView(LoginRequiredMixin, CreateView):
 		form.instance.merchant = self.request.user
 		return super(MerchantStoreCreateView, self).form_valid(form)
 
+
 class MerchantStoreUpdateView(LoginRequiredMixin, UpdateView):
     model = portal_models.Store
     fields = [
@@ -139,25 +131,31 @@ class MerchantStoreUpdateView(LoginRequiredMixin, UpdateView):
 		'title',
 		'description',
     ]
+    template_name = 'portal/merchant/merchant_store_update.html'
 
-    template_name = 'portal/store/merchant_store_update.html'
 
 class MerchantStoreDeleteView(LoginRequiredMixin, DeleteView):
     model = portal_models.Offer
     template_name = 'portal/store/merchant_store_delete.html'
-    success_url = reverse_lazy('portal:store_list')
+    success_url = reverse_lazy('users:merchant_offer_list')
+
+
+# Merchant Offer
+
+
+class MerchantOfferDetailView(LoginRequiredMixin, IsMerchantMixin, DetailView):
+	model = portal_models.Offer
+	template_name = 'portal/offer/merchant_offer_detail.html'
+
 
 class MerchantOfferListView(LoginRequiredMixin, ListView):
 	model = portal_models.Offer
-	template_name = 'portal/offer/offer_list.html'
+	template_name = 'portal/offer/merchant_offer_list.html'
 
 	def get_queryset(self):
 		offer_list = portal_models.Offer.objects.filter(author=self.request.user)
 		return offer_list
 
-class MerchantOfferDetailView(LoginRequiredMixin, IsMerchantMixin, DetailView):
-	model = portal_models.Offer
-	template_name = 'portal/offer/offer_detail.html'
 
 class MerchantOfferCreateView(LoginRequiredMixin, IsMerchantMixin, CreateView):
 	model = portal_models.Offer
@@ -166,12 +164,12 @@ class MerchantOfferCreateView(LoginRequiredMixin, IsMerchantMixin, CreateView):
 		'description',
 		'end_date',
 	]
-
-	template_name = 'portal/offer/offer_create.html'
+	template_name = 'portal/offer/merchant_offer_create.html'
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		return super(MerchantOfferCreateView, self).form_valid(form)
+
 
 class MerchantOfferUpdateView(LoginRequiredMixin, IsMerchantMixin, UpdateView):
     model = portal_models.Offer
@@ -181,12 +179,12 @@ class MerchantOfferUpdateView(LoginRequiredMixin, IsMerchantMixin, UpdateView):
 		'end_date',
     ]
 
-    template_name = 'portal/offer/offer_update.html'
+    template_name = 'portal/offer/merchant_offer_update.html'
 
 class MerchantOfferDeleteView(LoginRequiredMixin, IsMerchantMixin, DeleteView):
     model = portal_models.Offer
-    template_name = 'portal/offer/offer_delete.html'
-    success_url = reverse_lazy('portal:offer_list')
+    template_name = 'portal/offer/merchant_offer_delete.html'
+    success_url = reverse_lazy('users:offer_list')
 
 def OfferLike(request):
 	offer = get_object_or_404(portal_models.Offer, slug=request.POST.get('offer_slug'))

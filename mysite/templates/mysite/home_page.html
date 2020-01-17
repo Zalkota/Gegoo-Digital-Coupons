@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% load location_extra %}
 
-
-{% block body_class %}template-homepage{% endblock %}
+{% block body_class %} Shop Deals on Gegoo{% endblock %}
 
 {% block extra_styles %}
 <!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
@@ -39,32 +39,28 @@
         <h3 class="section-header text-dark">Services in {{ city }}, {{ state }}</h3>
         <br>
         <div class="row">
-            {% for object in address_qs %}
-                {% if object.get_first_active %}
+            {% for object in store_nearby %}
                     <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
                         <div class="">
-                            <a href="{{ object.get_absolute_url }}">
-                                <img class="img-fluid" style="width: 100%;" src="media/{{ object.logo }}" alt="User Uploaded images">
+                            <a href="{{ object.get_consumer_absolute_url }}">
+                                <img class="img-fluid" style="width: 100%;" src="/media/{{ object.logo }}" alt="User Uploaded images">
                             </a>
                             <div class="py-1">
                                 <div class=" text-left mt-2">
                                     <h3 class="fw-6 text-dark fs-18 mb-1">{{ object.business_name }}</h3>
                                     <i class="material-icons star-yellow fs-18" style="">star star star star star </i>
                                     <h4 class="fw-4 fs-14">
-                                        {{ object.get_first_active.title|truncatewords:8 }}
+                                        {{ object.title|truncatewords:8 }}
                                     </h4>
                                     <div class="fw-5 fs-14 mt-2 mb-2">
-                                        <span class="text-gray-600 fw-4">{{ object.city.name }}, {{ object.city.region.name }}</span>
+                                        <span class="text-gray-600 fw-4">{{ object.distance.mi|dividebyth }} Miles</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mb-1 icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
                                     </div>
                                     <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
                                 </div>
                             </div>
-
                         </div>
                     </div>
-            {% else %}
-            {% endif %}
             {% empty %}
                 {% for object in merchant_empty_qs %}
                 {% if object.get_first_active  %}

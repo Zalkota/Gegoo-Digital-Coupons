@@ -1,0 +1,16 @@
+When writing a queryset, the variable should have '_qs' at the end, to show that it is a queryset object.
+
+for example:
+
+    offer_qs = portal_models.Offer.objects.filter(author=user)
+    context = {
+            'offer_list': offer_qs,
+        }
+
+
+
+Two spaces between Functions and classes
+
+
+Class based views should be placed in order:
+Detailview, Listview, CreateView, UpdateView, DeleteView, two spaces apart.

@@ -2,7 +2,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from .models import Store, Offer, Promotion, Images, Category, Subcategory, Tag, About, Testimonial
-from location.models import store_address
+from location.models import StoreLocation
 # Register your models here.
 from django.contrib.gis.admin import OSMGeoAdmin
 
@@ -14,16 +14,20 @@ class AboutAdmin(ImportExportModelAdmin):
      model= About
      filter_horizontal = ('images',) #If you don't specify this, you will get a multiple select widget.
 
-class StoreAddressInline(admin.TabularInline):
-    model = store_address
+class StoreLocationAdmin(admin.ModelAdmin):
+    autocomplete_fields = ['city']
+
+# class StoreLocationInline(admin.TabularInline):
+#     model = StoreLocation
+#     autocomplete_fields = ['city']
+
 
 class StoreAdmin(admin.ModelAdmin):
-    search_fields = ['city__name', 'business_name']
-    autocomplete_fields = ['city']
+    search_fields = ['city', 'business_name']
     list_display = ('business_name', 'city', 'category', 'subcategory', 'active')
-    inlines = [
-        StoreAddressInline,
-    ]
+    # inlines = [
+    #     StoreLocationInline,
+    # ]
 
 class OfferAdmin(admin.ModelAdmin):
     autocomplete_fields = ['store']
@@ -42,7 +46,7 @@ class TestimonialAdmin(admin.ModelAdmin):
 admin.site.register(Store, StoreAdmin)
 admin.site.register(Offer)
 admin.site.register(Testimonial, TestimonialAdmin)
-admin.site.register(store_address)
+admin.site.register(StoreLocation, StoreLocationAdmin)
 admin.site.register(Promotion)
 admin.site.register(Images)
 admin.site.register(Category)

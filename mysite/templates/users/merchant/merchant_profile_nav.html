@@ -1,58 +1,58 @@
 {% load static %}
 
-{% block component %}
-<div class="row">
+{% block desktop_nav %}
+<div class="row hide">
     <div class="col-lg-6">
-        <h2 class="fw-6 hide mb-2">Merchant Dashboard </h2>
+        <h2 class="fw-6 mb-2">Merchant Dashboard </h2>
         <span class="fs-14 hide text-secondary">Welcome Back, {{ user }}!</span>
     </div>
     <div class="col-lg-6 text-right">
         {% if user.status == 'APPROVED' %}
-        <span class="text-dark px-3 fs-16 fw-6 mx-2">
+        <span class="text-dark px-3 fs-16 mx-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
             Account Approved
         </span>
         {% elif user.status == 'PENDING' %}
-        <span class="text-dark px-3 fs-16 fw-6 mx-2">
+        <span class="text-dark px-3 fs-16 mx-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-time"><circle cx="12" cy="12" r="10" class="fill-blue-300"/><path class="fill-blue-700" d="M13 11.59l3.2 3.2a1 1 0 0 1-1.4 1.42l-3.5-3.5A1 1 0 0 1 11 12V7a1 1 0 0 1 2 0v4.59z"/></svg>
             Approval Pending
         </span>
         {% else %}
-        <span class="text-dark fs-16 mx-2">
+        <span class="text-dark px-3 fs-16 mx-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-close-circle"><circle cx="12" cy="12" r="10" class="fill-red-300"/><path class="fill-red-700" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
             Not Approved
         </span>
 
         {% endif %}
         {% if user.has_paid == True %}
-        <span class="text-dark px-3 fs-16 fw-6 mx-2">
+        <span class="text-dark px-3 fs-16 mx-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
             Subscription Active
         </span>
         {% else %}
-        <span class="text-dark fs-16 fw-6 mx-2">
+        <span class="text-dark fs-16 mx-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-close-circle"><circle cx="12" cy="12" r="10" class="fill-red-300"/><path class="fill-red-700" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
             No Subscription
         </span>
         {% endif %}
     </div>
 </div>
-<div class="profile-nav hide mt-4">
+<div class="profile-nav hide mt-5">
     <ul class="list-unstyled">
         <li>
         <a href="{% url 'users:userPage' %}" class="{% if '/dashboard/' == request.path %} profile-link-active {% else %} profile-link {% endif %}">Dashboard</a>
         </li>
       <li>
-        <a href="{% url 'portal:merchant_store_list' %}" class="{% if 'my-stores' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Stores</a>
+        <a href="{% url 'users:merchant_store_list' %}" class="{% if 'my-stores' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Stores</a>
       </li>
       <li class="list-inline-item">
-        <a href="{% url 'portal:merchant_offer_list' %}" class="{% if 'my-merchants' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Offers</a>
+        <a href="{% url 'users:merchant_offer_list' %}" class="{% if 'my-offers' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Offers</a>
       </li>
       <li class="list-inline-item">
         <a href="" class="{% if 'rewards' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Reviews</a>
       </li>
       <li class="list-inline-item">
-        <a href="{% url 'portal:subscription_list' %}" class="{% if 'rewards' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Subscription</a>
+        <a href="{% url 'users:subscription_list' %}" class="{% if 'my-subscription' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Subscription</a>
       </li>
       <li class="list-inline-item">
         <a href="{% url 'account_set_password' %}" class="{% if 'accounts' in request.path %} profile-link-active {% else %} profile-link {% endif %}">Settings</a>
@@ -60,4 +60,4 @@
     </ul>
 </div>
 
-{% endblock component %}
+{% endblock desktop_nav %}

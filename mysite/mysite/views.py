@@ -52,9 +52,6 @@ def get_items(request):
     return None
 
 
-
-
-
 # def post_comment(request):
 #     if request.method != 'POST':
 #         raise Http404('Only POSTs are allowed')
@@ -140,14 +137,15 @@ class homeView(View):
         city = 'default_city'
         state = 'default_state'
         city_state = get_or_set_location(self.request)
+        print(city_state)
         city = city_state["city"]
         state = city_state["state"]
-        address_qs = Store.objects.filter(city__name=city, city__region__name=state)
+        user_location = city_state["user_location"]
+        # address_qs = Store.objects.filter(storelocation__city__name=city, storelocation__city__region=state)
         store_empty_qs = Store.objects.all()[0:6]
-        category_list = Category.objects.all()
         # city = context["city"]
         # state = context["subdivisions"]
-        #store_nearby = store.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
+        store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
         #store_nearby = store.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
 
         # if address_qs = None:
@@ -169,9 +167,8 @@ class homeView(View):
         context = {
             'city': city,
             'state': state,
-            'address_qs': address_qs,
+            'store_nearby': store_nearby,
             'store_empty_qs': store_empty_qs,
-            'category_list': category_list,
         }
         return render(self.request, 'mysite/home_page.html', context)
 

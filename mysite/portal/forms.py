@@ -17,13 +17,14 @@ from crispy_forms.bootstrap import (
     PrependedText, PrependedAppendedText, FormActions, StrictButton)
 
 
-class MerchantApprovalForm(forms.ModelForm):
+class MerchantStoreForm(forms.ModelForm):
     class Meta:
        model = portal_models.Store
-       fields = 'business_name', 'website_url', 'facebook_url', 'phone_number', 'city'
+       fields = 'business_name', 'description', 'category', 'subcategory', 'street_address', 'city', 'state', 'zip', 'phone_number', 'code_coupon', 'website_url', 'facebook_url', 'logo',
+
 
     def __init__(self, *args, **kwargs):
-        super(MerchantApprovalForm, self).__init__(*args, **kwargs)
+        super(MerchantStoreForm, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper()
         #self.helper.form_id = 'id-exampleForm'
@@ -37,60 +38,51 @@ class MerchantApprovalForm(forms.ModelForm):
                 css_class="col-lg-12 pb-4"
                 ),
                 Div(
-                'website_url',
+                'description',
                 css_class="col-lg-6 pb-4"
                 ),
                 Div(
-                'facebook_url',
+                'category',
                 css_class="col-lg-6 pb-4"
                 ),
                 Div(
-                'facebook_url',
+                'subcategory',
                 css_class="col-lg-6 pb-4"
+                ),
+                Div(
+                'street_address',
+                css_class="col-lg-6"
                 ),
                 Div(
                 'city',
                 css_class="col-lg-6"
                 ),
-
-        ),
-    )
-
-
-
-class MerchantForm(forms.ModelForm):
-    class Meta:
-       model = portal_models.Store
-       fields = 'business_name', 'website_url', 'facebook_url', 'phone_number', 'city'
-
-    def __init__(self, *args, **kwargs):
-        super(MerchantApprovalForm, self).__init__(*args, **kwargs)
-
-        self.helper = FormHelper()
-        #self.helper.form_id = 'id-exampleForm'
-        #elf.helper.form_class = 'blueForms'
-        self.helper.form_action = 'Submit'
-        self.helper.layout = Layout(
-            #Div('first_name', style="background: white;", title="Explication title", css_class="bigdivs")
-            Field(
                 Div(
-                'business_name',
-                css_class="col-lg-12 pb-4"
+                'state',
+                css_class="col-lg-6"
+                ),
+                Div(
+                'zip',
+                css_class="col-lg-6"
+                ),
+                Div(
+                'phone_number',
+                css_class="col-lg-6"
+                ),
+                Div(
+                'code_coupon',
+                css_class="col-lg-6"
                 ),
                 Div(
                 'website_url',
-                css_class="col-lg-6 pb-4"
+                css_class="col-lg-6"
                 ),
                 Div(
                 'facebook_url',
-                css_class="col-lg-6 pb-4"
+                css_class="col-lg-6"
                 ),
                 Div(
-                'facebook_url',
-                css_class="col-lg-6 pb-4"
-                ),
-                Div(
-                'city',
+                'logo',
                 css_class="col-lg-6"
                 ),
 

@@ -33,15 +33,15 @@ from cities_light.receivers import connect_default_signals
 #         return self.name
 
 
-class store_address(models.Model):
-    store = models.OneToOneField(Store, on_delete=models.CASCADE, null=True, related_name="store_address")
-    street_address = models.CharField(max_length=100, null=True)
-    apartment_address = models.CharField(max_length=100, blank=True, null=True)
-    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
-    zip = models.CharField(max_length=100, null=True)
+class StoreLocation(models.Model):
+    store               = models.OneToOneField(Store, on_delete=models.CASCADE, null=True, related_name="store_location")
+    city                = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
+    latitude            = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of store's location.", null=True, blank=True)
+    longitude           = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of store's location.", null=True, blank=True)
+    location            = models.PointField(srid=4326, null=True, blank=True)
 
     def __str__(self):
         return '%s in %s, %s' % (self.store.business_name, self.city.name, self.city.region.name)
 
     class Meta:
-        verbose_name_plural = 'store_addresses'
+        verbose_name_plural = 'store_locations'
