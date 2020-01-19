@@ -35,7 +35,8 @@ urlpatterns = [
     #Location
     url(r'^', include(('location.urls', 'location'), namespace='location')),
     #Portal
-    url(r'^membership', include(('memberships.urls', 'memberships'), namespace='memberships')),
+    url(r'^membership/', include(('memberships.urls', 'memberships'), namespace='memberships')),
+    path('payments/', include(('payments.urls', 'payments'), namespace='payments')),
     #FAQ
     url(r'^support/', include(('support.urls', 'support'), namespace='support')),
     #users

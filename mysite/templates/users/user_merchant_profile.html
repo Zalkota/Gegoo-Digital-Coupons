@@ -84,7 +84,7 @@ a:hover {
                 <div class="card shadow-2  unhide">
                     <div class="card-body">
                         <h2 class="fw-6">My Account</h2>
-                        <span class="fs-14 text-muted">Welcome Back, {{ user }}!</span>
+                        <span class="fs-14 text-muted">Welcome Back, {{ user.first_name }}!</span>
                         <br>
                         <br>
                         <!-- Action buttons -->
@@ -124,109 +124,123 @@ a:hover {
                 </div>
             </div>
 
-            <div class="col-lg-6 mb-4">
-                <div class="card shadow-2">
-                    <div class="card-body">
-                        <h3 class="header">Lets Get Started</h3>
-                        <p class="fs-16">Welcome to your Gegoo Merchant Dashboard. This dashboard has all the tools and information you need to start advertising your business on Gegoo.</p>
-                        <hr>
-                        <h3 class="subheader">What is Gegoo?</h3>
-                        <p>Gegoo is an Online Marketing tool that makes it extremely easy for Businesses to advertise their goods and services to local customers at a competitive flat monthly rate.
-                        To start advertising your business on Gegoo you will need to do the following:</p>
-                    </div>
+            <div class="row mt-2">
+              <div class="card-deck">
+                <div class="col-lg-4">
+                  {% if user.merchant_profile.status == 'NOT APPROVED' %}
+                  <div class="card" style="border: 2px solid #26bc9b;">
+                      <div class="card-body">
+                          <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                              Step One
+                              <span class="pull-right">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-0 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-200"></circle><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"></path></svg>
+                              </span>
+                          </h3>
+                          <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">Merchant Approval</h1>
+                          <p class="card-text lead fs-14 fw-2 text-muted">The GEGOO team has approved your business. Please move onto the next step: Purchasing a subscription.</p>
+                      </div>
+                      <div class="card-footer text-center mt-1">
+                          <p class="fs-14 fw-6 text-uppercase ls-1 disabled" style="color: #26bc9b;">
+                              Complete
+                          </p>
+                      </div>
+                  </div>
+                  {% else %}
+                  <div class="card" style="border: 2px solid #f56564;">
+                      <div class="card-body">
+                          <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                              Step One
+                              <span class="pull-right">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-close-circle"><circle cx="12" cy="12" r="10" class="primary"></circle><path class="secondary" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"></path></svg>
+                              </span>
+                          </h3>
+                          <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">Merchant Approval</h1>
+                          <p class="card-text lead fs-14 fw-2 text-muted">The GEGOO team must actiavte your account before you can add stores and offers to the site. Please complete the approval form.</p>
+                      </div>
+                      <div class="card-footer text-center">
+                          <a href="" class="card-link fs-14 fw-6 text-uppercase ls-1">
+                              View Step One
+                          </a>
+                      </div>
+                  </div>
+                  {% endif %}
                 </div>
-      	    </div>
-            <div class="col-lg-6">
-                <div class="card my-2">
-
-                    {% if user.merchant_profile.status == 'NOT APPROVED' %}
-                    <div class="card-body">
-                        <h3 class="header">
-                            Step One
-                            <span class="badge-danger px-3 fw-6 fs-16 pull-right">Incomplete
-                            </span>
-                        </h3>
-                        <br>
-                        <p><span class="fw-6"></span>Fill out the Merchant Approval form</p>
-                        <a href="{{ user.merchant_profile.get_absolute_url }}" class="btn btn-primary-alt">Get Approved</a>
-                    </div>
-
-                    {% elif user.merchant_profile.status == 'PENDING' %}
-                    <div class="card-body">
-                        <h3 class="section-header">
-                            Step One
-                            <span class="badge-danger px-3 fw-6 fs-16 pull-right">Incomplete</span>
-                        </h3>
-                        <br>
-                        <p><span class="fw-6"></span>Thank you for filling out the approval form, check back in 24-48 hours!</p>
-                        <a class="btn btn-primary-alt disabled text-white">Submission Sent</a>
-
-                        <a href="{{ user.merchant_profile.get_absolute_url }}" class="btn btn-primary-alt">Get Approved</a>
-
-                    </div>
-
-                    {% else %}
-                    <div class="card-body">
-                        <h3 class="section-header">
-
-                            <span class="badge-success px-3 fs-16 fw-6 pull-right">Complete</span>
-                        </h3>
-                            <br>
-                        <p><span class="fw-6"></span>Fill out the Merchant Approval form</p>
-                        <a class="btn btn-success-alt text-white disabled">All Set!</a>
-                    </div>
-                    {% endif %}
+                <div class="col-lg-4">
+                  {% if user.merchant_profile.has_paid == True %}
+                  <div class="card" style="border: 2px solid #26bc9b;">
+                      <div class="card-body">
+                          <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                              Step Two
+  
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-0 icon-check"><circle cx="12" cy="12" r="10" class="primary"></circle><path class="secondary" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"></path></svg>
+  
+                          </h3>
+                          <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">Purchase Subscription</h1>
+                          <p class="card-text lead fs-14 fw-2 text-muted">You must purchase a subscription to the GEGOO services in order to create stores and advertise your offers.</p>
+                      </div>
+                      <div class="card-footer text-center mt-1">
+                          <p class="fs-14 fw-6 text-uppercase ls-1 disabled" style="color: #26bc9b;">
+                              Complete
+                          </p>
+                      </div>
+                  </div>
+                  {% else %}
+                  <div class="card" style="border: 2px solid #f56564;">
+                      <div class="card-body">
+                          <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                              Step Two
+                              <span class="pull-right">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-close-circle"><circle cx="12" cy="12" r="10" class="primary"></circle><path class="secondary" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"></path></svg>
+                              </span>
+                          </h3>
+                          <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">Purchase Subscription</h1>
+                          <p class="card-text lead fs-14 fw-2 text-muted">You must purchase a subscription to the GEGOO services in ordeer to create stores and advertise your offers.</p>
+                      </div>
+                      <div class="card-footer text-center">
+                          <a href="" class="card-link fs-14 fw-6 text-uppercase ls-1">
+                              View Step Two
+                          </a>
+                      </div>
+                  </div>
+                  {% endif %}
                 </div>
-
-                <div class="card my-2">
-                    {% if user.status == 'APPROVED' %}
-                    <div class="card-body">
-                        <h3 class="section-header">
-                            Step Two
-                        </h3>
-                        <p><span class="fw-6"></span>Once Approved by the Gegoo Staff, you can create a Store with all of you business's information, location, hours, and services.</p>
-                        <br>
-                        <a href="{% url 'portal:merchant_store_create' %}" class="btn btn-primary-alt">Create Store</a>
-                            {% if user.store %}
-                            <a href="{% url 'portal:merchant_store_update' %}" class="btn btn-primary-alt">Create Store</a>
-                            {% else %}
-                            <a href="{% url 'portal:merchant_store_create' %}" class="btn btn-primary-alt">Create Store</a>
-                            {% endif %}
-                    </div>
-                    {% endif %}
-
-                    {% if user.status != 'APPROVED' %}
-                    <div class="card-body">
-                        <h3 class="section-header">
-                            Step Two
-                        </h3>
-                        <p><span class="fw-6"></span>Once Approved by the Gegoo Staff, you can create a Store with all of you business's information, location, hours, and services.</p>
-                        <br>
-                        <a  class="btn btn-gray-400-alt text-gray-700 disabled">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mr-1 icon-lock"><path class="fill-gray-700" d="M5 10h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2zm6 6.73V18a1 1 0 0 0 2 0v-1.27a2 2 0 1 0-2 0z"/><path class="fill-gray-700" d="M12 19a1 1 0 0 0 1-1v-1.27A2 2 0 0 0 12 13v-3h3V7a3 3 0 0 0-6 0v3H7V7a5 5 0 1 1 10 0v3h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7v-3z"/></svg>
-                            Create Store
-                        </a>
-                    </div>
-                    {% endif %}
+                <div class="col-lg-4">
+                  {% if user.store_set.count %}
+                  <div class="card" style="border: 2px solid #26bc9b;">
+                      <div class="card-body">
+                          <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                              Step Three
+                              <span class="badge-success px-3 fs-14 fw-6 pull-right">svg</span>
+                          </h3>
+                          <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">Store Creation</h1>
+                          <p class="card-text lead fs-14 fw-2 text-muted">After you have completed steps 1 and 2. You account will be granted merchant access to the GEGOO services.</p>
+                      </div>
+                      <div class="card-footer text-center">
+                          <p class="fs-14 fw-6 text-uppercase ls-1 disabled" style="color: #26bc9b;">
+                              Complete
+                          </p>
+                      </div>
+                  </div>
+                  {% else %}
+                  <div class="card" style="border: 2px solid #f56564;">
+                      <div class="card-body">
+                          <h3 class="card-subtitle fs-14 fw-4 mb-1">
+                              Step Two
+                              <span class="badge-danger px-3 fw-6 fs-16 pull-right">svg</span>
+                          </h3>
+                          <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">Purchase Subscription</h1>
+                          <p class="card-text lead fs-14 fw-2 text-muted">You must purchase a subscription to the GEGOO services in ordeer to create stores and advertise your offers.</p>
+                      </div>
+                      <div class="card-footer text-center">
+                          <a href="" class="card-link fs-14 fw-6 text-uppercase ls-1">
+                              View Step Three
+                          </a>
+                      </div>
+                  </div> 
+                  {% endif %}
                 </div>
-
-                <div class="card my-2">
-                    <div class="card-body">
-                        <h3 class="section-header">
-                            Step Three
-                        </h3>
-                        <p><span class="fw-6"></span>Once your store has been created, you will need to purchase a subscription package. <a href="">Click here</a> to see our pricing page.</p>
-                        <a href="{% url 'memberships:select' %}" class="btn btn-primary-alt">Purchase Subscription</a>
-                        <a class="btn btn-gray-400-alt text-gray-700 disabled">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mr-1 icon-lock"><path class="fill-gray-700" d="M5 10h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2zm6 6.73V18a1 1 0 0 0 2 0v-1.27a2 2 0 1 0-2 0z"/><path class="fill-gray-700" d="M12 19a1 1 0 0 0 1-1v-1.27A2 2 0 0 0 12 13v-3h3V7a3 3 0 0 0-6 0v3H7V7a5 5 0 1 1 10 0v3h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7v-3z"/></svg>
-                            Purchase Subscription
-                        </a>
-
-                    </div>
-                </div>
+              </div>
             </div>
-      </div>
-      <div class="py-5 hide"></div><div class="py-5 hide"></div>
 </section>
 
 {% endblock content %}
@@ -240,3 +254,95 @@ a:hover {
 {% endblock extrajs %}
 
 
+
+<div class="col-lg-6">
+  <div class="card my-2">
+
+      {% if user.merchant_profile.status == 'NOT APPROVED' %}
+      <div class="card-body">
+          <h3 class="header">
+              Step One
+              <span class="badge-danger px-3 fw-6 fs-16 pull-right">Incomplete
+              </span>
+          </h3>
+          <br>
+          <p><span class="fw-6"></span>Fill out the Merchant Approval form</p>
+          <a href="{{ user.merchant_profile.get_absolute_url }}" class="btn btn-primary-alt">Get Approved</a>
+      </div>
+
+      {% elif user.merchant_profile.status == 'PENDING' %}
+      <div class="card-body">
+          <h3 class="section-header">
+              Step One
+              <span class="badge-danger px-3 fw-6 fs-16 pull-right">Incomplete</span>
+          </h3>
+          <br>
+          <p><span class="fw-6"></span>Thank you for filling out the approval form, check back in 24-48 hours!</p>
+          <a class="btn btn-primary-alt disabled text-white">Submission Sent</a>
+
+          <a href="{{ user.merchant_profile.get_absolute_url }}" class="btn btn-primary-alt">Get Approved</a>
+
+      </div>
+
+      {% else %}
+      <div class="card-body">
+          <h3 class="section-header">
+
+              <span class="badge-success px-3 fs-16 fw-6 pull-right">Complete</span>
+          </h3>
+              <br>
+          <p><span class="fw-6"></span>Fill out the Merchant Approval form</p>
+          <a class="btn btn-success-alt text-white disabled">All Set!</a>
+      </div>
+      {% endif %}
+  </div>
+
+  <div class="card my-2">
+      {% if user.status == 'APPROVED' %}
+      <div class="card-body">
+          <h3 class="section-header">
+              Step Two
+          </h3>
+          <p><span class="fw-6"></span>Once Approved by the Gegoo Staff, you can create a Store with all of you business's information, location, hours, and services.</p>
+          <br>
+          <a href="{% url 'portal:merchant_store_create' %}" class="btn btn-primary-alt">Create Store</a>
+              {% if user.store %}
+              <a href="{% url 'portal:merchant_store_update' %}" class="btn btn-primary-alt">Create Store</a>
+              {% else %}
+              <a href="{% url 'portal:merchant_store_create' %}" class="btn btn-primary-alt">Create Store</a>
+              {% endif %}
+      </div>
+      {% endif %}
+
+      {% if user.status != 'APPROVED' %}
+      <div class="card-body">
+          <h3 class="section-header">
+              Step Two
+          </h3>
+          <p><span class="fw-6"></span>Once Approved by the Gegoo Staff, you can create a Store with all of you business's information, location, hours, and services.</p>
+          <br>
+          <a  class="btn btn-gray-400-alt text-gray-700 disabled">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mr-1 icon-lock"><path class="fill-gray-700" d="M5 10h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2zm6 6.73V18a1 1 0 0 0 2 0v-1.27a2 2 0 1 0-2 0z"/><path class="fill-gray-700" d="M12 19a1 1 0 0 0 1-1v-1.27A2 2 0 0 0 12 13v-3h3V7a3 3 0 0 0-6 0v3H7V7a5 5 0 1 1 10 0v3h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7v-3z"/></svg>
+              Create Store
+          </a>
+      </div>
+      {% endif %}
+  </div>
+
+  <div class="card my-2">
+      <div class="card-body">
+          <h3 class="section-header">
+              Step Three
+          </h3>
+          <p><span class="fw-6"></span>Once your store has been created, you will need to purchase a subscription package. <a href="">Click here</a> to see our pricing page.</p>
+          <a href="{% url 'memberships:select' %}" class="btn btn-primary-alt">Purchase Subscription</a>
+          <a class="btn btn-gray-400-alt text-gray-700 disabled">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mr-1 icon-lock"><path class="fill-gray-700" d="M5 10h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2zm6 6.73V18a1 1 0 0 0 2 0v-1.27a2 2 0 1 0-2 0z"/><path class="fill-gray-700" d="M12 19a1 1 0 0 0 1-1v-1.27A2 2 0 0 0 12 13v-3h3V7a3 3 0 0 0-6 0v3H7V7a5 5 0 1 1 10 0v3h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7v-3z"/></svg>
+              Purchase Subscription
+          </a>
+
+      </div>
+  </div>
+</div>
+</div>
+<div class="py-5 hide"></div><div class="py-5 hide"></div>

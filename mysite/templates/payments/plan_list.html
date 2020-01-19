@@ -1,0 +1,11 @@
+{% extends "base_mpm.html" %}
+
+{% block content %}
+    {% for plan in object_list %}
+        <h1>{{ plan.nickname }}</h1>
+        <h1>{{ plan.amount }}</h1>
+        <h1>{{ plan.currency }}</h1>
+        <h1>{{ plan.interval }}</h1>
+        <a href="{{ plan.get_absolute_url }}" class="btn btn-primary">View</a>
+    {% endfor %}   
+{% endblock content %}
