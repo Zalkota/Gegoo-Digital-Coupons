@@ -1,0 +1,165 @@
+// Overlay
+//
+//
+
+.overlay-active {
+    overflow: hidden;
+}
+
+// Vendor prefixes
+$sass-burger-add-vendor-prefixes: true !default;
+
+// Burger
+@mixin burger($width: 30px, $height: 5px, $gutter: 3px, $color: #000, $border-radius: 0, $transition-duration: .3s) {
+    $burger-height: $height !global;
+    $burger-gutter: $gutter !global;
+
+    position: relative;
+    margin-top: $height + $gutter;
+    margin-bottom: $height + $gutter;
+
+    @if $sass-burger-add-vendor-prefixes {
+        @include prefix(user-select, none, webkit moz ms);
+    }
+    user-select: none;
+
+    // 1. Fixes jagged edges in Firefox, see issue #10.
+    &, &::before, &::after {
+        display: block;
+        width: $width;
+        height: $height;
+        background-color: $color;
+        outline: 1px solid transparent; // 1
+        @if $border-radius != 0 {
+            border-radius: $border-radius;
+        }
+
+        @if $sass-burger-add-vendor-prefixes {
+            @include prefix(transition-property, background-color, webkit moz o);
+        }
+        transition-property: background-color, transform;
+
+        @if $sass-burger-add-vendor-prefixes {
+            @include prefix(transition-duration, $transition-duration, webkit moz o);
+        }
+        transition-duration: $transition-duration;
+    }
+
+    &::before, &::after {
+        position: absolute;
+        content: "";
+    }
+
+    &::before {
+        top: -($height + $gutter);
+    }
+
+    &::after {
+        top: $height + $gutter;
+    }
+}
+
+
+// Burger animations
+@mixin burger-to-cross($color: auto) {
+    & {
+        background-color: transparent;
+    }
+    @if ($color != auto) {
+        &::before, &::after {
+            background-color: $color;
+        }
+    }
+    &::before {
+        @if $sass-burger-add-vendor-prefixes {
+            @include prefix(transform, translateY($burger-gutter + $burger-height) rotate(45deg), webkit moz ms o);
+        }
+        transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+    }
+    &::after {
+        @if $sass-burger-add-vendor-prefixes {
+            @include prefix(transform, translateY(-($burger-gutter + $burger-height)) rotate(-45deg), webkit moz ms o);
+        }
+        transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+    }
+}
+
+
+
+.burger {
+	display: inline-block;
+	position: relative;
+	width: 60px;
+	height: 60px;
+	z-index: 100;
+  
+  span {
+    @include burger(20px, 2px, 4px, $black);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -1.5px;
+  }
+  
+  &.clicked {
+    span {
+      @include burger-to-cross();
+      
+      &:before, &:after {
+        background-color: $black;
+      }
+    }
+  }
+
+  &.burger-dot {
+    @include shadow;
+    background: $white;
+    border-radius: 50%;
+  }
+  
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+
+// Overlay
+.overlay-menu {
+	@include transition(.5s);
+	@include translate(0,100%);
+	visibility: hidden;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba($black,.75);
+	z-index: 90;
+    overflow: hidden;
+
+	&.opened {
+		@include translate(0,0);
+		visibility: visible;
+	}
+}
+
+.overlay-nav {
+    list-style: none;
+    padding: 0;
+
+    a {
+        font-size: 30px;
+        line-height: 2em;
+    }
+}
+
+
+.wrapper {
+	@include transition(.5s);
+
+	&.push {
+		@include scale(.8);
+	}
+}

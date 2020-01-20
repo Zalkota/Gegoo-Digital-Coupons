@@ -1,0 +1,436 @@
+//
+// Accordion
+//
+
+.accordion-group {
+    @include border-radius;
+    // overflow: hidden;
+}
+
+.accordion {
+    @include transition();
+    position: relative;
+    padding: .625rem;
+    border: $border-width solid $border-color;
+
+
+    // accordion indicator
+    &.open .accordion-control::after {
+       @include rotate(180deg);
+    }
+    
+    &:not(:first-child) {
+        border-top-width: 0;
+    }
+}
+
+.accordion-control {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    @include selection(none);
+
+    > * { 
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        margin: 0;
+        font-size: $font-size-base;
+        font-family: $font-family-sans-serif;
+        font-weight: $font-weight-normal;
+        vertical-align: middle;
+    }
+
+    h5 {
+        line-height: 1.5em;
+    }
+
+    // accordion state indicator
+    &::after {
+        content: "\ebfa";
+        position: absolute;
+        width: 1em;
+        line-height: 1em;
+        right: 1rem;
+        top: 50%;
+        font-family: 'icomoon' !important;
+        font-size: 1.5rem;
+        margin-top: -0.5em;
+        @include transition(0.2s);
+    }
+}
+
+.accordion-content {
+    overflow: hidden;
+
+    .accordion-content-wrapper {
+        padding: 0 2rem 1rem 2rem;
+    }
+}
+
+%accordion-text-whiteed {
+    .accordion {
+        border: 0;
+        background-color: rgba($white, .05);
+
+        &:not(:first-child) {
+            margin-top: ($border-width * 2);
+        }
+
+        &:hover {
+            background-color: rgba($white, .1);
+        }
+    }
+
+    .accordion-control {
+
+        h5 {
+            color: inherit;
+        }
+
+        &::after {
+            color: $text-white-secondary;
+        }
+    }
+}
+
+
+
+//
+// Feature
+//
+.accordion-group-feature {    
+    .accordion {
+        @include border-radius;
+        padding: 1rem;
+
+        &:not(:first-child) {
+            margin-top: .625rem;
+        }
+
+        &:not(:first-child) {
+            border-top-width: $border-width;
+        }
+    }
+
+    .accordion-control,
+    .accordion-content > div {
+        padding: 1rem;
+    }
+}
+
+%accordion-feature-text-whiteed {
+    .accordion {
+        &:not(:first-child) {
+            margin-top: .625rem;
+        }
+    }
+}
+
+
+// Minimal
+.accordion-group-minimal {
+    .accordion {
+        border: 0;
+        padding: 0 0 0 3rem;
+
+        &:not(:first-child) {
+            margin-top: 1.25rem;
+        }
+
+        &.open .accordion-control {
+            &::after {
+            }
+        }
+    }
+
+    .accordion-control {
+        min-height: 3.75rem;
+
+        &::after {
+            @extend %boxed;
+            left: -3rem;
+            width: 3.75rem;
+            color: $black;
+            margin-top: -(3.75rem / 2);
+            line-height: 3.75rem;
+            text-align: center;
+            border-radius: 50%;
+        }
+    }
+}
+
+%accordion-minimal-text-whiteed {
+    .accordion {
+        background: transparent;
+        color: $text-white-primary;
+
+        &:not(:first-child) {
+            margin-top: 1.25rem;
+        }
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    .accordion-control {
+        &::after {
+            color: $black;
+        }
+    }
+}
+
+
+//
+// Steps
+//
+.accordion-group-steps {
+    overflow: visible;
+    
+    .accordion {
+        padding-left: 3.75rem;
+        counter-increment: accordion;
+        background: transparent;
+        border: 0;
+
+        &.open {
+            .accordion-control {
+                &::before {
+                    background: $primary;
+                    border-color: $primary;
+                    color: $white;
+                    @include shadow();
+                    @include scale(1.4);
+                }
+            }
+        }
+
+        &:hover {
+            .accordion-control {
+                &::before {
+                    border-color: $primary;
+                }
+            }
+        }
+
+        &:not(:first-child) {
+            margin: 0;
+
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 29px;
+                height: calc(50% - 30px);
+                width: (2 * $border-width);
+                background: $border-color;
+                z-index: 10;
+            }
+        }
+
+        &:not(:last-child) {
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                top: calc(50% + 30px);
+                left: 29px;
+                height: calc(50% - 30px);
+                width: 2px;
+                background: gray('200');
+                z-index: 10;
+            }
+        }
+    }
+
+    .accordion-control {
+        position: static;
+
+        > * {
+            display: block;
+        }
+
+        &::after {
+            display: none;
+        }
+
+        &::before {
+            @include transition();
+            content: counter(accordion, decimal);
+            position: absolute;
+            display: block;
+            top: 50%;
+            left: 0;
+            width: 3.75rem;
+            height: 3.75rem;
+            color: $black;
+            margin-top: -30px;
+            line-height: calc(3.75rem - 4px);
+            text-align: center;
+            border: (2 * $border-width) solid $border-color;
+            z-index: 20;
+            border-radius: 50%;
+            font-size: 20px;
+        }
+    }
+}
+
+%accordion-steps-text-whiteed {
+    .accordion {
+        background-color: transparent;
+
+        &:hover {
+            background-color: transparent;
+        }
+
+        &:not(:first-child) {
+            margin-top: 0;
+
+            &::before {
+                background: $text-white-border;
+            }
+        }
+
+        &:not(:last-child) {
+            &::after {
+                background: $text-white-border;
+            }
+        }
+    }
+
+    .accordion-control {
+        &::before {
+            color: inherit;
+            border-color: $text-white-border;
+        }
+    }
+}
+
+
+//
+// Highlight
+//
+.accordion-group-highlight {
+    overflow: visible;
+    
+    .accordion {
+        background: transparent;
+        border: 0;
+
+        &.open {
+            @extend %boxed;
+        }
+    }
+}
+
+%accordion-highlight-text-whiteed {
+    .accordion {
+        background: transparent;
+
+        &:not(:first-child) {
+            margin-top: 0;
+            border-top: $border-width solid rgba($white, .05);
+        }
+
+        &.open {
+            background-color: rgba($white, .05);
+        }
+    }
+}
+
+
+//
+// Portal
+//
+.accordion-group-portal {
+    @extend %boxed;
+    overflow: hidden;
+
+    .accordion {
+        &.open {
+            background: $gray-100;
+
+            .accordion-control::after {
+                @include rotate(45deg);
+            }
+        }
+    }
+
+    .accordion-control {
+        padding: 2rem;
+
+        &::after {
+            content: "\ec7d";
+        }
+
+        h5 {
+            font-size: 1.25rem;
+            font-family: $font-family-sans-serif;
+        }
+    }
+
+    .accordion-content {
+        > div {
+            padding-bottom: 2rem;
+        }
+    }
+}
+
+
+
+
+//
+// text-whiteed Colors
+//
+.text-white {
+    .accordion-group {
+        @extend %accordion-text-whiteed;
+    }
+
+    .accordion-group-minimal {
+        @extend %accordion-minimal-text-whiteed;
+    }
+
+    .accordion-group-feature {
+        @extend %accordion-feature-text-whiteed;
+    }
+
+    .accordion-group-steps {
+        @extend %accordion-steps-text-whiteed;
+    }
+
+    .accordion-group-highlight {
+       @extend %accordion-highlight-text-whiteed;
+    }
+}
+
+
+//
+// Responsive
+//
+@include media-breakpoint-down(md) {
+    .accordion-control {
+        display: block;
+        
+        > * {
+            &:not(:first-child) {
+                margin-top: .25rem;
+            }
+        }
+    }
+
+    .accordion-group-feature {
+        .accordion-control {
+            > * {
+                display: inline-block;
+            }
+        }
+    }
+}

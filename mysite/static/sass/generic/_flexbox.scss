@@ -1,0 +1,75 @@
+// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: left;
+
+
+    .flex-icon {
+        flex-grow: 1;
+        align-self: left;
+        flex-basis: 3%;
+    }
+
+    .flex-box {
+        flex-grow: 1;
+        align-self: left;
+        flex-basis: 97%;
+    }
+
+}
+
+
+.flex-container-vertical {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: left;
+    height: 100%;
+
+
+
+    .flex-icon {
+        flex-grow: 1;
+        align-self: left;
+        flex-basis: 3%;
+    }
+
+    .flex-box {
+        flex-grow: 1;
+        align-self: center;
+        width: 100%;
+        flex-basis: 74%;
+    }
+
+    .flex-footer {
+        flex-grow: 1;
+        align-self: center;
+        width: 100%;
+        flex-basis: 26%;
+    }
+}
+
+
+// Vertical Alignement FlexBox
+
+.vertical-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+
+}
+
+.vertical-alignment {
+    position: relative;
+    flex-grow: 1;
+    align-self: center;
+    margin-right: auto;
+    margin-left: auto;
+}

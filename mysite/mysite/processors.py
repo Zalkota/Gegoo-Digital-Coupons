@@ -52,5 +52,5 @@ def classloudFrontURL(request):
     # Create fixed data structures to pass to template
     # data could equally come from database queries
     # web services or social APIs
-    CloudFrontURL = 'https://d7ge9247f1u94.cloudfront.net/'
+    CloudFrontURL = 'https://static-gegoo-bucket.s3.amazonaws.com/media/'
     return {'CloudFrontURL': CloudFrontURL}

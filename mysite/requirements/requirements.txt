@@ -89,3 +89,12 @@ geoip2==2.9.0
 
 # Setup https://readthedocs.org/projects/django-cities-light/downloads/pdf/stable-3.x.x/
 django-cities-light==3.5.0
+
+
+# AWS S3 Static Files
+#  https://boto.readthedocs.io/en/latest/
+boto==2.49.0
+# https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
+boto3==1.4.1
+# https://django-storages.readthedocs.io/en/latest/
+django-storages==1.5.1

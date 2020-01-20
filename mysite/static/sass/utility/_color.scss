@@ -1,0 +1,279 @@
+
+// Rainbow section
+
+$color-gray-100: #F7FAFC;
+$color-gray-200: #EDF2F7;
+$color-gray-300: #E2E8F0;
+$color-gray-400: #CBD5E0;
+$color-gray-500: #A0AEC0;
+$color-gray-600: #718096;
+$color-gray-700: #4A5568;
+$color-gray-800: #2D3748;
+$color-gray-900: #1A202C;
+
+$color-red-100: #FEB2B2;
+$color-red-200: #FC8181;
+$color-red-300: #FEB2B2;
+$color-red-400: #FC8181;
+$color-red-500: #F56565;
+$color-red-600: #E53E3E;
+$color-red-700: #C53030;
+$color-red-800: #E53E3E;
+$color-red-900: #C53030;
+
+$color-orange-100: #FFFAF0;
+$color-orange-200: #FEEBC8;
+$color-orange-300: #FBD38D;
+$color-orange-400: #F6AD55;
+$color-orange-500: #ED8936;
+$color-orange-600: #DD6B20;
+$color-orange-700: #C05621;
+$color-orange-800: #9C4221;
+$color-orange-900: #7B341E;
+
+$color-yellow-100: #FFFFF0;
+$color-yellow-200: #FEFCBF;
+$color-yellow-300: #FAF089;
+$color-yellow-400: #F6E05E;
+$color-yellow-500: #ECC94B;
+$color-yellow-600: #D69E2E;
+$color-yellow-700: #B7791F;
+$color-yellow-800: #975A16;
+$color-yellow-900: #744210;
+
+$color-green-100: #F0FFF4;
+$color-green-200: #C6F6D5;
+$color-green-300: #9AE6B4;
+$color-green-400: #68D391;
+$color-green-500: #48BB78;
+$color-green-600: #38A169;
+$color-green-700: #2F855A;
+$color-green-800: #276749;
+$color-green-900: #22543D;
+
+$color-blue-100: #EBF8FF;
+$color-blue-200: #BEE3F8;
+$color-blue-300: #90CDF4;
+$color-blue-400: #63B3ED;
+$color-blue-500: #4299E1;
+$color-blue-600: #3182CE;
+$color-blue-700: #2B6CB0;
+$color-blue-800: #2C5282;
+$color-blue-900: #2A4365;
+
+$color-purple-100: #FAF5FF;
+$color-purple-200: #E9D8FD;
+$color-purple-300: #D6BCFA;
+$color-purple-400: #B794F4;
+$color-purple-500: #9F7AEA;
+$color-purple-600: #805AD5;
+$color-purple-700: #6B46C1;
+$color-purple-800: #553C9A;
+$color-purple-900: #44337A;
+
+$color-blue-gray-100: #F0F4F8;
+$color-blue-gray-200: #D9E2EC;
+$color-blue-gray-300: #BCCCDC;
+$color-blue-gray-400: #9FB3C8;
+$color-blue-gray-500: #829AB1;
+$color-blue-gray-600: #627D98;
+$color-blue-gray-700: #486581;
+$color-blue-gray-800: #334E68;
+$color-blue-gray-900: #243B53;
+$color-blue-gray-1000: #102A43;
+
+// Theme Colors
+$color-primary: #7505AB;
+$color-primary-light: $color-blue-500;
+$color-primary-dark: $color-blue-900;
+
+$color-secondary: $color-gray-600;
+$color-secondary-light: $color-gray-300;
+$color-secondary-dark: $color-gray-800;
+
+$color-light: $color-gray-300;
+$color-muted: $color-gray-300;
+
+$color-white: #fff;
+
+$color-dark:  #2A4365; //#343741
+$color-black: #2D3748;
+//$color-dark:  #424242;
+//$color-black: #000000;
+
+$color-alt: #5b5b5b;
+$color-alt-light: lighten( $color-alt, 20% );
+$color-alt-lighter: lighten( $color-alt, 25% );
+$color-alt-dark: darken( $color-alt, 10%);
+
+
+$color-text: $color-gray-700;
+$color-background: #FFF;
+$color-background-100: #f1f1f1;
+$color-background-200: #fafafa;
+$color-background-300: #F6FAFD;
+$color-background-400: #fafbfc;
+$color-background-500: #f5f5f5;
+$color-background-600: #F1F3F6;
+$color-background-700: #F8F9FA;
+
+$color-main: #fafafa;
+
+// Navbar
+$color-navbar-background: $color-main;
+$color-navbar-background-scrolled: $color-main;
+$color-navbar-text: $color-main;
+$color-navbar-hover: $color-black;
+
+// Navbar-alt
+$color-navbar-alt-background: $color-main;
+$color-navbar-alt-background-scrolled: #fdfdfe;
+$color-navbar-alt-text: $color-black;
+$color-navbar-alt-hover: $color-primary;
+
+// Footer
+$color-footer-background: $color-white;
+$color-footer-text: $color-gray-700;
+$color-footer-title: $color-alt;
+
+
+// Alerts
+$color-success: $color-green-500;
+$color-success-light: lighten( $color-success, 10% );
+$color-success-dark: darken( $color-success, 10% );
+
+$color-danger: $color-red-500;
+$color-danger-light: lighten( $color-danger, 10% );
+$color-danger-dark: darken( $color-danger, 10% );
+
+$color-warning: $color-orange-600;
+$color-warning-light: $color-orange-500;
+$color-warning-dark: $color-orange-700;
+
+$color-info: $color-blue-400;
+$color-info-light: lighten( $color-info, 10% );
+$color-info-dark: darken( $color-info, 10% );
+
+// Gradients
+$gradient-primary: 120deg, $color-purple-600, $color-primary;
+// $keep: #476783;
+// $keep1: #5981a4;
+// $keep2: #6b81cb;
+
+/*  <**************************************************************************>
+    <*****                          Functions                             *****>
+    <**************************************************************************>
+*/
+
+
+$colors: ();
+$colors: map-merge((
+  "primary": $color-primary,
+  "secondary": $color-secondary,
+  "alternate": $color-alt,
+
+  "white": $color-white,
+
+
+
+
+  "gray-10":  #f1f1f1,
+  "gray-20":  #fafafa,
+  "gray-30":  #ddd,
+  "gray-40":  #ccc,
+  "gray-50": #fafbfc,
+  "gray-60": #f5f5f5,
+  "gray-70":  #F1F3F6,
+  "gray-100": #F7FAFC,
+  "gray-200": #EDF2F7,
+  "gray-300": #E2E8F0,
+  "gray-400": #CBD5E0,
+  "gray-500": #A0AEC0,
+  "gray-600": #718096,
+  "gray-700": #4A5568,
+  "gray-800": #2D3748,
+  "gray-900": #1A202C,
+
+  "red-100": #FEB2B2,
+  "red-200": #FC8181,
+  "red-300": #FEB2B2,
+  "red-400": #FC8181,
+  "red-500": #F56565,
+  "red-600": #E53E3E,
+  "red-700": #C53030,
+  "red-800": #E53E3E,
+  "red-900": #C53030,
+
+  "orange-100": #FFFAF0,
+  "orange-200": #FEEBC8,
+  "orange-300": #FBD38D,
+  "orange-400": #F6AD55,
+  "orange-500": #ED8936,
+  "orange-600": #DD6B20,
+  "orange-700": #C05621,
+  "orange-800": #9C4221,
+  "orange-900": #7B341E,
+
+  "yellow-100": #FFFFF0,
+  "yellow-200": #FEFCBF,
+  "yellow-300": #FAF089,
+  "yellow-400": #F6E05E,
+  "yellow-500": #ECC94B,
+  "yellow-600": #D69E2E,
+  "yellow-700": #B7791F,
+  "yellow-800": #975A16,
+  "yellow-900": #744210,
+
+  "green-100": #F0FFF4,
+  "green-200": #C6F6D5,
+  "green-300": #9AE6B4,
+  "green-400": #68D391,
+  "green-500": #48BB78,
+  "green-600": #38A169,
+  "green-700": #2F855A,
+  "green-800": #276749,
+  "green-900": #22543D,
+
+  "blue-100": #EBF8FF,
+  "blue-200": #BEE3F8,
+  "blue-300": #90CDF4,
+  "blue-400": #63B3ED,
+  "blue-500": #4299E1,
+  "blue-600": #3182CE,
+  "blue-700": #2B6CB0,
+  "blue-800": #2C5282,
+  "blue-900": #2A4365,
+
+  "purple-100": #FAF5FF,
+  "purple-200": #E9D8FD,
+  "purple-300": #D6BCFA,
+  "purple-400": #B794F4,
+  "purple-500": #9F7AEA,
+  "purple-600": #805AD5,
+  "purple-700": #6B46C1,
+  "purple-800": #553C9A,
+  "purple-900": #44337A,
+
+  "blue-gray-100": #F0F4F8,
+  "blue-gray-200": #D9E2EC,
+  "blue-gray-300": #BCCCDC,
+  "blue-gray-400": #9FB3C8,
+  "blue-gray-500": #829AB1,
+  "blue-gray-600": #627D98,
+  "blue-gray-700": #486581,
+  "blue-gray-800": #334E68,
+  "blue-gray-900": #243B53,
+  "blue-gray-1000": #102A43,
+), $colors);
+
+
+$colors-alerts: ();
+$colors-alerts: map-merge((
+
+
+  "success": $color-success,
+  "danger": $color-danger,
+  "warning": $color-warning,
+  "info": $color-info,
+
+), $colors-alerts);

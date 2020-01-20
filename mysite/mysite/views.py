@@ -145,7 +145,7 @@ class homeView(View):
         store_empty_qs = Store.objects.all()[0:6]
         # city = context["city"]
         # state = context["subdivisions"]
-        store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
+        store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status='PR')[0:6]
         #store_nearby = store.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
 
         # if address_qs = None:

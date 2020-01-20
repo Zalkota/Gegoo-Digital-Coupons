@@ -1,0 +1,39 @@
+// 
+// footer
+//
+//
+
+footer {
+	padding: 0!important;
+
+	> [class*="container"] {
+		padding-top: 6.25rem;
+		padding-bottom: 6.25rem;
+
+		+ [class*="container"] {
+			margin-top: 0;
+		}
+	}
+
+	.nav {
+		display: inline;
+
+		li {
+			display: inline-block;
+		}
+	}
+}
+
+.footer-title {
+	@extend %eyebrow;
+}
+
+.overlay {
+	background: rgba($black, .1);
+}
+
+.copyright-text {
+	font-size: 12px;
+	letter-spacing: $letter-spacing;
+	text-transform: uppercase;
+}

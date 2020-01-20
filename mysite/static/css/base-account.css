@@ -1,0 +1,215 @@
+/*  <**************************************************************************>
+    <*****                          Functions                             *****>
+    <**************************************************************************>
+*/
+/*  <**************************************************************************>
+    <*****                            LOGIN                             *****>
+    <**************************************************************************>
+*/
+input, input:-internal-autofill-selected, input:-webkit-autofill, select:-webkit-autofill {
+  font-size: 1.1rem; }
+
+.form-control {
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 2px #ddd; }
+  .form-control:hover, .form-control:active, .form-control:focus {
+    transition: .3s;
+    border: 1px solid #7505AB;
+    box-shadow: inset 0 1px 2px #ccc;
+    border-radius: 0.25rem; }
+
+@media screen and (min-width: 1220px) {
+  .hero-login {
+    height: 100vh;
+    background-color: #fafafa;
+    /* Flexbox stuff */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    /* Text styles */
+    text-align: center;
+    z-index: 2;
+    /* Background styles */
+    position: relative;
+    background-size: cover;
+    /* take width of view port, fits element inside of box */
+    background-position: center;
+    /* hero always sticks to the top when resized. */
+    background-repeat: no-repeat;
+    background-attachment: fixed; }
+    .hero-login-left {
+      /* Sizing */
+      background: url(/static/img/headers/landscape2.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      color: #fafafa;
+      order: 1;
+      flex-grow: 1;
+      align-self: auto; }
+      .hero-login-left .logo {
+        position: absolute;
+        bottom: 50%;
+        left: 30%;
+        color: #2D3748;
+        font-size: 2.25rem;
+        animation: moveInTop 1.5s;
+        animation-fill-mode: forwards; }
+    .hero-login-right {
+      /* Sizing */
+      background-color: #fafafa;
+      color: #2D3748;
+      order: 2;
+      position: relative;
+      flex-grow: 1;
+      align-self: auto; }
+      .hero-login-right .card-login {
+        position: absolute;
+        top: 20%;
+        left: 25%; }
+    .hero-login .text {
+      position: absolute;
+      left: 14%;
+      top: 28%;
+      animation: moveInTop 1.5s;
+      animation-fill-mode: forwards; }
+    .hero-login h1 {
+      /* Text styles */
+      font-size: 3.5em;
+      color: white;
+      /* Margins */
+      margin-top: 0;
+      margin-bottom: 0.5em; }
+    .hero-login p {
+      /* Text styles */
+      font-size: 1.25em;
+      line-height: 0;
+      color: white;
+      /* Margins */
+      margin-top: 0;
+      margin-bottom: 2em; }
+    .hero-login img {
+      /* Text styles */
+      font-size: 1.25em;
+      position: fixed;
+      left: 16.5%;
+      top: 30%;
+      color: white;
+      z-index: 1000;
+      /* Margins */
+      margin-top: 0;
+      margin-bottom: 2em; } }
+
+@media screen and (max-width: 1220px) {
+  .hero-300 {
+    /* Sizing */
+    height: 100vh;
+    background-color: #fff;
+    background-image: #fff !important;
+    /* Flexbox stuff */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Text styles */
+    text-align: center;
+    /* Background styles */
+    position: relative;
+    background-size: cover;
+    /* take width of view port, fits element inside of box */
+    background-position: center;
+    /* hero always sticks to the top when resized. */
+    background-repeat: no-repeat;
+    background-attachment: fixed; }
+  .hide {
+    display: none; }
+  .terms {
+    color: #3a3a3a; } }
+
+@media screen and (min-width: 1220px) {
+  .unhide {
+    display: none; } }
+
+@media screen and (min-width: 1220px) {
+  .hero-signup {
+    height: 100vh;
+    background-color: #fafafa;
+    /* Flexbox stuff */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    /* Text styles */
+    text-align: center;
+    z-index: 2;
+    /* Background styles */
+    position: relative;
+    background-size: cover;
+    /* take width of view port, fits element inside of box */
+    background-position: center;
+    /* hero always sticks to the top when resized. */
+    background-repeat: no-repeat;
+    background-attachment: fixed; }
+    .hero-signup-right {
+      /* Sizing */
+      background-color: #7505AB;
+      color: #fafafa;
+      order: 2;
+      flex-grow: 1;
+      align-self: auto; }
+      .hero-signup-right .logo {
+        position: absolute;
+        top: 35%;
+        left: 7%;
+        animation: moveInTop 1.5s;
+        animation-fill-mode: forwards; }
+    .hero-signup-left {
+      /* Sizing */
+      background-color: #fafafa;
+      color: #2D3748;
+      order: 1;
+      position: relative;
+      flex-grow: 1;
+      align-self: auto; }
+      .hero-signup-left .card-signup {
+        position: absolute;
+        top: 15%;
+        left: 25%;
+        animation: moveInTop 1.5s;
+        animation-fill-mode: forwards; }
+    .hero-signup .text {
+      position: absolute;
+      left: 14%;
+      top: 28%;
+      animation: moveInTop 1.5s;
+      animation-fill-mode: forwards; }
+    .hero-signup h1 {
+      /* Text styles */
+      font-size: 3.5em;
+      color: white;
+      /* Margins */
+      margin-top: 0;
+      margin-bottom: 0.5em; }
+    .hero-signup p {
+      /* Text styles */
+      font-size: 1.25em;
+      line-height: 0;
+      color: white;
+      /* Margins */
+      margin-top: 0;
+      margin-bottom: 2em; }
+    .hero-signup img {
+      /* Text styles */
+      font-size: 1.25em;
+      position: fixed;
+      left: 16.5%;
+      top: 30%;
+      color: white;
+      z-index: 1000;
+      /* Margins */
+      margin-top: 0;
+      margin-bottom: 2em; } }

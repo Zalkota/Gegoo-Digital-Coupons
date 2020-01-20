@@ -1,0 +1,307 @@
+// Users
+//
+//
+//
+
+
+.user {
+	@include border-radius;
+	position: relative;
+	overflow: hidden;
+
+	&:hover {
+		.user-caption {
+			padding-top: 6rem;
+			padding-bottom: 5.75rem;
+		}
+
+		.socials {
+			@include translate(0, 0);
+		}
+	}
+
+	&[class*="-circle"] {
+		border-radius: 50%;
+		overflow: hidden;
+		text-align: center;
+
+		.socials {
+			left: 50%;
+			@include translate(-50%, calc(100% + 2.5rem));
+		}
+
+		&:hover {
+			.socials {
+				@include translate(-50%, 0);
+			}
+		}
+	}
+}
+
+.gutter-0 {
+	.user {
+		border-radius: 0;
+	}
+}
+
+.user-photo {
+	display: block;
+	overflow: hidden;
+	margin: 0;
+
+	img {
+		max-width: 100%;
+	}
+}
+
+.user-caption {
+	@extend %text-shadow;
+	@include transition;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	padding: 1.875rem;
+	background: linear-gradient(to bottom, rgba($black,0) 0%,rgba($black,0.5) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#80000000',GradientType=0 );
+
+	> * {
+		display: block;
+	}
+
+	h4 {
+		color: $text-white-primary;
+		margin: 0;
+	}
+
+	span {
+		color: $text-white-secondary;
+	}
+
+	.socials {
+		@extend %socials-text-whiteed;
+		@extend %bordered-text-whiteed;
+		@include translate(0, calc(100% + 2.5rem));
+		position: absolute;
+		bottom: 1.875rem;
+	}
+}
+
+
+.expanded {
+	+ .user-panel {
+		@include translate(0,0);
+		visibility: visible;
+		opacity: 1;
+		padding: 15rem 0 5rem 0;
+
+		> .container {
+			opacity: 1;
+			transition-delay: 0.2s;
+		}
+	}
+}
+
+.user-panel {
+	@extend %text-white;
+	@extend %text-shadow;
+	@include translate(0,100%);
+	@include transition(0.2s);
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: block;
+	padding: 0;
+	opacity: 0;
+	z-index: 100;
+	visibility: hidden;
+	opacity: 0;
+
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: -moz-linear-gradient(top, rgba($black,0.0) 0%,  rgba($black,1) 100%);
+		background: -webkit-linear-gradient(top, rgba($black,0.0) 0%, rgba($black,1) 100%);
+		background: linear-gradient(to bottom, rgba($black,0.0) 0%, rgba($black,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000',GradientType=0 );
+	}
+
+	> .container {
+		@include transition();
+		opacity: 0;
+	}
+
+	.collapse {
+		@include transition;
+		@include translate(-50%,0);
+		position: absolute;
+		bottom: ($grid-gutter-width / 2);
+		left: 50%;
+		display: block;
+		border-radius: 50%;
+		text-align: center;
+		width: 4.25rem;
+		height: 4.25rem;
+		line-height: 4.25rem;
+		text-align: center;
+		cursor: pointer;
+		color: $black;
+
+		&::before {
+			font-family: 'icomoon';
+			font-size: 1.875rem;
+			content: "\ecce";
+			color: $white;
+		}
+
+		&:hover {
+			background: rgba($white, .1);
+		}
+	}
+	
+}
+
+//
+// Avatar
+//
+.avatar {
+	@include border-radius;
+	width: 3.75rem;
+	height: 3.75rem;
+
+	&[class*="-sm"] {
+		width: 2.5rem;
+		height: auto;
+	}
+
+	&[class*="-lg"] {
+		width: 5rem;
+		height: auto;
+	}
+
+	&[class*="-xl"] {
+		width: 10rem;
+		height: auto;
+	}
+}
+
+
+
+//
+// User Grid
+//
+.user-grid {
+	@include selection(none);
+	@include clearfix;
+	list-style: none;
+	padding: 0;
+
+	> li {
+		float: left;
+	}
+
+	.user {
+		overflow: visible;
+	}
+
+	.user-photo {
+		@include transition;
+		border-radius: 50%;
+		cursor: pointer;
+
+		&:hover {
+			@include scale(1.1);
+			-webkit-box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+			   -moz-box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+					box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+		}
+
+		&.expanded {
+			@include scale(1.1);
+			-webkit-box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+			   -moz-box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+					box-shadow: 0px 10px 15px 0 rgba($black,0.1);
+		}
+
+		img {
+			@include transition;
+			border-radius: 50%;
+		}
+	}
+}
+
+@include media-breakpoint-down(md) {
+	.user-grid {
+		> li {
+			width: 20%;
+
+			&:nth-child(6) {
+				margin-left: calc(20% / 2);
+			}
+		}
+	}
+}
+
+@include media-breakpoint-up(lg) {
+	.user-grid {
+		> li {
+			width: 12.5%;
+
+			&:nth-child(9) {
+				margin-left: calc(12.5% / 2);
+			}
+		}
+	}
+}
+
+
+
+//
+// User List
+//
+.user-list {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+
+	> li {
+		position: relative;
+		display: inline-block;
+		width: 3.125rem;
+		border-radius: 50%;
+		z-index: 10;
+		overflow: hidden;
+		@include transition;
+
+		&:not(:first-child) {
+			@include shadow();
+			border-radius: 50%;
+			margin-left: -1rem;
+		}
+
+		&:hover {
+			@include shadow;
+			z-index: 20;
+		}
+	}
+}
+
+
+//
+// Speakers
+//
+.speakers {
+	margin-right: 1.25rem;
+}
+
+@include media-breakpoint-down(md) {
+	.speakers {
+		display: none;
+	}
+}

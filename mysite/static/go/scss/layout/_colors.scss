@@ -1,0 +1,54 @@
+//
+// colors
+//
+//
+
+// background colors
+@each $color, $value in $colors {
+  @include bg-variant(".bg-#{$color}", $value);
+}
+
+.bg-image {
+	background-size: cover;
+	background-position: center;
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: rgba($black, .4);
+		z-index: 10;
+	}
+
+	> .container {
+		position: relative;
+		z-index: 20;
+	}
+
+	> .image {
+		&[class*="blured"] {
+			@include prefix(filter, blur(5px), webkit moz o ms);
+			position: absolute;
+			top: -2.5rem;
+			right: -2.5rem;
+			bottom: -2.5rem;
+			left: -2.5rem;
+		}
+	}
+
+
+}
+
+// text colors
+@each $color, $value in $colors {
+	@include text-emphasis-variant(".text-#{$color}", $value);
+}
+
+@each $color, $value in $socials {
+	@include text-emphasis-variant(".text-#{$color}", $value);
+}
+
+.text-black { color: $black!important; }

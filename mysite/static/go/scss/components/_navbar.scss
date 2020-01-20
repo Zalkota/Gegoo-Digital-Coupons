@@ -1,0 +1,118 @@
+// 
+// navbar
+//
+//
+
+.navbar {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.navbar-brand {
+	height: 46px;
+	margin-top: .5rem;
+	margin-bottom: .5rem;
+	margin-right: 3rem;
+
+	&.navbar-brand-sm { height: 36px; }
+	&.navbar-brand-lg { height: 56px; }
+
+	.navbar-logo {
+		width: auto;
+		max-height: 100%;
+		display: none;
+	}
+}
+
+.navbar-nav {
+	.nav-item {
+		+ .nav-item {
+			margin-left: 1rem;
+		}
+	}
+
+	.nav-link {
+		@include transition;
+		font-size: $font-size-sm;
+	}
+}
+
+
+.navbar-toggler {
+	padding: 0!important;
+	border: 0;
+}
+
+
+// Responsive
+//
+// Mobile View for Navbar
+@include media-breakpoint-down(md) {
+
+	.navbar-logo-dark {
+		display: block!important;
+	}
+
+	.navbar {
+		.navbar-toggler {
+			padding: .5rem;
+			color: $navbar-light-color;
+			border-color: $navbar-light-toggler-border-color;
+			border-radius: 50%;
+		}
+
+		.nav-item {
+			+ .nav-item {
+				margin: 0;
+			}
+
+			.nav-link {
+				padding: 5px 0;
+				color: $body-color;
+
+				&:focus,
+				&:hover {
+					color: $black;
+				}
+			}
+
+			&.show,
+			&.active {
+				.nav-link {
+					color: $black;
+				}
+			}
+		}
+	}
+
+
+	.navbar {
+		.banner {
+			display: none;
+		}
+	}
+
+	.navbar-nav {
+	
+
+		.nav-item {
+			width: 100%;
+			padding: .5rem 0;
+
+			.btn {
+				display: block;
+				background-color: $primary;
+				color: $white;
+			}
+		}
+	}
+}
+
+
+.overlay-active {
+	.headroom {
+		max-height: 100vh;
+		overflow: hidden;
+		overflow-y: scroll;
+	}
+}

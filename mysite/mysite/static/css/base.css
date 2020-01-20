@@ -8929,6 +8929,56 @@ button {
     border-left: 3px solid #7505AB;
     padding-left: .7rem; }
 
+.progress-bar-primary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #6f42c1;
+  transition: width 0.6s ease; }
+
+.progress-bar-success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #48BB78;
+  transition: width 0.6s ease; }
+
+.progress-bar-danger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #F56565;
+  transition: width 0.6s ease; }
+
+.progress-bar-warning {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #DD6B20;
+  transition: width 0.6s ease; }
+
+.progress-bar-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #63B3ED;
+  transition: width 0.6s ease; }
+
 hr.hr-2 {
   border-top: 2px solid #7505AB;
   width: 30px;

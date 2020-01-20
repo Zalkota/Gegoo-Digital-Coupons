@@ -1,0 +1,376 @@
+//
+// Content
+//
+//
+
+body {
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+[class*="container"] {
+
+	+ [class*="container"] {
+		margin-top: ($section-padding / 2);
+	}
+}
+
+.container-full {
+	overflow: hidden;
+}
+
+.container-fluid {
+	@include media-breakpoint-up(lg) { max-width: 1370px }
+	@include media-breakpoint-up(xl) { max-width: 1770px; }
+}
+
+
+.pattern {
+	&::before,
+	&::after {
+		@include rotate(-45deg);
+		position: absolute;
+		content: "";
+		display: block;
+		background: rgba($white, .05);
+		border-radius: 10rem;
+	}
+
+	&::before {
+		width: 80vw;
+		height: 80vw;
+		bottom: -40vw;
+		left: 25vw;
+	}
+
+	&::after {
+		width: 60vw;
+		height: 60vw;
+		bottom: -30vw;
+		left: 80vw;
+	}
+
+	&.pattern-dark {
+		&::before,
+		&::after {
+			background: rgba($dark, .05);
+		}
+	}
+
+	> * {
+		position: relative;
+		z-index: 10;
+	}
+
+
+	@include media-breakpoint-down(sm) {
+		&::before {
+			width: 160vw;
+			height: 160vw;
+			bottom: -80vw;
+		}
+
+		&::after {
+			width: 120vw;
+			height: 120vw;
+			bottom: -60vw;
+			left: 80vw;
+		}
+	}
+}
+
+
+//
+// section
+//
+body {
+
+	> section,
+	> footer {
+		position: relative;
+		margin: 0 auto;
+		padding: $section-padding 0;
+		overflow: hidden;
+	}
+
+	[class*="container"] {
+		.row:not(:last-child) {
+			margin-bottom: ($section-padding / 2);
+		}
+	}
+}
+
+@include media-breakpoint-down(sm) {
+	body {
+		> section,
+		> footer {
+			padding: ($section-padding / 2) 0;
+		}
+
+		[class*="container"] {
+			.row:not(:last-child) {
+				margin-bottom: ($section-padding / 3);
+			}
+		}
+	}
+}
+
+
+
+//
+// layers section
+//
+.layers {
+	position: relative;
+	margin: 0 auto;
+}
+
+.layers-foreground {
+	position: relative;
+	z-index: 50;
+
+	@include media-breakpoint-down(sm) {
+		background: rgba($purple, .5);
+	}
+}
+
+.layers-background {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 40;
+
+	> .container,
+	> .container-fluid,
+	> .container-full {
+		height: 100%;
+
+		> .row {
+			height: 100%;
+		}
+	}
+}
+
+.layers-background-overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: $purple;
+	z-index: 45;
+}
+
+
+//
+// split
+//
+.split-background {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+
+	.container,
+	.container-fluid,
+	.container-full {
+		height: 100%;
+
+		.row { height: 100%; }
+	}
+}
+
+@include media-breakpoint-down(sm) {
+	.split-background {
+		position: static;
+	}
+}
+
+
+//
+// overlay
+//
+.overlay {
+	&::before {
+		position: absolute;
+		content: "";
+		display: block;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-color: currentColor;
+		opacity: .8;
+		z-index: 10;
+	}
+}
+
+
+
+//
+// Section Sizing
+//
+section {
+	&[class*="large"] {
+		padding: ($section-padding * 1.5) 0;
+	}
+
+	&[class*="small"] {
+		padding: ($section-padding / 1.5) 0;
+	}
+}
+//////////
+// need to add responsive breakpoints here
+//////////
+
+
+//
+// separator
+//
+[class*="separator"] {
+	border-width: 0;
+	border-color: $border-color;
+	border-style: solid;
+
+	&[class*="-top"] { border-top-width: $border-width; }
+	&[class*="-right"] { border-right-width: $border-width; }
+	&[class*="-bottom"] { border-bottom-width: $border-width; }
+	&[class*="-left"] { border-left-width: $border-width; }
+}
+
+%separator-text-white {
+	border-color: rgba($white, .1);
+}
+
+//
+// SVG shape section decoration
+//
+.section-decorated-top {
+	padding-top: ($section-padding * 1.5);
+}
+
+.section-decorated-bottom {
+	padding-bottom: ($section-padding * 1.5);
+}
+
+.decorated-top {
+	position: absolute;
+	top: -$border-width;
+	right: 0;
+	bottom: auto;
+	left: 0;
+	z-index: 20;
+	height: ($section-padding / 2);
+	transform: translateZ(0);
+
+	svg {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+		height: 100%;
+		
+		> * {
+			fill: currentColor;
+			@include shadow();
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		height: 20px;
+	}
+}
+
+.decorated-bottom {
+	position: absolute;
+	top: auto;
+	right: 0;
+	bottom: -$border-width;
+	left: 0;
+	z-index: 20;
+	height: ($section-padding / 2);
+	transform: translateZ(0);
+
+	svg {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+		height: 100%;
+		
+		> * {
+			fill: currentColor;
+			@include shadow(20px);
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		height: 20px;
+	}
+}
+
+.decorated-sm {
+	height: 20px;
+}
+
+
+
+
+//
+// fullscreen section
+//
+.viewport {
+	position: relative;
+	overflow: hidden;
+}
+
+
+// background decoration
+.circle {
+	position: absolute;
+	top: 40%;
+	width: 20vw;
+	height: 20vw;
+	background: rgba($black, .1);
+	border-radius: 50%;
+}
+
+.square {
+	position: absolute;
+	top: 80%;
+	left: 75vw;
+	width: 15vw;
+	height: 15vw;
+	background: rgba($black, .1);
+}
+
+
+
+// Responsive
+//
+//
+@include media-breakpoint-up(xl) {
+
+	body {
+		> section,
+		> footer {
+			padding: 7.5rem 0;
+		}
+	}
+}
+
+@include media-breakpoint-down(md) {
+
+	.container,
+	.container-fluid,
+	.container-full {
+		> .row {
+			> *:not(:last-child) {
+				margin-bottom: 1.875rem;
+			}
+		}
+	}
+}

@@ -1,0 +1,48 @@
+.subscription-chart {
+
+    li {
+        text-decoration: none;
+        color: $color-gray-700;
+        font-size: 20px;
+        padding-top: 1rem;
+        height: 54px;
+    }
+
+}
+
+.subscription-chart-right {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    li {
+        text-decoration: none;
+        color: $color-white;
+        font-size: 20px;
+        padding-top: 1rem;
+        text-align: center;
+        height: 54px;
+    }
+
+}
+
+.component-list-100 {
+        list-style-type: none;
+        padding-left: 0;
+
+        li a {
+            text-decoration: none;
+            color: $color-gray-800;
+            font-size: 18px;
+            vertical-align: baseline;
+            display: block;
+            display: inline-block;
+            margin-top: 1rem;
+            height: 25px;
+            padding-left: .9rem;
+        }
+
+        .active {
+            color: $color-primary;
+            border-left: 3px solid $color-primary;
+            padding-left: .7rem;
+        }
+}

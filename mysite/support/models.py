@@ -22,8 +22,8 @@ class Topic(models.Model):
 class Question(models.Model):
 
     STATUS_CHOICES = {
-        ('draft', 'Draft'),
-        ('published', 'Published'),
+        ('DR', 'Draft'),
+        ('PB', 'Published'),
     }
 
     title       = models.CharField(max_length=100)
@@ -31,7 +31,7 @@ class Question(models.Model):
     slug        = models.SlugField(max_length=100)
     # author      = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='support_post')
     body        = models.TextField()
-    status      = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
+    status      = models.CharField(max_length=20, choices=STATUS_CHOICES, default='DR')
     created_at  = models.DateTimeField(default=timezone.now, verbose_name="Created at")
     updated_at  = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
 

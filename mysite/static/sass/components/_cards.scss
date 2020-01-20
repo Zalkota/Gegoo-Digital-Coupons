@@ -1,0 +1,304 @@
+/*  <**************************************************************************>
+    <*****                            Cards                               *****>
+    <**************************************************************************>
+*/
+
+
+.card {
+    // box-shadow: 0 30px 60px -12px rgba(50,50,93,.25), 
+    //             0 18px 36px -18px rgba(0,0,0,.3), 
+    //             0 -12px 36px -8px rgba(0,0,0,.025);
+    box-shadow: 0 4px 10px rgba(50,50,93,.24), 
+                0 4px 10px rgba(0,0,0,.08);
+    background-color: #fff;
+    border-radius: $border-radius-200;
+
+    .card-img {
+      width: 100%;
+      height: 22vh;
+      object-fit: cover;
+    }
+
+    .card-header {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .card-body {
+        border-radius: $border-radius-100 $border-radius-100 0 0 !important;
+        padding: 1.5rem 1.5rem;
+    }
+
+    .card-footer {
+        border-top: none !important;
+        background-color: $color-background-500 !important;
+        border-radius: 0 0 $border-radius-200 $border-radius-200;
+        padding: 1rem;
+    }
+}
+
+// .card-body {
+//   background-color: #fff !important;
+// }
+//
+// .card-header {
+//   background-color: #fafbfc !important;
+// }
+
+.card-custom {
+  min-height: 200px;
+  width: 500px;
+  overflow: hidden;
+  box-shadow: 0 0.938em 2.188em rgba(50,50,93,.1);
+  //0 0.313em 0.938em rgba(0,0,0,.07);
+}
+
+.card-custom img {
+  position: absolute;
+  width: 150px;
+  height: 200px;
+  left: 0rem;
+  top: 0rem;
+}
+
+.card-custom .card-body-custom {
+  height: 100px;
+  position: relative;
+
+    h2 {
+      margin-left: 175px;
+      margin-top: 8px;
+      margin-bottom: 0px;
+    }
+    p {
+      margin-left: 175px;
+      margin-top: 1px;
+      font-size: 16px;
+      font-weight: 100;
+    }
+}
+
+.card-custom .card-footer-custom {
+  height: 100px;
+  position: relative;
+  background-color: rgba(0, 0, 0, .3);
+
+  h2 {
+    margin-left: 175px;
+    margin-top: 16px;
+    margin-bottom: 0px;
+  }
+  p {
+    margin-left: 175px;
+    margin-top: 1px;
+    display: flex;
+  }
+}
+
+
+.card-effects {
+  transition: transform 0.25s;
+}
+
+.card-effects::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+  content: '';
+  opacity: 0;
+  z-index: -1;
+}
+
+.card-effects:hover::after {
+  opacity: 1;
+}
+
+
+/*  <**************************************************************************>
+    <*****                         Card Borders                               *****>
+    <**************************************************************************>
+*/
+
+.card-border {
+  border: solid 1px $color-gray-300;
+}
+
+.card-border-200 {
+  border: solid 2px $color-gray-300;
+}
+
+/*  <**************************************************************************>
+    <*****                         Card Stripes                               *****>
+    <**************************************************************************>
+*/
+
+@each $colors, $value in $colors {
+
+    .stripe-#{$colors} {
+      border-left: 5px solid $value;
+      border-right: solid 1px #d7d7d7;
+      border-bottom: solid 1px #d7d7d7;
+    }
+
+}
+
+@each $colors-alerts, $value in $colors-alerts {
+
+    .stripe-#{$colors-alerts} {
+      border-left: 5px solid $value;
+      border-right: solid 1px #d7d7d7;
+      border-bottom: solid 1px #d7d7d7;
+    }
+
+}
+
+
+@each $colors, $value in $colors {
+
+    .stripe-#{$colors}-top {
+      border-top: 4px solid $value;
+    }
+
+}
+
+@each $colors-alerts, $value in $colors-alerts {
+
+    .stripe-#{$colors-alerts}-top {
+      border-top: 4px solid $value;
+    }
+
+}
+
+
+/*  <**************************************************************************>
+    <*****                   Mod Subscription Cards                       *****>
+    <**************************************************************************>
+*/
+
+
+.card-graphic-middle {
+  background-image: url(/static/img/card_membership.svg);
+  //background-image: linear-gradient(60deg, $color-alt-light, $color-alt-lighter);
+  /* clip-path: polygon(0 0%, 100% 0, 100% 75%, 0 90%); */
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.card-graphic-left {
+  background-image: url(/static/img/card_left.svg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.card-graphic-right {
+  background-image: url(/static/img/card_right.svg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+
+
+.border-top-dark {
+    border-top: 1px solid #ccc;
+}
+
+/*  <**************************************************************************>
+    <*****                            FAQ Cards                           *****>
+    <**************************************************************************>
+*/
+
+.card-custom-faq {
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 5px 15px rgba($color: #000000, $alpha: .06),
+              0px 15px 35px rgba($color: #3754aa, $alpha: .1);
+  margin: 32px 0px !important;
+
+  .card-header{
+    background: #fff;
+    border: none;
+    padding: 24px;
+  }
+
+  .card-body{
+    border-top: 2px solid rgba($color: #f1f3f6, $alpha: 1.0);
+  }
+
+  .card-footer{
+    background: #fff !important;
+    border-top: 2px solid rgba($color: #f1f3f6, $alpha: 1.0) !important;
+    padding: 24px;
+  }
+}
+
+/*  <**************************************************************************>
+    <*****                           pill card                           *****>
+    <**************************************************************************>
+*/
+
+.card-pill {
+    text-align: center;
+    border-radius: 2rem;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    width: 100%;
+    color: $color-dark;
+    padding: .6rem 0.5rem .6rem 0.5rem;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid $color-gray-400;
+    transition: transform 0.25s;
+    box-shadow: 0;
+
+    a {
+        color: $color-text !important;
+    }
+
+    &:hover, &:focus {
+        box-shadow: 0;
+        color: $color-primary;
+        }
+}
+
+.card-pill-active {
+    text-align: center;
+    border-radius: 2rem;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    width: 100%;
+    padding: .6rem 0.5rem .6rem 0.5rem;
+    cursor: pointer;
+    border: 1px solid $color-gray-400;
+    transition: transform 0.25s;
+    box-shadow: $box-shadow-1;
+    background-color: white;
+    color: $color-primary;
+}
+
+
+    .card-pill::before {
+      border-radius: 2rem;
+      position: absolute;
+      transition: opacity 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+      content: '';
+      opacity: 0;
+      z-index: -1;
+    }
+
+    .card-pill:hover::before {
+      opacity: 1;
+    }

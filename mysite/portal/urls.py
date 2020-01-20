@@ -13,8 +13,6 @@ urlpatterns = [
     #Consumer Store Views
     path('store/<slug:slug>/', portal_views.MerchantStoreDetailView.as_view(), name='store_detail'),
 
-
-
     #Consumer Views
     path('stores/', portal_views.ConsumerStoreListView.as_view(), name='consumer_store_list'),
     path('store/<slug:slug>', portal_views.ConsumerStoreDetailView.as_view(), name='consumer_store_detail')

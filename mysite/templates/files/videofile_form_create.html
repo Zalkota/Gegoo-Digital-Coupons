@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %} Create New Form {% endblock %}
+
+{% block content %}
+<!-- <div class="modal fade" id="modal-progress" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Uploading...</h4>
+      </div>
+      <div class="modal-body">
+        <div class="progress">
+          <div class="progress-bar py-4" role="progressbar" style="width: 0%; height: 10px;">0%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<section class="section-sm">
+    <div class="container mb-5">
+      <div class="row">
+        <div class=" col-lg-12">
+            <h2 class="header">Upload Video File</h2>
+          <div class="card card-border shadow-2">
+            <div class="card-body bg-muted bg-light text-center hide">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <button type="button" id="uploadbutton" class="btn btn-primary-alt js-upload-photos pull-right">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-cloud-upload"><path class="primary" d="M18 14.97c0-.76-.3-1.51-.88-2.1l-3-3a3 3 0 0 0-4.24 0l-3 3A3 3 0 0 0 6 15a4 4 0 0 1-.99-7.88 5.5 5.5 0 0 1 10.86-.82A4.49 4.49 0 0 1 22 10.5a4.5 4.5 0 0 1-4 4.47z"/><path class="fill-gray-200" d="M11 14.41V21a1 1 0 0 0 2 0v-6.59l1.3 1.3a1 1 0 0 0 1.4-1.42l-3-3a1 1 0 0 0-1.4 0l-3 3a1 1 0 0 0 1.4 1.42l1.3-1.3z"/></svg>
+                         Upload
+                      </button>
+                  </div>
+                  <div class="col-lg-6 offset-3 text-center">
+                      <div style="padding-top: 5rem; padding-bottom: 7rem;">
+                        <div id="defaultmessage">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12 mb-4 icon-document"><path class="primary" d="M6 2h6v6c0 1.1.9 2 2 2h6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2z"/><polygon class="secondary" points="14 2 20 8 14 8"/></svg>
+                            <h3 class="text-muted">Drag Video Here to Upload</h3>
+                        </div>
+                        <div id="successmessage" style="display: none;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12 mb-4 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-200"/><path class="fill-green-600" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                            <h3 class="text-muted">Upload Success</h3>
+                        </div>
+                        <div class="progress mt-4" style="display: none;" id="progressbar">
+                          <div class="progress-bar gradient-primary py-2 fw-6" role="progressbar" style="width: 0%; height: 10px;">0%</div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+
+              {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #}
+              <input id="fileupload" type="file" name="file" multiple
+                     style="display: none;"
+                     data-url="{% url 'files:merchant_video_upload' %}"
+                     data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+              </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-lg-2 pull-left">
+                    <a class="btn btn-primary-alt btn-block" id="defaultbutton" href="{% url 'users:userPage' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-arrow-thick-left-circle"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M12 10h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5v2a1 1 0 0 1-1.7.7l-4-4a1 1 0 0 1 0-1.4l4-4A1 1 0 0 1 12 8v2z"/></svg>
+                        Back
+                    </a>
+                </div>
+                <div class="offset-8"></div>
+                <div class="col-lg-2 pull-right">
+                    <a class="btn btn-success-alt btn-block" id="successbutton" style="display:none" href="{% url 'users:userPage' %}">Complete
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-arrow-thick-right-circle"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M12 14H7a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h5V8a1 1 0 0 1 1.7-.7l4 4a1 1 0 0 1 0 1.4l-4 4A1 1 0 0 1 12 16v-2z"/></svg>
+                    </a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+{% endblock %}
+
+
+
+
+{% block jquery %}
+$(document).ready(function() {
+
+    var UserRewardData = parseInt("{{ data }}")
+    console.log(UserRewardData)
+
+    new Chart(document.getElementById("doughnut-chart"), {
+        type: 'doughnut',
+        data: {
+
+          datasets: [
+            {
+              label: "Population (millions)",
+              backgroundColor: ["#7505AB"],
+              data: [UserRewardData, 100],
+              weight: 0.5,
+            }
+          ]
+        },
+        options: {
+
+          title: {
+            display: false,
+          }
+        }
+    });
+
+
+});
+{% endblock %}
+
+
+
+
+{% block extrajs %}
+  {# JQUERY FILE UPLOAD SCRIPTS #}
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="{% static 'js/jquery-file-upload/vendor/jquery.ui.widget.js' %}"></script>
+  <script src="{% static 'js/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
+  <script src="{% static 'js/jquery-file-upload/jquery.fileupload.js' %}"></script>
+
+  {# imageS PAGE SCRIPTS #}
+  <script src="{% static '/js/images/basic-upload.js' %}"></script>
+  <!-- <script src="{% static '/js/images/progress-bar-upload.js' %}"></script>
+  <script src="{% static '/js/images/drag-and-drop-upload.js' %}"></script> -->
+
+  {# imageS progress circle #}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+{% endblock %}

@@ -1,0 +1,191 @@
+// Testimonials
+//
+//
+//
+
+.blockquote {
+	position: relative;
+	margin: inherit;
+	padding: 2rem 0 0 2rem;
+	color: $black;
+
+	&::before {
+		content: '\201C';
+		position: absolute;
+		display: inline;
+		top: -3rem;
+		left: -1rem;
+		color: inherit;
+		font-family: $headings-font-family;
+		font-size: 30rem;
+		color: rgba($black, .1);
+		line-height: 1em;
+		z-index: 1;
+	}
+
+	p {
+		position: relative;
+		color: inherit;
+		font-size: 1.625rem;
+		font-family: $headings-font-family;
+		font-weight: $font-weight-light;
+		line-height: 1.5em;
+		z-index: 5;
+	}
+}
+
+.blockquote-footer {
+	position: relative;
+	margin-top: rem(10);
+	color: $gray-300;
+	z-index: 5;
+
+	&::before {
+		display: none;
+	}
+}
+
+%blockquote-text-white {
+	color: $white;
+
+	&::before {
+		color: rgba($white, .1);
+	}
+
+	.blockquote-footer {
+		color: $text-white-secondary;
+	}
+}
+
+
+//
+// Blockquote List
+//
+.blockquote-list {
+	> * {
+		margin-right: 15%;
+		margin-bottom: 1.25rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&:nth-child(2n+2) {
+			margin-right: 0;
+			margin-left: 15%;
+		}
+	}
+}
+
+//
+// Style 1
+//
+.blockquote-1 {
+	margin-right: 0;
+}
+
+
+//
+// Style 2
+//
+.blockquote-2 {
+	border-radius: 0 2.5rem 2.5rem 2.5rem;
+	padding: 2.5rem 2.5rem 2.5rem 6.5rem;
+
+	&:nth-child(2n+2) {
+		border-top-left-radius: 2.5rem;
+		border-top-right-radius: 0; 
+	}
+
+	&::before {
+		top: 2.25rem;
+		font-size: 6rem;
+		left: 2.5rem;
+	}
+
+	p {
+		font-size: $font-size-lg;
+		font-weight: $font-weight-normal;
+	}
+
+	.blockquote-footer {
+		&::before {
+			display: none;
+		}
+	}
+}
+
+
+
+//
+// Review
+//
+.review-listing {
+
+	.owl-item {
+		padding: 6.25rem;
+
+		&.active + .active {
+			border-left: $border-width solid $border-color;
+		}
+	}
+}
+
+.review {
+	p { 
+		margin-top: 50px;
+		font-size: 1.25rem;
+		font-family: $headings-font-family;
+		font-weight: $font-weight-light;
+	}
+	hr {
+		width: 25%;
+		margin-left: 0;
+	}
+}
+
+.review-score {
+	@include border-radius;
+	display: inline-block;
+	width: 5rem;
+	line-height: 5rem;
+	font-size: 1.5rem;
+	color: $white;
+	background: $primary;
+	text-align: center;
+}
+
+@include media-breakpoint-down(md) {
+	.review-listing {
+		.owl-item {
+			text-align: center;
+			padding: 6.25rem 0;
+		}
+
+		hr {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
+
+
+
+
+// text-whiteed Colors
+//
+//
+.text-white {
+
+	.bubble {
+		&::before { color: inherit; }
+		p { color: $white; }
+	}
+
+	.testimonial {
+		p {
+			color: $text-white-primary;
+		}
+	}
+
+}

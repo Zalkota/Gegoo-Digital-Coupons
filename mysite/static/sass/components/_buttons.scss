@@ -1,0 +1,534 @@
+/*  <**************************************************************************>
+    <*****                         BUTTONs                                *****>
+    <**************************************************************************>
+*/
+
+// ========================== BASIC CONFIGURATION ========================/
+.btn {
+    font-size: 16px;
+    font-weight: 650;
+    text-align: center;
+
+
+
+&:hover, &:active &:focus {
+
+    font-weight: 650;
+  }
+}
+
+// ============ CUSTOM BUTTON CONFIGURATION ==========//
+    button {
+      display: block;
+      background: transparent;
+      color: #fff;
+      box-shadow: 0;
+      border-radius: $border-radius;
+      border: 0;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      z-index: 1;
+      transition: all 0.15s ease;
+    }
+
+  .custom-button-animations {
+
+    button:focus {
+      background: #555abf;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 7px 14px 0 rgba(50, 50, 93, 0.1),
+        0 3px 6px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    button:active {
+      background: #43458b;
+    }
+  }
+
+
+// ========================== ADVANCED CONFIGURATION ========================/
+
+// USE THIS STYLE OF SASS CONFIGURATION //
+
+
+
+  .btn-action {
+  background-image: linear-gradient(180deg, $color-secondary-light, $color-secondary 95%);
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: $border-radius;
+  padding-left: 1.7rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+
+  &:hover,&:active,&:focus,&:visited {
+    background-image: linear-gradient(180deg, $color-secondary, $color-secondary-dark 95%);
+    color: #e5e5e5;
+    box-shadow: none;
+    }
+  }
+
+  .btn-action-alt {
+    background-image: linear-gradient(180deg, #26c281, #1c8248 95%);
+    color: #fafafa;
+    box-shadow: none;
+    border-radius: $border-radius;
+    padding-left: 1.7rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+
+
+  &:hover,  &:focus, &:active{
+    background-image: linear-gradient(180deg,#26c281, #24a35a 95%);
+    color: #e5e5e5;
+    box-shadow: none;
+    }
+  }
+
+
+  .btn-action-disabled {
+    background-color: #ccc;
+    color: #fafafa;
+    box-shadow: none;
+    height: 50px;
+    width: 12rem;
+    border-radius: $border-radius;
+    padding-left: 1.7rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+
+    &:hover,  &:focus, &:active{
+      background-color: #ccc;
+      color: #e5e5e5;
+      height: 50px;
+      box-shadow: none;
+      }
+    }
+
+
+/*  <**************************************************************************>
+    <*****                         BUTTONs                                *****>
+    <**************************************************************************>
+*/
+
+@each $color, $value in $colors {
+
+  .btn-#{$color}-alt {
+  background: $value;
+  color: $color-white;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  margin-bottom: 0;
+  border-radius: $border-radius-100;
+
+  &:hover, &:active, &:focus{
+    background: $value;
+    color: #e5e5e5;
+    box-shadow: $box-shadow-1;
+    text-decoration: none !important;
+    }
+  }
+}
+
+
+@each $colors-alerts, $value in $colors-alerts {
+
+    .btn-#{$colors-alerts}-alt {
+    background: $value;
+    color: #FFF;
+    box-shadow: 0;
+    font-weight: 600;
+    font-size: 16px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+    margin-bottom: 0;
+    border-radius: $border-radius-100;
+
+    &:hover, &:active, &:focus{
+        background: $value;
+        color: #e5e5e5;
+        box-shadow: $box-shadow-1;
+        text-decoration: none !important;
+      }
+    }
+}
+
+
+/*  <**************************************************************************>
+    <*****                         Inverted Buttons                      *****>
+    <**************************************************************************>
+*/
+@each $colors-alerts, $value in $colors-alerts {
+
+    .btn-#{$colors-alerts}-inverted {
+    background: #FFF;
+    color: $value;
+    border: 1px solid $color-gray-300;
+    box-shadow: 0;
+    font-weight: 600;
+    font-size: 16px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+    margin-bottom: 0;
+    border-radius: $border-radius-100;
+
+    &:hover, &:active, &:focus{
+      background-color: $value;
+      color: #FFF;
+        border: 1px solid $value;
+      text-decoration: none !important;
+      }
+    }
+}
+
+
+@each $colors, $value in $colors {
+
+    .btn-#{$colors}-inverted {
+    background: transparent;
+    color: $value;
+    border: 1px solid $value;
+    box-shadow: 0;
+    font-weight: 600;
+    font-size: 16px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+    margin-bottom: 0;
+    border-radius: $border-radius-100;
+
+    &:hover, &:active, &:focus{
+      background-color: $value;
+      color: #FFF;
+        border: 1px solid $value;
+      text-decoration: none !important;
+      }
+    }
+}
+
+.btn-tertiary {
+background-color: transparent;
+color: $color-gray-600;
+box-shadow: 0;
+font-weight: 600;
+padding-left: 2rem;
+padding-right: 2rem;
+padding-top: .85rem;
+padding-bottom: .85rem;
+
+&:hover, &:active, &:focus{
+    background-color: transparent;
+    color: $color-gray-700;
+  }
+}
+
+
+/* BUTTON ROUND */
+
+.btn-primary-round {
+background: $color-primary;
+color: #fafafa;
+box-shadow: 0;
+border-radius: $border-radius;
+font-weight: 600;
+padding-left: 2rem;
+padding-right: 2rem;
+padding-top: .85rem;
+padding-bottom: .85rem;
+border-bottom: 5px solid $color-primary-dark;
+text-shadow: 0px -1px $color-primary-dark;
+
+&:hover,  {
+  background: $color-primary-light;
+  color: #f3f3f3;
+  border-bottom: 5px solid $color-primary-dark;
+  }
+
+&:active, &:focus {
+  background: $color-primary-light;
+  color: #f3f3f3;
+  box-shadow: 0;
+  border-bottom: 5px solid $color-primary-dark;
+  }
+}
+
+
+  .btn-success-round {
+  background: $color-success;
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: $border-radius;
+  font-weight: 600;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  border-bottom: 5px solid $color-success-dark;
+  text-shadow: 1px 1px 0 rgba(0,0,0,.2);
+
+  &:hover,  {
+    background: $color-success-light;
+    color: #f3f3f3;
+    border-bottom: 5px solid $color-success-dark;
+    }
+
+  &:active, &:focus {
+    background: $color-success-light;
+    color: #f3f3f3;
+    border-bottom: 5px solid $color-success-dark;
+    }
+  }
+
+  .btn-alt-round {
+  background: $color-alt;
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: $border-radius;
+  font-weight: 600;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  border-bottom: 5px solid $color-alt-dark;
+  text-shadow: 0px -1px $color-alt-dark;
+
+  &:hover,  {
+    background: $color-alt-light;
+    color: #f3f3f3;
+    border-bottom: 5px solid $color-alt-dark;
+    }
+
+  &:active, &:focus {
+    background: $color-alt-light;
+    color: #f3f3f3;
+    box-shadow: 0;
+    border-bottom: 5px solid $color-primary-dark;
+    }
+  }
+
+  .btn-secondary-round {
+  background: $color-secondary;
+  color: #fafafa;
+  font-weight: 600;
+  box-shadow: 0;
+  border-radius: $border-radius;
+  border-bottom: 5px solid $color-secondary-dark;
+  text-shadow: 0px -1px $color-secondary-dark;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+
+  &:hover, &:active, &:focus  {
+  background: $color-secondary-light;
+  color: #f3f3f3;
+  border-bottom: 5px solid $color-secondary-dark;
+    }
+  }
+
+  .btn-accent-round {
+  background: $color-primary-light;
+  color: #fafafa;
+  box-shadow: 0;
+  border-radius: 30px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .75rem;
+
+
+  &:hover {
+  background: $color-primary;
+  color: #f3f3f3;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13);
+  }
+
+  &:active {
+  background: $color-primary;
+  color: #fafafa;
+  box-shadow: 0;
+
+  }
+
+  &:focus {
+  background: $color-primary;
+  color: #fafafa;
+  box-shadow: 0;
+
+    }
+  }
+  /* OUTLINE BUTTONS */
+  .btn-outline-success{
+  background: transparent;
+  color: $color-success;
+  border: solid 1px $color-success;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  }
+  .btn-outline-success:hover {
+    background: transparent !important;
+    color: $color-success-light !important;
+    border: solid 1px $color-success-light !important;
+    font-weight: 600;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-outline-success:active {
+    background: transparent !important;
+    color: $color-success-light !important;
+    border: solid 1px $color-success-light !important;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-outline-success:focus {
+    background: transparent !important;
+    color: $color-success-light !important;
+    border: solid 1px $color-success-light !important;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+
+  .btn-outline-light {
+  background: transparent;
+  color: $color-white;
+  border-color: $color-white;
+  font-weight: 600;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+  box-shadow: none;
+
+  &:hover,  &:focus, &:active{
+    background: $color-white !important;
+    color: $color-black !important;
+    box-shadow: none;
+  }
+}
+
+
+  .btn-outline-primary {
+  background: transparent;
+  color: $color-primary;
+  border: solid 1px $color-primary !important;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+
+
+  &:hover, &:active, &:focus, &:visited {
+    background: $color-primary !important;
+    color: #fff;
+  }
+}
+
+  .btn-outline-dark {
+  background: transparent;
+  color: $color-dark !important;
+  border: solid 1px $color-dark !important;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  }
+  .btn-outline-dark:hover {
+    background: transparent !important;
+    color: $color-light !important;
+    border: solid 1px $color-light !important;
+    font-weight: 600;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-outline-dark:active {
+    background: transparent!important;
+    color: $color-light !important;
+    border: solid 1px $color-light !important;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+  .btn-outline-dark:focus {
+    background: transparent !important;
+    color: $color-light !important;
+    border: solid 1px $color-light !important;
+    box-shadow: 0;
+    font-weight: 600;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+
+
+  .btn-primary:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18), 0 2px 4px rgba(0,0,0,0.13) !important;
+  }
+
+
+  .btn-information-dropdown {
+  background: transparent;
+  color: $color-primary;
+  box-shadow: 0;
+  font-weight: 600;
+  padding-left: 1rem;
+  padding-right: 1.6rem;
+  padding-top: .8rem;
+  padding-bottom: .8rem;
+  text-transform: lowercase;
+
+  &:hover {
+    color: $color-primary-dark;
+    box-shadow: 0;
+
+
+  }
+  &:active {
+    color: $color-primary-dark;
+    box-shadow: 0;
+
+  }
+  &:focus {
+    color: $color-primary-dark;
+    box-shadow: 0;
+    }
+  }

@@ -1,0 +1,27 @@
+//
+//	Partners
+//
+.partners {
+
+	.owl-stage-outer {
+
+		.owl-stage {
+			display: -ms-flexbox!important;
+			display: flex !important;
+
+			.owl-item {
+				text-align: center;
+				-ms-flex-item-align: center !important;
+				align-self: center !important;
+				
+				img {
+					display: inline-block;
+					width: initial;
+					max-width: 60%;
+				}
+
+			}
+		}
+
+	}
+}

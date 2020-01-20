@@ -3,6 +3,7 @@ from django.urls import path
 from users import views as users_views
 from users import views_approval as users_approval_views
 from portal import views as portal_views
+from files import views as files_views
 
 urlpatterns = [
 
@@ -26,8 +27,8 @@ urlpatterns = [
     path('my-store/<slug:slug>/', portal_views.MerchantStoreDetailView.as_view(), name='merchant_store_detail'),
     path('my-stores/', portal_views.MerchantStoreListView.as_view(), name='merchant_store_list'),
     path('my-store/create', portal_views.MerchantStoreCreateView.as_view(), name='merchant_store_create'),
-    path('my-store/<slug:slug>/update', portal_views.MerchantStoreUpdateView.as_view(), name='store_update'),
-    path('my-store/<slug:slug>/delete', portal_views.MerchantStoreDeleteView.as_view(), name='store_delete'),
+    path('my-store/<slug:slug>/update', portal_views.MerchantStoreUpdateView.as_view(), name='merchant_store_update'),
+    path('my-store/<slug:slug>/delete', portal_views.MerchantStoreDeleteView.as_view(), name='merchant_store_delete'),
 
 
     #Merchant Offer Views
@@ -37,6 +38,7 @@ urlpatterns = [
     path('my-offer/<slug:slug>/update', portal_views.MerchantOfferUpdateView.as_view(), name='merchant_offer_update'),
     path('my-offer/<slug:slug>/delete', portal_views.MerchantOfferDeleteView.as_view(), name='merchant_offer_delete'),
     path('my-offer/like', portal_views.OfferLike, name='offer_like'),
+
     path('my-store/<int:store_id>/add/<int:offer_id>', portal_views.OfferAdd, name='offer_add'),
     path('my-store/<int:store_id>/remove/<int:offer_id>', portal_views.OfferRemove, name='offer_remove'),
 
@@ -48,5 +50,11 @@ urlpatterns = [
     #Merchant Approval Views
     path('my-profile/<int:pk>/update', users_approval_views.MerchantProfileUpdateView.as_view(), name='merchant_profile_update'),
     path('form-submission/',  users_approval_views.MerchantProfileFormLandingView, name='merchant-profile-landing-page'),
+
+    #Merchant Testimonials
+    path('my-reviews/', portal_views.MerchantTestimonialListView.as_view(), name='merchant_testimonial_list'),
+
+    #Merchant Media
+    path('my-video/<slug:slug>/delete', files_views.MerchantVideoFileDeleteView.as_view(), name='merchant_video_delete'),
 
 ]

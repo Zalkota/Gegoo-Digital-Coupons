@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Dashboard | {{ SITE_NAME }}{% endblock %}
+
+{% block extra_styles %}
+
+{% endblock extra_styles %}
+
+
+{% block content %}
+
+<!-- Body Start -->
+<section class="section container">
+      {% block component %}
+        {% include "users/merchant/merchant_profile_nav.html" %}
+      {% endblock component %}
+
+      {% block mobile_nav %}
+        {% include "users/merchant/merchant_profile_mobile_nav.html" %}
+      {% endblock mobile_nav %}
+
+        <div class="row mt-4">
+            <div class="col-lg-12 mb-4">
+                <h3 class="header">Reviews
+                </h3>
+            </div>
+
+            {% for object in object_list %}
+            <div class="col-lg-4 mb-4">
+                <div class="card shadow-2">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h3 class="subheader">{{ object.store.business_name }}</h3>
+                                <h4 class="fs-14 text-secondary fw-4">{{ object.store.city }}, {{ object.store.state }}</h4>
+                                <h4 class="fs-14 text-secondary fw-4">{{ object.created_at }}</h4>
+                            </div>
+                            <div class="col-lg-6 ">
+                                <i class="material-icons star-yellow fs-18 pull-right" style="">
+                                    {% if object.rating == 1 %} star star_border star_border star_border star_border {% endif %}
+                                    {% if object.rating == 2 %} star star star_border star_border star_border {% endif %}
+                                    {% if object.rating == 3 %} star star star star_border star_border {% endif %}
+                                    {% if object.rating == 4 %} star star star star star_border {% endif %}
+                                    {% if object.rating == 5 %} star star star star star {% endif %}
+                                </i>
+                            </div>
+                        </div>
+                        <hr>
+                        <h3 class="subheader">Testmonial</h3>
+                        <p class="fs-14">{{ object.review }}</p>
+                    </div>
+                </div>
+      	    </div>
+            {% empty %}
+            <div class=" col-lg-12 text-center">
+                <p class="py-5">None of your stores have reviews at this time, check back later.</p>
+            </div>
+            {% endfor %}
+      </div>
+      <div class="py-5 hide"></div><div class="py-5 hide"></div>
+</section>
+
+{% endblock content %}
+{% block extrajs %}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1300,
+  });
+</script>
+{% endblock extrajs %}

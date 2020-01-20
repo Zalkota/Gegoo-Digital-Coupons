@@ -1,0 +1,253 @@
+//
+// Components
+//
+
+.logo-sm {
+	max-height: 2rem;
+}
+
+img {
+	max-width: 100%;
+}
+
+
+// anchor
+.anchor {
+	@extend %equal;
+	@include transition;
+	@include border-radius;
+	position: relative;
+	display: block;
+	background-color: $gray-200;
+
+	i {
+		@include translate(-50%,-50%);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		font-size: 1.5rem;
+		color: $black;
+	}
+
+	&:hover {
+		background-color: $primary;
+
+		i {
+			color: $white;
+		}
+	}
+}
+
+
+// typed
+#typed-strings {
+	display: none;
+}
+
+
+
+// socials
+.socials {
+	@include transition();
+	display: inline-block;
+	width: auto;
+	overflow: hidden;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+
+	li {
+		float: left;
+	}
+
+	a {
+		@include transition();
+		display: block;
+		line-height: 1em;
+		width: 1em;
+		padding: 1rem;
+		border-radius: 50%;
+
+		&:hover {
+			background: gray('100');
+		}
+	}
+
+	&[class*="vertical"] {
+		> li {
+			float: none;
+		}
+	}
+
+	&[class*="-sm"] {
+		a {
+			padding: .75rem;
+		}
+	}
+
+	&[class*="bordered"],
+	&[class*="boxed"] {
+		a {
+			border-radius: 0;
+		}
+	}
+}
+
+
+%socials-text-whiteed {
+	a {
+		color: $text-white-primary;
+
+		&:hover {
+			background: $text-white-border;
+		}
+	}
+}
+
+
+// step
+.step {
+	position: relative;
+	padding:5.625rem 20% 0 0;
+
+	&::before {
+		@include transition;
+		content: counter(owlItem, decimal);
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		width: 3.75rem;
+		height: 3.75rem;
+		line-height: calc(3.75rem - .25rem);
+		text-align: center;
+		border: ( 2 * $border-width) solid $border-color;
+		z-index: 20;
+		border-radius: 50%;
+		font-size: 1.5rem;
+	}
+
+	&:hover,
+	&.step-highlight {
+		&::before {
+			@include shadow;
+			@include scale(1.25);
+			background: $primary;
+			border-color: transparent;
+			color: $white;
+		}
+	}
+}
+
+.owl-item {
+
+	&:not(:last-child) {
+		.step {
+			&::after {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 29px;
+				left: 3.75rem;
+				width: calc(100% - 40px);
+				height: 2px;
+				background: $gray-200;
+				z-index: 10;
+			}
+		}
+	}
+}
+
+.step-title {
+	font-size: $font-size-lg;
+	font-weight: $font-weight-normal;
+	letter-spacing: $letter-spacing-sm;
+}
+
+
+
+// meteo widget
+.meteo {
+	display: inline-block;
+	padding: .5rem 1rem;
+
+	> * { vertical-align: middle; }
+
+	// icon
+	.svg-icon {
+		font-size: 40px;
+		padding-right: .5rem;
+	}
+
+	// temperature
+	span {
+		font-size: $font-size-lg;
+		color: $white!important;
+
+		b {
+			font-weight: $font-weight-normal;
+			color: rgba($white, .5);
+		}
+	}
+}
+
+
+// number
+.number {
+	padding: 2.5rem;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: $letter-spacing;
+	font-size: $font-size-sm;
+
+	b {
+		display: block;
+		font-size: 3.125rem;
+		font-weight: 400;
+	}
+}
+
+
+// phone number widget
+.phone {
+	@include border-radius;
+	@include transition;
+	position: relative;
+	display: inline-block;
+	padding: 1rem 1rem 1rem 5rem;
+	color: $black;
+	letter-spacing: $letter-spacing;
+
+	&::before {
+		@include transition;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 3.625rem;
+		content: "\ec73";
+		text-align: center;
+		line-height: 3.625rem;
+		font-family: $font-icon;
+		font-size: 20px;
+		background-color: $border-color;
+	}
+
+	&:hover {
+		border-color: $primary!important;
+
+		&::before {
+			background-color: $primary!important;
+			color: $white;
+		}
+	}
+}
+
+.text-white {
+	.phone {
+		&::before {
+			background: $text-white-border;
+		}
+	}
+}

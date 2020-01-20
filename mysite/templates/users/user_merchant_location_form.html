@@ -1,0 +1,75 @@
+{% extends "base-alt.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %} Set Location | {{ SITE_NAME }}{% endblock %}
+
+{% block extra_styles %}
+{% endblock extra_styles %}
+
+
+{% block content %}
+
+
+<!-- Body Start -->
+<section class="section container">
+    {% if user.is_merchant == False %}
+
+        {% block component %}
+          {% include "users/profile_nav.html" %}
+        {% endblock component %}
+
+    {% else %}
+
+        {% block desktop_nav %}
+          {% include "users/merchant/merchant_profile_nav.html" %}
+        {% endblock desktop_nav %}
+
+        {% block mobile_nav %}
+          {% include "users/merchant/merchant_profile_mobile_nav.html" %}
+        {% endblock mobile_nav %}
+
+    {% endif %}
+
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="card shadow-2 card-border hide stripe-primary-top mt-5">
+                    <div class="card-body">
+                        <h3 class="header text-center text-uppercase fw-5">Change Location</h3>
+                        <p class="text-secondary fs-14 mb-4">Coupons are shown based on location, setting you location will help us serve you releveant coupons in your local area.</p>
+                        <!-- Search Form -->
+                        <div class="search-form-container">
+                              <div class="search-box icon-addon addon-lg" style="width: 100%;">
+                                  {% csrf_token %}
+                                  <input type="text" style="" id="search" name="search" placeholder="Search Cities within the USA" autocomplete="off"/>
+                                   <button type="submit" class="search-icon" href="#"><i class="fa fa-search fs-20" aria-hidden="true"></i></button>
+                                  <div id="selction-ajax"></div>
+                              </div>
+                        </div>
+                        <span class="text-secondary fs-12">Example: Detroit</span>
+                      <div class="row" id="search-results"></div>
+                      <!-- Search form End -->
+
+                      <div class="fs-14 text-secondary mt-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-purple-600" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-600" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                          <span class="text-primary">{{ city }}, {{ state }}</span>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+
+{% endblock content %}
+{% block extrajs %}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1300,
+  });
+</script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script src="{% static 'js/search/ajax_search/ajax_search.js' %}"></script>
+{% endblock extrajs %}

@@ -1,0 +1,48 @@
+// 
+// Modals
+//
+//
+.modal-content {
+	position: relative;
+
+	> *:not(.image) {
+		z-index: 5;
+	}
+
+	.image {
+		@include border-radius;
+	}
+
+	.close {
+		@include transition;
+		display: inline-block;
+		margin: 0;
+		padding: .5em;
+		opacity: 1;
+		background: $white;
+		border-radius: 50%;
+
+		span {
+			color: $black;
+		}
+
+		&:hover {
+			@include scale;
+		}
+	}
+}
+
+.modal-header {
+	@include clearfix;
+}
+
+.modal-image {
+	@include border-top-radius($border-radius);
+	position: relative;
+
+	.close {
+		position: absolute;
+		top: $modal-header-padding;
+		right: $modal-header-padding;
+	}
+}

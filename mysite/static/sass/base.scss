@@ -1,0 +1,58 @@
+
+@import "./utility/color";
+@import "./utility/animations";
+@import "./utility/text";
+@import "./utility/autocomplete";
+
+/* ANIMATION */
+$mdb-animation-curve-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$mdb-animation-curve-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1) !default;
+$mdb-animation-curve-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1) !default;
+$mdb-animation-curve-default: $mdb-animation-curve-fast-out-slow-in !default;
+
+
+body {
+    margin: 0;
+    font-family: Nunito, sans-serif !important;
+    background-color: $color-background-700 !important;
+
+    h1 h2 h3 h4 h5 h6 {
+      color: #1a1a1a;
+    }
+
+    p {
+      color: $color-text;
+
+    }
+
+    li {
+      color: $color-dark;
+    }
+
+    a {
+      color: $color-primary;
+    }
+}
+
+@import "./components/buttons";
+@import "./components/badges";
+@import "./components/sections";
+@import "./components/cards";
+@import "./components/borders";
+@import "./components/tables";
+
+@import "./generic/global";
+@import "./generic/icons";
+@import "./generic/flexbox";
+@import "./generic/navbar";
+@import "./generic/hero";
+@import "./generic/mobile";
+@import "./generic/images";
+@import "./generic/art";
+@import "./generic/store";
+@import "./generic/search";
+//@import "form";
+@import "./generic/footer";
+@import "./generic/profile";
+@import "./generic/form";
+@import "./generic/navigation_mobile";

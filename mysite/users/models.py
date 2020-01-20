@@ -29,6 +29,7 @@ STATUS_CHOICES = (
     ('APPROVED', 'Approved'),
     ('PENDING', 'Pending Approval'),
     ('NOT APPROVED', 'Not Approved'),
+    ('DENIED', 'Denied'),
 )
 
 STATES = (

@@ -1,0 +1,173 @@
+// 
+// Images
+//
+//
+
+.presentation-circle {
+	@extend %equal;
+	overflow: visible;
+
+	> figure {
+		@extend %boxed;
+		background-size: cover;
+		background-position: center;
+		border-radius: 50%;
+		z-index: 10;
+
+		&::before {
+			@include translate(-50%, -50%);
+			@include prefix(animation, pulse 3s infinite, webkit moz o);
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			border: $border-width solid rgba($black, .1);
+			z-index: -1;
+			animation-timing-function: cubic-bezier(0.1, 0.2, 0.3,1);
+		}
+	}
+
+	&.with-delay {
+		> figure {
+			&::before {
+				animation-delay: 1s;
+			}
+		}
+	}
+}
+
+@-webkit-keyframes pulse {
+  0% { 
+  	width: 100%; 
+  	height: 100%;
+  	opacity: 0;
+  }
+  50% {
+  	opacity: 1;
+  }
+  100% { 
+  	width: 125%;
+  	height: 125%;
+  	opacity: 0;
+  }
+}
+@-moz-keyframes pulse {
+	0% { 
+		width: 100%; 
+		height: 100%;
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% { 
+		width: 125%;
+		height: 125%;
+		opacity: 0;
+	}
+}
+@-o-keyframes pulse {
+	0% { 
+		width: 100%; 
+		height: 100%;
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% { 
+		width: 125%;
+		height: 125%;
+		opacity: 0;
+	}
+}
+@keyframes pulse {
+	0% { 
+		width: 100%; 
+		height: 100%;
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% { 
+		width: 125%;
+		height: 125%;
+		opacity: 0;
+	}
+}
+
+
+
+//
+// Presentation
+//
+.presentation-container {
+	> * {
+		position: relative;
+		z-index: 5;
+	}
+}
+
+.presentation {
+	position: relative;
+	z-index: 0;
+
+	img {
+		position: absolute;
+		// max-width: 100%;
+		// max-height: calc(100% + 12.5rem);
+		max-width: initial;
+		max-height: initial;
+	}
+
+	.top-0 { top: 0; }
+	.top-25 { top: 25%; }
+	.top-50 { top: 50%; }
+	.top-75 { top: 75%; }
+
+	.bottom-0 { bottom: 0; }
+	.bottom-25 { bottom: 25%; }
+	.bottom-50 { bottom: 50%; }
+	.bottom-75 { bottom: 75%; }
+  
+	.left-0 { left: 0; }
+	.left-25 { left: 25%; }
+	.left-50 { left: 50%; }
+	.left-75 { left: 75%; }
+
+	.right-0 { right: 0; }
+	.right-25 { right: 25%; }
+	.right-50 { right: 50%; }
+	.right-75 { right: 75%; }
+
+	.vertical-align {
+		top: 50%;
+		@include translate(0,-50%); 
+	}
+
+	.horizontal-align {
+		left: 50%;
+		@include translate(-50%,0);
+	}
+}
+
+@include media-breakpoint-down(md) {
+	.presentation-responsive {
+		height: 40vh!important;
+
+		img {
+			top: 0!important;
+			left: 0!important;
+			@include translate(0,0);
+		}
+
+		img.vertical-align,
+		img.horizontal-align {
+			@include translate(0,0);
+		}
+	}
+}

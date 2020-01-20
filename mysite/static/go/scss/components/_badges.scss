@@ -1,0 +1,35 @@
+// Badges
+// 
+//
+//
+//
+
+[class*="badge"] {
+	@include transition;
+}
+
+@each $color, $value in $colors {
+  .badge-#{$color} {
+    @include badge-variant($value);
+  }
+}
+
+
+// outline badges
+@mixin badge-outline($bg) {
+  color: $bg;
+  border: $border-width solid $bg;
+  background-color: transparent;
+}
+
+@each $color, $value in $colors {
+  .badge-outline-#{$color} {
+    @include badge-outline($value);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .badge-outline-#{$color} {
+    @include badge-outline($value);
+  }
+}

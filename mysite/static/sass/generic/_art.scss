@@ -1,0 +1,39 @@
+
+.dots-container {
+position: relative;
+}
+.hero--dots--left {
+    position: absolute;
+    left: -120px;
+    top: 0;
+    right: auto;
+    bottom: auto;
+    z-index: 9;
+
+    img {
+      border: 0;
+      max-width: 100%;
+      vertical-align: middle;
+      display: inline-block;
+    }
+}
+
+.hero--dots--right {
+    position: absolute;
+    right: -20px;
+    top: 0;
+    left: auto;
+    bottom: auto;
+    z-index: 9;
+
+    img {
+      border: 0;
+      max-width: 100%;
+      vertical-align: middle;
+      display: inline-block;
+    }
+}
+
+.dots-cover {
+  z-index: 2;
+}

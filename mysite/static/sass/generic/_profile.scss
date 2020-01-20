@@ -1,0 +1,47 @@
+/*  <**************************************************************************>
+    <*****                          Profile                               *****>
+    <**************************************************************************>
+*/
+
+
+.profile-nav {
+  border-bottom: 1px solid $color-gray-300;
+  height: 60px;
+
+  ul {
+    list-style: none;
+
+  }
+
+  li {
+    display: inline;
+  }
+
+  .profile-link {
+    color: $color-gray-600;
+    font-weight: 500 !important;
+    font-size: 1rem;
+    line-height:60px;
+    text-align: center;
+    width: 125px;
+    margin-right: 2rem;
+    height: 60px;
+    padding-bottom: 35px;
+
+
+  &-active {
+      color: $color-primary;
+      border-bottom: 2px solid $color-primary;
+      padding-bottom: 17px;
+      text-decoration: none;
+      margin-right: 2rem;
+    }
+
+  &:hover, &:active {
+    text-decoration: none;
+    color: $color-primary;
+    border-bottom: 2px solid $color-primary;
+    padding-bottom: 17px;
+    }
+  }
+}

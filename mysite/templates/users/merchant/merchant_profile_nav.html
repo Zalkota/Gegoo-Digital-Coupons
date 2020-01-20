@@ -7,12 +7,12 @@
         <span class="fs-14 hide text-secondary">Welcome Back, {{ user }}!</span>
     </div>
     <div class="col-lg-6 text-right">
-        {% if user.status == 'APPROVED' %}
+        {% if user.merchant_profile.status == 'APPROVED' %}
         <span class="text-dark px-3 fs-16 mx-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
             Account Approved
         </span>
-        {% elif user.status == 'PENDING' %}
+        {% elif user.merchant_profile.status == 'PENDING' %}
         <span class="text-dark px-3 fs-16 mx-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-time"><circle cx="12" cy="12" r="10" class="fill-blue-300"/><path class="fill-blue-700" d="M13 11.59l3.2 3.2a1 1 0 0 1-1.4 1.42l-3.5-3.5A1 1 0 0 1 11 12V7a1 1 0 0 1 2 0v4.59z"/></svg>
             Approval Pending
@@ -24,7 +24,7 @@
         </span>
 
         {% endif %}
-        {% if user.has_paid == True %}
+        {% if user.merchant_profile.payment_status == True %}
         <span class="text-dark px-3 fs-16 mx-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
             Subscription Active
@@ -49,7 +49,10 @@
         <a href="{% url 'users:merchant_offer_list' %}" class="{% if 'my-offers' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Offers</a>
       </li>
       <li class="list-inline-item">
-        <a href="" class="{% if 'rewards' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Reviews</a>
+        <a href="{% url 'users:merchant_testimonial_list' %}" class="{% if 'reviews' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Reviews</a>
+      </li>
+      <li class="list-inline-item">
+        <a href="{% url 'users:user_location' %}" class="{% if 'location' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Location</a>
       </li>
       <li class="list-inline-item">
         <a href="{% url 'users:subscription_list' %}" class="{% if 'my-subscription' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Subscription</a>

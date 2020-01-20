@@ -267,22 +267,10 @@ class Tag(models.Model):
         ordering = ['-name']
 
 
-class About(models.Model):
-    header = models.TextField()
-    subheader = models.TextField()
-    body = RichTextUploadingField()
-    images = models.ManyToManyField(Images, blank=True, help_text="Alternate Photos of Product")
-    #services = models.TextField()
-
-    def __str__(self):
-        return '%s' % (self.header)
-
-
-
 class Offer(models.Model):
 
     STATUS_CHOCIES = [
-        ('DR', 'Drafted'),
+        ('DR', 'Being Reviewed'),
         ('PR', 'Published')
     ]
 
@@ -318,7 +306,8 @@ def pre_save_offer(sender, **kwargs):
 
 
 class Store(models.Model):
-    active = models.BooleanField(default=True) #TODO This is not needed, we can just verify
+    active      = models.BooleanField(default=True) #TODO This is not needed, we can just verify
+    status      = models.CharField(choices=STATUS_CHOICES, default='DR', max_length=20)
     merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern
@@ -382,7 +371,8 @@ class Store(models.Model):
         object_qs = self.offers.filter(end_date__gt=now).order_by('end_date')
         object = object_qs.first()
         return object
-    #
+
+
     # def GetDistance(self):
     #     return self.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
     #

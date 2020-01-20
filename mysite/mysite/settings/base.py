@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
+from mysite.settings.aws.conf import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -17,7 +18,7 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 
-
+S3_USE_SIGV4 = True
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -38,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'debug_toolbar',
+
+
 
     #APPS
     'users',
@@ -82,7 +85,12 @@ INSTALLED_APPS = [
     #'ipware',
     'cities_light',
 
+    #S3 Upload
+    'rest_framework',
+    'files',
 
+    #S3 Static Files
+    'storages',
 
     #ALLAUTH
     'allauth',
@@ -118,6 +126,8 @@ INTERNAL_IPS = [
     '127.0.0.1',
 
 ]
+
+
 
 #honeypot
 HONEYPOT_FIELD_NAME = 'phonenumber'

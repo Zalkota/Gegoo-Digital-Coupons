@@ -1,0 +1,50 @@
+//
+//	Features
+//
+
+
+[class*="boxed"] {
+	> .row {
+		padding: 0;
+		// margin-left: 0;
+		// margin-right: 0;
+	}
+}
+
+
+//
+// Feature Square
+//
+.feature-square {
+	@extend %equal;
+	@include border-radius;
+	@include transition;
+	position: relative;
+	text-align: center;
+
+	&:hover {
+		background: $gray-100;
+	}
+	
+	div {
+		@include translate(-50%,-50%);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	}
+}
+
+// List
+.feature-list {
+	@include clearfix;
+	list-style: none;
+	padding: 0;
+
+	li {
+		float: left;
+	}
+
+	.media-body{
+		flex: none;
+	}
+}

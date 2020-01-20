@@ -34,7 +34,7 @@ from allauth.account.views import SignupView
 from users.forms import MerchantSignupForm
 
 from portal import models as portal_models
-
+from files import models as files_models
 
 class userPage(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
@@ -43,11 +43,13 @@ class userPage(LoginRequiredMixin, View):
 
             #Render Merchant Page
             if user.is_merchant == True:
+                videoFile_qs = files_models.VideoFile.objects.filter(user=user).order_by('uploaded_at').first()
                 store_qs = portal_models.Store.objects.filter(merchant=user).order_by('-views')
                 offer_qs = portal_models.Offer.objects.filter(author=user) #TODO ADD TIME TO FILTER USING GREAT THAN FILTER
 
                 context = {
                     'user': user,
+                    'videoFile': videoFile_qs,
                     'store_list': store_qs,
                     'offer_list': offer_qs,
                 }
@@ -94,7 +96,7 @@ class userLocaton(View):
             'city': city,
             'state': state,
         }
-        return render(self.request, "users/user_location_form.html", context)
+        return render(self.request, "users/user_merchant_location_form.html", context)
 
     def post(self, *args, **kwargs):
         form = userLocationForm(self.request.POST)

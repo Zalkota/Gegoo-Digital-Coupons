@@ -25,6 +25,8 @@ admin.site.login = staff_member_required(login_url='/', redirect_field_name='')(
 
 urlpatterns = [
 
+
+
     #Security
     path('.well-known/security.txt', security, name='security'),
     #Authentication
@@ -40,6 +42,8 @@ urlpatterns = [
     url(r'^support/', include(('support.urls', 'support'), namespace='support')),
     #users
     url(r'', include(('users.urls', 'users'), namespace='users')),
+    #files
+    url(r'^', include(('files.urls', 'files'), namespace='files')),
 
     path('', homeView.as_view(), name='home-page'),
 
