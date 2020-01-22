@@ -294,7 +294,7 @@ class Offer(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('portal:merchant_offer_detail', kwargs={'slug': self.slug})
+        return reverse('users:merchant_offer_detail', kwargs={'slug': self.slug})
 
     def get_consumer_absolute_url(self):
         return reverse('portal:consumer_offer_detail', kwargs={'slug': self.slug})

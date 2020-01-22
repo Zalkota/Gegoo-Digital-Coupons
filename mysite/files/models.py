@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.core.validators import FileExtensionValidator
+from django.core.exceptions import ValidationError
 from django.utils import timezone
 import os
 from datetime import date
@@ -8,6 +9,7 @@ from datetime import datetime
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.text import slugify
+from django.contrib import messages
 
 class FileItem(models.Model):
     user                            = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -33,13 +35,21 @@ def update_filename(instance, filename):
     format = instance.user.username + time_string
     return os.path.join(path, format)
 
+# def ValidationResponse():
+#     data = {'is_valid': False}
+#     return JsonResponse(data)
+
+def file_size(value): # add this to some file where you can import it from
+    limit = 1 * 1024 * 1024
+    if value.size > limit:
+        raise ValidationError(('File size too large, video must be under 10 MB'))
 
 
 
 class VideoFile(models.Model):
     user            = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title           = models.CharField(max_length=255, blank=True)
-    file            = models.FileField(upload_to=update_filename, validators=[FileExtensionValidator(['mp4', 'mov'])], help_text="Image must be a .MP4 or .MOV")
+    file            = models.FileField(upload_to=update_filename, validators=[FileExtensionValidator(['mp4', 'mov']), file_size], help_text="Image must be a .MP4 or .MOV")
     uploaded_at     = models.DateTimeField(auto_now_add=True)
     slug            = models.SlugField(unique=True, blank=True, editable=False)
 

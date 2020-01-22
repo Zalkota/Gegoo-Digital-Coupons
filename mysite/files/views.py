@@ -24,14 +24,14 @@ from django.views.generic import ListView, DetailView, View, CreateView, DeleteV
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.http import JsonResponse
+import json
+from django.http import HttpResponse
 
 
-import boto3
-from botocore.client import Config
 
-# Get the service client with sigv4 configured
-s3 = boto3.client('s3', config=Config(signature_version='s3v4'))
 
+from django.core.exceptions import ValidationError
 
 class VideoFileUploadView(View, LoginRequiredMixin):
     def get(self, request):
@@ -48,16 +48,29 @@ class VideoFileUploadView(View, LoginRequiredMixin):
 
         if form.is_valid():
             videofile = form.save(commit=False)
-
             videofile.user = user
             videofile = form.save()
 
             print("save image")
             data = {'is_valid': True, 'name': videofile.file.name, 'url': videofile.file.url}
         else:
-            print("ELSE")
-            data = {'is_valid': False}
-            return JsonResponse(data)
+            if ValidationError:
+                print(ValidationError)
+
+            data = {'error': True}
+
+            # returns ValdiationError Message as a Json Object
+            error = form.errors.as_json()
+
+            # Loads Json data from a string
+            error_json_object = json.loads(error)
+            message = error_json_object['file'][0]['message']
+            data = {'is_valid': False, 'message': message}
+
+            print(error_json_object['file'][0]['message'])
+
+        return JsonResponse(data)
+
 
 
 class MerchantVideoFileDeleteView(LoginRequiredMixin, DeleteView):

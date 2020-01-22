@@ -85,9 +85,7 @@ a:hover {
       {% endblock mobile_nav %}
 
         <div class="row mt-4">
-
                 {% if not store_list %}
-
                 <div class="col-lg-12">
                     <h3 class="header my-2">Lets Get Approved</h3>
                 </div>
@@ -209,7 +207,7 @@ a:hover {
                     <h3 class="header">
                         Store Video
                     </h3>
-                    <div class="card mt-3">
+                    <div class="card shadow-2 mt-3">
                         <div class="card-body">
                             <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ store.banner }}">
                 				<source src="https://static-gegoo-bucket.s3.amazonaws.com/media/{{ videoFile.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
@@ -225,11 +223,16 @@ a:hover {
                     <h3 class="header">
                         Store Video
                     </h3>
-                    <div class="card mt-3">
+                    <div class="card shadow-2 mt-3">
                         <div class="card-body">
-                            <div class="bg-gray-40 my-5"></div>
-                            <a href="{% url 'files:merchant_video_upload' %}" class="btn btn-primary-alt btn-block">Upload Video</a>
-
+                            <a href="{% url 'files:merchant_video_upload' %}">
+                            <div class="bg-gray-100 vertical-container" style="height:300px;">
+                                <div class="vertical-alignment text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12  icon-videocam"><path class="fill-gray-400" d="M13.59 12l6.7-6.7A1 1 0 0 1 22 6v12a1 1 0 0 1-1.7.7L13.58 12z"/><rect width="14" height="14" x="2" y="5" class="fill-gray-400" rx="2"/></svg>
+                                    <h4 class="subheader text-purple-500">Upload a Store Video</h4>
+                                </div>
+                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -238,7 +241,7 @@ a:hover {
                     <h3 class="header">
                         Store Images
                     </h3>
-                    <div class="card mt-3">
+                    <div class="card shadow-2  mt-3">
                         <div class="card-body">
                             <a href="{% url 'files:merchant_video_upload' %}">Upload Video</a>
                         </div>
@@ -247,37 +250,53 @@ a:hover {
 
                 {% endif %}
 
-                <div class="col-lg-12">
+                <div class="col-lg-12 mb-4">
                     <h3 class="header">
                         My Stores
                     </h3>
                     {% for store in store_list %}
-                    <div class="card mt-3">
-                        <div class="row no-gutters">
-                            <div class="col-md-2">
-                                <img src="/media/{{ store.logo }}" class="card-img" alt="...">
+                    <div class="card shadow-2 mt-3">
+                        <div class="row">
+                            <div class="col-md-2 hide">
+                                <img src="{{ AwsBucketURL }}{{ store.logo }}" class="img-fluid" alt="{{ store.business_name } logo">
                             </div>
-                            <div class="col-md-3">
-                                <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">{{ store.business_name }}</h1>
-                                <p class="card-text lead fs-14 fw-2 text-muted">Category</p>
+                            <div class="col-lg-2 col-12 vertical-container text-center">
+                                <div class="p-3 pt-4 vertical-alignment">
+                                    <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">{{ store.business_name }}</h1>
+                                    <p class="card-text lead fs-14 fw-2 text-muted">{{ store.category.get_name_display }} / {{ store.subcategory.name}}</p>
+                                    <hr class="unhide">
+                                </div>
                             </div>
-                            <div class="col-md-2">
-                                <span class="badge-danger px-3 fw-6 fs-16">{{ store.status }}</span>
-                                <p class="card-text lead fs-14 fw-2 text-muted">{{ store.created_at }}</p>
+                            <div class="col-lg-2 offset-lg-0 col-8 offset-2 vertical-container">
+                                <div class="px-3 vertical-alignment">
+                                    <span class="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                                        {{ store.status }}
+                                    </span>
+                                    <p class="text-secondary fs-14 fw-2 text-muted mt-2">{{ store.created_at }}</p>
+                                </div>
                             </div>
-                            <div class="col-md-1">
-                                <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">{{ store.views }}</h1>
-                                <p class="card-text lead fs-14 fw-2 text-muted">Total Views</p>
+                            <div class="col-lg-1 col-6 vertical-container">
+                                <div class="vertical-alignment">
+                                    <h1 class="subheader text-uppercase mb-2">{{ store.views }}</h1>
+                                    <p class="text-secondary fs-14 fw-2">Total Views</p>
+                                </div>
                             </div>
-                            <div class="col-md-1">
-                                <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">{{ store.offers.count }}</h1>
-                                <p class="card-text lead fs-14 fw-2 text-muted">Total Offers</p>
+                            <div class="col-lg-1 col-6 vertical-container">
+                                <div class=" vertical-alignment">
+                                    <h1 class="subheader text-uppercase mb-2">{{ store.offers.count }}</h1>
+                                    <p class="text-secondary fs-14">Offers</p>
+                                </div>
                             </div>
-                            <div class="col-md-2">
-                                <span>
-                                    <a href="" class="btn btn-primary">View</a>
-                                    <a href="" class="btn btn-primary">Edit</a>
-                                </span>
+                            <div class="col-lg-3 col-12 vertical-container">
+                                <div class="py-3 px-3  vertical-alignment text-center">
+                                    <a href="" class="mx-2">View
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-interface"><path class="primary" d="M4 2h16a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2zm0 4v11h16V6H4z"/><path class="secondary" d="M17.96 16.54l3.75 3.75a1 1 0 0 1-1.42 1.42l-3.75-3.75-.57 2.28a1 1 0 0 1-1.9.11l-3-8a1 1 0 0 1 1.28-1.29l8 3a1 1 0 0 1-.1 1.91l-2.3.57z"/></svg>
+                                    </a>
+                                    <a href="" class="mx-2">Edit
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-edit"><path class="fill-primary" d="M4 14a1 1 0 0 1 .3-.7l11-11a1 1 0 0 1 1.4 0l3 3a1 1 0 0 1 0 1.4l-11 11a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-3z"/><rect width="20" height="2" x="2" y="20" class="fill-primary" rx="1"/></svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -289,12 +308,13 @@ a:hover {
 
             {% if offer_list %}
 
-                <h3 class="header">
-                    My Offers
-                </h3>
-                <div class="col-12">
-                    <div class="card">
-                        <table class="table table-striped">
+
+                <div class="col-12 mb-4">
+                    <h3 class="header">
+                        My Offers
+                    </h3>
+                    <div class="card table-responsive  shadow-2">
+                        <table class="table">
                             <thead>
                               <tr>
                                 <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Offer</th>

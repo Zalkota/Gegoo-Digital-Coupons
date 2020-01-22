@@ -14,11 +14,9 @@ $(function () {
     },
     stop: function (e) {  /* 3. WHEN THE UPLOADING PROCESS FINALIZE, HIDE THE MODAL */
       $("#progressbar").hide();
-      $("#successmessage").show();
       $("#defaultmessage").hide();
-      $("#successbutton").show()
-      $("#defaultbutton").hide()
-      $("#uploadbutton").hide()
+      $("#message").show();
+
     },
     progressall: function (e, data) {  /* 4. UPDATE THE PROGRESS BAR */
       var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -28,11 +26,21 @@ $(function () {
     },
     done: function (e, data) {
       if (data.result.is_valid) {
-        $("#gallery tbody").prepend(
-          "<tr><td><a href='" + data.result.url + "'>" + data.result.name + "</a></td></tr>"
+
+
+          $("#successbutton").show()
+          $("#defaultbutton").hide()
+          $("#uploadbutton").hide()
+      }
+      if (! (data.result.is_valid)) {
+        $("#successIcon").hide();
+        $("#errorIcon").show();
+        $("#errormessage").html("");
+        $("#errormessage").append(
+          data.result.message
         )
       }
-    }
+    },
 
   });
 
