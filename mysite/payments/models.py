@@ -24,7 +24,7 @@ class Plan(models.Model):
         return reverse('payments:plan_detail', kwargs={'slug': self.slug})
 
 @receiver(pre_save, sender=Plan)
-def pre_save_product(sender, instance, **kwargs):
+def pre_save_plan(sender, instance, **kwargs):
     stripe.api_key              = settings.STRIPE_SECRET_KEY_MPM
     plan                        = stripe.Plan.retrieve(id=instance.plan_id)
     instance.nickname           = plan['nickname']
@@ -37,9 +37,20 @@ def pre_save_product(sender, instance, **kwargs):
     instance.slug               = slug
 
 class Subscription(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
-    subscription_id     = models.CharField(max_length=50, blank=True)
-    subscription_status = models.CharField(max_length=50, blank=True)
+    user                        = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True, related_name='subscription')
+    slug                        = models.CharField(max_length=100, blank=True)
+    subscription_id             = models.CharField(max_length=50, blank=True)
+    plan_id                     = models.CharField(max_length=50, blank=True)
+    subscription_status         = models.CharField(max_length=50, blank=True)
+    payment_intent_status       = models.CharField(max_length=50, blank=True)
+
+@receiver(pre_save, sender=Subscription)
+def pre_save_subscription(sender, instance, **kwargs):
+    slug            = slugify(instance.subscription_id)
+    instance.slug   = slug
 
     def __str__(self):
         return self.subscription_id
+
+    def get_absolute_url(self):
+        return reverse('payments:subscription_detail', kwargs={'slug': self.slug})

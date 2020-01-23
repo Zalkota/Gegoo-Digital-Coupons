@@ -1,0 +1,40 @@
+{% extends "base_mpm.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Subscription Detail</h1>
+                    <h1>{{ object.subscription_id }}</h1>
+                    <h1>{{ object.subscription_status }}</h1>
+                
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {% for plan in plans %}
+            <div class="card">
+                <div class="card-body">
+                    <h1>{{ plan.nickname }}</h1>
+                    <h1>{{ plan.plan_id }}</h1>
+
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-primary" type="submit">Upgrade</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

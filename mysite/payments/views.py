@@ -25,6 +25,7 @@ class PlanDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PlanDetailView, self).get_context_data(**kwargs)
         context['merchantprofile'] = users_models.MerchantProfile.objects.get(user=self.request.user)
+        context['plans'] = payments_models.Plan.objects.exclude(plan_id = self.request.user.subscription.plan_id)
         return context
 
     def post(self, *args, **kwargs):
@@ -34,8 +35,6 @@ class PlanDetailView(DetailView):
         token = self.request.POST.get('stripeToken')
         customer = self.request.user.merchant_profile.customer_id
         plan = self.object.plan_id
-        print(customer)
-        print(plan)
 
         try:
             stripe.Customer.modify(
@@ -48,12 +47,16 @@ class PlanDetailView(DetailView):
                 items = [{
                     'plan': plan,
                 }],
-                expand=['latest_invoice.payment_intent'],
+                expand=['latest_invoice', 'plan'],
             )
 
-            sub, created            = payments_models.Subscription.objects.get_or_create(user=self.request.user)
-            sub.subscription_id     = subscription['id']
-            sub.subscription_status = subscription['status']
+            print(subscription)
+
+            sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+            sub.subscription_id         = subscription['id']
+            sub.plan_id                 = subscription['plan']['id']
+            sub.subscription_status     = subscription['status']
+            sub.payment_intent_status   = subscription['latest_invoice']['payment_intent']
             sub.save()
 
             messages.success(self.request, 'Your Subscription Was Successful!')
@@ -67,3 +70,39 @@ class Charge(View):
 
     def get(self, *args, **kwargs):
         return render(self.request, 'payments/charge.html')
+
+class SubscriptionDetailView(DetailView):
+    model = payments_models.Subscription
+    template_name = 'payments/subscription_detail.html'
+
+    def get_queryset(self):
+        return payments_models.Subscription.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super(SubscriptionDetailView, self).get_context_data(**kwargs)
+        context['plans'] = payments_models.Plan.objects.exclude(plan_id = self.request.user.subscription.plan_id)
+        return context
+
+    def post(self, *args, **kwargs):
+        self.object = self.get_object()
+
+        stripe.api_key = settings.STRIPE_SECRET_KEY_MPM
+        subscription = self.request.user.subscription.subscription_id
+        print(subscription)
+
+        try:
+            subscription = stripe.Subscription.delete(
+                subscription,
+            )
+
+            sub, created            = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+            sub.subscription_id     = subscription['id']
+            sub.plan_id             = subscription['plan']['id']
+            sub.subscription_status = subscription['status']
+            sub.save()
+            
+            messages.success(self.request, 'Your Subscription Cancellation Was Successful!')
+            return redirect('payments:plan_list')
+        
+        except:
+            pass
