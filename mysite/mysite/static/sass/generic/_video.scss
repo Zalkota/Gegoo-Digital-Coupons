@@ -40,6 +40,13 @@
     background-image: -o-linear-gradient($gradient-primary);
     background-image: linear-gradient($gradient-primary);
   }
+
+  .volume-button   {
+      z-index: 10000;
+      position: absolute;
+      bottom: 3%;
+      left: 2%;
+  }
 }
 @media screen and (max-width: 1286px) {
 .video-container-mobile {

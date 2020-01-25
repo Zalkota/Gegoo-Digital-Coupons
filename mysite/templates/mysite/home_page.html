@@ -16,9 +16,8 @@
 
 
 
-  <!-- VIDEO SECTION  Meeting your Landscaping Needs !-->
-
-<div class="homepage-hero-module container">
+<!-- VIDEO SECTION  Meeting your Landscaping Needs !-->
+<div class="homepage-hero-module container px-3">
   <div class="video-container video-container-mobile">
       <div class="title-container shadow-1">
         <div class="headline hide">
@@ -28,13 +27,22 @@
           <h1  style="font-weight: 600; text-shadow: 2px 2px 5px #222;"><a class="text-light" href="tel:248-755-3703">Lexington <br>Landscapes</a></h1>
         </div>
       </div>
+      <div class="volume-button">
+          <button id="Unmutebutton">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-volume-mute"><path class="fill-white" d="M6.59 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3.59l4.7-4.7A1 1 0 0 1 13 4v16a1 1 0 0 1-1.7.7L6.58 16z"/><path class="fill-white" d="M17.09 12l-1.8-1.8a1 1 0 1 1 1.42-1.4l1.79 1.79 1.8-1.8a1 1 0 0 1 1.4 1.42L19.92 12l1.8 1.8a1 1 0 0 1-1.42 1.4l-1.79-1.79-1.8 1.8a1 1 0 0 1-1.4-1.42L17.08 12z"/></svg>
+          </button>
+          <button id="Mutebutton" style="display: none;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-volume-up"><path class="fill-white" d="M6.59 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3.59l4.7-4.7A1 1 0 0 1 13 4v16a1 1 0 0 1-1.7.7L6.58 16z"/><path class="fill-white" d="M17.66 6.34a1 1 0 0 1 1.41-1.41 10 10 0 0 1 0 14.14 1 1 0 0 1-1.41-1.41 8 8 0 0 0 0-11.32zm-2.83 2.83a1 1 0 1 1 1.41-1.41 6 6 0 0 1 0 8.48 1 1 0 0 1-1.41-1.41 4 4 0 0 0 0-5.66z"/></svg>
+          </button>
+      </div>
       <!-- #TODO: NEED WEBM VIDEO FOR THIS TO WORK ON FIREFOX -->
-    <video autoplay loop muted poster="" class="fillWidth hide">
-    <source src="{{ AwsBucketURL }}{{ promotional_video.video.file }}" type="video/mp4" alt="advertisement video of a house that was landscaped by lexington Landscapes" />Your browser does not support the video tag. I suggest you upgrade your browser.</video>
+    <video autoplay loop muted poster="" class="fillWidth hide" id="video">
+        <source src="{{ AwsBucketURL }}{{ promotional_video.video.file }}" type="video/mp4" alt="Gegoo Promotional Video" />
+        Your browser does not support the video tag. I suggest you upgrade your browser.
+    </video>
   </div>
 </div>
-
-  <!-- VIDEO END !-->
+<!-- VIDEO END !-->
 
 
 
@@ -197,7 +205,6 @@
                     {% endif %}
                 {% endfor %}
             </div>
-
         </div>
     </div>
 </section>

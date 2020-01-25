@@ -13060,7 +13060,12 @@ input:focus {
     padding: 0.5rem 1.4rem 0.5rem 1.4rem;
     background-image: -webkit-linear-gradient(120deg, #805AD5, #7505AB);
     background-image: -o-linear-gradient(120deg, #805AD5, #7505AB);
-    background-image: linear-gradient(120deg, #805AD5, #7505AB); } }
+    background-image: linear-gradient(120deg, #805AD5, #7505AB); }
+  .volume-button {
+    z-index: 10000;
+    position: absolute;
+    bottom: 3%;
+    left: 2%; } }
 
 @media screen and (max-width: 1286px) {
   .video-container-mobile {

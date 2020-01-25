@@ -17,6 +17,23 @@ $( document ).ready(function() {
         scaleBannerVideoSize('.video-container video');
     });
 
+
+    var video = document.getElementById("video")
+
+
+
+});
+
+$("#Unmutebutton").click(function(){
+    video.muted = false
+    $("#Mutebutton").show()
+    $("#Unmutebutton").hide()
+});
+
+$("#Mutebutton").click(function(){
+    video.muted = true
+    $("#Mutebutton").hide()
+    $("#Unmutebutton").show()
 });
 
 /** Reusable Functions **/
