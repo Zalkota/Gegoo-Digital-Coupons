@@ -48,8 +48,8 @@
                             </div>
                         </div>
                         <hr>
-                        <h3 class="subheader">Testmonial</h3>
                         <p class="fs-14">{{ object.review }}</p>
+                        <h3 class="subheader fs-12"><span class="text-secondary fs-12 fw-4">Written by:</span> {{ object.author }}</h3>
                     </div>
                 </div>
       	    </div>
@@ -58,6 +58,31 @@
                 <p class="py-5">None of your stores have reviews at this time, check back later.</p>
             </div>
             {% endfor %}
+            <div class="col-lg-12 my-4">
+                <div class="ml-auto mr-auto">
+                    {% if is_paginated %}
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            {% endif %}
+                            {% for num in page_obj.paginator.page_range %}
+                                {% if page_obj.number == num %}
+                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+                            {% endif %}
+                      </ul>
+                    </nav>
+                    {% endif %}
+                </div>
+            </div>
+
       </div>
       <div class="py-5 hide"></div><div class="py-5 hide"></div>
 </section>

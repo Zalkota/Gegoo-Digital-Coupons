@@ -1,4 +1,4 @@
-from portal.models import Promotion
+# from portal.models import Promotion
 from django.shortcuts import get_list_or_404, get_object_or_404
 
 def SiteName(request):
@@ -9,24 +9,24 @@ def SiteName(request):
     return {'SITE_NAME': site_name}
 
 
-def PromotionProcessor(request):
-    promotion_qs = Promotion.objects.filter(active=True)
-    if promotion_qs.exists():
-        promotion = promotion_qs.first()
-        message = promotion.message
-        background = promotion.background
-        promotionActive = True
-        context = {
-        'message': message,
-        'background': background,
-        'promotionActive': promotionActive,
-        }
-    else:
-        promotionActive = False
-        context = {
-        'promotionActive': promotionActive,
-        }
-    return context
+# def PromotionProcessor(request):
+#     promotion_qs = Promotion.objects.filter(active=True)
+#     if promotion_qs.exists():
+#         promotion = promotion_qs.first()
+#         message = promotion.message
+#         background = promotion.background
+#         promotionActive = True
+#         context = {
+#         'message': message,
+#         'background': background,
+#         'promotionActive': promotionActive,
+#         }
+#     else:
+#         promotionActive = False
+#         context = {
+#         'promotionActive': promotionActive,
+#         }
+#     return context
 
 
 # def AuthenticatedUserLocation(request):

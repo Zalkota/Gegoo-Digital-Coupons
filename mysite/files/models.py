@@ -40,10 +40,9 @@ def update_filename(instance, filename):
 #     return JsonResponse(data)
 
 def file_size(value): # add this to some file where you can import it from
-    limit = 1 * 1024 * 1024
+    limit = 8 * 1024 * 1024
     if value.size > limit:
         raise ValidationError(('File size too large, video must be under 10 MB'))
-
 
 
 class VideoFile(models.Model):
@@ -58,5 +57,5 @@ class VideoFile(models.Model):
 
 @receiver(pre_save, sender=VideoFile)
 def pre_save_videofile(sender, **kwargs):
-    slug = slugify(kwargs['instance'].file)
+    slug = slugify(kwargs['instance'].file, kwargs['instance'].uploaded_at)
     kwargs['instance'].slug = slug

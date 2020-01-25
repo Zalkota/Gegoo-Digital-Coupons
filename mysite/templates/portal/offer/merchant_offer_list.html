@@ -48,11 +48,9 @@
                             </div>
                           <thead>
                             <tr>
-                              <th scope="col">Offer Name</th>
-                              <th scope="col">ID</th>
-                              <th scope="col">Location</th>
+                              <th scope="col">Offer</th>
                               <th scope="col">Status</th>
-                              <th scope="col">Visible to Users?</th>
+                              <th scope="col">End Date</th>
                               <th scope="col">Edit</th>
                               <th scope="col">Delete</th>
                             </tr>
@@ -60,18 +58,10 @@
                           <tbody>
                             {% for object in object_list %}
                             <tr>
-                              <th scope="row">{{ object.business_name }}</th>
-                              <td>{{ object.id }}</td>
-                              <td>{{ object.city }}</td>
+                              <th scope="row">{{ object.title }}</th>
+                              <td>{{ object.status }}</td>
                               <td>
-                                  <span class="text-success fw-6">
-                                      Approved
-                                  </span>
-                              </td>
-                              <td>
-                                  <span class="text-success fw-6">
-                                      Yes
-                                  </span>
+                                {{ object.end_date }}
                               </td>
                               <td>
                                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-edit"><path class="fill-orange-500" d="M4 14a1 1 0 0 1 .3-.7l11-11a1 1 0 0 1 1.4 0l3 3a1 1 0 0 1 0 1.4l-11 11a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-3z"/><rect width="20" height="2" x="2" y="20" class="fill-orange-500" rx="1"/></svg>

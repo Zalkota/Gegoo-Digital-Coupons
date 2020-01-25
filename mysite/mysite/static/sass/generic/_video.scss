@@ -1,0 +1,132 @@
+
+.homepage-hero-module {
+  border-right: none;
+  border-left: none;
+  position: relative;
+  height: 90vh;
+}
+.no-video .video-container video,
+.touch .video-container video {
+  display: none;
+}
+.no-video .video-container .poster,
+.touch .video-container .poster {
+  display: block !important;
+}
+
+@media screen and (min-width: 1286px) {
+.video-container {
+  background: cover;
+  background-position: top;
+  position: relative;
+  bottom: 0%;
+  left: 0%;
+  height: 100%; /* was 100% */
+  width: 100%;
+  overflow: hidden;
+
+
+  }
+  .title-container {
+    z-index: 10000;
+    position: absolute;
+    bottom: 3%;
+    right: 2%;
+    vertical-align: middle;
+    text-align: center;
+    color: #fff;
+    padding: 0.5rem 1.4rem 0.5rem 1.4rem;
+    background-image: -webkit-linear-gradient($gradient-primary);
+    background-image: -o-linear-gradient($gradient-primary);
+    background-image: linear-gradient($gradient-primary);
+  }
+}
+@media screen and (max-width: 1286px) {
+.video-container-mobile {
+  position: relative;
+  bottom: 0%;
+  left: 0%;
+  height: 560px; /* was 100% */
+  width: 100%;
+  overflow: hidden;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-color: #f4f5f4 ;
+  background-image: url('static/images/mobile_background5.jpg');
+  }
+  .video-container .title-container {
+    z-index: 1000;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    padding: 2rem;
+  }
+
+  .homepage-hero-module {
+    border-right: none;
+    border-left: none;
+    position: relative;
+    height: 560px;
+  }
+
+}
+.video-container .poster img {
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+
+}
+.video-container .filter {
+  z-index: 100;
+  position: relative;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+
+.video-container .headline {
+  font-size: 3em; /* added */
+  text-align: center;
+  width: 100%;
+  color: $color-white;
+}
+
+.video-container .description .inner {
+  font-size: 1.35em; /* was 1em */
+  width: 50%; /* was 45% */
+  margin: 0 auto;
+  animation-name: moveInBottom;
+  animation-duration: 1s;
+}
+.video-container .action {
+  font-size: 1.35em; /* was 1em */
+   /* was 45% */
+  margin: 0 auto;
+  top: 60%;
+  margin-top: 7rem;
+}
+
+.video-container .link {
+  position: absolute;
+  bottom: 3em;
+  width: 100%;
+  text-align: center;
+  z-index: 1001;
+  font-size: 2em;
+  color: #fff;
+}
+.video-container .link a {
+  color: #fff;
+}
+.video-container video {
+  background-position: top;
+  position: relative;
+  z-index: 0;
+  bottom: 0;
+}
+.video-container video.fillWidth {
+  background-position: top;
+  position: relative;
+  width: 100%;
+}

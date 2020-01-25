@@ -19,6 +19,7 @@ from crispy_forms.bootstrap import (
     PrependedText, PrependedAppendedText, FormActions, StrictButton)
 
 class VideoFileForm(forms.ModelForm):
+    file = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': False}))
     class Meta:
        model = VideoFile
        fields = ['file']

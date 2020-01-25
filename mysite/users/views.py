@@ -131,12 +131,12 @@ class userRewards(View):
             # 'form': form,
             # 'address': address
         }
-        return render(self.request, "users/user_rewards.html", context)
+        return render(self.request, "users/user/user_rewards.html", context)
 
 
 class userFavorites(ListView):
     model = portal_models.Offer
-    template_name = 'users/user_favorites.html'
+    template_name = 'users/user/user_favorites.html'
 
     def get_queryset(self):
         favorite_list = portal_models.Offer.objects.filter(likes=self.request.user)
@@ -145,7 +145,7 @@ class userFavorites(ListView):
 
 class userMerchants(ListView):
     model = portal_models.Offer
-    template_name = 'users/user_merchants.html'
+    template_name = 'users/user/user_merchants.html'
 
     def get_queryset(self):
         favorite_list = portal_models.Store.objects.filter(offer__likes=self.request.user)

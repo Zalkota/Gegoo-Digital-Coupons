@@ -172,7 +172,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'mysite.processors.SiteName',
-                'mysite.processors.PromotionProcessor',
+                # 'mysite.processors.PromotionProcessor',
                 # 'mysite.processors.AuthenticatedUserLocation',
                 # 'mysite.processors.get_client_ip',
                 'mysite.processors.classloudFrontURL',

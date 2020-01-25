@@ -213,6 +213,7 @@ def OfferRemove(request, store_id, offer_id):
 class MerchantTestimonialListView(LoginRequiredMixin, IsMerchantMixin, ListView):
 	model = portal_models.Testimonial
 	template_name = 'portal/testimonials/merchant_testimonial_list.html'
+	paginate_by = 2
 
 	def get_queryset(self):
 		object_list = portal_models.Testimonial.objects.filter(store__merchant=self.request.user)

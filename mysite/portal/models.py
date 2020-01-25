@@ -36,6 +36,8 @@ from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
 
+from files.models import VideoFile
+
 # <**************************************************************************>
 # <*****                         CHOICE LISTS                          *****>
 # <**************************************************************************>
@@ -62,6 +64,28 @@ STATUS_CHOICES = {
     ('draft', 'Draft'),
     ('published', 'Published'),
 }
+
+
+
+
+ONE = 1
+TWO = 2
+THREE = 3
+FOUR = 4
+FIVE = 5
+
+RATING_CHOICES = [
+    (ONE, '1 Star'),
+    (TWO, '2 Stars'),
+    (THREE, '3 Stars'),
+    (FOUR, '4 Stars'),
+    (FIVE, '5 Stars'),
+]
+
+STATUS_CHOCIES = [
+    (ONE, 'Being Reviewed'),
+    (TWO, 'Published')
+]
 
 STATES = (
         ("NA", "-"),
@@ -269,10 +293,6 @@ class Tag(models.Model):
 
 class Offer(models.Model):
 
-    STATUS_CHOCIES = [
-        ('DR', 'Being Reviewed'),
-        ('PR', 'Published')
-    ]
 
     author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     title           = models.CharField(max_length=100, blank=False)
@@ -307,11 +327,11 @@ def pre_save_offer(sender, **kwargs):
 
 class Store(models.Model):
     active      = models.BooleanField(default=True) #TODO This is not needed, we can just verify
-    status      = models.CharField(choices=STATUS_CHOICES, default='DR', max_length=20)
+    status      = models.PositiveIntegerField(choices=STATUS_CHOCIES, default=1)
     merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern
-    slug        = models.SlugField(unique=True)
+    slug        = models.SlugField(unique=True, blank=True, null=True) #MAKE THIS NOT EDITABLE
 
     # Offers
     offers      = models.ManyToManyField(Offer, blank=True)
@@ -320,9 +340,9 @@ class Store(models.Model):
     business_name       = models.CharField(max_length=100)
     website_url         = models.URLField(max_length=500, blank=True, null=True)
     facebook_url        = models.URLField(max_length=500, blank=True, null=True)
-    logo                = models.ImageField(upload_to='store-logos/', blank=True, null=True)
+    logo                = models.ImageField(upload_to='store-logos/', null=True)
     category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
-    subcategory         = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=True, null=True    )
+    subcategory         = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=True, null=True)
     code_coupon         = models.CharField(max_length=15, blank=True, null=True, help_text="If left blank, this will be auto-generated as GEGOO####. Set as 'NONE' if no coupon code is desired for your store.")
 
     # Store Bio
@@ -337,8 +357,8 @@ class Store(models.Model):
     phone_number        = PhoneNumberField(max_length=20, blank=True, null=True, region='US')
 
     # Store Location Info - Admin fills out
-    latitude            = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter latitude of store's location.", null=True, blank=True)
-    longitude           = models.DecimalField(max_digits=11, decimal_places=8, help_text="Enter longitude of store's location.", null=True, blank=True)
+    latitude            = models.DecimalField(max_digits=11, decimal_places=8, default=1, help_text="Enter latitude of store's location.", null=True, blank=True)
+    longitude           = models.DecimalField(max_digits=11, decimal_places=8, default=1, help_text="Enter longitude of store's location.", null=True, blank=True)
     location            = models.PointField(srid=4326, null=True, blank=True)
 
     # AWS3 Services
@@ -350,7 +370,7 @@ class Store(models.Model):
     ref_code = models.CharField(max_length=20, blank=True, null=True, editable=False)
 
     #views
-    views = models.PositiveIntegerField(default=0)
+    views = models.PositiveIntegerField(default=0) #Does this work? TODO
 
     # Creation Fields
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
@@ -372,27 +392,40 @@ class Store(models.Model):
         object = object_qs.first()
         return object
 
+    @property
+    def rating_average(self):
+        rating_dict = self.testimonial.all().aggregate(Sum('rating'))
+        count = self.testimonial.all().count()
+        front_text = rating_dict.get('rating__sum')
+        if front_text is not None:
+            average_rating = front_text / count
+            return average_rating
+
+    @property
+    def get_total_testimonials(self):
+        count = self.testimonial.count()
+        return count
 
     # def GetDistance(self):
     #     return self.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
     #
 
-
-
 @receiver(pre_save, sender=Store)
 def pre_save_store(sender, **kwargs):
-    slug = slugify(kwargs['instance'].business_name)
-    kwargs['instance'].slug = slug
+    slug_1 = slugify(kwargs['instance'].business_name, kwargs['instance'].city)
+    slug_2 = slugify(slug_1, kwargs['instance'].state)
+    slug_3 = slugify(slug_2, kwargs['instance'].id)
+    kwargs['instance'].slug = slug_3
 
 post_save.connect(CalculateLocation, sender=Store)
 post_save.connect(setCouponCode, sender=Store)
 
 class Testimonial(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    store  = models.ForeignKey(Store, on_delete=models.CASCADE, null=True)
+    store  = models.ForeignKey(Store, on_delete=models.CASCADE, null=True, related_name="testimonial")
     review = models.TextField()
     rating = models.PositiveIntegerField(
-        default=0,
+        choices=RATING_CHOICES, default='5',
         validators = [
             MaxValueValidator(5),
             MinValueValidator(0)
@@ -401,6 +434,9 @@ class Testimonial(models.Model):
     # Creation Fields
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
     updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
+
+
+
 
 # post_save.connect(setMerchantRefCode, sender=Store)
 # post_save.connect(CalculateLocation, sender=Store)
@@ -422,11 +458,11 @@ class Testimonial(models.Model):
 #         object = object_qs.first()
 #         return object
 
-class Promotion(models.Model):
-    message = models.CharField(max_length=64)
-    background = models.CharField(choices=PROMOTION_CHOICES, default='Primary', max_length=12)
-    active = models.BooleanField()
-    end_date = models.DateField()
+class PromotionalVideo(models.Model):
+    title           = models.CharField(max_length=64)
+    video           = models.OneToOneField(VideoFile, on_delete=models.CASCADE)
+    active          = models.BooleanField()
+    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
 
     def __str__(self):
-        return '%s' '(%s, ends=%s)' % (self.message, self.active, self.end_date)
+        return '%s' % (self.title)

@@ -75,39 +75,33 @@
                                 <p class="text-muted fs-14">Topic: <span><a href="{{ question.topic.get_absolute_url }}" class="fs-14 fw-1">{{ question.topic }}</a></span></p>
                             </div>
                         </div>
-
-
                     </div>
                     <hr class="mb-0">
                     {% endfor %}
                     <div class="py-3 text-center">
                         {% if is_paginated %}
-
+                        <nav aria-label="Page navigation example">
+                          <ul class="pagination">
                             {% if page_obj.has_previous %}
-                                <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page=1">First</a>
-                                <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                            {% endif %}
-
-                            {% for num in page_obj.paginator.page_range %}
-                                {% if page_obj.number == num %}
-                                <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ num }}">{{ num }}</a>
-                                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                                <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ num }}">{{ num }}</a>
+                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                                 {% endif %}
-                            {% endfor %}
-
-                            {% if page_obj.has_next %}
-                                <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ page_obj.next_page_number }}">Next</a>
-                                <a class="btn btn-primary-alt px-2 py-2 fs-12" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-                            {% endif %}
-
+                                {% for num in page_obj.paginator.page_range %}
+                                    {% if page_obj.number == num %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+                                {% endif %}
+                          </ul>
+                        </nav>
                         {% endif %}
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 </section>

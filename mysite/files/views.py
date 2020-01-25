@@ -26,8 +26,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 import json
-from django.http import HttpResponse
-
+from django.contrib import messages
 
 
 
@@ -50,25 +49,18 @@ class VideoFileUploadView(View, LoginRequiredMixin):
             videofile = form.save(commit=False)
             videofile.user = user
             videofile = form.save()
-
-            print("save image")
             data = {'is_valid': True, 'name': videofile.file.name, 'url': videofile.file.url}
         else:
             if ValidationError:
-                print(ValidationError)
+                # returns ValdiationError Message as a Json Object
+                error = form.errors.as_json()
 
-            data = {'error': True}
+                # Loads Json data from a string
+                error_json_object = json.loads(error)
+                print(error_json_object)
+                message = error_json_object['file'][0]['message']
 
-            # returns ValdiationError Message as a Json Object
-            error = form.errors.as_json()
-
-            # Loads Json data from a string
-            error_json_object = json.loads(error)
-            message = error_json_object['file'][0]['message']
-            data = {'is_valid': False, 'message': message}
-
-            print(error_json_object['file'][0]['message'])
-
+                data = {'is_valid': False, 'message': message}
         return JsonResponse(data)
 
 

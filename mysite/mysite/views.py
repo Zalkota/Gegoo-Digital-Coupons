@@ -15,7 +15,7 @@ from django.utils import timezone
 
 # imports
 from support.models import Contact
-from portal.models import Offer, Store, Category
+from portal.models import Offer, Store, Category, PromotionalVideo
 
 #mail
 from django.core.mail import send_mail
@@ -28,6 +28,7 @@ from django.contrib import messages
 #Customer email import
 from django.conf import settings
 EMAIL_CUSTOMER = settings.EMAIL_CUSTOMER
+
 
 
 #GeoIP
@@ -145,7 +146,8 @@ class homeView(View):
         store_empty_qs = Store.objects.all()[0:6]
         # city = context["city"]
         # state = context["subdivisions"]
-        store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status='PR')[0:6]
+        store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:6]
+        promotional_video = PromotionalVideo.objects.filter(active=True).order_by("-created_at").first()
         #store_nearby = store.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
 
         # if address_qs = None:
@@ -169,6 +171,7 @@ class homeView(View):
             'state': state,
             'store_nearby': store_nearby,
             'store_empty_qs': store_empty_qs,
+            'promotional_video': promotional_video,
         }
         return render(self.request, 'mysite/home_page.html', context)
 

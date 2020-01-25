@@ -9,7 +9,7 @@ class QuestionListView(ListView):
     model = Question
     template_name = 'support/question_list.html'
     ordering = ['-created_at']
-    paginate_by = 4
+    paginate_by = 1
 
     def get_context_data(self, **kwargs):
         context = super(QuestionListView, self).get_context_data(**kwargs)

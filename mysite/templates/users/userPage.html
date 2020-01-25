@@ -75,13 +75,11 @@ a:hover {
 <!-- Modal End -->
 
 <!-- Body Start -->
-<section class="section-sm container">
-  <h2 class="fw-6 hide mb-2">Dashboard </h2>
-  <span class="fs-14 hide text-secondary">Welcome Back, {{ user }}!</span>
+<section class="section container">
       {% block component %}
-        {% include "users/profile_nav.html" %}
+        {% include "users/user/user_profile_nav.html" %}
       {% endblock component %}
-        <div class="row mt-2" data-aos="fade-up">
+        <div class="row mt-2">
             <div class="col-lg-12 mb-4">
                 <div class="card shadow-2  unhide">
                     <div class="card-body">

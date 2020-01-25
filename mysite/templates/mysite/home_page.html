@@ -15,35 +15,39 @@
 {% endblock category_nav %}
 
 
-<section class="hero">
-    <div class="text text-center" >
-        <img class="img-fluid border-radius-100" style="width: 100%;" src="{% static 'img/headers/banner.jpg' %}" alt="User Uploaded images">
-        <div class="search-form hide">
-            <div class="search-form-background-hero">
-                <form class="search-form-container-hero" action="/find/" method="get" >
-                    <div class="ml-2">
-                        <div class="icon-addon addon-lg">
-                            <input type="text" class="font-italic" placeholder="Search for Coupons & Merchants" name="q" id="q" autocomplete="off">
-                            <div id="selction-ajax"></div>
-                        </div>
-                    </div>
-                </form>
-                <div class="search-icon"><i class="fa fa-search fs-20" aria-hidden="true"></i></div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="section-sm">
+  <!-- VIDEO SECTION  Meeting your Landscaping Needs !-->
+
+<div class="homepage-hero-module container">
+  <div class="video-container video-container-mobile">
+      <div class="title-container shadow-1">
+        <div class="headline hide">
+          <h3 class="text-white fs-20 fw-6">{{ promotional_video.title }}</h3><h4 class="text-white fs-16">Use Code: <span class="fw-6">GEGOO2322</span></h4>
+        </div>
+        <div class="headline unhide text-dark">
+          <h1  style="font-weight: 600; text-shadow: 2px 2px 5px #222;"><a class="text-light" href="tel:248-755-3703">Lexington <br>Landscapes</a></h1>
+        </div>
+      </div>
+      <!-- #TODO: NEED WEBM VIDEO FOR THIS TO WORK ON FIREFOX -->
+    <video autoplay loop muted poster="" class="fillWidth hide">
+    <source src="{{ AwsBucketURL }}{{ promotional_video.video.file }}" type="video/mp4" alt="advertisement video of a house that was landscaped by lexington Landscapes" />Your browser does not support the video tag. I suggest you upgrade your browser.</video>
+  </div>
+</div>
+
+  <!-- VIDEO END !-->
+
+
+
+<section class="section-sm mt-0 pt-5">
     <div class="container">
-        <h3 class="section-header text-dark">Services in {{ city }}, {{ state }}</h3>
+        <h3 class="section-header text-dark">Services Located in {{ city }}, {{ state }}</h3>
         <br>
         <div class="row">
             {% for object in store_nearby %}
                     <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
                         <div class="">
                             <a href="{{ object.get_consumer_absolute_url }}">
-                                <img class="img-fluid" style="width: 100%;" src="/media/{{ object.logo }}" alt="User Uploaded images">
+                                <img class="img-fluid" style="width: 100%;" src="{{ AwsBucketURL }}{{ object.logo }}" alt="User Uploaded images">
                             </a>
                             <div class="py-1">
                                 <div class=" text-left mt-2">
