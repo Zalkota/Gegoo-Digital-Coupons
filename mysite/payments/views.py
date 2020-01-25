@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-from django.views.generic import TemplateView, ListView, DetailView, View
+from django.views.generic import TemplateView, ListView, DetailView, View, UpdateView
 from django.contrib import messages
 import stripe
 
@@ -24,8 +24,6 @@ class PlanDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PlanDetailView, self).get_context_data(**kwargs)
-        context['merchantprofile'] = users_models.MerchantProfile.objects.get(user=self.request.user)
-        context['plans'] = payments_models.Plan.objects.exclude(plan_id = self.request.user.subscription.plan_id)
         return context
 
     def post(self, *args, **kwargs):
@@ -47,13 +45,14 @@ class PlanDetailView(DetailView):
                 items = [{
                     'plan': plan,
                 }],
-                expand=['latest_invoice', 'plan'],
+                expand=['items', 'latest_invoice', 'plan'],
             )
 
-            print(subscription)
+            print(subscription['items']['data'][0].id)
 
             sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
             sub.subscription_id         = subscription['id']
+            sub.subscription_item_id    = subscription['items']['data'][0].id
             sub.plan_id                 = subscription['plan']['id']
             sub.subscription_status     = subscription['status']
             sub.payment_intent_status   = subscription['latest_invoice']['payment_intent']
@@ -83,26 +82,50 @@ class SubscriptionDetailView(DetailView):
         context['plans'] = payments_models.Plan.objects.exclude(plan_id = self.request.user.subscription.plan_id)
         return context
 
-    def post(self, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         self.object = self.get_object()
 
-        stripe.api_key = settings.STRIPE_SECRET_KEY_MPM
-        subscription = self.request.user.subscription.subscription_id
-        print(subscription)
+        stripe.api_key          = settings.STRIPE_SECRET_KEY_MPM
+        subscription_id         = self.request.user.subscription.subscription_id
+        subscription_item_id    = self.request.user.subscription.subscription_item_id
+        print(subscription_id)
 
-        try:
+        if 'delete' in request.POST:
             subscription = stripe.Subscription.delete(
-                subscription,
+                subscription_id,
+                expand=['items', 'latest_invoice', 'plan'],
             )
 
-            sub, created            = payments_models.Subscription.objects.get_or_create(user=self.request.user)
-            sub.subscription_id     = subscription['id']
-            sub.plan_id             = subscription['plan']['id']
-            sub.subscription_status = subscription['status']
+            sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+            sub.subscription_id         = subscription['id']
+            sub.subscription_item_id    = subscription['items']['data'][0].id
+            sub.plan_id                 = subscription['plan']['id']
+            sub.subscription_status     = subscription['status']
             sub.save()
             
             messages.success(self.request, 'Your Subscription Cancellation Was Successful!')
             return redirect('payments:plan_list')
         
-        except:
+        elif 'upgrade' in request.POST:
+            context = self.get_context_data(**kwargs)
+            
+            subscription = stripe.Subscription.modify(
+                subscription_id,
+                items = [{
+                    'id': subscription_item_id,
+                    'plan': context['plans'].first().plan_id,
+                }],
+            )
+
+            sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+            sub.subscription_id         = subscription['id']
+            sub.subscription_item_id    = subscription['items']['data'][0].id
+            sub.plan_id                 = subscription['plan']['id']
+            sub.subscription_status     = subscription['status']
+            sub.save()
+            
+            messages.success(self.request, 'Your Subscription Upgrade Was Successful!')
+            return redirect('payments:plan_list')
+
+        else:
             pass

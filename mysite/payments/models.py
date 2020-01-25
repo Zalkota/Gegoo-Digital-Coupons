@@ -40,6 +40,7 @@ class Subscription(models.Model):
     user                        = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True, related_name='subscription')
     slug                        = models.CharField(max_length=100, blank=True)
     subscription_id             = models.CharField(max_length=50, blank=True)
+    subscription_item_id        = models.CharField(max_length=50, blank=True)
     plan_id                     = models.CharField(max_length=50, blank=True)
     subscription_status         = models.CharField(max_length=50, blank=True)
     payment_intent_status       = models.CharField(max_length=50, blank=True)

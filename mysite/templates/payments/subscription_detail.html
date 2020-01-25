@@ -12,7 +12,7 @@
                 
                     <form action="" method="POST">
                         {% csrf_token %}
-                        <button class="btn btn-danger" type="submit">Delete</button>
+                        <button class="btn btn-danger" type="submit" name="delete">Delete</button>
                     </form>
                 </div>
             </div>
@@ -25,10 +25,9 @@
                 <div class="card-body">
                     <h1>{{ plan.nickname }}</h1>
                     <h1>{{ plan.plan_id }}</h1>
-
                     <form action="" method="POST">
                         {% csrf_token %}
-                        <button class="btn btn-primary" type="submit">Upgrade</button>
+                        <button class="btn btn-success" type="submit" name="upgrade">Upgrade</button>
                     </form>
                 </div>
             </div>
