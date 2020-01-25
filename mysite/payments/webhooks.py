@@ -31,20 +31,24 @@ class TrialWebhook(View):
             return HttpResponse(status=400)
 
         # Handle the event
-        if event.type == 'payment_intent.succeeded':
-            payment_intent = event.data.object
-            print(payment_intent)
-        if event.type == 'invoice.payment_succeeded':
-            invoice = event.data.object
-            print(invoice)
+        if event.type == 'customer.subscription.created':
+            customer_subscription_created = event.data.object
+            print(customer_subscription_created)
+        if event.type == 'invoice.created':
+            invoice_created = event.data.object
+            print(invoice_created)        
         if event.type == 'invoice.finalized':
             invoice_finalized = event.data.object
             print(invoice_finalized)
-        elif event.type == 'payment_method.attached':
-            payment_method = event.data.object
-            print(payment_method)
+        if event.type == 'charge.succeeded':
+            charge_succeeded = event.data.object
+            print(charge_succeeded)
+        if event.type == 'invoice.payment_succeeded':
+            invoice = event.data.object
+        if event.type == 'customer.subscription.deleted':
+            customer_subscription_deleted = event.data.object
+            print(customer_subscription_deleted)
         else:
-        # Unexpected event type
             return HttpResponse(status=400)
 
         return HttpResponse(status=200)

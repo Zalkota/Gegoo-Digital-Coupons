@@ -113,7 +113,7 @@ class SubscriptionDetailView(DetailView):
                 subscription_id,
                 items = [{
                     'id': subscription_item_id,
-                    'plan': context['plans'].first().plan_id,
+                    'plan': context['plans'].first().plan_id,   
                 }],
             )
 
