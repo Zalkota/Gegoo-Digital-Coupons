@@ -292,19 +292,16 @@ class Tag(models.Model):
 
 
 class Offer(models.Model):
-
-
     author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     title           = models.CharField(max_length=100, blank=False)
     description     = models.TextField(max_length=500, blank=False)
     # tag             = models.ManyToManyField(Tag, blank=True)
     slug            = models.SlugField(unique=True, blank=True, editable=False)
-    image           = models.ImageField(upload_to='photos/', null=True)
     end_date        = models.DateField()
     likes           = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
     # is_featured     = models.BooleanField('FeaturedStatus', default=False)
 
-    status          = models.CharField(max_length=50, choices = STATUS_CHOCIES, default='Drafted')
+    status          = models.PositiveIntegerField(choices=STATUS_CHOCIES, default=1)
 
     # Creation Fields
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
@@ -423,6 +420,7 @@ post_save.connect(setCouponCode, sender=Store)
 class Testimonial(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     store  = models.ForeignKey(Store, on_delete=models.CASCADE, null=True, related_name="testimonial")
+    title  = models.CharField(max_length=256, default="")
     review = models.TextField()
     rating = models.PositiveIntegerField(
         choices=RATING_CHOICES, default='5',

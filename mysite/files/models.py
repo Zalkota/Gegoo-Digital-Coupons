@@ -46,7 +46,7 @@ def file_size(value): # add this to some file where you can import it from
 
 
 class VideoFile(models.Model):
-    user            = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user            = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='videofile')
     title           = models.CharField(max_length=255, blank=True)
     file            = models.FileField(upload_to=update_filename, validators=[FileExtensionValidator(['mp4', 'mov']), file_size], help_text="Image must be a .MP4 or .MOV")
     uploaded_at     = models.DateTimeField(auto_now_add=True)
