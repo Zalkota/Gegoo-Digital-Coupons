@@ -8,20 +8,36 @@ from django.shortcuts import reverse
 
 import stripe
 
+class Benefit(models.Model):
+	description = models.CharField(max_length=36, help_text="Describe a benefit of the subscription product.")
+
+	def __str__(self):
+		return self.description
+
 class Plan(models.Model):
-    slug        = models.CharField(max_length=100, blank=True)
-    nickname    = models.CharField(max_length=50, blank=True)
-    product_id  = models.CharField(max_length=50, blank=True)
+    slug        = models.CharField(max_length=100, blank=True, editable=False)
+    nickname    = models.CharField(max_length=50, blank=True, editable=False)
+    product_id  = models.CharField(max_length=50, blank=True, editable=False)
     plan_id     = models.CharField(max_length=50, blank=True)
-    amount      = models.CharField(max_length=50, blank=True)
-    currency    = models.CharField(max_length=50, blank=True)
-    interval    = models.CharField(max_length=50, blank=True)
+    amount      = models.CharField(max_length=50, blank=True, editable=False)
+    currency    = models.CharField(max_length=50, blank=True, editable=False)
+    interval    = models.CharField(max_length=50, blank=True, editable=False)
+    description = models.CharField(max_length=255, default="add description")
+    benefit = models.ManyToManyField(Benefit)
 
     def __str__(self):
         return self.nickname
 
     def get_absolute_url(self):
         return reverse('payments:plan_detail', kwargs={'slug': self.slug})
+
+    def get_total(self):
+        return int(self.amount) / 100.00
+        total = property(stripe_total)
+
+    @property
+    def all_benefits(self):
+        return self.benefit.all()
 
 @receiver(pre_save, sender=Plan)
 def pre_save_plan(sender, instance, **kwargs):

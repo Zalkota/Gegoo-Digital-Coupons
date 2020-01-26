@@ -196,7 +196,7 @@ DATABASES = {
 
 	'default': {
         	'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        	'NAME': 'gegoo',
+        	'NAME': 'gegoosubscription',
         	'USER': 'gegooadmin',
         	'PASSWORD': '$Django10',
         	'HOST': 'localhost',

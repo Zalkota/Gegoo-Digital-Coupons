@@ -3,7 +3,7 @@ from django.conf import settings
 from django.views.generic import TemplateView, ListView, DetailView, View, UpdateView
 from django.contrib import messages
 import stripe
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from payments import models as payments_models
 from users import models as users_models
 
@@ -11,20 +11,22 @@ import json
 
 class PlanListView(ListView):
     model = payments_models.Plan
-    template_name = 'payments/plan_list.html'
 
     def get_queryset(self):
         plan_list = payments_models.Plan.objects.all()
         return plan_list
 
 
-class PlanDetailView(DetailView):
+
+class PlanDetailView(LoginRequiredMixin, DetailView):
     model = payments_models.Plan
     template_name = 'payments/plan_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(PlanDetailView, self).get_context_data(**kwargs)
         return context
+
+
 
     def post(self, *args, **kwargs):
         self.object = self.get_object()
@@ -70,7 +72,7 @@ class Charge(View):
     def get(self, *args, **kwargs):
         return render(self.request, 'payments/charge.html')
 
-class SubscriptionDetailView(DetailView):
+class SubscriptionDetailView(LoginRequiredMixin, DetailView):
     model = payments_models.Subscription
     template_name = 'payments/subscription_detail.html'
 
@@ -102,18 +104,18 @@ class SubscriptionDetailView(DetailView):
             sub.plan_id                 = subscription['plan']['id']
             sub.subscription_status     = subscription['status']
             sub.save()
-            
+
             messages.success(self.request, 'Your Subscription Cancellation Was Successful!')
             return redirect('payments:plan_list')
-        
+
         elif 'upgrade' in request.POST:
             context = self.get_context_data(**kwargs)
-            
+
             subscription = stripe.Subscription.modify(
                 subscription_id,
                 items = [{
                     'id': subscription_item_id,
-                    'plan': context['plans'].first().plan_id,   
+                    'plan': context['plans'].first().plan_id,
                 }],
             )
 
@@ -123,7 +125,7 @@ class SubscriptionDetailView(DetailView):
             sub.plan_id                 = subscription['plan']['id']
             sub.subscription_status     = subscription['status']
             sub.save()
-            
+
             messages.success(self.request, 'Your Subscription Upgrade Was Successful!')
             return redirect('payments:plan_list')
 
