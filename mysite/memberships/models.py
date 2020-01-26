@@ -56,9 +56,9 @@ class Membership(models.Model):
 		return self.tax + self.price
 		total = property(get_total)
 
-	def stripe_total(self):
-		return (self.tax + self.price) * 100
-		total = property(stripe_total)
+	def get_total(self):
+		return (self.amount) * 100
+		total = property(get_total)
 
 	def __str__(self):
 		return self.slug
