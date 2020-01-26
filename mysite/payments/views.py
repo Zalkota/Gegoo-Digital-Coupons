@@ -45,10 +45,10 @@ class PlanDetailView(DetailView):
                 items = [{
                     'plan': plan,
                 }],
-                expand=['items', 'latest_invoice', 'plan'],
+                expand=['items', 'latest_invoice', 'latest_invoice.payment_intent', 'plan'],
             )
 
-            print(subscription['items']['data'][0].id)
+            print(subscription['latest_invoice.payment_intent']['status'])
 
             sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
             sub.subscription_id         = subscription['id']
@@ -88,7 +88,6 @@ class SubscriptionDetailView(DetailView):
         stripe.api_key          = settings.STRIPE_SECRET_KEY_MPM
         subscription_id         = self.request.user.subscription.subscription_id
         subscription_item_id    = self.request.user.subscription.subscription_item_id
-        print(subscription_id)
 
         if 'delete' in request.POST:
             subscription = stripe.Subscription.delete(
@@ -129,3 +128,34 @@ class SubscriptionDetailView(DetailView):
 
         else:
             pass
+
+class PaymentIntent(View):
+    def get(self, request, *args, **kwargs):
+        return render(self.request, 'payments/payment_intent.html')
+
+    def post(self, request, *args, **kwargs):
+        stripe.api_key = settings.STRIPE_SECRET_KEY_MPM
+        subscription = self.request.user.subscription.subscription_id
+        payment_intent = self.request.user.subscription.payment_intent_status
+
+        try:
+            sub = stripe.Subscription.retrieve(
+                subscription,
+                expand=['latest_invoice'],
+            )
+
+            pi = stripe.PaymentIntent.retrieve(
+                sub['latest_invoice']['payment_intent'],
+            )
+
+            print(sub['latest_invoice']['payment_intent'])
+            print(pi['status'])
+            return redirect('payments:payment_intent')
+
+        except:
+            pass
+    
+    # def get_context_data(self, **kwargs):
+    #     context = super(PaymentIntent, self).get_context_data(**kwargs)
+    #     context['subscription'] = payments_models.Subscription.objects.filter(user = self.request.user)
+    #     return context

@@ -45,6 +45,9 @@ class Subscription(models.Model):
     subscription_status         = models.CharField(max_length=50, blank=True)
     payment_intent_status       = models.CharField(max_length=50, blank=True)
 
+    def __str__(self):
+        return self.subscription_id
+
 @receiver(pre_save, sender=Subscription)
 def pre_save_subscription(sender, instance, **kwargs):
     slug            = slugify(instance.subscription_id)
