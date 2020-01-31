@@ -76,8 +76,6 @@ class MerchantProfileForm(forms.ModelForm):
     class Meta:
        model = users_models.MerchantProfile
        fields = [
-        'business_name',
-        'description',
            'street_address',
            'city',
            'state',

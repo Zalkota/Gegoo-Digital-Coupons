@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.views.generic import TemplateView, ListView, DetailView, View, UpdateView
+from django.core.mail import send_mail
 from django.contrib import messages
 import stripe
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -27,14 +28,13 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
         context = super(PlanDetailView, self).get_context_data(**kwargs)
         return context
 
-
-
     def post(self, *args, **kwargs):
         self.object = self.get_object()
 
         stripe.api_key = settings.STRIPE_SECRET_KEY_MPM
         token = self.request.POST.get('stripeToken')
         customer = self.request.user.merchant_profile.customer_id
+        customer_stores = self.request.user.merchant_profile.stores
         plan = self.object.plan_id
 
         try:
@@ -47,19 +47,21 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                 customer = customer,
                 items = [{
                     'plan': plan,
+                    'quantity': customer_stores,
                 }],
-                expand=['items', 'latest_invoice', 'latest_invoice.payment_intent', 'plan'],
+                expand=['items', 'latest_invoice', 'plan'],
             )
-
-            print(subscription['latest_invoice.payment_intent']['status'])
 
             sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
             sub.subscription_id         = subscription['id']
             sub.subscription_item_id    = subscription['items']['data'][0].id
+            sub.subscription_quantity   = subscription['items']['data'][0].quantity
             sub.plan_id                 = subscription['plan']['id']
             sub.subscription_status     = subscription['status']
             sub.payment_intent_status   = subscription['latest_invoice']['payment_intent']
             sub.save()
+
+            send_mail('Subscription', 'Your subscription was successful!', 'michael@modwebservices.com', ['michael@modwebservices.com',])
 
             messages.success(self.request, 'Your Subscription Was Successful!')
             return redirect('payments:charge')
@@ -82,15 +84,15 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(SubscriptionDetailView, self).get_context_data(**kwargs)
-        context['plans'] = payments_models.Plan.objects.exclude(plan_id = self.request.user.subscription.plan_id)
         return context
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
 
         stripe.api_key          = settings.STRIPE_SECRET_KEY_MPM
-        subscription_id         = self.request.user.subscription.subscription_id
-        subscription_item_id    = self.request.user.subscription.subscription_item_id
+        subscription_id         = self.object.subscription_id
+        subscription_item_id    = self.object.subscription_item_id
+        customer_stores         = self.request.user.merchant_profile.stores
 
         if 'delete' in request.POST:
             subscription = stripe.Subscription.delete(
@@ -101,6 +103,7 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
             sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
             sub.subscription_id         = subscription['id']
             sub.subscription_item_id    = subscription['items']['data'][0].id
+            sub.subscription_quantity   = subscription['items']['data'][0].quantity
             sub.plan_id                 = subscription['plan']['id']
             sub.subscription_status     = subscription['status']
             sub.save()
@@ -109,19 +112,21 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
             return redirect('payments:plan_list')
 
         elif 'upgrade' in request.POST:
-            context = self.get_context_data(**kwargs)
-
             subscription = stripe.Subscription.modify(
                 subscription_id,
+                cancel_at_period_end=False,
                 items = [{
                     'id': subscription_item_id,
-                    'plan': context['plans'].first().plan_id,
+                    'plan': self.object.plan_id,
+                    'quantity': customer_stores,
                 }],
+                proration_behavior='none',
             )
 
             sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
             sub.subscription_id         = subscription['id']
             sub.subscription_item_id    = subscription['items']['data'][0].id
+            sub.subscription_quantity   = subscription['items']['data'][0].quantity
             sub.plan_id                 = subscription['plan']['id']
             sub.subscription_status     = subscription['status']
             sub.save()
@@ -150,6 +155,8 @@ class PaymentIntent(View):
             pi = stripe.PaymentIntent.retrieve(
                 sub['latest_invoice']['payment_intent'],
             )
+
+            send_mail('Subscription', 'Your subscription was successful!', 'michael@modwebservices.com', ['michael@modwebservices.com',])
 
             print(sub['latest_invoice']['payment_intent'])
             print(pi['status'])

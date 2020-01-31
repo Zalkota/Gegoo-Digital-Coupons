@@ -20,7 +20,7 @@ from crispy_forms.bootstrap import (
 class MerchantApprovalForm(forms.ModelForm):
     class Meta:
        model = portal_models.Store
-       fields = 'business_name', 'website_url', 'facebook_url', 'phone_number', 'city'
+       fields = 'business_name', 'website_url', 'facebook_url', 'phone_number'
 
     def __init__(self, *args, **kwargs):
         super(MerchantApprovalForm, self).__init__(*args, **kwargs)
@@ -61,7 +61,7 @@ class MerchantApprovalForm(forms.ModelForm):
 class MerchantForm(forms.ModelForm):
     class Meta:
        model = portal_models.Store
-       fields = 'business_name', 'website_url', 'facebook_url', 'phone_number', 'city'
+       fields = 'business_name', 'website_url', 'facebook_url', 'phone_number'
 
     def __init__(self, *args, **kwargs):
         super(MerchantApprovalForm, self).__init__(*args, **kwargs)

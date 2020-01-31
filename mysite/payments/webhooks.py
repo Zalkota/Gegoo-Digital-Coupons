@@ -3,8 +3,12 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
+from django.core.mail import send_mail
 
 from django.utils.decorators import method_decorator
+
+from users import models as users
+from payments import models as payments_models
 
 import stripe
 
@@ -33,6 +37,9 @@ class TrialWebhook(View):
         # Handle the event
         if event.type == 'customer.subscription.created':
             customer_subscription_created = event.data.object
+
+            send_mail('New Subscription Created!', 'There is a new subscription for your site. Please check it out.', 'michael@modwebservices.com', ['michael@modwebservices.com',])
+
             print(customer_subscription_created)
         if event.type == 'invoice.created':
             invoice_created = event.data.object
@@ -47,6 +54,9 @@ class TrialWebhook(View):
             invoice = event.data.object
         if event.type == 'customer.subscription.deleted':
             customer_subscription_deleted = event.data.object
+
+            send_mail('Subscription Deleted!', 'There has been a subscription cancellation. Please check it out.', 'michael@modwebservices.com', ['michael@modwebservices.com',])
+
             print(customer_subscription_deleted)
         else:
             return HttpResponse(status=400)

@@ -18,9 +18,9 @@ class StoreAddressInline(admin.TabularInline):
     model = store_address
 
 class StoreAdmin(admin.ModelAdmin):
-    search_fields = ['city__name', 'business_name']
-    autocomplete_fields = ['city']
-    list_display = ('business_name', 'city', 'category', 'subcategory', 'active')
+    # search_fields = ['city__name', 'business_name']
+    # autocomplete_fields = ['city']
+    list_display = ('business_name', 'category', 'subcategory', 'active')
     inlines = [
         StoreAddressInline,
     ]

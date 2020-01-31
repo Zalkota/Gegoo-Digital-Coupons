@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="offset-lg-2"></div>
             {% for object in object_list %}
-                {% if object.id == 1 %}
+                {% if object.nickname == 'Monthly Subscription' %}
                     <div class="col-lg-4 mb-5 pb-5 mt-1">
                         <div class="card card-effects subscription-card-left shadow-2 mt-4">
                             <div class="card-body">
@@ -43,14 +43,12 @@
                                 <div class="py-3"></div>
                                 {% if request.user.is_authenticated %}
                                     {% if user.subscription.subscription_status == 'active' %}
-                      				    {% if user.subscription.plan_id == object.plan_id %}
-                                      	<a class="btn btn-purple-600-alt btn-block disabled">Purchased</a>
-                      				    {% else %}
-                                        <a href="{{ object.get_absolute_url }}" class="btn btn-purple-500-alt btn-block mb-4">Select</a>
-                                        {% endif %}
+                                      	<a class="btn btn-gray-800-alt btn-block mb-4 text-white disabled">Purchased</a>
+                                    {% elif user.subscription.subscription_status == 'canceled' %}
+                                        <a href="{{ object.get_absolute_url }}" class="btn btn-gray-800-alt btn-block mb-4">Select</a>
                       				{% endif %}
                                 {% else %}
-                                        <a href="{% url 'account_login' %}" class="btn btn-purple-500-alt btn-block mb-4">Select</a>
+                                        <a href="{% url 'account_login' %}" class="btn btn-purple-500-alt btn-block mb-4">Login</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -79,14 +77,12 @@
                                 <div class="py-3"></div>
                                 {% if request.user.is_authenticated %}
                                     {% if user.subscription.subscription_status == 'active' %}
-                      				    {% if user.subscription.plan_id == object.plan_id %}
                                       	<a class="btn btn-gray-800-alt btn-block mb-4 text-white disabled">Purchased</a>
-                      				    {% else %}
+                                    {% elif user.subscription.subscription_status == 'canceled' %}
                                         <a href="{{ object.get_absolute_url }}" class="btn btn-gray-800-alt btn-block mb-4">Select</a>
-                                        {% endif %}
                       				{% endif %}
                                 {% else %}
-                                        <a href="{% url 'account_login' %}" class="btn btn-purple-500-alt btn-block mb-4">Select</a>
+                                        <a href="{% url 'account_login' %}" class="btn btn-purple-500-alt btn-block mb-4">Login</a>
                                 {% endif %}
                             </div>
                         </div>

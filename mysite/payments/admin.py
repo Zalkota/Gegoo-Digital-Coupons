@@ -6,7 +6,7 @@ class BenefitInline(admin.TabularInline):
     model = payments_models.Plan.benefit.through
 
 class PlanAdmin(admin.ModelAdmin):
-    exclude = ('benefit',)
+    list_display = ('nickname', 'plan_id', 'amount')
     inlines = [
             BenefitInline,
         ]

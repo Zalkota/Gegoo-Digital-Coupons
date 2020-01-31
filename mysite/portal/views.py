@@ -22,6 +22,8 @@ from users.decorators import user_is_merchant
 from .forms import MerchantApprovalForm
 from users.decorators import IsMerchantMixin, IsUserObject
 
+from users import models as users_models
+
 def get_user_orders(request, user):
 	user_orders_qs = portal_modedls.Order.objects.filter(user=user)
 	if user_orders_qs.exists():
@@ -71,7 +73,7 @@ class SubcategoryDetailView(DetailView):
 
 class StoreDetailView(DetailView): #This needs to filter by user city or distance
 	model = portal_models.Store
-	template_name = 'portal/store/store_detail.html'
+	template_name = 'portal/store/merchant_store_detail.html'
 
 	def get_context_data(self, **kwargs):
 		context = super(StoreDetailView, self).get_context_data(**kwargs)
@@ -94,7 +96,7 @@ class MerchantStoreListView(LoginRequiredMixin, ListView):
 
 class MerchantStoreDetailView(LoginRequiredMixin, DetailView):
 	model = portal_models.Store
-	template_name = 'portal/store/store_detail.html'
+	template_name = 'portal/store/merchant_store_detail.html'
 
 	# def get_object(self):
 	# 	obj = super(MerchantStoreDetailView, self).get_object()
@@ -127,6 +129,7 @@ class MerchantStoreCreateView(LoginRequiredMixin, CreateView):
 	def form_valid(self, form):
 		user = self.request.user
 		user.status = 'PENDING'
+
 		user.save()
 
 		form.instance.merchant = self.request.user
@@ -143,9 +146,9 @@ class MerchantStoreUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'portal/store/merchant_store_update.html'
 
 class MerchantStoreDeleteView(LoginRequiredMixin, DeleteView):
-    model = portal_models.Offer
+    model = portal_models.Store
     template_name = 'portal/store/merchant_store_delete.html'
-    success_url = reverse_lazy('portal:store_list')
+    success_url = reverse_lazy('portal:merchant_store_list')
 
 class MerchantOfferListView(LoginRequiredMixin, ListView):
 	model = portal_models.Offer

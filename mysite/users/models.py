@@ -10,12 +10,14 @@ from django.utils.timezone import now as timezone_now
 from django.conf import settings
 from allauth.account.signals import user_logged_in, user_signed_up
 import stripe
-from django.core.validators import FileExtensionValidator
+from django.core.validators import FileExtensionValidator, MinValueValidator
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 import datetime
 from django.utils import timezone
+
+from portal import models as portal_models
 
 STATUS_CHOICES = (
     ('APPROVED', 'Approved'),
@@ -126,11 +128,6 @@ class MerchantProfile(models.Model): #Is a Profile Necessary?
     user            = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='merchant_profile')
     customer_id     = models.CharField(max_length=200, null=True, blank=True)
     status          = models.CharField(choices=STATUS_CHOICES, default='NOT APPROVED', max_length=20)
-    has_paid        = models.BooleanField('payment_status', default=False)
-
-    #Basic information
-    business_name       = models.CharField(max_length=100, null=True)
-    description         = models.TextField(max_length=500, null=True)
 
     #Address
     street_address = models.CharField(max_length=100, null=True)
@@ -138,6 +135,9 @@ class MerchantProfile(models.Model): #Is a Profile Necessary?
     state = models.CharField(choices=STATES, default='NA', max_length=100)
     zip = models.CharField(max_length=100, null=True)
     phone_number        = PhoneNumberField(max_length=20, blank=True, null=True)
+
+    # Store Info
+    stores = models.PositiveIntegerField(default=0, validators = [MinValueValidator(0)])
 
     #Online links
     website_url         = models.CharField(max_length=500, blank=True, null=True)
@@ -167,9 +167,6 @@ def create_merchant_profile(sender, instance, created, **kwargs):
             stripe_customer_id               = stripe.Customer.create(email=instance.email)
             merchantprofile.customer_id      = stripe_customer_id['id']
             merchantprofile.save()
-            print(stripe_customer_id['id'])
-
-
 
 #TODO Only created for non-merchants
 def ProfileCallback(sender, request, user, **kwargs):

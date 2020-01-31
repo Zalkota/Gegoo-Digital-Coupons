@@ -2,7 +2,7 @@
 
 {% block extra_styles %}
 <style media="screen">
-    
+
     #stripeBtnLabel {
       font-family: "Helvetica Neue", Helvetica, sans-serif;
       font-size: 16px;
@@ -11,7 +11,7 @@
       margin: 0;
       -webkit-font-smoothing: antialiased;
     }
-    
+
     #stripeBtn {
       border: none;
       border-radius: 4px;
@@ -36,42 +36,42 @@
       margin-left: 12px;
       margin-top: 28px;
     }
-    
+
     button:hover {
       transform: translateY(-1px);
       box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
       background-color: #43458b;
     }
-    
+
     form {
       padding: 30px;
       height: 120px;
     }
-    
+
     label {
       font-weight: 500;
       font-size: 14px;
       display: block;
       margin-bottom: 8px;
     }
-    
+
     #card-errors {
       height: 20px;
       padding: 4px 0;
       color: #fa755a;
     }
-    
+
     .stripe-form-row {
       width: 70%;
       float: left;
     }
-    
+
     .token {
       color: #32325d;
       font-family: 'Source Code Pro', monospace;
       font-weight: 500;
     }
-    
+
     #stripe-token-handler {
       position: absolute;
       top: 0;
@@ -89,40 +89,40 @@
       opacity: 1;
       background-color: white;
     }
-    
+
     #stripe-token-handler.is-hidden {
       opacity: 0;
       transform: translateY(-80px);
     }
-    
+
     /**
      * The CSS shown here will not be introduced in the Quickstart guide, but shows
      * how you can use CSS to style your Element's container.
      */
     .StripeElement {
       box-sizing: border-box;
-    
+
       height: 40px;
-    
+
       padding: 10px 12px;
-    
+
       border: 1px solid transparent;
       border-radius: 4px;
       background-color: white;
-    
+
       box-shadow: 0 1px 3px 0 #e6ebf1;
       -webkit-transition: box-shadow 150ms ease;
       transition: box-shadow 150ms ease;
     }
-    
+
     .StripeElement--focus {
       box-shadow: 0 1px 3px 0 #cfd7df;
     }
-    
+
     .StripeElement--invalid {
       border-color: #fa755a;
     }
-    
+
     .StripeElement--webkit-autofill {
       background-color: #fefde5 !important;
     }
@@ -141,20 +141,10 @@
       </div>
     </div>
 
-    <div class="col-12">
-      <div class="card">
-        <h1>{{ merchantprofile.user }}</h1>
-        <h1>{{ merchantprofile.customer_id }}</h1>
-      </div>
-    </div>
-
     <div class="col-md-12">
       {% if user.subscription.subscription_status == 'active' %}
-        {% if user.subscription.plan_id == plan.plan_id %}
-          <h1>Already Subscribed to {{ plan.nickname }}</h1>
-        {% endif %}  
+        <h1>Looks Like your subscription is {{ user.subscription.subscription_status }}.</h1>
       {% else %}
-      <h1>Looks Like your subscription is {{ user.subscription.subscription_status }}. Please Repurchase.</h1>
       <div class="card">
         <script src="https://js.stripe.com/v3/"></script>
         
@@ -172,7 +162,7 @@
         
             <button class="btn btn-primary" type="submit">Submit Subscription</button>
         </form>
-      </div>         
+      </div>   
       {% endif %}
     </div>
 
