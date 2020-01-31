@@ -5,15 +5,18 @@
 <div class="section-sm">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 offset-2">
-                <div class="card">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="card shadow-2">
                     <div class="card-body">
-                        <h2 class="section-header">Create Store</h2>
-                        <p class="fs-14">Create your store listing for one location. If you have multiple locations create additional stores after.</p>
+                        <h2 class="section-header">Create a Store</h2>
+                        <p class="fs-14">Own a business? Fill out the following information for one of your locations.</p>
                         <hr>
                         <form action="" method="POST">
                             {% csrf_token %}
-                            {{ form|crispy }}
+                            <div class="row">
+                                {% crispy form %}
+                                {{ form.media }}
+                            </div>
                             <button class="btn btn-primary-alt btn-block mt-3" type="submit">Create Store</button>
                         </form>
                     </div>

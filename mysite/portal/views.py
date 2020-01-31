@@ -115,6 +115,7 @@ class MerchantStoreCreateView(LoginRequiredMixin, CreateView):
 	form_class = MerchantStoreForm
 	template_name = 'portal/merchant/merchant_store_create.html'
 	success_message = "Store Created"
+	success_url = reverse_lazy('users:merchant_store_list')
 
 	def form_valid(self, form):
 		user = self.request.user
@@ -127,13 +128,10 @@ class MerchantStoreCreateView(LoginRequiredMixin, CreateView):
 
 class MerchantStoreUpdateView(LoginRequiredMixin, UpdateView):
 	model = portal_models.Store
-	fields = [
-	'business_name',
-	'title',
-	'description',
-	]
+	form_class = MerchantStoreForm
 	template_name = 'portal/merchant/merchant_store_update.html'
 	success_message = "Store Updated"
+	success_url = reverse_lazy('users:merchant_store_list')
 
 
 class MerchantStoreDeleteView(LoginRequiredMixin, DeleteView):

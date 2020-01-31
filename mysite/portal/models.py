@@ -246,7 +246,7 @@ class Images(models.Model):
 
 class Category(models.Model):
     name = models.CharField(choices=CATEGORY_CHOICES, default='FOOD', max_length=20, unique=True, db_index=True)
-    slug = models.SlugField(unique=True, blank=True, editable=False)
+    slug = models.SlugField(unique=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -337,7 +337,7 @@ class Store(models.Model):
     business_name       = models.CharField(max_length=100)
     website_url         = models.URLField(max_length=500, blank=True, null=True)
     facebook_url        = models.URLField(max_length=500, blank=True, null=True)
-    logo                = models.ImageField(upload_to='store-logos/', null=True)
+    logo                = models.ImageField(upload_to='store-logos/', null=True, blank=True)
     category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     subcategory         = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=True, null=True)
     code_coupon         = models.CharField(max_length=15, blank=True, null=True, help_text="If left blank, this will be auto-generated as GEGOO####. Set as 'NONE' if no coupon code is desired for your store.")
@@ -356,7 +356,7 @@ class Store(models.Model):
     # Store Location Info - Admin fills out
     latitude            = models.DecimalField(max_digits=11, decimal_places=8, default=1, help_text="Enter latitude of store's location.", null=True, blank=True)
     longitude           = models.DecimalField(max_digits=11, decimal_places=8, default=1, help_text="Enter longitude of store's location.", null=True, blank=True)
-    location            = models.PointField(srid=4326, null=True, blank=True)
+    location            = models.PointField(srid=4326, null=True, blank=True, default=None)
 
     # AWS3 Services
     downloadable_content_url            = models.URLField(max_length=500, blank=True, null=True, help_text="Link to AWS download url goes here")

@@ -1,0 +1,27 @@
+{% load static %}
+
+{% block merchant_approval_nav %}
+<div class="col-lg-8 offset-lg-2 offset-md-0 offset-sm-0 mb-4">
+    <div class="tab-pane show active" id="component-1-1" role="tabpanel" aria-labelledby="component-1-1">
+      <div class="component-example">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <div class="owl-carousel visible" data-items="[3,2]" data-margin="20">
+                    <div class="step {% if '/approval/profile/' in request.path %} fw-6 text-primary fw-6 {% endif %}">
+                      <h4 class="step-title {% if '/approval/profile/' in request.path %} fw-6 text-primary {% else %} text-secondary {% endif %}">Sign Up</h4>
+                    </div>
+                <div class="step {% if request.path == '/approval/store/create/' %} fw-6 text-primary fw-6 {% endif %} ">
+                  <h4 class="step-title {% if request.path == '/approval/store/create/' %} fw-6 text-primary {% else %} text-secondary {% endif %}">Create a Store</h4>
+                </div>
+                <div class="step">
+                  <h4 class="step-title {% if request.path == 'payment' %} fw-6 text-primary {% else %} text-secondary {% endif %}">Payment</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock merchant_approval_nav %}

@@ -142,7 +142,6 @@ class MerchantProfile(models.Model): #Is a Profile Necessary?
 
     #Basic information
     business_name       = models.CharField(max_length=100, null=True)
-    description         = models.TextField(max_length=500, null=True)
 
     #Address
     street_address = models.CharField(max_length=100, null=True)

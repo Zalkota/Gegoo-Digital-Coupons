@@ -230,7 +230,8 @@ class MerchantSignUpView(SignupView):
     template_name = 'account/signup_merchant.html'
     form_class = MerchantSignupForm
     view_name = 'merchant-signup'
-    success_url = '/dashboard/'
+    success_url = reverse_lazy('users:merchant_approval_store_create')
+
 
     def get_context_data(self, **kwargs):
         ret = super(MerchantSignUpView, self).get_context_data(**kwargs)

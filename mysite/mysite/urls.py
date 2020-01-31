@@ -31,7 +31,7 @@ urlpatterns = [
     path('.well-known/security.txt', security, name='security'),
     #Authentication
     url(r'^accounts/', include('allauth.urls')),
-    path('users/', include('users.urls')),
+    path('', include('users.urls')),
     #Portal
     url(r'^shop/', include(('portal.urls', 'portal'), namespace='portal')),
     #Location

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="section-sm">
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-lg-6 offset-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="display-5 fw-5">Add Additional Stores</h2>
+                        <span class="text-secondary fs-14">Do you own any additional store locations that you would like to add?</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-right">
+                            <a href="#TODO" class="btn btn-secondary-inverted mr-2">No, Let me Checkout</a>
+                            <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt mr-2" >Yes, I have additional Stores</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

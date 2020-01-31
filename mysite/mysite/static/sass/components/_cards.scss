@@ -5,10 +5,10 @@
 
 
 .card {
-    // box-shadow: 0 30px 60px -12px rgba(50,50,93,.25), 
-    //             0 18px 36px -18px rgba(0,0,0,.3), 
+    // box-shadow: 0 30px 60px -12px rgba(50,50,93,.25),
+    //             0 18px 36px -18px rgba(0,0,0,.3),
     //             0 -12px 36px -8px rgba(0,0,0,.025);
-    box-shadow: 0 4px 10px rgba(50,50,93,.24), 
+    box-shadow: 0 4px 10px rgba(50,50,93,.24),
                 0 4px 10px rgba(0,0,0,.08);
     background-color: #fff;
     border-radius: $border-radius-200;
@@ -260,7 +260,7 @@
     background-color: transparent;
     border: 1px solid $color-gray-400;
     transition: transform 0.25s;
-    box-shadow: 0;
+    box-shadow: $box-shadow-1;
 
     a {
         color: $color-text !important;
@@ -281,7 +281,7 @@
     width: 100%;
     padding: .6rem 0.5rem .6rem 0.5rem;
     cursor: pointer;
-    border: 1px solid $color-gray-400;
+    border: 2px solid $color-purple-500;
     transition: transform 0.25s;
     box-shadow: $box-shadow-1;
     background-color: white;

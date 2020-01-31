@@ -40,6 +40,7 @@
                 </div>
                 <div class="card-body border-top">
                     <h2 class="header text-dark">{{ store.business_name }}</h2>
+                    {% if store.testimonial.exists %}
                     <i class="material-icons star-yellow fs-18" style="">
                         {% if object.rating_average <= 1 %} star star_border star_border star_border star_border
                         {% elif object.rating_average <= 2 %} star star star_border star_border star_border
@@ -50,6 +51,7 @@
                     <span class="text-secondary fs-12">
                         ({{ object.get_total_testimonials }})
                     </span>
+                    {% endif %}
                     <div class="fw-5 fs-14 mt-3">
                         <span class="fw-4">{{ store.city }}, {{ store.state }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mb-1 icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>

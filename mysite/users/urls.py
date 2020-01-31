@@ -48,8 +48,9 @@ urlpatterns = [
     # path('consumer-signup/', ConsumerSignUpView.as_view(), name='consumer-signup'),
 
     #Merchant Approval Views
-    path('my-profile/<int:pk>/update', users_approval_views.MerchantProfileUpdateView.as_view(), name='merchant_profile_update'),
-    path('form-submission/',  users_approval_views.MerchantProfileFormLandingView, name='merchant-profile-landing-page'),
+    #path('approval/profile/<int:pk>/create', users_approval_views.MerchantProfileUpdateView.as_view(), name='merchant_profile_update'),
+    path('approval/store/create/additional',  users_approval_views.MerchantApprovalAdditionalStoreView, name='merchant_approval_additional_store'),
+    path('approval/store/create/', users_approval_views.MerchantApprovalStoreCreateView.as_view(), name='merchant_approval_store_create'),
 
     #Merchant Testimonials
     path('my-reviews/', portal_views.MerchantTestimonialListView.as_view(), name='merchant_testimonial_list'),

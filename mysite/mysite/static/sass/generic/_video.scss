@@ -3,7 +3,6 @@
   border-right: none;
   border-left: none;
   position: relative;
-  height: 90vh;
 }
 .no-video .video-container video,
 .touch .video-container video {
@@ -28,10 +27,6 @@
 
   }
   .title-container {
-    z-index: 10000;
-    position: absolute;
-    bottom: 3%;
-    right: 2%;
     vertical-align: middle;
     text-align: center;
     color: #fff;
@@ -44,16 +39,17 @@
   .volume-button   {
       z-index: 10000;
       position: absolute;
-      bottom: 3%;
+      bottom: 10%;
       left: 2%;
   }
 }
+
 @media screen and (max-width: 1286px) {
 .video-container-mobile {
   position: relative;
   bottom: 0%;
   left: 0%;
-  height: 560px; /* was 100% */
+  height: 100%; /* was 100% */
   width: 100%;
   overflow: hidden;
   background-position: bottom;
@@ -75,10 +71,9 @@
     border-right: none;
     border-left: none;
     position: relative;
-    height: 560px;
   }
-
 }
+
 .video-container .poster img {
   width: 100%;
   bottom: 0;

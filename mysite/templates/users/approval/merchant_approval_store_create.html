@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="section-sm">
+    <div class="container">
+        <div class="row">
+            {% block merchant_approval_nav %}
+              {% include "users/approval/merchant_approval_nav.html" %}
+            {% endblock merchant_approval_nav %}
+            <div class="col-lg-10 offset-lg-1 mt-4">
+                <div class="p-4">
+                    <div class="card-body">
+                        <h1 class="section-header text-uppercase text-primary">Merchant Approval Form</h1>
+                        <p class="fs-14">Own a business? Fill out the following information for one of your locations.</p>
+                        <hr>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                {% crispy form %}
+                                {{ form.media }}
+                            </div>
+                            <button class="btn btn-primary-alt btn-block mt-3" type="submit">Create Store</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

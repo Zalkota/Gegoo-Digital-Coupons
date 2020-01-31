@@ -13,13 +13,10 @@
                 <ul class="navbar-nav ml-auto" id="example-one">
                     {% if not request.user.is_authenticated %}
                     <li class="nav-item">
-                      <a class="nav-link text-primary" href="{% url 'account_signup' %}" id="">Sign Up</a>
-                    </li>
-                    <li class="nav-item pt-1 text-secondary">
-                      <span>|</span>
+                      <a class="nav-link " href="{% url 'account_login' %}" id="">Sign In</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'account_login' %}" id="">Sign In</a>
+                      <a class="nav-link btn btn-primary-alt text-white" style="font-weight: 600;" href="{% url 'account_signup' %}" id="">Sign Up</a>
                     </li>
                     {% else %}
 
