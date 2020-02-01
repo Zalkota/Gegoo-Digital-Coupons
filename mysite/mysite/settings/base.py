@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
     #Payment
     'stripe',
+    'payments.apps.PaymentsConfig',
     'django_countries',
 
     #Security
@@ -207,7 +208,7 @@ DATABASES = {
 
 	'default': {
         	'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        	'NAME': 'gegoo',
+        	'NAME': 'gegoosubscription',
         	'USER': 'gegooadmin',
         	'PASSWORD': '$Django10',
         	'HOST': 'localhost',
@@ -363,6 +364,8 @@ ACCOUNT_SESSION_REMEMBER = 'None' # Default is None. Controls the life time of t
 #STRIPE_PUBLISHABLE_KEY = 'pk_test_idvhfKDQ341zGBS85RwhLnWY'
 #STRIPE_SECRET_KEY = 'sk_test_UreA2MI54Bmadk6xO2j9jGlD'
 
+STRIPE_PUB_KEY_MPM      = 'pk_test_k2kLiCPSsK7yyQF4rDDPhHN100mYwH0Pvj'
+STRIPE_SECRET_KEY_MPM   = 'sk_test_vZfYk3ISvw6WsynV64vP0XpK006WkTHRMI'
 
 EMAIL_CUSTOMER = 'dominic@modwebservices.com'
 

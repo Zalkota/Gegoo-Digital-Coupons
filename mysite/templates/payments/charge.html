@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section-sm">
+      <div class="container">
+          <div class="border-success-md px-5 py-4">
+            <h2 class="text-success fw-7"><i class="fa fa-check fs-28" aria-hidden="true"></i>Thank you, your order has been placed.</h2>
+            An email confirmation has been sent to you. Click <a href="#" class="text-dark fw-6">here</a> to create your first store
+            <br>
+            <br>
+            <span class="fs-18 fw-7">Order Number: {{ object.ref_code }}  </span>
+          </div>
+          <div class="py-5">
+            <h3 class="header">
+              Next Steps
+            </h3>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card shadow-2">
+                        <div class="card-body">
+                            <ul class="list-unstyled ml-2">
+                                <li class="py-3">
+                                    <a href="#TODO"class="fs-18 text-dark">
+                                      1) Create a Store
+                                    </a>
+                                </li>
+                                <li class="py-3">
+                                    <a href="#TODO"class="fs-18 text-dark">
+                                      2) Create an Offer
+                                    </a>
+                                </li>
+                                <li class="py-3">
+                                    <a href="#TODO"class="fs-18 text-dark">
+                                      3) Upload a store promotional video
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </section>
+{% endblock content %}
