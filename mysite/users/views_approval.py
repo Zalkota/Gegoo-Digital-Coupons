@@ -54,15 +54,20 @@ def MerchantApprovalAdditionalStoreView(request):
 
 
 class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
-	model = portal_models.Store
-	form_class = MerchantStoreForm
-	template_name = 'users/approval/merchant_approval_store_create.html'
-	success_message = "Step Two: Complete!"
-	success_url = reverse_lazy('users:merchant_approval_additional_store')
+    model = portal_models.Store
+    form_class = MerchantStoreForm
+    template_name = 'users/approval/merchant_approval_store_create.html'
+    success_message = "Step Two: Complete!"
+    success_url = reverse_lazy('users:merchant_approval_additional_store')
 
-	def form_valid(self, form):
-		user = self.request.user
-		user.status = 'PENDING'
-		user.save()
-		form.instance.merchant = self.request.user
-		return super(MerchantStoreCreateView, self).form_valid(form)
+    def get_context_data(self, **kwargs):
+        context = super(MerchantApprovalStoreCreateView, self).get_context_data(**kwargs)
+        context['store_list'] = portal_models.Store.objects.filter(merchant=self.request.user)
+        return context
+
+    def form_valid(self, form):
+        user = self.request.user
+        user.status = 'PENDING'
+        user.save()
+        form.instance.merchant = self.request.user
+        return super(MerchantStoreCreateView, self).form_valid(form)

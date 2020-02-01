@@ -15,7 +15,8 @@ from django.utils import timezone
 
 # imports
 from support.models import Contact
-from portal.models import Offer, Store, Category, PromotionalVideo
+from portal.models import Offer, Store, Category
+from files.models import PromotionalVideo
 
 #mail
 from django.core.mail import send_mail

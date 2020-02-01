@@ -36,7 +36,7 @@ from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
 
-from files.models import VideoFile
+
 
 # <**************************************************************************>
 # <*****                         CHOICE LISTS                          *****>
@@ -226,6 +226,11 @@ def CalculateLocation(sender, created, instance, **kwargs):
         except KeyError:
             pass
 
+def logo_file_size(value): # add this to some file where you can import it from
+    limit = 5 * 1024 * 1024
+    if value.size > limit:
+        raise ValidationError(('File size too large, video must be under 10 MB'))
+        
 # <**************************************************************************>
 # <*****                         MODELS                                 *****>
 # <**************************************************************************>
@@ -337,7 +342,9 @@ class Store(models.Model):
     business_name       = models.CharField(max_length=100)
     website_url         = models.URLField(max_length=500, blank=True, null=True)
     facebook_url        = models.URLField(max_length=500, blank=True, null=True)
-    logo                = models.ImageField(upload_to='store-logos/', null=True, blank=True)
+    logo                = models.ImageField(upload_to='store-logos/', validators=[FileExtensionValidator(['png', 'jpg', 'jpeg']), logo_file_size], null=True)
+
+
     category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     subcategory         = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=True, null=True)
     code_coupon         = models.CharField(max_length=15, blank=True, null=True, help_text="If left blank, this will be auto-generated as GEGOO####. Set as 'NONE' if no coupon code is desired for your store.")
@@ -455,12 +462,3 @@ class Testimonial(models.Model):
 #         object_qs = Offer.objects.filter(end_date__gt=now).order_by('end_date')
 #         object = object_qs.first()
 #         return object
-
-class PromotionalVideo(models.Model):
-    title           = models.CharField(max_length=64)
-    video           = models.OneToOneField(VideoFile, on_delete=models.CASCADE)
-    active          = models.BooleanField()
-    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
-
-    def __str__(self):
-        return '%s' % (self.title)

@@ -43,13 +43,13 @@ class userPage(LoginRequiredMixin, View):
 
             #Render Merchant Page
             if user.is_merchant == True:
-                videoFile_qs = files_models.VideoFile.objects.filter(user=user).order_by('uploaded_at').first()
+                # videoFile_qs = files_models.VideoFile.objects.filter(user=user).order_by('uploaded_at').first()
                 store_qs = portal_models.Store.objects.filter(merchant=user).order_by('-views')
                 offer_qs = portal_models.Offer.objects.filter(author=user) #TODO ADD TIME TO FILTER USING GREAT THAN FILTER
 
                 context = {
                     'user': user,
-                    'videoFile': videoFile_qs,
+                    # 'videoFile': videoFile_qs,
                     'store_list': store_qs,
                     'offer_list': offer_qs,
                 }

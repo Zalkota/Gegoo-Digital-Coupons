@@ -123,7 +123,7 @@
   .btn-#{$color}-alt {
   background: $value;
   color: $color-white;
-  box-shadow: 0;
+  box-shadow: 0 1px 3px hsla(0, 0%, 0%, .2);
   font-weight: 600;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -135,7 +135,7 @@
   &:hover, &:active, &:focus{
     background: $value;
     color: #e5e5e5;
-    box-shadow: $box-shadow-1;
+    box-shadow: $box-shadow-3;
     text-decoration: none !important;
     }
   }

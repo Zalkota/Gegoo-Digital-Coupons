@@ -1,7 +1,7 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from .models import Store, Offer, PromotionalVideo, Images, Category, Subcategory, Tag, Testimonial
+from .models import Store, Offer, Images, Category, Subcategory, Tag, Testimonial
 from location.models import StoreLocation
 # Register your models here.
 from django.contrib.gis.admin import OSMGeoAdmin
@@ -46,4 +46,3 @@ admin.site.register(Images)
 admin.site.register(Category)
 admin.site.register(Subcategory)
 admin.site.register(Tag)
-admin.site.register(PromotionalVideo)

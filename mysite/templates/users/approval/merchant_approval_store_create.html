@@ -2,16 +2,35 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="section-sm">
+<div class="section">
     <div class="container">
         <div class="row">
             {% block merchant_approval_nav %}
               {% include "users/approval/merchant_approval_nav.html" %}
             {% endblock merchant_approval_nav %}
-            <div class="col-lg-10 offset-lg-1 mt-4">
-                <div class="p-4">
+
+            <div class="offset-2"></div>
+                <div class="col-lg-2">
+                    <div class="pt-5 pl-3">
+                        <h3 class="subheader text-gray-700">Stores Created</h3>
+                        <hr class="mt-0 mb-4">
+                        {% for store in store_list %}
+
+                        <ul class="list-unstyled">
+                            <li class="text-gray-600">
+                                {{ store.business_name }}
+                                <a href="{% url 'users:merchant_store_delete' store.slug %}" class="pull-right"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-close"><path class="secondary" fill-rule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z"/></svg></a>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+            <div class="col-lg-8 col-md-12 col-sm-12 offset-md-0 mt-4">
+                <div class="">
                     <div class="card-body">
-                        <h1 class="section-header text-uppercase text-primary">Merchant Approval Form</h1>
+                        <h1 class="section-header text-uppercase text-primary">Create a Store</h1>
                         <p class="fs-14">Own a business? Fill out the following information for one of your locations.</p>
                         <hr>
                         <form action="" method="POST">
@@ -25,6 +44,7 @@
                     </div>
                 </div>
             </div>
+            <div class="offset-lg-2"></div>
         </div>
     </div>
 </div>

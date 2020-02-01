@@ -95,27 +95,28 @@
                 <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ store.banner }}">
     				<source src="{{ AwsBucketURL }}{{ store.merchant.videofile.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
 				</video>
-
-                <!-- <img src="/media/{{ store.banner }}" alt="" class="img-fluid"> -->
             </div>
 
             <div class="mt-3">
                 <div class="merchant-bottom-button-container hide">
-                    <div class="merchant-button merchant-button-active" id="ViewServicesBtn">
+                    <!-- <div class="merchant-button merchant-button-active" id="ViewServicesBtn">
                         <span>Services</span>
-                    </div>
-                    <div class="merchant-button" id="ViewOffersBtn">
+                    </div> -->
+                    <div class="merchant-button merchant-button-active" id="ViewOffersBtn">
                         <span>Offers</span>
                     </div>
+                    {% if store.testimonial.exists %}
                     <div class="merchant-button" id="LearnMoreBtn">
                         <span>Reviews</span>
                     </div>
+                    {% else %}
+                    {% endif %}
                     <div class="merchant-button" id="DownloadContentBtn">
                         <span>Download</span>
                     </div>
                 </div>
                 <!-- View Services -->
-                <div id="ViewServices">
+                <!-- <div id="ViewServices">
                     <div class="card shadow-2 mt-3">
                         <div class="card-body p-0">
                             <div class="border-bottom px-3 py-3">
@@ -136,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- View Offers -->
                 <div id="ViewOffers">
                     {% for object in store.offers.all %}
@@ -231,6 +232,7 @@
                         </div>
                     </div>
                     {% endfor %}
+
                 </div>
 
                 <!-- Download Content -->
@@ -265,7 +267,6 @@ $(document).ready(function() {
 
     download_content.hide()
     learn_more.hide()
-    view_offers.hide()
 
 
 

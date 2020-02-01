@@ -49,7 +49,7 @@ urlpatterns = [
 
     #Merchant Approval Views
     #path('approval/profile/<int:pk>/create', users_approval_views.MerchantProfileUpdateView.as_view(), name='merchant_profile_update'),
-    path('approval/store/create/additional',  users_approval_views.MerchantApprovalAdditionalStoreView, name='merchant_approval_additional_store'),
+    path('approval/store/create/additional/',  users_approval_views.MerchantApprovalAdditionalStoreView, name='merchant_approval_additional_store'),
     path('approval/store/create/', users_approval_views.MerchantApprovalStoreCreateView.as_view(), name='merchant_approval_store_create'),
 
     #Merchant Testimonials
@@ -57,5 +57,6 @@ urlpatterns = [
 
     #Merchant Media
     path('my-video/<slug:slug>/delete', files_views.MerchantVideoFileDeleteView.as_view(), name='merchant_video_delete'),
+    path('my-video/<slug:slug>/', files_views.MerchantVideoFileDetailView.as_view(), name='merchant_video_detail'),
 
 ]

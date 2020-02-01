@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h3 class="section-header text-primary">{{ object.slug }} <br><span class="text-secondary fw-4 fs-16">uploaded to {{ object.store.business_name}} in {{ object.store.city }}, {{ object.store.state}}</span></h3>
+                <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ store.banner }}">
+    				<source src="{{ AwsBucketURL }}{{ object.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
+				</video>
+                <div class="row ">
+                    <div class="col-lg-3 pt-4 pull-left">
+                        <a class="btn btn-primary-alt btn-block" id="defaultbutton" href="{% url 'users:userPage' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-arrow-thick-left-circle"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-purple-500" d="M12 10h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5v2a1 1 0 0 1-1.7.7l-4-4a1 1 0 0 1 0-1.4l4-4A1 1 0 0 1 12 8v2z"/></svg>
+                            Back
+                        </a>
+                    </div>
+
+                    <div class="offset-lg-6"></div>
+                    <div class="col-lg-3 pt-4 pull-right">
+                        <a href="{% url 'merchant_video_delete' object.slug %}" class="btn btn-danger-alt btn-block pr-3">Delete Video
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 ml-1 icon-close-circle"><circle cx="12" cy="12" r="10" class="fill-red-300"/><path class="fill-red-700" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

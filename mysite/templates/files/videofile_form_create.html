@@ -9,23 +9,23 @@
 <section class="section-sm">
     <div class="container mb-5">
       <div class="row">
-        <div class=" col-lg-12">
-            <h2 class="header">Upload Video File</h2>
+        <div class="col-lg-8 offset-2">
+            <h2 class="section-header">Upload Video File</h2>
           <div class="card card-border shadow-2">
-            <div class="card-body bg-muted bg-light text-center hide">
+            <div class="card-body bg-muted text-center hide">
               <div class="row">
                   <div class="col-lg-12">
-                      <button type="button" id="uploadbutton" class="btn btn-primary-alt js-upload-photos pull-right">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-cloud-upload"><path class="primary" d="M18 14.97c0-.76-.3-1.51-.88-2.1l-3-3a3 3 0 0 0-4.24 0l-3 3A3 3 0 0 0 6 15a4 4 0 0 1-.99-7.88 5.5 5.5 0 0 1 10.86-.82A4.49 4.49 0 0 1 22 10.5a4.5 4.5 0 0 1-4 4.47z"/><path class="fill-gray-200" d="M11 14.41V21a1 1 0 0 0 2 0v-6.59l1.3 1.3a1 1 0 0 0 1.4-1.42l-3-3a1 1 0 0 0-1.4 0l-3 3a1 1 0 0 0 1.4 1.42l1.3-1.3z"/></svg>
-                         Upload
+                      <button type="button" id="uploadbutton" class="btn btn-gray-600-alt py-2 js-upload-photos pull-right">
+                         Browse
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 ml-1 icon-folder"><path class="fill-gray-500" d="M4 4h7l2 2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><rect width="20" height="12" x="2" y="8" class="fill-gray-500" rx="2"/></svg>
                       </button>
                   </div>
                   <div class="col-lg-6 offset-3 text-center">
                       <div style="padding-top: 5rem; padding-bottom: 7rem;">
 
                         <div id="defaultmessage">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12 mb-4 icon-document"><path class="primary" d="M6 2h6v6c0 1.1.9 2 2 2h6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2z"/><polygon class="secondary" points="14 2 20 8 14 8"/></svg>
-                            <h3 class="text-muted fs-18">Drag Video Here to Upload</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12 icon-cloud-upload"><path class="fill-gray-600" d="M18 14.97c0-.76-.3-1.51-.88-2.1l-3-3a3 3 0 0 0-4.24 0l-3 3A3 3 0 0 0 6 15a4 4 0 0 1-.99-7.88 5.5 5.5 0 0 1 10.86-.82A4.49 4.49 0 0 1 22 10.5a4.5 4.5 0 0 1-4 4.47z"/><path class="fill-gray-600" d="M11 14.41V21a1 1 0 0 0 2 0v-6.59l1.3 1.3a1 1 0 0 0 1.4-1.42l-3-3a1 1 0 0 0-1.4 0l-3 3a1 1 0 0 0 1.4 1.42l1.3-1.3z"/></svg>
+                            <h3 class="text-muted fs-18">Drag and drop to upload <br>or browse to choose a file</h3>
                         </div>
 
                         <div  style="display: none;" id="successmessage">
@@ -113,21 +113,21 @@
               {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #}
               <input id="fileupload" type="file" name="file" multiple
                      style="display: none;"
-                     data-url="{% url 'files:merchant_video_upload' %}"
+                     data-url="{% url 'files:merchant_video_upload' store_slug %}"
                      data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
               </div>
             </div>
             <div class="row mt-4">
                 <div class="col-lg-2 pull-left">
-                    <a class="btn btn-primary-alt btn-block" id="defaultbutton" href="{% url 'users:userPage' %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-arrow-thick-left-circle"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M12 10h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5v2a1 1 0 0 1-1.7.7l-4-4a1 1 0 0 1 0-1.4l4-4A1 1 0 0 1 12 8v2z"/></svg>
+                    <a class="btn btn-primary-alt py-2 btn-block" id="defaultbutton" href="{% url 'users:userPage' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-arrow-thick-left-circle"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-purple-500" d="M12 10h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5v2a1 1 0 0 1-1.7.7l-4-4a1 1 0 0 1 0-1.4l4-4A1 1 0 0 1 12 8v2z"/></svg>
                         Back
                     </a>
                 </div>
                 <div class="offset-8"></div>
                 <div class="col-lg-2 pull-right">
                     <a class="btn btn-success-alt btn-block" id="successbutton" style="display:none" href="{% url 'users:userPage' %}">Finish
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-arrow-thick-right-circle"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M12 14H7a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h5V8a1 1 0 0 1 1.7-.7l4 4a1 1 0 0 1 0 1.4l-4 4A1 1 0 0 1 12 16v-2z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-arrow-thick-right-circle"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-green-500" d="M12 14H7a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h5V8a1 1 0 0 1 1.7-.7l4 4a1 1 0 0 1 0 1.4l-4 4A1 1 0 0 1 12 16v-2z"/></svg>
                     </a>
                 </div>
             </div>

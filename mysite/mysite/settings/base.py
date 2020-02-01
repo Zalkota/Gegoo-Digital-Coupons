@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'debug_toolbar',
 
-
+    #S3 Upload
+    'rest_framework',
+    'files',
 
     #APPS
     'users',
@@ -85,9 +87,7 @@ INSTALLED_APPS = [
     #'ipware',
     'cities_light',
 
-    #S3 Upload
-    'rest_framework',
-    'files',
+
 
     #S3 Static Files
     'storages',

@@ -17,6 +17,7 @@ from .config_s3_aws import (
 )
 from .models import FileItem, VideoFile
 from .forms import VideoFileForm
+from portal.models import Store
 
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -33,23 +34,29 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 
 class VideoFileUploadView(View, LoginRequiredMixin):
-    def get(self, request):
-        video_list = VideoFile.objects.filter(user=self.request.user)
+
+    def get(self, request, *args, **kwargs):
+        # video_list = VideoFile.objects.filter(user=self.request.user)
+
+        store_slug = self.kwargs['slug']
 
         context = {
-        "video_list": video_list,
+        # "video_list": video_list,
+        "store_slug": store_slug,
         }
         return render(self.request, 'files/videofile_form_create.html', context)
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         form = VideoFileForm(self.request.POST, self.request.FILES)
-        user = request.user
+        # user = request.user
+        store_slug = self.kwargs['slug']
+        store_qs = Store.objects.get(slug=store_slug)
 
         if form.is_valid():
             videofile = form.save(commit=False)
-            videofile.user = user
+            videofile.store = store_qs
             videofile = form.save()
-            data = {'is_valid': True, 'name': videofile.file.name, 'url': videofile.file.url}
+            data = {'is_valid': True, 'url': videofile.file.url}
         else:
             if ValidationError:
                 # returns ValdiationError Message as a Json Object
@@ -70,6 +77,11 @@ class MerchantVideoFileDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'files/merchant_video_delete.html'
     success_url = reverse_lazy('users:userPage')
     success_message = "Video Deleted"
+
+
+class MerchantVideoFileDetailView(DetailView):
+	model = VideoFile
+	template_name = 'files/merchant_video_detail.html'
 
 
 class FilePolicyAPI(APIView):

@@ -25,41 +25,79 @@
 
 
 
-.sequential-progress {
-
-    &-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: left;
-    }
-
-    &-box {
-        flex-grow: 1;
-        align-self: left;
-        flex-basis: 97%;
-
-        .active {
-            background-color: $color-primary;
-            color: $color-primary;
-        }
-    }
-
-    &-circle {
-        height: 4rem;
-        width: 4rem;
-    }
-
+%remain-steps{
+  &:before {
+    content: counter(stepNum);
+    font-family: inherit;
+    font-weight: 700;
+  }
+  &:after{
+    background-color: $color-gray-300;
+  }
 }
+.multi-steps{
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  > li{
+    counter-increment: stepNum;
+    text-align: center;
+    display: table-cell;
+    position: relative;
+    color: $color-primary;
 
-.step-active {
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
-    -webkit-transform: scale(1.25);
-    -moz-transform: scale(1.25);
-    transform: scale(1.25);
-    background: #4829B2;
-    border-color: transparent;
-    color: #fff;
+    &:before{
+      content: '\f00c';
+      content: '\2713;';
+      content: '\10003';
+      content: '\10004';
+      content: '\2713';
+      display: block;
+      margin: 0 auto 4px;
+      background-color: $color-white;
+      width: 36px;
+      height: 36px;
+      line-height: 32px;
+      text-align: center;
+      font-weight: bold;
+      border:{
+        width: 2px;
+        style: solid;
+        color: $color-primary;
+        radius: 50%;
+      }
+    }
+    &:after{
+      content: '';
+      height: 2px;
+      width: 100%;
+      background-color: $color-primary;
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      z-index: -1;
+    }
+    &:last-child{
+      &:after{
+        display: none;
+      }
+    }
+
+    &.is-active{
+      @extend %remain-steps;
+      &:before{
+        background-color: $color-white;
+        border-color: $color-primary;
+      }
+
+      ~ li{
+        color: #808080;
+        @extend %remain-steps;
+        &:before{
+          background-color: $color-gray-300;
+          border-color: $color-gray-300;
+        }
+      }
+    }
+  }
 }
