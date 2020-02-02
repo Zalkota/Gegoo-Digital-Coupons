@@ -169,7 +169,11 @@ def create_merchant_profile(sender, instance, created, **kwargs):
     if instance.is_merchant==True:
         if created:
             MerchantProfile.objects.get_or_create(user=instance)
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 76936baa51b0c4a9825cc45cf9be9f4a140f2a81
         merchantprofile, created = MerchantProfile.objects.get_or_create(user=instance)
 
         if merchantprofile.customer_id is None:
