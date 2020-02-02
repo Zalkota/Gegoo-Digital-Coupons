@@ -17,16 +17,16 @@ from django.dispatch import receiver
 import datetime
 from django.utils import timezone
 
-<<<<<<< HEAD
+
 # GEODJANGO
 from django.contrib.gis.geos import fromstr
 from pathlib import Path
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
-=======
+
 from portal import models as portal_models
->>>>>>> subscription
+
 
 STATUS_CHOICES = (
     ('APPROVED', 'Approved'),
@@ -141,13 +141,9 @@ class MerchantProfile(models.Model): #Is a Profile Necessary?
     user            = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='merchant_profile')
     customer_id     = models.CharField(max_length=200, null=True, blank=True)
     status          = models.CharField(choices=STATUS_CHOICES, default='NOT APPROVED', max_length=20)
-<<<<<<< HEAD
-    payment_status        = models.BooleanField(default=False)
 
-    #Basic information
-    business_name       = models.CharField(max_length=100, null=True)
-=======
->>>>>>> subscription
+    payment_status  = models.BooleanField(default=False)
+
 
     #Address
     street_address  = models.CharField(max_length=100, null=True)
@@ -179,11 +175,7 @@ def create_merchant_profile(sender, instance, created, **kwargs):
     if instance.is_merchant==True:
         if created:
             MerchantProfile.objects.get_or_create(user=instance)
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 76936baa51b0c4a9825cc45cf9be9f4a140f2a81
         merchantprofile, created = MerchantProfile.objects.get_or_create(user=instance)
 
         if merchantprofile.customer_id is None:

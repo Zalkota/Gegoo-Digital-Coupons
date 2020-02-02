@@ -59,12 +59,6 @@ CATEGORY_CHOICES = (
     ('HOME', 'Home Improvement'),
 )
 
-STATUS_CHOICES = {
-    ('draft', 'Draft'),
-    ('published', 'Published'),
-}
-
-
 
 
 ONE = 1
@@ -81,7 +75,7 @@ RATING_CHOICES = [
     (FIVE, '5 Stars'),
 ]
 
-STATUS_CHOCIES = [
+STATUS_CHOICES = [
     (ONE, 'Being Reviewed'),
     (TWO, 'Published')
 ]
@@ -305,7 +299,7 @@ class Offer(models.Model):
     likes           = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
     # is_featured     = models.BooleanField('FeaturedStatus', default=False)
 
-    status          = models.PositiveIntegerField(choices=STATUS_CHOCIES, default=1)
+    status          = models.PositiveIntegerField(choices=STATUS_CHOICES, default=1)
 
     # Creation Fields
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
@@ -328,7 +322,7 @@ def pre_save_offer(sender, **kwargs):
 
 class Store(models.Model):
     active      = models.BooleanField(default=True) #TODO This is not needed, we can just verify
-    status      = models.PositiveIntegerField(choices=STATUS_CHOCIES, default=1)
+    status      = models.PositiveIntegerField(choices=STATUS_CHOICES, default=1)
     merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern

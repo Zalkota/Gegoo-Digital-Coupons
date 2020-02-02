@@ -10,16 +10,16 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='merchantprofile',
-            name='business_name',
-        ),
-        migrations.RemoveField(
-            model_name='merchantprofile',
-            name='description',
-        ),
-        migrations.RemoveField(
-            model_name='merchantprofile',
-            name='has_paid',
-        ),
+        # migrations.RemoveField(
+        #     model_name='merchantprofile',
+        #     name='business_name',
+        # ),
+        # migrations.RemoveField(
+        #     model_name='merchantprofile',
+        #     name='description',
+        # ),
+        # migrations.RemoveField(
+        #     model_name='merchantprofile',
+        #     name='has_paid',
+        # ),
     ]
