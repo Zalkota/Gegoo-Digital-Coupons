@@ -326,7 +326,7 @@ class Store(models.Model):
     merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern
-    slug        = models.SlugField(unique=True, blank=True, null=True) #MAKE THIS NOT EDITABLE
+    slug        = models.SlugField(unique=True, blank=True, null=True, editable=False) #MAKE THIS NOT EDITABLE
 
     # Offers
     offers      = models.ManyToManyField(Offer, blank=True)
@@ -391,32 +391,39 @@ class Store(models.Model):
             average_rating = front_text / count
             return average_rating
 
-@receiver(pre_save, sender=Store)
-def pre_save_store(sender, **kwargs):
-    slug = slugify(kwargs['instance'].business_name)
-    kwargs['instance'].slug = slug
-
-@receiver([post_save, post_delete], sender=Store)
-def update_store_count(sender, instance, **kwargs):
-    merchantprofile             = users_models.MerchantProfile.objects.get(user=instance.merchant)
-    merchantprofile.stores      = Store.objects.filter(merchant=instance.merchant).count()
-    merchantprofile.save()
-
     @property
     def get_total_testimonials(self):
         count = self.testimonial.count()
         return count
 
+
+@receiver([post_save, post_delete], sender=Store)
+def update_store_count(sender, instance, **kwargs):
+    print('instance', instance.merchant)
+    merchantprofile             = users_models.MerchantProfile.objects.get(user=instance.merchant)
+    merchantprofile.stores      = Store.objects.filter(merchant=instance.merchant).count()
+    merchantprofile.save()
+
+
+# @receiver(pre_save, sender=Store)
+# def pre_save_store(sender, **kwargs):
+#     #Slug
+#     slug = kwargs['instance'].slug
+#     if slug == '' or None:
+#         slug = slugify(kwargs['instance'].city)
+#         print('slug', slug)
+#         kwargs['instance'].slug = slug
+
     # def GetDistance(self):
     #     return self.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
     #
 
-@receiver(pre_save, sender=Store)
-def pre_save_store(sender, **kwargs):
-    slug_1 = slugify(kwargs['instance'].business_name, kwargs['instance'].city)
-    slug_2 = slugify(slug_1, kwargs['instance'].state)
-    slug_3 = slugify(slug_2, kwargs['instance'].id)
-    kwargs['instance'].slug = slug_3
+# @receiver(pre_save, sender=Store)
+# def pre_save_store(sender, **kwargs):
+#     slug_1 = slugify(kwargs['instance'].business_name, kwargs['instance'].city)
+#     slug_2 = slugify(slug_1, kwargs['instance'].state)
+#     slug_3 = slugify(slug_2, kwargs['instance'].id)
+#     kwargs['instance'].slug = slug_3
 
 post_save.connect(CalculateLocation, sender=Store)
 post_save.connect(setCouponCode, sender=Store)

@@ -4,7 +4,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
-
+from django.utils.text import slugify
 ## DEBUG:
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -121,11 +121,22 @@ class MerchantStoreCreateView(LoginRequiredMixin, CreateView):
 
 	def form_valid(self, form):
 		user = self.request.user
-		user.status = 'PENDING'
 
+		#Set user status as pending
+		user.status = 'PENDING'
 		user.save()
 
-		form.instance.merchant = self.request.user
+		#Set stores owner
+		form.instance.merchant = user
+
+		#Set Store Slug as business name and city combined
+		business_name = form.cleaned_data.get('business_name')
+		city = form.cleaned_data.get('city')
+		state = form.cleaned_data.get('state')
+		string = business_name + '-' + city + '-' + state
+		slug = slugify(string)
+		form.instance.slug = slug
+
 		return super(MerchantStoreCreateView, self).form_valid(form)
 
 

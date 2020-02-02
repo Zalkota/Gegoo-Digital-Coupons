@@ -12,10 +12,14 @@
                         <h2 class="section-header">Edit Offer</h2>
                         <p class="fs-14">Create your offer listing for one location. If you have multiple locations create additional offers after.</p>
                         <hr>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
-                            {{ form|crispy }}
-                            <button class="btn btn-primary-alt btn-block mt-3" type="submit">Save Changes</button>
+                            <div class="row">
+                                {% crispy form form.helper %}
+                                <div class="col-lg-12">
+                                    <input type="submit" name="Save" value="Save Changes" class="btn btn-primary btn btn-primary-alt btn-block mt-3 pull-right" id="submit-id-save">
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

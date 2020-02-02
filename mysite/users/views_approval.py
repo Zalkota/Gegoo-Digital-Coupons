@@ -12,6 +12,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from portal import models as portal_models
 from users import models as users_models
+from django.utils.text import slugify
 from django.views.generic.edit import FormView, FormMixin
 # Create your views here.
 
@@ -65,9 +66,22 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
         context['store_list'] = portal_models.Store.objects.filter(merchant=self.request.user)
         return context
 
-    # def form_valid(self, form):
-    #     user = self.request.user
-    #     user.status = 'PENDING'
-    #     user.save()
-    #     form.instance.merchant = self.request.user
-    #     return super(MerchantApprovalStoreCreateView, self).form_valid(form)
+    def form_valid(self, form):
+        user = self.request.user
+
+        #Set user status as pending
+        user.status = 'PENDING'
+        user.save()
+
+        #Set stores owner
+        form.instance.merchant = user
+
+        #Set Store Slug as business name and city combined
+        business_name = form.cleaned_data.get('business_name')
+        city = form.cleaned_data.get('city')
+        state = form.cleaned_data.get('state')
+        string = business_name + '-' + city + '-' + state
+        slug = slugify(string)
+        form.instance.slug = slug
+
+        return super(MerchantApprovalStoreCreateView, self).form_valid(form)
