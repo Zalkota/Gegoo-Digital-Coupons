@@ -18,11 +18,20 @@ class StoreLocationAdmin(admin.ModelAdmin):
 #     autocomplete_fields = ['city']
 
 class StoreAdmin(admin.ModelAdmin):
+<<<<<<< HEAD
     search_fields = ['city', 'business_name']
     list_display = ('business_name', 'city', 'category', 'subcategory', 'active', 'status')
     # inlines = [
     #     StoreLocationInline,
     # ]
+=======
+    # search_fields = ['city__name', 'business_name']
+    # autocomplete_fields = ['city']
+    list_display = ('business_name', 'category', 'subcategory', 'active')
+    inlines = [
+        StoreAddressInline,
+    ]
+>>>>>>> subscription
 
 class OfferAdmin(admin.ModelAdmin):
     autocomplete_fields = ['store']

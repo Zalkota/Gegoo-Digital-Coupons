@@ -208,7 +208,7 @@ DATABASES = {
 
 	'default': {
         	'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        	'NAME': 'gegoosubscription',
+        	'NAME': 'gegoo',
         	'USER': 'gegooadmin',
         	'PASSWORD': '$Django10',
         	'HOST': 'localhost',
@@ -368,6 +368,13 @@ STRIPE_PUB_KEY_MPM      = 'pk_test_k2kLiCPSsK7yyQF4rDDPhHN100mYwH0Pvj'
 STRIPE_SECRET_KEY_MPM   = 'sk_test_vZfYk3ISvw6WsynV64vP0XpK006WkTHRMI'
 
 EMAIL_CUSTOMER = 'dominic@modwebservices.com'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'michael@modwebservices.com' 
+EMAIL_HOST_PASSWORD = 'Florida1122pc$'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 LEAFLET_CONFIG = {

@@ -3,7 +3,7 @@ from django.conf import settings
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from django.utils.text import slugify
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.shortcuts import reverse
 
 import stripe
@@ -56,10 +56,14 @@ class Subscription(models.Model):
     user                        = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True, related_name='subscription')
     slug                        = models.CharField(max_length=100, blank=True)
     subscription_id             = models.CharField(max_length=50, blank=True)
+    subscription_quantity       = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
     subscription_item_id        = models.CharField(max_length=50, blank=True)
     plan_id                     = models.CharField(max_length=50, blank=True)
     subscription_status         = models.CharField(max_length=50, blank=True)
     payment_intent_status       = models.CharField(max_length=50, blank=True)
+
+    def __str__(self):
+        return self.subscription_id
 
 @receiver(pre_save, sender=Subscription)
 def pre_save_subscription(sender, instance, **kwargs):

@@ -1,0 +1,19 @@
+{% extends "base_mpm.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                <h1>{{ user.subscription.subscription_id }}</h1>
+                <h1>{{ user.subscription.payment_intent_status }}</h1>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-success" type="submit">Get PI</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

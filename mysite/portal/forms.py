@@ -20,6 +20,7 @@ from crispy_forms.bootstrap import (
 class MerchantStoreForm(forms.ModelForm):
     class Meta:
        model = portal_models.Store
+<<<<<<< HEAD
        fields = [
        'business_name',
        'title',
@@ -36,6 +37,9 @@ class MerchantStoreForm(forms.ModelForm):
        'logo',
        ]
 
+=======
+       fields = 'business_name', 'website_url', 'facebook_url', 'phone_number'
+>>>>>>> subscription
 
     def __init__(self, *args, **kwargs):
         super(MerchantStoreForm, self).__init__(*args, **kwargs)
@@ -75,6 +79,30 @@ class MerchantStoreForm(forms.ModelForm):
                 'phone_number',
                 css_class="col-lg-6"
                 ),
+<<<<<<< HEAD
+=======
+
+        ),
+    )
+
+
+
+class MerchantForm(forms.ModelForm):
+    class Meta:
+       model = portal_models.Store
+       fields = 'business_name', 'website_url', 'facebook_url', 'phone_number'
+
+    def __init__(self, *args, **kwargs):
+        super(MerchantApprovalForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        #self.helper.form_id = 'id-exampleForm'
+        #elf.helper.form_class = 'blueForms'
+        self.helper.form_action = 'Submit'
+        self.helper.layout = Layout(
+            #Div('first_name', style="background: white;", title="Explication title", css_class="bigdivs")
+            Field(
+>>>>>>> subscription
                 Div(
                     HTML("<hr>"),
                 css_class="col-lg-12"
