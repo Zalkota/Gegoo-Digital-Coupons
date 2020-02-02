@@ -1,0 +1,266 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+
+
+{% block title %} Monthly Subscription Plans for {{ SITE_NAME }}{% endblock title %}
+{% block extra_head %}{% endblock extra_head %}
+<!-- TODO: Add a alert message if trailer is overdue -->
+{% block content %}
+
+
+
+<div class="section">
+    <div class="container">
+        <div class="container text-center mb-5">
+            <h1 class="jumbo-header text-alt mt-5 hide">
+                <span class="subscription-card-left px-3 text-white">Pays for itself</span> within the first month</h1>
+            <h3 class="fs-16 text-secondary hide">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt<br> ut labore et dolore magna aliqua.</h3>
+        </div>
+        <div class="container text-center">
+            <div class="row">
+                <div class="offset-lg-2"></div>
+            {% for object in object_list %}
+                {% if object.id == 1 %}
+                    <div class="col-lg-4 mb-5 pb-5 mt-1">
+                        <div class="card card-effects subscription-card-left shadow-2 mt-4">
+                            <div class="card-body">
+                                <h4 class="py-3 text-white header fw-6 mb-5">{{ object.nickname }}</h4>
+                                <p class="pb-4 text-gray-300" style="font-weight: 700;">
+                                    <span class="text-white" style="font-size: 4rem; ">${{ object.get_total|floatformat:"0" }}</span>
+                                    <span class="fs-14">per month</span><br>
+                                </p>
+                                <hr>
+                                <div class="ml-auto text-left pl-3">
+                                  {% for object in object.benefit.all %}
+                                      <span class="py-3 text-gray-300">
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mb-2 mr-2 icon-check"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                                          {{ object.description }}
+                                      </span>
+                                      <br>
+                                  {% endfor %}
+                                </div>
+                                <div class="py-3"></div>
+                                {% if request.user.is_authenticated %}
+                                    {% if user.subscription.subscription_status == 'active' %}
+                      				    {% if user.subscription.plan_id == object.plan_id %}
+                                      	<a class="btn btn-purple-600-alt btn-block disabled">Purchased</a>
+                      				    {% else %}
+                                        <a href="{{ object.get_absolute_url }}" class="btn btn-purple-500-alt btn-block mb-4">Select</a>
+                                        {% endif %}
+                      				{% endif %}
+                                {% else %}
+                                        <a href="{% url 'account_login' %}" class="btn btn-purple-500-alt btn-block mb-4">Select</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+
+                    <div class="col-lg-4 mb-5 pb-5 mt-3">
+                        <div class="card card-effects shadow-0 mt-4">
+                            <div class="card-body">
+                                <h4 class="py-3 text-gray-800 header mb-5">{{ object.nickname }}</h4>
+                                <p class="pb-4 fw-6">
+                                    <span class="text-gray-800" style="font-size: 3rem; ">${{ object.get_total|floatformat:"0" }}</span>
+                                    <span class="fs-14 text-gray-700">per month</span><br>
+                                </p>
+                                <hr>
+                                <div class="ml-auto text-left pl-3">
+                                  {% for object in object.all_benefits %}
+                                      <span class="py-3 text-gray-800">
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mb-2 mr-2 icon-check"><circle cx="12" cy="12" r="10" class="primary"/><path class="fill-gray-800" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                                          {{ object.description }}
+                                      </span>
+                                      <br>
+                                  {% endfor %}
+                                </div>
+                                <div class="py-3"></div>
+                                {% if request.user.is_authenticated %}
+                                    {% if user.subscription.subscription_status == 'active' %}
+                      				    {% if user.subscription.plan_id == object.plan_id %}
+                                      	<a class="btn btn-gray-800-alt btn-block mb-4 text-white disabled">Purchased</a>
+                      				    {% else %}
+                                        <a href="{{ object.get_absolute_url }}" class="btn btn-gray-800-alt btn-block mb-4">Select</a>
+                                        {% endif %}
+                      				{% endif %}
+                                {% else %}
+                                        <a href="{% url 'account_login' %}" class="btn btn-purple-500-alt btn-block mb-4">Select</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="offset-lg-2"></div>
+            </div>
+            <!-- <p class="text-muted " style="font-size: 14px;">Your membership will renew automatically every month. You may cancel your membership at any time from your member dashboard.</p> -->
+        </div>
+    </div>
+</div>
+<!--
+<section class="section-light-md ">
+  <div class="container text-center my-5">
+      <h2 class="fs-36 fw-6 mt-5 mb-4">Web Application Development</h2>
+      <p class="mb-4">Web Application projects come in all shapes and sizes, <br>which means that projects are billed at an hourly rate of $75/hr.</p>
+      <div class="text-center">
+        <a class="btn btn-primary-round px-5" role="button" href=" {% url 'support:contact-page' %}">Schedule a meeting</a>
+        <br><br><span class="text-muted fs-16"></span>
+      </div>
+  </div>
+</section> -->
+
+<section class="section-white-sm border-top">
+    <div class="container">
+        <div class="row">
+            <div class="offset-lg-2"></div>
+            <div class="col-lg-4">
+                <ul class="list-unstyled subscription-chart my-3">
+                    <li><h3 class="header">Features
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                        </h3>
+                    </li>
+                    <li>Cost
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Billing Period
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Unlimited Services
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Upload Promotion Video
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Customer Reviews
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Multiple Locations
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Multiple Locations
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                    <li>Multiple Locations
+                        <span class="pull-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-help"><path class="fill-gray-100" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-gray-500" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <div class="flex-container">
+                    <div class="subscription-chart-right flex-box gradient-primary mx-2 ">
+                        <ul class="list-unstyled my-3">
+                            <li class="fw-6" >Standard</li>
+                            <li class="fw-6" >$50</li>
+                            <li class="fw-6" >30 Days</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-white" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                        </ul>
+                    </div>
+                    <div class="list-unstyled subscription-chart-right flex-box mx-2 " style="background-color: rgb(204,204,204, 0.24);">
+                        <ul class="list-unstyled my-3">
+                            <li class="text-dark fw-6">Premium</li>
+                            <li class="text-dark fw-6">$50</li>
+                            <li class="text-dark fw-6">30 Days</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-900" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-900" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-900" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-900" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-900" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-check"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-900" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="offset-lg-2"></div>
+        </div>
+    </div>
+
+</section>
+
+<section class="section-primary-sm subscription-card-left shadow-2">
+  <div class="text-center px-3" id="faq">
+    <h3 class="jumbo-header fw-7 text-gray-200">Join hundreds of business owners</h3>
+  </div>
+</section>
+
+<section class="section-sm container" >
+    <div class="row my-5">
+        <div class="col-xl-5 px-0 img-shadow-2">
+          <img class="img-fluid" src="{% static 'img/Selection_030.png' %}" width="100%" height="100%" alt="Injection mold machine">
+        </div>
+        <div class="offset-lg-1"></div>
+        <div class="col-xl-6 vertical-container">
+            <div class="container vertical-alignment ml-auto py-5">
+              <h3 class="section-header">Get Noticed</h3>
+              <div class="hr-primary-sm mt-3"></div>
+              <p class="pb-4 pt-3 mb-0" style="max-width: 650px;">Started by Dan Brown in 1999, ATP is a injection molding company that specializes in low to high production and test specimen applications.
+                 Our 40+ years of experience in injection mold manufacturing allows ATP to focus on what we excel at;
+                product quality, low cost pricing strategies, decreasing lead times, and lean manufacturing.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-xl-5 px-0 img-shadow-2">
+            <img class="img-fluid" src="{% static 'img/Selection_028.png' %}" width="100%" height="100%" alt="Injection mold tooling" >
+        </div>
+        <div class="offset-lg-1"></div>
+        <div class="col-xl-6 vertical-container">
+            <div class="container vertical-alignment ml-auto py-5">
+                <h3 class="section-header">High Visibility</h3>
+                <div class="hr-primary-sm mt-3"></div>
+                <p class="pb-4 pt-3 mb-0" style="max-width: 650px;">Looking for common plaque molds? We have 30+ common plaque molds in our inventory at our facility in Livonia, MI.
+                  For a complete list of our common mold inventory click the link below or visit our 'plaques' page.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-xl-5 px-0 img-shadow-2">
+            <img class="img-fluid" src="{% static 'img/Selection_029.png' %}" width="100%" height="100%" alt="Picture of injectin molding machine located at ATP" >
+        </div>
+        <div class="offset-lg-1"></div>
+        <div class="col-xl-6 vertical-container">
+            <div class="container vertical-alignment mr-auto ml-auto py-5">
+                <h3 class="section-header">Unique Customer Experience</h3>
+                <div class="hr-primary-sm mt-3"></div>
+                <p class="pb-4 pt-3 mb-0" style="max-width: 650px;">Being in the injection mold industry for over 40 years has enabled our company to
+                   provide expert knowledge and experience in building parts for automotive and consumer businesses across North and South America.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ****** End Image Gallery ******* -->
+
+{% block contact_component %}
+    {% include "components/html/contact_component.html" %}
+{% endblock contact_component %}
+
+
+{% endblock content %}

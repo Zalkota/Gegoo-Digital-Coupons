@@ -10,7 +10,6 @@ from django.utils.timezone import now as timezone_now
 from django.conf import settings
 from allauth.account.signals import user_logged_in, user_signed_up
 import stripe
-stripe.api_key = settings.STRIPE_SECRET_KEY
 from django.core.validators import FileExtensionValidator
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models.signals import pre_save, post_save
@@ -135,8 +134,8 @@ class Profile(models.Model): #Is a Profile Necessary?
 
 
 class MerchantProfile(models.Model): #Is a Profile Necessary?
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='merchant_profile')
-    stripe_id = models.CharField(max_length=200, null=True, blank=True)
+    user            = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='merchant_profile')
+    customer_id     = models.CharField(max_length=200, null=True, blank=True)
     status          = models.CharField(choices=STATUS_CHOICES, default='NOT APPROVED', max_length=20)
     payment_status        = models.BooleanField(default=False)
 
@@ -144,11 +143,11 @@ class MerchantProfile(models.Model): #Is a Profile Necessary?
     business_name       = models.CharField(max_length=100, null=True)
 
     #Address
-    street_address = models.CharField(max_length=100, null=True)
-    city = models.CharField(max_length=100, null=True)
-    state = models.CharField(choices=STATES, default='NA', max_length=100)
-    zip = models.CharField(max_length=100, null=True)
-    phone_number        = PhoneNumberField(max_length=20, blank=True, null=True)
+    street_address  = models.CharField(max_length=100, null=True)
+    city            = models.CharField(max_length=100, null=True)
+    state           = models.CharField(choices=STATES, default='NA', max_length=100)
+    zip             = models.CharField(max_length=100, null=True)
+    phone_number    = PhoneNumberField(max_length=20, blank=True, null=True)
 
     #Online links
     website_url         = models.CharField(max_length=500, blank=True, null=True)
@@ -165,33 +164,21 @@ class MerchantProfile(models.Model): #Is a Profile Necessary?
     def __str__(self):
         return self.user.username
 
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_merchant_profile(sender, instance, created, **kwargs):
+    if instance.is_merchant==True:
+        if created:
+            MerchantProfile.objects.get_or_create(user=instance)
 
-# class userStripe(models.Model): #This should only be created for Merchants
-#     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete='CASCADE', related_name='user_stripe')
-#     stripe_id = models.CharField(max_length=200, null=True, blank=True)
-#
-#     def __unicode__(self):
-#         if self.stripe_id:
-#             return str(self.stripe_id)
-#         else:
-#             return self.user.name
-#
-#     def __str__(self):
-#         return'%s (%s)' % (self.stripe_id, self.user)
+        merchantprofile, created = MerchantProfile.objects.get_or_create(user=instance)
 
+        if merchantprofile.customer_id is None:
+            stripe.api_key                   = settings.STRIPE_SECRET_KEY_MPM
+            stripe_customer_id               = stripe.Customer.create(email=instance.email)
+            merchantprofile.customer_id      = stripe_customer_id['id']
+            merchantprofile.save()
+            print(stripe_customer_id['id'])
 
-# TODO Only created for merchants
-# def stripeCallback(sender, request, user, **kwargs):
-#     if user.is_merchant == True:
-#         user_stripe_account, created = userStripe.objects.get_or_create(user=user)
-#         try:
-#             if user_stripe_account.stripe_id is None or user_stripe_account.stripe_id == '':
-#                 new_stripe_id = stripe.Customer.create(email=user.email)
-#                 user_stripe_account.stripe_id = new_stripe_id['id']
-#                 user_stripe_account.save()
-#                 print("stripeCallback Created")
-#         except:
-#             pass
 
 
 #TODO Only created for non-merchants
@@ -200,11 +187,15 @@ def ProfileCallback(sender, request, user, **kwargs):
         userProfile, is_created = Profile.objects.get_or_create(user=user)
 
 
-#TODO Only created for merchants
-def MerchantProfileCallback(sender, request, user, **kwargs):
-    if user.is_merchant == True:
-        merchantProfile, is_created = MerchantProfile.objects.get_or_create(user=user)
-
+# #TODO Only created for merchants
+# def create_merchant_profile(sender, **kwargs):
+#     if kwargs['created']:
+#         if kwargs['instance'].is_merchant == True:
+#             merchantprofile             = MerchantProfile.objects.create(user=kwargs['instance'])
+#             stripe.api_key              = settings.STRIPE_SECRET_KEY_MPM
+#             customer                    = stripe.Customer.create(kwargs['instance'].email)
+#             merchantprofile.customer_id = customer['id']
+#             merchantprofile.save()
 
 
 # user_logged_in.connect(addressCallback)
@@ -212,5 +203,5 @@ def MerchantProfileCallback(sender, request, user, **kwargs):
 # user_logged_in.connect(stripeCallback)
 
 user_signed_up.connect(ProfileCallback)
-user_signed_up.connect(MerchantProfileCallback)
+# post_save.connect(create_merchant_profile, sender=User)
 # user_signed_up.connect(stripeCallback)
