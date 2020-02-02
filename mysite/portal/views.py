@@ -73,11 +73,7 @@ class SubcategoryDetailView(DetailView):
 
 class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or distance
 	model = portal_models.Store
-<<<<<<< HEAD
 	template_name = 'portal/consumer/consumer_store_detail.html'
-=======
-	template_name = 'portal/store/merchant_store_detail.html'
->>>>>>> subscription
 
 	def get_context_data(self, **kwargs):
 		context = super(StoreDetailView, self).get_context_data(**kwargs)
@@ -93,11 +89,7 @@ class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or
 
 class MerchantStoreDetailView(LoginRequiredMixin, DetailView):
 	model = portal_models.Store
-<<<<<<< HEAD
 	template_name = 'portal/merchant/merchant_store_detail.html'
-=======
-	template_name = 'portal/store/merchant_store_detail.html'
->>>>>>> subscription
 
 	# def get_object(self):
 	# 	obj = super(MerchantStoreDetailView, self).get_object()
@@ -146,7 +138,6 @@ class MerchantStoreUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class MerchantStoreDeleteView(LoginRequiredMixin, DeleteView):
-<<<<<<< HEAD
 	model = portal_models.Store
 	template_name = 'portal/merchant/merchant_store_delete.html'
 	success_url = reverse_lazy('users:merchant_store_list')
@@ -160,11 +151,6 @@ class MerchantOfferDetailView(LoginRequiredMixin, IsMerchantMixin, DetailView):
 	model = portal_models.Offer
 	template_name = 'portal/offer/merchant_offer_detail.html'
 
-=======
-    model = portal_models.Store
-    template_name = 'portal/store/merchant_store_delete.html'
-    success_url = reverse_lazy('portal:merchant_store_list')
->>>>>>> subscription
 
 class MerchantOfferListView(LoginRequiredMixin, ListView):
 	model = portal_models.Offer

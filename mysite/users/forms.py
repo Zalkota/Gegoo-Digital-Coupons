@@ -71,7 +71,6 @@ class MerchantSignupForm(SignupForm):
 # <**************************************************************************>
 # <*****                      Merchant Approval Forms                   *****>
 # <**************************************************************************>
-<<<<<<< HEAD
 #
 # class MerchantProfileForm(forms.ModelForm):
 #     class Meta:
@@ -124,68 +123,3 @@ class MerchantSignupForm(SignupForm):
 #
 #         ),
 #     )
-=======
-
-class MerchantProfileForm(forms.ModelForm):
-    class Meta:
-       model = users_models.MerchantProfile
-       fields = [
-           'street_address',
-           'city',
-           'state',
-           'zip',
-           'phone_number',
-           'website_url',
-           'facebook_url',
-       ]
-
-    def __init__(self, *args, **kwargs):
-        super(MerchantProfileForm, self).__init__(*args, **kwargs)
-
-        self.helper = FormHelper()
-        #self.helper.form_id = 'id-exampleForm'
-        #elf.helper.form_class = 'blueForms'
-        self.helper.form_action = 'Submit'
-        self.helper.layout = Layout(
-            #Div('first_name', style="background: white;", title="Explication title", css_class="bigdivs")
-            Field(
-                Div(
-                'business_name',
-                css_class="col-lg-12 pb-4"
-                ),
-                Div(
-                'description',
-                css_class="col-lg-12 pb-4"
-                ),
-                Div(
-                'street_address',
-                css_class="col-lg-6 pb-4"
-                ),
-                Div(
-                'city',
-                css_class="col-lg-6 pb-4"
-                ),
-                Div(
-                'state',
-                css_class="col-lg-6 pb-4"
-                ),
-                Div(
-                'zip',
-                css_class="col-lg-6 pb-4"
-                ),
-                Div(
-                'phone_number',
-                css_class="col-lg-6 pb-4"
-                ),
-                Div(
-                'website_url',
-                css_class="col-lg-12"
-                ),
-                Div(
-                'facebook_url',
-                css_class="col-lg-12"
-                ),
-
-        ),
-    )
->>>>>>> subscription
