@@ -344,7 +344,6 @@ class Store(models.Model):
 
     # Store Bio
     title               = models.CharField(max_length=40, null=True, help_text="Company Slogan or catchy short description")
-    description         = models.TextField(max_length=500, help_text="Write a summary about your business and its services. Don't list out every service, a short summary will do.")
 
     # Store Location Info - User fills out
     street_address      = models.CharField(max_length=100, null=True)
@@ -357,12 +356,6 @@ class Store(models.Model):
     latitude            = models.DecimalField(max_digits=11, decimal_places=8, default=1, help_text="Enter latitude of store's location.", null=True, blank=True)
     longitude           = models.DecimalField(max_digits=11, decimal_places=8, default=1, help_text="Enter longitude of store's location.", null=True, blank=True)
     location            = models.PointField(srid=4326, null=True, blank=True, default=None)
-
-    # AWS3 Services
-    downloadable_content_url            = models.URLField(max_length=500, blank=True, null=True, help_text="Link to AWS download url goes here")
-    downloadable_content_title          = models.CharField(max_length=500, blank=True, null=True, help_text="Examples: menu, brochure, etc.")
-    promotional_video_file_name         = models.CharField(max_length=1000, blank=True, help_text='Name of the file uploaded to Amazon S3 Bucket. (ie: Video.MP4)')
-    promotional_video_thumbnail_name    = models.CharField(max_length=1000, blank=True, help_text='Name of the thumbnail image uploaded to Amazon S3 Bucket (USE .JPG NOT .PNG). (ie: Thumbnail.jpg)')
 
     ref_code = models.CharField(max_length=20, blank=True, null=True, editable=False)
 

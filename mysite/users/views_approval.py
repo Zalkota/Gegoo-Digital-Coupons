@@ -65,9 +65,9 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
         context['store_list'] = portal_models.Store.objects.filter(merchant=self.request.user)
         return context
 
-    def form_valid(self, form):
-        user = self.request.user
-        user.status = 'PENDING'
-        user.save()
-        form.instance.merchant = self.request.user
-        return super(MerchantStoreCreateView, self).form_valid(form)
+    # def form_valid(self, form):
+    #     user = self.request.user
+    #     user.status = 'PENDING'
+    #     user.save()
+    #     form.instance.merchant = self.request.user
+    #     return super(MerchantApprovalStoreCreateView, self).form_valid(form)

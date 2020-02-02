@@ -15,9 +15,8 @@
                             {% csrf_token %}
                             <div class="row">
                                 {% crispy form %}
-                                {{ form.media }}
+                                {{ form|crispy }}
                             </div>
-                            <button class="btn btn-primary-alt btn-block mt-3" type="submit">Create Store</button>
                         </form>
                     </div>
                 </div>

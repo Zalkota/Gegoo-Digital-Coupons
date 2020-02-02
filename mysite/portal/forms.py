@@ -86,6 +86,7 @@ class MerchantStoreForm(forms.ModelForm):
                 ),
                 Div(
                 'code_coupon',
+                'title',
                 'website_url',
                 'facebook_url',
                     Div(
@@ -99,7 +100,11 @@ class MerchantStoreForm(forms.ModelForm):
                     HTML("<hr>"),
                 css_class="col-lg-12"
                 ),
-        ),
+                Div(
+                    Submit('Save', 'Create Store', css_class='btn btn-primary-alt btn-block mt-3 pull-right'),
+                css_class="col-lg-12"
+                ),
+            ),
     )
 
 

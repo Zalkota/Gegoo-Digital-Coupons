@@ -33,13 +33,11 @@
                         <h1 class="section-header text-uppercase text-primary">Create a Store</h1>
                         <p class="fs-14">Own a business? Fill out the following information for one of your locations.</p>
                         <hr>
-                        <form action="" method="POST">
+                        <form method="POST">
                             {% csrf_token %}
                             <div class="row">
-                                {% crispy form %}
-                                {{ form.media }}
+                                {% crispy form form.helper %}
                             </div>
-                            <button class="btn btn-primary-alt btn-block mt-3" type="submit">Create Store</button>
                         </form>
                     </div>
                 </div>
