@@ -59,4 +59,8 @@ urlpatterns = [
     path('my-video/<slug:slug>/delete', files_views.MerchantVideoFileDeleteView.as_view(), name='merchant_video_delete'),
     path('my-video/<slug:slug>/', files_views.MerchantVideoFileDetailView.as_view(), name='merchant_video_detail'),
 
+    #Connections
+    path('connect/<str:operator>/<int:pk>', users_views.ChangeConnections, name='change_connections'),    
+
+
 ]

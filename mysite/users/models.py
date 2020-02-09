@@ -98,9 +98,6 @@ STATES = (
         ("WY", "Wyoming")
         )
 
-
-
-
 class User(AbstractUser):
     is_merchant     = models.BooleanField('is_merchant', default=False)
     is_approved     = models.BooleanField('merchant_is_approved', default=False)
@@ -135,6 +132,12 @@ class Profile(models.Model): #Is a Profile Necessary?
 
     def __str__(self):
         return self.user.username
+
+
+#TODO Only created for non-merchants
+def ProfileCallback(sender, request, user, **kwargs):
+    if user.is_merchant == False:
+        userProfile, is_created = Profile.objects.get_or_create(user=user)
 
 
 class MerchantProfile(models.Model): #Is a Profile Necessary?
@@ -184,10 +187,23 @@ def create_merchant_profile(sender, instance, created, **kwargs):
             merchantprofile.customer_id      = stripe_customer_id['id']
             merchantprofile.save()
 
-#TODO Only created for non-merchants
-def ProfileCallback(sender, request, user, **kwargs):
-    if user.is_merchant == False:
-        userProfile, is_created = Profile.objects.get_or_create(user=user)
+class Follow(models.Model):
+    connections         = models.ManyToManyField(settings.AUTH_USER_MODEL)
+    current_user        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='owner', null=True)
+
+    @classmethod
+    def add_connection(cls, current_user, new_connection):
+        follow, created = cls.objects.get_or_create(
+            current_user = current_user
+        )
+        follow.connections.add(new_connection)
+
+    @classmethod
+    def remove_connection(cls, current_user, new_connection):
+        follow, created = cls.objects.get_or_create(
+            current_user = current_user
+        )
+        follow.connections.remove(new_connection)
 
 
 # #TODO Only created for merchants

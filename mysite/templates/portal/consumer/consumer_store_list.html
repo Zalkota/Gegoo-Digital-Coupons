@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base-alt.html' %}
 
 {% block content %}
 
@@ -8,11 +8,14 @@
         
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Welcome!</h5>
-                    <h5 class="text-muted">{{ user.first_name }} {{ user.last_name }}</h5>
-                    <hr>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">Stores You're Following</h5>
+                    {% for store_connection in store_connections %}
+                        <a href="{{ store_connection.get_consumer_absolute_url }}" class="">
+                            <h1>
+                                {{ store_connection }}
+                            </h1>
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -31,7 +34,12 @@
                                     </a>
                                 </div>
                                 <p class="card-text">{{ trending_store.description }}</p>
-                            </div>
+                                {% if trending_store in store_connection_user %}
+                                    <a href="" value="add" data-catid="{{ trending_store.pk }}" class="followBtn btn btn-primary" action_type="remove">Remove Store</a>
+                                {% else %}
+                                    <a href="" value="add" data-catid="{{ trending_store.pk }}" class="followBtn btn btn-primary" action_type="add">Follow Store</a>
+                                {% endif %}
+                                </div>
                         </div>
                     {% endfor %}
                     </div>
@@ -59,3 +67,29 @@
     </div>
 </div>
 {% endblock content %} 
+
+{% block jquery %}
+  $(".followBtn").click(function (event) {
+    event.preventDefault();
+
+    var this_ = $(this);
+    var storepk = this_.attr('data-catid');
+    var action_type = this_.attr('action_type');
+
+    $.ajax({
+      type: "POST",
+      url: "{% url 'portal:store_change_connections' %}",
+      data: {
+        store_pk: storepk,
+        action: action_type,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+      },
+      success: function (data) {
+        document.location.reload(true)
+        
+        console.log(data)
+      }
+    });
+    return false;
+  });
+{% endblock jquery %}

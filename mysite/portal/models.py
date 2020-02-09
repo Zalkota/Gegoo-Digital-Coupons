@@ -391,6 +391,12 @@ class Store(models.Model):
             average_rating = front_text / count
             return average_rating
 
+
+    @property
+    def get_total_testimonials(self):
+        count = self.testimonial.count()
+        return count
+
 @receiver(pre_save, sender=Store)
 def pre_save_store(sender, **kwargs):
     slug = slugify(kwargs['instance'].business_name)
@@ -402,21 +408,10 @@ def update_store_count(sender, instance, **kwargs):
     merchantprofile.stores      = Store.objects.filter(merchant=instance.merchant).count()
     merchantprofile.save()
 
-    @property
-    def get_total_testimonials(self):
-        count = self.testimonial.count()
-        return count
 
     # def GetDistance(self):
     #     return self.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
     #
-
-@receiver(pre_save, sender=Store)
-def pre_save_store(sender, **kwargs):
-    slug_1 = slugify(kwargs['instance'].business_name, kwargs['instance'].city)
-    slug_2 = slugify(slug_1, kwargs['instance'].state)
-    slug_3 = slugify(slug_2, kwargs['instance'].id)
-    kwargs['instance'].slug = slug_3
 
 post_save.connect(CalculateLocation, sender=Store)
 post_save.connect(setCouponCode, sender=Store)
@@ -437,25 +432,21 @@ class Testimonial(models.Model):
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
     updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
 
+class FollowStore(models.Model):
+    connections         = models.ManyToManyField(Store)
+    current_user        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user', null=True)
 
+    @classmethod
+    def add_connection(cls, current_user, new_connection):
+        follow_store, created = cls.objects.get_or_create(
+            current_user = current_user
+        )
+        follow_store.connections.add(new_connection)
 
+    @classmethod
+    def remove_connection(cls, current_user, new_connection):
+        follow_store, created = cls.objects.get_or_create(
+            current_user = current_user
+        )
+        follow_store.connections.remove(new_connection)
 
-# post_save.connect(setMerchantRefCode, sender=Store)
-# post_save.connect(CalculateLocation, sender=Store)
-
-    #
-    # def storeCallback(sender, request, user, **kwargs):
-    #     userProfile, is_created = Profile.objects.get_or_create(user=user)
-    #     if is_created:
-    #         userProfile.name = user.username
-    #         userProfile.save()
-    #
-    # user_signed_up.connect(profileCallback)
-#
-# class OfferManager(models.Manager):
-#     #Grabs first offer and only shows active offers
-#     def get_first_active(self):
-#         now = timezone.now()
-#         object_qs = Offer.objects.filter(end_date__gt=now).order_by('end_date')
-#         object = object_qs.first()
-#         return object

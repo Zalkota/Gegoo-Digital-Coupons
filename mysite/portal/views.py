@@ -1,9 +1,9 @@
 # <**************************************************************************>
 # <*****                         IMPORTS                                *****>
 # <**************************************************************************>
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 ## DEBUG:
 from django.contrib import messages
@@ -233,8 +233,12 @@ class ConsumerStoreListView(ListView):
 		return store_list
 
 	def get_context_data(self, **kwargs):
+		store_connection = portal_models.FollowStore.objects.get(current_user = self.request.user)
+
 		context = super(ConsumerStoreListView, self).get_context_data(**kwargs)
 		context['trending_stores'] = portal_models.Store.objects.all().order_by('-views')[0:4]
+		context['store_connection_user'] = store_connection.connections.all()
+		context['store_connections'] = store_connection.connections.all()
 		return context
 
 
@@ -247,3 +251,29 @@ class ConsumerStoreDetailView(DetailView):
 		obj.views += 1
 		obj.save()
 		return obj
+
+def StoreChangeConnections(request, operator, pk):
+	store_connection = portal_models.Store.objects.get(pk=pk)
+	if operator == 'add':
+		portal_models.FollowStore.add_connection(request.user, store_connection)
+	if operator == 'remove':
+		portal_models.FollowStore.remove_connection(request.user, store_connection)
+	return redirect('users:userPage')
+
+def StoreChangeConnectionsAjax(request):
+	if request.method == 'POST':
+		store_pk = request.POST['store_pk']
+		action = request.POST['action']
+
+		print(store_pk)
+		print(action)
+		
+		if action == 'add':
+			store_connection_ajax = portal_models.Store.objects.get(pk=store_pk)
+			portal_models.FollowStore.add_connection(request.user, store_connection_ajax)
+			return render_to_response('portal/consumer/consumer_store_list.html')	
+		
+		if action == 'remove':
+			store_connection_ajax = portal_models.Store.objects.get(pk=store_pk)
+			portal_models.FollowStore.remove_connection(request.user, store_connection_ajax)
+			return HttpResponse('Success!')		
