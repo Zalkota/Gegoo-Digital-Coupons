@@ -112,7 +112,7 @@ a:hover {
                             <br>
                             <p><span class="fw-6"></span>A monthly subscription is required to utilize gegoo advertising services. <br><br>
                             <span class="text-secondary">Questions or concerns? Click <a href="{% url 'support:contact-page' %}">here</a> to contact us </span></p>
-                            <a href="{% url 'memberships:select' %}" class="btn btn-primary-alt btn-block">Purchase Subscription</a>
+                            <a href="{% url 'payments:plan_list' %}" class="btn btn-primary-alt btn-block">Purchase Subscription</a>
                         </div>
                     </div>
                 </div>
@@ -190,11 +190,9 @@ a:hover {
                             </div>
                             <div class="col-lg-2 col-12 vertical-container">
                                 <div class="py-3 px-3   vertical-alignment text-center">
-                                    <a href="{{ store.get_consumer_absolute_url }}" class="">View
-                                    </a>
+                                    <a href="{{ store.get_consumer_absolute_url }}" class="">View</a>
                                     <span class="px-2 text-secondary ">|</span>
-                                    <a href="" class="">Edit
-                                    </a>
+                                    <a href="{% url 'users:merchant_store_update' store.slug %}" class="">Edit</a>
                                 </div>
                             </div>
                         </div>

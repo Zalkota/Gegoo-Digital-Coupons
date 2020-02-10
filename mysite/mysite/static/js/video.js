@@ -3,26 +3,26 @@
 
 $( document ).ready(function() {
 
-    // Resive video
-    scaleVideoContainer();
+    // // Resive video
+    // scaleVideoContainer();
+    //
+    // initBannerVideoSize('.video-container .poster img');
+    // initBannerVideoSize('.video-container .filter');
+    // initBannerVideoSize('.video-container video');
+    //
+    // $(window).on('resize', function() {
+    //     scaleVideoContainer();
+    //     scaleBannerVideoSize('.video-container .poster img');
+    //     scaleBannerVideoSize('.video-container .filter');
+    //     scaleBannerVideoSize('.video-container video');
+    // });
 
-    initBannerVideoSize('.video-container .poster img');
-    initBannerVideoSize('.video-container .filter');
-    initBannerVideoSize('.video-container video');
 
-    $(window).on('resize', function() {
-        scaleVideoContainer();
-        scaleBannerVideoSize('.video-container .poster img');
-        scaleBannerVideoSize('.video-container .filter');
-        scaleBannerVideoSize('.video-container video');
-    });
-
-
-    var video = document.getElementById("video")
 
 
 
 });
+var video = document.getElementById("video")
 
 $("#Unmutebutton").click(function(){
     video.muted = false
@@ -38,27 +38,27 @@ $("#Mutebutton").click(function(){
 
 /** Reusable Functions **/
 /********************************************************************/
-
-function scaleVideoContainer() {
-
-    var height = $(window).height() * .7;  // I added the * .7
-    var unitHeight = parseInt(height) + 'px';
-    $('.homepage-hero-module').css('height',unitHeight);
-    $('.everything-under-vid').show();  // I added this so logos wont show until video JS is executed
-    $('.vid-bg-footer').show();
-}
-
-function initBannerVideoSize(element){
-
-    $(element).each(function(){
-        $(this).data('height', $(this).height());
-        $(this).data('width', $(this).width());
-    });
-
-    scaleBannerVideoSize(element);
-
-}
 //
+// function scaleVideoContainer() {
+//
+//     var height = $(window).height() * .7;  // I added the * .7
+//     var unitHeight = parseInt(height) + 'px';
+//     $('.homepage-hero-module').css('height',unitHeight);
+//     $('.everything-under-vid').show();  // I added this so logos wont show until video JS is executed
+//     $('.vid-bg-footer').show();
+// }
+//
+// function initBannerVideoSize(element){
+//
+//     $(element).each(function(){
+//         $(this).data('height', $(this).height());
+//         $(this).data('width', $(this).width());
+//     });
+//
+//     scaleBannerVideoSize(element);
+//
+// }
+
 // function scaleBannerVideoSize(element){
 //
 //     var windowWidth = $(window).width(),

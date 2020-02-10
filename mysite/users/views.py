@@ -12,7 +12,7 @@ import datetime
 from django.utils import timezone
 from .forms import userLocationForm
 from django.contrib import messages
-from memberships.views import get_user_membership, get_user_subscriptions
+from payments.views import get_user_subscription
 #Profile Image
 # from .forms import ProfileImageForm
 from django.shortcuts import get_object_or_404

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="border-success-md px-5 py-4">
+                  <h2 class="text-success fw-7"><i class="fa fa-check fs-28" aria-hidden="true"></i>Thank you, you are now an Offical Gegoo Member!</h2>
+                  An email confirmation has been sent to you. Now for the last step, upload a video for each store below.
+                  <br>
+                  <br>
+                  <span class="fs-18 fw-7">Order Number: {{ object.ref_code }}  </span>
+                </div>
+            </div>
+
+            {% block merchant_approval_nav %}
+              {% include "users/approval/merchant_approval_nav.html" %}
+            {% endblock merchant_approval_nav %}
+            <div class="col-lg-12 mt-4">
+                <div class="card shadow-2">
+                    <div class="card-body">
+                        <h3 class="header">
+                            Video Upload
+                            <a href="/dashboard/" class="btn btn-primary-inverted pull-right mt-2">Skip Video Upload</a>
+                            <br>
+
+
+                        </h3>
+                        <p class="text-secondary fs-14 fw-4">
+                            Upload a 15 second video that promotes the products and services of your business. <br>Each store is a seperate upload, but all stores can have the same video.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+                {% for store in store_list %}
+
+                <div class="col-lg-6 my-2">
+
+                    {% if store.video_file %}
+
+                    <div class="card shadow-2 mt-4">
+                        <div class="card-body p-3">
+                            <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ store.banner }}">
+                				<source src="https://static-gegoo-bucket.s3.amazonaws.com/media/{{ store.video_file.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
+            				</video>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-lg-6 vertical-container">
+                                    <div class="vertical-alignment">
+                                        <h4 class="text-secondary fs-14">
+                                            Uploaded {{ store.video_file.uploaded_at }}
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 text-right">
+                                    <a href="{% url 'users:merchant_video_delete' store.video_file.slug %}" class=" mr-2">Delete Video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% else %}
+
+                    <div class="card shadow-2 mt-3">
+                        <div class="card-body">
+                            <div class="pb-2">
+                                <h3 class="card-title fs-16 fw-6 text-uppercase">{{ store.business_name }} <span class="pull-right fs-14 fw-4 text-muted">{{ store.city }}, {{ store.state }}</span></h3>
+                            </div>
+                            <a href="{% url 'files:merchant_video_upload' slug=store.slug %}">
+                            <div class="bg-gray-100 vertical-container" style="height:300px;">
+                                <div class="vertical-alignment text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12  icon-videocam"><path class="fill-gray-400" d="M13.59 12l6.7-6.7A1 1 0 0 1 22 6v12a1 1 0 0 1-1.7.7L13.58 12z"/><rect width="14" height="14" x="2" y="5" class="fill-gray-400" rx="2"/></svg>
+                                    <h4 class="subheader text-purple-500">Upload a Video for your Stores</h4>
+                                    <p class="text-secondary fs-14">Grab visitors attention with a short 15 second <br>video that showcases your business.</p>
+                                </div>
+                            </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+                {% endfor %}
+
+                <div class="col-lg-12">
+
+                        <a href="/dashboard/" class="btn btn-primary-alt btn-block my-5">Finish</a>
+
+                </div>
+
+
+        </div>
+    </div>
+</section>
+{% endblock content %}

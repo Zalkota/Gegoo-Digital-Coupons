@@ -1,61 +1,74 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load location_extra %}
+{% load static %}
+
 
 {% block content %}
 
-<div class="container">
+{% block category_nav %}
+  {% include "portal/category_nav.html" %}
+{% endblock category_nav %}
+
+<section class="section container">
+    <h2 class="section-header text-dark">All Services Located Near {{ city }}, {{ state }}</h2>
+    <br>
     <div class="row">
-        <div class="col-4">
-        
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Welcome!</h5>
-                    <h5 class="text-muted">{{ user.first_name }} {{ user.last_name }}</h5>
-                    <hr>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-8">
-            <div class="row">
-                <div class="col-12">
-                    <h1>Trending Stores</h1>
-                    <div class="card-group">
-                    {% for trending_store in trending_stores %}
-                        <div class="card faq-card">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <a class="card-link" href="{{ trending_store.get_consumer_absolute_url }}">
-                                        <h3>{{ trending_store.business_name }}</h3>
-                                        <h3>{{ trending_store.merchant }}</h3>
-                                    </a>
-                                </div>
-                                <p class="card-text">{{ trending_store.description }}</p>
-                            </div>
+        {% for object in object_list %}
+        <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
+            <div class="card shadow-1">
+                <a class="" href="{{ object.get_consumer_absolute_url }}">
+                    <img class="img-fluid border-radius-100" style="max-height: 250px;" src="{{ AwsBucketURL }}{{ object.logo }}" alt="User Uploaded images">
+                </a>
+                <div class="card-body py-1">
+                    <div class=" text-left mt-3">
+                        <h3 class="fw-6 text-dark fs-18 mb-1">{{ object.business_name }}</h3>
+                            {% if object.rating_average == 1 %}
+                            <i class="material-icons star-yellow fs-18">star star_border star_border star_border star_border </i>{% endif %}
+                            {% if object.rating_average == 2 %}
+                            <i class="material-icons star-yellow fs-18"> star star star_border star_border star_border </i>{% endif %}
+                            {% if object.rating_average == 3 %}
+                            <i class="material-icons star-yellow fs-18"> star star star star_border star_border </i>{% endif %}
+                            {% if object.rating_average == 4 %}
+                            <i class="material-icons star-yellow fs-18"> star star star star star_border </i>{% endif %}
+                            {% if object.rating_average == 5 %}
+                            <i class="material-icons star-yellow fs-18"> star star star star star </i>{% endif %}
+                        <h4 class="fw-4 text-gray-700 fs-14 pt-2">
+                            {{ object.slogan|truncatewords:8 }}
+                        </h4>
+                        <div class="fs-14 mt-3 mb-2">
+                            <span class="text-gray-700 fw-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-location-pin"><path class="fill-gray-500" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-500" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                                {{ object.distance.mi|dividebyth }} Miles Away
+                            </span>
                         </div>
-                    {% endfor %}
+                        <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <h1>All Stores</h1>
-                    {% for store in store_list %}
-                    <div class="card faq-card">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <a class="card-link" href="{{ store.get_consumer_absolute_url }}">
-                                    <h3>{{ store.business_name }}</h3>
-                                    <h3>{{ store.merchant }}</h3>
-                                </a>
-                            </div>
-                            <p class="card-text">{{ store.description }}</p>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
         </div>
+        {% endfor %}
     </div>
-</div>
-{% endblock content %} 
+    {% if is_paginated %}
+    <div class="py-3 text-center">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination pull-right">
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+            {% endif %}
+      </ul>
+    </nav>
+    </div>
+    {% endif %}
+</section>
+{% endblock content %}

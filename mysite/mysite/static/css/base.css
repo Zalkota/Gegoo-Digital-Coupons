@@ -8571,28 +8571,30 @@ button {
     <**************************************************************************>
 */
 .card-pill {
+  height: 153.1px;
   text-align: center;
-  border-radius: 2rem;
   display: inline-block;
   font-weight: 600;
   font-size: 18px;
   width: 100%;
-  color: #2A4365;
+  color: #fff;
   padding: .6rem 0.5rem .6rem 0.5rem;
   cursor: pointer;
-  background-color: #fff;
-  border: 1px solid #CBD5E0;
+  background-image: 120deg, #805AD5, #7505AB;
+  background-image: -webkit-linear-gradient(120deg, #805AD5, #7505AB);
+  background-image: -o-linear-gradient(120deg, #805AD5, #7505AB);
+  background-image: linear-gradient(120deg, #805AD5, #7505AB);
   transition: transform 0.25s;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
   .card-pill a {
-    color: #4A5568 !important; }
-  .card-pill:hover, .card-pill:focus {
-    box-shadow: 0;
-    color: #7505AB; }
+    color: #fff !important; }
+    .card-pill a:hover, .card-pill a:focus {
+      box-shadow: 0;
+      color: #718096; }
 
 .card-pill-active {
+  height: 153.1px;
   text-align: center;
-  border-radius: 2rem;
   display: inline-block;
   font-weight: 600;
   font-size: 18px;
@@ -8615,7 +8617,8 @@ button {
   z-index: -1; }
 
 .card-pill:hover::before {
-  opacity: 1; }
+  opacity: 1;
+  color: #7505AB; }
 
 .border-success {
   border: 1px solid #48BB78; }
@@ -8982,7 +8985,7 @@ button {
 .multi-steps > li.is-active:before, .multi-steps > li.is-active ~ li:before {
   content: counter(stepNum);
   font-family: inherit;
-  font-weight: 700; }
+  font-weight: 600; }
 
 .multi-steps > li.is-active:after, .multi-steps > li.is-active ~ li:after {
   background-color: #E2E8F0; }
@@ -9021,6 +9024,7 @@ button {
       width: 100%;
       background-color: #7505AB;
       position: absolute;
+      font-weight: 600;
       top: 16px;
       left: 50%;
       z-index: -1; }
@@ -13115,7 +13119,7 @@ input:focus {
   .volume-button {
     z-index: 10000;
     position: absolute;
-    bottom: 10%;
+    bottom: 14%;
     left: 2%; } }
 
 @media screen and (max-width: 1286px) {
@@ -13129,7 +13133,6 @@ input:focus {
     overflow: hidden;
     background-position: bottom;
     background-repeat: no-repeat;
-    background-color: #f4f5f4;
     background-image: url("static/images/mobile_background5.jpg"); }
   .video-container .title-container {
     z-index: 1000;

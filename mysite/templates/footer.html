@@ -33,7 +33,7 @@
             {% if user.is_authenticated == False %}
             <a class="font-footer" style="line-height: 2rem;" href="{% url 'users:merchant-signup' %}">Become a Merchant</a>
             {% else %}
-            <a class="font-footer" style="line-height: 2rem;" href="{% url 'memberships:select' %}">Become a Merchant</a>
+            <a class="font-footer" style="line-height: 2rem;" href="{% url 'payments:plan_list' %}">Become a Merchant</a>
             {% endif %}
             <br>
             <a class="font-footer" style="line-height: 2rem;" href="{% url 'account_signup' %}">Pricing</a>

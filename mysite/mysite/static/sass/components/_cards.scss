@@ -248,33 +248,37 @@
 */
 
 .card-pill {
+    height: 153.1px;
     text-align: center;
-    border-radius: 2rem;
     display: inline-block;
     font-weight: 600;
     font-size: 18px;
     width: 100%;
-    color: $color-dark;
+    color: $color-white;
     padding: .6rem 0.5rem .6rem 0.5rem;
     cursor: pointer;
-    background-color: $color-white;
-    border: 1px solid $color-gray-400;
+    background-image: $gradient-primary;
+    background-image: -webkit-linear-gradient($gradient-primary);
+    background-image: -o-linear-gradient($gradient-primary);
+    background-image: linear-gradient($gradient-primary);
     transition: transform 0.25s;
     box-shadow: $box-shadow-1;
 
     a {
-        color: $color-text !important;
+        color: $color-white !important;
+
+        &:hover, &:focus {
+            box-shadow: 0;
+            color: $color-secondary;
+            }
     }
 
-    &:hover, &:focus {
-        box-shadow: 0;
-        color: $color-primary;
-        }
+
 }
 
 .card-pill-active {
+    height: 153.1px;
     text-align: center;
-    border-radius: 2rem;
     display: inline-block;
     font-weight: 600;
     font-size: 18px;
@@ -301,4 +305,5 @@
 
     .card-pill:hover::before {
       opacity: 1;
+      color: $color-primary;
     }

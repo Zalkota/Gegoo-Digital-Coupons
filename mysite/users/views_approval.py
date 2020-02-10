@@ -9,9 +9,10 @@ from django.http import HttpResponseRedirect
 ## DEBUG:
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from portal import models as portal_models
 from users import models as users_models
+from files import models as files_models
 from django.utils.text import slugify
 from django.views.generic.edit import FormView, FormMixin
 # Create your views here.
@@ -85,3 +86,17 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
         form.instance.slug = slug
 
         return super(MerchantApprovalStoreCreateView, self).form_valid(form)
+
+
+class MerchantApprovalVideoFileListView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        try:
+            store_qs = portal_models.Store.objects.filter(merchant=self.request.user)
+            context = {
+                'store_list': store_qs
+            }
+
+            return render(self.request, 'users/approval/merchant_approval_video_list.html', context)
+        except ObjectDoesNotExist:
+            messages.info(self.request, "No Stores Found, Please create a store")
+            return redirect("/dashboard/")

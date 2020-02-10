@@ -19,10 +19,8 @@
         </div>
         <div class="container text-center">
             <div class="row">
-                <div class="offset-lg-2"></div>
             {% for object in object_list %}
-                {% if object.nickname == 'Monthly Subscription' %}
-                    <div class="col-lg-4 mb-5 pb-5 mt-1">
+                    <div class="col-lg-4 offset-lg-4 mb-5 pb-5 mt-1">
                         <div class="card card-effects subscription-card-left shadow-2 mt-4">
                             <div class="card-body">
                                 <h4 class="py-3 text-white header fw-6 mb-5">{{ object.nickname }}</h4>
@@ -42,10 +40,10 @@
                                 </div>
                                 <div class="py-3"></div>
                                 {% if request.user.is_authenticated %}
-                                    {% if user.subscription.subscription_status == 'active' %}
+                                    {% if user.payment_status == True %}
                                       	<a class="btn btn-gray-800-alt btn-block mb-4 text-white disabled">Purchased</a>
-                                    {% elif user.subscription.subscription_status == 'canceled' %}
-                                        <a href="{{ object.get_absolute_url }}" class="btn btn-gray-800-alt btn-block mb-4">Select</a>
+                                    {% else %}
+                                        <a href="{{ object.get_absolute_url }}" class="btn btn-purple-500-alt btn-block mb-4 fs-16">Purchase</a>
                       				{% endif %}
                                 {% else %}
                                         <a href="{% url 'account_login' %}" class="btn btn-purple-500-alt btn-block mb-4">Login</a>
@@ -54,9 +52,9 @@
                         </div>
                     </div>
 
-                {% else %}
 
-                    <div class="col-lg-4 mb-5 pb-5 mt-3">
+
+                    <!-- <div class="col-lg-4 mb-5 pb-5 mt-3">
                         <div class="card card-effects shadow-0 mt-4">
                             <div class="card-body">
                                 <h4 class="py-3 text-gray-800 header mb-5">{{ object.nickname }}</h4>
@@ -86,10 +84,9 @@
                                 {% endif %}
                             </div>
                         </div>
-                    </div>
-                {% endif %}
+                    </div> -->
+
             {% endfor %}
-            <div class="offset-lg-2"></div>
             </div>
             <!-- <p class="text-muted " style="font-size: 14px;">Your membership will renew automatically every month. You may cancel your membership at any time from your member dashboard.</p> -->
         </div>

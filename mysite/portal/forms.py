@@ -22,7 +22,8 @@ class MerchantStoreForm(forms.ModelForm):
        model = portal_models.Store
        fields = [
        'business_name',
-       'title',
+       'slogan',
+       'description',
        'category',
        'subcategory',
        'street_address',
@@ -86,7 +87,8 @@ class MerchantStoreForm(forms.ModelForm):
                 ),
                 Div(
                 'code_coupon',
-                'title',
+                'slogan',
+                'description',
                 'website_url',
                 'facebook_url',
                     Div(

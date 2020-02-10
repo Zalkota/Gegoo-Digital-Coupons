@@ -4,7 +4,7 @@ from django.urls import path
 from django.contrib import admin
 from .views import (
     homeView,
-    components,
+    # components,
 )
 from .views import set_location_cookies
 from search import views as search_views
@@ -37,8 +37,6 @@ urlpatterns = [
     #Location
     url(r'^', include(('location.urls', 'location'), namespace='location')),
     #Portal
-    url(r'^membership/', include(('memberships.urls', 'memberships'), namespace='memberships')),
-
     path('payments/', include(('payments.urls', 'payments'), namespace='payments')),
     #FAQ
     url(r'^support/', include(('support.urls', 'support'), namespace='support')),
@@ -61,7 +59,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     #Development
-    path('components/', components, name='components-page'),
+    # path('components/', components, name='components-page'),
 
     #Ckeditor
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),

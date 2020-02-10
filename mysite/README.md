@@ -40,7 +40,7 @@ This will install all of the requirements for the website_url
 sudo su postgres
 psql
 CREATE DATABASE gegoo;
-psql -c "'CREATE USER gegooadmin WITH PASSWORD '$Django10';
+CREATE USER gegooadmin WITH PASSWORD '$Django10';
 ALTER ROLE gegooadmin SET client_encoding TO 'utf8';
 ALTER ROLE gegooadmin SET default_transaction_isolation TO 'read committed';
 ALTER ROLE gegooadmin SET timezone TO 'UTC';
@@ -50,9 +50,11 @@ exit
 
 10. navigate to folder /mysite/, you should see the file local.py.
 
-11. run 'Python3 local.py makemigrations'
-    run 'Python3 local.py migrate'
-    run 'Python3 local.py runserver'
+11. run the following three commands:
+
+    python3 local.py makemigrations
+    python3 local.py migrate
+    python3 local.py runserver
 
 12. Open a new terminal and go to /projects/project/mysite/
 run 'npm install'

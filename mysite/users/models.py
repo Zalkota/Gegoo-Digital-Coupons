@@ -104,7 +104,7 @@ STATES = (
 class User(AbstractUser):
     is_merchant     = models.BooleanField('is_merchant', default=False)
     is_approved     = models.BooleanField('merchant_is_approved', default=False)
-    city = models.ForeignKey(City, related_name='user_city', on_delete=models.CASCADE, null=True, blank=True)
+    city = models.ForeignKey(City, related_name='user_city', default='1', on_delete=models.CASCADE, null=True, blank=True)
 
     # User Location
     location            = models.PointField(srid=4326, null=True, blank=True)

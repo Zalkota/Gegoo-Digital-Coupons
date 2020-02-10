@@ -24,7 +24,7 @@ def set_location_cookies(request, city, state):
     response = HttpResponse("setting state to %s, city to %s" % (state, city))
     response.set_cookie('ct', city)
     response.set_cookie('st', state)
-    print (state, city)
+    # print (state, city)
     return response
 
 
@@ -50,7 +50,7 @@ def get_or_set_location(request):
             if request.user.city and user.location != None:
                 city = request.user.city
                 location = request.user.location
-                print('1')
+                # print('1')
 
                 context = {
                 'city': city.name,
@@ -100,7 +100,7 @@ def get_or_set_location(request):
             return context
         # Else lets use their IP address to find out and then add it to their Cookies
         else:
-            print('attemtping to obtain IP address location')
+            # print('attemtping to obtain IP address location')
             data = get_ip(request)
             #Obtain City and State from IP address
             city = data["city"]['names']['en']
@@ -125,7 +125,7 @@ def CalculateCityLocation(request, city):
         longitude = city.longitude
         latitude = city.latitude
 
-        print('long,lat', longitude, latitude)
+        # print('long,lat', longitude, latitude)
 
         location = fromstr(
             f'POINT({longitude} {latitude})', srid=4326

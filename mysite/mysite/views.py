@@ -136,19 +136,43 @@ def get_items(request):
 
 class homeView(View):
     def get(self, *args, **kwargs):
-        city = 'default_city'
-        state = 'default_state'
+        city = 'default_city' #Is this necessary?
+        state = 'default_state' #Is this necessary?
+
         city_state = get_or_set_location(self.request)
-        print(city_state)
         city = city_state["city"]
         state = city_state["state"]
         user_location = city_state["user_location"]
-        # address_qs = Store.objects.filter(storelocation__city__name=city, storelocation__city__region=state)
-        store_empty_qs = Store.objects.all()[0:6]
-        # city = context["city"]
-        # state = context["subdivisions"]
-        store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:6]
-        promotional_video = PromotionalVideo.objects.filter(active=True).order_by("-created_at").first()
+
+        #Query Stores Nearby
+        try:
+            store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:6]
+        except:
+            store_nearby = Store.objects.filter(city='Novi', state='Michigan')[0:6]
+            print('no stores found')
+
+        #Video Playlist
+        video_list = {}
+        increment = 0
+        for store in store_nearby:
+            try:
+                if store.videofile != None:
+                    increment = increment + 1
+                    increment_str = str(increment)
+                    business_name = 'store_' + increment_str
+                    video_url = 'video_url_' + increment_str
+                    coupon_code = 'coupon_code_' + increment_str
+                    location = 'location_' + increment_str
+                    location_qs = store.city + ', ' + store.state
+                    video_list.update( { business_name : store.business_name, video_url : store.videofile.file.url, coupon_code : store.code_coupon, location : location_qs } )
+                else:
+                    pass
+            except:
+                pass
+
+        print(video_list)
+
+        # promotional_video = PromotionalVideo.objects.filter(active=True).order_by("-created_at").first()
         #store_nearby = store.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
 
         # if address_qs = None:
@@ -171,16 +195,13 @@ class homeView(View):
             'city': city,
             'state': state,
             'store_nearby': store_nearby,
-            'store_empty_qs': store_empty_qs,
-            'promotional_video': promotional_video,
+            # 'store_empty_qs': store_empty_qs,
+            'data': video_list,
+            # 'promotional_video': promotional_video,
         }
+        # return JsonResponse(video_list)
         return render(self.request, 'mysite/home_page.html', context)
-
 
 
 def security(request):
     return render(request, 'security.txt')
-
-def components(request):
-
-    return render(request, 'components/main.html')

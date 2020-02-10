@@ -301,7 +301,7 @@ python manage.py generate_secret_key [--replace] [secretkey.txt]
 # Elastic search
 
 Dependencies:
-Elastic 1.7.6
+Elastic 1.7.6  https://www.elastic.co/downloads/past-releases/elasticsearch-1-7-6
 Sudo apt install openjdk-8-jre-headless
 elasticsearch==5.5.3
 django-haystack==2.8.1
@@ -323,8 +323,6 @@ https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.
 
 Run search_index --rebuild
 
-//old
-https://www.elastic.co/downloads/past-releases/elasticsearch-1-7-6
 
 You should cron up a ./manage.py update_index job at whatever interval works best for your site (using --age=<num_hours> reduces the number of things to update).
 Alternatively, if you have low traffic and/or your search engine can handle it, the RealtimeSignalProcessor automatically handles updates/deletes for you.
@@ -352,7 +350,17 @@ python3 local.py dumpdata --natural-foreign --indent=4 -e contenttypes -e auth.P
 
 ## GeoDjango
 
+https://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS24UbuntuPGSQL10Apt
+
 sudo -u postgres psql -d gegoo -c "CREATE EXTENSION IF NOT EXISTS postgis;"
+
+CREATE EXTENSION postgis;
+
+su postgres
+psql
+alter role user_name superuser;
+#then create the extension as the user in a different screen
+alter role user_name nosuperuser
 
 
 

@@ -7,7 +7,7 @@
         <li><a class="{% if request.path == '/accounts/password/change/' %} active {% endif %}" href="{% url 'account_change_password' %}">Change Password</a></li>
         <li><a class="{% if request.path == '/accounts/email/' %} active {% endif %}" href="{% url 'account_email' %}">Change Email</a></li>
         <li><a class="{% if request.path == '/dashboard/location/' %} active {% endif %}" href="{% url 'users:user_location'%}">Change Location</a></li>
-        <li><a href="{% url 'memberships:select' %}">Become a Merchant</a></li>
+        <li><a href="{% url 'payments:plan_list' %}">Become a Merchant</a></li>
     </ul>
 </div>
 

@@ -29,7 +29,7 @@
   &:before {
     content: counter(stepNum);
     font-family: inherit;
-    font-weight: 700;
+    font-weight: 600;
   }
   &:after{
     background-color: $color-gray-300;
@@ -73,6 +73,7 @@
       width: 100%;
       background-color: $color-primary;
       position: absolute;
+      font-weight: 600;
       top: 16px;
       left: 50%;
       z-index: -1;

@@ -103,7 +103,7 @@ border-collapse:collapse;
 
         {% empty %}
         <div class=" col-lg-12 text-center">
-            <p class="py-5">You do not have an active membership plan. Without a subscription to Gegoo, <br>your stores and offers will not be shown to users that visit Gegoo.com. <br><a href="{% url 'memberships:select' %}">Click here to view available memberships.</a></p>
+            <p class="py-5">You do not have an active membership plan. Without a subscription to Gegoo, <br>your stores and offers will not be shown to users that visit Gegoo.com. <br><a href="{% url 'payments:plan_list' %}">Click here to view available memberships.</a></p>
         </div>
         {% endfor %}
     </div>

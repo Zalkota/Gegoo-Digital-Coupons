@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'users',
     'portal',
     'support',
-    'memberships',
+    # 'memberships',
 
     #Payment
     'stripe',
@@ -371,7 +371,7 @@ EMAIL_CUSTOMER = 'dominic@modwebservices.com'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'michael@modwebservices.com' 
+EMAIL_HOST_USER = 'michael@modwebservices.com'
 EMAIL_HOST_PASSWORD = 'Florida1122pc$'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

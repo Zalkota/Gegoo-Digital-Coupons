@@ -1,51 +1,113 @@
 {% load static %}
 
 {% block category_nav %}
-<section class="pt-4 pb-5 container">
+<section class="pt-4 pb-3 container">
     <!-- <h3 class="section-header text-dark">Search By Category</h3> -->
     <div class="flex-container">
         <div class="flex-box mx-2">
-            <div class="{% if request.path == null %} card-pill-active {% else %} card-pill {% endif %}">
-                <a href="{% url 'home-page' %}">All</a>
+            <div class="card {% if request.path == '/shop/stores/' %} card-pill-active {% else %} card-pill {% endif %}">
+                <a href="{% url 'portal:consumer_store_list' %}">
+                    <div class="card-body text-center vertical-container" style="height: 100%;">
+                        <div class="vertical-alignment">
+                            All Services
+
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="flex-box mx-2">
-            <div class="{% if 'vehicles' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
-                <a href="{% url 'portal:category_detail' slug='vehicles' %}">Vehicles</a>
+            <div class="card {% if 'vehicles' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                <a href="{% url 'portal:category_detail' slug='vehicles' %}">
+                    <div class="card-body text-center">
+                        Vehicles
+                        <br>
+                        <i class="fa fa-car fs-28 pt-1" aria-hidden="true"></i>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="flex-box mx-2">
-            <div class="flex-box mx-2">
-                <div class="{% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}%">
-                    <a href="{% url 'portal:category_detail' slug='food' %}">Food</a>
-                </div>
+            <div class="card {% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                <a href="{% url 'portal:category_detail' slug='food' %}">
+                    <div class="card-body text-center vertical-container">
+                            <div class="vertical-alignment">
+                                Food
+                                <br>
+                                <i class="fa fa-cutlery fs-28 pt-1" aria-hidden="true"></i>
+                            </div>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="flex-box mx-2">
-            <div class="card-pill">
-                Barber
+            <div class="card {% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                <a href="{% url 'portal:category_detail' slug='food' %}">
+                    <div class="card-body text-center vertical-container">
+                            <div class="vertical-alignment">
+                                Travel
+                                <br>
+                                <i class="fa fa-plane fs-28 pt-1" aria-hidden="true"></i>
+                            </div>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="flex-box mx-2">
-            <div class="card-pill">
-                Salon
+            <div class="card {% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                <a href="{% url 'portal:category_detail' slug='food' %}">
+                    <div class="card-body text-center vertical-container">
+                            <div class="vertical-alignment">
+                                Bath
+                                <br>
+                                <i class="fa fa-bath fs-28 pt-1" aria-hidden="true"></i>
+                            </div>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="flex-box mx-2">
-            <div class="card-pill ">
-                Home
+            <div class="card {% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                <a href="{% url 'portal:category_detail' slug='food' %}">
+                    <div class="card-body text-center vertical-container">
+                            <div class="vertical-alignment">
+                                Electronics
+                                <br>
+                                <i class="fa fa-tablet fs-28 pt-1" aria-hidden="true"></i>
+                            </div>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="flex-box mx-2">
-            <div class="card-pill">
-                Landscaping
+            <div class="card {% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                <a href="{% url 'portal:category_detail' slug='food' %}">
+                    <div class="card-body text-center vertical-container">
+                            <div class="vertical-alignment">
+                                Electronics
+                                <br>
+                                <i class="fa fa-scissors fs-28 pt-1" aria-hidden="true"></i>
+                            </div>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="flex-box mx-2">
-            <div class="card-pill">
-                Tools
+            <div class="card {% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                <a href="{% url 'portal:category_detail' slug='food' %}">
+                    <div class="card-body text-center vertical-container">
+                            <div class="vertical-alignment">
+                                Hardware
+                                <br>
+                                <i class="fa fa-wrench fs-28 pt-1" aria-hidden="true"></i>
+                            </div>
+                    </div>
+                </a>
             </div>
         </div>
+    </div>
+    <div class="flex-container mt-3">
+
     </div>
 </section>
 {% endblock category_nav %}

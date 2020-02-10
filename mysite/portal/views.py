@@ -30,17 +30,34 @@ def get_user_orders(request, user):
 		return user_orders_qs
 	return None
 
+
+# <**************************************************************************>
+# <*****                        CONSUMER VIEWS                          *****>
+# <**************************************************************************>
+
 class CategoryListView(ListView):
 	model = portal_models.Category
 
 
-class CategoryDetailView(DetailView):
-	model = portal_models.Category
+class CategoryDetailView(ListView):
+	model = portal_models.Store
 	template_name = 'portal/category_detail.html'
+	paginate_by = 24
+
+	def get_queryset(self, **kwargs):
+		city_state = get_or_set_location(self.request)
+		user_location = city_state["user_location"]
+		#Query Stores Nearby
+		category_qs = portal_models.Category.objects.get(slug=self.kwargs['slug'])
+		object_list = self.model.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2, category=category_qs)
+		return object_list
 
 	def get_context_data(self, **kwargs):
 		context = super(CategoryDetailView, self).get_context_data(**kwargs)
 		context['category_list'] = portal_models.Category.objects.all()
+		city_state = get_or_set_location(self.request)
+		context['city'] = city_state["city"]
+		context['state'] = city_state["state"]
 		return context
 
 
@@ -53,22 +70,27 @@ class SubcategoryDetailView(DetailView):
 		context['category_list'] = portal_models.Category.objects.all()
 		return context
 
-	# def get(self, *args, **kwargs):
-	# 	try:
-	# 		subcategory = portal_models.Subcategory.objects.get()
-	# 		#category_nearby_stores = portal_models.Store.objects.filter(category=category).annotate(distance = Distance("location", user_location)).order_by("distance")[0:9]
-	# 		#all_categories = portal_models.Category.objects.all()
-	# 		print(category_list)
-	# 		context = {
-	# 		'category_list': category_list,
-	# 		#'category_nearby_stores': category_nearby_storess,
-	# 		#'all_categories': all_categories,
-	# 		}
-	# 		return render(self.request, "portal/category_detail.html", context)
-	#
-	# 	except ObjectDoesNotExist:
-	# 		messages.info(self.request, "Error contact admin")
-	# 		return redirect("home-page")
+
+class ConsumerStoreListView(ListView): #This needs to filter by user city or distance
+	model = portal_models.Store
+	template_name = 'portal/consumer/consumer_store_list.html'
+	paginate_by = 3
+
+	def get_queryset(self):
+		city_state = get_or_set_location(self.request)
+		user_location = city_state["user_location"]
+		#Query Stores Nearby
+		object_list = self.model.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)
+		print(object_list)
+		return object_list
+
+
+	def get_context_data(self, **kwargs):
+		context = super(ConsumerStoreListView, self).get_context_data(**kwargs)
+		city_state = get_or_set_location(self.request)
+		context['city'] = city_state["city"]
+		context['state'] = city_state["state"]
+		return context
 
 
 class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or distance
@@ -79,6 +101,18 @@ class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or
 		context = super(StoreDetailView, self).get_context_data(**kwargs)
 		context['related_stores'] = portal_models.Store.objects.filter(category=self.object.category, active=True).exclude(business_name=self.object.business_name)
 		return context
+
+
+class ConsumerStoreDetailView(DetailView):
+	model = portal_models.Store
+	template_name = 'portal/consumer/consumer_store_detail.html'
+
+	def get_object(self):
+		obj = super(ConsumerStoreDetailView, self).get_object()
+		obj.views += 1
+		obj.save()
+		return obj
+
 
 
 # <**************************************************************************>
@@ -230,31 +264,3 @@ class MerchantTestimonialListView(LoginRequiredMixin, IsMerchantMixin, ListView)
 	def get_queryset(self):
 		object_list = portal_models.Testimonial.objects.filter(store__merchant=self.request.user)
 		return object_list
-
-# <**************************************************************************>
-# <*****                        CONSUMER VIEWS                          *****>
-# <**************************************************************************>
-
-class ConsumerStoreListView(ListView):
-	model = portal_models.Store
-	template_name = 'portal/consumer/consumer_store_list.html'
-
-	def get_queryset(self):
-		store_list = portal_models.Store.objects.all()
-		return store_list
-
-	def get_context_data(self, **kwargs):
-		context = super(ConsumerStoreListView, self).get_context_data(**kwargs)
-		context['trending_stores'] = portal_models.Store.objects.all().order_by('-views')[0:4]
-		return context
-
-
-class ConsumerStoreDetailView(DetailView):
-	model = portal_models.Store
-	template_name = 'portal/consumer/consumer_store_detail.html'
-
-	def get_object(self):
-		obj = super(ConsumerStoreDetailView, self).get_object()
-		obj.views += 1
-		obj.save()
-		return obj

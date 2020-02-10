@@ -10,6 +10,16 @@ from users import models as users_models
 
 import json
 
+def get_user_subscription(request):
+    try:
+        user_subscription_qs = Subscription.objects.get(user=request.user)
+        if user_subscription_qs:
+            return user_subscription_qs
+        return None
+    except:
+        pass
+
+
 class PlanListView(ListView):
     model = payments_models.Plan
     template_name = 'payments/plan_list.html'
@@ -164,5 +174,3 @@ class PaymentIntent(View):
 
         except:
             pass
-    
-

@@ -319,6 +319,12 @@ def pre_save_offer(sender, **kwargs):
     slug = slugify(kwargs['instance'].title, kwargs['instance'].id)
     kwargs['instance'].slug = slug
 
+class StoreVideoManager(models.Manager):
+    #Grabs first offer and only shows active offers
+    def get_nearby_videos(self):
+        stores_qs = Store.objects.filter(end_date__gt=now).order_by('end_date')
+        object = object_qs.first()
+        return object
 
 class Store(models.Model):
     active      = models.BooleanField(default=True) #TODO This is not needed, we can just verify
@@ -343,7 +349,8 @@ class Store(models.Model):
     code_coupon         = models.CharField(max_length=15, blank=True, null=True, help_text="If left blank, this will be auto-generated as GEGOO####. Set as 'NONE' if no coupon code is desired for your store.")
 
     # Store Bio
-    title               = models.CharField(max_length=40, null=True, help_text="Company Slogan or catchy short description")
+    slogan               = models.CharField(max_length=40, null=True, help_text="Slogan or catchy short description")
+    description         = models.TextField(help_text="Describe the store", null=True)
 
     # Store Location Info - User fills out
     street_address      = models.CharField(max_length=100, null=True)

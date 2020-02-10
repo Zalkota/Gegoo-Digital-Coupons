@@ -34,7 +34,7 @@ def update_filename(instance, filename):
     today = datetime.now()
     time_string = today.strftime("%m-%d-%Y %H:-%M:-%S")
     # time_string = str(today)
-    format = instance.store.slug + '(uploaded: ' + time_string + ')'
+    format = filename + '(uploaded: ' + time_string + ')'
     return os.path.join(path, format)
 
 # def ValidationResponse():
@@ -49,21 +49,22 @@ def file_size(value): # add this to some file where you can import it from
 
 class VideoFile(models.Model):
     store           = models.OneToOneField(Store, on_delete=models.CASCADE, related_name='videofile', null=True)
-    title           = models.CharField(max_length=255, blank=True)
     file            = models.FileField(upload_to=update_filename, validators=[FileExtensionValidator(['mp4', 'mov']), file_size], help_text="Image must be a .MP4 or .MOV")
     uploaded_at     = models.DateTimeField(auto_now_add=True)
-    slug            = models.SlugField(unique=True, blank=True, editable=False)
+    slug            = models.SlugField(unique=True, blank=True)
 
     def __str__(self):
-        return '%s' % (self.file)
+        return '%s' % (self.slug)
 
     def get_absolute_url(self):
         return reverse('users:merchant_video_detail', kwargs={'slug': self.slug})
 
 @receiver(pre_save, sender=VideoFile)
 def pre_save_videofile(sender, **kwargs):
-    slug = slugify(kwargs['instance'].file, kwargs['instance'].uploaded_at)
+    slug = slugify(kwargs['instance'].store.slug, kwargs['instance'].uploaded_at)
     kwargs['instance'].slug = slug
+
+
 
 
 class PromotionalVideo(models.Model):
