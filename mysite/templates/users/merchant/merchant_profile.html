@@ -28,7 +28,6 @@ a:hover {
 
 {% endblock extra_styles %}
 
-
 {% block content %}
 
 
@@ -95,14 +94,32 @@ a:hover {
                             <br>
                             <p>
                             <span class="text-secondary">Questions or concerns? Click <a href="{% url 'support:contact-page' %}">here</a> to contact us </span></p>
-                            <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt btn-block">Create Store</a>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt pull-right">Create Store</a>
                         </div>
                     </div>
                 </div>
 
             {% elif user.merchant_profile.payment_status != True %}
 
-                <div class="col-lg-6 offset-3">
+                <div class="col-lg-6">
+                    <div class="card shadow-2 my-2">
+                        <div class="card-body">
+                            <h3 class="header">
+                                Add Additional Stores
+                                <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
+                            </h3>
+                            <br>
+                            <p><span class="fw-6"></span>Add additional Stores to your account. Each store has a unique address, video, and offers.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt pull-right">Create Additional Stores</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
                     <div class="card shadow-2 my-2">
                         <div class="card-body">
                             <h3 class="header">
@@ -110,9 +127,10 @@ a:hover {
                                 <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
                             </h3>
                             <br>
-                            <p><span class="fw-6"></span>A monthly subscription is required to utilize gegoo advertising services. <br><br>
-                            <span class="text-secondary">Questions or concerns? Click <a href="{% url 'support:contact-page' %}">here</a> to contact us </span></p>
-                            <a href="{% url 'payments:plan_list' %}" class="btn btn-primary-alt btn-block">Purchase Subscription</a>
+                            <p><span class="fw-6"></span>A monthly subscription is required to utilize gegoo advertising services. The cost of the monthly subscription is increased by $50 for every store created.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'payments:plan_list' %}" class="btn btn-primary-alt pull-right">Purchase Subscription</a>
                         </div>
                     </div>
                 </div>
@@ -171,12 +189,13 @@ a:hover {
                                 <div class="py-3 px-3 text-center vertical-alignment">
                                     {% if not store.videofile %}
                                     <a href="{% url 'files:merchant_video_upload' slug=store.slug %}" class="py-0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10 icon-videocam"><path class="fill-gray-400" d="M13.59 12l6.7-6.7A1 1 0 0 1 22 6v12a1 1 0 0 1-1.7.7L13.58 12z"/><rect width="14" height="14" x="2" y="5" class="fill-gray-400" rx="2"/></svg>
-                                        <p class="text-secondary fs-14 fw-2">Upload a Video</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-cloud-upload"><path class="fill-gray-500" d="M18 14.97c0-.76-.3-1.51-.88-2.1l-3-3a3 3 0 0 0-4.24 0l-3 3A3 3 0 0 0 6 15a4 4 0 0 1-.99-7.88 5.5 5.5 0 0 1 10.86-.82A4.49 4.49 0 0 1 22 10.5a4.5 4.5 0 0 1-4 4.47z"/><path class="fill-gray-500" d="M11 14.41V21a1 1 0 0 0 2 0v-6.59l1.3 1.3a1 1 0 0 0 1.4-1.42l-3-3a1 1 0 0 0-1.4 0l-3 3a1 1 0 0 0 1.4 1.42l1.3-1.3z"/></svg>
+                                        <br>
+                                        <span class=" fs-14 fw-2">Upload a Video</span>
                                     </a>
                                     {% elif store.videofile %}
                                     <a href="{{ store.videofile.get_absolute_url }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10 icon-videocam"><path class="fill-purple-500" d="M13.59 12l6.7-6.7A1 1 0 0 1 22 6v12a1 1 0 0 1-1.7.7L13.58 12z"/><rect width="14" height="14" x="2" y="5" class="fill-purple-500" rx="2"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-videocam"><path class="fill-purple-500" d="M13.59 12l6.7-6.7A1 1 0 0 1 22 6v12a1 1 0 0 1-1.7.7L13.58 12z"/><rect width="14" height="14" x="2" y="5" class="fill-purple-500" rx="2"/></svg>
                                         <p class="text-secondary fs-14 fw-2">View Video</p>
                                     </a>
                                     {% endif %}
@@ -184,7 +203,7 @@ a:hover {
                             </div>
                             <div class="col-lg-2 col-6 vertical-container">
                                 <div class="px-3 text-center vertical-alignment">
-                                    <h1 class="subheader text-uppercase mb-2">{{ store.offers.count }}</h1>
+                                    <h1 class="subheader text-uppercase text-primary mb-2">{{ store.offers.count }}</h1>
                                     <p class="text-secondary fs-14">Offers</p>
                                 </div>
                             </div>

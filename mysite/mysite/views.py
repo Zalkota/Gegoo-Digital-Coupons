@@ -170,7 +170,6 @@ class homeView(View):
             except:
                 pass
 
-        print(video_list)
 
         # promotional_video = PromotionalVideo.objects.filter(active=True).order_by("-created_at").first()
         #store_nearby = store.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")

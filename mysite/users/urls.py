@@ -51,6 +51,7 @@ urlpatterns = [
     path('approval/store/create/additional/',  users_approval_views.MerchantApprovalAdditionalStoreView, name='merchant_approval_additional_store'),
     path('approval/store/create/', users_approval_views.MerchantApprovalStoreCreateView.as_view(), name='merchant_approval_store_create'),
     path('approval/store/media-upload/', users_approval_views.MerchantApprovalVideoFileListView.as_view(), name='merchant_approval_videofile_list'),
+    path('approval/video-upload/store/<slug:slug>/', files_views.VideoFileUploadView.as_view(), name='merchant_approval_video_upload'),
 
     #Merchant Testimonials
     path('my-reviews/', portal_views.MerchantTestimonialListView.as_view(), name='merchant_testimonial_list'),

@@ -54,12 +54,11 @@ PROMOTION_CHOICES = (
 )
 
 CATEGORY_CHOICES = (
+    ('ALL', 'All Services'),
     ('FOOD', 'Food'),
     ('VEHICLES', 'Automotive'),
     ('HOME', 'Home Improvement'),
 )
-
-
 
 ONE = 1
 TWO = 2
@@ -77,7 +76,8 @@ RATING_CHOICES = [
 
 STATUS_CHOICES = [
     (ONE, 'Being Reviewed'),
-    (TWO, 'Published')
+    (TWO, 'Published'),
+    (THREE, 'Denied'),
 ]
 
 STATES = (
@@ -177,15 +177,15 @@ def user_directory_path(instance, filename):
     return 'user_{0}/{1}'.format(instance.job.id, filename)
 
 
-def setStoreRefCode(sender, created, instance, **kwargs):
-    store = instance
-    #print(store.ref_code)
-    if store.ref_code == None:
-        try:
-            store.ref_code = unique_store_id_generator()
-            store.save()
-        except:
-            print('ERROR REF CODE')
+# def setStoreRefCode(sender, created, instance, **kwargs):
+#     store = instance
+#     #print(store.ref_code)
+#     if store.ref_code == None:
+#         try:
+#             store.ref_code = unique_store_id_generator()
+#             store.save()
+#         except:
+#             print('ERROR REF CODE')
 
 
 def setCouponCode(sender, created, instance, **kwargs):
@@ -332,7 +332,7 @@ class Store(models.Model):
     merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern
-    slug        = models.SlugField(unique=True, blank=True, null=True, editable=False) #MAKE THIS NOT EDITABLE
+    slug        = models.SlugField(unique=True, blank=True, null=True) #MAKE THIS NOT EDITABLE
 
     # Offers
     offers      = models.ManyToManyField(Offer, blank=True)
@@ -341,7 +341,7 @@ class Store(models.Model):
     business_name       = models.CharField(max_length=100)
     website_url         = models.URLField(max_length=500, blank=True, null=True)
     facebook_url        = models.URLField(max_length=500, blank=True, null=True)
-    logo                = models.ImageField(upload_to='store-logos/', validators=[FileExtensionValidator(['png', 'jpg', 'jpeg']), logo_file_size], null=True)
+    logo                = models.ImageField(upload_to='store-logos/', validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])], null=True)
 
 
     category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
@@ -382,12 +382,12 @@ class Store(models.Model):
     def get_consumer_absolute_url(self):
         return reverse('portal:consumer_store_detail', kwargs={'slug': self.slug})
 
-    @property
-    def get_first_active(self):
-        now = timezone.now()
-        object_qs = self.offers.filter(end_date__gt=now).order_by('end_date')
-        object = object_qs.first()
-        return object
+    # @property
+    # def get_first_active(self):
+    #     now = timezone.now()
+    #     object_qs = self.offers.filter(end_date__gt=now).order_by('end_date')
+    #     object = object_qs.first()
+    #     return object
 
     @property
     def rating_average(self):
@@ -397,6 +397,16 @@ class Store(models.Model):
         if front_text is not None:
             average_rating = front_text / count
             return average_rating
+
+    @property
+    def rating_average_round(self):
+        rating_dict = self.testimonial.all().aggregate(Sum('rating'))
+        count = self.testimonial.all().count()
+        front_text = rating_dict.get('rating__sum')
+        if front_text is not None:
+            average_rating = front_text / count
+            average_rating_rounded = round(average_rating)
+            return average_rating_rounded
 
     @property
     def get_total_testimonials(self):

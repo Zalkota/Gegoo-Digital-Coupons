@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
-                <h3 class="section-header text-primary">{{ object.slug }} <br><span class="text-secondary fw-4 fs-16">uploaded to {{ object.store.business_name}} in {{ object.store.city }}, {{ object.store.state}}</span></h3>
+                <h3 class="section-header text-primary">{{ object.store.business_name }} <br><span class="text-secondary fw-4 fs-16">uploaded to {{ object.store.business_name}} in {{ object.store.city }}, {{ object.store.state}}</span></h3>
                 <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ store.banner }}">
     				<source src="{{ AwsBucketURL }}{{ object.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
 				</video>

@@ -47,9 +47,13 @@ class CategoryDetailView(ListView):
 	def get_queryset(self, **kwargs):
 		city_state = get_or_set_location(self.request)
 		user_location = city_state["user_location"]
+		slug = self.kwargs['slug']
 		#Query Stores Nearby
-		category_qs = portal_models.Category.objects.get(slug=self.kwargs['slug'])
-		object_list = self.model.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2, category=category_qs)
+		category_qs = portal_models.Category.objects.get(slug=slug)
+		if slug == 'all':
+			object_list = self.model.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)
+		else:
+			object_list = self.model.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2, category=category_qs)
 		return object_list
 
 	def get_context_data(self, **kwargs):
@@ -167,8 +171,10 @@ class MerchantStoreCreateView(LoginRequiredMixin, CreateView):
 		business_name = form.cleaned_data.get('business_name')
 		city = form.cleaned_data.get('city')
 		state = form.cleaned_data.get('state')
-		string = business_name + '-' + city + '-' + state
+		ref_code = portal_models.random_string_generator()
+		string = business_name + '-' + city + '-' + state + '-' + ref_code
 		slug = slugify(string)
+		form.instance.ref_code = ref_code
 		form.instance.slug = slug
 
 		return super(MerchantStoreCreateView, self).form_valid(form)
@@ -180,6 +186,10 @@ class MerchantStoreUpdateView(LoginRequiredMixin, UpdateView):
 	template_name = 'portal/merchant/merchant_store_update.html'
 	success_message = "Store Updated"
 	success_url = reverse_lazy('users:merchant_store_list')
+
+	def form_valid(self, form):
+		form.instance.status = 1
+		return super(MerchantStoreUpdateView, self).form_valid(form)
 
 
 class MerchantStoreDeleteView(LoginRequiredMixin, DeleteView):

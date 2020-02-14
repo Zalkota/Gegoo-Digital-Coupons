@@ -35,6 +35,7 @@ class MerchantStoreForm(forms.ModelForm):
        'website_url',
        'facebook_url',
        'logo',
+       'id',
        ]
 
 

@@ -25,6 +25,7 @@ from location.functions import set_location_cookies, get_ip, get_or_set_location
 from users.decorators import user_is_merchant
 from django.contrib.auth.mixins import LoginRequiredMixin
 from portal.forms import MerchantStoreForm
+
 #
 # class MerchantProfileUpdateView(LoginRequiredMixin, UpdateView):
 #     form_class = MerchantProfileForm
@@ -81,8 +82,10 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
         business_name = form.cleaned_data.get('business_name')
         city = form.cleaned_data.get('city')
         state = form.cleaned_data.get('state')
-        string = business_name + '-' + city + '-' + state
+        ref_code = portal_models.random_string_generator()
+        string = business_name + '-' + city + '-' + state + '-' + ref_code
         slug = slugify(string)
+        form.instance.ref_code = ref_code
         form.instance.slug = slug
 
         return super(MerchantApprovalStoreCreateView, self).form_valid(form)

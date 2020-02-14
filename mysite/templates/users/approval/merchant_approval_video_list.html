@@ -69,7 +69,7 @@
                             <div class="pb-2">
                                 <h3 class="card-title fs-16 fw-6 text-uppercase">{{ store.business_name }} <span class="pull-right fs-14 fw-4 text-muted">{{ store.city }}, {{ store.state }}</span></h3>
                             </div>
-                            <a href="{% url 'files:merchant_video_upload' slug=store.slug %}">
+                            <a href="{% url 'users:merchant_approval_video_upload' slug=store.slug %}">
                             <div class="bg-gray-100 vertical-container" style="height:300px;">
                                 <div class="vertical-alignment text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12  icon-videocam"><path class="fill-gray-400" d="M13.59 12l6.7-6.7A1 1 0 0 1 22 6v12a1 1 0 0 1-1.7.7L13.58 12z"/><rect width="14" height="14" x="2" y="5" class="fill-gray-400" rx="2"/></svg>

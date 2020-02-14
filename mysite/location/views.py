@@ -26,5 +26,5 @@ def SearchAddress(request):
         if search_text == '' or search_text == None:
             address = None
         else:
-            address = City.objects.filter(name__contains=search_text)
+            address = City.objects.filter(name__icontains=search_text)[:6]
     return render(request,'location/ajax_search.html', {'address' : address })

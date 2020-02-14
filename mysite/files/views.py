@@ -28,7 +28,7 @@ from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 import json
 from django.contrib import messages
-
+from django.shortcuts import redirect
 
 
 from django.core.exceptions import ValidationError
@@ -39,12 +39,22 @@ class VideoFileUploadView(View, LoginRequiredMixin):
         # video_list = VideoFile.objects.filter(user=self.request.user)
 
         store_slug = self.kwargs['slug']
+        store_qs = Store.objects.get(slug=store_slug)
 
-        context = {
-        # "video_list": video_list,
-        "store_slug": store_slug,
-        }
-        return render(self.request, 'files/videofile_form_create.html', context)
+        try:
+            video = store_qs.videofile
+            if store_qs.videofile.file != None:
+                return redirect('/dashboard/')
+        except:
+            context = {
+            # "video_list": video_list,
+            "store_slug": store_slug,
+            }
+            return render(self.request, 'files/videofile_form_create.html', context)
+
+
+
+
 
     def post(self, request, *args, **kwargs):
         form = VideoFileForm(self.request.POST, self.request.FILES)

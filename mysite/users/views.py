@@ -1,6 +1,6 @@
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView, View, FormView
-# from memberships.views import get_user_memberships, get_user_subscriptions #TODO
+from payments.views import get_user_subscription #TODO
 from django.contrib.auth.mixins import LoginRequiredMixin
 from portal import models as portal_models
 from users import models as users_models
@@ -241,11 +241,9 @@ class MerchantSignUpView(SignupView):
 
 class MerchantSubscriptionsView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
-        user_membership = get_user_membership(self.request)
-        user_subscription_list = get_user_subscriptions(self.request)
+        user_subscription_list = get_user_subscription(self.request)
 
         context = {
-            'user_membership': user_membership,
             'user_subscription_list': user_subscription_list
         }
         return render(self.request, "users/merchant/merchant_subscription.html", context)

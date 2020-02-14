@@ -59,8 +59,10 @@
         </div>
     </div>
 </div>
+
 <!-- VIDEO END !-->
 
+<div class="text-white fs-14" id="mainvideo"></div>
 
 <section class="section-sm mt-0 pt-0">
     <div class="container">
@@ -76,16 +78,9 @@
                         <div class="card-body py-1">
                             <div class=" text-left mt-3">
                                 <h3 class="fw-6 text-dark fs-18 mb-1">{{ object.business_name }}</h3>
-                                    {% if object.rating_average == 1 %}
-                                    <i class="material-icons star-yellow fs-18">star star_border star_border star_border star_border </i>{% endif %}
-                                    {% if object.rating_average == 2 %}
-                                    <i class="material-icons star-yellow fs-18"> star star star_border star_border star_border </i>{% endif %}
-                                    {% if object.rating_average == 3 %}
-                                    <i class="material-icons star-yellow fs-18"> star star star star_border star_border </i>{% endif %}
-                                    {% if object.rating_average == 4 %}
-                                    <i class="material-icons star-yellow fs-18"> star star star star star_border </i>{% endif %}
-                                    {% if object.rating_average == 5 %}
-                                    <i class="material-icons star-yellow fs-18"> star star star star star </i>{% endif %}
+                                    {% for object in object.rating_average.ratingsystem %}
+                                        testimonial
+                                    {% endfor %}
                                 <h4 class="fw-4 text-gray-700 fs-14 pt-2">
                                     {{ object.slogan|truncatewords:8 }}
                                 </h4>
@@ -156,7 +151,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
-                                            <a href="#" class="btn btn-primary-alt btn-block">Get Code</a>
+                                            <a href="{{ object.get_consumer_absolute_url }}" class="btn btn-primary-alt btn-block">View Store</a>
                                         </div>
                                     </div>
                                 </div>
