@@ -11,10 +11,6 @@
                     <h3>{{ object.description }}</h3>
                     <h3>{{ object.author }}</h3>
                     <h3>likes {{ object.likes.count }}</h3>
-                    <form action="{% url 'portal:offer_like' %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" name="offer_slug" value="{{ object.slug }}" class="btn btn-primary">Like</button>
-                    </form>
                 </div>
             </div>
 

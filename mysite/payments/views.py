@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.views.generic import TemplateView, ListView, DetailView, View, UpdateView
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
+from django.template.loader import get_template, render_to_string
 from django.contrib import messages
+from django.http import HttpResponse
+from django.utils import timezone
 import stripe
 from django.contrib.auth.mixins import LoginRequiredMixin
 from payments import models as payments_models
 from users import models as users_models
+from payments import forms as payments_forms
+from portal import models as portal_models
 
 import json
 
@@ -26,6 +31,8 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PlanDetailView, self).get_context_data(**kwargs)
+        context['coupon_apply_form'] = payments_forms.ApplyCouponForm()
+        context['stores'] = portal_models.Store.objects.filter(merchant=self.request.user).all()
         return context
 
     def post(self, *args, **kwargs):
@@ -61,7 +68,17 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
             sub.payment_intent_status   = subscription['latest_invoice']['payment_intent']
             sub.save()
 
-            send_mail('Subscription', 'Your subscription was successful!', 'michael@modwebservices.com', ['michael@modwebservices.com',])
+            subject = 'Subscription'
+            context = {
+                'user': self.request.user,
+                'subscription': sub,
+            }
+            template = 'mail/email/email_base.html'
+            html_message = render_to_string(template, context)
+            msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
+            msg.send()
+
+            # send_mail('Subscription', 'Your subscription was successful!', 'michael@modwebservices.com', ['michael@modwebservices.com',])
 
             messages.success(self.request, 'Your Subscription Was Successful!')
             return redirect('payments:charge')
@@ -156,6 +173,7 @@ class PaymentIntent(View):
                 sub['latest_invoice']['payment_intent'],
             )
 
+
             send_mail('Subscription', 'Your subscription was successful!', 'michael@modwebservices.com', ['michael@modwebservices.com',])
 
             print(sub['latest_invoice']['payment_intent'])
@@ -164,5 +182,25 @@ class PaymentIntent(View):
 
         except:
             pass
+
+def ApplyPromo(request):
+    if request.method == 'POST':
+        form = payments_forms.ApplyCouponForm(request.POST)
+        if form.is_valid():
+            try:
+                code                = form.cleaned_data['code']
+                promo               = payments_models.Promotion.objects.get(code__iexact=code)
+                promouser, created  = payments_models.PromoUser.objects.get_or_create(user=request.user, promotion=promo)
+                promouser.times_used += 1
+                promouser.save()
+
+                print(promo)
+                print(code)
+                print(promouser)
+
+                return HttpResponse('Success!')
+            except:
+                return HttpResponse('Failed!')
+
     
 

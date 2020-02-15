@@ -4,21 +4,6 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-4">
-        
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Stores You're Following</h5>
-                    {% for store_connection in store_connections %}
-                        <a href="{{ store_connection.get_consumer_absolute_url }}" class="">
-                            <h1>
-                                {{ store_connection }}
-                            </h1>
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
         <div class="col-8">
             <div class="row">
                 <div class="col-12">
@@ -34,11 +19,9 @@
                                     </a>
                                 </div>
                                 <p class="card-text">{{ trending_store.description }}</p>
-                                {% if trending_store in store_connection_user %}
-                                    <a href="" value="add" data-catid="{{ trending_store.pk }}" class="followBtn btn btn-primary" action_type="remove">Remove Store</a>
-                                {% else %}
-                                    <a href="" value="add" data-catid="{{ trending_store.pk }}" class="followBtn btn btn-primary" action_type="add">Follow Store</a>
-                                {% endif %}
+                                
+                                    <a href="" value="add" data-catid="{{ trending_store.pk }}" class="followBtn btn btn-primary" action_type="add">Follow</a>
+
                                 </div>
                         </div>
                     {% endfor %}
@@ -85,8 +68,20 @@
         csrfmiddlewaretoken: '{{ csrf_token }}',
       },
       success: function (data) {
-        document.location.reload(true)
-        
+
+        if (this_.text() == 'Follow') {
+            this_.text('Unfollow');
+            this_.attr({
+                'action_type': 'remove', 
+                'class': 'followBtn btn btn-danger'
+            })
+        } else {
+            this_.text('Follow');
+            this_.attr({
+                'action_type': 'add',
+                'class': 'followBtn btn btn-primary'
+            })
+        }
         console.log(data)
       }
     });

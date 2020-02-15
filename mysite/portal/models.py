@@ -57,6 +57,11 @@ CATEGORY_CHOICES = (
     ('FOOD', 'Food'),
     ('VEHICLES', 'Automotive'),
     ('HOME', 'Home Improvement'),
+    ('TECH', 'Technology'),
+    ('OFFICE', 'Office'),
+    ('FUN', 'Fun'),
+    ('BEAUTY', 'Beauty'),
+    ('ONLINE', 'Online'),
 )
 
 
@@ -328,9 +333,6 @@ class Store(models.Model):
     # URL Pattern
     slug        = models.SlugField(unique=True, blank=True, null=True) #MAKE THIS NOT EDITABLE
 
-    # Offers
-    offers      = models.ManyToManyField(Offer, blank=True)
-
     # Store Attributes
     business_name       = models.CharField(max_length=100)
     website_url         = models.URLField(max_length=500, blank=True, null=True)
@@ -370,17 +372,17 @@ class Store(models.Model):
         return self.business_name
 
     def get_absolute_url(self):
-        return reverse('portal:merchant_store_detail', kwargs={'slug': self.slug})
+        return reverse('users:merchant_store_detail', kwargs={'slug': self.slug})
 
     def get_consumer_absolute_url(self):
         return reverse('portal:consumer_store_detail', kwargs={'slug': self.slug})
 
-    @property
-    def get_first_active(self):
-        now = timezone.now()
-        object_qs = self.offers.filter(end_date__gt=now).order_by('end_date')
-        object = object_qs.first()
-        return object
+    # @property
+    # def get_first_active(self):
+    #     now = timezone.now()
+    #     object_qs = self.offers.filter(end_date__gt=now).order_by('end_date')
+    #     object = object_qs.first()
+    #     return object
 
     @property
     def rating_average(self):
@@ -432,6 +434,24 @@ class Testimonial(models.Model):
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
     updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
 
+class StoreOffer(models.Model):
+    offers = models.ManyToManyField(Offer)
+    current_store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name='store', null=True)
+
+    @classmethod
+    def add_offer(cls, current_store, new_offer):
+        storeoffer, created = cls.objects.get_or_create(
+            current_store = current_store
+        )
+        storeoffer.offers.add(new_offer)
+
+    @classmethod
+    def remove_offer(cls, current_store, new_offer):
+        storeoffer, created = cls.objects.get_or_create(
+            current_store = current_store
+        )
+        storeoffer.offers.remove(new_offer)
+
 class FollowStore(models.Model):
     connections         = models.ManyToManyField(Store)
     current_user        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user', null=True)
@@ -449,4 +469,4 @@ class FollowStore(models.Model):
             current_user = current_user
         )
         follow_store.connections.remove(new_connection)
-
+    

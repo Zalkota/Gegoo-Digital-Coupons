@@ -4,6 +4,7 @@ from django.urls import path
 from django.contrib import admin
 from .views import (
     homeView,
+    AltHomeView,
     components,
 )
 from .views import set_location_cookies
@@ -25,13 +26,13 @@ admin.site.login = staff_member_required(login_url='/', redirect_field_name='')(
 
 urlpatterns = [
 
-
+    path('alt-home/', AltHomeView.as_view(), name='alt-home'),
 
     #Security
     path('.well-known/security.txt', security, name='security'),
     #Authentication
     url(r'^accounts/', include('allauth.urls')),
-    path('', include('users.urls')),
+
     #Portal
     url(r'^shop/', include(('portal.urls', 'portal'), namespace='portal')),
     #Location

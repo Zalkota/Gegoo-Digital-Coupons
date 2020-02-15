@@ -14,3 +14,5 @@ class PlanAdmin(admin.ModelAdmin):
 admin.site.register(payments_models.Plan, PlanAdmin)
 admin.site.register(payments_models.Subscription)
 admin.site.register(payments_models.Benefit)
+admin.site.register(payments_models.Promotion)
+admin.site.register(payments_models.PromoUser)

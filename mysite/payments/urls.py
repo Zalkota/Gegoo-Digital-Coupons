@@ -13,4 +13,6 @@ urlpatterns = [
     path('webhook/', payments_webhooks.TrialWebhook.as_view(), name='webhook'),
 
     path('charge/', payments_views.Charge.as_view(), name='charge'),
+
+    path('apply-promo', payments_views.ApplyPromo, name='apply_promo')
 ]

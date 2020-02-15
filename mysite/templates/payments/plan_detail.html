@@ -242,6 +242,19 @@ $(document).ready$(function(){
    <div class="container">
 
      <h2 class="my-5 h2 text-left">Checkout</h2>
+     <div class="row">
+       <div class="col-12">
+         <div class="card">
+           <div class="card-body">
+             {% for store in stores %}
+              <h1>
+                {{ store }}
+              </h1>   
+             {% endfor %}
+           </div>
+         </div>
+       </div>
+     </div>
 
      <div class="row">
        <div class="col-lg-8 mb-5">
@@ -268,6 +281,13 @@ $(document).ready$(function(){
             </div>  
            </div>
          </div>
+       </div>
+       <div class="col-4">
+         <form action="{% url 'payments:apply_promo' %}" method="POST">
+           {% csrf_token %}
+           {{ coupon_apply_form }}
+           <button type="submit" class="btn btn-primary">Apply</button>
+         </form>
        </div>
      </div>
    </div>

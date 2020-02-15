@@ -2,11 +2,14 @@ from django.db import models
 from django.conf import settings
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
+from django.utils import timezone
 from django.utils.text import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.shortcuts import reverse
 
 import stripe
+
+from payments.functions import unique_coupon_generator
 
 class Benefit(models.Model):
 	description = models.CharField(max_length=36, help_text="Describe a benefit of the subscription product.")
@@ -65,13 +68,43 @@ class Subscription(models.Model):
     def __str__(self):
         return self.subscription_id
 
+    def get_absolute_url(self):
+        return reverse('payments:subscription_detail', kwargs={'slug': self.slug})
+
 @receiver(pre_save, sender=Subscription)
 def pre_save_subscription(sender, instance, **kwargs):
     slug            = slugify(instance.subscription_id)
     instance.slug   = slug
 
-    def __str__(self):
-        return self.subscription_id
+class Promotion(models.Model):
+    code = models.CharField(max_length=50, unique=True, blank=True)
+    valid_from = models.DateTimeField(default=timezone.now, verbose_name="Valid From")
+    valid_to = models.DateTimeField()
 
-    def get_absolute_url(self):
-        return reverse('payments:subscription_detail', kwargs={'slug': self.slug})
+    def __str__(self):
+        return self.code
+    
+@receiver(pre_save, sender=Promotion)
+def pre_save_coupon(sender, **kwargs):
+    if kwargs['instance'].code == None or kwargs['instance'].code == "":
+        try:
+            p_code = str(unique_coupon_generator())
+            promo = 'PROMO'
+            promo_code = promo + p_code
+            kwargs['instance'].code = promo_code
+            print('success')
+        except:
+            print('ERROR COUPON CODE')
+
+class PromoUser(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='promo_user')
+    promotion = models.ForeignKey(Promotion, on_delete=models.CASCADE, null=True, related_name='promo')
+    times_used = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
+    redeemd_at = models.DateTimeField(default=timezone.now, verbose_name="Redeemed At")
+
+    def __str__(self):
+        return self.user.username
+
+# @receiver(pre_save, sender=PromoUser)
+# def pre_save_promouser(sender, **kwargs):
+#     kwargs['instance'].
