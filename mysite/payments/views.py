@@ -37,55 +37,103 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
 
     def post(self, *args, **kwargs):
         self.object = self.get_object()
-
         stripe.api_key = settings.STRIPE_SECRET_KEY_MPM
         token = self.request.POST.get('stripeToken')
         customer = self.request.user.merchant_profile.customer_id
         customer_stores = self.request.user.merchant_profile.stores
         plan = self.object.plan_id
 
-        try:
-            stripe.Customer.modify(
-			  customer,
-			  source=token,
-			)
+        if payments_models.PromoUser.objects.filter(user=self.request.user).exists():
 
-            subscription = stripe.Subscription.create(
-                customer = customer,
-                items = [{
-                    'plan': plan,
-                    'quantity': customer_stores,
-                }],
-                expand=['items', 'latest_invoice', 'plan'],
-            )
+            promouser = payments_models.PromoUser.objects.get(user=self.request.user)
+            promotion_period = promouser.promotion.trial_period
+            print(promotion_period)
 
-            sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
-            sub.subscription_id         = subscription['id']
-            sub.subscription_item_id    = subscription['items']['data'][0].id
-            sub.subscription_quantity   = subscription['items']['data'][0].quantity
-            sub.plan_id                 = subscription['plan']['id']
-            sub.subscription_status     = subscription['status']
-            sub.payment_intent_status   = subscription['latest_invoice']['payment_intent']
-            sub.save()
+            if promouser.has_used == False:
+                try:
+                    stripe.Customer.modify(
+                    customer,
+                    source=token,
+                    )
 
-            subject = 'Subscription'
-            context = {
-                'user': self.request.user,
-                'subscription': sub,
-            }
-            template = 'mail/email/email_base.html'
-            html_message = render_to_string(template, context)
-            msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
-            msg.send()
+                    subscription = stripe.Subscription.create(
+                        customer = customer,
+                        items = [{
+                            'plan': plan,
+                            'quantity': customer_stores,
+                        }],
+                        trial_period_days = promotion_period,
+                        expand=['items', 'plan'],
+                    )
 
-            # send_mail('Subscription', 'Your subscription was successful!', 'michael@modwebservices.com', ['michael@modwebservices.com',])
+                    promouser.has_used = True
+                    promouser.save()
 
-            messages.success(self.request, 'Your Subscription Was Successful!')
-            return redirect('payments:charge')
+                    sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+                    sub.subscription_id         = subscription['id']
+                    sub.subscription_item_id    = subscription['items']['data'][0].id
+                    sub.subscription_quantity   = subscription['items']['data'][0].quantity
+                    sub.plan_id                 = subscription['plan']['id']
+                    sub.subscription_status     = subscription['status']
+                    sub.save()
 
-        except stripe.error.CardError as e:
-            print('Status is: %s' % e.http_status)
+                    subject = 'Subscription'
+                    context = {
+                        'user': self.request.user,
+                        'subscription': sub,
+                    }
+                    template = 'mail/email/email_base.html'
+                    html_message = render_to_string(template, context)
+                    msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
+                    msg.send()
 
+                    # send_mail('Subscription', 'Your subscription was successful!', 'michael@modwebservices.com', ['michael@modwebservices.com',])
+
+                    messages.success(self.request, 'Your Subscription Was Successful!')
+                    return redirect('payments:charge')
+
+                except stripe.error.CardError as e:
+                    print('Status is: %s' % e.http_status)
+
+        else:
+            try:
+                stripe.Customer.modify(
+                customer,
+                source=token,
+                )
+
+                subscription = stripe.Subscription.create(
+                    customer = customer,
+                    items = [{
+                        'plan': plan,
+                        'quantity': customer_stores,
+                    }],
+                    expand=['items', 'plan'],
+                )
+
+                sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+                sub.subscription_id         = subscription['id']
+                sub.subscription_item_id    = subscription['items']['data'][0].id
+                sub.subscription_quantity   = subscription['items']['data'][0].quantity
+                sub.plan_id                 = subscription['plan']['id']
+                sub.subscription_status     = subscription['status']
+                sub.save()
+
+                subject = 'Subscription'
+                context = {
+                    'user': self.request.user,
+                    'subscription': sub,
+                }
+                template = 'mail/email/email_base.html'
+                html_message = render_to_string(template, context)
+                msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
+                msg.send()
+
+                messages.success(self.request, 'Your Subscription Was Successful!')
+                return redirect('payments:charge')     
+
+            except stripe.error.CardError as e:
+                print('Status is: %s' % e.http_status)           
 
 class Charge(View):
 
@@ -101,6 +149,7 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(SubscriptionDetailView, self).get_context_data(**kwargs)
+        context['stores'] = portal_models.Store.objects.get(merchant=self.request.user)
         return context
 
     def post(self, request, *args, **kwargs):
@@ -114,7 +163,7 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
         if 'delete' in request.POST:
             subscription = stripe.Subscription.delete(
                 subscription_id,
-                expand=['items', 'latest_invoice', 'plan'],
+                expand=['items', 'plan'],
             )
 
             sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
@@ -154,35 +203,6 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
         else:
             pass
 
-class PaymentIntent(View):
-    def get(self, request, *args, **kwargs):
-        return render(self.request, 'payments/payment_intent.html')
-
-    def post(self, request, *args, **kwargs):
-        stripe.api_key = settings.STRIPE_SECRET_KEY_MPM
-        subscription = self.request.user.subscription.subscription_id
-        payment_intent = self.request.user.subscription.payment_intent_status
-
-        try:
-            sub = stripe.Subscription.retrieve(
-                subscription,
-                expand=['latest_invoice'],
-            )
-
-            pi = stripe.PaymentIntent.retrieve(
-                sub['latest_invoice']['payment_intent'],
-            )
-
-
-            send_mail('Subscription', 'Your subscription was successful!', 'michael@modwebservices.com', ['michael@modwebservices.com',])
-
-            print(sub['latest_invoice']['payment_intent'])
-            print(pi['status'])
-            return redirect('payments:payment_intent')
-
-        except:
-            pass
-
 def ApplyPromo(request):
     if request.method == 'POST':
         form = payments_forms.ApplyCouponForm(request.POST)
@@ -191,7 +211,6 @@ def ApplyPromo(request):
                 code                = form.cleaned_data['code']
                 promo               = payments_models.Promotion.objects.get(code__iexact=code)
                 promouser, created  = payments_models.PromoUser.objects.get_or_create(user=request.user, promotion=promo)
-                promouser.times_used += 1
                 promouser.save()
 
                 print(promo)

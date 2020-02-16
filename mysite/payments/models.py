@@ -22,7 +22,7 @@ class Plan(models.Model):
     nickname    = models.CharField(max_length=50, blank=True, editable=False)
     product_id  = models.CharField(max_length=50, blank=True, editable=False)
     plan_id     = models.CharField(max_length=50, blank=True)
-    amount      = models.CharField(max_length=50, blank=True, editable=False)
+    amount      = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
     currency    = models.CharField(max_length=50, blank=True, editable=False)
     interval    = models.CharField(max_length=50, blank=True, editable=False)
     description = models.CharField(max_length=255, default="add description")
@@ -60,10 +60,9 @@ class Subscription(models.Model):
     slug                        = models.CharField(max_length=100, blank=True)
     subscription_id             = models.CharField(max_length=50, blank=True)
     subscription_quantity       = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
-    subscription_item_id        = models.CharField(max_length=50, blank=True)
+    subscription_item_id        = models.CharField(max_length=50, blank=True, editable=False)
     plan_id                     = models.CharField(max_length=50, blank=True)
-    subscription_status         = models.CharField(max_length=50, blank=True)
-    payment_intent_status       = models.CharField(max_length=50, blank=True)
+    subscription_status         = models.CharField(max_length=50, blank=True, editable=False)
 
     def __str__(self):
         return self.subscription_id
@@ -78,6 +77,7 @@ def pre_save_subscription(sender, instance, **kwargs):
 
 class Promotion(models.Model):
     code = models.CharField(max_length=50, unique=True, blank=True)
+    trial_period = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
     valid_from = models.DateTimeField(default=timezone.now, verbose_name="Valid From")
     valid_to = models.DateTimeField()
 
@@ -87,24 +87,17 @@ class Promotion(models.Model):
 @receiver(pre_save, sender=Promotion)
 def pre_save_coupon(sender, **kwargs):
     if kwargs['instance'].code == None or kwargs['instance'].code == "":
-        try:
-            p_code = str(unique_coupon_generator())
-            promo = 'PROMO'
-            promo_code = promo + p_code
-            kwargs['instance'].code = promo_code
-            print('success')
-        except:
-            print('ERROR COUPON CODE')
+        p_code = str(unique_coupon_generator())
+        promo = 'PROMO'
+        promo_code = promo + p_code
+        kwargs['instance'].code = promo_code
+
 
 class PromoUser(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='promo_user')
-    promotion = models.ForeignKey(Promotion, on_delete=models.CASCADE, null=True, related_name='promo')
-    times_used = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
-    redeemd_at = models.DateTimeField(default=timezone.now, verbose_name="Redeemed At")
+    user        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='promo_user')
+    promotion   = models.ForeignKey(Promotion, on_delete=models.CASCADE, null=True, related_name='promo')
+    has_used    = models.BooleanField(default=False)
+    redeemd_at  = models.DateTimeField(default=timezone.now, verbose_name="Redeemed At")
 
     def __str__(self):
         return self.user.username
-
-# @receiver(pre_save, sender=PromoUser)
-# def pre_save_promouser(sender, **kwargs):
-#     kwargs['instance'].
