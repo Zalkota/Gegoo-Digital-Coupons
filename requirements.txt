@@ -24,8 +24,8 @@ django-crispy-forms==1.7.2
 #pip install rjsmin --install-option="--without-c-extensions"
 #pip install django-compressor --upgrade
 
-rcssmin
-rjsmin
+#rcssmin
+#rjsmin
 
 #https://github.com/django-compressor/django-compressor
 django-compressor==2.3

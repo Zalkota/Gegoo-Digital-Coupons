@@ -1,0 +1,10 @@
+	option_settings:
+  "aws:elasticbeanstalk:application:environment":
+    DJANGO_SETTINGS_MODULE: "mysite.settings.dev"
+    "PYTHONPATH": "/opt/python/current/app/mysite:$PYTHONPATH"
+  "aws:elasticbeanstalk:container:python":
+    WSGIPath: mysite/mysite/wsgi.py
+    NumProcesses: 3
+    NumThreads: 20
+  "aws:elasticbeanstalk:container:python:staticfiles":
+    "/static/": "www/static/"
