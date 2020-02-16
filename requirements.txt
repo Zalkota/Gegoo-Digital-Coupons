@@ -24,6 +24,9 @@ django-crispy-forms==1.7.2
 #pip install rjsmin --install-option="--without-c-extensions"
 #pip install django-compressor --upgrade
 
+rcssmin
+rjsmin
+
 #https://github.com/django-compressor/django-compressor
 django-compressor==2.3
 
@@ -39,7 +42,7 @@ django-braces==1.13.0
 django-honeypot==0.7.0
 
 # Instagram APP https://github.com/marcopompili/django-instagram
-django-instagram==0.3.0
+#django-instagram==0.3.0
 
 # Ckeditor https://django-ckeditor.readthedocs.io/en/latest/
 django-ckeditor==5.7.1
