@@ -254,18 +254,19 @@
     font-weight: 600;
     font-size: 18px;
     width: 100%;
-    color: $color-white;
+    color: $color-gray-800;
     padding: .6rem 0.5rem .6rem 0.5rem;
     cursor: pointer;
-    background-image: $gradient-primary;
-    background-image: -webkit-linear-gradient($gradient-primary);
-    background-image: -o-linear-gradient($gradient-primary);
-    background-image: linear-gradient($gradient-primary);
+    background-color: $color-gray-100;
+    // background-image: $gradient-primary;
+    // background-image: -webkit-linear-gradient($gradient-primary);
+    // background-image: -o-linear-gradient($gradient-primary);
+    // background-image: linear-gradient($gradient-primary);
     transition: transform 0.25s;
     box-shadow: $box-shadow-1;
 
     a {
-        color: $color-white !important;
+        color: $color-gray-700 !important;
 
         &:hover, &:focus {
             box-shadow: 0;
@@ -285,10 +286,10 @@
     width: 100%;
     padding: .6rem 0.5rem .6rem 0.5rem;
     cursor: pointer;
-    border: 2px solid $color-purple-500;
+    border: 2px solid $color-primary;
     transition: transform 0.25s;
     box-shadow: $box-shadow-1;
-    background-color: white;
+    background-color: $color-gray-100;
     color: $color-primary;
 }
 

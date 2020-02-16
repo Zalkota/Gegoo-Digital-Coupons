@@ -1,4 +1,4 @@
-{% extends "base-alt.html" %}
+{% extends "base.html" %}
 {% load location_extra %}
 {% load static %}
 
@@ -12,21 +12,22 @@
 
 <section class="section-sm">
     <div class="container">
-        <h3 class="section-header text-dark">Shop {{ category.get_name_display }}</h3>
+        <h3 class="section-header text-dark mb-3">Shop {{ category }}</h3>
         <br>
         <div class="row">
             <div class="col-lg-2">
-                <h3 class="subheader">Filter Options:</h3>
+                <h3 class="fs-16 text-gray-800 fw-4 mb-4">Filter Options</h3>
                 <ul class="list-unstyled fs-16">
                     {% for category in category_list %}
-                    <li class=" mb-2" id="list">{{ category.get_name_display }}
-                        <button class="pull-right" id="{{ category.name }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6  icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
+                    <li class="fw-6 mb-2 text-dark" id="list">
+                        <button class="fw-6 mb-2 text-dark " id="{{ category.name }}">
+                            {{ category.get_name_display }}
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 pull-right icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
                         </button>
-                        <ul class="list-unstyled ml-3 {% if not category.name in request.path %} display-none {% else %} {% endif %}" name="filter" id='{{ category.name }}-subcategory-list'>
+                        <ul class="list-unstyled ml-3 {% if not category.slug in request.path %} display-none {% endif %}" name="filter" id='{{ category.slug }}-subcategory-list'>
                             {% for subcategory in category.subcategory.all %}
-                                <li class="text-dark fs-14 my-2">
-                                    <a class="{% if subcategory.name in request.path %} {% else %}text-dark {% endif %}" href="{{ subcategory.get_absolute_url }}">{{ subcategory.name }}</a>
+                                <li class=" my-2">
+                                    <a class="text-dark fs-14 fw-4" href="{{ subcategory.get_absolute_url }}">{{ subcategory.name }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -37,7 +38,7 @@
             <div class="offset-lg-1"></div>
             {% for object in object_list %}
             <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
-                <div class="card shadow-1">
+                <div class="card shadow-2">
                     <a class="" href="{{ object.get_consumer_absolute_url }}">
                         <img class="img-fluid border-radius-100" style="max-height: 250px;" src="{{ AwsBucketURL }}{{ object.logo }}" alt="User Uploaded images">
                     </a>
@@ -70,11 +71,12 @@
             </div>
             {% endfor %}
             {% if is_paginated %}
-            <div class="py-3 text-center">
+            <div class="col-lg-12 py-3 text-center">
             <nav aria-label="Page navigation example">
               <ul class="pagination pull-right">
                 {% if page_obj.has_previous %}
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
                     {% endif %}
                     {% for num in page_obj.paginator.page_range %}
                         {% if page_obj.number == num %}
@@ -105,20 +107,21 @@ $(document).ready(function() {
     var home = $('#HOME');
     var travel = $('#TRAVEL');
 
+
     vehicles.on('click', function() {
-        var x = $("#VEHICLES-subcategory-list")
+        var x = $("#vehicles-subcategory-list")
         x.toggle(55)
     })
     food.on('click', function() {
-        var x = $("#FOOD-subcategory-list")
+        var x = $("#food-subcategory-list")
         x.toggle(55)
     })
     home.on('click', function() {
-        var x = $("#HOME-subcategory-list")
+        var x = $("#home-subcategory-list")
         x.toggle(55)
     })
     travel.on('click', function() {
-        var x = $("#TRAVEL-subcategory-list")
+        var x = $("#travel-subcategory-list")
         x.toggle(55)
     })
 });

@@ -56,7 +56,7 @@ PROMOTION_CHOICES = (
 CATEGORY_CHOICES = (
     ('ALL', 'All Services'),
     ('FOOD', 'Food'),
-    ('VEHICLES', 'Automotive'),
+    ('VEHICLES', 'Vehicles'),
     ('HOME', 'Home Improvement'),
 )
 
@@ -257,7 +257,8 @@ class Category(models.Model):
 
 @receiver(pre_save, sender=Category)
 def pre_save_category(sender, **kwargs):
-    slug = slugify(kwargs['instance'].name)
+    slug = slugify(kwargs['instance'].name.capitalize())
+    print(slug.capitalize())
     kwargs['instance'].slug = slug
 
 class Subcategory(models.Model):
@@ -276,7 +277,7 @@ class Subcategory(models.Model):
 
 @receiver(pre_save, sender=Subcategory)
 def pre_save_subcategory(sender, **kwargs):
-    slug = slugify(kwargs['instance'].name)
+    slug = slugify(kwargs['instance'].name.capitalize())
     kwargs['instance'].slug = slug
 
 class Tag(models.Model):

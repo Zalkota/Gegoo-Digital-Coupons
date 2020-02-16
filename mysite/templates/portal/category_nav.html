@@ -2,15 +2,14 @@
 
 {% block category_nav %}
 <section class="pt-4 pb-3 container">
-    <!-- <h3 class="section-header text-dark">Search By Category</h3> -->
+    <h3 class="section-header text-dark mb-3">Categories</h3>
     <div class="flex-container">
-        <div class="flex-box mx-2">
+        <div class="flex-box mr-2">
             <div class="card {% if request.path == '/shop/stores/' %} card-pill-active {% else %} card-pill {% endif %}">
                 <a href="{% url 'portal:consumer_store_list' %}">
                     <div class="card-body text-center vertical-container" style="height: 100%;">
                         <div class="vertical-alignment">
                             All Services
-
                         </div>
                     </div>
                 </a>
@@ -20,9 +19,9 @@
             <div class="card {% if 'vehicles' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
                 <a href="{% url 'portal:category_detail' slug='vehicles' %}">
                     <div class="card-body text-center">
-                        Vehicles
-                        <br>
                         <i class="fa fa-car fs-28 pt-1" aria-hidden="true"></i>
+                        <br>
+                        Vehicles
                     </div>
                 </a>
             </div>
@@ -32,9 +31,9 @@
                 <a href="{% url 'portal:category_detail' slug='food' %}">
                     <div class="card-body text-center vertical-container">
                             <div class="vertical-alignment">
-                                Food
-                                <br>
                                 <i class="fa fa-cutlery fs-28 pt-1" aria-hidden="true"></i>
+                                <br>
+                                Food
                             </div>
                     </div>
                 </a>
@@ -45,9 +44,9 @@
                 <a href="{% url 'portal:category_detail' slug='food' %}">
                     <div class="card-body text-center vertical-container">
                             <div class="vertical-alignment">
-                                Travel
-                                <br>
                                 <i class="fa fa-plane fs-28 pt-1" aria-hidden="true"></i>
+                                <br>
+                                Travel
                             </div>
                     </div>
                 </a>
@@ -58,9 +57,9 @@
                 <a href="{% url 'portal:category_detail' slug='food' %}">
                     <div class="card-body text-center vertical-container">
                             <div class="vertical-alignment">
-                                Bath
-                                <br>
                                 <i class="fa fa-bath fs-28 pt-1" aria-hidden="true"></i>
+                                <br>
+                                Bath
                             </div>
                     </div>
                 </a>
@@ -71,22 +70,9 @@
                 <a href="{% url 'portal:category_detail' slug='food' %}">
                     <div class="card-body text-center vertical-container">
                             <div class="vertical-alignment">
-                                Electronics
-                                <br>
                                 <i class="fa fa-tablet fs-28 pt-1" aria-hidden="true"></i>
-                            </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card {% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
-                <a href="{% url 'portal:category_detail' slug='food' %}">
-                    <div class="card-body text-center vertical-container">
-                            <div class="vertical-alignment">
+                                <br>
                                 Electronics
-                                <br>
-                                <i class="fa fa-scissors fs-28 pt-1" aria-hidden="true"></i>
                             </div>
                     </div>
                 </a>
@@ -97,9 +83,22 @@
                 <a href="{% url 'portal:category_detail' slug='food' %}">
                     <div class="card-body text-center vertical-container">
                             <div class="vertical-alignment">
-                                Hardware
+                                <i class="fa fa-scissors fs-28 pt-1" aria-hidden="true"></i>
                                 <br>
+                                Salon
+                            </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="flex-box ml-2">
+            <div class="card {% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                <a href="{% url 'portal:category_detail' slug='food' %}">
+                    <div class="card-body text-center vertical-container">
+                            <div class="vertical-alignment">
                                 <i class="fa fa-wrench fs-28 pt-1" aria-hidden="true"></i>
+                                <br>
+                                Hardware
                             </div>
                     </div>
                 </a>

@@ -10,7 +10,7 @@
 {% endblock category_nav %}
 
 <section class="section container">
-    <h2 class="section-header text-dark">All Services Located Near {{ city }}, {{ state }}</h2>
+    <h2 class="header text-dark">All Services Located Near {{ city }}, {{ state }}</h2>
     <br>
     <div class="row">
         {% for object in object_list %}
@@ -53,7 +53,8 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination pull-right">
         {% if page_obj.has_previous %}
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
             {% endif %}
             {% for num in page_obj.paginator.page_range %}
                 {% if page_obj.number == num %}

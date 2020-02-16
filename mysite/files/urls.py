@@ -10,7 +10,8 @@ urlpatterns = [
     path('api/files/complete/', FileUploadCompleteHandler.as_view(), name='upload-complete'),
 
     path('video-upload/store/<slug:slug>/', VideoFileUploadView.as_view(), name='merchant_video_upload'),
-    
+
+
 
 
 

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load location_extra %}
 {% load static %}
 
 
@@ -125,7 +126,7 @@ a:hover {
             </div>
 
             <div class="col-lg-2">
-                <div class="card card-border shadow-2 mb-3">
+                <div class="card stripe-primary-top card-border shadow-2 mb-3">
                     <div class="card-body p-3 py-1 text-center border-bottom">
                         <h3 class="header">Gegoo Rewards</h3>
 
@@ -135,7 +136,7 @@ a:hover {
                     </div>
                 </div>
 
-                <div class="card card-border shadow-2 mb-3">
+                <div class="card stripe-primary-top card-border shadow-2 mb-3">
                     <div class="card-body p-3 py-1 text-center border-bottom">
                         <h3 class="header">Upload Receipt</h3>
                         <div class="py-2"></div>
@@ -147,9 +148,38 @@ a:hover {
                 </div>
             </div>
 
-            <div class="col-lg-8 mb-4">
-                <div class="px-4 py-3">
-                        <h3 class="header">Recommended Services</h3>
+            <div class="col-lg-10 mb-4">
+                <div class="mb-3">
+                    <h3 class="section-header">Recommended Services</h3>
+                </div>
+                <div class="row">
+                    {% for object in store_nearby %}
+                        <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
+                            <div class="card shadow-1">
+                                <a class="" href="{{ object.get_consumer_absolute_url }}">
+                                    <img class="img-fluid border-radius-100" style="max-height: 250px;" src="{{ AwsBucketURL }}{{ object.logo }}" alt="User Uploaded images">
+                                </a>
+                                <div class="card-body py-1">
+                                    <div class=" text-left mt-3">
+                                        <h3 class="fw-6 text-dark fs-18 mb-1">{{ object.business_name }}</h3>
+                                            {% for object in object.rating_average.ratingsystem %}
+                                                testimonial
+                                            {% endfor %}
+                                        <h4 class="fw-4 text-gray-700 fs-14 pt-2">
+                                            {{ object.slogan|truncatewords:8 }}
+                                        </h4>
+                                        <div class="fs-14 mt-3 mb-2">
+                                            <span class="text-gray-700 fw-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-location-pin"><path class="fill-gray-500" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-500" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                                                {{ object.distance.mi|dividebyth }} Miles Away
+                                            </span>
+                                        </div>
+                                        <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
       	    </div>
       </div>

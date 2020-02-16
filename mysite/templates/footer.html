@@ -23,10 +23,10 @@
         <div class="text-align-responsive">
           <span class="title-footer text-uppercase" style="line-height: 2rem;">Services</span>
 
+            <!-- <br>
+            <a class="font-footer" style="line-height: 2rem;" href="{% url 'users:user_rewards' %}">Redeem Points</a> -->
             <br>
-            <a class="font-footer" style="line-height: 2rem;" href="{% url 'users:user_rewards' %}">Redeem Points</a>
-            <br>
-            <a class="font-footer" style="line-height: 2rem;" href="{% url 'account_login' %}">Categories</a>
+            <a class="font-footer" style="line-height: 2rem;" href="{% url 'portal:consumer_store_list' %}">Categories</a>
             <br>
             <a class="font-footer" style="line-height: 2rem;" href="{% url 'account_login' %}">Services</a>
             <br>
@@ -36,7 +36,7 @@
             <a class="font-footer" style="line-height: 2rem;" href="{% url 'payments:plan_list' %}">Become a Merchant</a>
             {% endif %}
             <br>
-            <a class="font-footer" style="line-height: 2rem;" href="{% url 'account_signup' %}">Pricing</a>
+            <a class="font-footer" style="line-height: 2rem;" href="{% url 'payments:plan_list' %}">Pricing</a>
 
         </div>
       </div>
@@ -48,7 +48,7 @@
             <span class="title-footer text-uppercase" style="line-height: 2rem;">COMPANY</span>
 
               <br>
-              <a class="font-footer" style="line-height: 2rem;" href="{% url 'account_login' %}">About Us</a>
+              <a class="font-footer" style="line-height: 2rem;" href="{% url 'support:about-page' %}">About Us</a>
               <br>
               <a class="font-footer" style="line-height: 2rem;" href="{% url 'account_signup' %}">Philanthropy</a>
               <br>

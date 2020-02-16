@@ -26,9 +26,9 @@
   }
   .title-container {
     vertical-align: middle;
-    text-align: center;
+    text-align: left;
     color: #fff;
-    padding: 0.5rem 1.4rem 0.5rem 1.4rem;
+    padding: 1rem 1rem;
     background-image: -webkit-linear-gradient($gradient-primary);
     background-image: -o-linear-gradient($gradient-primary);
     background-image: linear-gradient($gradient-primary);
@@ -37,7 +37,7 @@
   .volume-button  {
       z-index: 10000;
       position: absolute;
-      bottom: 14%;
+      bottom: 5%;
       left: 2%;
   }
 }
@@ -59,7 +59,7 @@
     position: absolute;
     top: 0%;
     width: 100%;
-    text-align: center;
+    text-align: left;
     color: #fff;
     padding: 2rem;
   }

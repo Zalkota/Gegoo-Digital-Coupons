@@ -17,8 +17,11 @@ from payments.views import get_user_subscription
 # from .forms import ProfileImageForm
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
-from location.functions import CalculateCityLocation
 
+from django.contrib.gis.db import models
+from django.contrib.gis.geos import Point
+from django.contrib.gis.db.models.functions import Distance
+from location.functions import CalculateCityLocation, set_location_cookies, get_ip, get_or_set_location
 
 from cities_light.models import Region, City
 
@@ -58,9 +61,13 @@ class userPage(LoginRequiredMixin, View):
             #Render Normal User Profile Page
             elif user.is_merchant == False:
                 data = user.user_profile.points
+                city_state = get_or_set_location(self.request)
+                user_location = city_state["user_location"]
+                store_nearby_qs = portal_models.Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[:8]
                 context = {
-                    'user': user,
-                    'data': data,
+                'user': user,
+                'data': data,
+                'store_nearby': store_nearby_qs
                 }
                 return render(self.request, "users/userPage.html", context)
 

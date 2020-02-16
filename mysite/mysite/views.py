@@ -146,9 +146,9 @@ class homeView(View):
 
         #Query Stores Nearby
         try:
-            store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:6]
+            store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:8]
         except:
-            store_nearby = Store.objects.filter(city='Novi', state='Michigan')[0:6]
+            store_nearby = Store.objects.filter(city='Novi', state='Michigan')[0:8]
             print('no stores found')
 
         #Video Playlist

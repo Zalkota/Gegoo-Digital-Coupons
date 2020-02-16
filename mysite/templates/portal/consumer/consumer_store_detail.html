@@ -58,7 +58,9 @@
                         <br>
                         <br>
                         <a href="tel:{{ store.phone_number }}" class="text-primary">{{ store.phone_number.as_e164 }} </a>
-                        <a href="" class="text-primary">Write a Review</a>
+                        {% if store.website_url.exists %}
+                        <a href="{{ store.website_url }}" class="text-primary">View Store</a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="card-body border-top">
@@ -102,9 +104,13 @@
                     <!-- <div class="merchant-button merchant-button-active" id="ViewServicesBtn">
                         <span>Services</span>
                     </div> -->
+                    {% if store.offers.exists %}
                     <div class="merchant-button merchant-button-active" id="ViewOffersBtn">
                         <span>Offers</span>
                     </div>
+                    {% else %}
+                    {% endif %}
+
                     {% if store.testimonial.exists %}
                     <div class="merchant-button" id="LearnMoreBtn">
                         <span>Reviews</span>
