@@ -1,3 +1,4 @@
+
 option_settings:
   aws:elasticbeanstalk:container:python:
     WSGIPath: mysite/mysite/wsgi.py
@@ -5,7 +6,12 @@ option_settings:
     NumThreads: 20
   "aws:elasticbeanstalk:container:python:staticfiles":
     "/static/": "www/static/"
+   
+
   aws:elasticbeanstalk:application:environment:
     DJANGO_SETTINGS_MODULE: "mysite.settings.dev"
-    "PYTHONPATH": "/opt/python/current/app/mysite:$PYTHONPATH"
-  
+    "PYTHONPATH": "/opt/python/current/app/mysite:$PYTHONPATH
+    PATH: /usr/local/gdal/bin:$PATH
+    LD_LIBRARY_PATH: /usr/local/proj4/lib:/usr/lib64/openssl:/usr/lib/openssl:/usr/lib:/usr/lib64:/usr/local/geos/lib:/usr/local/gdal/lib:$LD_LIBRARY_PATH
+    GDAL_LIBRARY_PATH: /usr/local/gdal/lib/libgdal.so
+
