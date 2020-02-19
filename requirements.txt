@@ -84,7 +84,7 @@ django-import-export==1.2.0
 maxminddb-geolite2
 
 #GeoIP2
-geoip2==2.9.0
+#geoip2==2.9.0
 
 #django-ipware
 

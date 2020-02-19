@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     #Payment
     'stripe',
     'payments.apps.PaymentsConfig',
-    # 'django_countries',
+    'django_countries',
 
     #Security
     'honeypot',
@@ -82,9 +82,9 @@ INSTALLED_APPS = [
 
     #GeoDjango
     'location',
-    # 'django.contrib.gis',
+    'django.contrib.gis',
     #'leaflet',
-    # 'geolite2',
+    'geolite2',
     #'ipware',
     'cities_light',
 
