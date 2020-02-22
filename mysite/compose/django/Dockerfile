@@ -31,6 +31,10 @@ COPY ./compose/django/loaddata.sh /loaddata.sh
 RUN sed -i 's/\r//' /loaddata.sh
 RUN chmod +x /loaddata.sh
 
+COPY ./compose/django/gunicorn.sh /gunicorn.sh
+RUN sed -i 's/\r//' /gunicorn.sh
+RUN chmod +x /gunicorn.sh
+
 COPY ./db.json /db.json
 RUN sed -i 's/\r//' /db.json
 RUN chmod +x /db.json
@@ -47,4 +51,4 @@ ADD . /app/
 
 
 # ENTRYPOINT ["/entrypoint.sh"]
-ENTRYPOINT ["/start-dev.sh"]
+# ENTRYPOINT ["/gunicorn.sh"]
