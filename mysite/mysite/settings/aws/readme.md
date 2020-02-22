@@ -19,3 +19,6 @@ systemctl start httpd.service
 systemctl stop httpd.service
 ## Restart command ##
 systemctl restart httpd.service
+
+
+sudo service httpd start  

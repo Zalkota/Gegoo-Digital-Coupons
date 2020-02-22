@@ -431,6 +431,8 @@ Checklist:
 
 - git pull
 
+- mv  -v ./server/gegoo/* ./server/
+
 - migrate database
 
 - load data
