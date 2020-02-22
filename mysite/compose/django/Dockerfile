@@ -27,9 +27,13 @@ COPY ./compose/django/start-dev.sh /start-dev.sh
 RUN sed -i 's/\r//' /start-dev.sh
 RUN chmod +x /start-dev.sh
 
-#COPY ./compose/django/gunicorn.sh /gunicorn.sh
-#RUN sed -i 's/\r//' /gunicorn.sh
-#RUN chmod +x /gunicorn.sh
+COPY ./compose/django/loaddata.sh /loaddata.sh
+RUN sed -i 's/\r//' /loaddata.sh
+RUN chmod +x /loaddata.sh
+
+COPY ./db.json /db.json
+RUN sed -i 's/\r//' /db.json
+RUN chmod +x /db.json
 
 ENV VIRTUAL_ENV /env
 ENV PATH /env/bin:$PATH
@@ -44,7 +48,3 @@ ADD . /app/
 
 # ENTRYPOINT ["/entrypoint.sh"]
 ENTRYPOINT ["/start-dev.sh"]
-
-#CMD cd ./mysite
-#CMD gunicorn mysite.wsgi:application --bind 0.0.0.0:8000
-#CMD sudo systemctl status gunicorn

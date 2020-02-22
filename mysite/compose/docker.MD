@@ -15,7 +15,20 @@ docker run --env-file env gegoo:v0 sh -c "python manage.py makemigrations && pyt
 
 docker run --env-file env -p 80:8000 gegoo:v0
 
+docker exec -it gegoo_django sudo systemctl status gunicorn
+
+
+docker exec -it gegoo_django
+
+# Stop or Remove Containers
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+
+# Images
 docker images
+docker images prune
+
+
 docker ps
 docker ps -a
 docker ps -l
