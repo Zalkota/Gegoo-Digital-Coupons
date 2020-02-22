@@ -1,0 +1,52 @@
+version: '2'
+
+volumes:
+  postgres_data_dev: {}
+  postgres_backup_dev: {}
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    command: ./start-dev.sh
+    depends_on:
+      - postgres
+    #environment:
+    #  - POSTGRES_USER=reliable_carriers
+    #  - USE_DOCKER=yes
+    env_file:
+      #- ./envs/common/django.env
+      - ./env
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    links:
+      - postgres
+
+  postgres:
+    image: mdillon/postgis:9.6
+    # build:
+    #   context: .
+    #   dockerfile: ./compose/postgres/Dockerfile
+    volumes:
+      - $HOME/docker/volumes/postgres:/var/lib/postgresql/data
+      - $HOME/docker/volumes/postgres:/backups
+    ports:
+      - 5432:5432
+    env_file:
+        - ./compose/postgres/postgres.env
+    # environment:
+      # - POSTGRES_USER=gegooadmin
+      # - POSTGRES_PASSWORD=$Django10
+      # - POSTGRES_PORT=
+    #
+  # nginx:
+  #   build:
+  #       context: .
+  #       dockerfile: ./compose/nginx/Dockerfile
+  #   ports:
+  #     - 8000:80
+  #   depends_on:
+  #     - django

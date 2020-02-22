@@ -89,6 +89,9 @@ docker network rm $(docker network ls -q)
 sudo lsof -nP | grep LISTEN
 sudo kill -9 1511
 
+# add -w to silence containers
+sudo lsof -nP -w | grep LISTEN
+
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`
 
 
@@ -115,21 +118,23 @@ sudo systemctl restart gunicorn
 gunicorn --bind 0.0.0.0:8000 myproject.wsgi:application
 
 sudo nano /etc/systemd/system/gunicorn.service
+
 ''
 [Unit]
 Description=gunicorn daemon
 After=network.target
 
 [Service]
-User=sammy
+User=dom
 Group=www-data
-WorkingDirectory=/home/sammy/myproject
-ExecStart=/home/sammy/myproject/venv/bin/gunicorn --workers 3 --bind unix:/home/sammy/myproject/myproject.sock myproject.wsgi:application
-EnvironmentFile=/home/sammy/myproject/.env
+WorkingDirectory=/home/dom/Desktop/projects/gegoo/mysite
+ExecStart=/home/dom/Desktop/projects/gegoo/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/dom/Desktop/projects/gegoo/mysite/mysite.sock mysite.$
 
 [Install]
 WantedBy=multi-user.target
 ''
+
+
 # .bashrc
 
 cd to base directory with:

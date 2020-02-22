@@ -6,9 +6,9 @@ DEBUG = False
 # SECURITY ---------------------------------------------------------------------
 
 import os
-SECRET_KEY = os.environ["DJANGO_SECRET_KEY_MOD"]
 
-ALLOWED_HOSTS = ['http://gegoo-dev-r1-dev.us-east-1.elasticbeanstalk.com/', '104.248.6.5', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(',')
+
 ADMINS = [('ModTechnology', 'dominic@modwebservices.com')]
 
 CSRF_COOKIE_SECURE = True

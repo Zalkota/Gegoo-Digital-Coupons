@@ -13,12 +13,15 @@ from mysite.settings.aws.conf import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import json
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '#^57b45ap)gvbl@#@f5v1uqbv)1x3na2ct@xe$ql^r_ds#g0ap')
+DEBUG = os.getenv('DJANGO_DEBUG', False)
 
-S3_USE_SIGV4 = True
+# S3_USE_SIGV4 = True
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -192,34 +195,35 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-
-
-
-#WAGTAIL_FRONTEND_LOGIN_URL = '/accounts/login/'
-#WAGTAILADMIN_USER_LOGIN_FORM = 'admin.site.login'
-#Privacy page
-#http://docs.wagtail.io/en/v2.1.1/advanced_topics/privacy.html
-
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
+# DATABASES = {
+#
+# 	'default': {
+#         	'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         	'NAME': 'gegoo',
+#         	'USER': 'gegooadmin',
+#         	'PASSWORD': '$Django10',
+#         	'HOST': 'localhost',
+#         	'PORT': '',
+#     }
+# }
 
-	'default': {
-        	'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        	'NAME': 'gegoo',
-        	'USER': 'gegooadmin',
-        	'PASSWORD': '$Django10',
-        	'HOST': 'localhost',
-        	'PORT': '',
-    }
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#Custom Forms with classes
-}
+DATABASES = {
+     'default': {
+         'ENGINE': os.getenv('DATABASE_ENGINE', 'django.contrib.gis.db.backends.postgis'),
+         'NAME': os.getenv('DATABASE_NAME', 'gegoo'),
+         'USER': os.getenv('DATABASE_USERNAME', 'gegooadmin'),
+         'PASSWORD': os.getenv('DATABASE_PASSWORD', '$Django10'),
+         'HOST': os.getenv('DATABASE_HOST', 'localhost'),
+         'PORT': os.getenv('DATABASE_PORT', ''),
+         'OPTIONS': json.loads(
+             os.getenv('DATABASE_OPTIONS', '{}')
+         ),
+     }
+ }
+
 
 #GEOIP DATABASE LOCATION
 # GEOIP_PATH = '/location/location_db/'

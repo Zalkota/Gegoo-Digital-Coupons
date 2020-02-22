@@ -33,3 +33,10 @@ gegoo_merchant		AKIAXTP3WIX7E34PG34V	SF4FLy0v6SNhO9eq4QoqEv5xla/FFn4e8lCIi3FJ	ht
 AWS_ACCESS_KEY_ID = "AKIAXTP3WIX7E34PG34V"
 AWS_SECRET_ACCESS_KEY = "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"
 AWS_STORAGE_BUCKET_NAME = 'static-gegoo-bucket'
+
+
+
+
+https://www.cyberciti.biz/faq/star-stop-restart-apache2-webserver/
+
+https://blacksaildivision.com/how-to-install-openssl-on-centos
