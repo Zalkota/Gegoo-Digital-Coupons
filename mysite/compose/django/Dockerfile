@@ -35,6 +35,10 @@ COPY ./compose/django/gunicorn.sh /gunicorn.sh
 RUN sed -i 's/\r//' /gunicorn.sh
 RUN chmod +x /gunicorn.sh
 
+COPY ./home/projects/server/gegoo/venv/bin/gunicorn /app/bin/gunicorn.sh
+RUN sed -i 's/\r//' /app/bin/gunicorn.sh
+RUN chmod +x /app/bin/gunicorn.sh
+
 COPY ./db.json /db.json
 RUN sed -i 's/\r//' /db.json
 RUN chmod +x /db.json

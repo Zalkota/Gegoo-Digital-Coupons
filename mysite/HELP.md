@@ -84,7 +84,6 @@ pip3 install -r requirements.txt
 
 
 # NETWORKS
-
 docker network rm $(docker network ls -q)
 sudo lsof -nP | grep LISTEN
 sudo kill -9 1511
@@ -113,7 +112,6 @@ find ./static -type d -exec chmod 755 {} \;
 
 ### When in production you must restart gunicorn when you pull new settings ###
 sudo systemctl restart gunicorn
-
 
 gunicorn --bind 0.0.0.0:8000 myproject.wsgi:application
 
