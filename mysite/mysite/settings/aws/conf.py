@@ -8,7 +8,7 @@ AWS_QUERYSTRING_AUTH = True
 AWS_DEFAULT_ACL = 'public-read'
 
 DEFAULT_FILE_STORAGE = 'mysite.settings.aws.utils.MediaRootS3BotoStorage'
-# STATICFILES_STORAGE = 'mysite.settings.aws.utils.StaticRootS3BotoStorage'
+STATICFILES_STORAGE = 'mysite.settings.aws.utils.StaticRootS3BotoStorage'
 AWS_STORAGE_BUCKET_NAME = 'static-gegoo-bucket'
 S3DIRECT_REGION = 'us-west-2'
 S3_URL = '//%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
