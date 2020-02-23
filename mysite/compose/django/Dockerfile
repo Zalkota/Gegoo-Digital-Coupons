@@ -30,8 +30,6 @@ COPY ./compose/django/start-dev.sh /start-dev.sh
 RUN sed -i 's/\r//' /start-dev.sh
 RUN chmod +x /start-dev.sh
 
-
-
 COPY ./compose/django/gunicorn.sh /gunicorn.sh
 RUN sed -i 's/\r//' /gunicorn.sh
 RUN chmod +x /gunicorn.sh
