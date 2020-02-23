@@ -57,11 +57,11 @@
             {% for result in page_obj.object_list %}
                 <div class="col-lg-3 col-sm-6 mb-5 text-center">
                     <div class="card">
-                        <a href="{{ result.object.get_absolute_url }}">
-                            <img class="card-img-top " style="" src="/media/{{ result.object.main_image }}" alt="User Uploaded images">
+                        <a href="{{ result.get_consumer_absolute_url }}">
+                            <img class="img-fluid border-radius-100" style="max-height: 250px;" src="{{ AwsBucketURL }}{{ object.logo }}" alt="User Uploaded images">
                         </a>
                         <div class="card-body text-left">
-                            <h3 class=" fw-7 fs-14">{{result.object.title}}</h3>
+                            <h3 class=" fw-7 fs-14">{{ result.business_name }}</h3>
                             <span class="text-muted fs-14 ">${{ result.object.price }}</span>
                         </div>
                     </div>

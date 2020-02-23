@@ -14,3 +14,11 @@ Open another terminal and run the next to commands (cities_light will take 3-5 m
     docker exec -it mysite_django_1 python3 local.py cities_light
 
     docker exec -it mysite_django_1 python3 local.py createsuperuser
+
+
+Migrations:
+
+ docker exec -it mysite_django_1 python3 local.py makemigrations
+
+
+  docker exec -it mysite_django_1 python3 local.py migrate

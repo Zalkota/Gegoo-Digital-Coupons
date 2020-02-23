@@ -10,7 +10,7 @@
   {% include "portal/category_nav.html" %}
 {% endblock category_nav %}
 
-<section class="section-sm">
+<section class="section">
     <div class="container">
         <h3 class="section-header text-dark">Shop {{ subcategory }}</h3>
         <br>
@@ -70,8 +70,10 @@
                     </div>
                 </div>
                 {% empty %}
-                <div class="col-lg-9 text-center">
-                    Oops, no services were found. Try changing your location or category.
+                <div class="col-lg-9 text-center ">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-search"><circle cx="10" cy="10" r="7" class="fill-gray-300"/><path class="fill-purple-500" d="M16.32 14.9l1.1 1.1c.4-.02.83.13 1.14.44l3 3a1.5 1.5 0 0 1-2.12 2.12l-3-3a1.5 1.5 0 0 1-.44-1.14l-1.1-1.1a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>
+                    <br>
+                    <p class="text-muted mt-3">Oops, no services were found. Try changing your location or category.</p>
                 </div>
                 {% endfor %}
         </section>

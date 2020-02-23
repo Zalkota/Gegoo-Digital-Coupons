@@ -55,9 +55,18 @@ PROMOTION_CHOICES = (
 
 CATEGORY_CHOICES = (
     ('ALL', 'All Services'),
+    ('AUTO', 'Auto'),
+    ('BEAUTY', 'Beauty'),
+    ('COMMUNITY', 'Community'),
+    ('CONSTRUCTION', 'Construction'),
     ('FOOD', 'Food'),
-    ('VEHICLES', 'Vehicles'),
+    ('FUN', 'Fun'),
+    ('GARDEN', 'Garden'),
+    ('GROCERIES', 'Groceries'),
+    ('HEALTH', 'Health'),
     ('HOME', 'Home Improvement'),
+    ('PETS', 'Pets'),
+    ('RETAIL', 'Retail'),
 )
 
 ONE = 1
@@ -244,7 +253,7 @@ class Images(models.Model):
 
 class Category(models.Model):
     name = models.CharField(choices=CATEGORY_CHOICES, default='FOOD', max_length=20, unique=True, db_index=True)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True, editable=False)
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -262,7 +271,7 @@ def pre_save_category(sender, **kwargs):
     kwargs['instance'].slug = slug
 
 class Subcategory(models.Model):
-    name = models.CharField(max_length=15)
+    name = models.CharField(max_length=25)
     slug = models.SlugField(unique=True, blank=True, editable=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='subcategory')
 

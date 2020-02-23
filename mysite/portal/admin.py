@@ -21,6 +21,9 @@ class StoreAdmin(admin.ModelAdmin):
     # inlines = [
     #     StoreLocationInline,
     # ]
+class SubcategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category')
+
 
 class OfferAdmin(admin.ModelAdmin):
     autocomplete_fields = ['store']
@@ -41,5 +44,5 @@ admin.site.register(Offer)
 admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(Images)
 admin.site.register(Category)
-admin.site.register(Subcategory)
+admin.site.register(Subcategory, SubcategoryAdmin)
 admin.site.register(Tag)
