@@ -190,7 +190,7 @@ https://www.linode.com/docs/security/ssl/install-lets-encrypt-to-create-ssl-cert
 
 Create an SSL Certificate
 cd /opt/letsencrypt
-sudo -H ./letsencrypt-auto certonly --standalone -d example.com -d www.example.com
+sudo -H ./letsencrypt-auto certonly --standalone -d printrender.com -d www.printrender.com
 
 Renew
 sudo -H ./letsencrypt-auto certonly --standalone --renew-by-default -d example.com -d www.example.com
