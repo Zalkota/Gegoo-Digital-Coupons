@@ -9,18 +9,10 @@ docker-compose -f docker-compose.yml run django python ./mysite/local.py migrate
 docker-compose -f docker-compose.yml run django python ./mysite/local.py createsuperuser
 
 
-
-docker build -t gegoo:v0 ./compose/django
-
-docker run --env-file env gegoo:v0 sh -c "python manage.py makemigrations && python manage.py migrate"
-
-docker run --env-file env -p 80:8000 gegoo:v0
-
 docker exec -it mysite_django_1 sudo systemctl status gunicorn
 
-python3 local.py cities_light
+docker exec -it mysite_django_1 python3 local.py cities_light
 
-docker exec -it gegoo_django
 
 # Stop or Remove Containers
 docker stop $(docker ps -a -q)
@@ -40,12 +32,12 @@ docker stop sharp_volhard
 docker rm festive_williams
 
 
-# Tutorials
-https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
 
 
-# Database
-python3 local.py cities_light
+# Database Startup
+docker exec -it mysite_django_1 sudo systemctl status gunicorn
+
+docker exec -it mysite_django_1 python3 local.py cities_light
 
 
 # Shell access
@@ -68,3 +60,8 @@ docker-compose logs nginx
 docker-compose logs web
 #DB
 docker-compose logs db
+
+
+
+# Tutorials
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
