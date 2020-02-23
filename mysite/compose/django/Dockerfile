@@ -55,7 +55,11 @@ WORKDIR /app
 # Add current directory code to working directory
 ADD . /app/
 
+# Prepare log files and start outputting logs to stdout
+touch ./logs/gunicorn.log
+touch ./logs/gunicorn-access.log
+tail -n 0 -f ./logs/gunicorn*.log &
 
 
 # Run Gunicorn
-ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
