@@ -44,9 +44,9 @@ RUN sed -i 's/\r//' /db.json
 RUN chmod +x /db.json
 
 # letsencrypt removed for now
-#COPY ./compose/nginx/fullchain.pem /fullchain.pem
-#RUN sed -i 's/\r//' /fullchain.pem
-#RUN chmod +x /fullchain.pem
+#COPY ./compose/nginx/fullchain.pem /etc/nginx/fullchain.pem
+#RUN sed -i 's/\r//' /etc/nginx/fullchain.pem
+#RUN chmod +x /etc/nginx/fullchain.pem
 
 #COPY ./compose/nginx/privkey.pem /etc/nginx/privkey.pem
 #RUN sed -i 's/\r//' /etc/nginx/privkey.pem
