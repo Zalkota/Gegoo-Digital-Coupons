@@ -19,6 +19,12 @@ RUN apt-get update && apt-get install -y \
 COPY ./requirements /requirements
 RUN pip install -r /requirements/requirements.txt
 
+# create and set working directory
+RUN mkdir /app
+WORKDIR /app
+
+# Add current directory code to working directory
+ADD . /app/
 
 # Copy Files to Docker
 
@@ -54,12 +60,7 @@ RUN chmod +x /db.json
 ENV VIRTUAL_ENV /env
 ENV PATH /env/bin:$PATH
 
-# create and set working directory
-RUN mkdir /app
-WORKDIR /app
 
-# Add current directory code to working directory
-ADD . /app/
 
 
 
