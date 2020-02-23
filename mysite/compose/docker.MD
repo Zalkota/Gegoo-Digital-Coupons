@@ -12,7 +12,7 @@ docker-compose -f docker-compose.yml run django python ./mysite/local.py creates
 docker exec -it mysite_django_1 sudo systemctl status gunicorn
 
 docker exec -it mysite_django_1 python3 local.py cities_light
-
+docker exec -it mysite_django_1 python3 local.py createsuperuser
 
 # Stop or Remove Containers
 docker stop $(docker ps -a -q)
@@ -30,8 +30,6 @@ docker info
 docker start d9b100f2f636
 docker stop sharp_volhard
 docker rm festive_williams
-
-
 
 
 # Database Startup
