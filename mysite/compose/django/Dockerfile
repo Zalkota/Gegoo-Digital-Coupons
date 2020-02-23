@@ -48,9 +48,9 @@ RUN chmod +x /db.json
 #RUN sed -i 's/\r//' /fullchain.pem
 #RUN chmod +x /fullchain.pem
 
-#COPY ./compose/nginx/privkey.pem /privkey.pem
-#RUN sed -i 's/\r//' /privkey.pem
-#RUN chmod +x /privkey.pem
+#COPY ./compose/nginx/privkey.pem /etc/nginx/privkey.pem
+#RUN sed -i 's/\r//' /etc/nginx/privkey.pem
+#RUN chmod +x /etc/nginx/privkey.pem
 
 
 ENV VIRTUAL_ENV /env
