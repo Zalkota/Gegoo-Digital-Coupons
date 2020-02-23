@@ -30,19 +30,22 @@ COPY ./compose/django/start-dev.sh /start-dev.sh
 RUN sed -i 's/\r//' /start-dev.sh
 RUN chmod +x /start-dev.sh
 
-COPY ./compose/django/loaddata.sh /loaddata.sh
-RUN sed -i 's/\r//' /loaddata.sh
-RUN chmod +x /loaddata.sh
+
 
 COPY ./compose/django/gunicorn.sh /gunicorn.sh
 RUN sed -i 's/\r//' /gunicorn.sh
 RUN chmod +x /gunicorn.sh
 
+# Loading data
+COPY ./compose/django/loaddata.sh /loaddata.sh
+RUN sed -i 's/\r//' /loaddata.sh
+RUN chmod +x /loaddata.sh
+
 COPY ./db.json /db.json
 RUN sed -i 's/\r//' /db.json
 RUN chmod +x /db.json
 
-#letsencrypt 
+# letsencrypt removed for now
 #COPY ./compose/nginx/fullchain.pem /fullchain.pem
 #RUN sed -i 's/\r//' /fullchain.pem
 #RUN chmod +x /fullchain.pem
