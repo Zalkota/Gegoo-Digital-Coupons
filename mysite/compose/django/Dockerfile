@@ -58,4 +58,4 @@ ADD . /app/
 
 
 # Run Gunicorn
-# ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
