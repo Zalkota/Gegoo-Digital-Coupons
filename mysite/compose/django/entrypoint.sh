@@ -8,6 +8,7 @@ tail -n 0 -f ./logs/gunicorn*.log &
 export DJANGO_SETTINGS_MODULE=mysite.settings.dev
 
 exec gunicorn mysite.wsgi:application \
+    --name django \
     --bind 0.0.0.0:8000 \
     --workers 5 \
     --log-level=info \
