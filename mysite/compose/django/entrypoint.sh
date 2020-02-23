@@ -1,7 +1,9 @@
 #!/bin/bash
 
+python local.py migrate
+
 # Prepare log files and start outputting logs to stdout
-mkdir ./logs/
+RUN mkdir logs
 touch ./logs/gunicorn.log
 touch ./logs/gunicorn-access.log
 tail -n 0 -f ./logs/gunicorn*.log &
