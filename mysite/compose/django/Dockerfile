@@ -42,13 +42,14 @@ COPY ./db.json /db.json
 RUN sed -i 's/\r//' /db.json
 RUN chmod +x /db.json
 
-COPY ./compose/nginx/fullchain.pem /fullchain.pem
-RUN sed -i 's/\r//' /fullchain.pem
-RUN chmod +x /fullchain.pem
+#letsencrypt 
+#COPY ./compose/nginx/fullchain.pem /fullchain.pem
+#RUN sed -i 's/\r//' /fullchain.pem
+#RUN chmod +x /fullchain.pem
 
-COPY ./compose/nginx/privkey.pem /privkey.pem
-RUN sed -i 's/\r//' /privkey.pem
-RUN chmod +x /privkey.pem
+#COPY ./compose/nginx/privkey.pem /privkey.pem
+#RUN sed -i 's/\r//' /privkey.pem
+#RUN chmod +x /privkey.pem
 
 
 ENV VIRTUAL_ENV /env
