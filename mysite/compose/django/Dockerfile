@@ -52,5 +52,8 @@ WORKDIR /app
 # Add current directory code to working directory
 ADD . /app/
 
+
+
+
 # Run Gunicorn
 # ENTRYPOINT ["/entrypoint.sh"]
