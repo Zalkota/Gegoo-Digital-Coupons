@@ -3,27 +3,28 @@ from django.utils import timezone
 from haystack import indexes
 from haystack.fields import CharField
 
-from portal.models import Offer
+from portal.models import Store
 
-class OfferIndex(indexes.SearchIndex, indexes.Indexable):
+class StoreIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(
     document=True, use_template=True,
-    template_name='/home/dom/Desktop/projects/estore/mysite/templates/search/item_text.txt')
+    template_name='/home/garrett/Documents/gegoo/mysite/templates/search/item_text.txt')
 
-    title = indexes.EdgeNgramField(model_attr='title')
+    business_name = indexes.EdgeNgramField(model_attr='business_name')
     description = indexes.EdgeNgramField(model_attr="description", null=True)
-    timestamp = indexes.DateTimeField(model_attr='timestamp')
+    category = indexes.CharField(model_attr='category')
+    city = indexes.CharField(model_attr='city')
+    updated_at = indexes.DateTimeField(model_attr='updated_at')
 
-    category = indexes.CharField(model_attr='category', faceted=True)
 
     # for auto complete
-    content_auto = indexes.EdgeNgramField(model_attr='title')
+    content_auto = indexes.EdgeNgramField(model_attr='business_name')
 
     # Spelling suggestions
     suggestions = indexes.FacetCharField()
 
     def get_model(self):
-        return Offer
+        return Store
 
     def index_queryset(self, using=None):
-        return self.get_model().objects.filter(timestamp__lte=timezone.now())
+        return self.get_model().objects.filter(updated_at__lte=timezone.now())

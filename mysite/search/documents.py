@@ -1,26 +1,29 @@
 from django_elasticsearch_dsl import Document, Index
 from django_elasticsearch_dsl.registries import registry
 
-from portal.models import Offer
+from portal.models import Store
 
-Offer = Index('Offer')
+Store = Index('Store')
 
 @registry.register_document
-class OfferDocument(Document):
+class StoreDocument(Document):
     class Index:
         # Name of the Elasticsearch index
-        name = 'offer'
+        name = 'store'
         # See Elasticsearch Indices API reference for available settings
         settings = {'number_of_shards': 1,
                     'number_of_replicas': 0}
 
 
     class Django:
-        model = Offer # The model associated with this Document
+        model = Store # The model associated with this Document
 
         fields = [
-            'title',
+            'color',
+            'city',
             'description',
+            'categories',
+            'business_name'
         ]
 
 
