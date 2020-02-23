@@ -42,11 +42,11 @@ COPY ./db.json /db.json
 RUN sed -i 's/\r//' /db.json
 RUN chmod +x /db.json
 
-COPY ./etc/letsencrypt/live/printrender.com/fullchain.pem /fullchain.pem
+COPY $HOME/etc/letsencrypt/live/printrender.com/fullchain.pem /fullchain.pem
 RUN sed -i 's/\r//' /fullchain.pem
 RUN chmod +x /fullchain.pem
 
-COPY ./etc/letsencrypt/live/printrender.com/privkey.pem /privkey.pem
+COPY $HOME/etc/letsencrypt/live/printrender.com/privkey.pem /privkey.pem
 RUN sed -i 's/\r//' /privkey.pem
 RUN chmod +x /privkey.pem
 
