@@ -56,8 +56,8 @@ services:
         dockerfile: ./compose/nginx/Dockerfile
     command: [nginx-debug, -g, daemon off;]
     ports:
-      - 8000:80 #Map TCP port 80 in the container to port 8000 on the Docker host.
-      - 8443:443
+      - 80:80 #Map TCP port 80 in the container to port 8000 on the Docker host.
+      - 443:443
     depends_on:
       - django
     networks:
