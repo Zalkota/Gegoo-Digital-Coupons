@@ -1,7 +1,7 @@
 #!/bin/bash
 
 python local.py migrate
-
+python /app/local.py collectstatic --noinput
 # Prepare log files and start outputting logs to stdout
 RUN mkdir logs
 touch ./logs/gunicorn.log
