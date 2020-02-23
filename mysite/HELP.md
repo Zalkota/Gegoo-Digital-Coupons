@@ -112,6 +112,11 @@ find ./static -type d -exec chmod 755 {} \;
 
 ### When in production you must restart gunicorn when you pull new settings ###
 sudo systemctl restart gunicorn
+sudo systemctl status gunicorn
+systemctl daemon-reload
+
+sudo journalctl -u gunicorn
+
 
 gunicorn --bind 0.0.0.0:8000 myproject.wsgi:application
 

@@ -48,6 +48,7 @@ services:
     build:
         context: .
         dockerfile: ./compose/nginx/Dockerfile
+    command: [nginx-debug, -g, daemon off;]
     ports:
       - 8000:80
     depends_on:
