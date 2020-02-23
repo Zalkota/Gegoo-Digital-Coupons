@@ -2,12 +2,13 @@
 
 # Compose
 docker-compose -f docker-compose.yml build
+docker-compose -f docker-compose.yml up
 
 docker-compose -f docker-compose.yml run django python ./mysite/local.py makemigrations
 docker-compose -f docker-compose.yml run django python ./mysite/local.py migrate
 docker-compose -f docker-compose.yml run django python ./mysite/local.py createsuperuser
 
-docker-compose -f docker-compose.yml up
+
 
 docker build -t gegoo:v0 ./compose/django
 
@@ -15,7 +16,7 @@ docker run --env-file env gegoo:v0 sh -c "python manage.py makemigrations && pyt
 
 docker run --env-file env -p 80:8000 gegoo:v0
 
-docker exec -it gegoo_django sudo systemctl status gunicorn
+docker exec -it mysite_django_1 sudo systemctl status gunicorn
 
 python3 local.py cities_light
 
