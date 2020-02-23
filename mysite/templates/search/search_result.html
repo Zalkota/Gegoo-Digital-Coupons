@@ -1,4 +1,4 @@
-{% extends "base-alt.html" %}
+{% extends "base.html" %}
 
 {% block title %}
     "{{ query }}" | {{ block.super }}
@@ -12,7 +12,7 @@
 <section class="section-white-sm">
     <div class="container">
         <div class="mb-5">
-            <h2>Bumper Stickers</h2>
+            <h2>Search Results</h2>
             <span class="fs-14 text-muted">{{ page_obj.paginator.count }} {% if page_obj.paginator.count > 1 %}items {% else %} item {% endif %} found for: <span class="fw-7">{{query}}</span></span>
         </div>
         <div class="row">
@@ -57,11 +57,19 @@
             {% for result in page_obj.object_list %}
                 <div class="col-lg-3 col-sm-6 mb-5 text-center">
                     <div class="card">
+<<<<<<< HEAD
                         <a href="{{ result.get_consumer_absolute_url }}">
                             <img class="img-fluid border-radius-100" style="max-height: 250px;" src="{{ AwsBucketURL }}{{ object.logo }}" alt="User Uploaded images">
                         </a>
                         <div class="card-body text-left">
                             <h3 class=" fw-7 fs-14">{{ result.business_name }}</h3>
+=======
+                        <a href="{{ result.object.get_consumer_absolute_url }}">
+                            <img class="img-fluid border-radius-100" style="max-height: 250px;" src="{{ AwsBucketURL }}{{ result.object.logo }}" alt="User Uploaded images">
+                        </a>
+                        <div class="card-body text-left">
+                            <h3 class=" fw-7 fs-14">{{result.object.business_name}}</h3>
+>>>>>>> search
                             <span class="text-muted fs-14 ">${{ result.object.price }}</span>
                         </div>
                     </div>

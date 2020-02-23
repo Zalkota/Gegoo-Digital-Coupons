@@ -1,2 +1,2 @@
-{{ object.title }}
+{{ object.business_name }}
 {{ object.description|default:"1" }}

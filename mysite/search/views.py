@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from haystack.generic_views import FacetedSearchView as BaseFacetedSearchView
 from haystack.query import SearchQuerySet
 
-from portal.models import Offer, Category
+from portal.models import Offer, Category, Store
 from .forms import FacetedOfferSearchForm
 
 #class HomeView(TemplateView):
@@ -18,7 +18,7 @@ def autocomplete(request):
     sqs = SearchQuerySet().autocomplete(content_auto=request.GET.get('query',''))[:5]
     s = []
     for result in sqs:
-        d = {"value": result.title, "data": result.object.slug}
+        d = {"value": result.business_name, "data": result.object.slug}
         s.append(d)
     output = {'suggestions': s}
     return JsonResponse(output)
