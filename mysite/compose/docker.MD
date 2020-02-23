@@ -46,3 +46,25 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-o
 
 # Database
 python3 local.py cities_light
+
+
+# Shell access
+For shell accessing.
+
+#Nginx
+docker exec -ti nginx bash
+
+#Web
+docker exec -ti web bash
+
+#Database
+docker exec -ti db bash
+Copy
+For logs:
+
+#Nginx
+docker-compose logs nginx
+#Web
+docker-compose logs web
+#DB
+docker-compose logs db

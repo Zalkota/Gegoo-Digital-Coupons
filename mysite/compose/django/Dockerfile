@@ -19,6 +19,9 @@ RUN apt-get update && apt-get install -y \
 COPY ./requirements /requirements
 RUN pip install -r /requirements/requirements.txt
 
+
+# Copy Files to Docker
+
 COPY ./compose/django/entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r//' /entrypoint.sh
 RUN chmod +x /entrypoint.sh
@@ -49,6 +52,5 @@ WORKDIR /app
 # Add current directory code to working directory
 ADD . /app/
 
-
+# Run Gunicorn
 # ENTRYPOINT ["/entrypoint.sh"]
-# ENTRYPOINT ["/gunicorn.sh"]
