@@ -6,8 +6,11 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.shortcuts import reverse
+import decimal
 
 import stripe
+
+from users import models as users_models
 
 from payments.functions import unique_coupon_generator
 
@@ -22,7 +25,7 @@ class Plan(models.Model):
     nickname    = models.CharField(max_length=50, blank=True, editable=False)
     product_id  = models.CharField(max_length=50, blank=True, editable=False)
     plan_id     = models.CharField(max_length=50, blank=True)
-    amount      = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
+    amount      = models.DecimalField(default=0, validators=[MinValueValidator(0)], decimal_places=2, max_digits=10)
     currency    = models.CharField(max_length=50, blank=True, editable=False)
     interval    = models.CharField(max_length=50, blank=True, editable=False)
     description = models.CharField(max_length=255, default="add description")
@@ -35,7 +38,7 @@ class Plan(models.Model):
         return reverse('payments:plan_detail', kwargs={'slug': self.slug})
 
     def get_total(self):
-        return int(self.amount) / 100.00
+        return self.amount / decimal.Decimal(100)
         total = property(stripe_total)
 
     @property
@@ -76,6 +79,7 @@ def pre_save_subscription(sender, instance, **kwargs):
     instance.slug   = slug
 
 class Promotion(models.Model):
+    plan = models.ForeignKey(Plan, on_delete=models.CASCADE, blank=True, null=True)
     code = models.CharField(max_length=50, unique=True, blank=True)
     trial_period = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
     valid_from = models.DateTimeField(default=timezone.now, verbose_name="Valid From")
@@ -86,7 +90,7 @@ class Promotion(models.Model):
     
 @receiver(pre_save, sender=Promotion)
 def pre_save_coupon(sender, **kwargs):
-    if kwargs['instance'].code == None or kwargs['instance'].code == "":
+    if kwargs['instance'].code is None or kwargs['instance'].code == "":
         p_code = str(unique_coupon_generator())
         promo = 'PROMO'
         promo_code = promo + p_code

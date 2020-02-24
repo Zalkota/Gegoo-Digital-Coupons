@@ -43,7 +43,7 @@ urlpatterns = [
     path('my-store/<int:store_id>/remove/<int:offer_id>', portal_views.OfferRemove, name='offer_remove'),
 
     #Merchant Signup Forms
-    path('merchant-signup/', users_views.MerchantSignUpView.as_view(), name='merchant-signup'),
+    path('merchant-signup/', users_views.MerchantSignUpView.as_view(), name='merchant_signup'),
 
     # path('consumer-signup/', ConsumerSignUpView.as_view(), name='consumer-signup'),
 

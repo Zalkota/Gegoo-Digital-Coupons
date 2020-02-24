@@ -85,51 +85,21 @@ a:hover {
 
             {% if user.merchant_profile.payment_status != True %}
 
-                <div class="col-lg-6">
-                    <div class="card shadow-2 my-2">
-                        <div class="card-body">
-                            <h3 class="header">
-                                Purchase Subscription
-                                <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
-                            </h3>
-                            <br>
-                            <p><span class="fw-6"></span>A monthly subscription is required to utilize gegoo advertising services. <br><br>
-                            <span class="text-secondary">Questions or concerns? Click <a href="{% url 'support:contact-page' %}">here</a> to contact us </span></p>
-                            <a href="{% url 'memberships:select' %}" class="btn btn-primary-alt btn-block">Purchase Subscription</a>
-                        </div>
+            <div class="col-lg-6">
+                <div class="card shadow-2 my-2">
+                    <div class="card-body">
+                        <h3 class="header">
+                            Purchase Subscription
+                            <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
+                        </h3>
+                        <br>
+                        <p><span class="fw-6"></span>A monthly subscription is required to utilize gegoo advertising services. <br><br>
+                        <span class="text-secondary">Questions or concerns? Click <a href="{% url 'support:contact-page' %}">here</a> to contact us </span></p>
+                        <a href="{% url 'memberships:select' %}" class="btn btn-primary-alt btn-block">Purchase Subscription</a>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="row">
-                        <div class="card">
-                            <div class="card-body">
-                                {% for connection in connections %}
-                                    <h1>
-                                        {{ connection }}
-                                        <span>
-                                            <a href="{% url 'users:change_connections' operator='remove' pk=connection.pk %}" class="btn btn-primary">Remove Follow</a>
-                                        </span>
-                                    </h1>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="card">
-                            <div class="card-body">
-                                {% for store_connection in store_connections %}
-                                    <h1>
-                                        {{ store_connection }}
-                                        <span>
-                                            <a href="" class="btn btn-primary">Remove Store</a>
-                                        </span>
-                                    </h1>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>                        
-                    </div>
-                </div>
+            </div>
+        </div>
 
 
                 {% endif %}

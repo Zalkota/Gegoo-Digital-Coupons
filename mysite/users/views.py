@@ -234,7 +234,7 @@ class RedirectProfileView(LoginRequiredMixin, RedirectView):
 class MerchantSignUpView(SignupView):
     template_name = 'account/signup_merchant.html'
     form_class = MerchantSignupForm
-    view_name = 'merchant-signup'
+    view_name = 'merchant_signup'
     success_url = reverse_lazy('users:merchant_approval_store_create')
 
 

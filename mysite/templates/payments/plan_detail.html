@@ -1,68 +1,220 @@
 {% extends 'base-alt.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block title %} Checkout for Monthly Subscription Plans {% endblock title %}
 
+{% block extrahead %}
 
-{% block script %}
-<script type="text/javascript" nonce="">  // Create a Stripe client.
-  var stripe = Stripe('pk_test_k2kLiCPSsK7yyQF4rDDPhHN100mYwH0Pvj');
+<style media="screen">
 
-  // Create an instance of Elements.
-  var elements = stripe.elements();
+    #card-errors {
+      height: 20px;
+      padding: 4px 0;
+      color: #fa755a;
+    }
 
-  // Custom styling can be passed to options when creating an Element.
-  // (Note that this demo uses a wider set of styles than the guide below.)
-  var style = {
-    base: {
-      color: '#32325d',
-      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-      fontSmoothing: 'antialiased',
-      fontSize: '16px',
-      '::placeholder': {
-        color: '#aab7c4'
-      }
+    .StripeElement {
+        box-sizing: border-box;
+
+        height: 40px;
+
+        padding: 10px 12px;
+
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        background-color: white;
+
+        /* box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25); */
+        -webkit-transition: box-shadow 150ms ease;
+        transition: box-shadow 150ms ease;
+    }
+    
+    .StripeElement--focus {
+      box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+    
+    .StripeElement--invalid {
+      border-color: #fa755a;
+    }
+    
+    .StripeElement--webkit-autofill {
+      background-color: #fefde5 !important;
+    }
+</style>
+{% endblock extrahead %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-md-center my-3">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                          <h1 class="fs-16 fw-6 text-muted">Order Summary</h1>
+                          <div class="table-responsive-md">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col-md-4" class="border-0 bg-light text-left">
+                                    <div class="py-2 text-uppercase fs-12 fw-6">Store</div>
+                                  </th>
+                                  <th scope="col-md-2" class="border-0 bg-light text-right">
+                                    <div class="py-2 text-uppercase fs-12 fw-6">Edit</div>
+                                  </th>
+                                  <th scope="col-md-2" class="border-0 bg-light text-right">
+                                    <div class="py-2 text-uppercase fs-12 fw-6">Remove</div>
+                                  </th>
+                                  <th scope="col-md-4" class="border-0 bg-light text-right">
+                                    <div class="py-2 text-uppercase fs-12 fw-6">Price</div>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% for store in stores %}
+                                <tr>
+                                  <td  scope="row" class="border-0 text-left">
+                                    <h1 class="fs-14">
+                                      <a href="">
+                                        {{ store.business_name }}
+                                      </a>
+                                    </h1>
+                                  </td>
+                                  <td class="border-0 text-right">
+                                    <a href="">
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-edit"><path class="fill-orange-500" d="M4 14a1 1 0 0 1 .3-.7l11-11a1 1 0 0 1 1.4 0l3 3a1 1 0 0 1 0 1.4l-11 11a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-3z"></path><rect width="20" height="2" x="2" y="20" class="fill-orange-500" rx="1"></rect></svg>
+                                    </a>
+                                  </td>
+                                  <td class="border-0 text-right">
+                                    <a href="#" class="text-dark">
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-trash"><path class="fill-red-500" d="M5 5h14l-.89 15.12a2 2 0 0 1-2 1.88H7.9a2 2 0 0 1-2-1.88L5 5zm5 5a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1z"></path><path class="fill-red-600" d="M8.59 4l1.7-1.7A1 1 0 0 1 11 2h2a1 1 0 0 1 .7.3L15.42 4H19a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h3.59z"></path></svg>
+                                    </a>
+                                  </td>
+                                  <td class="border-0 text-right">
+                                    <h1 class="fs-14">{{ object.get_total }}</h1>
+                                  </td>
+                                </tr> 
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div> 
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-md-6">
+                          <form action="{% url 'payments:apply_promo' %}" method="POST">
+                            {% csrf_token %}
+                            {% crispy promotion_form promotion_form.helper %}
+                          </form>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-12 text-right">
+                            <h1 class="fs-16 mr-2">
+                              Subtotal:
+                              <span class="ml-2">{{ object.get_total }}</span>
+                            </h1>
+                            <h1 class="fs-16 fw-6 mr-2">
+                              Total:
+                              <span class="ml-2">{{ object.get_total }}</span>
+                            </h1>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="" method="POST" id="payment-form">
+                                {% csrf_token %}
+                                <div class="form-group mb-3">
+                                    <label for="card-element" class="mb-1">
+                                        Credit or debit card
+                                    </label>
+                                    <div id="card-element" class="StripeElement"><div class="__PrivateStripeElement" style="margin: 0px !important; padding: 0px !important; border: none !important; display: block !important; background: transparent !important; position: relative !important; opacity: 1 !important;"><iframe frameborder="0" allowtransparency="true" scrolling="no" name="__privateStripeFrame5" allowpaymentrequest="true" src="https://js.stripe.com/v3/elements-inner-card-7ab0782039fb31b34793323bf9160f6b.html#style[base][color]=%2332325d&amp;style[base][fontFamily]=%22Helvetica+Neue%22%2C+Helvetica%2C+sans-serif&amp;style[base][fontSmoothing]=antialiased&amp;style[base][fontSize]=16px&amp;style[base][::placeholder][color]=%23aab7c4&amp;style[invalid][color]=%23fa755a&amp;style[invalid][iconColor]=%23fa755a&amp;componentName=card&amp;wait=false&amp;rtl=false&amp;keyMode=test&amp;apiKey=pk_test_k2kLiCPSsK7yyQF4rDDPhHN100mYwH0Pvj&amp;origin=https%3A%2F%2Fstripe.com&amp;referrer=https%3A%2F%2Fstripe.com%2Fdocs%2Fstripe-js&amp;controllerId=__privateStripeController1" title="Secure payment input frame" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; height: 19.2px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: 0px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>        
+                                </div>
+                
+                                <button class="btn btn-primary w-100" type="submit">Pay</button>
+                
+                                <div id="card-errors" role="alert"></div>
+                            </form> 
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <p class="text-muted fs-14">We use Stripe to make sure you get paid on time and to keep your personal bank and details secure. Click <strong>Save and continue</strong> to set up your payments on Stripe.</p>
+                      </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block stripeJS %}
+<script type="text/javascript" nonce="">  
+    // Create a Stripe client.
+    var stripe = Stripe('pk_test_k2kLiCPSsK7yyQF4rDDPhHN100mYwH0Pvj');
+
+    // Create an instance of Elements.
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+        base: {
+            color: '#32325d',
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+            '::placeholder': {
+            color: '#6c757d'
+        }
     },
-    invalid: {
-      color: '#fa755a',
-      iconColor: '#fa755a'
-    }
-  };
+        invalid: {
+            color: '#fa755a',
+            iconColor: '#fa755a'
+        }
+    };
 
-  // Create an instance of the card Element.
-  var card = elements.create('card', {style: style});
+    // Create an instance of the card Element.
+    var card = elements.create('card', {style: style});
 
-  // Add an instance of the card Element into the `card-element` <div>.
-  card.mount('#card-element');
+    // Add an instance of the card Element into the `card-element` <div>.
+    card.mount('#card-element');
 
-  // Handle real-time validation errors from the card Element.
-  card.addEventListener('change', function(event) {
+    // Handle real-time validation errors from the card Element.
+    card.addEventListener('change', function(event) {
     var displayError = document.getElementById('card-errors');
-    if (event.error) {
-      displayError.textContent = event.error.message;
-    } else {
-      displayError.textContent = '';
-    }
-  });
+        if (event.error) {
+        displayError.textContent = event.error.message;
+        } else {
+        displayError.textContent = '';
+        }
+    });
 
-  // Handle form submission.
-  var form = document.getElementById('payment-form');
-  form.addEventListener('submit', function(event) {
+    // Handle form submission.
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
     event.preventDefault();
 
     stripe.createToken(card).then(function(result) {
-      if (result.error) {
-        // Inform the user if there was an error.
-        var errorElement = document.getElementById('card-errors');
-        errorElement.textContent = result.error.message;
-      } else {
-        // Send the token to your server.
-        stripeTokenHandler(result.token);
-      }
+        if (result.error) {
+            // Inform the user if there was an error.
+            var errorElement = document.getElementById('card-errors');
+            errorElement.textContent = result.error.message;
+            } else {
+            // Send the token to your server.
+            stripeTokenHandler(result.token);
+            }
+        });
     });
-  });
 
-  // Submit the form with the token ID.
-  function stripeTokenHandler(token) {
+    // Submit the form with the token ID.
+    function stripeTokenHandler(token) {
     // Insert the token ID into the form so it gets submitted to the server
     var form = document.getElementById('payment-form');
     var hiddenInput = document.createElement('input');
@@ -73,295 +225,17 @@
 
     // Submit the form
     form.submit();
-  }
-</script>   
-{% endblock script %}
+    }
 
-{% block extra_jQuery %}
-<script>
-$(document).ready$(function(){
+    // var successElement = document.getElementById('stripe-token-handler');
+    // document.querySelector('.wrapper').addEventListener('click', function() {
+    // successElement.className = 'is-hidden';
+    // });
 
-    $( '.informationDropdown' ).each( function( index, value ){
-
-        $( value ).data( 'height', $( this ).height() );
-        $( value ).css( {height: 30} );
-    });
-
-    $( '.informationDropdown .information' ).click( function(){
-
-        if( $( this ).data( 'expanded' ) ){
-
-          $( this ).parent().animate( {height: 30} );
-          $( this ).data( 'expanded', false );
-        }else{
-
-          $( this ).parent( ).animate( {height: $( this ).parent().data( 'height' )} );
-          $( this ).data( 'expanded', true );
-        }
-    });
-});
+    // // Not in demo.
+    // function stripeTokenHandler(token) {
+    // successElement.className = '';
+    // successElement.querySelector('.token').textContent = token.id;
+    // }
 </script>
-
-{% endblock %}
-
-{% block extra_css %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/stripe.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/store.css' %}">
-{% endblock %}
-
-{% block content %}
-
-<style media="screen">
-
-  #stripeBtnLabel {
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 16px;
-    font-variant: normal;
-    padding: 0;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  #stripeBtn {
-    border: none;
-    border-radius: 4px;
-    outline: none;
-    text-decoration: none;
-    color: #fff;
-    background: #32325d;
-    white-space: nowrap;
-    display: inline-block;
-    height: 40px;
-    line-height: 40px;
-    padding: 0 14px;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-    border-radius: 4px;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.025em;
-    text-decoration: none;
-    -webkit-transition: all 150ms ease;
-    transition: all 150ms ease;
-    float: left;
-    margin-left: 12px;
-    margin-top: 28px;
-  }
-
-  button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
-    background-color: #43458b;
-  }
-
-  form {
-    padding: 30px;
-    height: 120px;
-  }
-
-  label {
-    font-weight: 500;
-    font-size: 14px;
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  #card-errors {
-    height: 20px;
-    padding: 4px 0;
-    color: #fa755a;
-  }
-
-  .stripe-form-row {
-    width: 70%;
-    float: left;
-  }
-
-  .token {
-    color: #32325d;
-    font-family: 'Source Code Pro', monospace;
-    font-weight: 500;
-  }
-
-  #stripe-token-handler {
-    position: absolute;
-    top: 0;
-    left: 25%;
-    right: 25%;
-    padding: 20px 30px;
-    border-radius: 0 0 4px 4px;
-    box-sizing: border-box;
-    box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1),
-      0 15px 35px rgba(50, 50, 93, 0.15),
-      0 5px 15px rgba(0, 0, 0, 0.1);
-    -webkit-transition: all 500ms ease-in-out;
-    transition: all 500ms ease-in-out;
-    transform: translateY(0);
-    opacity: 1;
-    background-color: white;
-  }
-
-  #stripe-token-handler.is-hidden {
-    opacity: 0;
-    transform: translateY(-80px);
-  }
-
-  /**
-   * The CSS shown here will not be introduced in the Quickstart guide, but shows
-   * how you can use CSS to style your Element's container.
-   */
-  .StripeElement {
-    box-sizing: border-box;
-
-    height: 40px;
-
-    padding: 10px 12px;
-
-    border: 1px solid transparent;
-    border-radius: 4px;
-    background-color: white;
-
-    box-shadow: 0 1px 3px 0 #e6ebf1;
-    -webkit-transition: box-shadow 150ms ease;
-    transition: box-shadow 150ms ease;
-  }
-
-  .StripeElement--focus {
-    box-shadow: 0 1px 3px 0 #cfd7df;
-  }
-
-  .StripeElement--invalid {
-    border-color: #fa755a;
-  }
-
-  .StripeElement--webkit-autofill {
-    background-color: #fefde5 !important;
-  }
-</style>
-
-<main>
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-   <div class="container">
-     <div class="row">
-       <div class="col-lg-8">
-         <div class="card">
-           <h1 class="card-header">
-             Checkout
-             <span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-shopping-cart"><path class="primary" d="M7 4h14a1 1 0 0 1 .9 1.45l-4 8a1 1 0 0 1-.9.55H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"></path><path class="secondary" d="M17.73 19a2 2 0 1 1-3.46 0H8.73a2 2 0 1 1-3.42-.08A3 3 0 0 1 5 13.17V4H3a1 1 0 1 1 0-2h3a1 1 0 0 1 1 1v10h11a1 1 0 0 1 0 2H6a1 1 0 0 0 0 2h12a1 1 0 0 1 0 2h-.27z"></path></svg>
-             </span>
-           </h1>
-           <div class="card-body">
-             <div class="row mb-0">
-               <div class="col-12">
-                <h1 class="fs-12 fw-4">{{ request.user.merchant_profile.stores }} Store(s)</h1>
-                <hr class="mt-0 mb-0">
-               </div>
-             </div>
-             <div class="row mt-4">
-              {% for store in stores %}
-               <!-- <div class="col-3">
-                <img class="" style="height: 100px; width: 100px;" src="{{ AwsBucketURL }}{{ store.logo }}" alt="Checkout Item Image">
-               </div> -->
-               <div class="col-6">
-                <h1 class="fs-16">
-                  <strong>{{ store.business_name }}</strong>
-                  <span>
-                    <a href="" class="btn btn-outline ml-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mr-1 icon-edit"><path class="primary" d="M4 14a1 1 0 0 1 .3-.7l11-11a1 1 0 0 1 1.4 0l3 3a1 1 0 0 1 0 1.4l-11 11a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-3z"></path><rect width="20" height="2" x="2" y="20" class="secondary" rx="1"></rect></svg>
-                      Edit
-                    </a>
-                    <a href="" class="btn btn-outline ml-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mr-1 icon-trash"><path class="primary" d="M5 5h14l-.89 15.12a2 2 0 0 1-2 1.88H7.9a2 2 0 0 1-2-1.88L5 5zm5 5a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1z"></path><path class="secondary" d="M8.59 4l1.7-1.7A1 1 0 0 1 11 2h2a1 1 0 0 1 .7.3L15.42 4H19a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h3.59z"></path></svg>
-                      Delete
-                    </a>
-                  </span>
-                </h1>
-              {% endfor %}
-               </div>
-               <div class="col-6">
-                 <h1 class="fs-16 pull-right">
-                   <strong>$ {{ object.get_total }}</strong>
-                 </h1>
-               </div>
-               <hr class="mt-0 mb-0">
-             </div>
-             <div class="row mt-4">
-              <div class="col-12">
-                <form action="{% url 'payments:apply_promo' %}" method="POST">
-                  {% csrf_token %}
-                  {{ coupon_apply_form }}
-                  <button type="submit" class="btn btn-primary">Apply</button>
-                </form>
-              </div>
-              <hr class="mt-0 mb-0">
-             </div>
-             <div class="row mt-4">
-              <div class="col-6">
-                <h1>Total</h1>
-              </div>
-              <div class="col-6 pull-right">
-                $ {{ object.get_total }}
-              </div>
-             </div>
-             <div class="row">
-               <div class="col-12">
-                <form action="" method="post" id="payment-form">
-                  {% csrf_token %}
-                  <div class="stripe-form-row">
-                  <label for="card-element" id="stripeBtnLabel">
-                      Credit or debit card
-                  </label>
-                  <div id="card-element" class="StripeElement StripeElement--empty"><div class="__PrivateStripeElement" style="margin: 0px !important; padding: 0px !important; border: none !important; display: block !important; background: transparent !important; position: relative !important; opacity: 1 !important;"><iframe frameborder="0" allowtransparency="true" scrolling="no" name="__privateStripeFrame5" allowpaymentrequest="true" src="https://js.stripe.com/v3/elements-inner-card-503ed9baf6fad4c9d1eb3ddc7558c8d1.html#style[base][color]=%2332325d&amp;style[base][fontFamily]=%22Helvetica+Neue%22%2C+Helvetica%2C+sans-serif&amp;style[base][fontSmoothing]=antialiased&amp;style[base][fontSize]=16px&amp;style[base][::placeholder][color]=%23aab7c4&amp;style[invalid][color]=%23fa755a&amp;style[invalid][iconColor]=%23fa755a&amp;componentName=card&amp;wait=false&amp;rtl=false&amp;keyMode=test&amp;apiKey=pk_test_k2kLiCPSsK7yyQF4rDDPhHN100mYwH0Pvj&amp;origin=https%3A%2F%2Fstripe.com&amp;referrer=https%3A%2F%2Fstripe.com%2Fdocs%2Fstripe-js&amp;controllerId=__privateStripeController1" title="Secure payment input frame" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; height: 19.2px;"></iframe><input class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1" style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: 0px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;"></div></div>
-              
-                  <!-- Used to display form errors. -->
-                  <div id="card-errors" role="alert"></div>
-                  </div>
-              
-                  <button class="btn btn-primary" type="submit">Submit Subscription</button>
-              </form>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
- </main>
-
-  <div class="py-5 hide"></div>
-  <div class="py-5 hide"></div>
-  <div class="py-4"></div>
-{% endblock %}
-
-{% block jquery %}
- $('#exampleModalCenter').modal('show')
-{% endblock jquery %}
-
-
-{% block scripts %}
-  {{ block.super }}
-  <script>
-  $('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
-  </script>
-{% endblock scripts %}
+{% endblock stripeJS %}
