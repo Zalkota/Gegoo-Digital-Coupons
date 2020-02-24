@@ -40,7 +40,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
                     <div class="card shadow-2">
                         <a class="" href="{{ object.get_consumer_absolute_url }}">
-                            <img class="img-fluid border-radius-100" style="max-height: 250px;" src="{{ AwsBucketURL }}{{ object.logo }}" alt="User Uploaded images">
+                            <img class="img-fluid border-radius-100" style="max-height: 250px;" src="{{ AwsBucketMediaURL }}{{ object.logo }}" alt="User Uploaded images">
                         </a>
                         <div class="card-body py-1">
                             <div class=" text-left mt-3">
@@ -73,7 +73,7 @@
                 <div class="col-lg-9 text-center ">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-search"><circle cx="10" cy="10" r="7" class="fill-gray-300"/><path class="fill-purple-500" d="M16.32 14.9l1.1 1.1c.4-.02.83.13 1.14.44l3 3a1.5 1.5 0 0 1-2.12 2.12l-3-3a1.5 1.5 0 0 1-.44-1.14l-1.1-1.1a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>
                     <br>
-                    <p class="text-muted mt-3">Oops, no services were found. Try changing your location or category.</p>
+                    <p class="text-muted mt-3">Oops, no services were found. Try changing your location or search criteria.</p>
                 </div>
                 {% endfor %}
         </section>

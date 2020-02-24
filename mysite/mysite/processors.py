@@ -1,5 +1,6 @@
 # from portal.models import Promotion
 from django.shortcuts import get_list_or_404, get_object_or_404
+from django.conf import settings
 
 def SiteName(request):
     # Create fixed data structures to pass to template
@@ -52,5 +53,10 @@ def classloudFrontURL(request):
     # Create fixed data structures to pass to template
     # data could equally come from database queries
     # web services or social APIs
-    AwsBucketURL = 'https://static-gegoo-bucket.s3.amazonaws.com/media/'
-    return {'AwsBucketURL': AwsBucketURL}
+
+    if settings.DEBUG:
+        AwsBucketMediaURL = 'https://static-gegoo-bucket.s3.amazonaws.com/media-dev/'
+    else:
+        AwsBucketMediaURL = 'https://static-gegoo-bucket.s3.amazonaws.com/media/'
+
+    return {'AwsBucketMediaURL': AwsBucketMediaURL}

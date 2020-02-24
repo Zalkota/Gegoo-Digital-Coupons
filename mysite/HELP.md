@@ -82,6 +82,10 @@ virtualenv -p python3 env
 
 pip3 install -r requirements.txt
 
+# GIT
+git fetch origin
+git checkout -b someBranch origin/someBranch
+
 
 # NETWORKS
 docker network rm $(docker network ls -q)

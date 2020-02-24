@@ -17,13 +17,13 @@
     <div class="row">
         <div class="col-lg-6 text-left">
             <div class="fs-14 hide">
-                <a href="{% url 'home-page' %}" class="text-dark">{{ store.state }}</a>
+                <span href="" class="text-dark">{{ store.get_state_display }}</span>
                 <span class="text-primary px-1">&#8226;</span>
-                <a href="{% url 'users:userPage' %}" class="text-dark">{{ store.city }}</a>
+                <span href="" class="text-dark">{{ store.city }}</span>
                 <span class="text-primary px-1">&#8226;</span>
-                <a href="" class="text-dark">{{ store.category.get_name_display }}</a>
+                <a href="{{ store.category.get_absolute_url }}" class="text-dark">{{ store.category.get_name_display }}</a>
                 <span class="text-primary px-1">&#8226;</span>
-                <a href="" class="text-dark">{{ store.subcategory }}</a>
+                <a href="{{ store.subcategory.get_absolute_url }}" class="text-dark">{{ store.subcategory }}</a>
                 <span class="text-primary px-1">&#8226;</span>
                 <a href="" class="text-dark">{{ store.business_name }}</a>
             </div>
@@ -36,7 +36,7 @@
         <div class="col-lg-3 mt-3">
             <div class="card shadow-2">
                 <div class="card-body p-0">
-                    <img class="img-fluid p-0" style="width: 100%;" src="{{ AwsBucketURL }}{{ store.logo }}" alt="Coupon Image Banner">
+                    <img class="img-fluid p-0" style="width: 100%;" src="{{ AwsBucketMediaURL }}{{ store.logo }}" alt="Coupon Image Banner">
                 </div>
                 <div class="card-body border-top">
                     <h2 class="header text-dark">{{ store.business_name }}</h2>
@@ -58,8 +58,9 @@
                         <br>
                         <br>
                         <a href="tel:{{ store.phone_number }}" class="text-primary">{{ store.phone_number.as_e164 }} </a>
-                        {% if store.website_url.exists %}
-                        <a href="{{ store.website_url }}" class="text-primary">View Store</a>
+                        <a href="" class="text-primary ">Write Review</a>
+                        {% if store.website_url %}
+                        <a href="{{ store.website_url }}" target="_blank" class="text-primary pull-right">View Website</a>
                         {% endif %}
                     </div>
                 </div>
@@ -95,7 +96,7 @@
         <div class="col-lg-8 mt-3">
             <div class="p-0 shadow-2">
                 <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ store.banner }}">
-    				<source src="{{ AwsBucketURL }}{{ store.merchant.videofile.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
+    				<source src="{{ AwsBucketMediaURL }}{{ store.videofile.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
 				</video>
             </div>
 
@@ -117,9 +118,9 @@
                     </div>
                     {% else %}
                     {% endif %}
-                    <div class="merchant-button" id="DownloadContentBtn">
+                    <!-- <div class="merchant-button" id="DownloadContentBtn">
                         <span>Download</span>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- View Services -->
                 <!-- <div id="ViewServices">

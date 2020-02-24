@@ -120,7 +120,7 @@ def get_or_set_location(request):
 
 
 
-def CalculateCityLocation(request, city):
+def CalculateCityLocation(city):
     try:
         longitude = city.longitude
         latitude = city.latitude

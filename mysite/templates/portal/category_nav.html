@@ -18,7 +18,7 @@
         <div class="flex-box mx-2">
             <div class="card {% if 'auto' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
                 <a href="{% url 'portal:category_detail' slug='auto' %}">
-                    <div class="card-body text-center">
+                    <div class=" text-center">
                         <i class="fa fa-car fs-28 pt-1" aria-hidden="true"></i>
                         <br>
                         Auto
@@ -29,7 +29,7 @@
         <div class="flex-box mx-2">
             <div class="card {% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
                 <a href="{% url 'portal:category_detail' slug='food' %}">
-                    <div class="card-body text-center vertical-container">
+                    <div class=" text-center vertical-container">
                         <div class="vertical-alignment">
                             <i class="fa fa-cutlery fs-28 pt-1" aria-hidden="true"></i>
                             <br>
@@ -42,7 +42,7 @@
         <div class="flex-box mx-2">
             <div class="card {% if 'community' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
                 <a href="{% url 'portal:category_detail' slug='community' %}">
-                    <div class="card-body text-center vertical-container">
+                    <div class=" text-center vertical-container">
                         <div class="vertical-alignment">
                             <i class="fa fa-plane fs-28 pt-1" aria-hidden="true"></i>
                             <br>
@@ -53,9 +53,9 @@
             </div>
         </div>
         <div class="flex-box mx-2">
-            <div class="card {% if 'Beauty' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
-                <a href="{% url 'portal:category_detail' slug='Beauty' %}">
-                    <div class="card-body text-center vertical-container">
+            <div class="card {% if 'beauty' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                <a href="{% url 'portal:category_detail' slug='beauty' %}">
+                    <div class=" text-center vertical-container">
                         <div class="vertical-alignment">
                             <i class="fa fa-scissors fs-28 pt-1" aria-hidden="true"></i>
                             <br>
@@ -68,7 +68,7 @@
         <div class="flex-box mx-2">
             <div class="card {% if 'health' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
                 <a href="{% url 'portal:category_detail' slug='health' %}">
-                    <div class="card-body text-center vertical-container">
+                    <div class=" text-center vertical-container">
                         <div class="vertical-alignment">
                             <i class="fa fa-tablet fs-28 pt-1" aria-hidden="true"></i>
                             <br>
@@ -82,7 +82,7 @@
         <div class="flex-box ml-2">
             <div class="card {% if 'construction' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
                 <a href="{% url 'portal:category_detail' slug='construction' %}">
-                    <div class="card-body text-center vertical-container">
+                    <div class=" text-center vertical-container">
                         <div class="vertical-alignment">
                             <i class="fa fa-wrench fs-28 pt-1" aria-hidden="true"></i>
                             <br>
@@ -93,8 +93,7 @@
             </div>
         </div>
     </div>
-    <div class="flex-container mt-3">
 
-    </div>
+
 </section>
 {% endblock category_nav %}

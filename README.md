@@ -1,8 +1,11 @@
 #  Prerequisites
-https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04
-Install Docker
+
+Install Docker https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+Install Docker-Compose https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04
+
 
 # Start the server with Docker
+
 First, cd to the mysite folder
 
     docker-compose -f local.yml build

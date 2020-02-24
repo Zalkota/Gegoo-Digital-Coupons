@@ -213,7 +213,6 @@ def setCouponCode(sender, created, instance, **kwargs):
 
 def CalculateLocation(sender, created, instance, **kwargs):
     store = instance
-    #print(store.location)
     if store.location == None:
         try:
             longitude = store.longitude

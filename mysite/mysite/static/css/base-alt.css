@@ -8487,14 +8487,14 @@ button {
     <**************************************************************************>
 */
 .card-pill {
-  height: 153.1px;
+  height: 100px;
   text-align: center;
   display: inline-block;
   font-weight: 600;
   font-size: 18px;
   width: 100%;
   color: #2D3748;
-  padding: .6rem 0.5rem .6rem 0.5rem;
+  padding: .3rem;
   cursor: pointer;
   background-color: #F7FAFC;
   transition: transform 0.25s;
@@ -8506,7 +8506,7 @@ button {
       color: #718096; }
 
 .card-pill-active {
-  height: 153.1px;
+  height: 100px;
   text-align: center;
   display: inline-block;
   font-weight: 600;
