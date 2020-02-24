@@ -4,7 +4,7 @@
 <div class="row hide">
     <div class="col-lg-6">
         <h2 class="fw-6 mb-2">Merchant Dashboard </h2>
-        <span class="fs-14 hide text-secondary">Welcome Back, {{ user }}!</span>
+        <span class="fs-14 hide text-secondary">Welcome Back, {{ user|title }}!</span>
     </div>
     <div class="col-lg-6 text-right">
         {% if user.merchant_profile.status == 'APPROVED' %}

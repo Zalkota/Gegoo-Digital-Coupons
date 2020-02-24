@@ -53,7 +53,7 @@
                         </a>
                         {% if not request.user.is_authenticated %}
                         <div class="dropdown-menu dropdown-menu-small" aria-labelledby="messagesDropdown">
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{% url 'account_signup' %}">
                               Change Location
                             </a>
                         </div>
