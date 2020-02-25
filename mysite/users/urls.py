@@ -26,24 +26,24 @@ urlpatterns = [
     # Merchant Store Views
     path('my-store/<slug:slug>/', portal_views.MerchantStoreDetailView.as_view(), name='merchant_store_detail'),
     path('my-stores/', portal_views.MerchantStoreListView.as_view(), name='merchant_store_list'),
-    path('my-store/create', portal_views.MerchantStoreCreateView.as_view(), name='merchant_store_create'),
-    path('my-store/<slug:slug>/update', portal_views.MerchantStoreUpdateView.as_view(), name='merchant_store_update'),
-    path('my-store/<slug:slug>/delete', portal_views.MerchantStoreDeleteView.as_view(), name='merchant_store_delete'),
+    path('my-store/create/', portal_views.MerchantStoreCreateView.as_view(), name='merchant_store_create'),
+    path('my-store/<slug:slug>/update/', portal_views.MerchantStoreUpdateView.as_view(), name='merchant_store_update'),
+    path('my-store/<slug:slug>/delete/', portal_views.MerchantStoreDeleteView.as_view(), name='merchant_store_delete'),
 
 
     #Merchant Offer Views
     path('my-offers/', portal_views.MerchantOfferListView.as_view(), name='merchant_offer_list'),
-    path('my-offer/create', portal_views.MerchantOfferCreateView.as_view(), name='merchant_offer_create'),
+    path('my-offers/create/', portal_views.MerchantOfferCreateView.as_view(), name='merchant_offer_create'),
     path('my-offer/<slug:slug>/', portal_views.MerchantOfferDetailView.as_view(), name='merchant_offer_detail'),
-    path('my-offer/<slug:slug>/update', portal_views.MerchantOfferUpdateView.as_view(), name='merchant_offer_update'),
-    path('my-offer/<slug:slug>/delete', portal_views.MerchantOfferDeleteView.as_view(), name='merchant_offer_delete'),
-    path('my-offer/like', portal_views.OfferLike, name='offer_like'),
+    path('my-offer/<slug:slug>/update/', portal_views.MerchantOfferUpdateView.as_view(), name='merchant_offer_update'),
+    path('my-offer/<slug:slug>/delete/', portal_views.MerchantOfferDeleteView.as_view(), name='merchant_offer_delete'),
+    path('my-offer/like/', portal_views.OfferLike, name='offer_like'),
 
     path('my-store/<int:store_id>/add/<int:offer_id>', portal_views.OfferAdd, name='offer_add'),
     path('my-store/<int:store_id>/remove/<int:offer_id>', portal_views.OfferRemove, name='offer_remove'),
 
     #Merchant Signup Forms
-    path('merchant-signup/', users_views.MerchantSignUpView.as_view(), name='merchant-signup'),
+    path('merchant-signup/', users_views.MerchantSignUpView.as_view(), name='merchant_signup'),
 
     # path('consumer-signup/', ConsumerSignUpView.as_view(), name='consumer-signup'),
 
@@ -59,5 +59,9 @@ urlpatterns = [
     #Merchant Media
     path('my-video/<slug:slug>/delete', files_views.MerchantVideoFileDeleteView.as_view(), name='merchant_video_delete'),
     path('my-video/<slug:slug>/', files_views.MerchantVideoFileDetailView.as_view(), name='merchant_video_detail'),
+
+    #Connections
+    path('connect/<str:operator>/<int:pk>', users_views.ChangeConnections, name='change_connections'),    
+
 
 ]

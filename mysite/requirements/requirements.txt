@@ -7,7 +7,7 @@ gunicorn==19.9.0
 Pillow==5.2.0
 psycopg2==2.7.5
 psycopg2-binary==2.7.5
-requests==2.19.1
+requests==2.20
 # Storing Variables - Not sure if this is being used
 django-environ==0.4.5
 # User authentication

@@ -1,4 +1,4 @@
-{% extends "base_mpm.html" %}
+{% extends "base-alt.html" %}
 
 {% block content %}
 <div class="container">
@@ -9,16 +9,31 @@
                     <h1>Subscription Detail</h1>
                     <h1>{{ request.user.first_name }} {{ request.user.last_name }} - {{ request.user.email }}</h1>
                     <h1>{{ object.subscription_id }}</h1>
-                    <h1>{{ object.subscription_status }}</h1>
-                
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        <button class="btn btn-danger" type="submit" name="delete">Delete</button>
-                    </form>
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        <button class="btn btn-success" type="submit" name="upgrade">Upgrade</button>
-                    </form>
+
+                    {% if object.subscription_status == 'active' %}
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="submit" name="delete">Delete</button>
+                        </form>  
+                        {% if request.user.merchant_profile.stores > object.quantity %}
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-success" type="submit" name="upgrade">Upgrade</button>
+                            </form>
+                        {% elif request.user.merchant_profile.stores < object.quantity %}
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-success" type="submit" name="downgrade">Downgrade</button>
+                            </form>
+                        {% endif %}
+                    {% elif object.subscription_status == 'trialing' %}
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="submit" name="delete">Delete</button>
+                        </form>  
+                    {% else %}
+                    <h1>Since your subscription is {{ object.subscription_status }}. You will have to reactiveate by purchasing another plan!</h1>
+                    {% endif %}
                 </div>
             </div>
         </div>

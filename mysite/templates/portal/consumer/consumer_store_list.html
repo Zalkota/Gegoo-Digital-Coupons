@@ -13,6 +13,7 @@
     <h2 class="header text-dark">All Services Located Near {{ city }}, {{ state }}</h2>
     <br>
     <div class="row">
+
         {% for object in object_list %}
         <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
             <div class="card shadow-1">
@@ -47,6 +48,34 @@
             </div>
         </div>
         {% endfor %}
+
+
+        <div class="col-8">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Trending Stores</h1>
+                    <div class="card-group">
+                    {% for trending_store in trending_stores %}
+                        <div class="card faq-card">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <a class="card-link" href="{{ trending_store.get_consumer_absolute_url }}">
+                                        <h3>{{ trending_store.business_name }}</h3>
+                                        <h3>{{ trending_store.merchant }}</h3>
+                                    </a>
+                                </div>
+                                <p class="card-text">{{ trending_store.description }}</p>
+
+                                    <a href="" value="add" data-catid="{{ trending_store.pk }}" class="followBtn btn btn-primary" action_type="add">Follow</a>
+
+                                </div>
+                        </div>
+                        <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
     {% if is_paginated %}
     <div class="py-3 text-center">
@@ -72,4 +101,43 @@
     </div>
     {% endif %}
 </section>
+</div>
 {% endblock content %}
+
+{% block jquery %}
+  $(".followBtn").click(function (event) {
+    event.preventDefault();
+
+    var this_ = $(this);
+    var storepk = this_.attr('data-catid');
+    var action_type = this_.attr('action_type');
+
+    $.ajax({
+      type: "POST",
+      url: "{% url 'portal:store_change_connections' %}",
+      data: {
+        store_pk: storepk,
+        action: action_type,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+      },
+      success: function (data) {
+
+        if (this_.text() == 'Follow') {
+            this_.text('Unfollow');
+            this_.attr({
+                'action_type': 'remove',
+                'class': 'followBtn btn btn-danger'
+            })
+        } else {
+            this_.text('Follow');
+            this_.attr({
+                'action_type': 'add',
+                'class': 'followBtn btn btn-primary'
+            })
+        }
+        console.log(data)
+      }
+    });
+    return false;
+  });
+{% endblock jquery %}

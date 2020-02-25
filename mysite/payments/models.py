@@ -2,11 +2,17 @@ from django.db import models
 from django.conf import settings
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
+from django.utils import timezone
 from django.utils.text import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.shortcuts import reverse
+import decimal
 
 import stripe
+
+from users import models as users_models
+
+from payments.functions import unique_coupon_generator
 
 class Benefit(models.Model):
 	description = models.CharField(max_length=36, help_text="Describe a benefit of the subscription product.")
@@ -19,7 +25,7 @@ class Plan(models.Model):
     nickname    = models.CharField(max_length=50, blank=True, editable=False)
     product_id  = models.CharField(max_length=50, blank=True, editable=False)
     plan_id     = models.CharField(max_length=50, blank=True)
-    amount      = models.CharField(max_length=50, blank=True, editable=False)
+    amount      = models.DecimalField(default=0, validators=[MinValueValidator(0)], decimal_places=2, max_digits=10)
     currency    = models.CharField(max_length=50, blank=True, editable=False)
     interval    = models.CharField(max_length=50, blank=True, editable=False)
     description = models.CharField(max_length=255, default="add description")
@@ -32,7 +38,7 @@ class Plan(models.Model):
         return reverse('payments:plan_detail', kwargs={'slug': self.slug})
 
     def get_total(self):
-        return int(self.amount) / 100.00
+        return self.amount / decimal.Decimal(100)
         total = property(stripe_total)
 
     @property
@@ -57,21 +63,45 @@ class Subscription(models.Model):
     slug                        = models.CharField(max_length=100, blank=True)
     subscription_id             = models.CharField(max_length=50, blank=True)
     subscription_quantity       = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
-    subscription_item_id        = models.CharField(max_length=50, blank=True)
+    subscription_item_id        = models.CharField(max_length=50, blank=True, editable=False)
     plan_id                     = models.CharField(max_length=50, blank=True)
-    subscription_status         = models.CharField(max_length=50, blank=True)
-    payment_intent_status       = models.CharField(max_length=50, blank=True)
-
-    def __str__(self):
-        return self.subscription_id
-
-@receiver(pre_save, sender=Subscription)
-def pre_save_subscription(sender, instance, **kwargs):
-    slug            = slugify(instance.subscription_id)
-    instance.slug   = slug
+    subscription_status         = models.CharField(max_length=50, blank=True, editable=False)
 
     def __str__(self):
         return self.subscription_id
 
     def get_absolute_url(self):
         return reverse('payments:subscription_detail', kwargs={'slug': self.slug})
+
+@receiver(pre_save, sender=Subscription)
+def pre_save_subscription(sender, instance, **kwargs):
+    slug            = slugify(instance.subscription_id)
+    instance.slug   = slug
+
+class Promotion(models.Model):
+    plan = models.ForeignKey(Plan, on_delete=models.CASCADE, blank=True, null=True)
+    code = models.CharField(max_length=50, unique=True, blank=True)
+    trial_period = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
+    valid_from = models.DateTimeField(default=timezone.now, verbose_name="Valid From")
+    valid_to = models.DateTimeField()
+
+    def __str__(self):
+        return self.code
+    
+@receiver(pre_save, sender=Promotion)
+def pre_save_coupon(sender, **kwargs):
+    if kwargs['instance'].code is None or kwargs['instance'].code == "":
+        p_code = str(unique_coupon_generator())
+        promo = 'PROMO'
+        promo_code = promo + p_code
+        kwargs['instance'].code = promo_code
+
+
+class PromoUser(models.Model):
+    user        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, related_name='promo_user')
+    promotion   = models.ForeignKey(Promotion, on_delete=models.CASCADE, null=True, related_name='promo')
+    has_used    = models.BooleanField(default=False)
+    redeemd_at  = models.DateTimeField(default=timezone.now, verbose_name="Redeemed At")
+
+    def __str__(self):
+        return self.user.username

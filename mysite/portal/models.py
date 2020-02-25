@@ -343,9 +343,6 @@ class Store(models.Model):
     # URL Pattern
     slug        = models.SlugField(unique=True, blank=True, null=True) #MAKE THIS NOT EDITABLE
 
-    # Offers
-    offers      = models.ManyToManyField(Offer, blank=True)
-
     # Store Attributes
     business_name       = models.CharField(max_length=100)
     website_url         = models.URLField(max_length=500, blank=True, null=True)
@@ -386,7 +383,7 @@ class Store(models.Model):
         return self.business_name
 
     def get_absolute_url(self):
-        return reverse('portal:merchant_store_detail', kwargs={'slug': self.slug})
+        return reverse('users:merchant_store_detail', kwargs={'slug': self.slug})
 
     def get_consumer_absolute_url(self):
         return reverse('portal:consumer_store_detail', kwargs={'slug': self.slug})
@@ -422,6 +419,10 @@ class Store(models.Model):
         count = self.testimonial.count()
         return count
 
+@receiver(pre_save, sender=Store) #TODO 
+def pre_save_store(sender, **kwargs):
+    slug = slugify(kwargs['instance'].business_name)
+    kwargs['instance'].slug = slug
 
 @receiver([post_save, post_delete], sender=Store)
 def update_store_count(sender, instance, **kwargs):
@@ -431,25 +432,9 @@ def update_store_count(sender, instance, **kwargs):
     merchantprofile.save()
 
 
-# @receiver(pre_save, sender=Store)
-# def pre_save_store(sender, **kwargs):
-#     #Slug
-#     slug = kwargs['instance'].slug
-#     if slug == '' or None:
-#         slug = slugify(kwargs['instance'].city)
-#         print('slug', slug)
-#         kwargs['instance'].slug = slug
-
     # def GetDistance(self):
     #     return self.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
     #
-
-# @receiver(pre_save, sender=Store)
-# def pre_save_store(sender, **kwargs):
-#     slug_1 = slugify(kwargs['instance'].business_name, kwargs['instance'].city)
-#     slug_2 = slugify(slug_1, kwargs['instance'].state)
-#     slug_3 = slugify(slug_2, kwargs['instance'].id)
-#     kwargs['instance'].slug = slug_3
 
 post_save.connect(CalculateLocation, sender=Store)
 post_save.connect(setCouponCode, sender=Store)
@@ -470,25 +455,38 @@ class Testimonial(models.Model):
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
     updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
 
+class StoreOffer(models.Model):
+    offers = models.ManyToManyField(Offer)
+    current_store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name='store', null=True)
 
+    @classmethod
+    def add_offer(cls, current_store, new_offer):
+        storeoffer, created = cls.objects.get_or_create(
+            current_store = current_store
+        )
+        storeoffer.offers.add(new_offer)
 
+    @classmethod
+    def remove_offer(cls, current_store, new_offer):
+        storeoffer, created = cls.objects.get_or_create(
+            current_store = current_store
+        )
+        storeoffer.offers.remove(new_offer)
 
-# post_save.connect(setMerchantRefCode, sender=Store)
-# post_save.connect(CalculateLocation, sender=Store)
+class FollowStore(models.Model):
+    connections         = models.ManyToManyField(Store)
+    current_user        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user', null=True)
 
-    #
-    # def storeCallback(sender, request, user, **kwargs):
-    #     userProfile, is_created = Profile.objects.get_or_create(user=user)
-    #     if is_created:
-    #         userProfile.name = user.username
-    #         userProfile.save()
-    #
-    # user_signed_up.connect(profileCallback)
-#
-# class OfferManager(models.Manager):
-#     #Grabs first offer and only shows active offers
-#     def get_first_active(self):
-#         now = timezone.now()
-#         object_qs = Offer.objects.filter(end_date__gt=now).order_by('end_date')
-#         object = object_qs.first()
-#         return object
+    @classmethod
+    def add_connection(cls, current_user, new_connection):
+        follow_store, created = cls.objects.get_or_create(
+            current_user = current_user
+        )
+        follow_store.connections.add(new_connection)
+
+    @classmethod
+    def remove_connection(cls, current_user, new_connection):
+        follow_store, created = cls.objects.get_or_create(
+            current_user = current_user
+        )
+        follow_store.connections.remove(new_connection)

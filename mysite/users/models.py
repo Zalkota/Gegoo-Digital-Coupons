@@ -98,9 +98,6 @@ STATES = (
         ("WY", "Wyoming")
         )
 
-
-
-
 class User(AbstractUser):
     is_merchant     = models.BooleanField('is_merchant', default=False)
     is_approved     = models.BooleanField('merchant_is_approved', default=False)
@@ -135,6 +132,12 @@ class Profile(models.Model): #Is a Profile Necessary?
 
     def __str__(self):
         return self.user.username
+
+
+#TODO Only created for non-merchants
+def ProfileCallback(sender, request, user, **kwargs):
+    if user.is_merchant == False:
+        userProfile, is_created = Profile.objects.get_or_create(user=user)
 
 
 class MerchantProfile(models.Model): #Is a Profile Necessary?
@@ -178,28 +181,39 @@ def create_merchant_profile(sender, instance, created, **kwargs):
 
         merchantprofile, created = MerchantProfile.objects.get_or_create(user=instance)
 
-        if merchantprofile.customer_id is None:
+        if merchantprofile.customer_id is None or merchantprofile.customer_id == '':
             stripe.api_key                   = settings.STRIPE_SECRET_KEY_MPM
-            stripe_customer_id               = stripe.Customer.create(email=instance.email)
+            stripe_customer_id               = stripe.Customer.create(email=instance.email, name='%s %s' % (instance.first_name, instance.last_name))
             merchantprofile.customer_id      = stripe_customer_id['id']
             merchantprofile.save()
 
-#TODO Only created for non-merchants
-def ProfileCallback(sender, request, user, **kwargs):
-    if user.is_merchant == False:
-        userProfile, is_created = Profile.objects.get_or_create(user=user)
+@receiver(post_save, sender=MerchantProfile)
+def create_stripe_customer_id(sender, instance, **kwargs):
+    merchant_profile                     = MerchantProfile.objects.get(user=instance.user)
 
+    if merchant_profile.customer_id is None or merchant_profile.customer_id == '':
+        stripe.api_key                   = settings.STRIPE_SECRET_KEY_MPM
+        stripe_customer_id               = stripe.Customer.create(email=instance.user.email, name='%s %s' % (instance.user.first_name, instance.user.last_name))
+        merchant_profile.customer_id     = stripe_customer_id['id']
+        merchant_profile.save()
 
-# #TODO Only created for merchants
-# def create_merchant_profile(sender, **kwargs):
-#     if kwargs['created']:
-#         if kwargs['instance'].is_merchant == True:
-#             merchantprofile             = MerchantProfile.objects.create(user=kwargs['instance'])
-#             stripe.api_key              = settings.STRIPE_SECRET_KEY_MPM
-#             customer                    = stripe.Customer.create(kwargs['instance'].email)
-#             merchantprofile.customer_id = customer['id']
-#             merchantprofile.save()
+class Follow(models.Model):
+    connections         = models.ManyToManyField(settings.AUTH_USER_MODEL)
+    current_user        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='owner', null=True)
 
+    @classmethod
+    def add_connection(cls, current_user, new_connection):
+        follow, created = cls.objects.get_or_create(
+            current_user = current_user
+        )
+        follow.connections.add(new_connection)
+
+    @classmethod
+    def remove_connection(cls, current_user, new_connection):
+        follow, created = cls.objects.get_or_create(
+            current_user = current_user
+        )
+        follow.connections.remove(new_connection)
 
 # user_logged_in.connect(addressCallback)
 # user_logged_in.connect(profileCallback)

@@ -173,7 +173,7 @@ class homeView(View):
 
         # promotional_video = PromotionalVideo.objects.filter(active=True).order_by("-created_at").first()
         #store_nearby = store.objects.annotate(distance = Distance("location", user_location)).annotate(offer_title=Subquery(Offer.values('end_date')[:1])).order_by("distance")
-
+        catergories = Category.objects.all()
         # if address_qs = None:
         #     address_qs = Address.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
         # city = context["city"]
@@ -196,11 +196,25 @@ class homeView(View):
             'store_nearby': store_nearby,
             # 'store_empty_qs': store_empty_qs,
             'data': video_list,
+            'categories': catergories,
             # 'promotional_video': promotional_video,
         }
         # return JsonResponse(video_list)
         return render(self.request, 'mysite/home_page.html', context)
 
+class AltHomeView(ListView):
+    template_name = 'mysite/home_page_mpm.html'
+
+    def get_queryset(self, *args, **kwargs):
+        city = 'default_city'
+        state = 'default_state'
+        city_state = get_or_set_location(self.request)
+        city = city_state["city"]
+        state = city_state["state"]
+        user_location = city_state["user_location"]
+
+        nearby_stores = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:6]
+        return nearby_stores
 
 def security(request):
     return render(request, 'security.txt')

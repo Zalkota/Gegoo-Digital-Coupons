@@ -12,6 +12,10 @@ urlpatterns = [
 
     #Consumer Views
     path('stores/', portal_views.ConsumerStoreListView.as_view(), name='consumer_store_list'),
-    path('store/<slug:slug>/', portal_views.ConsumerStoreDetailView.as_view(), name='consumer_store_detail')
+    path('store/<slug:slug/>', portal_views.ConsumerStoreDetailView.as_view(), name='consumer_store_detail'),
+
+    #Connections
+    path('store-connect/', portal_views.StoreChangeConnectionsAjax, name='store_change_connections'),
+    path('offer-connect/', portal_views.StoreOfferAjax, name='offer_change_connections')
 
 ]

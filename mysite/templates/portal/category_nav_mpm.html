@@ -1,0 +1,25 @@
+{% load static %}
+
+{% block category_nav_mpm %}
+<section class="pt-4 pb-5 container">
+    <h3>Categories</h3>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="row justify-content-center">
+                {% for category in categories %}
+                <div class="col-4">
+                    <div class="card w-50 my-2">
+                        <div class="card-body text-center">
+                            <a href="{{ category.get_absolute_url }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                                <h1 class="card-title fs-16">{{ category.name }}</h1>
+                            </a>
+                        </div>
+                    </div>   
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock category_nav_mpm %}

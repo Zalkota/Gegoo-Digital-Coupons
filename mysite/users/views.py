@@ -47,14 +47,21 @@ class userPage(LoginRequiredMixin, View):
             #Render Merchant Page
             if user.is_merchant == True:
                 # videoFile_qs = files_models.VideoFile.objects.filter(user=user).order_by('uploaded_at').first()
-                store_qs = portal_models.Store.objects.filter(merchant=user).order_by('-views')
-                offer_qs = portal_models.Offer.objects.filter(author=user) #TODO ADD TIME TO FILTER USING GREAT THAN FILTER
+                store_qs    = portal_models.Store.objects.filter(merchant=user).order_by('-views')
+                offer_qs    = portal_models.Offer.objects.filter(author=user) #TODO ADD TIME TO FILTER USING GREAT THAN FILTER
+                connection  = users_models.Follow.objects.get(current_user = self.request.user)
+                connections = connection.connections.all()
+                store_connection = portal_models.FollowStore.objects.get(current_user=self.request.user)
+                store_connections = store_connection.connections.all()
 
                 context = {
-                    'user': user,
+                    'user'          : user,
+                    'store_list'    : store_qs,
+                    'offer_list'    : offer_qs,
+                    'connections'   : connections,
+                    'store_connections': store_connections,
+
                     # 'videoFile': videoFile_qs,
-                    'store_list': store_qs,
-                    'offer_list': offer_qs,
                 }
                 return render(self.request, "users/merchant/merchant_profile.html", context)
 
@@ -148,6 +155,13 @@ class userFavorites(ListView):
     def get_queryset(self):
         favorite_list = portal_models.Offer.objects.filter(likes=self.request.user)
         return favorite_list
+    
+    def get_context_data(self, **kwargs):
+        follow = users_models.Follow.objects.get(current_user=self.request.user)
+
+        context = super(userFavorites, self).get_context_data(**kwargs)
+        context['follows'] = follow.users.all()
+        return context
 
 
 class userMerchants(ListView):
@@ -224,19 +238,10 @@ class RedirectProfileView(LoginRequiredMixin, RedirectView):
 # <*****                     User Merchant Views                        *****>
 # <**************************************************************************>
 
-
-# class MerchantStoreListView(LoginRequiredMixin, ListView): #TODO this should only be viewable by merchants
-#     # model = Merchant
-#     # template_name = 'users/user_merchant_store_list.html'
-
-#     # def get_queryset(self):
-#     #     return Merchant.objects.filter(user=self.request.user)
-
-
 class MerchantSignUpView(SignupView):
     template_name = 'account/signup_merchant.html'
     form_class = MerchantSignupForm
-    view_name = 'merchant-signup'
+    view_name = 'merchant_signup'
     success_url = reverse_lazy('users:merchant_approval_store_create')
 
 
@@ -255,15 +260,11 @@ class MerchantSubscriptionsView(LoginRequiredMixin, View):
         }
         return render(self.request, "users/merchant/merchant_subscription.html", context)
 
-#
-# class ConsumerSignUpView(SignupView):
-#
-#     template_name = 'account/consumer_signup.html'
-#     form_class = ConsumerSignupForm
-#     view_name = 'consumer-signup'
-#     success_url = '/'
-#
-#     def get_context_data(self, **kwargs):
-#         ret = super(ConsumerSignUpView, self).get_context_data(**kwargs)
-#         ret.update(self.kwargs)
-#         return ret
+def ChangeConnections(request, operator, pk):
+	connection = users_models.User.objects.get(pk=pk)
+	if operator == 'add':
+		users_models.Follow.add_connection(request.user, connection)
+	if operator == 'remove':
+		users_models.Follow.remove_connection(request.user, connection)
+	return redirect('users:userPage')
+

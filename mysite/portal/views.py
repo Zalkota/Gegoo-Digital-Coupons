@@ -1,9 +1,9 @@
 # <**************************************************************************>
 # <*****                         IMPORTS                                *****>
 # <**************************************************************************>
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.text import slugify
 ## DEBUG:
 from django.contrib import messages
@@ -132,6 +132,7 @@ class ConsumerStoreDetailView(DetailView):
 
 
 
+
 # <**************************************************************************>
 # <*****                      Visible by Merchants only                 *****>
 # <**************************************************************************>
@@ -140,19 +141,16 @@ class ConsumerStoreDetailView(DetailView):
 
 class MerchantStoreDetailView(LoginRequiredMixin, DetailView):
 	model = portal_models.Store
-	template_name = 'portal/merchant/merchant_store_detail.html'
-
-	# def get_object(self):
-	# 	obj = super(MerchantStoreDetailView, self).get_object()
-	# 	obj.views += 1
-	# 	obj.save()
-	# 	return obj
+	template_name = 'portal/merchant/merchant_detail_mpm.html'
 
 	def get_context_data(self, **kwargs):
+		self.object = self.get_object()
 		context = super(MerchantStoreDetailView, self).get_context_data(**kwargs)
-		context['offers'] = portal_models.Offer.objects.filter(author=self.request.user).exclude(slug__in=self.object.offers.all().values_list('slug'))
+		store_pk = self.object.pk
+		store_offer = portal_models.StoreOffer.objects.get(current_store=store_pk)
+		context['offers'] = portal_models.Offer.objects.filter(author=self.request.user)
+		context['added_offers'] = store_offer.offers.all()
 		return context
-
 
 class MerchantStoreListView(LoginRequiredMixin, ListView):
 	model = portal_models.Store
@@ -287,3 +285,82 @@ class MerchantTestimonialListView(LoginRequiredMixin, IsMerchantMixin, ListView)
 	def get_queryset(self):
 		object_list = portal_models.Testimonial.objects.filter(store__merchant=self.request.user)
 		return object_list
+
+# <**************************************************************************>
+# <*****                        CONSUMER VIEWS                          *****>
+# <**************************************************************************>
+
+class ConsumerStoreListView(ListView):
+	model = portal_models.Store
+	template_name = 'portal/consumer/consumer_store_list.html'
+
+	def get_queryset(self):
+		store_list = portal_models.Store.objects.all()
+		return store_list
+
+	def get_context_data(self, **kwargs):
+		store_connection = portal_models.FollowStore.objects.get(current_user = self.request.user)
+
+		context = super(ConsumerStoreListView, self).get_context_data(**kwargs)
+		context['trending_stores'] = portal_models.Store.objects.all().order_by('-views')[0:4]
+		context['store_connections'] = store_connection.connections.all()
+		return context
+
+
+class ConsumerStoreDetailView(DetailView):
+	model = portal_models.Store
+	template_name = 'portal/consumer/consumer_store_detail.html'
+
+	def get_object(self):
+		obj = super(ConsumerStoreDetailView, self).get_object()
+		obj.views += 1
+		obj.save()
+		return obj
+
+def StoreChangeConnections(request, operator, pk):
+	store_connection = portal_models.Store.objects.get(pk=pk)
+	if operator == 'add':
+		portal_models.FollowStore.add_connection(request.user, store_connection)
+	if operator == 'remove':
+		portal_models.FollowStore.remove_connection(request.user, store_connection)
+	return redirect('users:userPage')
+
+def StoreChangeConnectionsAjax(request):
+	if request.method == 'POST':
+		store_pk = request.POST['store_pk']
+		action = request.POST['action']
+
+		print(store_pk)
+		print(action)
+
+		if action == 'add':
+			store_connection_ajax = portal_models.Store.objects.get(pk=store_pk)
+			portal_models.FollowStore.add_connection(request.user, store_connection_ajax)
+			return HttpResponse('Success!')
+
+		if action == 'remove':
+			store_connection_ajax = portal_models.Store.objects.get(pk=store_pk)
+			portal_models.FollowStore.remove_connection(request.user, store_connection_ajax)
+			return HttpResponse('Success!')
+
+def StoreOfferAjax(request):
+	if request.method == 'POST':
+		store_pk = request.POST['store_pk']
+		offer_ajax_pk = request.POST['offer_pk']
+		action = request.POST['action']
+
+		print(store_pk)
+		print(offer_ajax_pk)
+		print(action)
+
+		if action == 'add':
+			store = portal_models.Store.objects.get(pk=store_pk)
+			add_offer_ajax = portal_models.Offer.objects.get(pk=offer_ajax_pk)
+			portal_models.StoreOffer.add_offer(store, add_offer_ajax)
+			return HttpResponse('Success!')
+
+		if action == 'remove':
+			store = portal_models.Store.objects.get(pk=store_pk)
+			add_offer_ajax = portal_models.Offer.objects.get(pk=offer_ajax_pk)
+			portal_models.StoreOffer.remove_offer(store, add_offer_ajax)
+			return HttpResponse('Success!')

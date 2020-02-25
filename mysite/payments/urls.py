@@ -8,9 +8,10 @@ urlpatterns = [
     path('plan/<slug:slug>/', payments_views.PlanDetailView.as_view(), name='plan_detail'),
 
     path('subscription/<slug:slug>', payments_views.SubscriptionDetailView.as_view(), name='subscription_detail'),
-    path('payment-intent/', payments_views.PaymentIntent.as_view(), name='payment_intent'),
 
     path('webhook/', payments_webhooks.TrialWebhook.as_view(), name='webhook'),
 
     path('charge/', payments_views.Charge.as_view(), name='charge'),
+
+    path('apply-promo', payments_views.ApplyPromo, name='apply_promo')
 ]
