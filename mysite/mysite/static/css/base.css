@@ -8629,6 +8629,7 @@ button {
   width: 100%;
   color: #2D3748;
   padding: .35rem 1.2rem;
+  margin-top: .25rem;
   cursor: pointer;
   background-color: #fff;
   transition: transform 0.25s;
@@ -13526,7 +13527,7 @@ input[type=file] {
     left: -75%;
     background-color: #fefefe;
     z-index: 1000;
-    transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1); }
+    transition: transform 0.3s; }
   .navigation__background-2 {
     height: 100vh;
     width: 100%;
@@ -13583,7 +13584,7 @@ input[type=file] {
     left: -75%;
     background-color: #fefefe;
     z-index: 1000;
-    transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1); }
+    transition: transform 0.3s; }
   .navigation__background-2 {
     height: 100vh;
     width: 100%;

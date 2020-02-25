@@ -17,11 +17,10 @@
               <span><i class="fa fa-search" aria-hidden="true"></i></span>
         </label>
 
-        <label class="navigation__cart" id="messagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <a href="{% url 'home-page'%}">
+        <a href="{% url 'home-page'%}" class="navigation__cart" >
                 <img class="shadow-0 mb-2" src="{% static 'img/logo/navbrand.jpg' %}" width="140px" alt="Navigation Branding Logo GEGOO">
-            </a>
-        </label>
+
+        </a>
 
         <div class="navigation__background">&nbsp;</div>
         <label for="navi-toggle" class="navigation__background-2">
@@ -59,10 +58,14 @@
                   Log Out</a></li>
               {% endif %}
               <li class=" text-fill-purple-400 mt-3 fs-10" style="color: #111; border-bottom: 2px solid #F1F3F6;"></li>
-              <li class="navigation__item mt-2"><a href="{% url 'home-page' %}" class="navigation__link" style="">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-home"><path class="fill-gray-400" d="M9 22H5a1 1 0 0 1-1-1V11l8-8 8 8v10a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v4a1 1 0 0 1-1 1zm3-9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="fill-purple-400" d="M12.01 4.42l-8.3 8.3a1 1 0 1 1-1.42-1.41l9.02-9.02a1 1 0 0 1 1.41 0l8.99 9.02a1 1 0 0 1-1.42 1.41l-8.28-8.3z"/></svg>
-                  Home</a>
+            <a href="{% url 'home-page' %}">
+              <li class="navigation__item mt-2">
+                  <span class="navigation__link">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-home"><path class="fill-gray-400" d="M9 22H5a1 1 0 0 1-1-1V11l8-8 8 8v10a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v4a1 1 0 0 1-1 1zm3-9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="fill-purple-400" d="M12.01 4.42l-8.3 8.3a1 1 0 1 1-1.42-1.41l9.02-9.02a1 1 0 0 1 1.41 0l8.99 9.02a1 1 0 0 1-1.42 1.41l-8.28-8.3z"/></svg>
+                      Home
+                  </span>
               </li>
+            </a>
             {% if user.is_merchant == False %}
                     <li class="navigation__item "><a href="{% url 'users:user_favorites' %}" class="navigation__link" style="">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-heart"><circle cx="12" cy="12" r="10" class="fill-gray-400"/><path class="fill-purple-400" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
