@@ -6,21 +6,19 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
-                <div class="card shadow-2">
-                    <div class="card-body">
-                        <h2 class="section-header">Create a Store</h2>
-                        <p class="fs-14">Own a business? Fill out the following information for one of your locations.</p>
-                        <hr>
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="row">
-                                {% crispy form form.helper %}
-                                <div class="col-lg-12">
-                                    <input type="submit" name="Save" value="Create Store" class="btn btn-primary btn btn-primary-alt btn-block mt-3 pull-right" id="submit-id-save">
-                                </div>
+                <div class="card-body">
+                    <h2 class="section-header">Create a Store</h2>
+                    <p class="fs-14">Own a business? Fill out the following information for one of your locations.</p>
+                    <hr>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            {% crispy form form.helper %}
+                            <div class="col-lg-12">
+                                <input type="submit" name="Save" value="Create Store" class="btn btn-primary btn btn-primary-alt btn-block mt-3 pull-right" id="submit-id-save">
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

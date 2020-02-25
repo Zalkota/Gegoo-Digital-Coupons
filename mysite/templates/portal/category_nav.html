@@ -3,93 +3,187 @@
 {% block category_nav %}
 <section class="pt-4 pb-3 container">
     <h3 class="section-header text-dark mb-3">Categories</h3>
-    <div class="flex-container">
-        <div class="flex-box mr-2">
-            <div class="card {% if request.path == '/shop/stores/' %} card-pill-active {% else %} card-pill {% endif %}">
-                <a href="{% url 'portal:consumer_store_list' %}">
-                    <div class="card-body text-center vertical-container" style="height: 100%;">
-                        <div class="vertical-alignment">
-                            All Services
+    <div class="hide">
+        <div class="flex-container">
+            <div class="flex-box mr-2">
+                <div class="card {% if request.path == '/shop/stores/' %} card-pill-active {% else %} card-pill {% endif %}">
+                    <a href="{% url 'portal:consumer_store_list' %}">
+                        <div class="card-body text-center vertical-container" style="height: 100%;">
+                            <div class="vertical-alignment">
+                                All Services
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card {% if 'auto' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
-                <a href="{% url 'portal:category_detail' slug='auto' %}">
-                    <div class=" text-center">
-                        <i class="fa fa-car fs-28 pt-1" aria-hidden="true"></i>
-                        <br>
-                        Auto
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card {% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
-                <a href="{% url 'portal:category_detail' slug='food' %}">
-                    <div class=" text-center vertical-container">
-                        <div class="vertical-alignment">
-                            <i class="fa fa-cutlery fs-28 pt-1" aria-hidden="true"></i>
+            <div class="flex-box mx-2">
+                <div class="card {% if 'auto' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='auto' %}">
+                        <div class=" text-center">
+                            <i class="fa fa-car fs-28 pt-1" aria-hidden="true"></i>
                             <br>
-                            Food
+                            Auto
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card {% if 'community' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
-                <a href="{% url 'portal:category_detail' slug='community' %}">
-                    <div class=" text-center vertical-container">
-                        <div class="vertical-alignment">
-                            <i class="fa fa-plane fs-28 pt-1" aria-hidden="true"></i>
-                            <br>
-                            Community
+            <div class="flex-box mx-2">
+                <div class="card {% if 'food' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='food' %}">
+                        <div class=" text-center vertical-container">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-cutlery fs-28 pt-1" aria-hidden="true"></i>
+                                <br>
+                                Food
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card {% if 'beauty' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
-                <a href="{% url 'portal:category_detail' slug='beauty' %}">
-                    <div class=" text-center vertical-container">
-                        <div class="vertical-alignment">
-                            <i class="fa fa-scissors fs-28 pt-1" aria-hidden="true"></i>
-                            <br>
-                            Beauty
+            <div class="flex-box mx-2">
+                <div class="card {% if 'community' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='community' %}">
+                        <div class=" text-center vertical-container">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-plane fs-28 pt-1" aria-hidden="true"></i>
+                                <br>
+                                Community
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="flex-box mx-2">
-            <div class="card {% if 'health' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
-                <a href="{% url 'portal:category_detail' slug='health' %}">
-                    <div class=" text-center vertical-container">
-                        <div class="vertical-alignment">
-                            <i class="fa fa-tablet fs-28 pt-1" aria-hidden="true"></i>
-                            <br>
-                            Health
+            <div class="flex-box mx-2">
+                <div class="card {% if 'beauty' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='beauty' %}">
+                        <div class=" text-center vertical-container">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-scissors fs-28 pt-1" aria-hidden="true"></i>
+                                <br>
+                                Beauty
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
-        </div>
+            <div class="flex-box mx-2">
+                <div class="card {% if 'health' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='health' %}">
+                        <div class=" text-center vertical-container">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-tablet fs-28 pt-1" aria-hidden="true"></i>
+                                <br>
+                                Health
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-        <div class="flex-box ml-2">
-            <div class="card {% if 'construction' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
-                <a href="{% url 'portal:category_detail' slug='construction' %}">
-                    <div class=" text-center vertical-container">
-                        <div class="vertical-alignment">
-                            <i class="fa fa-wrench fs-28 pt-1" aria-hidden="true"></i>
-                            <br>
-                            Construction
+            <div class="flex-box ml-2">
+                <div class="card {% if 'construction' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='construction' %}">
+                        <div class=" text-center vertical-container">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-wrench fs-28 pt-1" aria-hidden="true"></i>
+                                <br>
+                                Construction
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- mobile categoryies -->
+
+    <div class="unhide">
+        <div class="flex-container-wrap">
+            <div class="flex-box mx-1">
+                <div class="{% if request.path == '/shop/stores/' %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
+                    <a href="{% url 'portal:consumer_store_list' %}">
+                        <div class="text-center vertical-container" >
+                            <div class="vertical-alignment">
+                                All Services
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-box mx-1">
+                <div class="{% if 'auto' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='auto' %}">
+                        <div class="vertical-container text-center">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-car fs-16 mr-2" aria-hidden="true"></i>
+                                Auto
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-box mx-1">
+                <div class="{% if 'food' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='food' %}">
+                        <div class="text-center vertical-container">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-cutlery fs-16 mr-2" aria-hidden="true"></i>
+                                Food
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-box mx-1">
+                <div class="{% if 'community' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='community' %}">
+                        <div class=" text-center vertical-container">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-plane fs-16 mr-2" aria-hidden="true"></i>
+                                Community
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-box mx-1">
+                <div class="{% if 'beauty' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='beauty' %}">
+                        <div class=" text-center vertical-container">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-scissors fs-16 mr-2" aria-hidden="true"></i>
+                                Beauty
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-box mx-1">
+                <div class="{% if 'health' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='health' %}">
+                        <div class=" text-center vertical-container">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-tablet fs-16 mr-2" aria-hidden="true"></i>
+                                Health
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex-box mx-1">
+                <div class="{% if 'construction' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='construction' %}">
+                        <div class=" text-center vertical-container">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-wrench fs-16 mr-2" aria-hidden="true"></i>
+                                Construction
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

@@ -43,6 +43,10 @@
       {% include "navbar.html" %}
     {% endblock nav %}
 
+    {% block navigation-mobile %}
+        {% include "navbar-mobile.html" %}
+    {% endblock navigation-mobile %}
+
     {% if messages %}
       {% include "messages.html" %}
     {% endif %}
@@ -61,14 +65,10 @@
 
 {# Global javascript #}
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-
-
 <script src="{% static 'js/docs.min.js' %}"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChmLHKBW5VXZsv5Am2kkAy4HOYqd6vd0k&callback=initMap"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-
 
 <script type="text/javascript" src="{% static 'js/charge.js' %}"></script>
 

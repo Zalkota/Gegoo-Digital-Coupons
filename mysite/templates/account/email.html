@@ -8,88 +8,99 @@
 
 {% block inner %}
 
-<section class="section-sm container">
-    <h2 class="fw-6">Settings</h2>
-    <span class="fs-14 text-muted">Welcome Back, {{ user }}!</span>
-            {% block component %}
-              {% include "users/user/user_profile_nav.html" %}
-            {% endblock component %}
-        <div class="row mt-5">
-            {% block account_navbar %}
-              {% include "account/account_nav.html" %}
-            {% endblock account_navbar %}
-            <div class="offset-lg-1"></div>
-            <div class="col-lg-9">
-                <div class="card shadow-2 stripe-primary-top">
-                    <div class="card-body py-4"  style="background-color: #f9fafb;">
-                        <h5><strong>{% trans "E-mail Addresses" %}</strong></h5>
-                      {% if user.emailaddress_set.all %}
-                      <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
+<section class="section container">
+    {% if user.is_merchant == False %}
 
-                              <form action="{% url 'account_email' %}" class="email_list" method="post">
-                              {% csrf_token %}
-                              <fieldset class="blockLabels shadow-0">
+        {% block component %}
+          {% include "users/user/user_profile_nav.html" %}
+        {% endblock component %}
 
-                                {% for emailaddress in user.emailaddress_set.all %}
-                                  <div class="radio">
-                                    <label for="email_radio_{{forloop.counter}}" style="justify-content: left;" class="py-4 {% if emailaddress.primary %}primary_email{%endif%}">
+    {% else %}
 
-                                      <input id="email_radio_{{forloop.counter}}" style="flex: 0; flex-basis: 5%;" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/>
+        <h2 class="section-header unhide">Settings</h2>
+        <span class="fs-14 text-muted unhide">Welcome Back, {{ user|title }}!</span>
 
-                                      <strong><p class="lead text-dark">{{ emailaddress.email }}</strong>
-                                      {% if emailaddress.verified %}
-                                      <span class="verified fs-14 fw-6 badge-success">{% trans "Verified" %} <i class="fa fa-check" aria-hidden="true"></i></span>
-                                      {% else %}
-                                      <span class="unverified fs-14 fw-6 badge-danger">{% trans "Unverified" %}</span>
-                                      {% endif %}
-                                      {% if emailaddress.primary %}<span class="primary badge-success fs-14 fw-6 mt-3" >{% trans "Primary" %}</span>{% endif %}</p>
-                                    </label>
-                                  </div>
-                                    {% endfor %}
-                                    {% else %}
-                                    <p><strong>{% trans 'Warning:'%}</strong> {% trans "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc." %}</p>
-                                    {% endif %}
-                    </div>
-                    <div class="card-body text-center pb-0 pt-2">
-                      <div class="form-group pb-0">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <button class=" btn btn-primary-inverted btn-block" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button><br>
+        {% block desktop_nav %}
+          {% include "users/merchant/merchant_profile_nav.html" %}
+        {% endblock desktop_nav %}
 
-                                </div>
-                                <div class="col-lg-4">
-                                    <button class=" btn btn-primary-inverted btn-block px-1" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button><br>
 
-                                </div>
-                                <div class="col-lg-4">
-                                    <button class=" btn btn-danger-alt btn-block" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
-                                </div>
-                            </div>
-                      </div>
-                      </fieldset>
-                      </form>
-                    </div>
-                </div>
-            </div>
-            <div class="offset-lg-3"></div>
-            <div class="col-lg-9 mt-4">
-                <div class="card shadow-2 stripe-primary-top">
-                    <div class="card-body pt-4 pb-0 "  style="background-color: #f9fafb;">
-                        <h5><strong>{% trans "Add E-mail Address" %}</strong></h5>
-                      <form method="post" action="{% url 'account_email' %}" class="add_email">
-                          {% csrf_token %}
-                          {{ form|crispy }}
-                          <div class="text-center row py-3">
-                            <div class="col-lg-4 offset-4">
-                                <button class="btn btn-primary-alt btn-block" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
-                            </div>
-                            </form>
+    {% endif %}
+    <div class="mt-3 hide"></div>
+    <div class="row mt-3">
+    {% block account_navbar %}
+      {% include "account/account_nav.html" %}
+    {% endblock account_navbar %}
+    <div class="offset-lg-1"></div>
+    <div class="col-lg-9">
+        <div class="card shadow-2 stripe-primary-top">
+            <div class="card-body py-4">
+                <h5><strong>{% trans "E-mail Addresses" %}</strong></h5>
+              {% if user.emailaddress_set.all %}
+              <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
+                      <form action="{% url 'account_email' %}" class="email_list" method="post">
+                      {% csrf_token %}
+                      <fieldset class="blockLabels shadow-0">
+
+                        {% for emailaddress in user.emailaddress_set.all %}
+                          <div class="radio">
+                            <label for="email_radio_{{forloop.counter}}" style="justify-content: left;" class="py-4 {% if emailaddress.primary %}primary_email{%endif%}">
+
+                              <input id="email_radio_{{forloop.counter}}" style="flex: 0; flex-basis: 5%;" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/>
+
+                              <strong><p class="lead text-dark">{{ emailaddress.email }}</strong>
+                              {% if emailaddress.verified %}
+                              <span class="verified fs-14 fw-6 badge-success">{% trans "Verified" %} <i class="fa fa-check" aria-hidden="true"></i></span>
+                              {% else %}
+                              <span class="unverified fs-14 fw-6 badge-danger">{% trans "Unverified" %}</span>
+                              {% endif %}
+                              {% if emailaddress.primary %}<span class="primary badge-success fs-14 fw-6 mt-3" >{% trans "Primary" %}</span>{% endif %}</p>
+                            </label>
                           </div>
-                    </div>
+                            {% endfor %}
+                            {% else %}
+                            <p><strong>{% trans 'Warning:'%}</strong> {% trans "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc." %}</p>
+                            {% endif %}
+            </div>
+            <div class="card-body text-center pb-0 pt-4">
+              <div class="form-group pb-0">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <button class=" btn btn-primary-alt btn-block" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button><br>
 
-                </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <button class=" btn btn-primary-alt btn-block px-1" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button><br>
+
+                        </div>
+                        <div class="col-lg-4">
+                            <button class=" btn btn-red-600-inverted btn-block" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+                        </div>
+                    </div>
+              </div>
+              </fieldset>
+              </form>
             </div>
         </div>
+    </div>
+    <div class="offset-lg-3"></div>
+    <div class="col-lg-9 mt-4">
+        <div class="card shadow-2 stripe-primary-top">
+            <div class="card-body pt-4 pb-0">
+                <h5><strong>{% trans "Add E-mail Address" %}</strong></h5>
+              <form method="post" action="{% url 'account_email' %}" class="add_email">
+                  {% csrf_token %}
+                  {{ form|crispy }}
+                  <div class="text-center row py-3">
+                    <div class="col-lg-4 offset-4">
+                        <button class="btn btn-primary-alt btn-block" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
+                    </div>
+                    </form>
+                  </div>
+            </div>
+
+        </div>
+    </div>
 </section>
 
 

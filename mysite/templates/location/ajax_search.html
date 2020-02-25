@@ -10,8 +10,15 @@
                 {% csrf_token %}
                 <input type="text" name="city_input" value="{{ object.name }}" style="display: none;" class="textinput textInput form-control" required id="id_city_input" />
                 <input type="text" name="state_input" value="{{ object.region.name }}" style="display: none;" class="textinput textInput form-control" required id="id_state_input" />
-                <li class="border-bottom  py-3">{{ object.name }}, {{ object.region }}<span class="text-right">
-                    <button type='submit' value="{{ object.name }}" class="btn-primary-alt py-1 px-3 pull-right fs-16">Select</a></button>
+                <li class="border-bottom py-3">
+                    <div class="row">
+                        <div class="col-8">
+                            {{ object.name }}, {{ object.region.name }}
+                        </div>
+                        <div class="col-4">
+                            <button type='submit' value="{{ object.name }}" class="btn-primary-alt py-1 px-3 pull-right fs-16">Select</a></button>
+                        </div>
+                    </div>
                 </li>
             </form>
             {% endfor %}

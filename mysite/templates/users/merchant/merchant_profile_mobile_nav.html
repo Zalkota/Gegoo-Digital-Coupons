@@ -2,75 +2,41 @@
 
 {% block mobile_nav %}
 <div class="row unhide">
-    <div class="col-lg-12 mb-4">
-        <h2 class="header mb-2">Merchant Dashboard </h2>
-        <div class="card shadow-2">
-            <div class="card-body">
-                <span class="fs-14text-secondary">Welcome Back, {{ user }}!</span>
-                <div class="my-3">
-                    {% if user.merchant_profile.status == 'APPROVED' %}
-                    <span class="text-dark fs-16">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
-                        Account Approved
-                    </span>
-                    {% elif user.merchant_profile.status == 'PENDING' %}
-                    <span class="text-dark fs-16">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-time"><circle cx="12" cy="12" r="10" class="fill-orange-300"/><path class="fill-orange-700" d="M13 11.59l3.2 3.2a1 1 0 0 1-1.4 1.42l-3.5-3.5A1 1 0 0 1 11 12V7a1 1 0 0 1 2 0v4.59z"/></svg>
-                        Approval Pending
-                    </span>
-                    {% else %}
-                    <span class="text-dark fs-16">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-close-circle"><circle cx="12" cy="12" r="10" class="fill-red-300"/><path class="fill-red-700" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
-                        Not Approved
-                    </span>
-                    {% endif %}
-                </div>
-                <div class="mb-3">
-                    {% if user.merchant_profile.payment_status == True %}
-                    <span class="text-dark fs-16">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
-                        Subscription Active
-                    </span>
-                    {% else %}
-                    <span class="text-dark fs-16">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-close-circle"><circle cx="12" cy="12" r="10" class="fill-red-300"/><path class="fill-red-700" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
-                        No Subscription
-                    </span>
-                    {% endif %}
-                </div>
-                <!-- Action buttons -->
-                <ul class="pl-0" style="list-style-type: none;">
-                  <hr class="mt-0 mb-3 unhide">
-                  <a class="text-dark py-5" style="text-decoration: none;" href="/" role="button">
-                    <li class="pb-3">
-                        <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2 fw-5">Home</span> <i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                    </li>
-                  </a>
-                  <hr class="mt-0 mb-3 unhide">
-                  <a class="text-dark py-5" style="text-decoration: none; " href="#orders" role="button">
-                    <li class="pb-3">
-                        <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Orders</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                    </li>
-                  </a>
-                  <hr class="mt-0 mb-3 unhide">
-                  <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_reset_password' %}" role="button">
-                    <li class="pb-3">
-                        <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2 fw-5">Password</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                    </li>
-                  </a>
-                  <hr class="mt-0 mb-3 unhide">
-                  <a class="text-dark py-5" style="text-decoration: none; " href="#" role="button">
-                    <li class="pb-3">
-                        <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                    </li>
-                  </a>
-                  <hr class="mt-0 mb-3 unhide">
-                  <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
-                    <li class="pb-0">
-                        <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2 fw-5">Settings</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                    </li>
-                  </a>
-                </ul>
+    <div class="col-lg-12 mb-0">
+        <h1 class="header mb-2">Merchant Dashboard </h1>
+        <span class="fs-14 text-secondary">Welcome Back, {{ user }}!</span>
+        <br>
+        <div class="">
+            <div class="my-3">
+                {% if user.merchant_profile.status == 'APPROVED' %}
+                <span class="text-dark fs-16">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                    Account Approved
+                </span>
+                {% elif user.merchant_profile.status == 'PENDING' %}
+                <span class="text-dark fs-16">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-time"><circle cx="12" cy="12" r="10" class="fill-orange-300"/><path class="fill-orange-700" d="M13 11.59l3.2 3.2a1 1 0 0 1-1.4 1.42l-3.5-3.5A1 1 0 0 1 11 12V7a1 1 0 0 1 2 0v4.59z"/></svg>
+                    Approval Pending
+                </span>
+                {% else %}
+                <span class="text-dark fs-16">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-close-circle"><circle cx="12" cy="12" r="10" class="fill-red-300"/><path class="fill-red-700" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+                    Approval Required
+                </span>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {% if user.merchant_profile.payment_status == True %}
+                <span class="text-dark fs-16">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                    Subscription Active
+                </span>
+                {% else %}
+                <span class="text-dark fs-16">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-close-circle"><circle cx="12" cy="12" r="10" class="fill-red-300"/><path class="fill-red-700" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+                    Subscription Required
+                </span>
+                {% endif %}
             </div>
         </div>
     </div>

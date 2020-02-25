@@ -35,7 +35,7 @@
   }
 
   .volume-button  {
-      z-index: 10000;
+      z-index: 1000;
       position: absolute;
       bottom: 5%;
       left: 2%;
@@ -43,32 +43,33 @@
 }
 
 @media screen and (max-width: 1286px) {
-.video-container-mobile {
-  position: relative;
-  bottom: 0%;
-  left: 0%;
-  height: 100%; /* was 100% */
-  width: 100%;
-  overflow: hidden;
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-image: url('static/images/mobile_background5.jpg');
-  }
-  .video-container .title-container {
-    z-index: 1000;
-    position: absolute;
-    top: 0%;
-    width: 100%;
-    text-align: left;
-    color: #fff;
-    padding: 2rem;
-  }
+    .video-container {
+      background: cover;
+      background-position: top;
+      position: relative;
+      bottom: 0%;
+      left: 0%;
+      height: 100%; /* was 100% */
+      width: 100%;
+      overflow: hidden;
+      }
 
-  .homepage-hero-module {
-    border-right: none;
-    border-left: none;
-    position: relative;
-  }
+    .title-container {
+        vertical-align: middle;
+        text-align: left;
+        color: #fff;
+        padding: 1rem 1rem;
+        background-image: -webkit-linear-gradient($gradient-primary);
+        background-image: -o-linear-gradient($gradient-primary);
+        background-image: linear-gradient($gradient-primary);
+    }
+
+    .volume-button  {
+        z-index: 1000;
+        position: absolute;
+        bottom: 8%;
+        left: 2%;
+    }
 }
 
 .video-container .poster img {

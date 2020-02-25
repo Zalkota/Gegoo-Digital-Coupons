@@ -13,6 +13,7 @@ docker exec -it mysite_django_1 sudo systemctl status gunicorn
 
 docker exec -it mysite_django_1 python3 local.py cities_light
 docker exec -it mysite_django_1 python3 local.py createsuperuser
+docker exec -it mysite_django_1 python3 local.py collectstatic
 
 # Stop or Remove Containers
 docker stop $(docker ps -a -q)

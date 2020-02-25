@@ -20,8 +20,21 @@
         align-self: left;
         flex-basis: 97%;
     }
-
 }
+
+.flex-container-wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+
+
+    .flex-box {
+        align-self: left;
+        flex-basis: 20%;
+    }
+}
+
 
 
 .flex-container-vertical {

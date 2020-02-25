@@ -2,7 +2,7 @@
 {% load static %}
 {% load location_extra %}
 
-{% block body_class %} Shop Deals on Gegoo{% endblock %}
+{% block body_class %} Shop Businesses and Services on the Gegoo{% endblock %}
 
 {% block extra_styles %}
 <!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
@@ -20,8 +20,8 @@
 <div class="section mt-3 pt-0 container px-3">
     <h3 class="section-header text-dark mb-3">Featured Service</h3>
     <div class="row">
-        <div class="col-lg-8">
-            <div class="video-container video-container-mobile">
+        <div class="col-lg-8 col-12">
+            <div class="video-container">
                 <div class="volume-button">
                     <button id="Unmutebutton">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-volume-mute"><path class="fill-white" d="M6.59 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3.59l4.7-4.7A1 1 0 0 1 13 4v16a1 1 0 0 1-1.7.7L6.58 16z"/><path class="fill-white" d="M17.09 12l-1.8-1.8a1 1 0 1 1 1.42-1.4l1.79 1.79 1.8-1.8a1 1 0 0 1 1.4 1.42L19.92 12l1.8 1.8a1 1 0 0 1-1.42 1.4l-1.79-1.79-1.8 1.8a1 1 0 0 1-1.4-1.42L17.08 12z"/></svg>
@@ -30,40 +30,34 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-volume-up"><path class="fill-white" d="M6.59 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3.59l4.7-4.7A1 1 0 0 1 13 4v16a1 1 0 0 1-1.7.7L6.58 16z"/><path class="fill-white" d="M17.66 6.34a1 1 0 0 1 1.41-1.41 10 10 0 0 1 0 14.14 1 1 0 0 1-1.41-1.41 8 8 0 0 0 0-11.32zm-2.83 2.83a1 1 0 1 1 1.41-1.41 6 6 0 0 1 0 8.48 1 1 0 0 1-1.41-1.41 4 4 0 0 0 0-5.66z"/></svg>
                     </button>
                 </div>
-                <!-- #TODO: NEED WEBM VIDEO FOR THIS TO WORK ON FIREFOX -->
-              <video autoplay muted poster="" class="fillWidth hide border-radius-100" id="video">
-                  <source src="" type="video/mp4" alt="Gegoo Promotional Video" id="video_container"/>
-                  Your browser does not support the video tag. Upgrade your browser.
-              </video>
+                <video autoplay muted poster="" class="fillWidth border-radius-100" id="video">
+                    <source src="" type="video/mp4" alt="Gegoo Promotional Video" id="video_container"/>
+                    Your browser does not support the video tag. Upgrade your browser.
+                </video>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-12">
             <div class="card title-container shadow-1 border-radius-100">
-                <div class=" hide">
-                    <!-- <h3 class="text-white fw-6 fs-20">
-                        Featured Offer
-                    </h3> -->
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <img src="{% static 'img/dominos.jpg' %}" alt="">
-                        </div>
-                        <div class="col-lg-8">
-                            <h3 class="text-white fw-6 fs-20 fw-6" id="video_title">{{ data.store_1 }}</h3>
-                            <h4 class="text-white fw-4 fs-14" id="video_location">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-white" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-white" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
-                                {{ data.location_1 }}
-                            </h4>
-                            <a href="" class="text-white fs-14">Visit Store</a>
-                        </div>
-                        <div class="col-lg-12 mt-3">
-                          <div class="card shadow-1 bg-gray-200">
-                              <div class="card-body py-3">
-                                <h3 class="subheader text-dark text-center">
-                                    Use Code: <span class="fw-6" id="video_coupon">{{ data.coupon_code_1 }}</span>
-                                </h3>
-                              </div>
+                <div class="row">
+                    <div class="col-4">
+                        <img src="{% static 'img/dominos.jpg' %}" alt="">
+                    </div>
+                    <div class="col-8">
+                        <h3 class="text-white fw-6 fs-20 fw-6" id="video_title">{{ data.store_1 }}</h3>
+                        <h4 class="text-white fw-4 fs-14" id="video_location">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-white" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-white" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                            {{ data.location_1 }}
+                        </h4>
+                        <a href="" class="text-white fs-14">Visit Store</a>
+                    </div>
+                    <div class="col-lg-12 mt-3">
+                      <div class="card shadow-1 bg-gray-200">
+                          <div class="card-body py-3">
+                            <h3 class="subheader text-dark text-center">
+                                Use Code: <span class="fw-6" id="video_coupon">{{ data.coupon_code_1 }}</span>
+                            </h3>
                           </div>
-                        </div>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -78,16 +72,33 @@
 <section class="section mt-3 pt-0">
     <div class="container">
         <h3 class="section-header text-dark mb-3">Services Located in {{ city }}, {{ state }}
-            {% if not request.user.is_authenticated %}
-                <a class="fs-14 fw-4 btn btn-primary-alt px-2 py-2 pull-right" href="{% url 'account_login' %}">
-                  Edit Location
-                </a>
-            {% else %}
-                <a class="fs-14 fw-4 btn btn-primary-alt px-3 py-2 pull-right" href="{% url 'users:user_location' %}">
-                  Edit Location
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-white" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-white" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
-                </a>
-            {% endif %}
+            <!-- desktop -->
+            <span class="hide">
+                {% if not request.user.is_authenticated %}
+                    <a class="fs-14 fw-4 btn btn-primary-alt px-2 py-2 pull-right" href="{% url 'account_login' %}">
+                      Edit Location
+                    </a>
+                {% else %}
+                    <a class="fs-14 fw-4 btn btn-primary-alt px-3 py-2 pull-right" href="{% url 'users:user_location' %}">
+                      Edit Location
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-white" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-white" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                    </a>
+                {% endif %}
+            </span>
+            <!-- mobile -->
+            <span class="unhide">
+                {% if not request.user.is_authenticated %}
+                    <a class="fs-14 fw-4 px-2 py-2 unhide" href="{% url 'account_login' %}">
+                      Edit Location
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-white" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-white" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                    </a>
+                {% else %}
+                    <a class="fs-14 fw-4 px-3 py-2 unhide" href="{% url 'users:user_location' %}">
+                      Edit Location
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-white" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-white" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                    </a>
+                {% endif %}
+            </span>
         </h3>
         <div class="row">
             {% for object in store_nearby %}
@@ -122,7 +133,7 @@
 </section>
 
 
-<section class="section-gray-50-sm border-top">
+<section class="section-gray-50-sm border-top ">
     <div class="container">
         <h3 class="section-header text-dark">Featured Services</h3>
         <br>
@@ -131,15 +142,15 @@
                 <div class="col-lg-6">
                     <div class="card card-border card-effects shadow-4 mb-4">
                         <div class="row">
-                            <div class="col-lg-4 pr-0">
+                            <div class="col-lg-4 ">
                                 <a href="{{ object.get_consumer_absolute_url }}">
-                                    <img class="img-fluid" style="width: 100%;" src="{{ AwsBucketMediaURL }}{{ object.logo }}" alt="User Uploaded images">
+                                    <img class="img-fluid"  src="{{ AwsBucketMediaURL }}{{ object.logo }}" alt="User Uploaded images">
                                 </a>
                             </div>
-                            <div class="col-lg-8 pl-0">
+                            <div class="col-lg-8 ">
                                 <div class="flex-container-vertical">
                                     <div class="card-body flex-box py-4 px-4">
-                                        <h3 class="section-header fs-2text-darken mb-2">{{ object.business_name }}
+                                        <h3 class="section-header mb-2">{{ object.business_name }}
                                             <a class="text-gray-700" href="">
                                                 <i class="material-icons pull-right">
                                                 share
@@ -158,19 +169,20 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <div class="text-center fs-16 mt-3">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mb-1 icon-heart"><circle cx="12" cy="12" r="10" class="fill-purple-100"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
-                                                <a href="#TODO" class="text-gray-600 fw-4">Favorite</a>
+                                            <div class="text-center fs-20 ">
+                                                <a href="#TODO" class="text-primary fw-6">{{ object.code_coupon }}</a>
                                             </div>
                                         </div>
+                                        <div class="col-12 unhide py-2"></div>
                                         <div class="col-lg-4">
-                                            <div class="text-center fs-16 mt-3">
+                                            <div class="text-center fs-16 ">
                                                 <span class="text-gray-600 fw-4">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
                                                     {{ object.distance.mi|dividebyth }} Miles Away
                                                 </span>
                                             </div>
                                         </div>
+                                        <div class="col-12 unhide py-2"></div>
                                         <div class="col-lg-4">
                                             <a href="{{ object.get_consumer_absolute_url }}" class="btn btn-primary-alt btn-block">View Store</a>
                                         </div>
@@ -185,7 +197,7 @@
     </div>
 </section>
 
-<section class="section-gray-50-sm">
+<section class="section-gray-50-sm pt-0">
     <div class="container">
         <div class="row">
             <div class="col-lg-5">
@@ -198,6 +210,9 @@
                 </div>
             </div>
             <div class="col-lg-1 border-right">
+            </div>
+            <div class="col-12 unhide">
+                <hr>
             </div>
             <div class="offset-lg-1"></div>
             <div class="col-lg-5">

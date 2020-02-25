@@ -107,6 +107,22 @@ a:hover {
                     <div class="card shadow-2 my-2">
                         <div class="card-body">
                             <h3 class="header">
+                                Purchase Subscription
+                                <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
+                            </h3>
+                            <br>
+                            <p><span class="fw-6"></span>A monthly subscription is required to utilize gegoo advertising services. The cost of the monthly subscription is increased by $50 for every store created.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'payments:plan_list' %}" class="btn btn-primary-alt pull-right">Purchase Subscription</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card shadow-2 my-2">
+                        <div class="card-body">
+                            <h3 class="header">
                                 Add Additional Stores
                                 <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
                             </h3>
@@ -119,21 +135,7 @@ a:hover {
                     </div>
                 </div>
 
-                <div class="col-lg-6">
-                    <div class="card shadow-2 my-2">
-                        <div class="card-body">
-                            <h3 class="header">
-                                Purchase Subscription
-                                <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
-                            </h3>
-                            <br>
-                            <p><span class="fw-6"></span>A monthly subscription is required to utilize gegoo advertising services. The cost of the monthly subscription is increased by $50 for every store created.</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="{% url 'payments:plan_list' %}" class="btn btn-primary-alt pull-right">Purchase Subscription</a>
-                        </div>
-                    </div>
-                </div>
+
 
 
                 {% endif %}
@@ -155,11 +157,12 @@ a:hover {
                                 <div class="p-3 pt-4 vertical-alignment">
                                     <h1 class="card-title fs-18 fw-6 text-uppercase mb-2">{{ store.business_name }}</h1>
                                     <p class="card-text lead fs-14 fw-2 text-muted">{{ store.city }}, {{ store.state }}</p>
+
                                     <hr class="unhide mb-0">
                                 </div>
                             </div>
                             <div class="col-lg-2 offset-lg-0 col-8 offset-2 vertical-container">
-                                <div class="py-3 px-3 text-right vertical-alignment">
+                                <div class="py-3 px-3 vertical-alignment">
                                     <span class="">
                                         {% if user.merchant_profile.payment_status == True %}
                                             {% if store.status == 2 %}
@@ -174,7 +177,6 @@ a:hover {
                                                 Subscription Required
                                             </span>
                                         {% endif %}
-
                                     </span>
                                 </div>
                             </div>
@@ -201,16 +203,30 @@ a:hover {
                                 </div>
                             </div>
                             <div class="col-lg-2 col-6 vertical-container">
-                                <div class="px-3 text-center vertical-alignment">
+                                <div class="px-3 text-center vertical-alignment hide">
                                     <h1 class="subheader text-uppercase text-primary mb-2">{{ store.offers.count }}</h1>
                                     <p class="text-secondary fs-14">Offers</p>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-12 vertical-container">
-                                <div class="py-3 px-3   vertical-alignment text-center">
+                            <div class="col-lg-2 col-12 vertical-container ">
+                                <div class="py-3 px-3 vertical-alignment text-center hide">
                                     <a href="{{ store.get_consumer_absolute_url }}" class="">View</a>
                                     <span class="px-2 text-secondary ">|</span>
                                     <a href="{% url 'users:merchant_store_update' store.slug %}" class="">Edit</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-12 col-md-6  vertical-container">
+                                <div class=" vertical-alignment text-center unhide pb-3 px-4">
+                                    <a href="{{ store.get_consumer_absolute_url }}" class="btn-primary-inverted btn-block fs-14">
+                                        View Store
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-12 col-md-6  vertical-container ">
+                                <div class=" vertical-alignment text-center unhide pb-3 px-4">
+                                    <a href="{% url 'users:merchant_store_update' store.slug %}" class="btn-primary-inverted btn-block fs-14">
+                                        Edit Store
+                                    </a>
                                 </div>
                             </div>
                         </div>

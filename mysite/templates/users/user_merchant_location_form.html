@@ -22,19 +22,18 @@
 
     {% else %}
 
+        <h2 class="section-header unhide">Settings</h2>
+        <span class="fs-14 text-muted unhide">Welcome Back, {{ user|title }}!</span>
+
         {% block desktop_nav %}
           {% include "users/merchant/merchant_profile_nav.html" %}
         {% endblock desktop_nav %}
-
-        {% block mobile_nav %}
-          {% include "users/merchant/merchant_profile_mobile_nav.html" %}
-        {% endblock mobile_nav %}
 
     {% endif %}
 
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
-                <div class="card shadow-2 card-border hide stripe-primary-top mt-5">
+                <div class="card shadow-2 card-border stripe-primary-top mt-5">
                     <div class="card-body">
                         <h3 class="header text-center text-uppercase fw-5">Change Location</h3>
                         <p class="text-secondary fs-14 mb-4">Coupons are shown based on location, setting you location will help us serve you releveant coupons in your local area.</p>

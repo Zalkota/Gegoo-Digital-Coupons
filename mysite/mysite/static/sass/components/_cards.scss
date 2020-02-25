@@ -257,7 +257,7 @@
     color: $color-gray-800;
     padding: .3rem;
     cursor: pointer;
-    background-color: $color-gray-100;
+    background-color: $color-white;
     // background-image: $gradient-primary;
     // background-image: -webkit-linear-gradient($gradient-primary);
     // background-image: -o-linear-gradient($gradient-primary);
@@ -273,8 +273,21 @@
             color: $color-secondary;
             }
     }
+}
 
+.card-pill::before {
+  border-radius: 2rem;
+  position: absolute;
+  transition: opacity 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+  content: '';
+  opacity: 0;
+  z-index: -1;
+}
 
+.card-pill:hover::before {
+  opacity: 1;
+  color: $color-primary;
 }
 
 .card-pill-active {
@@ -289,22 +302,79 @@
     border: 2px solid $color-primary;
     transition: transform 0.25s;
     box-shadow: $box-shadow-1;
-    background-color: $color-gray-100;
+    background-color: $color-white;
     color: $color-primary;
 }
 
 
-    .card-pill::before {
-      border-radius: 2rem;
-      position: absolute;
-      transition: opacity 2s cubic-bezier(0.165, 0.84, 0.44, 1);
-      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
-      content: '';
-      opacity: 0;
-      z-index: -1;
+// *************** CARD PILL MOBILE **************
+
+.card-pill-mobile {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    display: inline-block;
+    border-radius: 3rem;
+    font-weight: 600;
+    font-size: 18px;
+    width: 100%;
+    color: $color-gray-800;
+    padding: .35rem 1.2rem;
+    cursor: pointer;
+    background-color: $color-white;
+    transition: transform 0.25s;
+    box-shadow: $box-shadow-1;
+
+    a {
+        color: $color-gray-700 !important;
+
+        &:hover, &:focus {
+            box-shadow: 0;
+            color: $color-secondary;
+            }
     }
 
-    .card-pill:hover::before {
-      opacity: 1;
-      color: $color-primary;
+}
+
+.card-pill-mobile::before {
+  border-radius: 2rem;
+  position: absolute;
+  transition: opacity 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+  content: '';
+  opacity: 0;
+  z-index: -1;
+}
+
+.card-pill-mobile:hover::before {
+  opacity: 1;
+  color: $color-primary;
+}
+
+.card-pill-mobile-active {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    display: inline-block;
+    border-radius: 3rem;
+    font-weight: 600;
+    font-size: 18px;
+    width: 100%;
+    padding: .35rem 1.2rem;
+    cursor: pointer;
+    transition: transform 0.25s;
+    box-shadow: $box-shadow-1;
+    background-color: $color-primary;
+    color: $color-white;
+
+    a {
+        color: $color-white !important;
+
+        &:hover, &:focus {
+            box-shadow: 0;
+            color: $color-secondary;
+            }
     }
+}

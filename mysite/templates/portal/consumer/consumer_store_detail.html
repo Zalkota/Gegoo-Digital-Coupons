@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %} {{ store.business_name }} store Page {% endblock %}
+{% block title %} {{ store.business_name }} store Front | Located in {{ store.city }}, {{ store.city.region}} {% endblock %}
 
 {% block extra_styles %}
 
@@ -13,11 +13,12 @@
 
 
 <!-- Body Start -->
-<section class="section-sm container">
+<section class="section pb-5 container">
+    <div class="py-3 hide"></div>
     <div class="row">
-        <div class="col-lg-6 text-left">
-            <div class="fs-14 hide">
-                <span href="" class="text-dark">{{ store.get_state_display }}</span>
+        <div class="col-lg-6 col-xl-6 col-md-6 col-12 text-left">
+            <div class="fs-14">
+                <span href="" class="text-dark">{{ store.state }}</span>
                 <span class="text-primary px-1">&#8226;</span>
                 <span href="" class="text-dark">{{ store.city }}</span>
                 <span class="text-primary px-1">&#8226;</span>
@@ -26,14 +27,15 @@
                 <a href="{{ store.subcategory.get_absolute_url }}" class="text-dark">{{ store.subcategory }}</a>
                 <span class="text-primary px-1">&#8226;</span>
                 <a href="" class="text-dark">{{ store.business_name }}</a>
+                <div class="py-3 unhide"></div>
             </div>
         </div>
-        <div class="col-lg-6 text-right">
+        <div class="col-lg-6 col-xl-6 col-md-6     col-12 text-right">
             <a href="#" class="text-white btn btn-primary-alt gradient-primary py-2 fw-6 fs-24 mb-2 text-decoration-none">
                 <span class="">USE CODE:</span> {% if store.code_coupon != NONE %}{{ store.code_coupon }}{% endif %}
             </a>
         </div>
-        <div class="col-lg-3 mt-3">
+        <div class="col-xl-3 col-lg-4 col-md-4 order-lg-1 order-md-1 order-2 mt-3">
             <div class="card shadow-2">
                 <div class="card-body p-0">
                     <img class="img-fluid p-0" style="width: 100%;" src="{{ AwsBucketMediaURL }}{{ store.logo }}" alt="Coupon Image Banner">
@@ -92,8 +94,8 @@
                 {% endif %}
             </div>
         </div>
-        <div class="offset-lg-1"></div>
-        <div class="col-lg-8 mt-3">
+        <div class="offset-xl-1 order-1 "></div>
+        <div class="col-lg-8 col-md-8 order-1 mt-3">
             <div class="p-0 shadow-2">
                 <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ store.banner }}">
     				<source src="{{ AwsBucketMediaURL }}{{ store.videofile.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
