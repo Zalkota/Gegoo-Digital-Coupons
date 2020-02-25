@@ -82,63 +82,59 @@ a:hover {
 
         <div class="row mt-4">
 
-            {% if user.merchant_profile.stores == 0 %}
+                {% if user.merchant_profile.stores == 0 %}
 
-                <div class="col-lg-6 offset-3">
-                    <div class="card shadow-2 my-2">
-                        <div class="card-body">
-                            <h3 class="header">
-                                Finish Creating your First Store!
-                                <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
-                            </h3>
-                            <br>
-                            <p>
-                            <span class="text-secondary">Questions or concerns? Click <a href="{% url 'support:contact-page' %}">here</a> to contact us </span></p>
+                    <div class="col-lg-6 offset-3">
+                        <div class="card shadow-2 my-2">
+                            <div class="card-body">
+                                <h3 class="header">
+                                    Finish Creating your First Store!
+                                    <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
+                                </h3>
+                                <br>
+                                <p>
+                                <span class="text-secondary">Questions or concerns? Click <a href="{% url 'support:contact-page' %}">here</a> to contact us </span></p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt pull-right">Create Store</a>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt pull-right">Create Store</a>
+                    </div>
+
+                {% elif user.merchant_profile.payment_status != True %}
+
+                    <div class="col-lg-6">
+                        <div class="card shadow-2 my-2">
+                            <div class="card-body">
+                                <h3 class="header">
+                                    Purchase Subscription
+                                    <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
+                                </h3>
+                                <br>
+                                <p><span class="fw-6"></span>A monthly subscription is required to utilize gegoo advertising services. The cost of the monthly subscription is increased by $50 for every store created.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="{% url 'payments:plan_list' %}" class="btn btn-primary-alt pull-right">Purchase Subscription</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card shadow-2 my-2">
+                            <div class="card-body">
+                                <h3 class="header">
+                                    Add Additional Stores
+                                    <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
+                                </h3>
+                                <br>
+                                <p><span class="fw-6"></span>Add additional Stores to your account. Each store has a unique address, video, and offers.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt pull-right">Create Additional Stores</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            {% elif user.merchant_profile.payment_status != True %}
-
-                <div class="col-lg-6">
-                    <div class="card shadow-2 my-2">
-                        <div class="card-body">
-                            <h3 class="header">
-                                Purchase Subscription
-                                <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
-                            </h3>
-                            <br>
-                            <p><span class="fw-6"></span>A monthly subscription is required to utilize gegoo advertising services. The cost of the monthly subscription is increased by $50 for every store created.</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="{% url 'payments:plan_list' %}" class="btn btn-primary-alt pull-right">Purchase Subscription</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card shadow-2 my-2">
-                        <div class="card-body">
-                            <h3 class="header">
-                                Add Additional Stores
-                                <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
-                            </h3>
-                            <br>
-                            <p><span class="fw-6"></span>Add additional Stores to your account. Each store has a unique address, video, and offers.</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt pull-right">Create Additional Stores</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
 
                 {% endif %}
 

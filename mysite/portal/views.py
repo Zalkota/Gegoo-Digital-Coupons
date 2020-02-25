@@ -87,6 +87,7 @@ class SubcategoryDetailView(ListView):
 		return context
 
 
+
 class ConsumerStoreListView(ListView): #This needs to filter by user city or distance
 	model = portal_models.Store
 	template_name = 'portal/category_detail.html'
@@ -107,6 +108,14 @@ class ConsumerStoreListView(ListView): #This needs to filter by user city or dis
 		city_state = get_or_set_location(self.request)
 		context['city'] = city_state["city"]
 		context['state'] = city_state["state"]
+
+		#Check to see if follows exist
+		try:
+			store_connection = portal_models.FollowStore.objects.get(current_user = self.request.user)
+			context['store_connections'] = store_connection.connections.all()
+		except:
+			pass
+
 		return context
 
 
@@ -118,6 +127,12 @@ class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or
 		context = super(StoreDetailView, self).get_context_data(**kwargs)
 		context['related_stores'] = portal_models.Store.objects.filter(category=self.object.category, active=True).exclude(business_name=self.object.business_name)
 		return context
+
+	def get_object(self):
+		obj = super(ConsumerStoreDetailView, self).get_object()
+		obj.views += 1
+		obj.save()
+		return obj
 
 
 class ConsumerStoreDetailView(DetailView):
@@ -287,35 +302,9 @@ class MerchantTestimonialListView(LoginRequiredMixin, IsMerchantMixin, ListView)
 		return object_list
 
 # <**************************************************************************>
-# <*****                        CONSUMER VIEWS                          *****>
+# <*****                        STORE FUNCTIONS                          *****>
 # <**************************************************************************>
 
-class ConsumerStoreListView(ListView):
-	model = portal_models.Store
-	template_name = 'portal/consumer/consumer_store_list.html'
-
-	def get_queryset(self):
-		store_list = portal_models.Store.objects.all()
-		return store_list
-
-	def get_context_data(self, **kwargs):
-		store_connection = portal_models.FollowStore.objects.get(current_user = self.request.user)
-
-		context = super(ConsumerStoreListView, self).get_context_data(**kwargs)
-		context['trending_stores'] = portal_models.Store.objects.all().order_by('-views')[0:4]
-		context['store_connections'] = store_connection.connections.all()
-		return context
-
-
-class ConsumerStoreDetailView(DetailView):
-	model = portal_models.Store
-	template_name = 'portal/consumer/consumer_store_detail.html'
-
-	def get_object(self):
-		obj = super(ConsumerStoreDetailView, self).get_object()
-		obj.views += 1
-		obj.save()
-		return obj
 
 def StoreChangeConnections(request, operator, pk):
 	store_connection = portal_models.Store.objects.get(pk=pk)

@@ -5,7 +5,6 @@ from django.contrib import admin
 from .views import (
     homeView,
     AltHomeView,
-    components,
 )
 from .views import set_location_cookies
 from search import views as search_views

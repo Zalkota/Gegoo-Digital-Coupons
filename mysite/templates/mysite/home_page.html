@@ -10,9 +10,9 @@
 
 {% block content %}
 
-{% block category_nav_mpm %}
-  {% include "portal/category_nav_mpm.html" %}
-{% endblock category_nav_mpm %}
+{% block category_nav %}
+  {% include "portal/category_nav.html" %}
+{% endblock category_nav %}
 
 
 
@@ -59,7 +59,7 @@
                           </div>
                       </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
@@ -139,7 +139,7 @@
         <br>
         <div class="row">
             {% for object in store_nearby %}
-                <div class="col-lg-6">
+                <div class="col-6">
                     <div class="card card-border card-effects shadow-4 mb-4">
                         <div class="row">
                             <div class="col-lg-4 ">

@@ -103,4 +103,4 @@ boto3==1.4.1
 django-storages==1.5.1
 
 
-awsebcli==3.17.1
+#awsebcli==3.17.1

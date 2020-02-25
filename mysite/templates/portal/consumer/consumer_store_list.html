@@ -10,7 +10,7 @@
 {% endblock category_nav %}
 
 <section class="section container">
-    <h2 class="header text-dark">All Services Located Near {{ city }}, {{ state }}</h2>
+    <h2 class="header text-dark">Trending Services Located Near {{ city }}, {{ state }}</h2>
     <br>
     <div class="row">
 
@@ -41,34 +41,6 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-location-pin"><path class="fill-gray-500" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-500" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
                                 {{ object.distance.mi|dividebyth }} Miles Away
                             </span>
-                        </div>
-                        <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-
-
-        <div class="col-8">
-            <div class="row">
-                <div class="col-12">
-                    <h1>Trending Stores</h1>
-                    <div class="card-group">
-                    {% for trending_store in trending_stores %}
-                        <div class="card faq-card">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <a class="card-link" href="{{ trending_store.get_consumer_absolute_url }}">
-                                        <h3>{{ trending_store.business_name }}</h3>
-                                        <h3>{{ trending_store.merchant }}</h3>
-                                    </a>
-                                </div>
-                                <p class="card-text">{{ trending_store.description }}</p>
-
-                                    <a href="" value="add" data-catid="{{ trending_store.pk }}" class="followBtn btn btn-primary" action_type="add">Follow</a>
-
-                                </div>
                         </div>
                         <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
                     </div>

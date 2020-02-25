@@ -49,20 +49,15 @@ class userPage(LoginRequiredMixin, View):
                 # videoFile_qs = files_models.VideoFile.objects.filter(user=user).order_by('uploaded_at').first()
                 store_qs    = portal_models.Store.objects.filter(merchant=user).order_by('-views')
                 offer_qs    = portal_models.Offer.objects.filter(author=user) #TODO ADD TIME TO FILTER USING GREAT THAN FILTER
-                connection  = users_models.Follow.objects.get(current_user = self.request.user)
-                connections = connection.connections.all()
-                store_connection = portal_models.FollowStore.objects.get(current_user=self.request.user)
-                store_connections = store_connection.connections.all()
 
                 context = {
                     'user'          : user,
                     'store_list'    : store_qs,
                     'offer_list'    : offer_qs,
-                    'connections'   : connections,
-                    'store_connections': store_connections,
-
-                    # 'videoFile': videoFile_qs,
                 }
+
+
+
                 return render(self.request, "users/merchant/merchant_profile.html", context)
 
             #Render Normal User Profile Page
@@ -71,11 +66,23 @@ class userPage(LoginRequiredMixin, View):
                 city_state = get_or_set_location(self.request)
                 user_location = city_state["user_location"]
                 store_nearby_qs = portal_models.Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[:8]
+
                 context = {
                 'user': user,
                 'data': data,
                 'store_nearby': store_nearby_qs
                 }
+
+                try:
+                    connection  = users_models.Follow.objects.get(current_user = self.request.user)
+                    connections = connection.connections.all()
+                    store_connection = portal_models.FollowStore.objects.get(current_user=self.request.user)
+                    store_connections = store_connection.connections.all()
+                    context['connections'] = connections,
+                    context['store_connections'] = store_connections
+                except:
+                    pass
+
                 return render(self.request, "users/userPage.html", context)
 
 
@@ -155,7 +162,7 @@ class userFavorites(ListView):
     def get_queryset(self):
         favorite_list = portal_models.Offer.objects.filter(likes=self.request.user)
         return favorite_list
-    
+
     def get_context_data(self, **kwargs):
         follow = users_models.Follow.objects.get(current_user=self.request.user)
 
@@ -241,9 +248,8 @@ class RedirectProfileView(LoginRequiredMixin, RedirectView):
 class MerchantSignUpView(SignupView):
     template_name = 'account/signup_merchant.html'
     form_class = MerchantSignupForm
-    view_name = 'merchant_signup'
+    view_name = 'merchant-signup'
     success_url = reverse_lazy('users:merchant_approval_store_create')
-
 
     def get_context_data(self, **kwargs):
         ret = super(MerchantSignUpView, self).get_context_data(**kwargs)
@@ -267,4 +273,3 @@ def ChangeConnections(request, operator, pk):
 	if operator == 'remove':
 		users_models.Follow.remove_connection(request.user, connection)
 	return redirect('users:userPage')
-
