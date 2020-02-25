@@ -104,7 +104,7 @@ class userPage(LoginRequiredMixin, View):
 # <*****                     User Non Merchant Views                    *****>
 # <**************************************************************************>
 
-class userLocaton(View):
+class userLocaton(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         form = userLocationForm()
 
@@ -141,7 +141,7 @@ class userLocaton(View):
             return redirect("users:user_location")
 
 
-class userRewards(View):
+class userRewards(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         # form = userLocationForm()
         #
@@ -155,7 +155,7 @@ class userRewards(View):
         return render(self.request, "users/user/user_rewards.html", context)
 
 
-class userFavorites(ListView):
+class userFavorites(LoginRequiredMixin, ListView):
     model = portal_models.Offer
     template_name = 'users/user/user_favorites.html'
 
@@ -171,7 +171,7 @@ class userFavorites(ListView):
         return context
 
 
-class userMerchants(ListView):
+class userMerchants(LoginRequiredMixin, ListView):
     model = portal_models.Offer
     template_name = 'users/user/user_merchants.html'
 
