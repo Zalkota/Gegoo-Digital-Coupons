@@ -113,11 +113,16 @@ border-collapse:collapse;
                             {% csrf_token %}
                             <button class="btn btn-danger-alt btn-block fs-16" type="submit" name="delete">Cancel Subscription</button>
                         </form>
-                    {% else %}
-                    <h1>Since your subscription is {{ object.subscription_status }}. You will have to reactiveate by purchasing another plan!</h1>
-    				{% endif %}
-                  </div>
-              </div>
+                    {% elif object.subscription_status == 'incomplete' %}
+                        <h1>Your subscription is {{ object.subscription_status }}. Please update your stripe info, and enter another payment card in the payments section of the dashboard</h1>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-danger-alt btn-block fs-16" type="submit" name="delete">Cancel Subscription</button>
+                        </form>
+                        {% elif object.subscription_status == 'canceled' %}
+                        <h1>Your subscription is {{ object.subscription_status }}. Please purchase another plan to reactivate!</h1>
+                    {% endif %}
+                </div>
             </div>
         {% else %}
         <div class=" col-lg-12 text-center">
