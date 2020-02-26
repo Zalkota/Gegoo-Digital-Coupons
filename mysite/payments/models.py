@@ -9,6 +9,7 @@ from django.shortcuts import reverse
 import decimal
 
 import stripe
+import datetime
 
 from users import models as users_models
 
@@ -21,7 +22,7 @@ class Benefit(models.Model):
 		return self.description
 
 class Plan(models.Model):
-    slug        = models.CharField(max_length=100, blank=True, editable=False)
+    slug        = models.CharField(max_length=100, blank=True)
     nickname    = models.CharField(max_length=50, blank=True, editable=False)
     product_id  = models.CharField(max_length=50, blank=True, editable=False)
     plan_id     = models.CharField(max_length=50, blank=True)
@@ -66,6 +67,13 @@ class Subscription(models.Model):
     subscription_item_id        = models.CharField(max_length=50, blank=True, editable=False)
     plan_id                     = models.CharField(max_length=50, blank=True)
     subscription_status         = models.CharField(max_length=50, blank=True, editable=False)
+    latest_invoice_status       = models.CharField(max_length=100, blank=True)
+    payment_status              = models.CharField(max_length=100, blank=True)    
+    unix_trial_start            = models.PositiveIntegerField(blank=True, null=True)
+    unix_trial_end              = models.PositiveIntegerField(blank=True, null=True)
+    trial_start                 = models.DateTimeField(blank=True, null=True)
+    trial_end                   = models.DateTimeField(blank=True, null=True)
+
 
     def __str__(self):
         return self.subscription_id
@@ -75,8 +83,16 @@ class Subscription(models.Model):
 
 @receiver(pre_save, sender=Subscription)
 def pre_save_subscription(sender, instance, **kwargs):
-    slug            = slugify(instance.subscription_id)
-    instance.slug   = slug
+    slug                        = slugify(instance.subscription_id)
+    instance.slug               = slug
+
+    if instance.unix_trial_start is not None and instance.unix_trial_end is not None:
+        unix_timestamp_start        = instance.unix_trial_start
+        unix_timestamp_end          = instance.unix_trial_end
+        trial_start_date            = datetime.datetime.fromtimestamp(unix_timestamp_start)
+        trial_end_date              = datetime.datetime.fromtimestamp(unix_timestamp_end)
+        instance.trial_start        = trial_start_date
+        instance.trial_end          = trial_end_date
 
 class Promotion(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE, blank=True, null=True)
