@@ -248,10 +248,10 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
         return payments_models.Subscription.objects.filter(user=self.request.user)
 
-    def get_context_data(self, **kwargs):
-        context = super(SubscriptionDetailView, self).get_context_data(**kwargs)
-        context['stores'] = portal_models.Store.objects.get(merchant=self.request.user)
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super(SubscriptionDetailView, self).get_context_data(**kwargs)
+    #     context['stores'] = portal_models.Store.objects.filter(merchant=self.request.user)
+    #     return context
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()

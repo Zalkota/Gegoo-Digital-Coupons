@@ -68,7 +68,7 @@ class Subscription(models.Model):
     plan_id                     = models.CharField(max_length=50, blank=True)
     subscription_status         = models.CharField(max_length=50, blank=True, editable=False)
     latest_invoice_status       = models.CharField(max_length=100, blank=True)
-    payment_status              = models.CharField(max_length=100, blank=True)    
+    payment_status              = models.CharField(max_length=100, blank=True)
     unix_trial_start            = models.PositiveIntegerField(blank=True, null=True)
     unix_trial_end              = models.PositiveIntegerField(blank=True, null=True)
     trial_start                 = models.DateTimeField(blank=True, null=True)
@@ -103,7 +103,7 @@ class Promotion(models.Model):
 
     def __str__(self):
         return self.code
-    
+
 @receiver(pre_save, sender=Promotion)
 def pre_save_coupon(sender, **kwargs):
     if kwargs['instance'].code is None or kwargs['instance'].code == "":

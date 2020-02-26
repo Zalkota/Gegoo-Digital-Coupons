@@ -419,11 +419,6 @@ class Store(models.Model):
         count = self.testimonial.count()
         return count
 
-@receiver(pre_save, sender=Store) #TODO 
-def pre_save_store(sender, **kwargs):
-    slug = slugify(kwargs['instance'].business_name)
-    kwargs['instance'].slug = slug
-
 @receiver([post_save, post_delete], sender=Store)
 def update_store_count(sender, instance, **kwargs):
     print('instance', instance.merchant)
