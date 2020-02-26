@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^users/redirectprofile/$', users_views.RedirectProfileView.as_view(), name='redirectprofile'),
 
     #Merchant
-    path('my-subscription/', users_views.MerchantSubscriptionsView.as_view(), name='subscription_list'),
+    # path('my-subscription/', users_views.MerchantSubscriptionsView.as_view(), name='subscription_list'),
 
     # Merchant Store Views
     path('my-store/<slug:slug>/', portal_views.MerchantStoreDetailView.as_view(), name='merchant_store_detail'),

@@ -18,10 +18,8 @@ import json
 
 def get_user_subscription(request):
     try:
-        user_subscription_qs = Subscription.objects.get(user=request.user)
-        if user_subscription_qs:
-            return user_subscription_qs
-        return None
+        user_subscription_qs = payments_models.Subscription.objects.get(user=request.user)
+        return user_subscription_qs
     except:
         pass
 
@@ -184,11 +182,13 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                 msg.send()
 
                 messages.success(self.request, 'Your Subscription Was Successful!')
-                return redirect('payments:charge')
+                return redirect('users:merchant_approval_videofile_list')
 
             except stripe.error.CardError as e:
                 messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
                 return render(self.request, 'payments/plan_detail.html')
+
+
 
 class Charge(View):
 

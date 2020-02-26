@@ -14,7 +14,7 @@ class PromotionForm(forms.Form):
             Row(
                 Column(Field('code', placeholder='Promotional Code'), css_class='col-md-12 mb-0'),
                 Column(
-                    Submit('submit', 'Apply', css_class="btn-block w-100",),
+                    Submit('submit', 'Apply', css_class="btn btn-primary-alt py-2 btn-block w-100",),
                     css_class='col-md-12 mb-0'
                 ),
                 css_class='row'

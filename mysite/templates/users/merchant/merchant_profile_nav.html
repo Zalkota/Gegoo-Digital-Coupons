@@ -55,7 +55,7 @@
         <a href="{% url 'users:user_location' %}" class="{% if 'location' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Location</a>
       </li>
       <li class="list-inline-item">
-        <a href="{% url 'users:subscription_list' %}" class="{% if 'my-subscription' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Subscription</a>
+        <a href="{% url 'payments:subscription_detail' request.user.subscription.slug %}" class="{% if 'my-subscription' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Subscription</a>
       </li>
       <li class="list-inline-item">
         <a href="{% url 'account_set_password' %}" class="{% if 'accounts' in request.path %} profile-link-active {% else %} profile-link {% endif %}">Settings</a>

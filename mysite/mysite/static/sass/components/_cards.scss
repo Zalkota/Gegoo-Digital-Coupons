@@ -8,8 +8,7 @@
     // box-shadow: 0 30px 60px -12px rgba(50,50,93,.25),
     //             0 18px 36px -18px rgba(0,0,0,.3),
     //             0 -12px 36px -8px rgba(0,0,0,.025);
-    box-shadow: 0 4px 10px rgba(50,50,93,.24),
-                0 4px 10px rgba(0,0,0,.08);
+    box-shadow: $box-shadow-5;
     background-color: #fff;
     border-radius: $border-radius-100;
 
@@ -263,7 +262,7 @@
     // background-image: -o-linear-gradient($gradient-primary);
     // background-image: linear-gradient($gradient-primary);
     transition: transform 0.25s;
-    box-shadow: $box-shadow-1;
+        box-shadow: $box-shadow-5;
 
     a {
         color: $color-gray-700 !important;

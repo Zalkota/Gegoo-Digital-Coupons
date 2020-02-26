@@ -5,8 +5,8 @@
     <br /><br />
     <ul class="list-unstyled multi-steps">
       <li>Sign Up</li>
-      <li class="{% if request.path == '/approval/store/create/' %} is-active {% endif %}">Create Store</li>
-      <li class="{% if request.path == 'payment' %} is-active {% else %} {% endif %}">Payment</li>
+      <li class="{% if request.path == '/approval/store/create/' %} is-active {% endif %}"><a href="{% url 'users:merchant_approval_store_create'%}">Create Store</a></li>
+      <li class="{% if '/payments/plan/' in request.path %} is-active {% else %} {% endif %}">Payment</li>
       <li class="{% if request.path == '/approval/store/media-upload/' %} is-active {% else %} {% endif %}">Video Upload</li>
     </ul>
 </div>

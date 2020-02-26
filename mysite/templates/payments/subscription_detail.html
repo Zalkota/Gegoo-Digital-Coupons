@@ -1,43 +1,132 @@
-{% extends "base-alt.html" %}
 
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %} User Subscription {% endblock title %}
+{% block extra_head %}{% endblock extra_head %}
+<!-- TODO: Add a alert message if trailer is overdue -->
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h1>Subscription Detail</h1>
-                    <h1>{{ request.user.first_name }} {{ request.user.last_name }} - {{ request.user.email }}</h1>
-                    <h1>{{ object.subscription_id }}</h1>
+<style>
+table td {
 
+border-collapse:collapse;
+    border-top: 3px solid rgba(0,0,0,.06); !important
+}
+table th {
+
+border-collapse:collapse;
+    border-top: 3px solid rgba(0,0,0,.06) !important;
+}
+</style>
+
+<!-- Modal -->
+<div class="modal fade " id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content p-0 ">
+      <div class="modal-header ">
+        <span class="modal-title text-center fs-24 fw-6" id="exampleModalLongTitle">Are you sure you want to cancel your subscription?</span>
+
+      </div>
+      <div class="text-center px-4 pb-4">
+        <p class="text-muted fs-16 mb-0 py-3">By ending your subscription, your services will be discontinued at the end of this billing period.
+        </p>
+      </div>
+      <div class="p-4 modal-body border-top">
+        <div class="row">
+          <div class="col-lg-6">
+            <button type="button" class="btn btn-primary-alt" class="close" data-dismiss="modal" aria-label="Close">
+              No
+            </button>
+          </div>
+          <div class="col-lg-6">
+            <button type="button" class="btn btn-outline-primary " href="">
+              Yes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal End -->
+
+
+<!-- Body Start -->
+<section class="section container">
+    {% block component %}
+      {% include "users/merchant/merchant_profile_nav.html" %}
+    {% endblock component %}
+
+    {% block mobile_nav %}
+      {% include "users/merchant/merchant_profile_mobile_nav.html" %}
+    {% endblock mobile_nav %}
+
+    {% if object %}
+      <div class="row mt-4">
+        <div class="col-lg-4">
+            <div class="card stripe-primary-top shadow-2 mb-4">
+                <div class="card-body">
+                    <h2 class="header">Gegoo Subscription</h2>
+                    <br>
+                    <table class="table responsive" >
+                        <tbody style="border: none;">
+                            <tr class="text-left">
+                              <td class="text-muted">Status</td>
+                              <td>{% if object.active != False %}<span class="badge badge-success p-2">Active</span>{% else %}<span class="badge badge-secondary p-2">Deactivated</span>{% endif %}</span></td>
+                            </tr>
+                          <tr class="text-left">
+                            <td class="text-muted">Interval </td>
+                            <td><span class=" text-dark">Monthly</span></td>
+                          </tr>
+                          <tr class="text-left">
+                            <td class="text-muted">Monthly Cost</td>
+                            <td><span class="text-dark">$ {{ object.user_membership.membership.price }}.00</span></td>
+                          </tr>
+                          <tr class="text-left">
+                            <td class="text-muted">Next Payment Due</td>
+                            <td><span class="text-dark">{{ object.user_subscription.get_next_billing_date }}</span></td>
+                          </tr>
+                          <tr class="text-left">
+                            <td class="text-muted">Purchased</td>
+                            <td><span class="text-dark">{{ object.user_subscription.created_at }}</span></td>
+                          </tr>
+                        </tbody>
+                    </table>
                     {% if object.subscription_status == 'active' %}
                         <form action="" method="POST">
                             {% csrf_token %}
-                            <button class="btn btn-danger" type="submit" name="delete">Delete</button>
-                        </form>  
+                            <button class="btn btn-danger-alt btn-block fs-16" type="submit" name="delete">Cancel Subscription</button>
+                        </form>
                         {% if request.user.merchant_profile.stores > object.quantity %}
                             <form action="" method="POST">
                                 {% csrf_token %}
-                                <button class="btn btn-success" type="submit" name="upgrade">Upgrade</button>
+                                <button class="btn btn-success-alt btn-block fs-16" type="submit" name="upgrade">Upgrade</button>
                             </form>
                         {% elif request.user.merchant_profile.stores < object.quantity %}
                             <form action="" method="POST">
                                 {% csrf_token %}
-                                <button class="btn btn-success" type="submit" name="downgrade">Downgrade</button>
+                                <button class="btn btn-success-alt btn-block fs-16" type="submit" name="downgrade">Downgrade</button>
                             </form>
                         {% endif %}
                     {% elif object.subscription_status == 'trialing' %}
                         <form action="" method="POST">
                             {% csrf_token %}
-                            <button class="btn btn-danger" type="submit" name="delete">Delete</button>
-                        </form>  
+                            <button class="btn btn-danger-alt btn-block fs-16" type="submit" name="delete">Cancel Subscription</button>
+                        </form>
                     {% else %}
                     <h1>Since your subscription is {{ object.subscription_status }}. You will have to reactiveate by purchasing another plan!</h1>
-                    {% endif %}
-                </div>
+    				{% endif %}
+                  </div>
+              </div>
             </div>
+        {% else %}
+        <div class=" col-lg-12 text-center">
+            <p class="py-5">You do not have an active membership plan. Without a subscription to Gegoo, <br>your stores and offers will not be shown to users that visit Gegoo.com. <br><a href="{% url 'payments:plan_list' %}">Click here to view available memberships.</a></p>
         </div>
+        {% endif %}
     </div>
-</div>
+</section>
+
+
 
 {% endblock content %}

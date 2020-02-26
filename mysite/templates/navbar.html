@@ -79,8 +79,8 @@
                     {% else %}
 
                     <li class="nav-item dropdown " style="z-index: 500;">
-                        <a class="nav-link pt-0" id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10  icon-user-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="fill-gray-500" d="M3.66 17.52A5 5 0 0 1 8 15h8a5 5 0 0 1 4.34 2.52 10 10 0 0 1-16.68 0zM12 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>
+                        <a class="nav-link p-0 m-0 shadow-5 bg-white" style="border-radius: 8rem;" id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10  icon-user-circle"><circle cx="12" cy="12" r="10" class="fill-white"/><path class="fill-gray-600" d="M3.66 17.52A5 5 0 0 1 8 15h8a5 5 0 0 1 4.34 2.52 10 10 0 0 1-16.68 0zM12 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>
                         </a>
                         <div class="dropdown-menu dropdown-menu-small shadow-2" aria-labelledby="messagesDropdown">
                                 <div class="pt-1">
@@ -110,7 +110,7 @@
                                 <a class="dropdown-item" href="{% url 'users:merchant_testimonial_list' %}">
                                   My Reviews
                                 </a>
-                                <a class="dropdown-item" href="{% url 'users:subscription_list' %}">
+                                <a class="dropdown-item" href="{% url 'payments:subscription_detail' request.user.subscription.slug %}">
                                   My Subscription
                                 </a>
                             {% endif %}

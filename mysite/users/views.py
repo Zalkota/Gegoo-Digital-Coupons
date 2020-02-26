@@ -257,14 +257,13 @@ class MerchantSignUpView(SignupView):
         return ret
 
 
-class MerchantSubscriptionsView(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        user_subscription_list = get_user_subscription(self.request)
-
-        context = {
-            'user_subscription_list': user_subscription_list
-        }
-        return render(self.request, "users/merchant/merchant_subscription.html", context)
+# class MerchantSubscriptionsView(LoginRequiredMixin, View):
+#     def get(self, *args, **kwargs):
+#         user_subscription = get_user_subscription(self.request)
+#         context = {
+#             'object': user_subscription
+#         }
+#         return render(self.request, "users/merchant/merchant_subscription.html", context)
 
 def ChangeConnections(request, operator, pk):
 	connection = users_models.User.objects.get(pk=pk)
