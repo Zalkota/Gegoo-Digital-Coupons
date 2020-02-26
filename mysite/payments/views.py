@@ -59,8 +59,169 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                 return redirect('users:userPage')
 
             elif subscription.subscription_status == 'canceled':
-                messages.warning(self.request, 'Your subscription is %s. Please purchase another subscription to reactivate' % subscription.subscription_status)
-                return redirect('users:userPage')
+                if payments_models.PromoUser.objects.filter(user=self.request.user).exists():
+
+                    promouser           = payments_models.PromoUser.objects.get(user=self.request.user)
+                    promotion_plan_id   = promouser.promotion.plan.plan_id
+                    promotion_period    = promouser.promotion.trial_period
+
+                    if promotion_plan_id == plan:
+                        if promouser.has_used == False:
+                            try:
+                                stripe.Customer.modify(
+                                    customer,
+                                    source=token,
+                                )
+
+                                subscription = stripe.Subscription.create(
+                                    customer = customer,
+                                    items = [
+                                        {
+                                            'plan': plan,
+                                            'quantity': customer_stores,
+                                        },
+                                    ],
+                                    trial_period_days = promotion_period,
+                                    expand=['items', 'plan'],
+                                )
+
+                                promouser.has_used = True
+                                promouser.save()
+
+                                sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+                                sub.subscription_id         = subscription['id']
+                                sub.subscription_item_id    = subscription['items']['data'][0].id
+                                sub.subscription_quantity   = subscription['items']['data'][0].quantity
+                                sub.plan_id                 = subscription['plan']['id']
+                                sub.subscription_status     = subscription['status']
+                                sub.unix_trial_start        = subscription['trial_start']
+                                sub.unix_trial_end          = subscription['trial_end']
+                                sub.save()
+
+                                messages.success(self.request, 'Your promotional code was accepted, and your Subscription Was Successful!')
+                                return redirect('payments:charge')
+
+                                # subject = 'Subscription'
+                                # context = {
+                                #     'user': self.request.user,
+                                #     'subscription': sub,
+                                # }
+                                # template = 'mail/email/email_base.html'
+                                # html_message = render_to_string(template, context)
+                                # msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
+                                # msg.send()
+
+                            except stripe.error.CardError as e:
+                                messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
+                                return render(self.request, 'payments/plan_detail.html')
+
+                        else:
+                            try:
+                                stripe.Customer.modify(
+                                    customer,
+                                    source=token,
+                                )
+
+                                subscription = stripe.Subscription.create(
+                                    customer = customer,
+                                    items = [
+                                        {
+                                            'plan': plan,
+                                            'quantity': customer_stores,
+                                        },
+                                    ],
+                                    expand=['items', 'latest_invoice.payment_intent', 'plan'],
+                                )
+
+                                sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+                                sub.subscription_id         = subscription['id']
+                                sub.subscription_item_id    = subscription['items']['data'][0].id
+                                sub.subscription_quantity   = subscription['items']['data'][0].quantity
+                                sub.plan_id                 = subscription['plan']['id']
+                                sub.subscription_status     = subscription['status']
+                                sub.latest_invoice_status   = subscription['latest_invoice']['status']
+                                sub.payment_status          = subscription['latest_invoice']['payment_intent']['status']
+                                sub.save()
+
+                                if sub.payment_status == 'succeeded':
+                                    messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!')
+                                    return redirect('payments:charge')  
+                                elif sub.payment_status == 'requires_payment_method':
+                                    messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
+                                    return redirect('users:userPage')  
+                                else:
+                                    messages.warning(self.request, 'Your charge didnt return a response, Please retry')
+                                    return render(self.request, 'payments/plan_detail.html') 
+
+                                # subject = 'Subscription'
+                                # context = {
+                                #     'user': self.request.user,
+                                #     'subscription': sub,
+                                # }
+                                # template = 'mail/email/email_base.html'
+                                # html_message = render_to_string(template, context)
+                                # msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
+                                # msg.send()
+
+                            except stripe.error.CardError as e:
+                                messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
+                                return render(self.request, 'payments/plan_detail.html') 
+
+                    else:
+                        messages.warning(self.request, 'Please use a promotion for the plan you have selected. Please try again with a different promotion source!')
+                        return render(self.request, 'payments/plan_detail.html')
+
+                else:
+                    try:
+                        stripe.Customer.modify(
+                            customer,
+                            source=token,
+                        )
+
+                        subscription = stripe.Subscription.create(
+                            customer = customer,
+                            items = [
+                                {
+                                    'plan': plan,
+                                    'quantity': customer_stores,
+                                },
+                            ],
+                            expand=['items', 'latest_invoice.payment_intent', 'plan'],
+                        )
+
+                        sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+                        sub.subscription_id         = subscription['id']
+                        sub.subscription_item_id    = subscription['items']['data'][0].id
+                        sub.subscription_quantity   = subscription['items']['data'][0].quantity
+                        sub.plan_id                 = subscription['plan']['id']
+                        sub.subscription_status     = subscription['status']
+                        sub.latest_invoice_status   = subscription['latest_invoice']['status']
+                        sub.payment_status          = subscription['latest_invoice']['payment_intent']['status']
+                        sub.save()
+
+                        if sub.payment_status == 'succeeded':
+                            messages.success(self.request, 'Your Subscription Was Successful!')
+                            return redirect('payments:charge')  
+                        elif sub.payment_status == 'requires_payment_method':
+                            messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
+                            return redirect('users:userPage')  
+                        else:
+                            messages.warning(self.request, 'Your charge didnt return a response, Please retry')
+                            return render(self.request, 'payments/plan_detail.html') 
+
+                        # subject = 'Subscription'
+                        # context = {
+                        #     'user': self.request.user,
+                        #     'subscription': sub,
+                        # }
+                        # template = 'mail/email/email_base.html'
+                        # html_message = render_to_string(template, context)
+                        # msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
+                        # msg.send()
+    
+                    except stripe.error.CardError as e:
+                        messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
+                        return render(self.request, 'payments/plan_detail.html')
                 
         else:
 
