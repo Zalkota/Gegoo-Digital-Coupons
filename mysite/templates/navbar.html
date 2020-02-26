@@ -110,9 +110,11 @@
                                 <a class="dropdown-item" href="{% url 'users:merchant_testimonial_list' %}">
                                   My Reviews
                                 </a>
+                                {% if user.subscription %}
                                 <a class="dropdown-item" href="{% url 'payments:subscription_detail' request.user.subscription.slug %}">
                                   My Subscription
                                 </a>
+                                {% endif %}
                             {% endif %}
                                 <a class="dropdown-item" href="{% url 'account_set_password' %}">
                                   Settings

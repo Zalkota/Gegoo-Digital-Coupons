@@ -24,7 +24,7 @@
         </span>
 
         {% endif %}
-        {% if user.merchant_profile.payment_status == True %}
+        {% if user.subscription.subscription_status == 'active' %}
         <span class="text-dark px-3 fs-16 mx-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
             Subscription Active
@@ -54,9 +54,11 @@
       <li class="list-inline-item">
         <a href="{% url 'users:user_location' %}" class="{% if 'location' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Location</a>
       </li>
+      {% if user.subscription %}
       <li class="list-inline-item">
         <a href="{% url 'payments:subscription_detail' request.user.subscription.slug %}" class="{% if 'my-subscription' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Subscription</a>
       </li>
+      {% endif %}
       <li class="list-inline-item">
         <a href="{% url 'account_set_password' %}" class="{% if 'accounts' in request.path %} profile-link-active {% else %} profile-link {% endif %}">Settings</a>
       </li>

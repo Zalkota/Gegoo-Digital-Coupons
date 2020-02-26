@@ -82,6 +82,8 @@ a:hover {
 
         <div class="row mt-4">
 
+
+
                 {% if user.merchant_profile.stores == 0 %}
 
                     <div class="col-lg-6 offset-3">
@@ -101,7 +103,7 @@ a:hover {
                         </div>
                     </div>
 
-                {% elif user.merchant_profile.payment_status != True %}
+                {% elif user.subscription.subscription_status != 'active' %}
 
                     <div class="col-lg-6">
                         <div class="card shadow-2 my-2">
