@@ -15,7 +15,6 @@ lxml==4.5.0
 maxminddb==1.5.2
 maxminddb-geolite2==2018.703
 oauthlib==3.1.0
-phonenumbers==8.10.20
 Pillow==5.2.0
 progressbar2==3.47.0
 psycopg2==2.7.5
