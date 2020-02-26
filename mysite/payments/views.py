@@ -214,7 +214,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
 
                     if sub.payment_status == 'succeeded':
                         messages.success(self.request, 'Your Subscription Was Successful!')
-                        return redirect('users:merchant_approval_videofile_list')
+                        return redirect('payments:charge')
                     elif sub.payment_status == 'requires_payment_method':
                         messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
                         return redirect('users:userPage')
