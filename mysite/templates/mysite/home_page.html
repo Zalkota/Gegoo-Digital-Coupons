@@ -129,7 +129,7 @@
                         <div class="card-body py-1">
                             <div class=" text-left mt-3">
                                 <h3 class="fw-6 text-dark fs-18 mb-1">{{ object.business_name }}</h3>
-                                <h4 class="fs-12 text-gray-700">{{ object.category.get_name_display }} / {{ object.subcategory.name }}</h4>
+                                <h4 class="fs-12 text-primary">{{ object.category.get_name_display }} / {{ object.subcategory.name }}</h4>
                                     {% for object in object.rating_average.ratingsystem %}
                                         testimonial
                                     {% endfor %}

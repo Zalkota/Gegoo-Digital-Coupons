@@ -61,7 +61,7 @@ django-ckeditor==5.7.1
 
 # Phone Numbers https://github.com/stefanfoulis/django-phonenumber-field
 django-phonenumber-field==3.0.01
-phonenumbers==8.10.20
+phonenumbers==8.10.20 #TODO CAN I DELETE THIS
 
 #Debug Toolbar
 django-debug-toolbar==1.11
