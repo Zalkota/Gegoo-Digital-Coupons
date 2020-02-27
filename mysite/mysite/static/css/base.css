@@ -11675,6 +11675,7 @@ hr.hr-2 {
   justify-content: left; }
   .flex-container-wrap .flex-box {
     align-self: left;
+    flex-grow: 1;
     flex-basis: 20%; }
 
 .flex-container-vertical {

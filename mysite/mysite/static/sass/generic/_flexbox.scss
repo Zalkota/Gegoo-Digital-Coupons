@@ -1,6 +1,6 @@
 // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
-
+// ********* Flex container *********
 
 .flex-container {
     display: flex;
@@ -22,6 +22,8 @@
     }
 }
 
+// ********* Flex Box Wrap ************
+
 .flex-container-wrap {
     display: flex;
     flex-direction: row;
@@ -31,11 +33,12 @@
 
     .flex-box {
         align-self: left;
+        flex-grow: 1;
         flex-basis: 20%;
     }
 }
 
-
+// *********
 
 .flex-container-vertical {
     display: flex;

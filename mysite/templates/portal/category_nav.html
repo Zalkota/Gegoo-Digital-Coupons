@@ -45,7 +45,7 @@
                     <a href="{% url 'portal:category_detail' slug='community' %}">
                         <div class=" text-center vertical-container">
                             <div class="vertical-alignment">
-                                <i class="fa fa-plane fs-28 pt-1" aria-hidden="true"></i>
+                                <i class="fa fa-users fs-28 pt-1" aria-hidden="true"></i>
                                 <br>
                                 Community
                             </div>
@@ -80,14 +80,27 @@
                 </div>
             </div>
 
-            <div class="flex-box ml-2">
+            <div class="flex-box m2-2">
                 <div class="card {% if 'construction' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
                     <a href="{% url 'portal:category_detail' slug='construction' %}">
                         <div class=" text-center vertical-container">
                             <div class="vertical-alignment">
                                 <i class="fa fa-wrench fs-28 pt-1" aria-hidden="true"></i>
                                 <br>
-                                Construction
+                                Building
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-box ml-2">
+                <div class="card {% if 'groceries' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='groceries' %}">
+                        <div class="text-center vertical-container">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-shopping-cart fs-28 pt-1" aria-hidden="true"></i>
+                                <br>
+                                Groceries
                             </div>
                         </div>
                     </a>
@@ -141,7 +154,7 @@
                     <a href="{% url 'portal:category_detail' slug='community' %}">
                         <div class=" text-center vertical-container">
                             <div class="vertical-alignment">
-                                <i class="fa fa-plane fs-16 mr-2" aria-hidden="true"></i>
+                                <i class="fa fa-users fs-16 mr-2" aria-hidden="true"></i>
                                 Community
                             </div>
                         </div>
@@ -179,7 +192,19 @@
                         <div class=" text-center vertical-container">
                             <div class="vertical-alignment">
                                 <i class="fa fa-wrench fs-16 mr-2" aria-hidden="true"></i>
-                                Construction
+                                Building
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-box mx-1">
+                <div class="{% if 'groceries' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='groceries' %}">
+                        <div class=" text-center vertical-container">
+                            <div class="vertical-alignment">
+                                <i class="fa fa-shopping-cart fs-16 mr-2" aria-hidden="true"></i>
+                                Groceries
                             </div>
                         </div>
                     </a>
