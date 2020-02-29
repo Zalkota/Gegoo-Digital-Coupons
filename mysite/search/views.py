@@ -7,6 +7,12 @@ from haystack.query import SearchQuerySet
 from portal.models import Offer, Category, Store
 from .forms import FacetedOfferSearchForm
 
+#Location
+from location.functions import get_or_set_location
+from django.contrib.gis.db import models
+from django.contrib.gis.geos import Point
+from django.contrib.gis.db.models.functions import Distance
+
 #class HomeView(TemplateView):
 #  template_name = "home.html"
 
@@ -35,5 +41,10 @@ class FacetedSearchView(BaseFacetedSearchView):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
-        context['advert_list'] = Offer.objects.all()[:4]
+        city_state = get_or_set_location(self.request)
+        user_location = city_state["user_location"]
+        try:
+            context['advert_list'] = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:4]
+        except:
+            context['advert_list'] = Store.objects.filter(city='Novi', state='Michigan')[0:8]
         return context

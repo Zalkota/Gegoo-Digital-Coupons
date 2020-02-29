@@ -36,6 +36,10 @@ RUN sed -i 's/\r//' /db.json
 RUN chmod +x /db.json
 
 
+#COPY ./templates/search/item_text.txt /item_text.txt
+#RUN sed -i 's/\r//' /item_text.txt
+#RUN chmod +x /item_text.txt
+
 ENV VIRTUAL_ENV /env
 ENV PATH /env/bin:$PATH
 

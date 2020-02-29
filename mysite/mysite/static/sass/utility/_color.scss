@@ -120,13 +120,13 @@ $color-background-800: #f5f7fa;
 $color-main: #fefefe;
 
 // Navbar
-$color-navbar-background: $color-background-700;
+$color-navbar-background: $color-background-600;
 $color-navbar-background-scrolled: $color-main;
 $color-navbar-text: $color-main;
 $color-navbar-hover: $color-black;
 
 // Navbar-alt
-$color-navbar-alt-background: $color-background-700;
+$color-navbar-alt-background: $color-background-600;
 $color-navbar-alt-background-scrolled: #fdfdfe;
 $color-navbar-alt-text: $color-black;
 $color-navbar-alt-hover: $color-primary;
@@ -184,6 +184,7 @@ $colors: map-merge((
   "gray-50": #fafbfc,
   "gray-60": #f5f5f5,
   "gray-70":  #F1F3F6,
+  "gray-80": #F8F9FA,
   "gray-100": #F7FAFC,
   "gray-200": #EDF2F7,
   "gray-300": #E2E8F0,

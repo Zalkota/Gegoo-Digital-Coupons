@@ -350,8 +350,8 @@ class Store(models.Model):
     logo                = models.ImageField(upload_to='store-logos/', validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])], null=True)
 
 
-    category            = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
-    subcategory         = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=True, null=True)
+    category            = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    subcategory         = models.ForeignKey(Subcategory, on_delete=models.CASCADE, null=True)
     code_coupon         = models.CharField(max_length=15, blank=True, null=True, help_text="If left blank, this will be auto-generated as GEGOO####. Set as 'NONE' if no coupon code is desired for your store.")
 
     # Store Bio
@@ -363,7 +363,7 @@ class Store(models.Model):
     city                = models.CharField(max_length=100, null=True)
     state               = models.CharField(choices=STATES, default='NA', max_length=100)
     zip                 = models.CharField(max_length=100, null=True)
-    phone_number        = PhoneNumberField(max_length=20, blank=True, null=True, region='US')
+    phone_number        = PhoneNumberField(max_length=20, blank=True, null=True, region='US', help_text="Example: 123 456-7890")
 
     # Store Location Info - Admin fills out
     latitude            = models.DecimalField(max_digits=11, decimal_places=8, default=1, help_text="Enter latitude of store's location.", null=True, blank=True)
@@ -388,12 +388,15 @@ class Store(models.Model):
     def get_consumer_absolute_url(self):
         return reverse('portal:consumer_store_detail', kwargs={'slug': self.slug})
 
-    # @property
-    # def get_first_active(self):
-    #     now = timezone.now()
-    #     object_qs = self.offers.filter(end_date__gt=now).order_by('end_date')
-    #     object = object_qs.first()
-    #     return object
+
+    #TODO
+    # https://docs.djangoproject.com/en/3.0/ref/models/options/#indexes
+    # class Meta:
+    #     indexes = [
+    #         models.Index(fields=['location']), #Is this enough? Most queries only look for location.
+    #         models.Index(fields=['location', 'business_name']),
+    #     ]
+
 
     @property
     def rating_average(self):
@@ -412,7 +415,17 @@ class Store(models.Model):
         if front_text is not None:
             average_rating = front_text / count
             average_rating_rounded = round(average_rating)
-            return average_rating_rounded
+            return range(average_rating_rounded)
+
+    @property
+    def rating_average_round_inverted(self):
+        rating_dict = self.testimonial.all().aggregate(Sum('rating'))
+        count = self.testimonial.all().count()
+        front_text = rating_dict.get('rating__sum')
+        if front_text is not None:
+            average_rating = front_text / count
+            average_rating_rounded = round(average_rating)
+            return range(5-average_rating_rounded)
 
     @property
     def get_total_testimonials(self):
@@ -426,13 +439,15 @@ def update_store_count(sender, instance, **kwargs):
     merchantprofile.stores      = Store.objects.filter(merchant=instance.merchant).count()
     merchantprofile.save()
 
-
-    # def GetDistance(self):
-    #     return self.objects.annotate(distance = Distance("location", user_location)).order_by("distance")[0:6]
-    #
-
 post_save.connect(CalculateLocation, sender=Store)
 post_save.connect(setCouponCode, sender=Store)
+
+
+class TestimonialManager(models.Manager):
+    #Grabs first offer and only shows active offers
+    def testimonials_capped(self):
+        object_list = self.order_by('-created_at')[:5]
+        return object_list
 
 class Testimonial(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
@@ -447,8 +462,24 @@ class Testimonial(models.Model):
         ]
     )
     # Creation Fields
-    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
-    updated_at      = models.DateTimeField(default=timezone.now, verbose_name="Updated at")
+    created_at      = models.DateField(default=timezone.now, verbose_name="Created at")
+    updated_at      = models.DateField(default=timezone.now, verbose_name="Updated at")
+
+    objects = TestimonialManager()
+
+    # @property
+    # def four(self):
+    #     return self.order_by('-created_at')[:5]
+
+    @property
+    def range(self):
+        rating_range = range(self.rating)
+        return rating_range
+
+    @property
+    def range_inverted(self):
+        rating_range = range( 5-self.rating)
+        return rating_range
 
 class StoreOffer(models.Model):
     offers = models.ManyToManyField(Offer)

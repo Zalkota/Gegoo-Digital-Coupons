@@ -39,11 +39,12 @@
                             </div>
                             <div class="col-lg-6 ">
                                 <i class="material-icons star-yellow fs-18 pull-right" style="">
-                                    {% if object.rating == 1 %} star star_border star_border star_border star_border {% endif %}
-                                    {% if object.rating == 2 %} star star star_border star_border star_border {% endif %}
-                                    {% if object.rating == 3 %} star star star star_border star_border {% endif %}
-                                    {% if object.rating == 4 %} star star star star star_border {% endif %}
-                                    {% if object.rating == 5 %} star star star star star {% endif %}
+                                    {% for i in object.range %}
+                                    star
+                                    {% endfor %}
+                                    {% for i in object.range_inverted %}
+                                    star_border
+                                    {% endfor %}
                                 </i>
                             </div>
                         </div>

@@ -1,0 +1,74 @@
+version: '2'
+
+volumes:
+  postgres_data: {}
+  postgres_backup: {}
+  esdata1:
+    driver: local
+  esdata2:
+    driver: local
+
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile_local
+    depends_on:
+      - postgres
+    #environment:
+    #  - POSTGRES_USER=reliable_carriers
+    #  - USE_DOCKER=yes
+    env_file:
+      #- ./envs/common/django.env
+      - ./env
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    links:
+      - postgres
+      - elasticsearch
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/postgres/Dockerfile
+    # build:
+    #   context: .
+    #   dockerfile: ./compose/postgres/Dockerfile
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_backup:/backups
+    ports:
+      - 5432:5432
+    env_file:
+        - ./compose/postgres/postgres.env
+    # environment:
+      # - POSTGRES_USER=gegooadmin
+      # - POSTGRES_PASSWORD=$Django10
+      # - POSTGRES_PORT=
+    #
+  elasticsearch:
+    # build:
+    #   context: .
+    #   dockerfile: ./compose/elastic/Dockerfile
+    image: barnybug/elasticsearch:1.7.2
+    container_name: elasticsearch
+    # environment:
+    #   - cluster.name=docker-cluster
+    #   - bootstrap.memory_lock=true
+    #   - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+#     networks:
+#       - esnet
+#
+# networks:
+#   esnet:

@@ -193,7 +193,7 @@ class MerchantStoreCreateView(LoginRequiredMixin, CreateView):
 		#Set stores owner
 		form.instance.merchant = user
 
-		#Set Store Slug as business name and city combined
+		#Set Store Slug as business name, city, and random number combined
 		business_name = form.cleaned_data.get('business_name')
 		city = form.cleaned_data.get('city')
 		state = form.cleaned_data.get('state')

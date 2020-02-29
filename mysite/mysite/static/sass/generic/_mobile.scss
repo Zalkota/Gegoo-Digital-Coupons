@@ -3,6 +3,8 @@
     <**************************************************************************>
 */
 
+// pm-m-desktop-mobile
+
 @media screen and (min-width: 992px) {
   .p-m-5 {
     padding: 3rem;
@@ -84,6 +86,11 @@
   .px-m-na-0 {
     padding-left: 0rem !important;
     padding-right: 0rem !important;
+  }
+
+  .px-m-na-3 {
+      padding-left: 2rem;
+      padding-right: 2rem;
   }
 
 

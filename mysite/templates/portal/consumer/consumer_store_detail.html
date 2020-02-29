@@ -13,10 +13,10 @@
 
 
 <!-- Body Start -->
-<section class="section pb-5 container">
+<section class="section pb-5 pt-1 container">
     <div class="py-3 hide"></div>
     <div class="row">
-        <div class="col-lg-6 col-xl-6 col-md-6 col-12 text-left">
+        <div class="col-lg-6 col-xl-6 col-md-6 col-12 text-left hide">
             <div class="fs-14">
                 <span href="" class="text-dark">{{ store.state }}</span>
                 <span class="text-primary px-1">&#8226;</span>
@@ -30,37 +30,51 @@
                 <div class="py-3 unhide"></div>
             </div>
         </div>
-        <div class="col-lg-6 col-xl-6 col-md-6     col-12 text-right">
-            <a href="#" class="text-white btn btn-primary-alt gradient-primary py-2 fw-6 fs-24 mb-2 text-decoration-none">
+        <div class="offset-lg-3"></div>
+        <div class="col-lg-3 col-xl-3 col-md-3 col-12 text-left bg-purple-200 border-top border-bottom stripe-primary py-2">
+            <!-- <a href="#" class="text-white btn btn-primary-alt gradient-primary py-2 fw-6 fs-24 mb-2 text-decoration-none hide">
                 <span class="">USE CODE:</span> {% if store.code_coupon != NONE %}{{ store.code_coupon }}{% endif %}
-            </a>
+            </a> -->
+            <div class=" pl-2 ">
+                <a href="#" class="text-primary fw-6 fs-24 mb-2 text-decoration-none ">
+                    <span class="text-dark fs-14 fw-4">USE CODE:</span>
+                    <br>{% if store.code_coupon != NONE %}{{ store.code_coupon }}{% endif %}
+                </a>
+            </div>
         </div>
         <div class="col-xl-3 col-lg-4 col-md-4 order-lg-1 order-md-1 order-2 mt-3">
-            <div class="card shadow-2">
-                <div class="card-body p-0">
-                    <img class="img-fluid p-0" style="width: 100%;" src="{{ AwsBucketMediaURL }}{{ store.logo }}" alt="Coupon Image Banner">
+            <div class="card shadow-5">
+                <div class="card-body p-0 hide">
+                    <img class="img-fluid p-0" style="width: 100%; border-radius: 0.25rem 0.25rem 0 0;" src="{{ AwsBucketMediaURL }}{{ store.logo }}" alt="Coupon Image Banner">
                 </div>
                 <div class="card-body border-top">
                     <h2 class="header text-dark">{{ store.business_name }}</h2>
                     {% if store.testimonial.exists %}
-                    <i class="material-icons star-yellow fs-18" style="">
-                        {% if object.rating_average <= 1 %} star star_border star_border star_border star_border
-                        {% elif object.rating_average <= 2 %} star star star_border star_border star_border
-                        {% elif object.rating_average <= 3 %} star star star star_border star_border
-                        {% elif object.rating_average <= 4 %} star star star star star_border
-                        {% elif object.rating_average <= 5 %} star star star star star {% endif %}
-                    </i>
-                    <span class="text-secondary fs-12">
-                        ({{ object.get_total_testimonials }})
-                    </span>
+                    <div class="flex-container-rating">
+                        <div class="flex-box text-secondary fs-12 pr-1 ">
+                            {{ object.rating_average }}
+                        </div>
+                        <div class="flex-box pr-1" style="line-height: 5px;">
+                            <i class="material-icons star-yellow fs-16" style="">
+                                {% for i in object.rating_average_round %}
+                                star
+                                {% endfor %}
+                                {% for i in object.rating_average_round_inverted %}
+                                star_border
+                                {% endfor %}
+                            </i>
+                        </div>
+                        <div class="flex-box text-secondary fs-12">
+                            ({{ object.get_total_testimonials }})
+                        </div>
+                    </div>
                     {% endif %}
-                    <div class="fw-5 fs-14 mt-3">
-                        <span class="fw-4">{{ store.city }}, {{ store.state }}</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 mb-1 icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                    <div class="fw-6 text-secondary fs-14 mt-3">
+                        <span class="fw-4">{{ store.street_address }}, {{ store.city }}</span>
                         <br>
                         <br>
                         <a href="tel:{{ store.phone_number }}" class="text-primary">{{ store.phone_number.as_e164 }} </a>
-                        <a href="" class="text-primary ">Write Review</a>
+
                         {% if store.website_url %}
                         <a href="{{ store.website_url }}" target="_blank" class="text-primary pull-right">View Website</a>
                         {% endif %}
@@ -74,12 +88,8 @@
                 </div>
                 {% if store.street_address %}
                 <div class="card-body border-top">
-                    <h3 class="header">Location</h3>
-                    <address class="fs-14">
-                        {{ store.street_address }}<br>
-                        {{ store.city }}, {{ store.state }} {{ store.zip }} <br>
-                        United States
-                    </address>
+                    <h3 class="header">Review Business</h3>
+                    <a href="" class="text-primary fs-14">Write a Review</a>
                 </div>
                 {% endif %}
                 {% if related_stores %}
@@ -97,7 +107,7 @@
         <div class="offset-xl-1 order-1 "></div>
         <div class="col-lg-8 col-md-8 order-1 mt-3">
             <div class="p-0 shadow-2">
-                <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ store.banner }}">
+                <video class="border-radius-100" style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ AwsBucketMediaURL }}{{ store.logo }}">
     				<source src="{{ AwsBucketMediaURL }}{{ store.videofile.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
 				</video>
             </div>
@@ -199,25 +209,29 @@
 
                 <!-- Reviews -->
                 <div id="LearnMore">
-                    {% for object in object.testimonial.all %}
-                    <div class="card card-border shadow-2 mt-3">
+                    {% for object in object.testimonial.testimonials_capped %}
+                    <div class="card card-border shadow-5 mt-3">
                         <div class="flex-container-vertical">
                             <div class="card-body py-4 px-4">
                                 <div class="row">
                                     <div class="col-lg-8">
-                                        <h3 class="subheader">{{ object.slogan}}</h3>
+                                        <h3 class="subheader">{{ object.title }}</h3>
                                         <p class="mt-3 fw-4 fs-16 text-gray-700">
                                             {{ object.review|truncatewords:16 }}
                                         </p>
                                     </div>
                                     <div class="col-lg-4">
-                                        <i class="material-icons star-yellow fs-18 pull-right" style="">
-                                            {% if object.rating_average == 1 %} star star_border star_border star_border star_border {% endif %}
-                                            {% if object.rating_average == 2 %} star star star_border star_border star_border {% endif %}
-                                            {% if object.rating_average == 3 %} star star star star_border star_border {% endif %}
-                                            {% if object.rating_average == 4 %} star star star star star_border {% endif %}
-                                            {% if object.rating_average == 5 %} star star star star star {% endif %}
-                                        </i>
+                                            <div class=" pr-1" style="line-height: 5px;">
+                                                <i class="material-icons star-yellow fs-18 pull-right" style="">
+                                                    {% for i in object.range %}
+                                                    star
+                                                    {% endfor %}
+                                                    {% for i in object.range_inverted %}
+                                                    star_border
+                                                    {% endfor %}
+                                                </i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +240,7 @@
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="fs-14 text-secondary text-left">
-                                                <span>Written by: {{ object.author }}</span> <br>
+                                                <span>By: {{ object.author }}</span> <br>
                                             </div>
                                         </div>
                                         <div class="offset-4"></div>
@@ -241,7 +255,9 @@
                         </div>
                     </div>
                     {% endfor %}
-
+                    <div class="py-3 text-center">
+                        <a href="#TODO">View More</a>
+                    </div>
                 </div>
 
                 <!-- Download Content -->

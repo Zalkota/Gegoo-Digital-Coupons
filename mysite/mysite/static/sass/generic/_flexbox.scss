@@ -38,6 +38,20 @@
     }
 }
 
+// ********* Flex Box Star Rating Systme ************
+
+.flex-container-rating {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: left;
+
+
+    .flex-box {
+        align-self: left;
+    }
+}
+
 // *********
 
 .flex-container-vertical {

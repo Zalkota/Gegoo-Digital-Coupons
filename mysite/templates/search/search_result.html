@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load location_extra %}
 
 {% block title %}
     "{{ query }}" | {{ block.super }}
@@ -9,7 +10,7 @@
 <main class="">
 
 
-<section class="section-white-sm">
+<section class="section">
     <div class="container">
         <div class="mb-5">
             <h2>Search Results</h2>
@@ -25,7 +26,7 @@
 
         <div class="col-lg-2 mb-4">
         	<div class="hide">
-                <h4 class="fs-16 fw-6">Narrow Choices</h4>
+                <h4 class="fs-16 fw-6">Filter Choices</h4>
                 <br>
             </div>
               <dl>
@@ -43,7 +44,7 @@
                  {% endif %}
               </dl>
               <div>
-                  <input class="btn btn-alt btn-block fs-12 px-3 py-2 pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
+                  <input class="btn btn-primary-alt btn-block fs-12 px-3 py-2 pull-right" type="submit" value="Apply filter" onclick="return onFacetChangeApplied();" />
               </div>
         </div>
 
@@ -55,17 +56,33 @@
 
         {% if  page_obj.object_list %}
             {% for result in page_obj.object_list %}
-                <div class="col-lg-3 col-sm-6 mb-5 text-center">
-                    <div class="card">
-                        <a href="{{ result.object.get_consumer_absolute_url }}">
-                            <img class="img-fluid border-radius-100" style="max-height: 250px;" src="{{ AwsBucketMediaURL }}{{ result.object.logo }}" alt="User Uploaded images">
-                        </a>
-                        <div class="card-body text-left">
-                            <h3 class=" fw-7 fs-14">{{result.object.business_name}}</h3>
-                            <span class="text-muted fs-14 ">${{ result.object.price }}</span>
+            <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-4">
+                <div class="card">
+
+                    <div class="card-body py-1 px-3">
+                        <div class=" text-left my-2">
+                            <a href="{{ result.object.get_consumer_absolute_url }}" class="fw-6 text-primary fs-18 mb-1">{{ result.object.business_name }}</a>
+                            <br>
+                            <i class="material-icons star-yellow fs-16" style="">
+                                {% for i in result.object.rating_average_round %}
+                                star
+                                {% endfor %}
+                                {% for i in result.object.rating_average_round_inverted %}
+                                star_border
+                                {% endfor %}
+                            </i>
+                            <br>
+                                {% for result.object in result.object.rating_average.ratingsystem %}
+                                    testimonial
+                                {% endfor %}
+                            <p class="fw-4 text-gray-800 fs-16 fw-6 pt-2">
+                                {{ result.object.slogan|truncatewords:8 }}
+                            </p>
+                            <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
                         </div>
                     </div>
                 </div>
+            </div>
             {% endfor %}
 
       	<div class="col-lg-12 pt-5 text-muted fs-14">
@@ -79,49 +96,82 @@
             </div>
 
             <div class="px-4">
-          		{% if is_paginated %}
-          		    <ul class="pagination pull-right">
-          		        {% if page_obj.has_previous %}
-          		            <li><a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">«</a></li>
-          		        {% else %}
-          		            <li class="disabled"><span>«</span></li>
-          		        {% endif %}
-          		        {% for i in paginator.page_range %}
-          		            {% if page_obj.number == i %}
-          		                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-          		            {% else %}
-          		                <li><a href="?q={{ query }}&page={{ i }}">{{ i }}</a></li>
-          		            {% endif %}
-          		        {% endfor %}
-          		        {% if page_obj.has_next %}
-          		            <li><a href="?q={{ query }}&page={{ page_obj.next_page_number }}">»</a></li>
-          		        {% else %}
-          		            <li class="disabled"><span>»</span></li>
-          		        {% endif %}
-          		    </ul>
-          		        {% endif %}
-                {% else %}
-          	    <div class="px-3">
-                      <p> Sorry, no result were found for the search term:  <strong>{{query}} </strong></p>
-                  </div>
-          	    {% endif %}
+                {% if is_paginated %}
+                <div class="col-lg-12 py-3 text-center">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination pull-right">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                    {% endif %}
+                    {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                            {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+                    {% endif %}
+                  </ul>
+                </nav>
+                </div>
+                {% endif %}
+
+                {% endif %}
           	</div>
         </div>
     </div>
     <div class="py-5"></div>
 
-    <div class="bg-light border row">
+    <div class="bg-gray-80 p-3 border row">
+
+        <div class="col-lg-12 pb-1 text-left">
+            <h3 class="header fs-16">Customers who viewed this service also viewed</h3>
+            <br>
+        </div>
 
       {% for object in advert_list %}
-      <div class="col-lg-3 col-sm-6 text-center">
-          <a href="{{ object.get_absolute_url }}">
-            <img class="card-img-top p-4"  src="/media/{{ object.main_image }}" alt="User Uploaded images">
-          </a>
-      </div>
+          <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-4 px-m-na-3">
+              <div class="card">
+                  <a class="" href="{{ object.get_consumer_absolute_url }}">
+                      <img class="img-fluid border-radius-top-100" style="max-height: 200px;" src="{{ AwsBucketMediaURL }}{{ object.logo }}" alt="User Uploaded images">
+                  </a>
+                  <div class="card-body py-1 px-3">
+                      <div class=" text-left mt-2">
+                          <a href="{{ object.get_consumer_absolute_url }}" class="fw-6 text-primary fs-18 mb-1">{{ object.business_name }}</a>
+                          <br>
+                          <i class="material-icons star-yellow fs-16" style="">
+                              {% for i in object.rating_average_round %}
+                              star
+                              {% endfor %}
+                              {% for i in object.rating_average_round_inverted %}
+                              star_border
+                              {% endfor %}
+                          </i>
+                          <br>
+                          <!-- <span class="fs-12 text-gray-700">{{ object.category.get_name_display }} <span class="text-purple-500 px-1">&#8226;</span> {{ object.subcategory.name }}</span> -->
+                              {% for object in object.rating_average.ratingsystem %}
+                                  testimonial
+                              {% endfor %}
+                          <p class="fw-4 text-gray-800 fs-16 fw-6 pt-2">
+                              {{ object.slogan|truncatewords:8 }}
+                          </p>
+                          <div class="fs-14 mt-3 mb-2">
+                              <span class="text-gray-700 fw-4">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-location-pin"><path class="fill-purple-500" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-500" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                                  {{ object.distance.mi|dividebyth }} Miles Away
+                              </span>
+                          </div>
+                          <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
+                      </div>
+                  </div>
+              </div>
+          </div>
       {% endfor %}
-      <div class="col-lg-12 pb-1 text-center ">
-          <span class="text-muted text-center fs-12">Featured products</span>
-      </div>
+
     </div>
 
 

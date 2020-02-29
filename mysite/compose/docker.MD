@@ -17,6 +17,8 @@ docker exec -it mysite_django_1 python3 local.py collectstatic
 docker exec -it mysite_django_1 python3 local.py makemigrations
 docker exec -it mysite_django_1 python3 local.py migrate
 
+docker exec -it mysite_django_1 python3 local.py rebuild_index
+
 # Stop or Remove Containers
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
