@@ -45,14 +45,12 @@
                             <div class=" text-left mt-2">
                                 <a href="{{ object.get_consumer_absolute_url }}" class="fw-6 text-primary fs-18 mb-1">{{ object.business_name }}</a>
                                 <br>
-                                <i class="material-icons star-yellow fs-16" style="">
-                                    {% for i in object.rating_average_round %}
-                                    star
-                                    {% endfor %}
-                                    {% for i in object.rating_average_round_inverted %}
-                                    star_border
-                                    {% endfor %}
-                                </i>
+                                {% for i in object.rating_average_round %}
+                                  <span class="fa fa-star star-yellow fs-16"></span>
+                                  {% endfor %}
+                                  {% for i in object.rating_average_round_inverted %}
+                                  <span class="fa fa-star-o star-yellow fs-16"></span>
+                                {% endfor %}
                                 <br>
                                 <!-- <span class="fs-12 text-gray-700">{{ object.category.get_name_display }} <span class="text-purple-500 px-1">&#8226;</span> {{ object.subcategory.name }}</span> -->
                                     {% for object in object.rating_average.ratingsystem %}

@@ -48,25 +48,23 @@
                     <h2 class="header text-dark">{{ store.business_name }}</h2>
                     {% if store.testimonial.exists %}
                     <div class="flex-container-rating">
-                        <div class="flex-box text-secondary fs-12 pr-1 ">
+                        <div class="flex-box text-secondary fs-12 pr-1  pt-1">
                             {{ object.rating_average }}
                         </div>
-                        <div class="flex-box pr-1" style="line-height: 5px;">
-                            <i class="material-icons star-yellow fs-16" style="">
-                                {% for i in object.rating_average_round %}
-                                star
-                                {% endfor %}
-                                {% for i in object.rating_average_round_inverted %}
-                                star_border
-                                {% endfor %}
-                            </i>
+                        <div class="flex-box pr-1">
+                            {% for i in object.rating_average_round %}
+                              <span class="fa fa-star star-yellow fs-16"></span>
+                              {% endfor %}
+                              {% for i in object.rating_average_round_inverted %}
+                              <span class="fa fa-star-o star-yellow fs-16"></span>
+                            {% endfor %}
                         </div>
-                        <div class="flex-box text-secondary fs-12">
+                        <div class="flex-box text-secondary fs-12 pt-1">
                             ({{ object.get_total_testimonials }})
                         </div>
                     </div>
                     {% endif %}
-                    <div class="fw-6 text-secondary fs-14 mt-3">
+                    <div class="fw-6 text-secondary fs-14 mt-1">
                         <span class="fw-4">{{ store.street_address }}, {{ store.city }}</span>
                         <br>
                         <br>
