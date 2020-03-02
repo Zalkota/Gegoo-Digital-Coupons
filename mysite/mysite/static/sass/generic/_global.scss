@@ -458,52 +458,87 @@ hr.hr-2 {
       <**************************************************************************>
   */
 
+
+
+
     .messages {
-      z-index: 999;
-      position: fixed;
-      left: 0%;
-      bottom: 0%;
+
       background-color: transparent !important;
+      border-radius: 0;
       color: $color-black;
       font-family: Nunito, sans-serif;
       font-size: .9em;
       font-weight: 600;
-      padding: 1em 1em 1em 2em;
-      z-index: 80;
-      position: fixed;
-      bottom: 0%;
-      height: 3rem;
+      width: 100%;
+      padding: 1rem 0rem;
+      z-index: 9999;
 
+
+      @media screen and (min-width: 992px) {
+        .alert {
+          border-radius: 0;
+          color: $color-black;
+          font-weight: 400;
+          padding: 1rem;
+          font-size: 18px;
+          // -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.09), 0 2px 4px rgba(0,0,0,0.09) !important;
+          z-index: 999;
+          left: 1%;
+          bottom: 0%;
+          position: fixed;
+          z-index: 9999;
+        }
     }
 
-    .alert {
-      background-color: #fafafa;
-      border: 1px solid #fafafa;
-      color: $color-black;
-      font-family: Nunito, sans-serif;
-      font-size: .9em;
-      font-weight: 600;
-      padding: 1em 1em 1em 2em;
-      z-index: 999;
-      position: fixed;
-      left: 1%;
-      bottom: 0%;
-      -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.09), 0 2px 4px rgba(0,0,0,0.09) !important;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.09), 0 2px 4px rgba(0,0,0,0.09) !important;
+     @media screen and (max-width: 992px) {
+        .alert {
+          border-radius: 0;
+          color: $color-black;
+          font-weight: 400;
+          font-size: 18px;
+          // -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.09), 0 2px 4px rgba(0,0,0,0.09) !important;
+          left: 0%;
+          bottom: 0%;
+          position: fixed;
+          margin: 1rem;
+          padding: 1rem;
+          width: 92%;
+          z-index: 9999;
+
+        }
     }
 
-    .alert-success {
-      border-left: 6px solid $color-success;
-    }
+        .alert-inline {
+          margin: 0 auto;
+          width: 400px;
+          border-radius: 0;
+          color: $color-black;
+          font-weight: 400;
+          padding: 2rem;
+          font-size: 18px;
+          z-index: 9999;
+          // -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.09), 0 2px 4px rgba(0,0,0,0.09) !important;
+        }
 
-    .alert-danger {
-      border-left: 6px solid $color-danger;
-    }
+        .alert-success {
+          border: 1px solid $color-purple-300;
+          border-left: 6px solid $color-primary;
+          background-color: $color-purple-200;
+        }
 
-    .alert-info {
-      border-left: 6px solid $color-info;
-    }
+        .alert-danger {
+          border: 1px solid $color-red-300;
+          border-left: 6px solid $color-danger;
+          background-color: $color-red-100;
+        }
 
+        .alert-info {
+          border: 1px solid $color-blue-300;
+          border-left: 6px solid $color-info;
+          background-color: $color-blue-100;
+        }
+
+    }
 
   // ============== CUSTOM MESSAGES END ================//
 

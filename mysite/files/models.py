@@ -30,7 +30,8 @@ class FileItem(models.Model):
 
 
 def update_filename(instance, filename):
-    path = "store-videos/"
+    slug = instance.store.slug
+    path = "store-videos/" + slug + '/'
     today = datetime.now()
     time_string = today.strftime("%m-%d-%Y %H:-%M:-%S")
     # time_string = str(today)

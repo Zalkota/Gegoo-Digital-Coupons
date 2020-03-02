@@ -5,10 +5,7 @@ from haystack.fields import CharField
 
 from portal.models import Store
 
-from location.functions import set_location_cookies, get_ip, get_or_set_location
-from django.contrib.gis.db import models
-from django.contrib.gis.geos import Point
-from django.contrib.gis.db.models.functions import Distance
+
 
 class StoreIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(
@@ -32,6 +29,7 @@ class StoreIndex(indexes.SearchIndex, indexes.Indexable):
         return Store
 
     def index_queryset(self, using=None):
-        city_state = get_or_set_location(self.request)
-        user_location = city_state["user_location"]
-        return self.get_model().objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:8]
+        return self.get_model().objects.filter(updated_at__lte=timezone.now())
+        # city_state = get_or_set_location(self.request)
+        # user_location = city_state["user_location"]
+        # return self.get_model().objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:8]

@@ -2,10 +2,10 @@
 
 {% if messages %}
 <div class="container-fluid messages" id="message_container" >
-  <div class="ul-trans" >
+  <div class="moveInTop ul-trans" >
     <ul class="" style="list-style-type: none;">
       {% for message in messages %}
-        <li class="alert {{ message.tags }} moveInTop" style="display: inline-block">{{ message }}</li>
+        <li class="alert {{ message.tags }}" style="display: inline-block">{{ message }}</li>
       {% endfor %}
     </ul>
   </div>

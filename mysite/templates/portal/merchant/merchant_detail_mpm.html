@@ -1,4 +1,4 @@
-{% extends "base-alt.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 
@@ -13,22 +13,41 @@
 
 
 <!-- Body Start -->
-<section class="section-sm container">
+<section class="section container">
     <div class="row">
-        <div class="col-lg-6 text-left">
-            <h1>{{ object.business_name }} Storefront</h1>
-            <p>You can edit the content contained to better appeal to your customer base</p>
-            <h1></h1>
+        <div class="col-12 text-left bg-orange-200 stripe-orange-600 mb-4">
+            <div class="card-body">
+                <h1>{{ object.business_name }} Storefront <a href="{% url 'users:merchant_store_delete' store.slug %}" class="btn btn-red-600-alt pull-right mx-2">Delete Store</a><a href="{% url 'users:merchant_store_update' store.slug %}" class="btn btn-orange-500-alt pull-right mx-2">Edit Store</a><a href="{% url 'portal:consumer_store_detail' store.slug %}" class="btn btn-orange-500-alt pull-right mx-2">Live View</a></h1>
+                <p class="text-secondary">You can edit the content contained to better appeal to your customer base</p>
+            </div>
         </div>
-        <div class="col-lg-6 text-right">
-            <a href="#" class="text-white btn btn-primary-alt gradient-primary py-2 fw-6 fs-24 mb-2 text-decoration-none">
-                <span class="">USE CODE:</span> {% if object.code_coupon != NONE %}{{ object.code_coupon }}{% endif %}
-            </a>
+        <div class="col-lg-6 col-xl-6 col-md-6 col-12 text-left hide">
+            <div class="fs-14">
+                <span href="" class="text-dark">{{ store.state }}</span>
+                <span class="text-primary px-1">&#8226;</span>
+                <span href="" class="text-dark">{{ store.city }}</span>
+                <span class="text-primary px-1">&#8226;</span>
+                <a href="{{ store.category.get_absolute_url }}" class="text-dark">{{ store.category.get_name_display }}</a>
+                <span class="text-primary px-1">&#8226;</span>
+                <a href="{{ store.subcategory.get_absolute_url }}" class="text-dark">{{ store.subcategory }}</a>
+                <span class="text-primary px-1">&#8226;</span>
+                <a href="" class="text-dark">{{ store.business_name }}</a>
+                <div class="py-3 unhide"></div>
+            </div>
+        </div>
+        <div class="offset-3"></div>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-12 text-left bg-purple-200 border-top border-bottom stripe-primary py-2">
+            <div class=" ">
+                <a href="#" class="text-primary fw-6 fs-24 mb-2 text-decoration-none ">
+                    <span class="text-dark fs-14 fw-4">USE CODE:</span>
+                    <br>{% if store.code_coupon != NONE %}{{ store.code_coupon }}{% endif %}
+                </a>
+            </div>
         </div>
         <div class="col-lg-3 mt-3">
             <div class="card shadow-2">
                 <div class="card-body p-0">
-                    <img class="img-fluid p-0" style="width: 100%;" src="{{ AwsBucketURL }}{{ object.logo }}" alt="Coupon Image Banner">
+                    <img class="img-fluid p-0" style="width: 100%;" src="{{ AwsBucketMediaURL }}{{ store.logo }}" alt="Coupon Image Banner">
                 </div>
                 <div class="card-body border-top">
                     <h2 class="header text-dark">{{ object.business_name }}</h2>
@@ -84,8 +103,8 @@
         <div class="offset-lg-1"></div>
         <div class="col-lg-8 mt-3">
             <div class="p-0 shadow-2">
-                <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ object.banner }}">
-    				<source src="{{ AwsBucketURL }}{{ object.merchant.videofile.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
+                <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ AwsBucketMediaURL }}{{ store.logo }}">
+    				<source src="{{ AwsBucketMediaURL }}{{ store.videofile.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
 				</video>
             </div>
 
@@ -139,7 +158,7 @@
                         <h1>Store - {{ object.pk }}</h1>
                         <h1>Offer - {{ offer.pk }}</h1>
                         <a href="" value="add" data="{{ object.pk }}" data-catid="{{ offer.pk }}" class="offerBtn btn btn-primary" action_type="add">Add</a>
-                    </div>              
+                    </div>
                     {% endfor %}
                 </div>
                 <div id="ViewOffers">
@@ -294,7 +313,7 @@ if(retrievedObjectText){
             this_.text('Remove');
             localStorage.setItem('button_text', this_.text());
             this_.attr({
-                'action_type': 'remove', 
+                'action_type': 'remove',
             });
 
             this_.removeClass('offerBtn btn btn-primary').addClass('offerBtn btn btn-danger');

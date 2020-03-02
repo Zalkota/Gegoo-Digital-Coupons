@@ -24,7 +24,7 @@ def autocomplete(request):
     sqs = SearchQuerySet().autocomplete(content_auto=request.GET.get('query',''))[:5]
     s = []
     for result in sqs:
-        d = {"value": result.business_name, "data": result.object.slug}
+        d = {"value": result.business_name, "data": result.slug}
         s.append(d)
     output = {'suggestions': s}
     return JsonResponse(output)
@@ -36,6 +36,14 @@ class FacetedSearchView(BaseFacetedSearchView):
     template_name = 'search/search_result.html'
 
     context_object_name = 'object_list'
+    #
+    #
+    # def get_queryset(self):
+    #     objects = super(FacetedSearchView, self).get_results(self)
+    #     city_state = get_or_set_location(self.request)
+    #     user_location = city_state["user_location"]
+    #     return self.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:8]
+
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context

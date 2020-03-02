@@ -61,15 +61,19 @@
                     </div>
                 </div>
                 {% if form.errors %}
-                  {% for error in form.non_field_errors %}
-                    <div class="alert alert-error alert-danger alert-dismissible moveInTop message" style="width: 25rem;" role="alert">
-                    {{ error|escape }}
-                    </div>
-                  {% endfor %}
+                <div class="messages" id="message_container" >
+                  <div class="ul-trans ml-0">
+                    <ul class="" style="list-style-type: none;">
+                      {% for error in form.non_field_errors %}
+                        <li class="alert alert-danger moveInTop" style="display: inline-block">{{ error|escape }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
                 {% endif %}
-        </div>
-    </section>
-</div>
+            </div>
+        </section>
+    </div>
 
   <!-- Mobile View -->
    <div class="unhide" style="margin-left: auto; margin-right: auto; max-width: 520px;">
@@ -123,13 +127,17 @@
            </div>
            <div class="text-center mt-3"><a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></div>
         </div>
-         {% if form.errors %}
-         {% for error in form.non_field_errors %}
-           <div class="alert alert-error alert-danger alert-dismissible moveInTop message" style="width: 18.5rem;" role="alert">
-           {{ error|escape }}
-           </div>
-         {% endfor %}
-         {% endif %}
+        {% if form.errors %}
+        <div class="container-fluid messages" id="message_container" >
+          <div class="ul-trans " >
+            <ul class="px-2" style="list-style-type: none;">
+              {% for error in form.non_field_errors %}
+                <li class="alert-inline alert-danger moveInTop" style="display: inline-block">{{ error|escape }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
          <div class="hide" style="padding-top: 4rem; margin: auto;">
              <span class="terms" style="font-size: .65em;"><a href="" class="terms">Terms & Conditons</a> | Copyright 2018 <br class="unhide"> Mod Technologies LLC</span>
          </div>

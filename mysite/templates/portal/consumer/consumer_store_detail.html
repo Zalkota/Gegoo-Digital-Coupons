@@ -30,19 +30,16 @@
                 <div class="py-3 unhide"></div>
             </div>
         </div>
-        <div class="offset-lg-3"></div>
-        <div class="col-lg-3 col-xl-3 col-md-3 col-12 text-left bg-purple-200 border-top border-bottom stripe-primary py-2">
-            <!-- <a href="#" class="text-white btn btn-primary-alt gradient-primary py-2 fw-6 fs-24 mb-2 text-decoration-none hide">
-                <span class="">USE CODE:</span> {% if store.code_coupon != NONE %}{{ store.code_coupon }}{% endif %}
-            </a> -->
-            <div class=" pl-2 ">
+        <div class="offset-3"></div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-12 text-left bg-purple-200 border-top border-bottom stripe-primary py-2">
+            <div class=" ">
                 <a href="#" class="text-primary fw-6 fs-24 mb-2 text-decoration-none ">
                     <span class="text-dark fs-14 fw-4">USE CODE:</span>
                     <br>{% if store.code_coupon != NONE %}{{ store.code_coupon }}{% endif %}
                 </a>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-4 col-md-4 order-lg-1 order-md-1 order-2 mt-3">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 order-lg-1 order-md-1 order-2 mt-3" id="ViewInfo">
             <div class="card shadow-5">
                 <div class="card-body p-0 hide">
                     <img class="img-fluid p-0" style="width: 100%; border-radius: 0.25rem 0.25rem 0 0;" src="{{ AwsBucketMediaURL }}{{ store.logo }}" alt="Coupon Image Banner">
@@ -104,7 +101,6 @@
                 {% endif %}
             </div>
         </div>
-        <div class="offset-xl-1 order-1 "></div>
         <div class="col-lg-8 col-md-8 order-1 mt-3">
             <div class="p-0 shadow-2">
                 <video class="border-radius-100" style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ AwsBucketMediaURL }}{{ store.logo }}">
@@ -117,12 +113,13 @@
                     <!-- <div class="merchant-button merchant-button-active" id="ViewServicesBtn">
                         <span>Services</span>
                     </div> -->
-                    {% if store.offers.exists %}
-                    <div class="merchant-button merchant-button-active" id="ViewOffersBtn">
+                    <div class="merchant-button merchant-button-active unhide" id="ViewInfoBtn">
+                        <span>Info</span>
+                    </div>
+
+                    <div class="merchant-button merchant-button" id="ViewOffersBtn">
                         <span>Offers</span>
                     </div>
-                    {% else %}
-                    {% endif %}
 
                     {% if store.testimonial.exists %}
                     <div class="merchant-button" id="LearnMoreBtn">
@@ -159,13 +156,13 @@
                 </div> -->
                 <!-- View Offers -->
                 <div id="ViewOffers">
-                    {% for object in store.offers.all %}
+                    {% for object in store.storeoffer.all %}
                         <div class="card card-border shadow-2 mt-3">
                             <div class="row">
                                 <div class="col-lg-3 border-right pr-0">
                                     <div class="text-center vertical-container" style="height: 100%;">
                                         <div class="vertical-alignment">
-                                            <h3 class="header text-primary pb-3 ">{{ object.slogan }}</h3>
+                                            <h3 class="header text-primary pb-3 ">{{ object.title }}</h3>
                                             <h4 class="text-secondary fs-12">Offer</h4>
                                         </div>
                                     </div>
@@ -253,7 +250,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     {% endfor %}
                     <div class="py-3 text-center">
                         <a href="#TODO">View More</a>
@@ -284,15 +280,40 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
+    var view_info = $('#ViewInfo');
     var view_offers = $('#ViewOffers');
     var view_services = $('#ViewServices');
     var download_content = $('#DownloadContent');
     var learn_more = $('#LearnMore');
 
+    // Size of browser viewport.
+    // var height = $(window).height()
+    var width = $(window).width()
 
+    view_offers.hide()
     download_content.hide()
     learn_more.hide()
 
+    if (width >= 992) {
+        $('#ViewOffersBtn').addClass('merchant-button-active')
+        view_offers.show()
+    }
+
+
+    $('#ViewInfoBtn').on('click', function() {
+      view_info.show()
+      view_offers.hide()
+      view_services.hide()
+      download_content.hide()
+      learn_more.hide()
+
+      $('#ViewInfoBtn').removeClass('merchant-button-active')
+      $('#DownloadContentBtn').removeClass('merchant-button-active')
+      $('#LearnMoreBtn').removeClass('merchant-button-active')
+      $('#ViewServicesBtn').removeClass('merchant-button-active')
+      $('#ViewOffersBtn').removeClass('merchant-button-active')
+
+    })
 
 
     $('#ViewServicesBtn').on('click', function() {

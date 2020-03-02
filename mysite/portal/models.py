@@ -483,7 +483,7 @@ class Testimonial(models.Model):
 
 class StoreOffer(models.Model):
     offers = models.ManyToManyField(Offer)
-    current_store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name='store', null=True)
+    current_store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name='storeoffer', null=True)
 
     @classmethod
     def add_offer(cls, current_store, new_offer):
