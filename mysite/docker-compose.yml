@@ -3,7 +3,11 @@ version: '2'
 volumes:
   postgres_data: {}
   postgres_backup: {}
-
+  esdata1:
+    driver: local
+  esdata2:
+    driver: local
+    
 services:
   django:
     build:
@@ -62,6 +66,25 @@ services:
       - django
     networks:
       - nginx_network
+
+  elasticsearch:
+    # build:
+    #   context: .
+    #   dockerfile: ./compose/elastic/Dockerfile
+    image: barnybug/elasticsearch:1.7.2
+    container_name: elasticsearch
+    # environment:
+    #   - cluster.name=docker-cluster
+    #   - bootstrap.memory_lock=true
+    #   - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
 
 networks:
   database1_network:

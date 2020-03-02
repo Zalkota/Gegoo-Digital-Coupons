@@ -1,7 +1,9 @@
 #!/bin/bash
 
 python production.py migrate
+python production.py rebuild_index
 python /app/production.py collectstatic --noinput
+
 # Prepare log files and start outputting logs to stdout
 RUN mkdir logs
 touch ./logs/gunicorn.log
