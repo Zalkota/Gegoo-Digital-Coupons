@@ -127,7 +127,7 @@ HAYSTACK_CONNECTIONS = {
 
 INTERNAL_IPS = [
 
-    '127.0.0.1',
+    os.getenv('URL', '127.0.0.1'),
 
 ]
 

@@ -64,3 +64,10 @@ AWS_HEADERS = {
     'Expires': expires,
     'Cache-Control': 'max-age=%d' % (int(two_months.total_seconds()), ),
 }
+
+# ELASTIC SEARCH ----------------------------------------------------------
+INTERNAL_IPS = [
+
+    '0.0.0.0',
+
+]
