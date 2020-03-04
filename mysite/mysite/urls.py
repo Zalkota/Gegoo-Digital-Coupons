@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.contrib.sitemaps.views import sitemap
+
 from django.conf.urls import include, url
 from django.urls import path
 from django.contrib import admin
@@ -9,7 +9,9 @@ from .views import (
 )
 from .views import set_location_cookies
 from search import views as search_views
-
+#sitemaps
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.flatpages.sitemaps import FlatPageSitemap
 #Rerouting django admin through allauth
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
@@ -62,6 +64,11 @@ urlpatterns = [
     url(r'^find/', search_views.FacetedSearchView.as_view(), name='haystack_search'),
     #Ckeditor
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+
+
+    path('sitemap.xml', sitemap,
+        {'sitemaps': {'flatpages': FlatPageSitemap}},
+        name='django.contrib.sitemaps.views.sitemap'),
 
 
     #Development
