@@ -159,25 +159,25 @@ class userFavorites(LoginRequiredMixin, ListView):
     model = portal_models.Offer
     template_name = 'users/user/user_favorites.html'
 
-    def get_queryset(self):
-        favorite_list = portal_models.Offer.objects.filter(likes=self.request.user)
-        return favorite_list
-
-    def get_context_data(self, **kwargs):
-        follow = users_models.Follow.objects.get(current_user=self.request.user)
-
-        context = super(userFavorites, self).get_context_data(**kwargs)
-        context['follows'] = follow.users.all()
-        return context
+    # def get_queryset(self):
+    #     favorite_list = portal_models.Offer.objects.filter(likes=self.request.user)
+    #     return favorite_list
+    #
+    # def get_context_data(self, **kwargs):
+    #     follow = users_models.Follow.objects.get(current_user=self.request.user)
+    #
+    #     context = super(userFavorites, self).get_context_data(**kwargs)
+    #     context['follows'] = follow.users.all()
+    #     return context
 
 
 class userMerchants(LoginRequiredMixin, ListView):
     model = portal_models.Offer
     template_name = 'users/user/user_merchants.html'
 
-    def get_queryset(self):
-        favorite_list = portal_models.Store.objects.filter(offer__likes=self.request.user)
-        return favorite_list
+    # def get_queryset(self):
+    #     favorite_list = portal_models.Store.objects.filter(offer__likes=self.request.user)
+    #     return favorite_list
 
 
     #
