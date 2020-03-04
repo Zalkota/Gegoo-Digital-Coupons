@@ -105,8 +105,18 @@ module.exports = function (grunt) {
         ]
       },
       dist: {
-        src: '<%= paths.css %>/*.css'
-      }
+        src: [
+            '<%= paths.css %>/base-go.css',
+            '<%= paths.css %>/bootstrap.css',
+            '<%= paths.css %>/base.css',
+            '<%= paths.css %>/base-alt.css',
+            '<%= paths.css %>/base-account.css',
+            '<%= paths.css %>/components/base-alt.css',
+            // '<%= paths.css %>/font-awesome.min.css',
+            // '<%= paths.css %>/flaticon.css',
+            // '<%= paths.css %>/font.css',
+            ],
+        },
     },
 
     // see: https://npmjs.org/package/grunt-bg-shell
@@ -129,8 +139,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'sass:dist',
-    'sass'
-    //'postcss'
+    'sass',
+    'postcss'
   ]);
 
   grunt.registerTask('default', [

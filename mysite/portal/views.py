@@ -6,7 +6,10 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.text import slugify
 ## DEBUG:
+#messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.mixins import LoginRequiredMixin
 from portal import models as portal_models
@@ -176,7 +179,7 @@ class MerchantStoreListView(LoginRequiredMixin, ListView):
 		return store_list
 
 
-class MerchantStoreCreateView(LoginRequiredMixin, CreateView):
+class MerchantStoreCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 	model = portal_models.Store
 	form_class = MerchantStoreForm
 	template_name = 'portal/merchant/merchant_store_create.html'
@@ -206,7 +209,7 @@ class MerchantStoreCreateView(LoginRequiredMixin, CreateView):
 		return super(MerchantStoreCreateView, self).form_valid(form)
 
 
-class MerchantStoreUpdateView(LoginRequiredMixin, UpdateView):
+class MerchantStoreUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 	model = portal_models.Store
 	form_class = MerchantStoreForm
 	template_name = 'portal/merchant/merchant_store_update.html'
@@ -218,7 +221,7 @@ class MerchantStoreUpdateView(LoginRequiredMixin, UpdateView):
 		return super(MerchantStoreUpdateView, self).form_valid(form)
 
 
-class MerchantStoreDeleteView(LoginRequiredMixin, DeleteView):
+class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 	model = portal_models.Store
 	template_name = 'portal/merchant/merchant_store_delete.html'
 	success_url = reverse_lazy('users:merchant_store_list')
@@ -268,7 +271,7 @@ class MerchantOfferUpdateView(LoginRequiredMixin, IsMerchantMixin, UpdateView):
 	success_message = "Offer Updated"
 
 
-class MerchantOfferDeleteView(LoginRequiredMixin, IsMerchantMixin, DeleteView):
+class MerchantOfferDeleteView(LoginRequiredMixin, IsMerchantMixin, SuccessMessageMixin, DeleteView):
 	model = portal_models.Offer
 	template_name = 'portal/offer/merchant_offer_delete.html'
 	success_url = reverse_lazy('users:offer_list')

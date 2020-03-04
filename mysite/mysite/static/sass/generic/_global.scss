@@ -1,4 +1,6 @@
 
+
+
 hr.hr-2 {
   border-top: 2px solid $color-primary;
   width: 30px;
@@ -251,9 +253,6 @@ hr.hr-2 {
 
   @media screen and (min-width: 992px) {
 
-    .star-yellow {
-      color: #FFD700;
-    }
     .service-spacer {
        padding-bottom: 6rem;
     }
@@ -262,10 +261,6 @@ hr.hr-2 {
 
   @media screen and (max-width: 992px) {
 
-    .star-yellow {
-      color: #f3c840;
-      font-size: 14px;
-    }
     .service-spacer {
       padding-bottom: 0rem;
     }

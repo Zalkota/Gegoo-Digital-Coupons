@@ -3,6 +3,35 @@
     <**************************************************************************>
 */
 
+
+@media screen and (min-width: 992px) {
+
+  .star-yellow {
+    background: -webkit-linear-gradient(-90deg, #FFD700, #FFD700, $color-orange-400);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .service-spacer {
+     padding-bottom: 6rem;
+  }
+
+}
+
+@media screen and (max-width: 992px) {
+
+  .star-yellow {
+    background: -webkit-linear-gradient(-90deg, #FFD700, #FFD700, $color-orange-400);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 14px;
+
+  }
+  .service-spacer {
+    padding-bottom: 0rem;
+  }
+
+}
+
 .primary {
   fill: $color-muted; }
 
