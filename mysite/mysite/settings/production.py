@@ -68,14 +68,14 @@ AWS_HEADERS = {
 # ELASTIC SEARCH ----------------------------------------------------------
 INTERNAL_IPS = [
 
-    '127.0.0.1',
+    '0.0.0.0',
 
 ]
 
 HAYSTACK_CONNECTIONS = {
   'default': {
   'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-  'URL': 'http://www.printrender.com:9200/',
+  'URL': 'http://elasticsearch:9200/',
   'INDEX_NAME': 'products_tutorial',
   },
 }
