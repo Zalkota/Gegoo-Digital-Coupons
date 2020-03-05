@@ -44,6 +44,8 @@ RUN sed -i 's/\r//' /db.json
 RUN chmod +x /db.json
 
 
+
+
 ENV VIRTUAL_ENV /env
 ENV PATH /env/bin:$PATH
 

@@ -68,16 +68,14 @@ services:
       - nginx_network
 
   elasticsearch:
-    # build:
-    #   context: .
-    #   dockerfile: ./compose/elastic/Dockerfile
-    image: barnybug/elasticsearch:1.7.2
+    build:
+      context: .
+      dockerfile: ./compose/elastic/Dockerfile
     container_name: elasticsearch
-    # environment:
-    #   - cluster.name=docker-cluster
-    #   - bootstrap.memory_lock=true
-    #   - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    http.cors.allow-origin: "*"
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
       memlock:
         soft: -1
