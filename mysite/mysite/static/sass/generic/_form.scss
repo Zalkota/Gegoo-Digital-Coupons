@@ -137,3 +137,17 @@ color: #3a3a3a;
 .waves-input-wrapper {
     display: block !important;
 }
+
+
+select {
+    opacity: 1 !important;
+}
+
+select option {
+    margin: 40px;
+    background: #fff;
+    color: $color-gray-700;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    border: 1px solid #ddd;
+
+}

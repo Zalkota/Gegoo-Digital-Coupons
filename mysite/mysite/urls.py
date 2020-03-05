@@ -22,7 +22,7 @@ from .views import security
 
 admin.site.login = staff_member_required(login_url='/', redirect_field_name='')(admin.site.login)
 
-from .sitemaps import StaticSitemap, SupportSitemap, QuestionSitemap, TopicSitemap, StoreSitemap
+from .sitemaps import StaticSitemap, SupportSitemap, QuestionSitemap, TopicSitemap, StoreSitemap, CategorySitemap, SubcategorySitemap
 
 sitemaps = {
     'mysite': StaticSitemap,
@@ -30,6 +30,8 @@ sitemaps = {
     'question': QuestionSitemap,
     'topic': TopicSitemap,
     'store': StoreSitemap,
+    'category': CategorySitemap,
+    'subcategory': SubcategorySitemap
 }
 
 urlpatterns = [

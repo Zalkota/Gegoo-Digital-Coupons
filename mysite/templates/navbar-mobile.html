@@ -58,7 +58,7 @@
                   Log Out</a></li>
               {% endif %}
               <li class=" text-fill-purple-400 mt-3 fs-10" style="color: #111; border-bottom: 2px solid #F1F3F6;"></li>
-            <a href="{% url 'home-page' %}">
+            <a href="{% url 'home-page' %}" class="block">
               <li class="navigation__item mt-2">
                   <span class="navigation__link">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-home"><path class="fill-gray-400" d="M9 22H5a1 1 0 0 1-1-1V11l8-8 8 8v10a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v4a1 1 0 0 1-1 1zm3-9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="fill-purple-400" d="M12.01 4.42l-8.3 8.3a1 1 0 1 1-1.42-1.41l9.02-9.02a1 1 0 0 1 1.41 0l8.99 9.02a1 1 0 0 1-1.42 1.41l-8.28-8.3z"/></svg>
@@ -135,7 +135,7 @@
                         </li>
                     </a>
                 {% else %}
-                    <a href="{% url 'portal:consumer_store_list' %}" class="navigation__link" style="">
+                    <a href="{% url 'portal:consumer_store_list' %}">
                         <li class="navigation__item">
                             <span class="navigation__link">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-collection"><rect width="20" height="12" x="2" y="10" class="fill-gray-400" rx="2"/><path class="fill-purple-400" d="M20 8H4c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2zm-2-4H6c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2z"/></svg>
@@ -143,7 +143,7 @@
                             </span>
                         </li>
                     </a>
-                    <a href="{% url 'users:user_location' %}" class="navigation__link" style="">
+                    <a href="{% url 'users:user_location' %}">
                         <li class="navigation__item">
                             <span class="navigation__link">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-location-pin"><path class="fill-gray-400" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-400" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
@@ -152,7 +152,7 @@
                         </li>
                     </a>
                 {% endif %}
-                    <a href=" {% url 'support:contact-page' %}" class="navigation__link" style="">
+                    <a href=" {% url 'support:contact-page' %}">
                         <li class="navigation__item">
                           <span class="navigation__link">
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-help"><path class="fill-gray-400" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/><path class="fill-purple-400" d="M12 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.5a1 1 0 0 1-2 0v-1.41a1 1 0 0 1 .55-.9L14 10.5C14.64 10.08 15 9.53 15 9c0-1.03-1.3-2-3-2-1.35 0-2.49.62-2.87 1.43a1 1 0 0 1-1.8-.86C8.05 6.01 9.92 5 12 5c2.7 0 5 1.72 5 4 0 1.3-.76 2.46-2.05 3.24L13 13.2V14z"/></svg>
