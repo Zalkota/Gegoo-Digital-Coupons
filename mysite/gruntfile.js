@@ -140,7 +140,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'sass:dist',
     'sass',
-    // 'postcss'
+    'postcss'
   ]);
 
   grunt.registerTask('default', [

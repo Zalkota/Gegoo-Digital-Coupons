@@ -7,7 +7,7 @@ volumes:
     driver: local
   esdata2:
     driver: local
-    
+
 services:
   django:
     build:
@@ -77,6 +77,7 @@ services:
     #   - cluster.name=docker-cluster
     #   - bootstrap.memory_lock=true
     #   - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    http.cors.allow-origin: "*"
     ulimits:
       memlock:
         soft: -1
