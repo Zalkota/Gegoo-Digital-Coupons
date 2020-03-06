@@ -31,9 +31,21 @@ COPY ./compose/django/loaddata.sh /loaddata.sh
 RUN sed -i 's/\r//' /loaddata.sh
 RUN chmod +x /loaddata.sh
 
+
+
+
+
 COPY ./db.json /db.json
 RUN sed -i 's/\r//' /db.json
 RUN chmod +x /db.json
+
+
+
+
+
+
+
+
 
 ENV VIRTUAL_ENV /env
 ENV PATH /env/bin:$PATH

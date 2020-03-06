@@ -22,13 +22,13 @@ RUN pip install -r /requirements/requirements.txt
 
 # Copy Files to Docker
 
-COPY ./compose/django/entrypoint.sh /entrypoint.sh
-RUN sed -i 's/\r//' /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
 COPY ./compose/django/start-dev.sh /start-dev.sh
 RUN sed -i 's/\r//' /start-dev.sh
 RUN chmod +x /start-dev.sh
+
+COPY ./compose/django/entrypoint.sh /entrypoint.sh
+RUN sed -i 's/\r//' /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 COPY ./compose/django/gunicorn.sh /gunicorn.sh
 RUN sed -i 's/\r//' /gunicorn.sh
@@ -42,6 +42,7 @@ RUN chmod +x /loaddata.sh
 COPY ./db.json /db.json
 RUN sed -i 's/\r//' /db.json
 RUN chmod +x /db.json
+
 
 
 

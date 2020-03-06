@@ -84,9 +84,13 @@ services:
       - esdata1:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
+    networks:
+      - elastic_network
 
 networks:
   database1_network:
     driver: bridge
   nginx_network:
+    driver: bridge
+  elastic_network:
     driver: bridge
