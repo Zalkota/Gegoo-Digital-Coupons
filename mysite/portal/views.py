@@ -76,9 +76,23 @@ class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or
 	template_name = 'portal/consumer/consumer_store_detail.html'
 
 	def get_context_data(self, **kwargs):
-		context = super(StoreDetailView, self).get_context_data(**kwargs)
-		context['related_stores'] = portal_models.Store.objects.filter(category=self.object.category, active=True).exclude(business_name=self.object.business_name)
+		context = super(ConsumerStoreDetailView, self).get_context_data(**kwargs)
+
+		store_connection_qs = portal_models.FollowStore.objects.filter(current_user=self.request.user)
+		if store_connection_qs.exists():
+			store_connection = portal_models.FollowStore.objects.get(current_user = self.request.user)
+			context['store_connection_user'] = store_connection.connections.all()
+		else:
+			pass
+
+		# context['related_stores'] = portal_models.Store.objects.filter(category=self.object.category, active=True).exclude(business_name=self.object.business_name)
 		return context
+
+	def get_object(self):
+		obj = super(ConsumerStoreDetailView, self).get_object()
+		obj.views += 1
+		obj.save()
+		return obj
 
 
 # <**************************************************************************>
@@ -196,17 +210,6 @@ def OfferLike(request):
 	offer.likes.add(request.user)
 	return HttpResponseRedirect(offer.get_absolute_url())
 
-def OfferAdd(request, store_id, offer_id):
-	store = portal_models.Store.objects.get(id=store_id)
-	store.offers.add(offer_id)
-	return HttpResponseRedirect(store.get_absolute_url())
-
-def OfferRemove(request, store_id, offer_id):
-	store = portal_models.Store.objects.get(id=store_id)
-	store.offers.remove(offer_id)
-	return HttpResponseRedirect(store.get_absolute_url())
-
-# Testimonails
 
 class MerchantTestimonialListView(LoginRequiredMixin, IsMerchantMixin, ListView):
 	model = portal_models.Testimonial
@@ -248,14 +251,6 @@ class ConsumerStoreDetailView(DetailView):
 		obj.save()
 		return obj
 
-def StoreChangeConnections(request, operator, pk):
-	store_connection = portal_models.Store.objects.get(pk=pk)
-	if operator == 'add':
-		portal_models.FollowStore.add_connection(request.user, store_connection)
-	if operator == 'remove':
-		portal_models.FollowStore.remove_connection(request.user, store_connection)
-	return redirect('users:userPage')
-
 def StoreChangeConnectionsAjax(request):
 	if request.method == 'POST':
 		store_pk = request.POST['store_pk']
@@ -273,6 +268,7 @@ def StoreChangeConnectionsAjax(request):
 			store_connection_ajax = portal_models.Store.objects.get(pk=store_pk)
 			portal_models.FollowStore.remove_connection(request.user, store_connection_ajax)
 			return HttpResponse('Success!')	
+
 
 def StoreOfferAjax(request):
 	if request.method == 'POST':

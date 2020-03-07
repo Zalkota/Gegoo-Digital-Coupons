@@ -120,5 +120,13 @@
 
         {% endblock extrajs %}
 
+        <script>
+            $(document).ready(function() {
+                {% block jquery %}
+                    {# add jquery to webpage #}
+                {% endblock %}
+            });
+        </script>
+
     </body>
 </html>

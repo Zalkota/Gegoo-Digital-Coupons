@@ -10,10 +10,10 @@
 
 
 {% block content %}
-
-
 <!-- Body Start -->
-<section class="section-sm container">
+<section class="section pb-5 pt-1 container">
+    <h1>Page</h1>
+    <div class="py-3 hide"></div>
     <div class="row">
         <div class="col-lg-6 text-left">
             <div class="fs-14 hide">
@@ -33,10 +33,20 @@
                 <span class="">USE CODE:</span> {% if store.code_coupon != NONE %}{{ store.code_coupon }}{% endif %}
             </a>
         </div>
-        <div class="col-lg-3 mt-3">
-            <div class="card shadow-2">
-                <div class="card-body p-0">
-                    <img class="img-fluid p-0" style="width: 100%;" src="{{ AwsBucketURL }}{{ store.logo }}" alt="Coupon Image Banner">
+        <div class="col-xl-3 col-lg-4 col-md-4 order-lg-1 order-md-1 order-2 mt-3">
+            {% if store in store_connection_user %}
+                <a href="" data-catid="{{ store.pk }}" class="followBtn btn btn-primary w-100 mb-3" action_type="remove">
+                    Following
+                </a>
+            {% else %}
+                <a href="" data-catid="{{ store.pk }}" class="followBtn btn btn-outline-primary w-100 mb-3" action_type="add">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-add-circle"><circle cx="12" cy="12" r="10" class="primary"></circle><path class="secondary" d="M13 11h4a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4z"></path></svg>
+                    Follow
+                </a>
+            {% endif %} 
+            <div class="card shadow-5">
+                <div class="card-body p-0 hide">
+                    <img class="img-fluid p-0" style="width: 100%; border-radius: 0.25rem 0.25rem 0 0;" src="{{ AwsBucketMediaURL }}{{ store.logo }}" alt="Coupon Image Banner">
                 </div>
                 <div class="card-body border-top">
                     <h2 class="header text-dark">{{ store.business_name }}</h2>
@@ -322,3 +332,30 @@ $(document).ready(function() {
 });
 </script>
 {% endblock extrajs %}
+
+{% block jquery %}
+  $(".followBtn").click(function (event) {
+    event.preventDefault();
+
+    var this_ = $(this);
+    var storepk = this_.attr('data-catid');
+    var action_type = this_.attr('action_type');
+
+    $.ajax({
+      type: "POST",
+      url: "{% url 'portal:store_change_connections' %}",
+      data: {
+        store_pk: storepk,
+        action: action_type,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+      },
+      success: function (data) {
+
+        document.location.reload(true)
+        console.log(data)
+
+      }
+    });
+    return false;
+  });
+{% endblock jquery %}

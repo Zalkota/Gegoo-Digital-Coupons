@@ -39,9 +39,6 @@ urlpatterns = [
     path('my-offer/<slug:slug>/delete/', portal_views.MerchantOfferDeleteView.as_view(), name='merchant_offer_delete'),
     path('my-offer/like/', portal_views.OfferLike, name='offer_like'),
 
-    path('my-store/<int:store_id>/add/<int:offer_id>', portal_views.OfferAdd, name='offer_add'),
-    path('my-store/<int:store_id>/remove/<int:offer_id>', portal_views.OfferRemove, name='offer_remove'),
-
     #Merchant Signup Forms
     path('merchant-signup/', users_views.MerchantSignUpView.as_view(), name='merchant_signup'),
 

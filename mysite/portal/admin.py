@@ -17,7 +17,11 @@ from cities_light.models import City, Region
 
 class StoreAdmin(admin.ModelAdmin):
     search_fields = ['city', 'business_name']
+<<<<<<< Updated upstream
     list_display = ('business_name', 'city', 'category', 'subcategory', 'active', 'status')
+=======
+    list_display = ('business_name', 'city', 'state', 'category', 'subcategory', 'subscription_status', 'status')
+>>>>>>> Stashed changes
     # inlines = [
     #     StoreLocationInline,
     # ]
