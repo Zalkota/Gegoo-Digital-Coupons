@@ -1,5 +1,7 @@
 version: '2'
 
+# -------------- Volumes -----------------
+
 volumes:
   postgres_data: {}
   postgres_backup: {}
@@ -9,6 +11,7 @@ volumes:
     driver: local
 
 services:
+# -------------- DJANGO -----------------
   django:
     build:
       context: .
@@ -32,9 +35,10 @@ services:
     networks:
       - database1_network
       - nginx_network
+      - elastic_network
 
 
-
+# -------------- Postgres -----------------
   postgres:
     build:
       context: .
@@ -56,19 +60,8 @@ services:
       # - POSTGRES_PASSWORD=$Django10
       # - POSTGRES_PORT=
     #
-  nginx:
-    build:
-        context: .
-        dockerfile: ./compose/nginx/Dockerfile
-    command: [nginx-debug, -g, daemon off;]
-    ports:
-      - 80:80 #Map TCP port 80 in the container to port 8000 on the Docker host.
-      - 443:443
-    depends_on:
-      - django
-    networks:
-      - nginx_network
 
+# -------------- Elastic Search -----------------
   elasticsearch:
     build:
       context: .
@@ -86,9 +79,31 @@ services:
       - esdata1:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
+    networks:
+      - elastic_network
+
+# -------------- NGINX -----------------
+  nginx:
+    build:
+        context: .
+        dockerfile: ./compose/nginx/Dockerfile
+    command: [nginx-debug, -g, daemon off;]
+    ports:
+      - 80:80 #Map TCP port 80 in the container to port 8000 on the Docker host.
+      - 443:443
+    depends_on:
+      - django
+    networks:
+      - nginx_network
+
+
+
+# -------------- Networks -----------------
 
 networks:
   database1_network:
     driver: bridge
   nginx_network:
+    driver: bridge
+  elastic_network:
     driver: bridge

@@ -10,6 +10,7 @@ volumes:
 
 
 services:
+# -------------- DJANGO -----------------
   django:
     build:
       context: .
@@ -29,7 +30,11 @@ services:
     links:
       - postgres
       - elasticsearch
+    networks:
+      - database1_network
+      - elastic_network
 
+# -------------- Postgres -----------------
   postgres:
     build:
       context: .
@@ -44,11 +49,15 @@ services:
       - 5432:5432
     env_file:
         - ./compose/postgres/postgres.env
+    networks:
+      - database1_network
     # environment:
       # - POSTGRES_USER=gegooadmin
       # - POSTGRES_PASSWORD=$Django10
       # - POSTGRES_PORT=
     #
+
+# -------------- Elastic Search -----------------
   elasticsearch:
     build:
       context: .
@@ -66,8 +75,14 @@ services:
       - esdata1:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
-#     networks:
-#       - esnet
-#
-# networks:
-#   esnet:
+    networks:
+      - elastic_network
+
+
+# -------------- Networks -----------------
+
+networks:
+  database1_network:
+    driver: bridge
+  elastic_network:
+    driver: bridge
