@@ -28,10 +28,11 @@ services:
       - 8000
     links:
       - postgres
+      - elasticsearch
     networks:
       - database1_network
       - nginx_network
-      - elasticsearch
+
 
 
   postgres:
