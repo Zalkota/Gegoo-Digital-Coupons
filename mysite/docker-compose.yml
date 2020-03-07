@@ -31,6 +31,7 @@ services:
     networks:
       - database1_network
       - nginx_network
+      - elasticsearch
 
 
   postgres:
