@@ -41,8 +41,8 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-location-pin"><path class="fill-gray-500" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-500" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
                                 {{ object.distance.mi|dividebyth }} Miles Away
                             </span>
+                            <a href="#TODO" class="btn btn-primary">Follow</a>
                         </div>
-                        <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
                     </div>
                 </div>
             </div>
@@ -94,20 +94,9 @@
       },
       success: function (data) {
 
-        if (this_.text() == 'Follow') {
-            this_.text('Unfollow');
-            this_.attr({
-                'action_type': 'remove',
-                'class': 'followBtn btn btn-danger'
-            })
-        } else {
-            this_.text('Follow');
-            this_.attr({
-                'action_type': 'add',
-                'class': 'followBtn btn btn-primary'
-            })
-        }
+        document.location.reload(true)
         console.log(data)
+
       }
     });
     return false;

@@ -336,12 +336,12 @@ class StoreVideoManager(models.Manager):
         return object
 
 class Store(models.Model):
-    active      = models.BooleanField(default=True) #TODO This is not needed, we can just verify
-    status      = models.PositiveIntegerField(choices=STATUS_CHOICES, default=1)
-    merchant    = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    subscription_status     = models.BooleanField(default=False) #TODO This is not needed, we can just verify
+    status                  = models.PositiveIntegerField(choices=STATUS_CHOICES, default=1)
+    merchant                = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern
-    slug        = models.SlugField(unique=True, blank=True, null=True) #MAKE THIS NOT EDITABLE
+    slug                = models.SlugField(unique=True, blank=True, null=True) #MAKE THIS NOT EDITABLE
 
     # Store Attributes
     business_name       = models.CharField(max_length=100)
@@ -502,6 +502,9 @@ class StoreOffer(models.Model):
 class FollowStore(models.Model):
     connections         = models.ManyToManyField(Store)
     current_user        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user', null=True)
+
+    def __str__(self):
+        return '%s %s - Store Favorite List' % (self.current_user.first_name, self.current_user.last_name)
 
     @classmethod
     def add_connection(cls, current_user, new_connection):

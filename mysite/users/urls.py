@@ -24,7 +24,7 @@ urlpatterns = [
     # path('my-subscription/', users_views.MerchantSubscriptionsView.as_view(), name='subscription_list'),
 
     # Merchant Store Views
-    path('my-store/<slug:slug>/', portal_views.MerchantStoreDetailView.as_view(), name='merchant_store_detail'),
+    path('my-stores/<slug:slug>/', portal_views.MerchantStoreDetailView.as_view(), name='merchant_store_detail'),
     path('my-stores/', portal_views.MerchantStoreListView.as_view(), name='merchant_store_list'),
     path('my-store/create/', portal_views.MerchantStoreCreateView.as_view(), name='merchant_store_create'),
     path('my-store/<slug:slug>/update/', portal_views.MerchantStoreUpdateView.as_view(), name='merchant_store_update'),
@@ -38,9 +38,6 @@ urlpatterns = [
     path('my-offer/<slug:slug>/update/', portal_views.MerchantOfferUpdateView.as_view(), name='merchant_offer_update'),
     path('my-offer/<slug:slug>/delete/', portal_views.MerchantOfferDeleteView.as_view(), name='merchant_offer_delete'),
     path('my-offer/like/', portal_views.OfferLike, name='offer_like'),
-
-    path('my-store/<int:store_id>/add/<int:offer_id>', portal_views.OfferAdd, name='offer_add'),
-    path('my-store/<int:store_id>/remove/<int:offer_id>', portal_views.OfferRemove, name='offer_remove'),
 
     #Merchant Signup Forms
     path('merchant-signup/', users_views.MerchantSignUpView.as_view(), name='merchant-signup'),
