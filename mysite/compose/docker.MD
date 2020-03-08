@@ -19,7 +19,9 @@ docker exec -it mysite_django_1 python3 local.py migrate
 
 docker exec -it mysite_django_1 python3 local.py rebuild_index
 
-# ping 
+docker network inspect bridge
+
+# ping
 docker exec -it mysite_django_1 ping elasticsearch
 
 # Stop or Remove Containers

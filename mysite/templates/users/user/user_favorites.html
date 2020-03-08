@@ -14,20 +14,15 @@
 <!-- Body Start -->
 <section class="section container">
 
-      {% block component %}
-        {% include "users/user/user_profile_nav.html" %}
-      {% endblock component %}
-        <div class="row mt-2">
-            <div class="col-lg-12 mb-4">
-                <div class="card shadow-2  unhide">
-                    <div class="card-body">
-                        <h2 class="fw-6">My Account</h2>
-                        <span class="fs-14 text-muted">Welcome Back, {{ user }}!</span>
-                        <br>
-                        <br>
-                    </div>
-                </div>
-            </div>
+    {% block component %}
+      {% include "users/user/user_profile_nav.html" %}
+    {% endblock component %}
+
+    {% block mobile_nav %}
+      {% include "users/user/user_profile_mobile_nav.html" %}
+    {% endblock mobile_nav %}
+
+        <div class="row mt-5">
             {% for object in address_qs %}
                     <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
                         <div class="">
@@ -53,7 +48,7 @@
                     </div>
 
             {% empty %}
-            <div class="col-lg-6 offset-3 text-center py-4">
+            <div class="col-lg-6 offset-lg-3 text-center py-5 my-5">
                 Oops, you have not favorited any active offers yet or the offers have expired. <br> <a href="/">Click here</a> to view offers.
             </div>
             {% endfor %}

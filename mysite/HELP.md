@@ -49,7 +49,7 @@ Go to Postgres part of this document and create a database and user
 10. navigate to folder /mysite/
 
 11. run: python3 local.py runserver
-
+fi
 If that works then congratulations, open your internet browser and go to 127.0.0.1:8000 in the address bar.
 
 

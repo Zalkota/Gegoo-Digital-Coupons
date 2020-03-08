@@ -41,34 +41,10 @@ a:hover {
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header justify-content-end">
-          <h3 class="text-primary">Coupon</h3>
+          <h3 class="text-primary">Sorry, This feature is not available yet.</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-close-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
         </button>
-      </div>
-      <div class="modal-body">
-          <div class="p-3" style="border-color: #ccc; border-width:5px; border-style:dashed;">
-              <div class="row">
-                  <div class="col-6">
-                      <img class="card-img-top" src="media/{{ object.logo }}" alt="User Uploaded images">
-                  </div>
-                  <div class="col-6">
-                      <img class="img-fluid" src="{% static 'img/logo/logo3.jpg' %}" alt="GEGOO LOGO">
-                  </div>
-              </div>
-              <h4 class="fs-14 fw-6 text-primary">{{ object.business_name }} in {{ city }}</h4>
-              <h3>{{ object.get_first_active.title }}</h3>
-            <p class="fs-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias alias ipsam minima, dolore! Modi enim porro neque quaerat blanditiis. Ipsa aliquam quam maxime rerum eum accusamus nulla, molestiae soluta repellendus!</p>
-            {{ object.get_first_active.title }}
-            <div class="bg-gray-30 text-primary text-uppercase p-3">
-                <span class="fw-6 fs-24">Code: {{ object.get_first_active.code_coupon }}</span>
-            </div>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary-alt btn-block mt-0">Save It</button>
-        <button type="button" class="btn btn-primary-alt btn-block mt-0">Print It</button>
-        <button type="button" class="btn btn-alternate-alt btn-block mt-0">Share It</button>
       </div>
     </div>
   </div>
@@ -80,52 +56,13 @@ a:hover {
       {% block component %}
         {% include "users/user/user_profile_nav.html" %}
       {% endblock component %}
-        <div class="row mt-2">
-            <div class="col-lg-12 mb-4">
-                <div class="card shadow-2  unhide">
-                    <div class="card-body">
-                        <h2 class="fw-6">My Account</h2>
-                        <span class="fs-14 text-muted">Welcome Back, {{ user }}!</span>
-                        <br>
-                        <br>
-                        <!-- Action buttons -->
-                        <ul class="pl-0" style="list-style-type: none;">
-                          <hr class="mt-0 mb-3 unhide">
-                          <a class="text-dark py-5" style="text-decoration: none;" href="/" role="button">
-                            <li class="pb-3">
-                                <i class="fa fa-home text-center" aria-hidden="true"></i> <span class="ml-2 fw-5">Home</span> <i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                            </li>
-                          </a>
-                          <hr class="mt-0 mb-3 unhide">
-                          <a class="text-dark py-5" style="text-decoration: none; " href="#orders" role="button">
-                            <li class="pb-3">
-                                <i class="fa fa-calendar" aria-hidden="true"></i> <span class="ml-2 fw-5">Orders</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                            </li>
-                          </a>
-                          <hr class="mt-0 mb-3 unhide">
-                          <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_reset_password' %}" role="button">
-                            <li class="pb-3">
-                                <i class="fa fa-lock" aria-hidden="true"></i> <span class="ml-2 fw-5">Password</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                            </li>
-                          </a>
-                          <hr class="mt-0 mb-3 unhide">
-                          <a class="text-dark py-5" style="text-decoration: none; " href="#" role="button">
-                            <li class="pb-3">
-                                <i class="fa fa-pencil" aria-hidden="true"></i> <span class="ml-1 fw-5">Edit Profile</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                            </li>
-                          </a>
-                          <hr class="mt-0 mb-3 unhide">
-                          <a class="text-dark py-5" style="text-decoration: none; " href="{% url 'account_email' %}" role="button">
-                            <li class="pb-0">
-                                <i class="fa fa-cog" aria-hidden="true"></i> <span class="ml-2 fw-5">Settings</span><i class="fa fa-chevron-right mt-1 float-right" aria-hidden="true"></i>
-                            </li>
-                          </a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-2">
+      {% block mobile_nav %}
+        {% include "users/user/user_profile_mobile_nav.html" %}
+      {% endblock mobile_nav %}
+
+        <div class="row mt-5">
+            <div class="col-lg-2 col-md-4 ">
                 <div class="card stripe-primary-top card-border shadow-2 mb-3">
                     <div class="card-body p-3 py-1 text-center border-bottom">
                         <h3 class="header">Gegoo Rewards</h3>
@@ -148,37 +85,44 @@ a:hover {
                 </div>
             </div>
 
-            <div class="col-lg-10 mb-4">
+            <div class="col-lg-10 col-md-8 mb-4">
                 <div class="mb-3">
                     <h3 class="section-header">Recommended Services</h3>
                 </div>
                 <div class="row">
                     {% for object in store_nearby %}
-                        <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-5" >
-                            <div class="card shadow-1">
-                                <a class="" href="{{ object.get_consumer_absolute_url }}">
-                                    <img class="img-fluid border-radius-100" style="max-height: 250px;" src="{{ AwsBucketMediaURL }}{{ object.logo }}" alt="User Uploaded images">
-                                </a>
-                                <div class="card-body py-1">
-                                    <div class=" text-left mt-3">
-                                        <h3 class="fw-6 text-dark fs-18 mb-1">{{ object.business_name }}</h3>
-                                            {% for object in object.rating_average.ratingsystem %}
-                                                testimonial
-                                            {% endfor %}
-                                        <h4 class="fw-4 text-gray-700 fs-14 pt-2">
-                                            {{ object.slogan|truncatewords:8 }}
-                                        </h4>
-                                        <div class="fs-14 mt-3 mb-2">
-                                            <span class="text-gray-700 fw-4">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-location-pin"><path class="fill-gray-500" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-purple-500" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
-                                                {{ object.distance.mi|dividebyth }} Miles Away
-                                            </span>
-                                        </div>
-                                        <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-4 px-m-na-3">
+                        <div class="card">
+                            <a class="" href="{{ object.get_consumer_absolute_url }}">
+                                <img class="img-fluid border-radius-top-100" style="max-height: 200px;" src="{{ AwsBucketMediaURL }}{{ object.logo }}" alt="User Uploaded images">
+                            </a>
+                            <div class="card-body py-1 px-3">
+                                <div class=" text-left mt-2">
+                                    <a href="{{ object.get_consumer_absolute_url }}" class="fw-6 text-primary fs-18 mb-1">{{ object.business_name }}</a>
+                                    <br>
+                                        {% for i in object.rating_average_round %}
+                                        <span class="fa fa-star star-yellow fs-16"></span>
+
+                                        {% endfor %}
+                                        {% for i in object.rating_average_round_inverted %}
+                                        <span class="fa fa-star-o star-yellow fs-16"></span>
+                                        {% endfor %}
+                                    <br>
+                                    <!-- <span class="fs-12 text-gray-700">{{ object.category.get_name_display }} <span class="text-purple-500 px-1">&#8226;</span> {{ object.subcategory.name }}</span> -->
+                                        {% for object in object.rating_average.ratingsystem %}
+                                            testimonial
+                                        {% endfor %}
+                                    <p class="fw-4 text-gray-800 fs-16 fw-4 pt-2">
+                                        {{ object.slogan|truncatewords:8 }}
+                                    </p>
+                                    <div class="fs-14 mt-3 mb-2">
+
                                     </div>
+                                    <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
                                 </div>
                             </div>
                         </div>
+                    </div>
                     {% endfor %}
                 </div>
       	    </div>
