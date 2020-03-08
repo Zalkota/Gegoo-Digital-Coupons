@@ -106,6 +106,13 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                 sub.unix_trial_end          = subscription['trial_end']
                                 sub.save()
 
+                                # Get Stores and Set Status to paid
+                                # TODO add trial option to store model
+                                for each in customer_store_qs:
+                                    item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
+                                    item.subscription_status = True
+                                    item.save()
+
                                 messages.success(self.request, 'Your promotional code was accepted, and your Subscription Was Successful!')
                                 return redirect('payments:charge')
 
@@ -152,11 +159,19 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                 sub.save()
 
                                 if sub.payment_status == 'succeeded':
+                                    # Get Stores and Set Payment Status
+                                    for each in customer_store_qs:
+                                        item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
+                                        item.subscription_status = True
+                                        item.save()
+
                                     messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!')
-                                    return redirect('payments:charge')  
+                                    return redirect('payments:charge')
+
                                 elif sub.payment_status == 'requires_payment_method':
                                     messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
-                                    return redirect('users:userPage')  
+                                    return redirect('users:userPage')
+
                                 else:
                                     messages.warning(self.request, 'Your charge didnt return a response, Please retry')
                                     return render(self.request, 'payments/plan_detail.html') 
@@ -208,11 +223,19 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                         sub.save()
 
                         if sub.payment_status == 'succeeded':
-                            messages.success(self.request, 'Your Subscription Was Successful!')
-                            return redirect('payments:charge')  
+                            # Get Stores and Set Payment Status
+                            for each in customer_store_qs:
+                                item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
+                                item.subscription_status = True
+                                item.save()
+
+                            messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!')
+                            return redirect('payments:charge')
+
                         elif sub.payment_status == 'requires_payment_method':
                             messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
-                            return redirect('users:userPage')  
+                            return redirect('users:userPage')
+
                         else:
                             messages.warning(self.request, 'Your charge didnt return a response, Please retry')
                             return render(self.request, 'payments/plan_detail.html') 
@@ -325,19 +348,12 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                     item.save()
 
                                 messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!')
-<<<<<<< Updated upstream
-                                return redirect('payments:charge')  
-                            elif sub.payment_status == 'requires_payment_method':
-                                messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
-                                return redirect('users:userPage')  
-=======
                                 return redirect('payments:charge')
 
                             elif sub.payment_status == 'requires_payment_method':
                                 messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
                                 return redirect('users:userPage')
 
->>>>>>> Stashed changes
                             else:
                                 messages.warning(self.request, 'Your charge didnt return a response, Please retry')
                                 return render(self.request, 'payments/plan_detail.html') 
@@ -389,13 +405,6 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                     sub.save()
 
                     if sub.payment_status == 'succeeded':
-<<<<<<< Updated upstream
-                        messages.success(self.request, 'Your Subscription Was Successful!')
-                        return redirect('payments:charge')  
-                    elif sub.payment_status == 'requires_payment_method':
-                        messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
-                        return redirect('users:userPage')  
-=======
                         # Get Stores and Set Payment Status
                         for each in customer_store_qs:
                             item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
@@ -409,7 +418,6 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                         messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
                         return redirect('users:userPage')
 
->>>>>>> Stashed changes
                     else:
                         messages.warning(self.request, 'Your charge didnt return a response, Please retry')
                         return render(self.request, 'payments/plan_detail.html') 
@@ -559,7 +567,7 @@ def ApplyPromo(request):
                     messages.warning(request, 'You have already applied %s!' % promo.code)
                     return redirect('payments:plan_detail', slug=promo.plan.slug)
 
-                promouser, created  = payments_models.PromoUser.objects.create(user=request.user, promotion=promo)
+                promouser = payments_models.PromoUser.objects.create(user=request.user, promotion=promo)
                 promouser.save()
 
                 messages.success(request, 'You Have Successfully applied %s' % promo.code)
