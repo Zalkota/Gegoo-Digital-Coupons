@@ -82,8 +82,8 @@
                 </div>
                 <div class="card-body border-top">
                     <h3 class="header">Subscribe to {{ store.business_name}}</h3>
-                    {% if not request.user.is_authenticated %}
-                        <a href="" data-catid="{{ store.pk }}" class="followBtn btn btn-primary-alt px-2 py-1 mt-3" action_type="add">
+                    {% if authenticated == False %}
+                        <a href="{% url 'account_login' %}" class="btn btn-primary-alt px-2 py-1 mt-3">
                             Subscribe
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
                         </a>

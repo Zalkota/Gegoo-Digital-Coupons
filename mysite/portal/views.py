@@ -130,14 +130,17 @@ class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or
 		context = super(ConsumerStoreDetailView, self).get_context_data(**kwargs)
 
 
-		if self.request.user.is_authenticated:
-			# store_connection_qs = portal_models.FollowStore.objects.filter(current_user=self.request.user)
-			# if store_connection_qs.exists():
-			store_connection = portal_models.FollowStore.objects.get(current_user = self.request.user)
-			context['store_connection_user'] = store_connection.connections.all()
-		else:
-			pass
-
+		try:
+			if self.request.user.is_authenticated:
+				# store_connection_qs = portal_models.FollowStore.objects.filter(current_user=self.request.user)
+				# if store_connection_qs.exists():
+				store_connection = portal_models.FollowStore.objects.get(current_user = self.request.user)
+				context['store_connection_user'] = store_connection.connections.all()
+				context['authenticated'] = True
+			else:
+				context['authenticated'] = False
+		except:
+			context['authenticated'] = False
 
 		# context['related_stores'] = portal_models.Store.objects.filter(category=self.object.category, active=True).exclude(business_name=self.object.business_name)
 		return context
