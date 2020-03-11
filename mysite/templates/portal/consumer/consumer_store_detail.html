@@ -72,16 +72,7 @@
                         <a href="{{ store.website_url }}" target="_blank" class="text-primary pull-right">View Website</a>
                         {% endif %}
                     </div>
-                    {% if store in store_connection_user %}
-                        <a href="" data-catid="{{ store.pk }}" class="followBtn btn btn-primary w-100 mb-3" action_type="remove">
-                            Following
-                        </a>
-                    {% else %}
-                        <a href="" data-catid="{{ store.pk }}" class="followBtn btn btn-outline-primary w-100 mb-3" action_type="add">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-add-circle"><circle cx="12" cy="12" r="10" class="primary"></circle><path class="secondary" d="M13 11h4a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4z"></path></svg>
-                            Follow
-                        </a>
-                    {% endif %} 
+
                 </div>
                 <div class="card-body border-top">
                     <h3 class="header">About</h3>
@@ -89,12 +80,23 @@
                         {{ store.description }}
                     </div>
                 </div>
-                {% if store.street_address %}
+                <div class="card-body border-top">
+                    <h3 class="header">Subscribe to {{ store.business_name}}</h3>
+                    {% if store in store_connection_user %}
+                        <a href="" data-catid="{{ store.pk }}" class="followBtn btn btn-purple-600-alt px-2 py-1 mt-3 shadow-0" action_type="remove">
+                            Subscribed
+                        </a>
+                    {% else %}
+                        <a href="" data-catid="{{ store.pk }}" class="followBtn btn btn-primary-alt px-2 py-1 mt-3" action_type="add">
+                            Subscribe
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
+                        </a>
+                    {% endif %}
+                </div>
                 <div class="card-body border-top">
                     <h3 class="header">Review Business</h3>
                     <a href="" class="text-primary fs-14">Write a Review</a>
                 </div>
-                {% endif %}
                 {% if related_stores %}
                 <div class="card-body border-top">
                     <h3 class="header">Related Shops</h3>

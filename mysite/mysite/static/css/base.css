@@ -13568,8 +13568,9 @@ input[type=checkbox]:checked + label {
      <**************************************************************************>
  */
 :-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px #E2E8F0 inset !important;
-  font-size: 1.1rem !important; }
+  -webkit-box-shadow: 0 0 0 1000px #FEFCBF inset !important;
+  font-size: 1.1rem !important;
+  width: 100%; }
 
 :-webkit-autofill {
   -webkit-text-fill-color: #2A4365 !important;
