@@ -17,7 +17,7 @@ import stripe
 class TrialWebhook(View):
 
     def post(self, request, *args, **kwargs):
-        stripe.api_key = settings.STRIPE_SECRET_KEY_MPM
+        stripe.api_key = settings.STRIPE_SECRET_KEY
         payload = request.body
         event = None
 

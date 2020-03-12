@@ -182,7 +182,7 @@ def create_merchant_profile(sender, instance, created, **kwargs):
         merchantprofile, created = MerchantProfile.objects.get_or_create(user=instance)
 
         if merchantprofile.customer_id is None or merchantprofile.customer_id == '':
-            stripe.api_key                   = settings.STRIPE_SECRET_KEY_MPM
+            stripe.api_key                   = settings.STRIPE_SECRET_KEY
             stripe_customer_id               = stripe.Customer.create(email=instance.email, name='%s %s' % (instance.first_name, instance.last_name))
             merchantprofile.customer_id      = stripe_customer_id['id']
             merchantprofile.save()
@@ -192,7 +192,7 @@ def create_stripe_customer_id(sender, instance, **kwargs):
     merchant_profile                     = MerchantProfile.objects.get(user=instance.user)
 
     if merchant_profile.customer_id is None or merchant_profile.customer_id == '':
-        stripe.api_key                   = settings.STRIPE_SECRET_KEY_MPM
+        stripe.api_key                   = settings.STRIPE_SECRET_KEY
         stripe_customer_id               = stripe.Customer.create(email=instance.user.email, name='%s %s' % (instance.user.first_name, instance.user.last_name))
         merchant_profile.customer_id     = stripe_customer_id['id']
         merchant_profile.save()

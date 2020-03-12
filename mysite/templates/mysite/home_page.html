@@ -39,7 +39,7 @@
             <div class="card title-container border-radius-100">
                 <div class="row">
                     <div class="col-4">
-                        <img src="{% static 'img/dominos.jpg' %}" alt="">
+                        <img src="{{ data.logo_1 }}" id="video_logo" alt="featured store logo">
                     </div>
                     <div class="col-8">
                         <h3 class="text-white fw-6 fs-20 fw-6" id="video_title">{{ data.store_1 }}</h3>
@@ -47,7 +47,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-white" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-white" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
                             {{ data.location_1 }}
                         </h4>
-                        <a href="" class="text-white fs-14">Visit Store</a>
+                        <a href="{{ data.url_1 }}" class="text-white fs-14" id="video_url">Visit Store</a>
                     </div>
                     <div class="col-lg-12 mt-3">
                       <div class="card shadow-1 bg-gray-200">
@@ -292,8 +292,11 @@
                 $("#video_location").text(
                   data.location_2
                 )
+                $("#video_logo").attr('src' , data.logo_2)
+                $("#video_url").attr('href' , data.url_2)
                 console.log(x)
             }
+
             if (x == 3) {
                 $('#video_container').attr('src' , data.video_url_3)
                 $('#video')[0].load()
@@ -302,6 +305,7 @@
                 )
                 console.log(x)
             }
+
             if (x == 4) {
                 $('#video_container').attr('src' , data.video_url_4)
                 $('#video')[0].load()
@@ -310,6 +314,7 @@
                 )
                 console.log(x)
             }
+
             if (x == 5) {
                 $('#video_container').attr('src' , data.video_url_5)
                 $('#video')[0].load()
@@ -318,6 +323,7 @@
                 )
                 console.log(x)
             }
+
             if (x == 6) {
                 $('#video_container').attr('src' , data.video_url_5)
                 $('#video')[0].load()

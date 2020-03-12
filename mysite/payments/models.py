@@ -48,7 +48,7 @@ class Plan(models.Model):
 
 @receiver(pre_save, sender=Plan)
 def pre_save_plan(sender, instance, **kwargs):
-    stripe.api_key              = settings.STRIPE_SECRET_KEY_MPM
+    stripe.api_key              = settings.STRIPE_SECRET_KEY
     plan                        = stripe.Plan.retrieve(id=instance.plan_id)
     instance.nickname           = plan['nickname']
     instance.product_id         = plan['product']

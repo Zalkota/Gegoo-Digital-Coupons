@@ -33,21 +33,34 @@ class PlanListView(ListView):
         return plan_list
 
 class PlanDetailView(LoginRequiredMixin, DetailView):
-    model = payments_models.Plan
-    template_name = 'payments/plan_detail.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(PlanDetailView, self).get_context_data(**kwargs)
-        context['promotion_form'] = payments_forms.PromotionForm()
-        context['stores'] = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=False)
-        return context
+    def get(self, *args, **kwargs):
+        #Mimic Detail View
+        slug = kwargs['slug']
+        plan = payments_models.Plan.objects.get(slug=slug)
+
+        #Obtain stores from user
+
+        stores = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=False)
+        print(stores)
+        if not stores.exists():
+            messages.success(self.request, "No inactive stores found, please create a store first")
+            return redirect("/approval/store/create/")
+        else:
+            context = {
+                'object': plan,
+                'stores': stores,
+                'promotion_form': payments_forms.PromotionForm()
+            }
+            return render(self.request, 'payments/plan_detail.html', context)
 
     def post(self, *args, **kwargs):
         # Return Detail View Object
-        self.object = self.get_object()
+        slug = kwargs['slug']
+        self.object = payments_models.Plan.objects.get(slug=slug)
 
         # Stripe API Calls
-        stripe.api_key = settings.STRIPE_SECRET_KEY_MPM
+        stripe.api_key = settings.STRIPE_SECRET_KEY
         token = self.request.POST.get('stripeToken')
 
         # Customer Store Data
@@ -464,7 +477,7 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
 
-        stripe.api_key          = settings.STRIPE_SECRET_KEY_MPM
+        stripe.api_key          = settings.STRIPE_SECRET_KEY
         subscription_id         = self.object.subscription_id
         subscription_item_id    = self.object.subscription_item_id
         subscription_quantity   = self.object.subscription_quantity
@@ -553,7 +566,7 @@ class UpdatePaymentInformation(View):
         return render(self.request, 'payments/charge.html')
 
     def post(self, request, *args, **kwargs):
-        stripe.api_key = settings.STRIPE_SECRET_KEY_MPM
+        stripe.api_key = settings.STRIPE_SECRET_KEY
         token = self.request.POST.get('stripeToken')
         customer = self.request.user.merchant_profile.customer_id
 
