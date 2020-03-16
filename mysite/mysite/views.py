@@ -166,6 +166,7 @@ class homeView(View):
                     url = 'url_' + increment_str
                     slug_url = 'shop/store/' + store.slug + '/'
                     location = 'location_' + increment_str
+
                     location_qs = store.city + ', ' + store.state
                     video_list.update( { business_name : store.business_name, video_url : store.videofile.file.url, coupon_code : store.code_coupon, location : location_qs, logo : store.logo.url, url : slug_url} )
                 else:

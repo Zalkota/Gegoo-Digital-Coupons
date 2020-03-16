@@ -256,6 +256,9 @@ class MerchantSignUpView(SignupView):
         ret.update(self.kwargs)
         return ret
 
+# def form_valid(self, form):             
+
+
 
 # class MerchantSubscriptionsView(LoginRequiredMixin, View):
 #     def get(self, *args, **kwargs):
