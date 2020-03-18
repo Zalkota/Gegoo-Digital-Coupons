@@ -30,14 +30,15 @@
         </div>
         <div class="offset-3"></div>
         <div class="col-xl-3 col-lg-3 col-md-12 col-12 text-left bg-purple-200 border-top border-bottom stripe-primary py-2">
-            <div class=" ">
+            <div>
                 <a href="#" class="text-primary fw-6 fs-24 mb-2 text-decoration-none ">
                     <span class="text-dark fs-14 fw-4">USE CODE:</span>
                     <br>{% if store.code_coupon != NONE %}{{ store.code_coupon }}{% endif %}
                 </a>
+
             </div>
         </div>
-        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 order-lg-1 order-md-1 order-2 mt-3" id="ViewInfo">
+        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 order-lg-1 order-md-1 order-2 mt-3" id="ViewInfo">
             <div class="card shadow-5">
                 <div class="card-body p-0 hide">
                     <img class="img-fluid p-0" style="width: 100%; border-radius: 0.25rem 0.25rem 0 0;" src="{{ AwsBucketMediaURL }}{{ store.logo }}" alt="Coupon Image Banner">
@@ -63,7 +64,7 @@
                     </div>
                     {% endif %}
                     <div class="fw-6 text-secondary fs-14 mt-1">
-                        <span class="fw-4">{{ store.street_address }}, {{ store.city }}</span>
+                        <span class="fw-4">{{ store.street_address }}, {{ store.city }}, {{ store.state }}, {{ store.zip }}</span>
                         <br>
                         <br>
                         <a href="tel:{{ store.phone_number }}" class="text-primary">{{ store.phone_number.as_e164 }} </a>
@@ -149,48 +150,26 @@
                         <span>Download</span>
                     </div> -->
                 </div>
-                <!-- View Services -->
-                <!-- <div id="ViewServices">
-                    <div class="card shadow-2 mt-3">
-                        <div class="card-body p-0">
-                            <div class="border-bottom px-3 py-3">
-                                <div class="text-left">
-                                    <h4 class="fw-4 fs-16 mb-0">
-                                        {{ object.slogan }}
-                                        <span class="text-primary fs-14 fw-6 pull-right">$49.99</span>
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="border-bottom px-3 py-3">
-                                <div class="text-left">
-                                    <h4 class="fw-4 fs-16 mb-0">
-                                        {{ object.slogan }}
-                                        <span class="text-primary fs-14 fw-6 pull-right">$49.99</span>
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+
                 <!-- View Offers -->
                 <div id="ViewOffers">
                     {% for object in store.storeoffer.all %}
                         {% for offer in object.offers.all %}
                             <div class="card card-border shadow-5 mt-3">
                                 <div class="row">
-                                    <div class="col-lg-3 border-right pr-0">
-                                        <div class="text-center vertical-container" style="height: 100%;">
+                                    <div class="col-3 col-sm-3 col-md-3 border-right pr-0">
+                                        <div class="text-center vertical-container " style="height: 100%;">
                                             <div class="vertical-alignment">
                                                 <h4 class="text-secondary fs-14">Good Until</h4>
                                                 <h3 class="header text-primary pb-3 ">{{ offer.end_date }}</h3>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-9 pl-0">
+                                    <div class="col-9 col-sm-9 col-md-9 pl-0">
                                         <div class="flex-container-vertical">
                                             <div class="card-body flex-box py-1 px-4">
                                                 <h3 class="section-header text-darken mt-3 mb-1">{{ offer.title }}
-                                                    <a class="text-gray-700" href="">
+                                                    <a class="text-gray-700 hide" href="">
                                                         <i class="material-icons pull-right">
                                                         share
                                                         </i>

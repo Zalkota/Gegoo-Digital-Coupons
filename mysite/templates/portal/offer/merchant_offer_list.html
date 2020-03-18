@@ -34,7 +34,7 @@
                                     <h4 class="fs-14 text-secondary fw-4">Create, modify, and delete your offers.</h4>
                                 </div>
                                 <div class="col-6">
-                                    {% if user.merchant_profile.status == 'APPROVED' %}
+                                    {% if user.subscription.subscription_status == 'active' %}
                                     <a href="{% url 'users:merchant_offer_create' %}" class="btn btn-primary-alt pull-right py-2">Create Offer
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 pb-1 icon-add hide"><path class="fill-white" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>
                                     </a>
