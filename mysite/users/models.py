@@ -149,10 +149,10 @@ class MerchantProfile(models.Model): #Is a Profile Necessary?
 
 
     #Address
-    street_address  = models.CharField(max_length=100, null=True)
-    city            = models.CharField(max_length=100, null=True)
+    street_address  = models.CharField(max_length=100, blank=True, null=True)
+    city            = models.CharField(max_length=100, blank=True, null=True)
     state           = models.CharField(choices=STATES, default='NA', max_length=100)
-    zip             = models.CharField(max_length=100, null=True)
+    zip             = models.CharField(max_length=100, blank=True, null=True)
     phone_number    = PhoneNumberField(max_length=20, blank=True, null=True)
 
     # Store Info

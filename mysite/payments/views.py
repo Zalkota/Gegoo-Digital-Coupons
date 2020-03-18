@@ -438,7 +438,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             item.save()
 
                         messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!')
-                        return redirect('payments:charge')
+                        return redirect('users:merchant_approval_videofile_list')
 
                     elif sub.payment_status == 'requires_payment_method':
                         messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')

@@ -17,21 +17,21 @@
     <div class="row">
         <div class="col-12 text-left bg-orange-200 stripe-orange-600 mb-4">
             <div class="card-body">
-                <h1>{{ object.business_name }} Storefront <a href="{% url 'users:merchant_store_delete' store.slug %}" class="btn btn-red-600-alt pull-right mx-2">Delete Store</a><a href="{% url 'users:merchant_store_update' store.slug %}" class="btn btn-orange-500-alt pull-right mx-2">Edit Store</a><a href="{% url 'portal:consumer_store_detail' store.slug %}" class="btn btn-orange-500-alt pull-right mx-2">Live View</a></h1>
-                <p class="text-secondary">You can edit the content contained to better appeal to your customer base</p>
+                <h1 class="section-header">{{ object.business_name }} Storefront <a href="{% url 'users:merchant_store_delete' store.slug %}" class="btn btn-red-600-alt pull-right mx-2">Delete Store</a><a href="{% url 'users:merchant_store_update' store.slug %}" class="btn btn-orange-500-alt pull-right mx-2">Edit Store</a><a href="{% url 'portal:consumer_store_detail' store.slug %}" class="btn btn-orange-500-alt pull-right mx-2">Live View</a></h1>
+                <p class="text-gray-700 fs-14">You can edit the content contained to better appeal to your customer base</p>
             </div>
         </div>
         <div class="col-lg-6 col-xl-6 col-md-6 col-12 text-left hide">
             <div class="fs-14">
-                <span href="" class="text-dark">{{ store.state }}</span>
-                <span class="text-primary px-1">&#8226;</span>
+                <!-- <span href="" class="text-dark">{{ store.state }}</span>
+                <span class="text-secondary px-1">&#8226;</span>
                 <span href="" class="text-dark">{{ store.city }}</span>
-                <span class="text-primary px-1">&#8226;</span>
-                <a href="{{ store.category.get_absolute_url }}" class="text-dark">{{ store.category.get_name_display }}</a>
-                <span class="text-primary px-1">&#8226;</span>
-                <a href="{{ store.subcategory.get_absolute_url }}" class="text-dark">{{ store.subcategory }}</a>
-                <span class="text-primary px-1">&#8226;</span>
-                <a href="" class="text-dark">{{ store.business_name }}</a>
+                <span class="text-secondary px-1">&#8226;</span> -->
+                <a href="{{ store.category.get_absolute_url }}" class="text-primary">{{ store.category.get_name_display }}</a>
+                <span class="text-secondary px-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-cheveron-right-circle"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-600" d="M10.3 8.7a1 1 0 0 1 1.4-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-1.4-1.4l3.29-3.3-3.3-3.3z"/></svg></span>
+                <a href="{{ store.subcategory.get_absolute_url }}" class="text-primary">{{ store.subcategory }}</a>
+                <span class="text-secondary px-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-cheveron-right-circle"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-gray-600" d="M10.3 8.7a1 1 0 0 1 1.4-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-1.4-1.4l3.29-3.3-3.3-3.3z"/></svg></span>
+                <a href="" class="text-primary">{{ store.business_name }}</a>
                 <div class="py-3 unhide"></div>
             </div>
         </div>

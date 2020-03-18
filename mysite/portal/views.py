@@ -166,9 +166,12 @@ class MerchantStoreDetailView(LoginRequiredMixin, DetailView):
 		self.object = self.get_object()
 		context = super(MerchantStoreDetailView, self).get_context_data(**kwargs)
 		store_pk = self.object.pk
-		store_offer = portal_models.StoreOffer.objects.get(current_store=store_pk)
-		context['offers'] = portal_models.Offer.objects.filter(author=self.request.user)
-		context['added_offers'] = store_offer.offers.all()
+		try:
+			store_offer = portal_models.StoreOffer.objects.get(current_store=store_pk)
+			context['offers'] = portal_models.Offer.objects.filter(author=self.request.user)
+			context['added_offers'] = store_offer.offers.all()
+		except:
+			pass
 		return context
 
 class MerchantStoreListView(LoginRequiredMixin, ListView):
