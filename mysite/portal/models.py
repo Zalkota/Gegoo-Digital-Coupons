@@ -359,10 +359,10 @@ class Store(models.Model):
     description         = models.TextField(help_text="Describe the store", null=True)
 
     # Store Location Info - User fills out
-    street_address      = models.CharField(max_length=100, null=True)
+    street_address      = models.CharField(max_length=100, blank=True, null=True)
     city                = models.CharField(max_length=100, null=True)
     state               = models.CharField(choices=STATES, default='NA', max_length=100)
-    zip                 = models.CharField(max_length=100, null=True)
+    zip                 = models.CharField(max_length=100, blank=True, null=True)
     phone_number        = PhoneNumberField(max_length=20, blank=True, null=True, region='US', help_text="Example: 123 456-7890")
 
     # Store Location Info - Admin fills out

@@ -13,8 +13,12 @@ from payments import models as payments_models
 from users import models as users_models
 from payments import forms as payments_forms
 from portal import models as portal_models
-
 import json
+
+
+#Stripe import key
+STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY
+
 
 def get_user_subscription(request):
     try:
@@ -50,6 +54,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
             context = {
                 'object': plan,
                 'stores': stores,
+                'STRIPE_PUB_KEY': STRIPE_PUB_KEY,
                 'promotion_form': payments_forms.PromotionForm()
             }
             return render(self.request, 'payments/plan_detail.html', context)
@@ -135,7 +140,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                     item.save()
 
                                 messages.success(self.request, 'Your promotional code was accepted, and your Subscription Was Successful!')
-                                return redirect('payments:charge')
+                                return redirect('users:merchant_approval_videofile_list')
 
                                 # subject = 'Subscription'
                                 # context = {
@@ -186,8 +191,8 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                         item.subscription_status = True
                                         item.save()
 
-                                    messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!')
-                                    return redirect('payments:charge')
+                                    messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!') #TODO ERROR HERE?
+                                    return redirect('users:merchant_approval_videofile_list')
 
                                 elif sub.payment_status == 'requires_payment_method':
                                     messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
@@ -251,7 +256,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                 item.save()
 
                             messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!')
-                            return redirect('payments:charge')
+                            return redirect('users:merchant_approval_videofile_list')
 
                         elif sub.payment_status == 'requires_payment_method':
                             messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
@@ -317,7 +322,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             sub.save()
 
                             messages.success(self.request, 'Your promotional code was accepted, and your Subscription Was Successful!')
-                            return redirect('payments:charge')
+                            return redirect('users:merchant_approval_videofile_list')
 
                             # subject = 'Subscription'
                             # context = {
@@ -368,8 +373,8 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                     item.subscription_status = True
                                     item.save()
 
-                                messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!')
-                                return redirect('payments:charge')
+                                messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!') #
+                                return redirect('users:merchant_approval_videofile_list')
 
                             elif sub.payment_status == 'requires_payment_method':
                                 messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')

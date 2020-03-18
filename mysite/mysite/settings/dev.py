@@ -23,10 +23,9 @@ except ImportError:
 RECAPTCHA_PUBLIC_KEY = '6LfDKI0UAAAAAGPojMtiBI1wD-2CYTRFKX765uj4'
 RECAPTCHA_PRIVATE_KEY = '6LfDKI0UAAAAADzjHFL5GEL4JTQjL-ZkkJSBu7q6'
 
-#TEST
-STRIPE_PUBLISHABLE_KEY = 'pk_test_idvhfKDQ341zGBS85RwhLnWY'
-STRIPE_SECRET_KEY = 'sk_test_UreA2MI54Bmadk6xO2j9jGlD'
-
+#NEILS STRIPE ACCOUNT
+STRIPE_PUB_KEY      = 'pk_test_ytOTGb9MgWKRqiFD3jL10LAb00sMmoKS8P'
+STRIPE_SECRET_KEY   = 'sk_test_Eu5hX5Y9os8wHLuu09bW8Cz600mtFK7crK'
 
 
 # S3 ------------------------------------------------------------------------
