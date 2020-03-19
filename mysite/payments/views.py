@@ -16,6 +16,8 @@ from portal import models as portal_models
 
 import json
 
+stripe_api_secret_key = settings.STRIPE_SECRET_KEY_TEST
+
 def get_user_subscription(request):
     try:
         user_subscription_qs = payments_models.Subscription.objects.get(user=request.user)
@@ -60,7 +62,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
         self.object = payments_models.Plan.objects.get(slug=slug)
 
         # Stripe API Calls
-        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.api_key = stripe_api_secret_key
         token = self.request.POST.get('stripeToken')
 
         # Customer Store Data
@@ -250,7 +252,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                 item.subscription_status = True
                                 item.save()
 
-                            messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!')
+                            messages.success(self.request, 'Your subscription activation was successful!')
                             return redirect('payments:charge')
 
                         elif sub.payment_status == 'requires_payment_method':
@@ -432,7 +434,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             item.subscription_status = True
                             item.save()
 
-                        messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!')
+                        messages.success(self.request, 'Your subscription activation was successful!')
                         return redirect('payments:charge')
 
                     elif sub.payment_status == 'requires_payment_method':
@@ -464,7 +466,7 @@ class Charge(View):
 
 class SubscriptionDetailView(LoginRequiredMixin, DetailView):
     model = payments_models.Subscription
-    template_name = 'payments/subscription_detail.html'
+    template_name = 'payments/subscription_detail_mpm.html'
 
     def get_queryset(self):
         return payments_models.Subscription.objects.filter(user=self.request.user)
@@ -477,11 +479,13 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
 
-        stripe.api_key          = settings.STRIPE_SECRET_KEY
+        stripe.api_key          = stripe_api_secret_key
         subscription_id         = self.object.subscription_id
         subscription_item_id    = self.object.subscription_item_id
         subscription_quantity   = self.object.subscription_quantity
         customer_stores         = self.request.user.merchant_profile.stores
+
+        customer_store_qs = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=True)
 
         # Customer has added a store
         if customer_stores > subscription_quantity:
@@ -555,6 +559,11 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
                 sub.subscription_status     = subscription['status']
                 sub.save()
 
+                for each in customer_store_qs:
+                    item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
+                    item.subscription_status = False
+                    item.save()
+                    
                 messages.success(self.request, 'Your Subscription Cancellation Was Successful!')
                 return redirect('payments:plan_list')
             else:
@@ -566,7 +575,7 @@ class UpdatePaymentInformation(View):
         return render(self.request, 'payments/charge.html')
 
     def post(self, request, *args, **kwargs):
-        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.api_key = stripe_api_secret_key
         token = self.request.POST.get('stripeToken')
         customer = self.request.user.merchant_profile.customer_id
 

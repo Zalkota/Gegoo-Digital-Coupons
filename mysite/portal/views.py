@@ -132,10 +132,11 @@ class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or
 
 		try:
 			if self.request.user.is_authenticated:
-				# store_connection_qs = portal_models.FollowStore.objects.filter(current_user=self.request.user)
-				# if store_connection_qs.exists():
-				store_connection = portal_models.FollowStore.objects.get(current_user = self.request.user)
-				context['store_connection_user'] = store_connection.connections.all()
+				store_connection_qs = portal_models.FollowStore.objects.filter(current_user=self.request.user)
+				if store_connection_qs.exists():
+					store_connection = portal_models.FollowStore.objects.get(current_user = self.request.user)
+					context['store_connection_user'] = store_connection.connections.all()
+					
 				context['authenticated'] = True
 			else:
 				context['authenticated'] = False
