@@ -118,11 +118,11 @@
                           <div class="col-md-12 text-right">
                             <h1 class="fs-16 mr-2">
                               Monthly Charge:
-                              <span class="ml-2">{{ object.get_total }}</span>
+                              <span class="ml-2">{{ total }}</span>
                             </h1>
                             <h1 class="fs-16 fw-6 mr-2">
                               Total:
-                              <span class="ml-2">{{ object.get_total }}</span>
+                              <span class="ml-2">{{ total }}</span>
                             </h1>
                           </div>
                         </div>
@@ -168,7 +168,8 @@
 {% block stripeJS %}
 <script type="text/javascript" nonce="">
     // Create a Stripe client.
-    var stripe = Stripe('pk_test_k2kLiCPSsK7yyQF4rDDPhHN100mYwH0Pvj');
+    var pub_api_key = {{ stripe_api_pub_key }}
+    var stripe = Stripe(pub_api_key);
 
     // Create an instance of Elements.
     var elements = stripe.elements();
@@ -237,16 +238,5 @@
     // Submit the form
     form.submit();
     }
-
-    // var successElement = document.getElementById('stripe-token-handler');
-    // document.querySelector('.wrapper').addEventListener('click', function() {
-    // successElement.className = 'is-hidden';
-    // });
-
-    // // Not in demo.
-    // function stripeTokenHandler(token) {
-    // successElement.className = '';
-    // successElement.querySelector('.token').textContent = token.id;
-    // }
 </script>
 {% endblock stripeJS %}

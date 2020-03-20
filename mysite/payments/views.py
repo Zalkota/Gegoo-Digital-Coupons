@@ -16,6 +16,7 @@ from portal import models as portal_models
 
 import json
 
+stripe_api_pub_key = settings.STRIPE_PUB_KEY_TEST
 stripe_api_secret_key = settings.STRIPE_SECRET_KEY_TEST
 
 def get_user_subscription(request):
@@ -36,23 +37,30 @@ class PlanListView(ListView):
 
 class PlanDetailView(LoginRequiredMixin, DetailView):
 
-    def get(self, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         #Mimic Detail View
         slug = kwargs['slug']
         plan = payments_models.Plan.objects.get(slug=slug)
+        stripe_pub_key = stripe_api_pub_key
 
         #Obtain stores from user
-
         stores = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=False)
-        print(stores)
+
+        # Get payment total
+        total = plan.get_total() * request.user.merchant_profile.stores
+        print(total)
+
         if not stores.exists():
             messages.success(self.request, "No inactive stores found, please create a store first")
             return redirect("/approval/store/create/")
+
         else:
             context = {
+                'total': total,
                 'object': plan,
                 'stores': stores,
-                'promotion_form': payments_forms.PromotionForm()
+                'promotion_form': payments_forms.PromotionForm(),
+                'stripe_api_pub_key': stripe_pub_key
             }
             return render(self.request, 'payments/plan_detail.html', context)
 
