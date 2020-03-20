@@ -11,8 +11,11 @@ class PlanAdmin(admin.ModelAdmin):
             BenefitInline,
         ]
 
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = ('subscription_id' ,'user', 'subscription_status', 'payment_status')
+
 admin.site.register(payments_models.Plan, PlanAdmin)
-admin.site.register(payments_models.Subscription)
+admin.site.register(payments_models.Subscription, SubscriptionAdmin)
 admin.site.register(payments_models.Benefit)
 admin.site.register(payments_models.Promotion)
 admin.site.register(payments_models.PromoUser)

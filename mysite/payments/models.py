@@ -69,11 +69,26 @@ class Subscription(models.Model):
     subscription_status         = models.CharField(max_length=50, blank=True, editable=False)
     latest_invoice_status       = models.CharField(max_length=100, blank=True)
     payment_status              = models.CharField(max_length=100, blank=True)
+
+    # Creation Timestamp UNIX
+    unix_created_at             = models.PositiveIntegerField(blank=True, null=True)
+    created_at                  = models.DateTimeField(verbose_name="Created At", blank=True, null=True)
+
+    # Period Start and End
+    unix_current_period_start   = models.PositiveIntegerField(blank=True, null=True)
+    unix_current_period_end     = models.PositiveIntegerField(blank=True, null=True)
+    current_period_start        = models.DateTimeField(verbose_name="Period End", blank=True, null=True)
+    current_period_end          = models.DateTimeField(verbose_name="Period Start", blank=True, null=True)
+
+    # Trial Timestamps UNIX
     unix_trial_start            = models.PositiveIntegerField(blank=True, null=True)
     unix_trial_end              = models.PositiveIntegerField(blank=True, null=True)
-    trial_start                 = models.DateTimeField(blank=True, null=True)
-    trial_end                   = models.DateTimeField(blank=True, null=True)
+    trial_start                 = models.DateTimeField(verbose_name="Trial Start", blank=True, null=True)
+    trial_end                   = models.DateTimeField(verbose_name="Trial End", blank=True, null=True)
 
+    # Cancelation Timestamp UNIX
+    unix_canceled_at            = models.PositiveIntegerField(blank=True, null=True)
+    canceled_at                 = models.DateTimeField(verbose_name="Canceled At", blank=True, null=True)
 
     def __str__(self):
         return self.subscription_id
@@ -86,6 +101,19 @@ def pre_save_subscription(sender, instance, **kwargs):
     slug                        = slugify(instance.subscription_id)
     instance.slug               = slug
 
+    if instance.unix_created_at is not None:
+        unix_timestamp_created_at       = instance.unix_created_at
+        created_at_date                 = datetime.datetime.fromtimestamp(unix_timestamp_created_at)
+        instance.created_at             = created_at_date
+
+    if instance.unix_current_period_start is not None and instance.unix_current_period_end is not None:
+        unix_timestamp_current_period_start     = instance.unix_current_period_start
+        unix_timestamp_current_period_end       = instance.unix_current_period_end
+        current_period_start_date               = datetime.datetime.fromtimestamp(unix_timestamp_current_period_start)
+        current_period_end_date                 = datetime.datetime.fromtimestamp(unix_timestamp_current_period_end)
+        instance.current_period_start           = current_period_start_date
+        instance.current_period_end             = current_period_end_date
+
     if instance.unix_trial_start is not None and instance.unix_trial_end is not None:
         unix_timestamp_start        = instance.unix_trial_start
         unix_timestamp_end          = instance.unix_trial_end
@@ -93,6 +121,11 @@ def pre_save_subscription(sender, instance, **kwargs):
         trial_end_date              = datetime.datetime.fromtimestamp(unix_timestamp_end)
         instance.trial_start        = trial_start_date
         instance.trial_end          = trial_end_date
+    
+    if instance.unix_created_at is not None:
+        unix_timestamp_canceled_at      = instance.unix_created_at
+        canceled_at_date                = datetime.datetime.fromtimestamp(unix_timestamp_canceled_at)
+        instance.canceled_at            = canceled_at_date
 
 class Promotion(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE, blank=True, null=True)

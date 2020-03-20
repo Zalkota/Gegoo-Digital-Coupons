@@ -1,6 +1,8 @@
 {% extends "base-alt.html" %}
 
 {% block content %}
+
+{% comment %}
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -39,5 +41,142 @@
         </div>
     </div>
 </div>
+
+{% endcomment %}
+
+
+
+<section class="section container">
+    {% block component %}
+      {% include "users/merchant/merchant_profile_nav.html" %}
+    {% endblock component %}
+
+    {% block mobile_nav %}
+      {% include "users/merchant/merchant_profile_mobile_nav.html" %}
+    {% endblock mobile_nav %}
+
+      <div class="row mt-4">
+          <div class="col-lg-12 mb-4">
+            <div class="card shadow-2">
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <h3 class="header">My Subscription
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-certificate"><path class="primary" d="M4 3h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm16 12V7a2 2 0 0 1-2-2H6a2 2 0 0 1-2 2v8a2 2 0 0 1 2 2h12c0-1.1.9-2 2-2zM8 7h8a1 1 0 0 1 0 2H8a1 1 0 1 1 0-2z"></path><path class="secondary" d="M11.65 18.23a4 4 0 1 1 4.7 0l2.5 3.44-2.23-.18-1.48 1.68-.59-4.2a4.04 4.04 0 0 1-1.1 0l-.6 4.2-1.47-1.68-2.23.18 2.5-3.44zM14 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg>
+                            </h3>
+                            <h4 class="fs-14 text-secondary fw-4">Manage your subscription</h4>
+                        </div>
+                        <div class="col-6">
+                            {% if object.subscription_status == 'active' %}
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-danger pull-right" type="submit" name="delete">Delete</button>
+                            </form> 
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive-md table-striped">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="text-left">
+                                        <div class="py-1 text-uppercase fs-12 fw-6">Customer ID</div>
+                                    </th>
+                                    <th scope="col" class="text-right">
+                                        <div class="py-1 text-uppercase fs-12 fw-6">Issued Date</div>
+                                    </th>
+                                    <th scope="col" class="text-right">
+                                        <div class="py-1 text-uppercase fs-12 fw-6">Subscrption Status</div>
+                                    </th>
+                                    {% if object.subscription_status == 'active' %}
+                                        <th scope="col" class="text-right">
+                                            <div class="py-1 text-uppercase fs-12 fw-6">Period Start</div>
+                                        </th>
+                                        <th scope="col" class="text-right">
+                                            <div class="py-1 text-uppercase fs-12 fw-6">Period End</div>
+                                        </th>
+                                        <th scope="col" class="text-right">
+                                            <div class="py-1 text-uppercase fs-12 fw-6">Payment Status</div>
+                                        </th>
+                                    {% elif object.subscription_status == 'trialing' %}
+                                        <th scope="col" class="text-right">
+                                            <div class="py-1 text-uppercase fs-12 fw-6">Trial Start</div>
+                                        </th>
+                                        <th scope="col" class="text-right">
+                                            <div class="py-1 text-uppercase fs-12 fw-6">Trial End</div>
+                                        </th>
+                                    {% endif %}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td  scope="row" class="border-0 text-left">
+                                    <h1 class="fs-14 fw-4">{{ request.user.merchant_profile.customer_id }}</h1>
+                                    </td>
+                                    <td class="border-0 text-right">
+                                    <h1 class="fs-14 fw-4">{{ object.created_at|date:'M d, Y' }}</h1>
+                                    </td>
+                                    <td class="border-0 text-right">
+                                    <!-- <h1 class="fs-14 fw-4">
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"></circle><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"></path></svg>
+                                        </span>
+                                        {{ object.subscription_status }}
+                                    </h1> -->
+
+                                    <!-- <span class="badge badge-success fs-16 fw-6 text-uppercase">{{ object.subscription_status }}</span> -->
+                                    
+                                    {% if object.subscription_status == 'active' %}
+                                    <h1 class="text-success fs-14 fw-4">{{ object.subscription_status|capfirst }}</h1>
+                                    {% elif objecrt.subscription_status == 'trialing' %}
+                                    <h1 class="text-orange-600 fs-14 fw-4">Trialing</h1>
+                                    {% elif objecrt.subscription_status == 'canceled' %}
+                                    <h1 class="text-red-600 fs-14 fw-4">Canceled</h1>
+                                    {% else %}
+                                    <h1 class="text-red-600 fs-14 fw-4">Requires Action</h1>
+                                    {% endif %}
+
+                                    </td>
+                                    <td class="border-0 text-right">
+                                    <h1 class="fs-14 fw-4">{{ object.current_period_start|date:'M d, Y' }}</h1>
+                                    </td>
+                                    <td class="border-0 text-right">
+                                        <h1 class="fs-14 fw-4">{{ object.current_period_end|date:'M d, Y' }}</h1>
+                                    </td>
+                                    <td class="border-0 text-right">
+                                    <!-- <h1 class="fs-14 fw-4">
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"></circle><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"></path></svg>
+                                        </span>
+                                        {{ object.payment_status }}
+                                    </h1> -->
+
+                                    <!-- <span class="badge badge-success fs-16 fw-6 text-uppercase">{{ object.payment_status }}</span> -->
+
+                                    {% if object.payment_status == 'succeeded' %}
+                                    <h1 class="text-success fs-14 fw-4">{{ object.payment_status|capfirst }}</h1>
+                                    {% elif objecrt.subscription_status == 'trialing' %}
+                                    <h1 class="text-orange-600 fs-14 fw-4">Trialing</h1>
+                                    {% elif objecrt.subscription_status == 'canceled' %}
+                                    <h1 class="text-red-600 fs-14 fw-4">Canceled</h1>
+                                    {% else %}
+                                    <h1 class="text-red-600 fs-14 fw-4">Requires Action</h1>
+                                    {% endif %}
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-5 hide"></div><div class="py-5 hide"></div>
+</section>
 
 {% endblock content %}

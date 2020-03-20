@@ -121,6 +121,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
 
                                 sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
                                 sub.subscription_id         = subscription['id']
+                                sub.unix_created_at         = subscription['created']
                                 sub.subscription_item_id    = subscription['items']['data'][0].id
                                 sub.subscription_quantity   = subscription['items']['data'][0].quantity
                                 sub.plan_id                 = subscription['plan']['id']
@@ -138,16 +139,6 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
 
                                 messages.success(self.request, 'Your promotional code was accepted, and your Subscription Was Successful!')
                                 return redirect('payments:charge')
-
-                                # subject = 'Subscription'
-                                # context = {
-                                #     'user': self.request.user,
-                                #     'subscription': sub,
-                                # }
-                                # template = 'mail/email/email_base.html'
-                                # html_message = render_to_string(template, context)
-                                # msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
-                                # msg.send()
 
                             except stripe.error.CardError as e:
                                 messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
@@ -171,14 +162,17 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                     expand=['items', 'latest_invoice.payment_intent', 'plan'],
                                 )
 
-                                sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
-                                sub.subscription_id         = subscription['id']
-                                sub.subscription_item_id    = subscription['items']['data'][0].id
-                                sub.subscription_quantity   = subscription['items']['data'][0].quantity
-                                sub.plan_id                 = subscription['plan']['id']
-                                sub.subscription_status     = subscription['status']
-                                sub.latest_invoice_status   = subscription['latest_invoice']['status']
-                                sub.payment_status          = subscription['latest_invoice']['payment_intent']['status']
+                                sub, created                    = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+                                sub.subscription_id             = subscription['id']
+                                sub.unix_created_at             = subscription['created']
+                                sub.unix_current_period_start   = subscription['current_period_start']
+                                sub.unix_current_period_end     = subscription['current_period_end']
+                                sub.subscription_item_id        = subscription['items']['data'][0].id
+                                sub.subscription_quantity       = subscription['items']['data'][0].quantity
+                                sub.plan_id                     = subscription['plan']['id']
+                                sub.subscription_status         = subscription['status']
+                                sub.latest_invoice_status       = subscription['latest_invoice']['status']
+                                sub.payment_status              = subscription['latest_invoice']['payment_intent']['status']
                                 sub.save()
 
                                 if sub.payment_status == 'succeeded':
@@ -235,14 +229,17 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             expand=['items', 'latest_invoice.payment_intent', 'plan'],
                         )
 
-                        sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
-                        sub.subscription_id         = subscription['id']
-                        sub.subscription_item_id    = subscription['items']['data'][0].id
-                        sub.subscription_quantity   = subscription['items']['data'][0].quantity
-                        sub.plan_id                 = subscription['plan']['id']
-                        sub.subscription_status     = subscription['status']
-                        sub.latest_invoice_status   = subscription['latest_invoice']['status']
-                        sub.payment_status          = subscription['latest_invoice']['payment_intent']['status']
+                        sub, created                    = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+                        sub.subscription_id             = subscription['id']
+                        sub.unix_created_at             = subscription['created']
+                        sub.unix_current_period_start   = subscription['current_period_start']
+                        sub.unix_current_period_end     = subscription['current_period_end']
+                        sub.subscription_item_id        = subscription['items']['data'][0].id
+                        sub.subscription_quantity       = subscription['items']['data'][0].quantity
+                        sub.plan_id                     = subscription['plan']['id']
+                        sub.subscription_status         = subscription['status']
+                        sub.latest_invoice_status       = subscription['latest_invoice']['status']
+                        sub.payment_status              = subscription['latest_invoice']['payment_intent']['status']
                         sub.save()
 
                         if sub.payment_status == 'succeeded':
@@ -353,14 +350,17 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                 expand=['items', 'latest_invoice.payment_intent', 'plan'],
                             )
 
-                            sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
-                            sub.subscription_id         = subscription['id']
-                            sub.subscription_item_id    = subscription['items']['data'][0].id
-                            sub.subscription_quantity   = subscription['items']['data'][0].quantity
-                            sub.plan_id                 = subscription['plan']['id']
-                            sub.subscription_status     = subscription['status']
-                            sub.latest_invoice_status   = subscription['latest_invoice']['status']
-                            sub.payment_status          = subscription['latest_invoice']['payment_intent']['status']
+                            sub, created                    = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+                            sub.subscription_id             = subscription['id']
+                            sub.unix_created_at             = subscription['created']
+                            sub.unix_current_period_start   = subscription['current_period_start']
+                            sub.unix_current_period_end     = subscription['current_period_end']
+                            sub.subscription_item_id        = subscription['items']['data'][0].id
+                            sub.subscription_quantity       = subscription['items']['data'][0].quantity
+                            sub.plan_id                     = subscription['plan']['id']
+                            sub.subscription_status         = subscription['status']
+                            sub.latest_invoice_status       = subscription['latest_invoice']['status']
+                            sub.payment_status              = subscription['latest_invoice']['payment_intent']['status']
                             sub.save()
 
                             if sub.payment_status == 'succeeded':
@@ -417,14 +417,17 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                         expand=['items', 'latest_invoice.payment_intent', 'plan'],
                     )
 
-                    sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
-                    sub.subscription_id         = subscription['id']
-                    sub.subscription_item_id    = subscription['items']['data'][0].id
-                    sub.subscription_quantity   = subscription['items']['data'][0].quantity
-                    sub.plan_id                 = subscription['plan']['id']
-                    sub.subscription_status     = subscription['status']
-                    sub.latest_invoice_status   = subscription['latest_invoice']['status']
-                    sub.payment_status          = subscription['latest_invoice']['payment_intent']['status']
+                    sub, created                    = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+                    sub.subscription_id             = subscription['id']
+                    sub.unix_created_at             = subscription['created']
+                    sub.unix_current_period_start   = subscription['current_period_start']
+                    sub.unix_current_period_end     = subscription['current_period_end']
+                    sub.subscription_item_id        = subscription['items']['data'][0].id
+                    sub.subscription_quantity       = subscription['items']['data'][0].quantity
+                    sub.plan_id                     = subscription['plan']['id']
+                    sub.subscription_status         = subscription['status']
+                    sub.latest_invoice_status       = subscription['latest_invoice']['status']
+                    sub.payment_status              = subscription['latest_invoice']['payment_intent']['status']
                     sub.save()
 
                     if sub.payment_status == 'succeeded':
@@ -488,8 +491,8 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
         customer_store_qs = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=True)
 
         # Customer has added a store
-        if customer_stores > subscription_quantity:
-            if 'upgrade' in request.POST:
+        if 'upgrade' in request.POST:
+            if customer_stores > subscription_quantity:
 
                 subscription = stripe.Subscription.modify(
                     subscription_id,
@@ -516,8 +519,8 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
                 messages.warning(self.request, 'Your Subscription cannot be upgraded at this time. Please contact support.')
                 return render(self.request, 'payments/subscription_detail.html')
 
-        elif customer_stores < subscription_quantity:
-            if 'downgrade' in request.POST:
+        elif 'downgrade' in request.POST: 
+            if customer_stores < subscription_quantity:
 
                 subscription = stripe.Subscription.modify(
                     subscription_id,
@@ -553,6 +556,7 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
 
                 sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
                 sub.subscription_id         = subscription['id']
+                sub.canceled_at             = subscription['canceled_at']
                 sub.subscription_item_id    = subscription['items']['data'][0].id
                 sub.subscription_quantity   = subscription['items']['data'][0].quantity
                 sub.plan_id                 = subscription['plan']['id']
@@ -565,7 +569,7 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
                     item.save()
                     
                 messages.success(self.request, 'Your Subscription Cancellation Was Successful!')
-                return redirect('payments:plan_list')
+                return redirect('users:userPage')
             else:
                 messages.warning(self.request, 'Your Subscription cannot be cancelled at this time. Please contact support.')
                 return render(self.request, 'payments/subscription_detail.html')

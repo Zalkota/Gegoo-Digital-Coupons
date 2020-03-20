@@ -226,9 +226,13 @@ class MerchantStoreUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateVie
 class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 	model = portal_models.Store
 	template_name = 'portal/merchant/merchant_store_delete.html'
-	success_url = reverse_lazy('users:merchant_store_list')
+	# success_url = reverse_lazy('users:merchant_store_list')
 	success_message = "Store Deleted"
 
+	def delete(self, request, *args, **kwargs):
+		self.object = self.get_object()
+		self.object.delete()
+		return redirect('users:userPage')
 
 # Merchant Offer
 
