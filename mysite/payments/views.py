@@ -654,6 +654,36 @@ class SubscriptionManageView(LoginRequiredMixin, View):
             else:
                 messages.warning(self.request, 'Your Subscription cannot be upgraded at this time. Please contact support.')
                 return render(self.request, 'payments/subscription_manage.html')
+        
+        elif 'downgrade' in request.POST: 
+            if customer_stores < subscription_quantity:
+
+                subscription = stripe.Subscription.modify(
+                    subscription_id,
+                    cancel_at_period_end=False,
+                    items = [{
+                        'id': subscription_item_id,
+                        'plan': plan_id,
+                        'quantity': customer_stores,
+                    }],
+                    proration_behavior='none',
+                )
+
+                sub, created                    = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+                sub.subscription_id             = subscription['id']
+                sub.unix_current_period_start   = subscription['current_period_start']
+                sub.unix_current_period_end     = subscription['current_period_end']
+                sub.subscription_item_id        = subscription['items']['data'][0].id
+                sub.subscription_quantity       = subscription['items']['data'][0].quantity
+                sub.plan_id                     = subscription['plan']['id']
+                sub.subscription_status         = subscription['status']
+                sub.save()
+
+                messages.success(self.request, 'Your Subscription downgrade Was Successful!')
+                return redirect('users:userPage')
+            else:
+                messages.warning(self.request, 'Your Subscription cannot be downgraded at this time. Please contact support.')
+                return render(self.request, 'payments/subscription_detail.html')
 
 class UpdatePaymentInformation(View):
     def get(self, *args, **kwargs):

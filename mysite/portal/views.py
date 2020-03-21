@@ -26,9 +26,10 @@ from .forms import MerchantStoreForm
 from users.decorators import IsMerchantMixin, IsUserObject
 
 from users import models as users_models
+from payments import models as payments_models
 
 def get_user_orders(request, user):
-	user_orders_qs = portal_modedls.Order.objects.filter(user=user)
+	user_orders_qs = portal_models.Order.objects.filter(user=user)
 	if user_orders_qs.exists():
 		return user_orders_qs
 	return None
@@ -88,8 +89,6 @@ class SubcategoryDetailView(ListView):
 		context['state'] = city_state["state"]
 		context['subcategory'] = slug = self.kwargs['slug']
 		return context
-
-
 
 class ConsumerStoreListView(ListView): #This needs to filter by user city or distance
 	model = portal_models.Store
@@ -240,7 +239,16 @@ class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteVie
 	def delete(self, request, *args, **kwargs):
 		self.object = self.get_object()
 		self.object.delete()
-		return redirect('users:userPage')
+
+		subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
+
+		if subscription_qs.exists():
+			subscription = payments_models.Subscription.objects.get(user=self.request.user)
+			messages.success(self.request, 'Your store was deleted succesfully')
+			return redirect('payments:subscription_manage', slug=subscription.slug)
+		else:
+			messages.warning(self.request, 'The store was deleted, but redirect was not successful')
+			return redirect('users:userPage')
 
 # Merchant Offer
 
