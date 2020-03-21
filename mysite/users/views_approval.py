@@ -26,6 +26,8 @@ from users.decorators import user_is_merchant
 from django.contrib.auth.mixins import LoginRequiredMixin
 from portal.forms import MerchantStoreForm
 
+from payments import models as payment_models
+
 #
 # class MerchantProfileUpdateView(LoginRequiredMixin, UpdateView):
 #     form_class = MerchantProfileForm
@@ -53,7 +55,13 @@ from portal.forms import MerchantStoreForm
 #         return super(MerchantProfileUpdateView, self).form_valid(form)
 #
 def MerchantApprovalAdditionalStoreView(request):
-    return render(request, 'users/approval/merchant_approval_additional_store.html')
+
+    user_subscription = payment_models.Subscription.objects.get(user=request.user)
+    context = {
+        'subscription': user_subscription
+    }
+
+    return render(request, 'users/approval/merchant_approval_additional_store.html', context)
 
 
 class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):

@@ -67,15 +67,20 @@
                             <h4 class="fs-14 text-secondary fw-4">Manage your subscription</h4>
                         </div>
                         <div class="col-6">
-                            {% if object.subscription_status == 'active' %}
-                            <form action="" method="POST">
-                                {% csrf_token %}
-                                <button class="btn btn-outline-danger pull-right" type="submit" name="delete">Delete</button>
-                            </form>
+                            {% if request.user.merchant_profile.stores > object.subscription_quantity %}
+                                <a href="{% url 'payments:subscription_manage' slug=object.slug %}" class="btn btn-secondary-inverted mr-2 pull-right">Upgrade Subscription</a>
                             {% else %}
-                            <a href="{% url 'payments:plan_list' %}" class="btn btn-primary-alt pull-right py-2">Reactivate Subscription
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 pb-1 icon-add hide"><path class="fill-white" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>
-                            </a>
+                                <p>No Upgrade</p>
+                            {% endif %}
+                            {% if object.subscription_status == 'active' %}
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    <button class="btn btn-outline-danger pull-right" type="submit" name="delete">Delete</button>
+                                </form>
+                            {% else %}
+                                <a href="{% url 'payments:plan_list' %}" class="btn btn-primary-alt pull-right py-2">Reactivate Subscription
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 pb-1 icon-add hide"><path class="fill-white" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>
+                                </a>
                             {% endif %}
                         </div>
                     </div>
@@ -138,44 +143,46 @@
                                     <h1 class="text-orange-600 fs-14 fw-4">{{ object.subscription_status|capfirst }}</h1>
                                     {% elif object.subscription_status == 'canceled' %}
                                     <h1 class="text-red-600 fs-14 fw-4">{{ object.subscription_status|capfirst }}</h1>
+                                    {% else %}
+                                    <h1 class="text-red-600 fs-14 fw-4">{{ object.subscription_status|capfirst }}</h1>
                                     {% endif %}
 
                                     </td>
                                     {% if object.subscription_status == 'active' %}
-                                    <td class="border-0 text-right">
-                                        <h1 class="fs-14 fw-4">{{ object.current_period_start|date:'M d, Y' }}</h1>
-                                    </td>
-                                    <td class="border-0 text-right">
-                                        <h1 class="fs-14 fw-4">{{ object.current_period_end|date:'M d, Y' }}</h1>
-                                    </td> 
-                                    <td class="border-0 text-right">
-                                    <!-- <h1 class="fs-14 fw-4">
-                                        <span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"></circle><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"></path></svg>
-                                        </span>
-                                        {{ object.payment_status }}
-                                    </h1> -->
+                                        <td class="border-0 text-right">
+                                            <h1 class="fs-14 fw-4">{{ object.current_period_start|date:'M d, Y' }}</h1>
+                                        </td>
+                                        <td class="border-0 text-right">
+                                            <h1 class="fs-14 fw-4">{{ object.current_period_end|date:'M d, Y' }}</h1>
+                                        </td> 
+                                        <td class="border-0 text-right">
+                                        <!-- <h1 class="fs-14 fw-4">
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"></circle><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"></path></svg>
+                                            </span>
+                                            {{ object.payment_status }}
+                                        </h1> -->
 
-                                    <!-- <span class="badge badge-success fs-16 fw-6 text-uppercase">{{ object.payment_status }}</span> -->
+                                        <!-- <span class="badge badge-success fs-16 fw-6 text-uppercase">{{ object.payment_status }}</span> -->
 
-                                    {% if object.payment_status == 'succeeded' %}
-                                    <h1 class="text-success fs-14 fw-4">{{ object.payment_status|capfirst }}</h1>
+                                        {% if object.payment_status == 'succeeded' %}
+                                        <h1 class="text-success fs-14 fw-4">{{ object.payment_status|capfirst }}</h1>
+                                        {% elif objecrt.subscription_status == 'trialing' %}
+                                        <h1 class="text-orange-600 fs-14 fw-4">Trialing</h1>
+                                        {% elif objecrt.subscription_status == 'canceled' %}
+                                        <h1 class="text-red-600 fs-14 fw-4">Canceled</h1>
+                                        {% else %}
+                                        <h1 class="text-red-600 fs-14 fw-4">Requires Action</h1>
+                                        {% endif %}
+
+                                        </td>
                                     {% elif objecrt.subscription_status == 'trialing' %}
-                                    <h1 class="text-orange-600 fs-14 fw-4">Trialing</h1>
-                                    {% elif objecrt.subscription_status == 'canceled' %}
-                                    <h1 class="text-red-600 fs-14 fw-4">Canceled</h1>
-                                    {% else %}
-                                    <h1 class="text-red-600 fs-14 fw-4">Requires Action</h1>
-                                    {% endif %}
-
-                                    </td>
-                                    {% elif objecrt.subscription_status == 'trialing' %}
-                                    <td class="border-0 text-right">
-                                        <h1 class="fs-14 fw-4">{{ object.trial_start|date:'M d, Y' }}</h1>
-                                    </td>
-                                    <td class="border-0 text-right">
-                                        <h1 class="fs-14 fw-4">{{ object.trial_end|date:'M d, Y' }}</h1>
-                                    </td> 
+                                        <td class="border-0 text-right">
+                                            <h1 class="fs-14 fw-4">{{ object.trial_start|date:'M d, Y' }}</h1>
+                                        </td>
+                                        <td class="border-0 text-right">
+                                            <h1 class="fs-14 fw-4">{{ object.trial_end|date:'M d, Y' }}</h1>
+                                        </td> 
                                     {% endif %}
                                 </tr>
                                 </tbody>

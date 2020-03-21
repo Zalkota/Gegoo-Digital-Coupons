@@ -58,7 +58,7 @@
                           <tbody>
                             {% for object in object_list %}
                             <tr>
-                              <th scope="row"><a href="{% url 'portal:consumer_store_detail' object.slug %}">{{ object.business_name }}</a></th>
+                              <th scope="row"><a href="{% url 'users:merchant_store_detail' slug=object.slug %}">{{ object.business_name }}</a></th>
                               <td>{{ object.city }}, {{ object.state }}</td>
                               <td>
                                   {% if object.status == 2 %}

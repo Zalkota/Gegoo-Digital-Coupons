@@ -8,6 +8,7 @@ urlpatterns = [
     path('plan/<slug:slug>/', payments_views.PlanDetailView.as_view(), name='plan_detail'),
 
     path('subscription/<slug:slug>', payments_views.SubscriptionDetailView.as_view(), name='subscription_detail'),
+    path('subscription/<slug:slug>/manage', payments_views.SubscriptionManageView.as_view(), name='subscription_manage'),
 
     path('webhook/', payments_webhooks.TrialWebhook.as_view(), name='webhook'),
 

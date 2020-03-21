@@ -24,7 +24,7 @@ urlpatterns = [
     # path('my-subscription/', users_views.MerchantSubscriptionsView.as_view(), name='subscription_list'),
 
     # Merchant Store Views
-    path('my-stores/<slug:slug>/', portal_views.MerchantStoreDetailView.as_view(), name='merchant_store_detail'),
+    path('my-store/<slug:slug>/', portal_views.MerchantStoreDetailView.as_view(), name='merchant_store_detail'),
     path('my-stores/', portal_views.MerchantStoreListView.as_view(), name='merchant_store_list'),
     path('my-store/create/', portal_views.MerchantStoreCreateView.as_view(), name='merchant_store_create'),
     path('my-store/<slug:slug>/update/', portal_views.MerchantStoreUpdateView.as_view(), name='merchant_store_update'),

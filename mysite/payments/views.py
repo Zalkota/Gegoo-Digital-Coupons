@@ -44,11 +44,10 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
         stripe_pub_key = stripe_api_pub_key
 
         #Obtain stores from user
-        stores = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=False)
+        stores = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=False).order_by('created_at')
 
         # Get payment total
-        total = plan.get_total() * request.user.merchant_profile.stores
-        print(total)
+        total = plan.get_total() * self.request.user.merchant_profile.stores
 
         if not stores.exists():
             messages.success(self.request, "No inactive stores found, please create a store first")
@@ -482,11 +481,6 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
         return payments_models.Subscription.objects.filter(user=self.request.user)
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(SubscriptionDetailView, self).get_context_data(**kwargs)
-    #     context['stores'] = portal_models.Store.objects.filter(merchant=self.request.user)
-    #     return context
-
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
 
@@ -562,6 +556,8 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
                     expand=['items', 'plan'],
                 )
 
+                print(subscription)
+
                 sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
                 sub.subscription_id         = subscription['id']
                 sub.canceled_at             = subscription['canceled_at']
@@ -581,6 +577,83 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
             else:
                 messages.warning(self.request, 'Your Subscription cannot be cancelled at this time. Please contact support.')
                 return render(self.request, 'payments/subscription_detail.html')
+
+
+class SubscriptionManageView(LoginRequiredMixin, View):
+    
+    def get(self, request, *args, **kwargs):
+        subscription = payments_models.Subscription.objects.get(user=self.request.user)
+        plan = payments_models.Plan.objects.get(plan_id=subscription.plan_id)
+        customer_store_qs = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=False).order_by('created_at')
+        
+
+        current_monthly_total = subscription.subscription_quantity * plan.get_total()
+        new_payment_total = plan.get_total() * self.request.user.merchant_profile.stores
+
+        context = {
+            'subscription': subscription,
+            'plan': plan,
+            'new_payment_total': new_payment_total,
+            'current_monthly_total': current_monthly_total,
+            'stores': customer_store_qs,
+        }
+
+        if self.request.user.merchant_profile.stores > subscription.subscription_quantity or self.request.user.merchant_profile.stores < subscription.subscription_quantity:
+            return render(self.request, 'payments/subscription_manage.html', context)
+        else:
+            messages.warning(self.request, 'No subscription update is needed!')
+            return redirect('users:userPage')
+
+    def post(self, request, *args, **kwargs):
+        subscription = payments_models.Subscription.objects.get(user=self.request.user)
+        plan = payments_models.Plan.objects.get(plan_id=subscription.plan_id)
+
+        customer_store_qs = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=False)
+
+        stripe.api_key          = stripe_api_secret_key
+        subscription_id         = subscription.subscription_id
+        subscription_item_id    = subscription.subscription_item_id
+        plan_id                 = plan.plan_id
+        subscription_quantity   = subscription.subscription_quantity
+        customer_stores         = self.request.user.merchant_profile.stores
+
+        # Customer has added a store
+        if 'upgrade' in request.POST:
+            if customer_stores > subscription_quantity:
+
+                subscription = stripe.Subscription.modify(
+                    subscription_id,
+                    cancel_at_period_end=False,
+                    items = [{
+                        'id': subscription_item_id,
+                        'plan': plan_id,
+                        'quantity': customer_stores,
+                    }],
+                    proration_behavior='none',
+                )
+
+                sub, created                    = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+                sub.subscription_id             = subscription['id']
+                sub.unix_current_period_start   = subscription['current_period_start']
+                sub.unix_current_period_end     = subscription['current_period_end']
+                sub.subscription_item_id        = subscription['items']['data'][0].id
+                sub.subscription_quantity       = subscription['items']['data'][0].quantity
+                sub.plan_id                     = subscription['plan']['id']
+                sub.subscription_status         = subscription['status']
+                sub.save()
+
+                print(subscription)
+
+                for each in customer_store_qs:
+                    item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
+                    item.subscription_status = True
+                    item.save()
+
+                messages.success(self.request, 'Your Subscription Upgrade Was Successful!')
+                return redirect('payments:charge')
+            else:
+                messages.warning(self.request, 'Your Subscription cannot be upgraded at this time. Please contact support.')
+                return render(self.request, 'payments/subscription_manage.html')
 
 class UpdatePaymentInformation(View):
     def get(self, *args, **kwargs):
