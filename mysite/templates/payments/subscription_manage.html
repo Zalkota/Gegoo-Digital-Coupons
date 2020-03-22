@@ -1,0 +1,159 @@
+{% extends "base-alt.html" %}
+
+{% block content %}
+
+    <div class="section-sm pt-2 container">
+
+        {% comment %}
+            {% if request.user.merchant_profile.stores > subscription.subscription_quantity %}
+                {% block merchant_approval_nav %}
+                    {% include "users/approval/merchant_approval_nav.html" %}
+                {% endblock merchant_approval_nav %}   
+            {% endif %}            
+        {% endcomment %}
+
+        <div class="row justify-content-md-center my-3">
+            <div class="col-md-6">
+                <div class="py-3 hide"></div>
+                {% if request.user.merchant_profile.stores > subscription.subscription_quantity or request.user.merchant_profile.stores == subscription.subscription_quantity %}
+                    <h1 class="section-header">Upgrade Summary</h1> 
+                {% else %}
+                    <h1 class="section-header">Downgrade Summary</h1>
+                {% endif %}
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="fs-24 fw-6">Current Monthly Charge</h1>
+                                <h2 class="fs-18 fw-4">
+                                    $ {{ current_monthly_total }} 
+                                    <span class="fs-18 fw-4">
+                                        / month
+                                    </span>
+                                </h2>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                {% if request.user.merchant_profile.stores > subscription.subscription_quantity or request.user.merchant_profile.stores == subscription.subscription_quantity %}
+                                    <!-- New Stores -->
+                                    <h1 class="fs-24 fw-6 mb-1">Store(s) Added!</h1>
+                                    <p class="text-muted fs-14 mb-4">Please note - each new storefront will add $ {{ plan.get_total }} to your exisiting subscription</p>
+                                    <div class="table-responsive-md">
+                                        <table class="table">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col-md-4" class="border-0 bg-light text-left">
+                                                <div class="py-1 text-uppercase fs-12 fw-6">Store</div>
+                                            </th>
+                                            <th scope="col-md-2" class="border-0 bg-light text-right">
+                                                <div class="py-1 text-uppercase fs-12 fw-6">Edit</div>
+                                            </th>
+                                            <th scope="col-md-2" class="border-0 bg-light text-right">
+                                                <div class="py-1 text-uppercase fs-12 fw-6">Remove</div>
+                                            </th>
+                                            <th scope="col-md-4" class="border-0 bg-light text-right">
+                                                <div class="py-1 text-uppercase fs-12 fw-6">Price</div>
+                                            </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for store in stores %}
+                                            <tr>
+                                            <td  scope="row" class="border-0 text-left">
+                                                <h1 class="fs-14 fw-4">
+                                                <a href="">
+                                                    {{ store.business_name }}
+                                                </a>
+                                                </h1>
+                                            </td>
+                                            <td class="border-0 text-right">
+                                                <a href="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-edit"><path class="fill-orange-500" d="M4 14a1 1 0 0 1 .3-.7l11-11a1 1 0 0 1 1.4 0l3 3a1 1 0 0 1 0 1.4l-11 11a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-3z"></path><rect width="20" height="2" x="2" y="20" class="fill-orange-500" rx="1"></rect></svg>
+                                                </a>
+                                            </td>
+                                            <td class="border-0 text-right">
+                                                <a href="#" class="text-dark">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-trash"><path class="fill-red-500" d="M5 5h14l-.89 15.12a2 2 0 0 1-2 1.88H7.9a2 2 0 0 1-2-1.88L5 5zm5 5a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1z"></path><path class="fill-red-600" d="M8.59 4l1.7-1.7A1 1 0 0 1 11 2h2a1 1 0 0 1 .7.3L15.42 4H19a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h3.59z"></path></svg>
+                                                </a>
+                                            </td>
+                                            <td class="border-0 text-right">
+                                                <h1 class="fs-14">{{ plan.get_total }}</h1>
+                                            </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        </table>
+                                    </div> 
+                                {% else %}
+                                    <h1 class="fs-24 fw-6">Store(s) Deleted!</h1>
+                                    <p class="text-muted fs-14">Please note - each storefront deleted will subtract $ {{ plan.get_total }} from your exisiting subscription. There is a minimum of 1 store to continue using The GEGOO services.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                {% if request.user.merchant_profile.stores > subscription.subscription_quantity or request.user.merchant_profile.stores == subscription.subscription_quantity %}
+                                    <h1 class="fs-16 mr-2">
+                                        Upgraded Monthly Charge:
+                                        <span class="ml-2">{{ new_payment_total }}</span>
+                                        </h1>
+                                        <h1 class="fs-16 fw-6 mr-2">
+                                        Upgraded Total:
+                                        <span class="ml-2">{{ new_payment_total }}</span>
+                                    </h1>
+                                {% else %}
+                                <h1 class="fs-16 mr-2">
+                                    Downgraded Monthly Charge:
+                                    <span class="ml-2">{{ new_payment_total }}</span>
+                                    </h1>
+                                    <h1 class="fs-16 fw-6 mr-2">
+                                    Downgraded Total:
+                                    <span class="ml-2">{{ new_payment_total }}</span>
+                                </h1>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form action="" class="py-1 " method="POST" style="border: none;" id="payment-form">
+                                    {% csrf_token %}   
+                                    {% if request.user.merchant_profile.stores > subscription.subscription_quantity or request.user.merchant_profile.stores == subscription.subscription_quantity %}
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <button class="btn btn-primary-alt w-100 shadow-2" type="submit" name="upgrade" value="upgrade">Complete Upgrade</button>
+                                        </form>
+                                    {% else %}
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <button class="btn btn-primary-alt w-100 shadow-2" type="submit" name="downgrade" value="downgrade">Complete Downgrade</button>
+                                        </form>
+                                    {% endif %}
+                                </form>
+                            </div>
+                            <div class="col-md-12">
+                                <p class="text-muted text-center fs-14 fw-4 mt-2">By clicking the button above you acknowldge that your monthly recurring subscription will change by the amount shown.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                      <div class="text-left pt-2">
+                          <span class="fs-14 mb-0 pb-0">
+                              <i class="fa fa-lock text-success" aria-hidden="true"></i>
+                              <strong><span class="text-success">SSL</span> <span class="text-alternate">SECURED PAYMENT</span></strong>
+                          </span>
+                          <br>
+                          <span class="text-muted" style="font-size: 14px;">Your information is protected by 256-bit SSL encryption</span>
+                        </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

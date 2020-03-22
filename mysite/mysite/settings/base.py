@@ -354,15 +354,6 @@ ACCOUNT_SESSION_REMEMBER = 'None' # Default is None. Controls the life time of t
 #ACCOUNT_USERNAME_BLACKLIST = []
 #ACCOUNT_USERNAME_MIN_LENGTH = 1
 
-#TEST
-#STRIPE_PUBLISHABLE_KEY = 'pk_test_idvhfKDQ341zGBS85RwhLnWY'
-#STRIPE_SECRET_KEY = 'sk_test_UreA2MI54Bmadk6xO2j9jGlD'
-
-
-
-# STRIPE_PUB_KEY_MPM      = 'pk_test_k2kLiCPSsK7yyQF4rDDPhHN100mYwH0Pvj' #NEILS
-# STRIPE_SECRET_KEY   = 'sk_test_vZfYk3ISvw6WsynV64vP0XpK006WkTHRMI' #NEILS
-
 
 EMAIL_CUSTOMER = 'dominic@modwebservices.com'
 

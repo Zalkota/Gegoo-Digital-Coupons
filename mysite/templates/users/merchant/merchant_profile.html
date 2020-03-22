@@ -82,7 +82,7 @@ a:hover {
 
         <div class="row mt-4">
 
-                {% if user.merchant_profile.stores == 0 %}
+                {% if request.user.merchant_profile.stores == 0 %}
 
                     <div class="col-lg-6 offset-3">
                         <div class="card shadow-2 my-2">
@@ -127,10 +127,15 @@ a:hover {
                                     <span class="badge-purple px-3 fw-6 fs-12 pull-right">Incomplete</span>
                                 </h3>
                                 <br>
+                                {% if user.subscription %}
+                                <p><span class="fw-6"></span>Since you have already used the GEGOO services please check your old stores. Edit and or add additional Stores to your account.</p>
+                                {% else %}
                                 <p><span class="fw-6"></span>Add additional Stores to your account. Each store has a unique address, video, and offers.</p>
+                                {% endif %}
                             </div>
                             <div class="card-footer">
                                 <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt pull-right">Create Additional Stores</a>
+                                <a href="{% url 'users:merchant_store_list' %}" class="mr-4 mt-3 pull-right">View Stores</a>
                             </div>
                         </div>
                     </div>

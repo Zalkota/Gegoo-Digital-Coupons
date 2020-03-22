@@ -3,7 +3,28 @@
 {% block content %}
 <div class="section-sm">
     <div class="container">
-        <div class="row my-5">
+
+        {% if subscription.subscription_status == 'active' %}
+            {% if request.user.merchant_profile.stores == 1 %}
+            <div class="row mb-1">
+                <div class="col-lg-6 offset-3">
+                    <div class="card text-left stripe-red-700 mb-4 shadow-2" style="background-color: rgba(197, 48, 47, 0.2) !important;">
+                        <div class="card-body">
+                            <h1 class="text-red-700 fs-16 fw-4">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-2 icon-thumbs-down"><path class="primary" d="M11 19.2l-2.92-6.8A1 1 0 0 1 8 12V4c0-1.1.9-2 2-2h6c1.5 0 3.11 1.06 3.7 2.45l2.22 5.16A1 1 0 0 1 22 10v2a3 3 0 0 1-3 3h-4v4a3 3 0 0 1-3 3 1 1 0 0 1-1-1v-1.8z"></path><rect width="4" height="11" x="2" y="2" class="secondary fill-red-700" rx="1" transform="rotate(180 4 7.5)"></rect></svg>
+                                </span>
+                                Your current store count is {{ request.user.merchant_profile.stores }}. Your subscription will be canceled if you delete this store!
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            {% endif %}
+        {% endif %}
+ 
+
+        <div class="row">
             <div class="col-lg-6 offset-3">
                 <div class="card">
                     <div class="card-body">
