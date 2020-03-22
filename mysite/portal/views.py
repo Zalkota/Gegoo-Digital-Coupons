@@ -194,8 +194,8 @@ class MerchantStoreCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateVie
 		user = self.request.user
 
 		#Set user status as pending
-		user.status = 'PENDING'
-		user.save()
+		# user.status = 'PENDING'
+		# user.save()
 
 		#Set stores owner
 		form.instance.merchant = user
@@ -221,7 +221,7 @@ class MerchantStoreUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateVie
 	success_url = reverse_lazy('users:merchant_store_list')
 
 	def form_valid(self, form):
-		form.instance.status = 1
+		form.instance.status = 4
 		return super(MerchantStoreUpdateView, self).form_valid(form)
 
 
@@ -249,7 +249,7 @@ class MerchantOfferListView(LoginRequiredMixin, ListView):
 		return offer_list
 
 
-class MerchantOfferCreateView(LoginRequiredMixin, IsMerchantMixin, CreateView):
+class MerchantOfferCreateView(LoginRequiredMixin, SuccessMessageMixin, IsMerchantMixin, CreateView):
 	model = portal_models.Offer
 	fields = [
 		'title',
@@ -258,13 +258,14 @@ class MerchantOfferCreateView(LoginRequiredMixin, IsMerchantMixin, CreateView):
 	]
 	template_name = 'portal/offer/merchant_offer_create.html'
 	success_message = "Offer Created"
+	success_url = reverse_lazy('users:merchant_offer_list')
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		return super(MerchantOfferCreateView, self).form_valid(form)
 
 
-class MerchantOfferUpdateView(LoginRequiredMixin, IsMerchantMixin, UpdateView):
+class MerchantOfferUpdateView(LoginRequiredMixin, SuccessMessageMixin, IsMerchantMixin, UpdateView):
 	model = portal_models.Offer
 	fields = [
 	'title',
@@ -273,12 +274,17 @@ class MerchantOfferUpdateView(LoginRequiredMixin, IsMerchantMixin, UpdateView):
 	]
 	template_name = 'portal/offer/merchant_offer_update.html'
 	success_message = "Offer Updated"
+	success_url = reverse_lazy('users:merchant_offer_list')
+
+	def form_valid(self, form):
+		form.instance.status = 4
+		return super(MerchantOfferUpdateView, self).form_valid(form)
 
 
 class MerchantOfferDeleteView(LoginRequiredMixin, IsMerchantMixin, SuccessMessageMixin, DeleteView):
 	model = portal_models.Offer
 	template_name = 'portal/offer/merchant_offer_delete.html'
-	success_url = reverse_lazy('users:offer_list')
+	success_url = reverse_lazy('users:merchant_offer_list')
 	success_message = "Offer Deleted"
 
 

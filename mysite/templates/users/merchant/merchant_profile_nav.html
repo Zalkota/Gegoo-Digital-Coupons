@@ -43,10 +43,10 @@
         <a href="{% url 'users:userPage' %}" class="{% if '/dashboard/' == request.path %} profile-link-active {% else %} profile-link {% endif %}">Dashboard</a>
         </li>
       <li>
-        <a href="{% url 'users:merchant_store_list' %}" class="{% if 'my-stores' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Stores</a>
+        <a href="{% url 'users:merchant_store_list' %}" class="{% if 'my-stores' in request.path %} profile-link-active {% else %} profile-link {% endif %}">Edit Stores</a>
       </li>
       <li class="list-inline-item">
-        <a href="{% url 'users:merchant_offer_list' %}" class="{% if 'my-offers' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Offers</a>
+        <a href="{% url 'users:merchant_offer_list' %}" class="{% if 'my-offers' in request.path %} profile-link-active {% else %} profile-link {% endif %}">Edit Offers</a>
       </li>
       <li class="list-inline-item">
         <a href="{% url 'users:merchant_testimonial_list' %}" class="{% if 'reviews' in request.path %} profile-link-active {% else %} profile-link {% endif %}">My Reviews</a>

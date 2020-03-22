@@ -150,25 +150,14 @@
                     </div>
                 </div> -->
                 <!-- View Offers -->
-
-                <div class="card">
-                    {% for offer in offers %}
-                    <div class="card-body">
-                        <h1>{{ offer.title }}</h1>
-                        <h1>Store - {{ object.pk }}</h1>
-                        <h1>Offer - {{ offer.pk }}</h1>
-                        <a href="" value="add" data="{{ object.pk }}" data-catid="{{ offer.pk }}" class="offerBtn btn btn-primary" action_type="add">Add</a>
-                    </div>
-                    {% endfor %}
-                </div>
                 <div id="ViewOffers">
-                    {% for added_offer in added_offers %}
+                    {% for offer in offers %}
                         <div class="card card-border shadow-2 mt-3">
                             <div class="row">
                                 <div class="col-lg-3 border-right pr-0">
                                     <div class="text-center vertical-container" style="height: 100%;">
                                         <div class="vertical-alignment">
-                                            <h3 class="header text-primary pb-3 ">{{ added_offer.title }}</h3>
+                                            <h3 class="header text-primary pb-3 ">{{ offer.title }}</h3>
                                             <h4 class="text-secondary fs-12">Offer</h4>
                                         </div>
                                     </div>
@@ -176,7 +165,7 @@
                                 <div class="col-lg-9 pl-0">
                                     <div class="flex-container-vertical">
                                         <div class="card-body flex-box py-4 px-4">
-                                            <h3 class="section-header text-darken mb-2">{{ added_offer.business_name }}
+                                            <h3 class="section-header text-darken mb-2">{{ offer.business_name }}
                                                 <a class="text-gray-700" href="">
                                                     <i class="material-icons pull-right">
                                                     share
@@ -184,7 +173,7 @@
                                                 </a>
                                             </h3>
                                             <h4 class="mt-3 fw-6 fs-16 text-gray-700">
-                                                {{ added_offer.description|truncatewords:16 }}
+                                                {{ offer.description|truncatewords:16 }}
                                             </h4>
                                         </div>
                                         <div class="flex-footer">
@@ -196,9 +185,8 @@
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mb-1 icon-heart"><circle cx="12" cy="12" r="10" class="fill-purple-100"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
                                                         </div>
                                                     </div>
-                                                    <div class="offset-2"></div>
-                                                    <div class="col-lg-4">
-                                                        <a href="#" class="btn btn-primary-alt btn-block">Get Code</a>
+                                                    <div class="col-lg-6">
+                                                        <a href="" value="add" data="{{ object.pk }}" data-catid="{{ offer.pk }}" class="offerBtn btn btn-success-alt btn-block" action_type="add">Add Offer to Store</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -316,8 +304,8 @@ if(retrievedObjectText){
                 'action_type': 'remove',
             });
 
-            this_.removeClass('offerBtn btn btn-primary').addClass('offerBtn btn btn-danger');
-            localStorage.setItem('class', 'offerBtn btn btn-danger');
+            this_.removeClass('offerBtn btn btn-success-alt btn-block').addClass('offerBtn btn btn-danger-alt btn-block');
+            localStorage.setItem('class', 'btn btn-danger-alt btn-block');
         } else {
             this_.text('Add');
             localStorage.setItem('button_text', this_.text());
@@ -326,8 +314,8 @@ if(retrievedObjectText){
             });
             localStorage.setItem('button_action', this_.attr('action_type'));
 
-            this_.removeClass('offerBtn btn btn-danger').addClass('offerBtn btn btn-primary');
-            localStorage.setItem('class', 'offerBtn btn btn-primary');
+            this_.removeClass('offerBtn btn btn-danger-alt btn-block').addClass('offerBtn btn btn-success-alt btn-block');
+            localStorage.setItem('class', 'offerBtn btn btn-success-alt btn-block');
         }
         console.log(data)
       }

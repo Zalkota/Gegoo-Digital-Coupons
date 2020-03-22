@@ -31,7 +31,6 @@
               </li>
           </ul>
 
-
           <a class="navbar-brand text-center" href="/">
               <img class="shadow-0 mb-2" src="{% static 'img/logo/navbrand.png' %}" width="140px" alt="Navigation Branding Logo GEGOO">
               <!-- <span class="nav-brand fs-24 text-gray-700 fw-6"><span class="text-primary fw-7">GE</span>GOO</span> -->
@@ -47,7 +46,6 @@
                         </div>
                     </div>
                  </form>
-
                 <ul class="navbar-nav ml-auto" id="example-one">
                     {% if city %}
                    <li class="nav-item dropdown " style="z-index: 500;">
@@ -71,15 +69,13 @@
                     </li>
                     {% endif %}
                     {% if not request.user.is_authenticated %}
-                    <li class="nav-item">
-                      <a class="nav-link " href="{% url 'account_login' %}" id="">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link btn btn-primary-alt text-white" style="font-weight: 600;" href="{% url 'account_signup' %}" id="">Sign Up</a>
-                    </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link " href="{% url 'account_login' %}" id="">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary-alt text-white" style="font-weight: 600;" href="{% url 'account_signup' %}" id="">Sign Up</a>
+                        </li>
                     {% else %}
-
                     <li class="nav-item dropdown " style="z-index: 500;">
                         <a class="nav-link p-0 m-0 shadow-5 bg-white" style="border-radius: 8rem;" id="messagesDropdown"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10  icon-user-circle"><circle cx="12" cy="12" r="10" class="fill-white"/><path class="fill-gray-600" d="M3.66 17.52A5 5 0 0 1 8 15h8a5 5 0 0 1 4.34 2.52 10 10 0 0 1-16.68 0zM12 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>
@@ -101,10 +97,10 @@
                                 </a>
                             {% else %}
                                 <a class="dropdown-item" href="{% url 'users:merchant_store_list' %}">
-                                  My Stores
+                                  Edit Stores
                                 </a>
                                 <a class="dropdown-item" href="{% url 'users:merchant_offer_list' %}">
-                                  My Offers
+                                  Edit Offers
                                 </a>
                                 <a class="dropdown-item" href="{% url 'users:merchant_testimonial_list' %}">
                                   My Reviews

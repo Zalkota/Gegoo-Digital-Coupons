@@ -84,9 +84,10 @@ RATING_CHOICES = [
 ]
 
 STATUS_CHOICES = [
-    (ONE, 'Being Reviewed'),
+    (ONE, 'Approval Reqiured'),
     (TWO, 'Published'),
     (THREE, 'Denied'),
+    (FOUR, 'Edit Pending'),
 ]
 
 STATES = (
