@@ -10,6 +10,8 @@ urlpatterns = [
     path('subscription/<slug:slug>', payments_views.SubscriptionDetailView.as_view(), name='subscription_detail'),
     path('subscription/<slug:slug>/manage', payments_views.SubscriptionManageView.as_view(), name='subscription_manage'),
 
+    path('manage-payment-method', payments_views.PaymentMethodManageView.as_view(), name='payment_method_manage'),
+
     path('webhook/', payments_webhooks.TrialWebhook.as_view(), name='webhook'),
 
     path('charge/', payments_views.Charge.as_view(), name='charge'),

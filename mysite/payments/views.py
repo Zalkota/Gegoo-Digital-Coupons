@@ -59,7 +59,6 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                 'object': plan,
                 'stores': stores,
                 'promotion_form': payments_forms.PromotionForm(),
-                'stripe_api_pub_key': stripe_pub_key
             }
             return render(self.request, 'payments/plan_detail.html', context)
 
@@ -325,16 +324,6 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             messages.success(self.request, 'Your promotional code was accepted, and your Subscription Was Successful!')
                             return redirect('payments:charge')
 
-                            # subject = 'Subscription'
-                            # context = {
-                            #     'user': self.request.user,
-                            #     'subscription': sub,
-                            # }
-                            # template = 'mail/email/email_base.html'
-                            # html_message = render_to_string(template, context)
-                            # msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
-                            # msg.send()
-
                         except stripe.error.CardError as e:
                             messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
                             return render(self.request, 'payments/plan_detail.html')
@@ -387,16 +376,6 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             else:
                                 messages.warning(self.request, 'Your charge didnt return a response, Please retry')
                                 return render(self.request, 'payments/plan_detail.html')
-
-                            # subject = 'Subscription'
-                            # context = {
-                            #     'user': self.request.user,
-                            #     'subscription': sub,
-                            # }
-                            # template = 'mail/email/email_base.html'
-                            # html_message = render_to_string(template, context)
-                            # msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
-                            # msg.send()
 
                         except stripe.error.CardError as e:
                             messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
@@ -454,16 +433,6 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                     else:
                         messages.warning(self.request, 'Your charge didnt return a response, Please retry')
                         return render(self.request, 'payments/plan_detail.html')
-
-                    # subject = 'Subscription'
-                    # context = {
-                    #     'user': self.request.user,
-                    #     'subscription': sub,
-                    # }
-                    # template = 'mail/email/email_base.html'
-                    # html_message = render_to_string(template, context)
-                    # msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
-                    # msg.send()
 
                 except stripe.error.CardError as e:
                     messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
@@ -644,19 +613,42 @@ class SubscriptionManageView(LoginRequiredMixin, View):
                 messages.warning(self.request, 'Your Subscription cannot be downgraded at this time. Please contact support.')
                 return render(self.request, 'payments/subscription_detail.html')
 
-class UpdatePaymentInformation(View):
+class PaymentMethodManageView(View):
     def get(self, *args, **kwargs):
-        return render(self.request, 'payments/charge.html')
+
+        subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
+        if subscription_qs.exists():
+            subscription = payments_models.Subscription.objects.get(user=self.request.user)
+
+        if subscription.payment_status == 'requires_payment_method':
+            return render(self.request, 'payments/update_payment_method.html')
+        else:
+            return_message = 'Your payment method does not need to be updated!'
+            messages.warning(self.request, return_message)
+            return redirect('users:userPage')
 
     def post(self, request, *args, **kwargs):
         stripe.api_key = stripe_api_secret_key
         token = self.request.POST.get('stripeToken')
         customer = self.request.user.merchant_profile.customer_id
 
-        stripe.Customer.modify(
-            customer,
-            source=token,
-        )
+        if request.method == 'POST':
+            try:
+                payment_method_update =  stripe.Customer.modify(
+                                                customer,
+                                                source=token,
+                                            )
+
+                print(payment_method_update)
+                
+                success_message = 'Your payment method updated sucessfully. We will attempt to pay your open invoice in the next 24 hours!'
+                messages.success(self.request, success_message)
+                return redirect('payments:subscription_detail', slug=self.request.user.subscription.slug)
+            
+            except stripe.error.CardError as e:
+                messages.warning(self.request, '%s' % e)
+                return render(self.request, 'payments/update_payment_method.html')
+
 
 def ApplyPromo(request):
     if request.method == 'POST':
