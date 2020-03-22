@@ -15,7 +15,7 @@
         <div class="row justify-content-md-center my-3">
             <div class="col-md-6">
                 <div class="py-3 hide"></div>
-                {% if request.user.merchant_profile.stores > subscription.subscription_quantity %}
+                {% if request.user.merchant_profile.stores > subscription.subscription_quantity or request.user.merchant_profile.stores == subscription.subscription_quantity %}
                     <h1 class="section-header">Upgrade Summary</h1> 
                 {% else %}
                     <h1 class="section-header">Downgrade Summary</h1>
@@ -36,7 +36,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                                {% if request.user.merchant_profile.stores > subscription.subscription_quantity %}
+                                {% if request.user.merchant_profile.stores > subscription.subscription_quantity or request.user.merchant_profile.stores == subscription.subscription_quantity %}
                                     <!-- New Stores -->
                                     <h1 class="fs-24 fw-6 mb-1">Store(s) Added!</h1>
                                     <p class="text-muted fs-14 mb-4">Please note - each new storefront will add $ {{ plan.get_total }} to your exisiting subscription</p>
@@ -95,7 +95,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-12 text-right">
-                                {% if request.user.merchant_profile.stores > subscription.subscription_quantity %}
+                                {% if request.user.merchant_profile.stores > subscription.subscription_quantity or request.user.merchant_profile.stores == subscription.subscription_quantity %}
                                     <h1 class="fs-16 mr-2">
                                         Upgraded Monthly Charge:
                                         <span class="ml-2">{{ new_payment_total }}</span>
@@ -121,7 +121,7 @@
                             <div class="col-md-12">
                                 <form action="" class="py-1 " method="POST" style="border: none;" id="payment-form">
                                     {% csrf_token %}   
-                                    {% if request.user.merchant_profile.stores > subscription.subscription_quantity %}
+                                    {% if request.user.merchant_profile.stores > subscription.subscription_quantity or request.user.merchant_profile.stores == subscription.subscription_quantity %}
                                         <form action="" method="POST">
                                             {% csrf_token %}
                                             <button class="btn btn-primary-alt w-100 shadow-2" type="submit" name="upgrade" value="upgrade">Complete Upgrade</button>
@@ -132,7 +132,6 @@
                                             <button class="btn btn-primary-alt w-100 shadow-2" type="submit" name="downgrade" value="downgrade">Complete Downgrade</button>
                                         </form>
                                     {% endif %}
-                                    
                                 </form>
                             </div>
                             <div class="col-md-12">

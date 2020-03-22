@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect, render_to_resp
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.text import slugify
+from django.conf import settings
 ## DEBUG:
 #messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -25,8 +26,13 @@ from users.decorators import user_is_merchant
 from .forms import MerchantStoreForm
 from users.decorators import IsMerchantMixin, IsUserObject
 
+import stripe
+
 from users import models as users_models
 from payments import models as payments_models
+
+stripe_api_pub_key = settings.STRIPE_PUB_KEY_TEST
+stripe_api_secret_key = settings.STRIPE_SECRET_KEY_TEST
 
 def get_user_orders(request, user):
 	user_orders_qs = portal_models.Order.objects.filter(user=user)
@@ -187,6 +193,16 @@ class MerchantStoreListView(LoginRequiredMixin, ListView):
 		store_list = portal_models.Store.objects.filter(merchant=self.request.user)
 		return store_list
 
+	def get_context_data(self, **kwargs):
+		context = super(MerchantStoreListView, self).get_context_data(**kwargs)
+		subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
+
+		if subscription_qs.exists():
+			subscription = payments_models.Subscription.objects.get(user=self.request.user)
+			context['subscription'] = subscription
+
+		return context
+
 
 class MerchantStoreCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 	model = portal_models.Store
@@ -236,18 +252,66 @@ class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteVie
 	# success_url = reverse_lazy('users:merchant_store_list')
 	success_message = "Store Deleted"
 
+	def get_context_data(self, **kwargs):
+		context = super(MerchantStoreDeleteView, self).get_context_data(**kwargs)
+		subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
+		if subscription_qs.exists():
+			context['subscription'] = payments_models.Subscription.objects.get(user=self.request.user)
+		return context
+
 	def delete(self, request, *args, **kwargs):
 		self.object = self.get_object()
 		self.object.delete()
 
+		stripe.api_key          = stripe_api_secret_key	
+
 		subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
 
 		if subscription_qs.exists():
-			subscription = payments_models.Subscription.objects.get(user=self.request.user)
-			messages.success(self.request, 'Your store was deleted succesfully')
-			return redirect('payments:subscription_manage', slug=subscription.slug)
+			subscription 		= payments_models.Subscription.objects.get(user=self.request.user)
+			subscription_id 	= subscription.subscription_id
+
+			if subscription.subscription_status == 'active':
+
+				if self.request.user.merchant_profile.stores < subscription.subscription_quantity and self.request.user.merchant_profile.stores > 0:
+					messages.success(self.request, 'Your store was deleted succesfully!')
+					return redirect('payments:subscription_manage', slug=subscription.slug)
+
+				elif self.request.user.merchant_profile.stores == 0:
+
+					subscription = stripe.Subscription.delete(
+						subscription_id,
+						expand=['items', 'plan'],
+					)
+
+					sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+					sub.subscription_id         = subscription['id']
+					sub.canceled_at             = subscription['canceled_at']
+					sub.subscription_item_id    = subscription['items']['data'][0].id
+					sub.subscription_quantity   = subscription['items']['data'][0].quantity
+					sub.plan_id                 = subscription['plan']['id']
+					sub.subscription_status     = subscription['status']
+					sub.save()
+
+					messages.warning(self.request, 'You have deleted all your stores! Your subscription has been canceled')
+					return redirect('payments:subscription_detail', slug=sub.slug)
+
+				else:
+					error_message = 'Something went wrong! Please contact support.'
+					messages.warning(self.request, error_message)
+					return redirect('users:userPage')
+
+			elif subscription.subscription_status == 'trialing':
+				messages.warning(self.request, 'You have deleted all your stores! Your subscption is still %s ' % sub.subscription_status)
+				return redirect('users:merchant_store_list')
+
+			else:
+				error_message = 'Something went wrong! Please contact support.'
+				messages.warning(self.request, error_message)
+				return redirect('users:userPage')
+
 		else:
-			messages.warning(self.request, 'The store was deleted, but redirect was not successful')
+			messages.success(self.request, 'The store was deleted!')
 			return redirect('users:userPage')
 
 # Merchant Offer

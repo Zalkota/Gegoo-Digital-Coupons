@@ -486,107 +486,47 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
 
         stripe.api_key          = stripe_api_secret_key
         subscription_id         = self.object.subscription_id
-        subscription_item_id    = self.object.subscription_item_id
-        subscription_quantity   = self.object.subscription_quantity
-        customer_stores         = self.request.user.merchant_profile.stores
 
         customer_store_qs = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=True)
 
-        # Customer has added a store
-        if 'upgrade' in request.POST:
-            if customer_stores > subscription_quantity:
+        if 'delete' in request.POST:
+            subscription = stripe.Subscription.delete(
+                subscription_id,
+                expand=['items', 'plan'],
+            )
 
-                subscription = stripe.Subscription.modify(
-                    subscription_id,
-                    cancel_at_period_end=False,
-                    items = [{
-                        'id': subscription_item_id,
-                        'plan': self.object.plan_id,
-                        'quantity': customer_stores,
-                    }],
-                    proration_behavior='none',
-                )
+            sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+            sub.subscription_id         = subscription['id']
+            sub.canceled_at             = subscription['canceled_at']
+            sub.subscription_item_id    = subscription['items']['data'][0].id
+            sub.subscription_quantity   = subscription['items']['data'][0].quantity
+            sub.plan_id                 = subscription['plan']['id']
+            sub.subscription_status     = subscription['status']
+            sub.save()
 
-                sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
-                sub.subscription_id         = subscription['id']
-                sub.subscription_item_id    = subscription['items']['data'][0].id
-                sub.subscription_quantity   = subscription['items']['data'][0].quantity
-                sub.plan_id                 = subscription['plan']['id']
-                sub.subscription_status     = subscription['status']
-                sub.save()
-
-                messages.success(self.request, 'Your Subscription Upgrade Was Successful!')
-                return redirect('payments:plan_list')
-            else:
-                messages.warning(self.request, 'Your Subscription cannot be upgraded at this time. Please contact support.')
-                return render(self.request, 'payments/subscription_detail.html')
-
-        elif 'downgrade' in request.POST: 
-            if customer_stores < subscription_quantity:
-
-                subscription = stripe.Subscription.modify(
-                    subscription_id,
-                    cancel_at_period_end=False,
-                    items = [{
-                        'id': subscription_item_id,
-                        'plan': self.object.plan_id,
-                        'quantity': customer_stores,
-                    }],
-                    proration_behavior='none',
-                )
-
-                sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
-                sub.subscription_id         = subscription['id']
-                sub.subscription_item_id    = subscription['items']['data'][0].id
-                sub.subscription_quantity   = subscription['items']['data'][0].quantity
-                sub.plan_id                 = subscription['plan']['id']
-                sub.subscription_status     = subscription['status']
-                sub.save()
-
-                messages.success(self.request, 'Your Subscription downgrade Was Successful!')
-                return redirect('payments:plan_list')
-            else:
-                messages.warning(self.request, 'Your Subscription cannot be downgraded at this time. Please contact support.')
-                return render(self.request, 'payments/subscription_detail.html')
-
+            for each in customer_store_qs:
+                item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
+                item.subscription_status = False
+                item.save()
+                
+            messages.success(self.request, 'Your Subscription Cancellation Was Successful!')
+            return redirect('users:userPage')
         else:
-            if 'delete' in request.POST:
-                subscription = stripe.Subscription.delete(
-                    subscription_id,
-                    expand=['items', 'plan'],
-                )
-
-                print(subscription)
-
-                sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
-                sub.subscription_id         = subscription['id']
-                sub.canceled_at             = subscription['canceled_at']
-                sub.subscription_item_id    = subscription['items']['data'][0].id
-                sub.subscription_quantity   = subscription['items']['data'][0].quantity
-                sub.plan_id                 = subscription['plan']['id']
-                sub.subscription_status     = subscription['status']
-                sub.save()
-
-                for each in customer_store_qs:
-                    item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
-                    item.subscription_status = False
-                    item.save()
-                    
-                messages.success(self.request, 'Your Subscription Cancellation Was Successful!')
-                return redirect('users:userPage')
-            else:
-                messages.warning(self.request, 'Your Subscription cannot be cancelled at this time. Please contact support.')
-                return render(self.request, 'payments/subscription_detail.html')
+            messages.warning(self.request, 'Your Subscription cannot be cancelled at this time. Please contact support.')
+            return render(self.request, 'payments/subscription_detail.html')
 
 
 class SubscriptionManageView(LoginRequiredMixin, View):
     
     def get(self, request, *args, **kwargs):
-        subscription = payments_models.Subscription.objects.get(user=self.request.user)
-        plan = payments_models.Plan.objects.get(plan_id=subscription.plan_id)
+        subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
+
+        if subscription_qs.exists():
+            subscription = payments_models.Subscription.objects.get(user=self.request.user)
+            plan = payments_models.Plan.objects.get(plan_id=subscription.plan_id)
+
         customer_store_qs = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=False).order_by('created_at')
         
-
         current_monthly_total = subscription.subscription_quantity * plan.get_total()
         new_payment_total = plan.get_total() * self.request.user.merchant_profile.stores
 
@@ -598,8 +538,27 @@ class SubscriptionManageView(LoginRequiredMixin, View):
             'stores': customer_store_qs,
         }
 
-        if self.request.user.merchant_profile.stores > subscription.subscription_quantity or self.request.user.merchant_profile.stores < subscription.subscription_quantity:
-            return render(self.request, 'payments/subscription_manage.html', context)
+        if self.request.user.merchant_profile.stores > subscription.subscription_quantity:
+            if self.request.user.merchant_profile.stores > 0:
+                return render(self.request, 'payments/subscription_manage.html', context)
+            else:
+                error_message = 'You have deleted all your stores. Please cancel your subscription if there are no active stores!'
+                messages.warning(self.request, error_message)
+                return redirect('payments:subscription_detail', slug=subscription.slug)
+        elif self.request.user.merchant_profile.stores < subscription.subscription_quantity:
+            if self.request.user.merchant_profile.stores > 0:
+                return render(self.request, 'payments/subscription_manage.html', context)
+            else:
+                error_message = 'You have deleted all your stores. Please cancel your subscription if there are no active stores!'
+                messages.warning(self.request, error_message)
+                return redirect('payments:subscription_detail', slug=subscription.slug)
+        elif self.request.user.merchant_profile.stores == subscription.subscription_quantity:
+            if self.request.user.merchant_profile.stores > 0:
+                return render(self.request, 'payments/subscription_manage.html', context)
+            else:
+                error_message = 'You have deleted all your stores. Please cancel your subscription if there are no active stores!'
+                messages.warning(self.request, error_message)
+                return redirect('payments:subscription_detail', slug=subscription.slug)
         else:
             messages.warning(self.request, 'No subscription update is needed!')
             return redirect('users:userPage')
@@ -619,7 +578,7 @@ class SubscriptionManageView(LoginRequiredMixin, View):
 
         # Customer has added a store
         if 'upgrade' in request.POST:
-            if customer_stores > subscription_quantity:
+            if customer_stores > subscription_quantity or customer_stores == subscription_quantity:
 
                 subscription = stripe.Subscription.modify(
                     subscription_id,
