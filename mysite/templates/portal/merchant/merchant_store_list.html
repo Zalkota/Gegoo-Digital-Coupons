@@ -60,15 +60,22 @@
                                     <h4 class="fs-14 text-secondary fw-4">Create, modify, and delete your stores.</h4>
                                 </div>
                                 <div class="col-6">
-                                    {% if request.user.merchant_profile.status == 'APPROVED' %}
-                                    <a href="{% url 'users:merchant_store_create' %}" class="btn btn-primary-alt pull-right py-2">Create Store
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 pb-1 icon-add hide"><path class="fill-white" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>
+                                  {% comment %}
+                                  {% if request.user.merchant_profile.status == 'APPROVED' %}
+                                  <a href="{% url 'users:merchant_store_create' %}" class="btn btn-primary-alt pull-right py-2">Create Store
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 pb-1 icon-add hide"><path class="fill-white" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>
+                                  </a>
+                                  {% else %}
+                                  <a href="{% url 'users:merchant_approval_store_create_mpm' %}" class="btn btn-primary-alt pull-right py-2">Create Store
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 pb-1 icon-add hide"><path class="fill-white" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>
+                                  </a>
+                                  {% endif %}                                  
+                                  {% endcomment %}
+
+                                    <a href="{% url 'users:merchant_approval_store_create_mpm' %}" class="btn btn-primary-alt pull-right py-2">Create Store
+                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 pb-1 icon-add hide"><path class="fill-white" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>
                                     </a>
-                                    {% else %}
-                                    <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt pull-right py-2">Create Store
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 pb-1 icon-add hide"><path class="fill-white" fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/></svg>
-                                    </a>
-                                    {% endif %}
+
                                 </div>
                             </div>
                           <thead>

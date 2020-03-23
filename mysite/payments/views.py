@@ -428,8 +428,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
 
                     elif sub.payment_status == 'requires_payment_method':
                         messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
-                        return redirect('users:userPage')
-
+                        return redirect('payments:payment_method_manage')
                     else:
                         messages.warning(self.request, 'Your charge didnt return a response, Please retry')
                         return render(self.request, 'payments/plan_detail.html')

@@ -57,6 +57,10 @@
                                     <a href="{% url 'payments:payment_method_manage' %}" class="btn btn-danger-alt pull-right py-2">Update Payment Method
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 ml-2 icon-credit-card"><path class="primary" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2zm13 12a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2zm-6 0a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2h-2z"></path><rect width="20" height="4" x="2" y="7" class="secondary"></rect></svg>
                                     </a>
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <button class="btn btn-danger-inverted pull-right mr-2" type="submit" name="delete" value="delete">Cancel Subscription</button>
+                                    </form>
                                 {% endif %}
                             {% else %}
                                 <p>No Subscription</p>
