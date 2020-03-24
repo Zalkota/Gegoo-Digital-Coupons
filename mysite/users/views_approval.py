@@ -129,9 +129,9 @@ class MerchantApprovalStoreCreateViewMPM(CreateView):
                 messages.warning(self.request, error_message)
                 return redirect('users:userPage')
         else:
-            return render(self.request, 'users/approval/merchant_approval_store_create_mpm.html', context) 
+            return render(self.request, 'users/approval/merchant_approval_store_create_mpm.html', context)
 
-    
+
     def get_context_data(self, **kwargs):
         context = super(MerchantApprovalStoreCreateViewMPM, self).get_context_data(**kwargs)
         context['store_list'] = portal_models.Store.objects.filter(merchant=self.request.user)
@@ -148,8 +148,8 @@ class MerchantApprovalStoreCreateViewMPM(CreateView):
                 user = self.request.user
 
                 #Set user status as pending
-                user.status = 'PENDING'
-                user.save()
+                # user.status = 'PENDING'
+                # user.save()
 
                 #Set stores owner
                 self.form.instance.merchant = user
