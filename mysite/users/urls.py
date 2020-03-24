@@ -47,9 +47,6 @@ urlpatterns = [
     #Merchant Approval Views
     path('approval/store/create/additional/',  users_approval_views.MerchantApprovalAdditionalStoreView, name='merchant_approval_additional_store'),
     path('approval/store/create/', users_approval_views.MerchantApprovalStoreCreateView.as_view(), name='merchant_approval_store_create'),
-
-    path('approval/store/create-mpm/', users_approval_views.MerchantApprovalStoreCreateViewMPM.as_view(), name='merchant_approval_store_create_mpm'),
-
     path('approval/store/media-upload/', users_approval_views.MerchantApprovalVideoFileListView.as_view(), name='merchant_approval_videofile_list'),
     path('approval/video-upload/store/<slug:slug>/', files_views.VideoFileUploadView.as_view(), name='merchant_approval_video_upload'),
 
