@@ -112,11 +112,14 @@ class MerchantApprovalStoreCreateViewMPM(CreateView):
 
         if subscription_qs.exists():
             subscription = payment_models.Subscription.objects.get(user=self.request.user)
-
-        context = {
-            'form': MerchantApprovalStoreForm(),
-            'subscription': subscription,
-        }
+            context = {
+                'form': MerchantApprovalStoreForm(),
+                'subscription': subscription,
+            }
+        else:
+            context = {
+                'form': MerchantApprovalStoreForm(),
+            }
 
         if subscription_qs.exists():
             if subscription.subscription_status == 'active' or subscription.subscription_status == 'trialing':
