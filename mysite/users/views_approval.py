@@ -80,11 +80,16 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
         user = self.request.user
 
         #Set user status as pending
-        user.status = 'PENDING'
-        user.save()
+        # user.status = 'PENDING'
+        # user.save()
 
         #Set stores owner
         form.instance.merchant = user
+
+        if form.instance.subscription_status == False:
+			form.instance.status = 5
+		else:
+			form.instance.status = 4
 
         #Set Store Slug as business name and city combined
         business_name = form.cleaned_data.get('business_name')

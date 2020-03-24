@@ -8,15 +8,15 @@
             {% if request.user.merchant_profile.stores > subscription.subscription_quantity %}
                 {% block merchant_approval_nav %}
                     {% include "users/approval/merchant_approval_nav.html" %}
-                {% endblock merchant_approval_nav %}   
-            {% endif %}            
+                {% endblock merchant_approval_nav %}
+            {% endif %}
         {% endcomment %}
 
         <div class="row justify-content-md-center my-3">
             <div class="col-md-6">
                 <div class="py-3 hide"></div>
                 {% if request.user.merchant_profile.stores > subscription.subscription_quantity or request.user.merchant_profile.stores == subscription.subscription_quantity %}
-                    <h1 class="section-header">Upgrade Summary</h1> 
+                    <h1 class="section-header">Upgrade Summary</h1>
                 {% else %}
                     <h1 class="section-header">Downgrade Summary</h1>
                 {% endif %}
@@ -26,7 +26,7 @@
                             <div class="col-md-12">
                                 <h1 class="fs-24 fw-6">Current Monthly Charge</h1>
                                 <h2 class="fs-18 fw-4">
-                                    $ {{ current_monthly_total }} 
+                                    $ {{ current_monthly_total }}
                                     <span class="fs-18 fw-4">
                                         / month
                                     </span>
@@ -85,7 +85,7 @@
                                             {% endfor %}
                                         </tbody>
                                         </table>
-                                    </div> 
+                                    </div>
                                 {% else %}
                                     <h1 class="fs-24 fw-6">Store(s) Deleted!</h1>
                                     <p class="text-muted fs-14">Please note - each storefront deleted will subtract $ {{ plan.get_total }} from your exisiting subscription. There is a minimum of 1 store to continue using The GEGOO services.</p>
@@ -97,11 +97,11 @@
                             <div class="col-md-12 text-right">
                                 {% if request.user.merchant_profile.stores > subscription.subscription_quantity or request.user.merchant_profile.stores == subscription.subscription_quantity %}
                                     <h1 class="fs-16 mr-2">
-                                        Upgraded Monthly Charge:
+                                        New Monthly Charge:
                                         <span class="ml-2">{{ new_payment_total }}</span>
                                         </h1>
                                         <h1 class="fs-16 fw-6 mr-2">
-                                        Upgraded Total:
+                                        New Total:
                                         <span class="ml-2">{{ new_payment_total }}</span>
                                     </h1>
                                 {% else %}
@@ -120,7 +120,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <form action="" class="py-1 " method="POST" style="border: none;" id="payment-form">
-                                    {% csrf_token %}   
+                                    {% csrf_token %}
                                     {% if request.user.merchant_profile.stores > subscription.subscription_quantity or request.user.merchant_profile.stores == subscription.subscription_quantity %}
                                         <form action="" method="POST">
                                             {% csrf_token %}
@@ -135,6 +135,7 @@
                                 </form>
                             </div>
                             <div class="col-md-12">
+                                <p class="text-muted text-center fs-14 fw-4 mt-2">Your account will not be charged until the next billing cycle of your current subscription.</p>
                                 <p class="text-muted text-center fs-14 fw-4 mt-2">By clicking the button above you acknowldge that your monthly recurring subscription will change by the amount shown.</p>
                             </div>
                         </div>

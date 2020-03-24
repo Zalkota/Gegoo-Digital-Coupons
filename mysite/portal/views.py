@@ -31,8 +31,8 @@ import stripe
 from users import models as users_models
 from payments import models as payments_models
 
-stripe_api_pub_key = settings.STRIPE_PUB_KEY
-stripe_api_secret_key = settings.STRIPE_SECRET_KEY
+STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY
+STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
 
 def get_user_orders(request, user):
 	user_orders_qs = portal_models.Order.objects.filter(user=user)
@@ -238,7 +238,10 @@ class MerchantStoreUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateVie
 	success_url = reverse_lazy('users:merchant_store_list')
 
 	def form_valid(self, form):
-		form.instance.status = 4
+		if form.instance.subscription_status == False:
+			form.instance.status = 5
+		else:
+			form.instance.status = 4
 		return super(MerchantStoreUpdateView, self).form_valid(form)
 
 
@@ -259,7 +262,7 @@ class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteVie
 		self.object = self.get_object()
 		self.object.delete()
 
-		stripe.api_key          = stripe_api_secret_key
+		stripe.api_key          = STRIPE_SECRET_KEY
 
 		subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
 

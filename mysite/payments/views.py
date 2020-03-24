@@ -18,7 +18,7 @@ import json
 
 #Stripe import key
 STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY
-STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY
+STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
 
 def get_user_subscription(request):
     try:
@@ -42,7 +42,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
         #Mimic Detail View
         slug = kwargs['slug']
         plan = payments_models.Plan.objects.get(slug=slug)
-        stripe_pub_key = stripe_api_pub_key
+        stripe_pub_key = STRIPE_PUB_KEY
 
         #Obtain stores from user
         stores = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=False).order_by('created_at')
@@ -70,7 +70,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
         self.object = payments_models.Plan.objects.get(slug=slug)
 
         # Stripe API Calls
-        stripe.api_key = stripe_api_secret_key
+        stripe.api_key = STRIPE_SECRET_KEY
         token = self.request.POST.get('stripeToken')
 
         # Customer Store Data
@@ -485,7 +485,7 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
 
-        stripe.api_key          = stripe_api_secret_key
+        stripe.api_key          = STRIPE_SECRET_KEY
         subscription_id         = self.object.subscription_id
 
         customer_store_qs = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=True)
@@ -570,7 +570,7 @@ class SubscriptionManageView(LoginRequiredMixin, View):
 
         customer_store_qs = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=False)
 
-        stripe.api_key          = stripe_api_secret_key
+        stripe.api_key          = STRIPE_SECRET_KEY
         subscription_id         = subscription.subscription_id
         subscription_item_id    = subscription.subscription_item_id
         plan_id                 = plan.plan_id
@@ -650,7 +650,7 @@ class UpdatePaymentInformation(View):
         return render(self.request, 'payments/charge.html')
 
     def post(self, request, *args, **kwargs):
-        stripe.api_key = stripe_api_secret_key
+        stripe.api_key = STRIPE_SECRET_KEY
         token = self.request.POST.get('stripeToken')
         customer = self.request.user.merchant_profile.customer_id
 
