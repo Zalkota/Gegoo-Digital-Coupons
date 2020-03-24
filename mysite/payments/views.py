@@ -619,8 +619,14 @@ class PaymentMethodManageView(View):
         if subscription_qs.exists():
             subscription = payments_models.Subscription.objects.get(user=self.request.user)
 
-        if subscription.payment_status == 'requires_payment_method':
-            return render(self.request, 'payments/update_payment_method.html')
+        if subscription.subscription_status == 'incomplete':
+            if subscription.payment_status == 'requires_payment_method':
+                return render(self.request, 'payments/update_payment_method.html')
+        elif subscription.subscription_status == 'canceled':
+            if subscription.payment_status == 'requires_payment_method':    
+                return_message = 'Your subscription is %s. No payment management is needed.' % subscription.subscription_status
+                messages.warning(self.request, return_message)
+                return redirect('users:userPage')        
         else:
             return_message = 'Your payment method does not need to be updated!'
             messages.warning(self.request, return_message)
