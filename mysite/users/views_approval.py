@@ -92,7 +92,11 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
         if subscription_qs.exists():
             if subscription.subscription_status == 'active' or subscription.subscription_status == 'trialing':
                 return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
-            elif subscription.subscription_status == 'incomplete' or subscription.subscription_status == 'canceled':
+            if subscription.subscription_status == 'canceled':
+                message = 'Your current subscription status is %s' % subscription.subscription_status
+                messages.success(self.request, message)
+                return render(self.request, 'users/approval/merchant_approval_store_create.html', context)     
+            elif subscription.subscription_status == 'incomplete':
                 error_message = 'Your Subscription is %s, please revise your subscription in the dashboard!' % subscription.subscription_status
                 messages.warning(self.request, error_message)
                 return redirect('users:userPage')
@@ -137,6 +141,8 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
                 return reverse_lazy('users:merchant_approval_additional_store')
             elif subscription.subscription_status == 'trialing':
                 return reverse_lazy('users:userPage')
+            else:
+                return reverse_lazy('users:merchant_approval_additional_store')
         else:
             return reverse_lazy('users:merchant_approval_additional_store')
 

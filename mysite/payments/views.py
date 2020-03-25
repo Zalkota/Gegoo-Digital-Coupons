@@ -95,7 +95,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                 messages.warning(self.request, 'Your subscription is %s. Please Adjust your payment info on the dashboard' % subscription.subscription_status)
                 return redirect('users:userPage')
 
-            elif subscription.subscription_status == 'canceled':
+            elif subscription.subscription_status == 'canceled' or subscription.subscription_status == 'incomplete_expired':
                 if payments_models.PromoUser.objects.filter(user=self.request.user).exists():
 
                     promouser           = payments_models.PromoUser.objects.get(user=self.request.user)
