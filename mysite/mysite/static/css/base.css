@@ -9548,6 +9548,7 @@ hr.hr-2 {
       font-weight: 400;
       padding: 1rem;
       font-size: 18px;
+      -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.09), 0 2px 4px rgba(0, 0, 0, 0.09) !important;
       z-index: 999;
       left: 1%;
       bottom: 0%;
@@ -9559,6 +9560,7 @@ hr.hr-2 {
       color: #2D3748;
       font-weight: 400;
       font-size: 18px;
+      -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.09), 0 2px 4px rgba(0, 0, 0, 0.09) !important;
       left: 0%;
       bottom: 0%;
       position: fixed;
@@ -9583,6 +9585,10 @@ hr.hr-2 {
     border: 1px solid #FEB2B2;
     border-left: 6px solid #F56565;
     background-color: #FEB2B2; }
+  .messages .alert-warning {
+    border: 1px solid #FBD38D;
+    border-left: 6px solid #DD6B20;
+    background-color: #FEEBC8; }
   .messages .alert-info {
     border: 1px solid #90CDF4;
     border-left: 6px solid #63B3ED;

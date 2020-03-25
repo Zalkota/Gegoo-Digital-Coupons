@@ -41,7 +41,12 @@ class VideoFileUploadView(View, LoginRequiredMixin):
         store_slug = self.kwargs['slug']
         store_qs = Store.objects.get(slug=store_slug)
 
+        if request.user.merchant_profile.status != 'APPROVED':
+            messages.warning(self.request, "Account approval required to upload a video, please check back in 24 hours.")
+            return redirect('/dashboard/')
+
         try:
+
             video = store_qs.videofile
             if store_qs.videofile.file != None:
                 return redirect('/dashboard/')

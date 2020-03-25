@@ -3,12 +3,20 @@ from django.contrib import admin
 # from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 # from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from users import models as users_models
+from portal import models as portal_models
 
-class ProfileInline(admin.StackedInline):
-    model = users_models.Profile
-    can_delete = False
-    verbose_name_plural = 'Profile'
+# class ProfileInline(admin.StackedInline):
+#     model = users_models.Profile
+#     can_delete = False
+#     verbose_name_plural = 'Profile'
 
+# class StoreInline(admin.TabularInline):
+#     model = portal_models.Store.merchant.MerchantProfile.through
+#     # autocomplete_fields = ['city']
+
+
+class StoreInlineAdmin(admin.TabularInline):
+    model = portal_models.Store
 
 class UserAdmin(admin.ModelAdmin):
     list_display            = ('username', 'first_name', 'last_name', 'is_merchant', 'created_at', 'updated_at')
@@ -17,6 +25,10 @@ class UserAdmin(admin.ModelAdmin):
     # prepopulated_fields     = {'slug':('username',)}
     # list_editable           = ('is_merchant')
     date_hierarchy          = ('created_at')
+
+    inlines = [
+        StoreInlineAdmin,
+    ]
 
 admin.site.register(users_models.User, UserAdmin)
 admin.site.register(users_models.Profile)

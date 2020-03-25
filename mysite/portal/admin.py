@@ -2,6 +2,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from .models import Store, Offer, Images, Category, Subcategory, Tag, Testimonial, FollowStore, StoreOffer
+from users.models import MerchantProfile, User
 # Register your models here.
 from django.contrib.gis.admin import OSMGeoAdmin
 
@@ -9,18 +10,15 @@ from cities_light.models import City, Region
 
 
 
-
-
-# class StoreLocationInline(admin.TabularInline):
-#     model = StoreLocation
-#     autocomplete_fields = ['city']
+    # autocomplete_fields = ['city']
 
 class StoreAdmin(admin.ModelAdmin):
     search_fields = ['city', 'business_name']
-    list_display = ('business_name', 'city', 'state', 'category', 'subcategory', 'subscription_status', 'status')
+    list_display = ('business_name', 'city', 'state', 'category', 'subcategory', 'subscription_status', 'status', 'merchant')
     # inlines = [
-    #     StoreLocationInline,
+    #     UserProfileInline,
     # ]
+
 class SubcategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'category')
 

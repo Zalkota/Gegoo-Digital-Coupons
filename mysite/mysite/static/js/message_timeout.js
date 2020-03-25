@@ -4,4 +4,4 @@
 
         setTimeout(function(){
            message_ele.style.display = "none";
-        }, 7000);
+       }, 12000);

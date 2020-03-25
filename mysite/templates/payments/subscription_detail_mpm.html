@@ -1,4 +1,4 @@
-{% extends "base-alt.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 
@@ -13,7 +13,7 @@
 
       <div class="row mt-4">
           <div class="col-lg-12 mb-4">
-              
+
             {% comment %}
             {% if object %}
                 {% if object.subscription_status == 'active' or object.subscription_status == 'trialing'%}
@@ -31,10 +31,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                      
+                        </div>
                     {% endif %}
-                {% endif %}    
-            {% endif %} 
+                {% endif %}
+            {% endif %}
             {% endcomment %}
 
             <div class="card shadow-2">
@@ -115,7 +115,7 @@
                                     </h1> -->
 
                                     <!-- <span class="badge badge-success fs-16 fw-6 text-uppercase">{{ object.subscription_status }}</span> -->
-                                    
+
                                     {% if object.subscription_status == 'active' %}
                                     <h1 class="text-success fs-14 fw-4">{{ object.subscription_status|capfirst }}</h1>
                                     {% elif objecrt.subscription_status == 'trialing' %}
@@ -133,7 +133,7 @@
                                         </td>
                                         <td class="border-0 text-right">
                                             <h1 class="fs-14 fw-4">{{ object.current_period_end|date:'M d, Y' }}</h1>
-                                        </td> 
+                                        </td>
                                         <td class="border-0 text-right">
                                         <!-- <h1 class="fs-14 fw-4">
                                             <span>
@@ -161,7 +161,7 @@
                                         </td>
                                         <td class="border-0 text-right">
                                             <h1 class="fs-14 fw-4">{{ object.trial_end|date:'M d, Y' }}</h1>
-                                        </td> 
+                                        </td>
                                     {% endif %}
                                 </tr>
                                 </tbody>

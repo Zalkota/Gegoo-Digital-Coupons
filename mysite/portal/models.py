@@ -84,7 +84,7 @@ RATING_CHOICES = [
 ]
 
 STATUS_CHOICES = [
-    (ONE, 'Approval Reqiured'),
+    (ONE, 'Approval Required'),
     (TWO, 'Published'),
     (THREE, 'Denied'),
     (FOUR, 'Edit Pending'),
@@ -436,9 +436,16 @@ class Store(models.Model):
 
 @receiver([post_save, post_delete], sender=Store)
 def update_store_count(sender, instance, **kwargs):
-    print('instance', instance.merchant)
     merchantprofile             = users_models.MerchantProfile.objects.get(user=instance.merchant)
+
+    #Update store count
     merchantprofile.stores      = Store.objects.filter(merchant=instance.merchant).count()
+
+    #Update User Status if store is approved
+    if instance.status          == 2:
+        merchantprofile.status  = 'APPROVED'
+
+    #Save changes
     merchantprofile.save()
 
 post_save.connect(CalculateLocation, sender=Store)

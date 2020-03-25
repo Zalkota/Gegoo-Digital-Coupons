@@ -166,7 +166,7 @@ a:hover {
                             </div>
                             <div class="col-lg-2 offset-lg-0 col-8 offset-2 vertical-container">
                                 <div class="py-3 px-3 vertical-alignment">
-                                    <span class="">
+                                    <span class="fs-12 fw-6">
                                         {% if user.subscription.subscription_status == 'active' %}
                                             {% if store.status == 2 %}
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
@@ -176,7 +176,7 @@ a:hover {
                                             {{ store.get_status_display }}
                                         {% else %}
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-close-circle"><circle cx="12" cy="12" r="10" class="fill-red-300"/><path class="fill-red-700" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
-                                            <span class="fs-14">
+                                            <span>
                                                 Subscription Required
                                             </span>
                                         {% endif %}
@@ -248,17 +248,15 @@ a:hover {
                         <h3 class="header">
                             My Offers
                         </h3>
-                        <div class="card table-responsive  shadow-2">
-                            <table class="table">
+                        <div class="card table-responsive mt-3 shadow-2">
+                            <table class="table table-striped">
                                 <thead class="text-left">
                                   <tr>
                                     <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Title</th>
                                     <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Status</th>
                                     <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Stores</th>
-                                    <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Description</th>
                                     <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">End Date</th>
-
-                                    <th></th>
+                                    <th scope="col" class="fs-14 fw-6 ls-1 text-uppercase">Description</th>
                                   </tr>
                                 </thead>
                                 <tbody class="text-left">
@@ -268,9 +266,20 @@ a:hover {
                                                 <a href="{{ offer.get_absolute_url }}" class="fs-14 fw-6 ">{{ offer.title|title }}</a>
                                             </th>
                                             {% if offer.end_date <= current_date  %}
-                                            <td><span class="text-success fs-14 fw-6">Active</span></td>
+                                            <td>
+                                                <span class="text-gray-800 fs-12 fw-6">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"/><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                                                    Active
+                                                </span>
+                                            </td>
                                             {% else %}
-                                            <td><span class="text-danger fs-14 fw-6">Not Active</span></td>
+                                            <td>
+
+                                                <span class="text-gray-800 fs-12 fw-6">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-1 icon-time"><circle cx="12" cy="12" r="10" class="fill-orange-300"/><path class="fill-orange-700" d="M13 11.59l3.2 3.2a1 1 0 0 1-1.4 1.42l-3.5-3.5A1 1 0 0 1 11 12V7a1 1 0 0 1 2 0v4.59z"/></svg>
+                                                    Ended
+                                                </span>
+                                            </td>
                                             {% endif %}
                                             <td class="fs-14 fw-2">
                                                 {% if offer.store_set.count %}
@@ -283,10 +292,8 @@ a:hover {
                                                     {% endif %}
                                                 </ul>
                                             </td>
-                                            <td class="fs-14 fw-2 text-dark">{{ offer.description|truncatechars:45 }}</td>
                                             <td class="fs-14 fw-2 text-dark">{{ offer.end_date }}</td>
-
-                                            <td></td>
+                                            <td class="fs-14 fw-2 text-dark">{{ offer.description|truncatechars:45 }}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
