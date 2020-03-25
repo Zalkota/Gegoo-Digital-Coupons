@@ -101,7 +101,7 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
                 messages.warning(self.request, error_message)
                 return redirect('users:userPage')
         else:
-            return render(self.request, 'users/approval/merchant_approval_store_create.html', context) 
+            return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
 
 
     def get_context_data(self, **kwargs):
@@ -113,8 +113,8 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
         user = self.request.user
 
         #Set user status as pending
-        user.status = 'PENDING'
-        user.save()
+        # user.status = 'PENDING'
+        # user.save()
 
         #Set stores owner
         form.instance.merchant = user
@@ -131,7 +131,7 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
 
         return super(MerchantApprovalStoreCreateView, self).form_valid(form)
 
-    def get_success_url(self):
+      def get_success_url(self):
 
         subscription_qs = payment_models.Subscription.objects.filter(user=self.request.user)
 

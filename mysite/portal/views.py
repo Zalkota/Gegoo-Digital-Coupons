@@ -141,7 +141,7 @@ class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or
 				if store_connection_qs.exists():
 					store_connection = portal_models.FollowStore.objects.get(current_user = self.request.user)
 					context['store_connection_user'] = store_connection.connections.all()
-					
+
 				context['authenticated'] = True
 			else:
 				context['authenticated'] = False
@@ -170,7 +170,7 @@ class MerchantStoreDetailView(LoginRequiredMixin, DetailView):
 
 	def get_context_data(self, **kwargs):
 		self.object = self.get_object()
-		
+
 		context = super(MerchantStoreDetailView, self).get_context_data(**kwargs)
 		store_pk = self.object.pk
 		store_offer_qs = portal_models.StoreOffer.objects.filter(current_store=store_pk)
@@ -203,35 +203,35 @@ class MerchantStoreListView(LoginRequiredMixin, ListView):
 
 		return context
 
-
-class MerchantStoreCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-	model = portal_models.Store
-	form_class = MerchantStoreForm
-	template_name = 'portal/merchant/merchant_store_create.html'
-	success_message = "Store Created"
-	success_url = reverse_lazy('users:merchant_store_list')
-
-	def form_valid(self, form):
-		user = self.request.user
-
-		#Set user status as pending
-		user.status = 'PENDING'
-		user.save()
-
-		#Set stores owner
-		form.instance.merchant = user
-
-		#Set Store Slug as business name, city, and random number combined
-		business_name = form.cleaned_data.get('business_name')
-		city = form.cleaned_data.get('city')
-		state = form.cleaned_data.get('state')
-		ref_code = portal_models.random_string_generator()
-		string = business_name + '-' + city + '-' + state + '-' + ref_code
-		slug = slugify(string)
-		form.instance.ref_code = ref_code
-		form.instance.slug = slug
-
-		return super(MerchantStoreCreateView, self).form_valid(form)
+#REMOVED
+# class MerchantStoreCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+# 	model = portal_models.Store
+# 	form_class = MerchantStoreForm
+# 	template_name = 'portal/merchant/merchant_store_create.html'
+# 	success_message = "Store Created"
+# 	success_url = reverse_lazy('users:merchant_store_list')
+#
+# 	def form_valid(self, form):
+# 		user = self.request.user
+#
+# 		#Set user status as pending
+# 		user.status = 'PENDING'
+# 		user.save()
+#
+# 		#Set stores owner
+# 		form.instance.merchant = user
+#
+# 		#Set Store Slug as business name, city, and random number combined
+# 		business_name = form.cleaned_data.get('business_name')
+# 		city = form.cleaned_data.get('city')
+# 		state = form.cleaned_data.get('state')
+# 		ref_code = portal_models.random_string_generator()
+# 		string = business_name + '-' + city + '-' + state + '-' + ref_code
+# 		slug = slugify(string)
+# 		form.instance.ref_code = ref_code
+# 		form.instance.slug = slug
+#
+# 		return super(MerchantStoreCreateView, self).form_valid(form)
 
 
 class MerchantStoreUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -263,7 +263,7 @@ class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteVie
 		self.object = self.get_object()
 		self.object.delete()
 
-		stripe.api_key          = stripe_api_secret_key	
+		stripe.api_key          = stripe_api_secret_key
 
 		subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
 
