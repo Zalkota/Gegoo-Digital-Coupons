@@ -6,6 +6,7 @@ from django import forms
 from users import models as users_models
 from users import views as users_views
 
+from portal import models as portal_models
 
 # Customize Crispy forms
 from crispy_forms.helper import FormHelper
@@ -55,6 +56,7 @@ class MerchantSignupForm(SignupForm):
         user.is_active = True
         user.save()
         return user
+
 
 # class ConsumerSignupForm(SignupForm):
 #     def save(self, request):

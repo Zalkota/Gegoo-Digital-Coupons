@@ -23,7 +23,7 @@ class UserAdmin(admin.ModelAdmin):
     list_filter             = ('created_at', 'updated_at')
     search_fields           = ('username', 'first_name', 'last_name')
     # prepopulated_fields     = {'slug':('username',)}
-    # list_editable           = ('is_merchant')
+    list_editable           = ('is_merchant',)
     date_hierarchy          = ('created_at')
 
     inlines = [

@@ -26,7 +26,7 @@ urlpatterns = [
     # Merchant Store Views
     path('my-store/<slug:slug>/', portal_views.MerchantStoreDetailView.as_view(), name='merchant_store_detail'),
     path('my-stores/', portal_views.MerchantStoreListView.as_view(), name='merchant_store_list'),
-    path('my-stores/create/', portal_views.MerchantStoreCreateView.as_view(), name='merchant_store_create'),
+    # path('my-store/create/', portal_views.MerchantStoreCreateView.as_view(), name='merchant_store_create'), #REMOVED
     path('my-store/<slug:slug>/update/', portal_views.MerchantStoreUpdateView.as_view(), name='merchant_store_update'),
     path('my-store/<slug:slug>/delete/', portal_views.MerchantStoreDeleteView.as_view(), name='merchant_store_delete'),
 

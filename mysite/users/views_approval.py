@@ -2,7 +2,7 @@
 # <*****                         IMPORTS                                *****>
 # <**************************************************************************>
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 
@@ -24,7 +24,9 @@ from django.contrib.gis.db.models.functions import Distance
 from location.functions import set_location_cookies, get_ip, get_or_set_location
 from users.decorators import user_is_merchant
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from portal.forms import MerchantStoreForm
+from portal import models as portal_models
 
 from payments import models as payment_models
 
@@ -56,20 +58,51 @@ from payments import models as payment_models
 #
 def MerchantApprovalAdditionalStoreView(request):
 
-    user_subscription = payment_models.Subscription.objects.get(user=request.user)
-    context = {
-        'subscription': user_subscription
-    }
+    subscription_qs = payment_models.Subscription.objects.filter(user=request.user)
 
-    return render(request, 'users/approval/merchant_approval_additional_store.html', context)
-
+    if subscription_qs.exists():
+        user_subscription = payment_models.Subscription.objects.get(user=request.user)
+        context = {
+            'subscription': user_subscription
+        }
+        return render(request, 'users/approval/merchant_approval_additional_store.html', context)
+    else:
+        return render(request, 'users/approval/merchant_approval_additional_store.html')
 
 class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
     model = portal_models.Store
     form_class = MerchantStoreForm
-    template_name = 'users/approval/merchant_approval_store_create.html'
-    success_message = "Step Two: Complete!"
     success_url = reverse_lazy('users:merchant_approval_additional_store')
+
+    def get(self, request, *args, **kwargs):
+
+        subscription_qs = payment_models.Subscription.objects.filter(user=self.request.user)
+
+        if subscription_qs.exists():
+            subscription = payment_models.Subscription.objects.get(user=self.request.user)
+            context = {
+                'form': MerchantStoreForm(),
+                'subscription': subscription,
+            }
+        else:
+            context = {
+                'form': MerchantStoreForm(),
+            }
+
+        if subscription_qs.exists():
+            if subscription.subscription_status == 'active' or subscription.subscription_status == 'trialing':
+                return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
+            if subscription.subscription_status == 'canceled':
+                message = 'Your current subscription status is %s' % subscription.subscription_status
+                messages.success(self.request, message)
+                return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
+            elif subscription.subscription_status == 'incomplete':
+                error_message = 'Your Subscription is %s, please revise your subscription in the dashboard!' % subscription.subscription_status
+                messages.warning(self.request, error_message)
+                return redirect('users:userPage')
+        else:
+            return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
+
 
     def get_context_data(self, **kwargs):
         context = super(MerchantApprovalStoreCreateView, self).get_context_data(**kwargs)
@@ -98,6 +131,21 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
         form.instance.slug = slug
 
         return super(MerchantApprovalStoreCreateView, self).form_valid(form)
+
+      def get_success_url(self):
+
+        subscription_qs = payment_models.Subscription.objects.filter(user=self.request.user)
+
+        if subscription_qs.exists():
+            subscription = payment_models.Subscription.objects.get(user=self.request.user)
+            if subscription.subscription_status == 'active':
+                return reverse_lazy('users:merchant_approval_additional_store')
+            elif subscription.subscription_status == 'trialing':
+                return reverse_lazy('users:userPage')
+            else:
+                return reverse_lazy('users:merchant_approval_additional_store')
+        else:
+            return reverse_lazy('users:merchant_approval_additional_store')
 
 
 class MerchantApprovalVideoFileListView(LoginRequiredMixin, View):
