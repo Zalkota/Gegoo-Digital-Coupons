@@ -132,8 +132,7 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
 
         return super(MerchantApprovalStoreCreateView, self).form_valid(form)
 
-      def get_success_url(self):
-
+    def get_success_url(self):
         subscription_qs = payment_models.Subscription.objects.filter(user=self.request.user)
 
         if subscription_qs.exists():
