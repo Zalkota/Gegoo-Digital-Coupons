@@ -123,7 +123,7 @@ def pre_save_subscription(sender, instance, **kwargs):
         instance.trial_end          = trial_end_date
     
     if instance.unix_canceled_at is not None:
-        unix_timestamp_canceled_at      = instance.unix_created_at
+        unix_timestamp_canceled_at      = instance.unix_canceled_at
         canceled_at_date                = datetime.datetime.fromtimestamp(unix_timestamp_canceled_at)
         instance.canceled_at            = canceled_at_date
 

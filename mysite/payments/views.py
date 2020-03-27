@@ -17,8 +17,8 @@ import json
 
 
 #Stripe import key
-STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY
-STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
+STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY_TEST
+STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY_TEST
 
 def get_user_subscription(request):
     try:
@@ -64,7 +64,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
             }
             return render(self.request, 'payments/plan_detail.html', context)
 
-    def post(self, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         # Return Detail View Object
         slug = kwargs['slug']
         self.object = payments_models.Plan.objects.get(slug=slug)
@@ -137,16 +137,15 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                 sub.unix_trial_start        = subscription['trial_start']
                                 sub.unix_trial_end          = subscription['trial_end']
                                 sub.save()
-
-                                # Get Stores and Set Status to paid
-                                # TODO add trial option to store model
+                                
+                                # Set stores to be viewed on homepage after subscription success
                                 for each in customer_store_qs:
                                     item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
                                     item.subscription_status = True
                                     item.save()
 
-                                messages.success(self.request, 'Your promotional code was accepted, and your Subscription Was Successful!')
-                                return redirect('users:merchant_approval_videofile_list')
+                                messages.success(self.request, 'Your promotional code was accepted. Your account status is now %s, and your Subscription Was Successful!') % self.request.user.merchant_profile.status
+                                return redirect('payments:charge')
 
                             except stripe.error.CardError as e:
                                 messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
@@ -191,7 +190,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                         item.save()
 
                                     messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!') #TODO ERROR HERE?
-                                    return redirect('users:merchant_approval_videofile_list')
+                                    return redirect('payments:charge')
 
                                 elif sub.payment_status == 'requires_payment_method':
                                     messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
@@ -200,16 +199,6 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                 else:
                                     messages.warning(self.request, 'Your charge didnt return a response, Please retry')
                                     return render(self.request, 'payments/plan_detail.html')
-
-                                # subject = 'Subscription'
-                                # context = {
-                                #     'user': self.request.user,
-                                #     'subscription': sub,
-                                # }
-                                # template = 'mail/email/email_base.html'
-                                # html_message = render_to_string(template, context)
-                                # msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
-                                # msg.send()
 
                             except stripe.error.CardError as e:
                                 messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
@@ -258,25 +247,15 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                 item.save()
 
                             messages.success(self.request, 'Your subscription activation was successful!')
-                            return redirect('users:merchant_approval_videofile_list')
+                            return redirect('payments:charge')
 
                         elif sub.payment_status == 'requires_payment_method':
                             messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
-                            return redirect('users:userPage')
+                            return redirect('payments:payment_method_manage')
 
                         else:
                             messages.warning(self.request, 'Your charge didnt return a response, Please retry')
                             return render(self.request, 'payments/plan_detail.html')
-
-                        # subject = 'Subscription'
-                        # context = {
-                        #     'user': self.request.user,
-                        #     'subscription': sub,
-                        # }
-                        # template = 'mail/email/email_base.html'
-                        # html_message = render_to_string(template, context)
-                        # msg = EmailMessage(subject, html_message, to=['michael@modwebservices.com', ], from_email='michael@modwebservices.com')
-                        # msg.send()
 
                     except stripe.error.CardError as e:
                         messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
@@ -323,8 +302,11 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             sub.unix_trial_end          = subscription['trial_end']
                             sub.save()
 
+                            self.request.user.merchant_profile.status = 'PENDING'
+                            self.request.user.merchant_profile.save()
+
                             messages.success(self.request, 'Your promotional code was accepted, and your Subscription Was Successful!')
-                            return redirect('users:merchant_approval_videofile_list')
+                            return redirect('payments:charge')
 
                         except stripe.error.CardError as e:
                             messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
@@ -362,18 +344,21 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             sub.save()
 
                             if sub.payment_status == 'succeeded':
+                                self.request.user.merchant_profile.status = 'PENDING'
+                                self.request.user.merchant_profile.save()
+
                                 # Get Stores and Set Payment Status
                                 for each in customer_store_qs:
                                     item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
                                     item.subscription_status = True
                                     item.save()
 
-                                messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!') #
-                                return redirect('users:merchant_approval_videofile_list')
+                                messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!')
+                                return redirect('payments:charge')
 
                             elif sub.payment_status == 'requires_payment_method':
                                 messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
-                                return redirect('users:userPage')
+                                return redirect('payments:payment_method_manage')
 
                             else:
                                 messages.warning(self.request, 'Your charge didnt return a response, Please retry')
@@ -419,14 +404,16 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                     sub.save()
 
                     if sub.payment_status == 'succeeded':
-                        # Get Stores and Set Payment Status
+                        self.request.user.merchant_profile.status = 'PENDING'
+                        self.request.user.merchant_profile.save()
+
                         for each in customer_store_qs:
                             item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
                             item.subscription_status = True
                             item.save()
 
                         messages.success(self.request, 'Your subscription activation was successful!')
-                        return redirect('users:merchant_approval_videofile_list')
+                        return redirect('payments:charge')
 
                     elif sub.payment_status == 'requires_payment_method':
                         messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
@@ -441,8 +428,21 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
 
 class Charge(View):
 
-    def get(self, *args, **kwargs):
-        return render(self.request, 'payments/charge.html')
+    def get(self, request, *args, **kwargs):
+        subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
+
+        if subscription_qs.exists():
+            subscription = payments_models.Subscription.objects.get(user=self.request.user)
+
+            context = {
+                'subscription': subscription
+            }
+
+            return render(self.request, 'payments/charge.html', context)
+        else:
+            error_message = 'You have to purchase a subscription to view this page'
+            messages.warning(self.request, error_message)
+            return redirect('users:userPage')
 
 class SubscriptionDetailView(LoginRequiredMixin, DetailView):
     model = payments_models.Subscription
@@ -467,7 +467,7 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
 
             sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
             sub.subscription_id         = subscription['id']
-            sub.canceled_at             = subscription['canceled_at']
+            sub.unix_canceled_at        = subscription['canceled_at']
             sub.subscription_item_id    = subscription['items']['data'][0].id
             sub.subscription_quantity   = subscription['items']['data'][0].quantity
             sub.plan_id                 = subscription['plan']['id']
@@ -571,8 +571,6 @@ class SubscriptionManageView(LoginRequiredMixin, View):
                 sub.subscription_status         = subscription['status']
                 sub.save()
 
-                print(subscription)
-
                 for each in customer_store_qs:
                     item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
                     item.subscription_status = True
@@ -621,14 +619,14 @@ class PaymentMethodManageView(View):
         if subscription_qs.exists():
             subscription = payments_models.Subscription.objects.get(user=self.request.user)
 
-        if subscription.subscription_status == 'incomplete':
-            if subscription.payment_status == 'requires_payment_method':
-                return render(self.request, 'payments/update_payment_method.html')
-        elif subscription.subscription_status == 'canceled':
-            if subscription.payment_status == 'requires_payment_method':
-                return_message = 'Your subscription is %s. No payment management is needed.' % subscription.subscription_status
-                messages.warning(self.request, return_message)
-                return redirect('users:userPage')
+            if subscription.subscription_status == 'incomplete':
+                if subscription.payment_status == 'requires_payment_method':
+                    return render(self.request, 'payments/update_payment_method.html')
+            elif subscription.subscription_status == 'canceled':
+                if subscription.payment_status == 'requires_payment_method':
+                    return_message = 'Your subscription is %s. No payment management is needed.' % subscription.subscription_status
+                    messages.warning(self.request, return_message)
+                    return redirect('users:userPage')
         else:
             return_message = 'Your payment method does not need to be updated!'
             messages.warning(self.request, return_message)

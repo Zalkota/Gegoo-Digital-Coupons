@@ -29,9 +29,9 @@ from portal import models as portal_models
 
 
 STATUS_CHOICES = (
-    ('APPROVED', 'Approved'),
+    ('INITIAL', 'Initial'),
     ('PENDING', 'Pending Approval'),
-    ('NOT APPROVED', 'Not Approved'),
+    ('APPROVED', 'Approved'),
     ('DENIED', 'Denied'),
 )
 
@@ -143,7 +143,7 @@ def ProfileCallback(sender, request, user, **kwargs):
 class MerchantProfile(models.Model): #Is a Profile Necessary?
     user            = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='merchant_profile')
     customer_id     = models.CharField(max_length=200, null=True, blank=True)
-    status          = models.CharField(choices=STATUS_CHOICES, default='NOT APPROVED', max_length=20)
+    status          = models.CharField(choices=STATUS_CHOICES, default='INITIAL', max_length=20)
 
     payment_status  = models.BooleanField(default=False)
 

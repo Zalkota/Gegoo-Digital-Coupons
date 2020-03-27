@@ -88,19 +88,59 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
             context = {
                 'form': MerchantStoreForm(),
             }
-
-        if subscription_qs.exists():
-            if subscription.subscription_status == 'active' or subscription.subscription_status == 'trialing':
-                return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
-            if subscription.subscription_status == 'canceled':
-                message = 'Your current subscription status is %s' % subscription.subscription_status
-                messages.success(self.request, message)
-                return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
-            elif subscription.subscription_status == 'incomplete':
-                error_message = 'Your Subscription is %s, please revise your subscription in the dashboard!' % subscription.subscription_status
-                messages.warning(self.request, error_message)
+        
+        if self.request.user.merchant_profile.status == 'INITIAL':
+            if self.request.user.merchant_profile.stores < 2:
+                return render(self.request, 'users/approval/merchant_approval_store_create.html', context)  
+            else:
+                error_message = 'You have reached your store creation limit with profile status %s' % self.request.user.merchant_profile.status
+                messages.success(self.request, error_message)
                 return redirect('users:userPage')
+        elif self.request.user.merchant_profile.status == 'PENDING':
+            if self.request.user.merchant_profile.stores < 5:
+                if subscription_qs.exists():
+                    if subscription.subscription_status == 'active' or subscription.subscription_status == 'trialing':
+                        if self.request.user.merchant_profile.stores < 5:
+                            return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
+                    elif subscription.subscription_status == 'canceled':
+                        if self.request.user.merchant_profile.stores < 5:
+                            message = 'Your current subscription status is %s, You can create stores, but will have to repurchase a subscription' % subscription.subscription_status
+                            messages.success(self.request, message)
+                            return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
+                    elif subscription.subscription_status == 'incomplete':
+                        error_message = 'Your Subscription is %s, please revise your payment method in the dashboard!' % subscription.subscription_status
+                        messages.warning(self.request, error_message)
+                        return redirect('payments:payment_method_manage')
+                    else:
+                        error_message = 'Your Subscription is expired and has been deleted. Please repeat the approval process.'
+                        messages.warning(self.request, error_message)
+                        return redirect('users:userPage') 
+                else:
+                    error_message = 'You must have a subscription to create more stores!'
+                    messages.warning(self.request, error_message)
+                    return redirect('users:userPage') 
+            else:
+                error_message = 'You have reached your store creation limit with profile status %s' % self.request.user.merchant_profile.status
+                messages.success(self.request, error_message)
+                return redirect('users:userPage')
+        elif self.request.user.merchant_profile.status == 'APPROVED':
+            if subscription_qs.exists():
+                if subscription.subscription_status == 'active' or subscription.subscription_status == 'trialing':
+                    return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
+                elif subscription.subscription_status == 'canceled':
+                    message = 'Your current subscription status is %s, You can create stores, but will have to repurchase a subscription' % subscription.subscription_status
+                    messages.success(self.request, message)
+                    return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
+                elif subscription.subscription_status == 'incomplete':
+                    error_message = 'Your Subscription is %s, please revise your payment method in the dashboard!' % subscription.subscription_status
+                    messages.warning(self.request, error_message)
+                    return redirect('payments:payment_method_manage')
+            else:
+                error_message = 'You must have a subscription to create more stores!'
+                messages.warning(self.request, error_message)
+                return redirect('users:userPage') 
         else:
+            error_message = 'Your account is %s, You cannot create stores with this account status' % self.request.user.merchant_profile.status
             return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
 
 
