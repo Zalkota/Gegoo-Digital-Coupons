@@ -1,0 +1,29 @@
+{% load static %}
+
+{% block admin_nav %}
+<div class="row hide">
+    <div class="col-lg-6">
+        <h2 class="fw-6 mb-2">Admin Dashboard</h2>
+        <span class="fs-14 hide text-secondary">Welcome Back, {{ user|title }}!</span>
+    </div>
+</div>
+<div class="profile-nav hide mt-5">
+    <ul class="list-unstyled">
+        <li>
+        <a href="{% url 'users:admin_dashboard' %}" class="{% if 'dashboard' in request.path %} profile-link-active {% else %} profile-link {% endif %}">Dashboard</a>
+        </li>
+      <li>
+        <a href="{% url 'users:admin_approve_users' %}" class="{% if 'approve-users' in request.path %} profile-link-active {% else %} profile-link {% endif %}">Approve Users</a>
+      </li>
+      <li class="list-inline-item">
+        <a href="{% url 'users:admin_manage_subscriptions' %}" class="{% if 'approve-stores' in request.path %} profile-link-active {% else %} profile-link {% endif %}">Approve Stores</a>
+      </li>
+      <li class="list-inline-item">
+        <a href="{% url 'users:admin_manage_subscriptions' %}" class="{% if 'manage-subscriptions' in request.path %} profile-link-active {% else %} profile-link {% endif %}">Manage Subscriptions</a>
+      </li>
+      <li class="list-inline-item">
+        <a href="{% url 'account_set_password' %}" class="{% if 'accounts' in request.path %} profile-link-active {% else %} profile-link {% endif %}">Settings</a>
+      </li>
+    </ul>
+</div>
+{% endblock admin_nav %}

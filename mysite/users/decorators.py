@@ -24,6 +24,16 @@ class IsMerchantMixin(object):
         else:
             raise PermissionDenied
 
+class IsAdminMixin(object):
+
+    def dispatch(self, request, *args, **kwargs):
+        user = self.request.user
+        if user.superuser == True:
+            if user.is_staff == True:
+                return super(IsAdminMixin, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
 class IsUserObject(object):
 
     def dispatch(self, request, *args, **kwargs):

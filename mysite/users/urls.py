@@ -2,14 +2,18 @@ from django.conf.urls import url
 from django.urls import path
 from users import views as users_views
 from users import views_approval as users_approval_views
+from users import views_admin as users_admin_views
 from portal import views as portal_views
 from files import views as files_views
 
 urlpatterns = [
 
-
-
     path('dashboard/', users_views.userPage.as_view(), name='userPage'),
+    path('admin/dashboard', users_admin_views.AdminDashboardView.as_view(), name='admin_dashboard'),
+
+    # Admin Dashboard
+    path('admin/approve-users', users_admin_views.AdminApproveUsersView.as_view(), name='admin_approve_users'),
+    path('admin/manage-subscriptions', users_admin_views.AdminManageSubscriptionsView.as_view(), name='admin_manage_subscriptions'),
 
     #Consumer User Profile
     path('dashboard/location/', users_views.userLocaton.as_view(), name='user_location'),

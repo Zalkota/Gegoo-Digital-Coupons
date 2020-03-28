@@ -183,6 +183,14 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                 sub.save()
 
                                 if sub.payment_status == 'succeeded':
+
+                                    if self.request.user.merchant_profile.status == 'INITIAL':
+                                        merchant_profile_user = users_models.MerchantProfile.objects.get(user=self.request.user)
+                                        merchant_profile_user.status = 'PENDING'
+                                        merchant_profile_user.save()
+                                    else:
+                                        pass
+
                                     # Get Stores and Set Payment Status
                                     for each in customer_store_qs:
                                         item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
@@ -302,8 +310,12 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             sub.unix_trial_end          = subscription['trial_end']
                             sub.save()
 
-                            self.request.user.merchant_profile.status = 'PENDING'
-                            self.request.user.merchant_profile.save()
+                            if self.request.user.merchant_profile.status == 'INITIAL':
+                                merchant_profile_user = users_models.MerchantProfile.objects.get(user=self.request.user)
+                                merchant_profile_user.status = 'PENDING'
+                                merchant_profile_user.save()
+                            else:
+                                pass
 
                             messages.success(self.request, 'Your promotional code was accepted, and your Subscription Was Successful!')
                             return redirect('payments:charge')
@@ -344,8 +356,12 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             sub.save()
 
                             if sub.payment_status == 'succeeded':
-                                self.request.user.merchant_profile.status = 'PENDING'
-                                self.request.user.merchant_profile.save()
+                                if self.request.user.merchant_profile.status == 'INITIAL':
+                                    merchant_profile_user = users_models.MerchantProfile.objects.get(user=self.request.user)
+                                    merchant_profile_user.status = 'PENDING'
+                                    merchant_profile_user.save()
+                                else:
+                                    pass
 
                                 # Get Stores and Set Payment Status
                                 for each in customer_store_qs:
@@ -404,8 +420,12 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                     sub.save()
 
                     if sub.payment_status == 'succeeded':
-                        self.request.user.merchant_profile.status = 'PENDING'
-                        self.request.user.merchant_profile.save()
+                        if self.request.user.merchant_profile.status == 'INITIAL':
+                            merchant_profile_user = users_models.MerchantProfile.objects.get(user=self.request.user)
+                            merchant_profile_user.status = 'PENDING'
+                            merchant_profile_user.save()
+                        else:
+                            pass
 
                         for each in customer_store_qs:
                             item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)
