@@ -7,12 +7,12 @@ DEBUG = False
 
 import os
 
-ALLOWED_HOSTS = ['thegegoo.com', 'www.thegegoo.com', '167.172.255.65', '0.0.0.0', '127.0.0.1']
-
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['thegegoo.com', 'www.thegegoo.com', '167.172.255.65', '0.0.0.0', '127.0.0.1']
 ADMINS = [('ModTechnology', 'dominic@modwebservices.com')]
 
 
-DOMAIN_NAME = ['thegegoo.com', 'www.thegegoo.com']
+DOMAIN_NAME = ['*']
 
 CSRF_COOKIE_DOMAIN = DOMAIN_NAME
 CSRF_COOKIE_SECURE = True
