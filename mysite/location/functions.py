@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.http import HttpResponse
 from allauth.account.signals import user_logged_in, user_signed_up
 from cities_light.models import Region, City
-
+from django.conf import settings
 
 # GEODJANGO
 from django.contrib.gis.geos import fromstr
@@ -36,8 +36,12 @@ def get_ip(request):
     else:
         ip = request.META.get("REMOTE_ADDR")
         #We should have IP address at this point
+
     reader = geolite2.reader()
-    data = reader.get('107.77.193.143') #TODO remove this
+    data = reader.get(ip)
+
+    if data == None:
+        data = reader.get('107.77.193.143')
     return data
 
 

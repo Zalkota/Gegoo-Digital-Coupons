@@ -26,6 +26,7 @@ docker exec -it mysite_django_1 ping elasticsearch
 
 # Stop or Remove Containers
 docker stop $(docker ps -a -q)
+docker container stop $(docker container ls -aq)
 docker rm $(docker ps -a -q)
 
 # Images

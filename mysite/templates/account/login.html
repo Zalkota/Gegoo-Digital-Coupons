@@ -43,10 +43,6 @@
                                     {{ form.password }}
                                 </div>
                             </div>
-                            <div class="pull-left my-3 text-center">
-                              <input type="checkbox" name="remember" placeholder="Password" required="" id="id_remember">
-                              <label for="id_remember" class="text-muted fs-14" >Remember me</label>
-                            </div>
                             {% if redirect_field_value %}
                             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />{% endif %}
                             <div class="btn-div pull-center">
@@ -108,10 +104,6 @@
                    <div class="form-control">
                        {{ form.password }}
                    </div>
-               </div>
-               <div class="pull-left my-3 remember text-center">
-                 <input type="checkbox" name="remember" placeholder="Password" required="" id="id_remember">
-                 <label for="id_remember" class="text-muted">Remember me</label>
                </div>
                {% if redirect_field_value %}
                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />{% endif %}

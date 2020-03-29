@@ -146,7 +146,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                     item.save()
 
                                 messages.success(self.request, 'Your promotional code was accepted, and your Subscription Was Successful!')
-                                return redirect('users:merchant_approval_videofile_list')
+                                return redirect('payments:charge')
 
                             except stripe.error.CardError as e:
                                 messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
@@ -191,7 +191,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                         item.save()
 
                                     messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!') #TODO ERROR HERE?
-                                    return redirect('users:merchant_approval_videofile_list')
+                                    return redirect('payments:charge')
 
                                 elif sub.payment_status == 'requires_payment_method':
                                     messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
@@ -258,7 +258,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                 item.save()
 
                             messages.success(self.request, 'Your subscription activation was successful!')
-                            return redirect('users:merchant_approval_videofile_list')
+                            return redirect('payments:charge')
 
                         elif sub.payment_status == 'requires_payment_method':
                             messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
@@ -324,7 +324,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             sub.save()
 
                             messages.success(self.request, 'Your promotional code was accepted, and your Subscription Was Successful!')
-                            return redirect('users:merchant_approval_videofile_list')
+                            return redirect('payments:charge')
 
                         except stripe.error.CardError as e:
                             messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
@@ -369,7 +369,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                     item.save()
 
                                 messages.success(self.request, 'You have already used a promotional trial, but your subscription activation was successful!') #
-                                return redirect('users:merchant_approval_videofile_list')
+                                return redirect('payments:charge')
 
                             elif sub.payment_status == 'requires_payment_method':
                                 messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')
@@ -426,7 +426,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             item.save()
 
                         messages.success(self.request, 'Your subscription activation was successful!')
-                        return redirect('users:merchant_approval_videofile_list')
+                        return redirect('payments:charge')
 
                     elif sub.payment_status == 'requires_payment_method':
                         messages.warning(self.request, 'Your subscription was activated, but your card returned a payment error. Please update in the dashboard.')

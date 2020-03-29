@@ -2,16 +2,21 @@
 
 {% block content %}
 <section class="section-lg vertical-container">
-  <div class="vertical-alignment" style="max-width: 500px;">
-      <div class="card shadow-2 card-border mx-3">
+  <div class="vertical-alignment" style="max-width: 600px;">
+      <div class="card shadow-5 mx-3">
         <div class="card-body text-center py-4"  style="background-color: #f9fafb;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mb-3 icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"></circle><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"></path></svg>
-            <h5 class="fs-24 mb-1"><strong>Payment Successful</strong></h5>
-            <p class="fs-14">Thank you, your payment was successful! You now have full access to the GEGOO services</p>
+
+            <h5 class="fs-24 mb-1 fw-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8  icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"></circle><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"></path></svg>
+                Payment Successful
+            </h5>
+            <p class="fs-14">Thank you, your payment was successful!
+                <br>
+                 You now have full access to the GEGOO services</p>
         </div>
         <div class="card-footer text-right p-3">
-          <a href="{% url 'home-page' %}" class="btn btn-primary-inverted mr-3">Home</a>
-          <a href="{% url 'users:userPage' %}" class="btn btn-primary-alt">Dashboard</a>
+          <a href="{% url 'home-page' %}" class="btn btn-secondary-inverted mr-3">Return Home</a>
+          <a href="{% url 'users:userPage' %}" class="btn btn-primary-alt">Go to Dashboard</a>
         </div>
       </div>
   </div>
