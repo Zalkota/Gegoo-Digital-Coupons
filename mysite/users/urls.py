@@ -52,6 +52,7 @@ urlpatterns = [
 
     #Merchant Testimonials
     path('my-reviews/', portal_views.MerchantTestimonialListView.as_view(), name='merchant_testimonial_list'),
+    path('new-review/<slug:slug>/', portal_views.MerchantTestimonialCreateView.as_view(), name='merchant_testimonial_create'),
 
     #Merchant Media
     path('my-video/<slug:slug>/delete', files_views.MerchantVideoFileDeleteView.as_view(), name='merchant_video_delete'),

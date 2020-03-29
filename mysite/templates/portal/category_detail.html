@@ -15,24 +15,30 @@
         <h3 class="section-header text-dark ">Shop {{ category|title }}</h3>
         <div class="row">
             <div class="col-lg-2">
-                <h3 class="fs-16 text-gray-700 fw-4 mb-4">Filter Options</h3>
-                <ul class="list-unstyled fs-16">
-                    {% for category in category_list %}
-                    <li class="fw-6 mb-2 text-dark" id="list">
-                        <button class="fw-6 mb-2 text-dark " id="{{ category.name }}">
-                            {{ category.get_name_display }}
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 pull-right icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
-                        </button>
-                        <ul class="list-unstyled ml-3 {% if not category.slug in request.path %} display-none {% endif %}" name="filter" id='{{ category.slug }}-subcategory-list'>
-                            {% for subcategory in category.subcategory.all %}
-                                <li class=" my-2">
-                                    <a class="text-dark fs-14 fw-4" href="{{ subcategory.get_absolute_url }}">{{ subcategory.name }}</a>
-                                </li>
+                <div class="accordion" id="myAccordion">
+                    <div id="headingThree">
+                        <button type="button" class="text-left btn btn-primary-alt px-2 py-2 mb-4 collapsed" data-toggle="collapse" data-target="#collapseThree">Filter<i class="fa fa-filter ml-2" aria-hidden="true"></i></button>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myAccordion">
+                        <ul class="list-unstyled fs-16">
+                            {% for category in category_list %}
+                            <li class="fw-6 mb-2 text-dark" id="list">
+                                <button class="fw-6 mb-2 text-dark " id="{{ category.name }}">
+                                    {{ category.get_name_display }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 pull-right icon-cheveron-down"><path class="fill-gray-900" fill-rule="evenodd" d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
+                                </button>
+                                <ul class="list-unstyled ml-3 {% if not category.slug in request.path %} display-none {% endif %}" name="filter" id='{{ category.slug }}-subcategory-list'>
+                                    {% for subcategory in category.subcategory.all %}
+                                        <li class=" my-2">
+                                            <a class="text-dark fs-14 fw-4" href="{{ subcategory.get_absolute_url }}">{{ subcategory.name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
                             {% endfor %}
                         </ul>
-                    </li>
-                    {% endfor %}
-                </ul>
+                    </div>
+                </div>
             </div>
             <div class="offset-lg-1"></div>
             {% for object in object_list %}

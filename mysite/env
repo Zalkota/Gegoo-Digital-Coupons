@@ -1,7 +1,7 @@
 DJANGO_SECRET_KEY='#^57b45ap)gvbl@#@f5v1uqbv)1x3na2ct@xe$ql^r_ds#g0ap'
 DEBUG=True
 
-DJANGO_ALLOWED_HOSTS=*
+DJANGO_ALLOWED_HOSTS='thegegoo.com'
 DATABASE_ENGINE=django.contrib.gis.db.backends.postgis
 DATABASE_NAME=gegoo
 DATABASE_USERNAME=gegooadmin

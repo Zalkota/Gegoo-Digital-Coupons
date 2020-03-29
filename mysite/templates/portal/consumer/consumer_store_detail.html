@@ -103,7 +103,7 @@
                 </div>
                 <div class="card-body border-top">
                     <h3 class="header">Review Business</h3>
-                    <a href="" class="text-primary fs-14">Write a Review</a>
+                    <a href="{% url 'users:merchant_testimonial_create' slug=store.slug %}" class="text-primary fs-14">Write a Review</a>
                 </div>
                 {% if related_stores %}
                 <div class="card-body border-top">

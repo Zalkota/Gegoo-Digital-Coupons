@@ -7,7 +7,7 @@ DEBUG = False
 
 import os
 
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'thegegoo.com').split(',')
 
 ADMINS = [('ModTechnology', 'dominic@modwebservices.com')]
 

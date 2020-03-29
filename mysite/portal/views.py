@@ -23,7 +23,7 @@ from django.contrib.gis.db.models.functions import Distance
 
 from location.functions import set_location_cookies, get_ip, get_or_set_location
 from users.decorators import user_is_merchant
-from .forms import MerchantStoreForm
+from .forms import MerchantStoreForm, MerchantTestimonialForm
 from users.decorators import IsMerchantMixin, IsUserObject
 
 import stripe
@@ -199,35 +199,8 @@ class MerchantStoreListView(LoginRequiredMixin, ListView):
 
 		return context
 
-#REMOVED
-# class MerchantStoreCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-# 	model = portal_models.Store
-# 	form_class = MerchantStoreForm
-# 	template_name = 'portal/merchant/merchant_store_create.html'
-# 	success_message = "Store Created"
-# 	success_url = reverse_lazy('users:merchant_store_list')
-#
-# 	def form_valid(self, form):
-# 		user = self.request.user
-#
-# 		#Set user status as pending
-# 		user.status = 'PENDING'
-# 		user.save()
-#
-# 		#Set stores owner
-# 		form.instance.merchant = user
-#
-# 		#Set Store Slug as business name, city, and random number combined
-# 		business_name = form.cleaned_data.get('business_name')
-# 		city = form.cleaned_data.get('city')
-# 		state = form.cleaned_data.get('state')
-# 		ref_code = portal_models.random_string_generator()
-# 		string = business_name + '-' + city + '-' + state + '-' + ref_code
-# 		slug = slugify(string)
-# 		form.instance.ref_code = ref_code
-# 		form.instance.slug = slug
-#
-# 		return super(MerchantStoreCreateView, self).form_valid(form)
+
+
 
 
 class MerchantStoreUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -253,9 +226,9 @@ class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteVie
 
 	def get_context_data(self, **kwargs):
 		context = super(MerchantStoreDeleteView, self).get_context_data(**kwargs)
-		subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
+		subscription_qs = payments_models.Subscription.objects.get(user=self.request.user)
 		if subscription_qs.exists():
-			context['subscription'] = payments_models.Subscription.objects.get(user=self.request.user)
+			context['subscription'] = subscription_qs.first()
 		return context
 
 	def delete(self, request, *args, **kwargs):
@@ -267,7 +240,7 @@ class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteVie
 		subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
 
 		if subscription_qs.exists():
-			subscription 		= payments_models.Subscription.objects.get(user=self.request.user)
+			subscription 		= subscription_qs.first()
 			subscription_id 	= subscription.subscription_id
 
 			if subscription.subscription_status == 'active':
@@ -383,6 +356,35 @@ class MerchantTestimonialListView(LoginRequiredMixin, IsMerchantMixin, ListView)
 	def get_queryset(self):
 		object_list = portal_models.Testimonial.objects.filter(store__merchant=self.request.user)
 		return object_list
+
+
+class MerchantTestimonialCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+	model = portal_models.Testimonial
+	form_class = MerchantTestimonialForm
+	template_name = 'portal/testimonials/merchant_testimonial_create.html'
+	success_message = "Thank you for your input!"
+	success_url = reverse_lazy('home-page')
+
+	def get_context_data(self, **kwargs):
+		context = super(MerchantTestimonialCreateView, self).get_context_data(**kwargs)
+		store_qs = portal_models.Store.objects.filter(slug=self.kwargs['slug'], status=2)
+		if store_qs.exists():
+			context['store'] = store_qs.first()
+		return context
+
+	def form_valid(self, form):
+		#Set testimonial author
+		form.instance.author = self.request.user
+		slug = self.kwargs['slug']
+		try:
+			store = portal_models.Store.objects.get(slug=slug, status=2)
+			form.instance.store = store
+		except:
+			messages.warning(self.request, 'Error, Testimonail was unable to locate store')
+			return redirect('home-page')
+
+
+		return super(MerchantTestimonialCreateView, self).form_valid(form)
 
 # <**************************************************************************>
 # <*****                        STORE FUNCTIONS                          *****>
