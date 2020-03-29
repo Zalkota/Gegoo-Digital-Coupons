@@ -13739,7 +13739,7 @@ select option {
       background-color: #F0F4F8;
       color: #7505AB !important;
       border-left: 4px solid #7505AB;
-      padding: 1rem 0 1rem 1rem;
+      padding: 1rem 0 1rem 1.8rem;
       width: 99.8%; }
       .navigation__item:hover .navigation__link, .navigation__item:active .navigation__link, .navigation__item:focus .navigation__link {
         color: #7505AB !important; } }
