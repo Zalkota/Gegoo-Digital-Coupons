@@ -1,7 +1,7 @@
 from .base import *
 from django.core.mail import send_mail
 
-DEBUG = True
+DEBUG = False
 
 # SECURITY ---------------------------------------------------------------------
 
