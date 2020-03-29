@@ -12,8 +12,8 @@ ALLOWED_HOSTS = ['*']
 ADMINS = [('ModTechnology', 'dominic@modwebservices.com')]
 
 
-# DOMAIN_NAME = ['*']
-# CSRF_COOKIE_DOMAIN = DOMAIN_NAME
+DOMAIN_NAME = 'thegegoo.com'
+CSRF_COOKIE_DOMAIN = DOMAIN_NAME
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 # Added Recently - Not sure if it will work
