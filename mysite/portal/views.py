@@ -199,36 +199,6 @@ class MerchantStoreListView(LoginRequiredMixin, ListView):
 
 		return context
 
-#REMOVED
-# class MerchantStoreCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-# 	model = portal_models.Store
-# 	form_class = MerchantStoreForm
-# 	template_name = 'portal/merchant/merchant_store_create.html'
-# 	success_message = "Store Created"
-# 	success_url = reverse_lazy('users:merchant_store_list')
-#
-# 	def form_valid(self, form):
-# 		user = self.request.user
-#
-# 		#Set user status as pending
-# 		user.status = 'PENDING'
-# 		user.save()
-#
-# 		#Set stores owner
-# 		form.instance.merchant = user
-#
-# 		#Set Store Slug as business name, city, and random number combined
-# 		business_name = form.cleaned_data.get('business_name')
-# 		city = form.cleaned_data.get('city')
-# 		state = form.cleaned_data.get('state')
-# 		ref_code = portal_models.random_string_generator()
-# 		string = business_name + '-' + city + '-' + state + '-' + ref_code
-# 		slug = slugify(string)
-# 		form.instance.ref_code = ref_code
-# 		form.instance.slug = slug
-#
-# 		return super(MerchantStoreCreateView, self).form_valid(form)
-
 
 class MerchantStoreUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 	model = portal_models.Store

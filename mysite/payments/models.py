@@ -67,8 +67,13 @@ class Subscription(models.Model):
     subscription_item_id        = models.CharField(max_length=50, blank=True, editable=False)
     plan_id                     = models.CharField(max_length=50, blank=True)
     subscription_status         = models.CharField(max_length=50, blank=True, editable=False)
-    latest_invoice_status       = models.CharField(max_length=100, blank=True)
-    payment_status              = models.CharField(max_length=100, blank=True)
+    invoice_upcoming            = models.BooleanField(default=False, blank=True)
+    latest_invoice_id           = models.CharField(max_length=50, blank=True)
+    latest_invoice_number       = models.CharField(max_length=50, blank=True)
+    latest_invoice_url          = models.URLField(max_length=150, blank=True)
+    latest_receipt_url          = models.URLField(max_length=150, blank=True)
+    latest_invoice_status       = models.CharField(max_length=50, blank=True)
+    payment_status              = models.CharField(max_length=50, blank=True)
 
     # Creation Timestamp UNIX
     unix_created_at             = models.PositiveIntegerField(blank=True, null=True)

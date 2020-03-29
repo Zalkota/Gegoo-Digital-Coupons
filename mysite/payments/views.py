@@ -53,7 +53,6 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
         if not stores.exists():
             messages.success(self.request, "No inactive stores found, please create a store first")
             return redirect("/approval/store/create/")
-
         else:
             context = {
                 'total': total,
@@ -178,7 +177,11 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                                 sub.subscription_quantity       = subscription['items']['data'][0].quantity
                                 sub.plan_id                     = subscription['plan']['id']
                                 sub.subscription_status         = subscription['status']
+                                sub.latest_invoice_id           = subscription['latest_invoice']['id']
+                                sub.latest_invoice_number      = subscription['latest_invoice']['number']
                                 sub.latest_invoice_status       = subscription['latest_invoice']['status']
+                                sub.latest_invoice_url          = subscription['latest_invoice']['hosted_invoice_url']
+                                sub.latest_receipt_url          = subscription['latest_invoice']['payment_intent']['charges']['data'][0].receipt_url
                                 sub.payment_status              = subscription['latest_invoice']['payment_intent']['status']
                                 sub.save()
 
@@ -243,7 +246,11 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                         sub.subscription_quantity       = subscription['items']['data'][0].quantity
                         sub.plan_id                     = subscription['plan']['id']
                         sub.subscription_status         = subscription['status']
+                        sub.latest_invoice_id           = subscription['latest_invoice']['id']
+                        sub.latest_invoice_number      = subscription['latest_invoice']['number']
                         sub.latest_invoice_status       = subscription['latest_invoice']['status']
+                        sub.latest_invoice_url          = subscription['latest_invoice']['hosted_invoice_url']
+                        sub.latest_receipt_url          = subscription['latest_invoice']['payment_intent']['charges']['data'][0].receipt_url
                         sub.payment_status              = subscription['latest_invoice']['payment_intent']['status']
                         sub.save()
 
@@ -351,7 +358,11 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                             sub.subscription_quantity       = subscription['items']['data'][0].quantity
                             sub.plan_id                     = subscription['plan']['id']
                             sub.subscription_status         = subscription['status']
+                            sub.latest_invoice_id           = subscription['latest_invoice']['id']
+                            sub.latest_invoice_number      = subscription['latest_invoice']['number']
                             sub.latest_invoice_status       = subscription['latest_invoice']['status']
+                            sub.latest_invoice_url          = subscription['latest_invoice']['hosted_invoice_url']
+                            sub.latest_receipt_url          = subscription['latest_invoice']['payment_intent']['charges']['data'][0].receipt_url
                             sub.payment_status              = subscription['latest_invoice']['payment_intent']['status']
                             sub.save()
 
@@ -415,7 +426,11 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                     sub.subscription_quantity       = subscription['items']['data'][0].quantity
                     sub.plan_id                     = subscription['plan']['id']
                     sub.subscription_status         = subscription['status']
+                    sub.latest_invoice_id           = subscription['latest_invoice']['id']
+                    sub.latest_invoice_number      = subscription['latest_invoice']['number']
                     sub.latest_invoice_status       = subscription['latest_invoice']['status']
+                    sub.latest_invoice_url          = subscription['latest_invoice']['hosted_invoice_url']
+                    sub.latest_receipt_url          = subscription['latest_invoice']['payment_intent']['charges']['data'][0].receipt_url
                     sub.payment_status              = subscription['latest_invoice']['payment_intent']['status']
                     sub.save()
 
@@ -493,6 +508,13 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
             sub.plan_id                 = subscription['plan']['id']
             sub.subscription_status     = subscription['status']
             sub.save()
+
+            if self.request.user.merchant_profile.status == 'PENDING':
+                merchant_profile_user = users_models.MerchantProfile.objects.get(user=self.request.user)
+                merchant_profile_user.status = 'INITIAL'
+                merchant_profile_user.save()
+            else:
+                pass
 
             for each in customer_store_qs:
                 item = portal_models.Store.objects.get(merchant=self.request.user, slug=each.slug)

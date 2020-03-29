@@ -84,11 +84,9 @@ RATING_CHOICES = [
 ]
 
 STATUS_CHOICES = [
-    (ONE, 'Approval Required'),
+    (ONE, 'Draft'),
     (TWO, 'Published'),
     (THREE, 'Denied'),
-    (FOUR, 'Edit Pending'),
-    (FIVE, 'Supscription Required'),
 ]
 
 STATES = (
@@ -339,7 +337,7 @@ class StoreVideoManager(models.Manager):
 
 class Store(models.Model):
     subscription_status     = models.BooleanField(default=False) #TODO This is not needed, we can just verify
-    status                  = models.PositiveIntegerField(choices=STATUS_CHOICES, default=5)
+    status                  = models.PositiveIntegerField(choices=STATUS_CHOICES, default=3)
     merchant                = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern
