@@ -11,7 +11,7 @@
                             <div class="col-md-12">
                                 <h1 class="fs-24 fw-6 mb-3">Store Creation Successful!</h1>
                                 <p class="text-secondary fs-14">
-                                    This store is currently <span class="text-danger">inactive</span>, because your current subscription has reached the maximum number of stores allowed. 
+                                    This store is currently <span class="text-danger">inactive</span>, because your current subscription has reached the maximum number of stores allowed.
                                     You will need to upgrade your subscription because this store is active. The current monthly charge per store is $50.00/Month.
                                 </p>
                                 {% if subscription %}
@@ -70,14 +70,11 @@
                     </div>
                     <div class="card-footer mt-2">
                         <div class="text-right">
-                            {% if subscription %}
-                                {% if subscription.subscription_status == 'active' %}
-                                    <a href="{% url 'payments:subscription_manage' slug=subscription.slug %}" class="btn btn-secondary-inverted mr-2">Upgrade Subscription</a>
-                                {% endif %}
+                            {% if subscription.subscription_status == 'active' %}
+                                <a href="{% url 'payments:subscription_manage' slug=subscription.slug %}" class="btn btn-secondary-inverted mr-2">Upgrade Subscription</a>
                             {% else %}
                                 <a href="{% url 'payments:plan_list' %}" class="btn btn-secondary-inverted mr-2">No, Let me Checkout</a>
                             {% endif %}
-                            <a href="{% url 'payments:plan_list' %}" class="btn btn-secondary-inverted mr-2">No, Let me Checkout</a>
                             <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt mr-2" >Create Additional Store</a>
                         </div>
                     </div>

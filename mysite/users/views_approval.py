@@ -75,7 +75,6 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('users:merchant_approval_additional_store')
 
     def get(self, request, *args, **kwargs):
-
         subscription_qs = payment_models.Subscription.objects.filter(user=self.request.user)
 
         if subscription_qs.exists():
@@ -88,6 +87,8 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
             context = {
                 'form': MerchantStoreForm(),
             }
+
+        context['store_list'] = portal_models.Store.objects.filter(merchant=self.request.user)
 
         if subscription_qs.exists():
             if subscription.subscription_status == 'active' or subscription.subscription_status == 'trialing':
@@ -104,21 +105,12 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
             return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
 
 
-    def get_context_data(self, **kwargs):
-        context = super(MerchantApprovalStoreCreateView, self).get_context_data(**kwargs)
-        context['store_list'] = portal_models.Store.objects.filter(merchant=self.request.user)
-        return context
-
     def form_valid(self, form):
         user = self.request.user
 
         #Set stores owner
         form.instance.merchant = user
 
-        if form.instance.subscription_status == False:
-            form.instance.status = 5
-        else:
-            form.instance.status = 4
 
         #Set Store Slug as business name and city combined
         business_name = form.cleaned_data.get('business_name')
