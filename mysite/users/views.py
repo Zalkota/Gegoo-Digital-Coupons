@@ -37,27 +37,27 @@ from allauth.account.views import SignupView
 from users.forms import MerchantSignupForm
 
 from portal import models as portal_models
+from payments import models as payments_models
 from files import models as files_models
 
 class userPage(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         try:
             user = self.request.user
 
             #Render Merchant Page
             if user.is_merchant == True:
                 # videoFile_qs = files_models.VideoFile.objects.filter(user=user).order_by('uploaded_at').first()
-                store_qs    = portal_models.Store.objects.filter(merchant=user).order_by('-views')
-                offer_qs    = portal_models.Offer.objects.filter(author=user) #TODO ADD TIME TO FILTER USING GREAT THAN FILTER
+                store_qs            = portal_models.Store.objects.filter(merchant=user).order_by('-views')
+                offer_qs            = portal_models.Offer.objects.filter(author=user) #TODO ADD TIME TO FILTER USING GREAT THAN FILTER
+                subscription_qs     = payments_models.Subscription.objects.filter(user=user)
 
                 context = {
-                    'user'          : user,
-                    'store_list'    : store_qs,
-                    'offer_list'    : offer_qs,
+                    'user'              : user,
+                    'store_list'        : store_qs,
+                    'offer_list'        : offer_qs,
+                    'subscription_list' : subscription_qs,
                 }
-
-
-
                 return render(self.request, "users/merchant/merchant_profile.html", context)
 
             #Render Normal User Profile Page

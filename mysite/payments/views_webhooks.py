@@ -51,7 +51,7 @@ class TrialWebhook(View):
             # Currently using test subscription - Test events sent with random subscriptions
             subscription_qs = payments_models.Subscription.objects.filter(subscription_id=test_subscription)
             if subscription_qs.exists():
-                subscription = payments_models.Subscription.objects.get(subscription_id=test_subscription)
+                subscription = subscription_qs.first()
                 if subscription.invoice_upcoming == False:
                     subscription.invoice_upcoming = True
                 else:
@@ -71,9 +71,35 @@ class TrialWebhook(View):
 
             test_subscription = 'sub_H02Niv3sSCCVyT'
 
+            stripe_subscription_api_call = stripe.Subscription.retrieve(
+                id = test_subscription,
+                expand=['items', 'latest_invoice.payment_intent', 'plan'],
+            )
+
+            print('retrieve start')
+            print(stripe_subscription_api_call)
+            print('retrieve end')  
+
+            # Update subscription info #TODO
+            # sub, created                    = payments_models.Subscription.objects.get_or_create(user=self.request.user)
+            # sub.subscription_id             = subscription['id']
+            # sub.unix_current_period_start   = subscription['current_period_start']
+            # sub.unix_current_period_end     = subscription['current_period_end']
+            # sub.subscription_item_id        = subscription['items']['data'][0].id
+            # sub.subscription_quantity       = subscription['items']['data'][0].quantity
+            # sub.plan_id                     = subscription['plan']['id']
+            # sub.subscription_status         = subscription['status']
+            # sub.latest_invoice_id           = subscription['latest_invoice']['id']
+            # sub.latest_invoice_number       = subscription['latest_invoice']['number']
+            # sub.latest_invoice_status       = subscription['latest_invoice']['status']
+            # sub.latest_invoice_url          = subscription['latest_invoice']['hosted_invoice_url']
+            # sub.latest_receipt_url          = subscription['latest_invoice']['payment_intent']['charges']['data'][0].receipt_url
+            # sub.payment_status              = subscription['latest_invoice']['payment_intent']['status']
+            # sub.save()
+
             subscription_qs = payments_models.Subscription.objects.filter(subscription_id=test_subscription)
             if subscription_qs.exists():
-                subscription = payments_models.Subscription.objects.get(subscription_id=test_subscription)
+                subscription = subscription_qs.first()
                 if subscription.invoice_upcoming == True:
                     subscription.invoice_upcoming = False
                 else:

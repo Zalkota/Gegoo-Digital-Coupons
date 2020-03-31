@@ -61,7 +61,7 @@ def MerchantApprovalAdditionalStoreView(request):
     subscription_qs = payment_models.Subscription.objects.filter(user=request.user)
 
     if subscription_qs.exists():
-        user_subscription = payment_models.Subscription.objects.get(user=request.user)
+        user_subscription = subscription_qs.first()
         context = {
             'subscription': user_subscription
         }
@@ -79,7 +79,7 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
         subscription_qs = payment_models.Subscription.objects.filter(user=self.request.user)
 
         if subscription_qs.exists():
-            subscription = payment_models.Subscription.objects.get(user=self.request.user)
+            subscription = subscription_qs.first()
             context = {
                 'form': MerchantStoreForm(),
                 'subscription': subscription,
@@ -176,7 +176,7 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
         subscription_qs = payment_models.Subscription.objects.filter(user=self.request.user)
 
         if subscription_qs.exists():
-            subscription = payment_models.Subscription.objects.get(user=self.request.user)
+            subscription = subscription_qs.first()
             if subscription.subscription_status == 'active':
                 return reverse_lazy('users:merchant_approval_additional_store')
             elif subscription.subscription_status == 'trialing':

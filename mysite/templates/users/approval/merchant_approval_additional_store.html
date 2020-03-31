@@ -10,12 +10,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h1 class="fs-24 fw-6 mb-3">Store Creation Successful!</h1>
-                                <p class="text-secondary fs-14">
-                                    This store is currently <span class="text-danger">inactive</span>, because your current subscription has reached the maximum number of stores allowed. 
-                                    You will need to upgrade your subscription because this store is active. The current monthly charge per store is $50.00/Month.
-                                </p>
                                 {% if subscription %}
                                     {% if subscription.subscription_status == 'active' %}
+                                        <p class="text-secondary fs-14">
+                                            This store is currently <span class="text-danger">inactive</span>. Please upgrade your subscription to begin the approval process for your recently created store(s).
+                                        </p>
                                         <p class="fs-18 fw-4 mb-1">Next Steps:</p>
                                         <p class="fs-14 fw-4 ml-2 mb-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-certificate"><path class="primary" d="M4 3h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm16 12V7a2 2 0 0 1-2-2H6a2 2 0 0 1-2 2v8a2 2 0 0 1 2 2h12c0-1.1.9-2 2-2zM8 7h8a1 1 0 0 1 0 2H8a1 1 0 1 1 0-2z"></path><path class="secondary" d="M11.65 18.23a4 4 0 1 1 4.7 0l2.5 3.44-2.23-.18-1.48 1.68-.59-4.2a4.04 4.04 0 0 1-1.1 0l-.6 4.2-1.47-1.68-2.23.18 2.5-3.44zM14 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg>
@@ -36,6 +35,9 @@
                                             </span>
                                         </p>
                                     {% else %}
+                                        <p class="text-secondary fs-14">
+                                            It looks like you have purchased a subscription in the past, but your status is <span class="text-danger">{{ subscription.subscription_status }}</span>. This store is currently <span class="text-danger">inactive</span>. Please repurchase a subscription to begin the approval process for your recently created store(s).
+                                        </p>
                                         <p class="fs-18 fw-4 mb-1">Next Steps:</p>
                                         <p class="fs-14 fw-4 ml-2 mb-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-certificate"><path class="primary" d="M4 3h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm16 12V7a2 2 0 0 1-2-2H6a2 2 0 0 1-2 2v8a2 2 0 0 1 2 2h12c0-1.1.9-2 2-2zM8 7h8a1 1 0 0 1 0 2H8a1 1 0 1 1 0-2z"></path><path class="secondary" d="M11.65 18.23a4 4 0 1 1 4.7 0l2.5 3.44-2.23-.18-1.48 1.68-.59-4.2a4.04 4.04 0 0 1-1.1 0l-.6 4.2-1.47-1.68-2.23.18 2.5-3.44zM14 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg>
@@ -51,6 +53,9 @@
                                         </p>
                                     {% endif %}
                                 {% else %}
+                                    <p class="text-secondary fs-14">
+                                        This store is currently <span class="text-danger">inactive</span>. Please purchase a subscription to begin the approval process for your recently created store(s).
+                                    </p>
                                     <p class="fs-18 fw-4 mb-1">Next Steps:</p>
                                     <p class="fs-14 fw-4 ml-2 mb-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-certificate"><path class="primary" d="M4 3h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm16 12V7a2 2 0 0 1-2-2H6a2 2 0 0 1-2 2v8a2 2 0 0 1 2 2h12c0-1.1.9-2 2-2zM8 7h8a1 1 0 0 1 0 2H8a1 1 0 1 1 0-2z"></path><path class="secondary" d="M11.65 18.23a4 4 0 1 1 4.7 0l2.5 3.44-2.23-.18-1.48 1.68-.59-4.2a4.04 4.04 0 0 1-1.1 0l-.6 4.2-1.47-1.68-2.23.18 2.5-3.44zM14 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg>
@@ -73,11 +78,12 @@
                             {% if subscription %}
                                 {% if subscription.subscription_status == 'active' %}
                                     <a href="{% url 'payments:subscription_manage' slug=subscription.slug %}" class="btn btn-secondary-inverted mr-2">Upgrade Subscription</a>
+                                {% else %}
+                                    <a href="{% url 'payments:plan_list' %}" class="btn btn-secondary-inverted mr-2">No, Let me Checkout</a>
                                 {% endif %}
                             {% else %}
                                 <a href="{% url 'payments:plan_list' %}" class="btn btn-secondary-inverted mr-2">No, Let me Checkout</a>
                             {% endif %}
-                            <a href="{% url 'payments:plan_list' %}" class="btn btn-secondary-inverted mr-2">No, Let me Checkout</a>
                             <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt mr-2" >Create Additional Store</a>
                         </div>
                     </div>
