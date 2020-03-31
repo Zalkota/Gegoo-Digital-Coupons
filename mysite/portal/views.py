@@ -226,8 +226,8 @@ class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteVie
 
 	def get_context_data(self, **kwargs):
 		context = super(MerchantStoreDeleteView, self).get_context_data(**kwargs)
-		subscription_qs = payments_models.Subscription.objects.get(user=self.request.user)
-		if subscription_qs.exists():
+		subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
+		if subscription_qs:
 			context['subscription'] = subscription_qs.first()
 		return context
 
