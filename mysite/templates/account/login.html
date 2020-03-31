@@ -94,7 +94,7 @@
         {% else %}
         {% endif %}
            <form class="login" method="POST" action="{% url 'account_login' %}" style="list-style-type: none;">
-               {% csrf_token %}
+             
                <div class="form-group {% if form.login.errors %}has-error{% endif %}">
                    <div class="form-control glyphicon glyphicon-envelope">
                        {{ form.login }}

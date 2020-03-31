@@ -31,7 +31,7 @@ docker rm $(docker ps -a -q)
 
 # Images
 docker images
-docker images prune
+docker image prune
 
 
 docker ps
