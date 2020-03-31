@@ -12,11 +12,11 @@ ALLOWED_HOSTS = ['.thegegoo.com']
 ADMINS = [('ModTechnology', 'dominic@modwebservices.com')]
 
 CSRF_COOKIE_DOMAIN = "thegegoo.com"
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 # Added Recently - Not sure if it will work
-CSRF_COOKIE_HTTPONLY = True
-SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = False
+SESSION_COOKIE_HTTPONLY = False
 # This ensures that Django will be able to detect a secure connection
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
