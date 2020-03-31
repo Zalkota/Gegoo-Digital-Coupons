@@ -56,18 +56,26 @@ from payments import models as payment_models
 #
 #         return super(MerchantProfileUpdateView, self).form_valid(form)
 #
-def MerchantApprovalAdditionalStoreView(request):
+class MerchantApprovalAdditionalStoreView(View):
 
-    subscription_qs = payment_models.Subscription.objects.filter(user=request.user)
+    def get(self, request, *args, **kwargs):
 
-    if subscription_qs.exists():
-        user_subscription = subscription_qs.first()
-        context = {
-            'subscription': user_subscription
-        }
-        return render(request, 'users/approval/merchant_approval_additional_store.html', context)
-    else:
-        return render(request, 'users/approval/merchant_approval_additional_store.html')
+        subscription_qs = payment_models.Subscription.objects.filter(user=self.request.user)
+        customer_store_qs = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=False).order_by('created_at')
+
+        if customer_store_qs.exists():
+            if subscription_qs.exists():
+                user_subscription = subscription_qs.first()
+                context = {
+                    'subscription': user_subscription
+                }
+                return render(self.request, 'users/approval/merchant_approval_additional_store.html', context)
+            else:
+                return render(self.request, 'users/approval/merchant_approval_additional_store.html')
+        else:
+            error_message = 'You do not have any stores to add to your subscription. Please create more!'
+            messages.warning(self.request, error_message)
+            return redirect('users:userPage')
 
 class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
     model = portal_models.Store
