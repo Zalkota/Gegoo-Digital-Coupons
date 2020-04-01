@@ -1,0 +1,98 @@
+{% extends "base-alt.html" %}
+{% load static %}
+
+
+{% block title %}Dashboard | {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<!-- Body Start -->
+<section class="section container">
+      {% block admin_nav %}
+        {% include "users/admin/admin_profile_nav.html" %}
+      {% endblock admin_nav %}
+
+      {% block mobile_nav %}
+        {% include "users/merchant/merchant_profile_mobile_nav.html" %}
+      {% endblock mobile_nav %}
+
+        <div class="row mt-4">
+
+
+                {% if subscriptions %}
+
+
+                <div class="col-lg-12 my-4">
+                    <h3 class="header">
+                       Manage Merchant Subscriptions
+                    </h3>
+                    {% for sub in subscriptions %}
+                    <div class="card shadow-2 mt-3">
+                        <div class="row">
+                            <div class="col-lg-2 col-12 vertical-container text-center">
+                                <div class="p-3 pt-4 vertical-alignment">
+                                    <h3 class="header fs-16 text-uppercase mb-2">{{ sub.user.first_name }} {{ sub.user.last_name }}</h3>
+                                    <p class="card-text lead fs-14 fw-2 text-muted"></p>
+
+                                    <hr class="unhide mb-0">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 offset-lg-0 col-8 offset-2 vertical-container">
+                                <div class="py-3 px-3 vertical-alignment">
+                                    <span class="fs-12 fw-6">
+
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-6 vertical-container">
+                                <div class="py-3 px-3 text-center vertical-alignment">
+                                    <h4 class="subheader text-primary text-uppercase mb-2"></h4>
+                                    <p class="text-secondary fs-14 fw-2">Coupon Code</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-6 vertical-container">
+                                <div class="py-3 px-3 text-center vertical-alignment">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-6 vertical-container">
+                                <div class="px-3 text-center vertical-alignment hide">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-view-visible"><path class="fill-primary" d="M17.56 17.66a8 8 0 0 1-11.32 0L1.3 12.7a1 1 0 0 1 0-1.42l4.95-4.95a8 8 0 0 1 11.32 0l4.95 4.95a1 1 0 0 1 0 1.42l-4.95 4.95zM11.9 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/><circle cx="12" cy="12" r="3" class="fill-primary"/></svg>
+                                    <br>
+                                    <a href="" class="text-primary fs-14 fw-2">View Store</a>
+                                </div>
+                            </div>
+                            <!-- Desktop -->
+                            <div class="col-lg-2 col-12 vertical-container ">
+                                <div class="py-3 px-3 vertical-alignment text-center hide">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-edit"><path class="fill-primary" d="M4 14a1 1 0 0 1 .3-.7l11-11a1 1 0 0 1 1.4 0l3 3a1 1 0 0 1 0 1.4l-11 11a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-3z"/><rect width="20" height="2" x="2" y="20" class="fill-primary" rx="1"/></svg>
+                                    <br>
+                                    <a href="" class="text-primary fs-14 fw-2">Edit Store</a>
+                                </div>
+                            </div>
+                            <!-- Mobile -->
+                            <div class="col-lg-2 col-12 col-md-6  vertical-container">
+                                <div class=" vertical-alignment text-center unhide pb-3 px-4">
+                                    <a href="" class="btn-primary-inverted btn-block fs-14">
+                                        View Store
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-12 col-md-6  vertical-container ">
+                                <div class=" vertical-alignment text-center unhide pb-3 px-4">
+                                    <a href="" class="btn-primary-inverted btn-block fs-14">
+                                        Edit Store
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                {% endif %}
+
+                
+      </div>
+      <div class="py-5 hide"></div><div class="py-5 hide"></div>
+</section>
+{% endblock content %}

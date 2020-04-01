@@ -27,11 +27,14 @@ from django.contrib.gis.db.models.functions import Distance
 
 from portal import models as portal_models
 
+#Stripe import key
+STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY
+STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
 
 STATUS_CHOICES = (
-    ('APPROVED', 'Approved'),
+    ('INITIAL', 'Initial'),
     ('PENDING', 'Pending Approval'),
-    ('NOT APPROVED', 'Not Approved'),
+    ('APPROVED', 'Approved'),
     ('DENIED', 'Denied'),
 )
 
@@ -143,7 +146,7 @@ def ProfileCallback(sender, request, user, **kwargs):
 class MerchantProfile(models.Model): #Is a Profile Necessary?
     user            = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='merchant_profile')
     customer_id     = models.CharField(max_length=200, null=True, blank=True)
-    status          = models.CharField(choices=STATUS_CHOICES, default='NOT APPROVED', max_length=20)
+    status          = models.CharField(choices=STATUS_CHOICES, default='INITIAL', max_length=20)
 
     payment_status  = models.BooleanField(default=False)
 
@@ -182,7 +185,7 @@ def create_merchant_profile(sender, instance, created, **kwargs):
         merchantprofile, created = MerchantProfile.objects.get_or_create(user=instance)
 
         if merchantprofile.customer_id is None or merchantprofile.customer_id == '':
-            stripe.api_key                   = settings.STRIPE_SECRET_KEY
+            stripe.api_key                   = STRIPE_SECRET_KEY
             stripe_customer_id               = stripe.Customer.create(email=instance.email, name='%s %s' % (instance.first_name, instance.last_name))
             merchantprofile.customer_id      = stripe_customer_id['id']
             merchantprofile.save()
@@ -192,7 +195,7 @@ def create_stripe_customer_id(sender, instance, **kwargs):
     merchant_profile                     = MerchantProfile.objects.get(user=instance.user)
 
     if merchant_profile.customer_id is None or merchant_profile.customer_id == '':
-        stripe.api_key                   = settings.STRIPE_SECRET_KEY
+        stripe.api_key                   = STRIPE_SECRET_KEY
         stripe_customer_id               = stripe.Customer.create(email=instance.user.email, name='%s %s' % (instance.user.first_name, instance.user.last_name))
         merchant_profile.customer_id     = stripe_customer_id['id']
         merchant_profile.save()

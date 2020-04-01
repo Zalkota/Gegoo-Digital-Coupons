@@ -69,17 +69,17 @@
                                                 </h1>
                                             </td>
                                             <td class="border-0 text-right">
-                                                <a href="">
+                                                <a href="{% url 'users:merchant_store_detail' store.slug %}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-edit"><path class="fill-orange-500" d="M4 14a1 1 0 0 1 .3-.7l11-11a1 1 0 0 1 1.4 0l3 3a1 1 0 0 1 0 1.4l-11 11a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-3z"></path><rect width="20" height="2" x="2" y="20" class="fill-orange-500" rx="1"></rect></svg>
                                                 </a>
                                             </td>
                                             <td class="border-0 text-right">
-                                                <a href="#" class="text-dark">
+                                                <a href="{% url 'users:merchant_store_delete' store.slug %}" class="text-dark">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-trash"><path class="fill-red-500" d="M5 5h14l-.89 15.12a2 2 0 0 1-2 1.88H7.9a2 2 0 0 1-2-1.88L5 5zm5 5a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1z"></path><path class="fill-red-600" d="M8.59 4l1.7-1.7A1 1 0 0 1 11 2h2a1 1 0 0 1 .7.3L15.42 4H19a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h3.59z"></path></svg>
                                                 </a>
                                             </td>
                                             <td class="border-0 text-right">
-                                                <h1 class="fs-14">{{ plan.get_total }}</h1>
+                                                <h1 class="fs-14">${{ plan.get_total }}</h1>
                                             </td>
                                             </tr>
                                             {% endfor %}
@@ -98,20 +98,20 @@
                                 {% if request.user.merchant_profile.stores > subscription.subscription_quantity or request.user.merchant_profile.stores == subscription.subscription_quantity %}
                                     <h1 class="fs-16 mr-2">
                                         New Monthly Charge:
-                                        <span class="ml-2">{{ new_payment_total }}</span>
+                                        <span class="ml-2">$ {{ new_payment_total }}</span>
                                         </h1>
                                         <h1 class="fs-16 fw-6 mr-2">
                                         New Total:
-                                        <span class="ml-2">{{ new_payment_total }}</span>
+                                        <span class="ml-2">$ {{ new_payment_total }}</span>
                                     </h1>
                                 {% else %}
                                 <h1 class="fs-16 mr-2">
                                     Downgraded Monthly Charge:
-                                    <span class="ml-2">{{ new_payment_total }}</span>
+                                    <span class="ml-2">$ {{ new_payment_total }}</span>
                                     </h1>
                                     <h1 class="fs-16 fw-6 mr-2">
                                     Downgraded Total:
-                                    <span class="ml-2">{{ new_payment_total }}</span>
+                                    <span class="ml-2">$ {{ new_payment_total }}</span>
                                 </h1>
                                 {% endif %}
                             </div>

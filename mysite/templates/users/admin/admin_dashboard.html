@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Dashboard | {{ SITE_NAME }}{% endblock %}
+
+{% block extra_styles %}
+<style>
+a:hover {
+    text-decoration: none;
+}
+
+.modal-header {
+  background-color: #fff !important;
+  padding-bottom: 2rem !important;
+}
+
+.modal-body {
+  background-color: #f9fafb !important;
+}
+
+.modal-footer {
+  padding: 1rem 1rem 1rem 1rem !important;
+  background-color: #fff !important;
+  text-align: center !important;
+}
+</style>
+
+{% endblock extra_styles %}
+
+{% block content %}
+
+<!-- Body Start -->
+<section class="section container">
+    {% block admin_nav %}
+    {% include "users/admin/admin_profile_nav.html" %}
+    {% endblock admin_nav %}
+
+    {% block mobile_nav %}
+    {% include "users/merchant/merchant_profile_mobile_nav.html" %}
+    {% endblock mobile_nav %}
+
+    <div class="row my-4">
+        <div class="col-md-12">
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h1 class="fs-14 fw-2">Recently Created Store(s)</h1>
+                                <h2 class="fs-32 fw-6 text-secondary">{{ stores.count }}</h2>
+                            </div>
+                            <div class="col-md-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-24 icon-store"><path class="primary" d="M5 8h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zm1 2v7h12v-7H6z"></path><path class="secondary" d="M6 12a4 4 0 0 1-4-4 1 1 0 0 1 .1-.45l2-4A1 1 0 0 1 5 3h14a1 1 0 0 1 .9.55l2 4c.06.14.1.3.1.45a4 4 0 0 1-7 2.65 3.99 3.99 0 0 1-6 0A3.99 3.99 0 0 1 6 12z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h1 class="fs-14 fw-2">Recently Created User(s)</h1>
+                                <h2 class="fs-32 fw-6 text-secondary">{{ stores.count }}</h2>
+                            </div>
+                            <div class="col-md-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-24 icon-user-circle"><circle cx="12" cy="12" r="10" class="primary"></circle><path class="secondary" d="M3.66 17.52A5 5 0 0 1 8 15h8a5 5 0 0 1 4.34 2.52 10 10 0 0 1-16.68 0zM12 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h1 class="fs-14 fw-2">Recently Created Subscriptions(s)</h1>
+                                <h2 class="fs-32 fw-6 text-secondary">{{ subscriptions.count }}</h2>
+                            </div>
+                            <div class="col-md-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-24 icon-certificate"><path class="primary" d="M4 3h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm16 12V7a2 2 0 0 1-2-2H6a2 2 0 0 1-2 2v8a2 2 0 0 1 2 2h12c0-1.1.9-2 2-2zM8 7h8a1 1 0 0 1 0 2H8a1 1 0 1 1 0-2z"></path><path class="secondary" d="M11.65 18.23a4 4 0 1 1 4.7 0l2.5 3.44-2.23-.18-1.48 1.68-.59-4.2a4.04 4.04 0 0 1-1.1 0l-.6 4.2-1.47-1.68-2.23.18 2.5-3.44zM14 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h1 class="fs-14 fw-2">Recent Subscription Revenue</h1>
+                                <h2 class="fs-32 fw-6 text-secondary">{{ aggregate_sum_revenue }}</h2>
+                            </div>
+                            <div class="col-md-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-24 icon-currency-dollar"><circle cx="12" cy="12" r="10" class="primary"></circle><path class="secondary" d="M13 7.12v3.96c2.25.36 4 1.93 4 3.92 0 2-1.75 3.56-4 3.92V19a1 1 0 0 1-2 0v-.08a4.82 4.82 0 0 1-3.67-2.49 1 1 0 0 1 1.8-.85c.29.6.98 1.09 1.87 1.3v-3.96C8.75 12.56 7 11 7 9c0-2 1.75-3.56 4-3.92V5a1 1 0 0 1 2 0v.08a4.81 4.81 0 0 1 3.68 2.5 1 1 0 0 1-1.81.85c-.28-.6-.98-1.1-1.87-1.31zm-2 3.76V7.12C9.81 7.4 9 8.18 9 9c0 .82.81 1.6 2 1.88zm2 2.24v3.76c1.19-.28 2-1.06 2-1.88 0-.82-.81-1.6-2-1.88z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+    </div>
+</section>
+{% endblock content %}
+
+
+{% comment %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1 class="fs-14 fw-6 text-secondary">Recent Stores</h1>
+                            <h1 class="fs-32 fw-2">{{ stores.count }}</h1>
+                        </div>
+                        <div class="col-md-6">
+                            <h1 class="fs-14 fw-6 text-green-700 pull-right">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-arrow-thin-up-circle"><circle cx="12" cy="12" r="10" class="primary fill-green-200"></circle><path class="secondary fill-green-700" d="M13 9.41V17a1 1 0 0 1-2 0V9.41l-2.3 2.3a1 1 0 1 1-1.4-1.42l4-4a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1-1.4 1.42L13 9.4z"></path></svg>
+                                </span>
+                                5%
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <canvas id="line-chart" width="400" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="fs-14 fw-6 text-secondary">Recent Users</h1>
+                            <h1 class="fs-32 fw-2">{{ users.count }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="fs-14 fw-6 text-secondary">Activated Subscriptions</h1>
+                            <h1 class="fs-32 fw-2">{{ subscriptions.count }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 justify-content-">
+                            <div class="card" style="height: 64px !important; width: 64px !important;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-store"><path class="primary" d="M5 8h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zm1 2v7h12v-7H6z"></path><path class="secondary" d="M6 12a4 4 0 0 1-4-4 1 1 0 0 1 .1-.45l2-4A1 1 0 0 1 5 3h14a1 1 0 0 1 .9.55l2 4c.06.14.1.3.1.45a4 4 0 0 1-7 2.65 3.99 3.99 0 0 1-6 0A3.99 3.99 0 0 1 6 12z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="fs-24 fw-6">{{ stores.count }}</h1>
+                            <p class="fs-16 fw-2 text-secondary">New Store(s) Created</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 justify-content-">
+                            <div class="card" style="height: 64px !important; width: 64px !important;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-store"><path class="primary" d="M5 8h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zm1 2v7h12v-7H6z"></path><path class="secondary" d="M6 12a4 4 0 0 1-4-4 1 1 0 0 1 .1-.45l2-4A1 1 0 0 1 5 3h14a1 1 0 0 1 .9.55l2 4c.06.14.1.3.1.45a4 4 0 0 1-7 2.65 3.99 3.99 0 0 1-6 0A3.99 3.99 0 0 1 6 12z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="fs-24 fw-6">{{ users.count }}</h1>
+                            <p class="fs-16 fw-2 text-secondary">New Merchant(s) Created</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 justify-content-">
+                            <div class="card" style="height: 64px !important; width: 64px !important;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-store"><path class="primary" d="M5 8h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zm1 2v7h12v-7H6z"></path><path class="secondary" d="M6 12a4 4 0 0 1-4-4 1 1 0 0 1 .1-.45l2-4A1 1 0 0 1 5 3h14a1 1 0 0 1 .9.55l2 4c.06.14.1.3.1.45a4 4 0 0 1-7 2.65 3.99 3.99 0 0 1-6 0A3.99 3.99 0 0 1 6 12z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="fs-24 fw-6">{{ subscriptions.count }}</h1>
+                            <p class="fs-16 fw-2 text-secondary">New Subscription(s) Created</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 justify-content-">
+                            <div class="card" style="height: 64px !important; width: 64px !important;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-4 icon-store"><path class="primary" d="M5 8h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zm1 2v7h12v-7H6z"></path><path class="secondary" d="M6 12a4 4 0 0 1-4-4 1 1 0 0 1 .1-.45l2-4A1 1 0 0 1 5 3h14a1 1 0 0 1 .9.55l2 4c.06.14.1.3.1.45a4 4 0 0 1-7 2.65 3.99 3.99 0 0 1-6 0A3.99 3.99 0 0 1 6 12z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="fs-24 fw-6"></h1>
+                            <p class="fs-16 fw-2 text-secondary">Weekly Revenue</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extrajs %}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1300,
+  });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+<script>
+new Chart(document.getElementById("line-chart"), {
+    type: 'line',
+    data: {
+      labels: [0,1,2,3,4,5,6,7,8,9,10],
+      datasets: [{ 
+          data: [0,1,2,4,1.5,6,7,8.5,9,11],
+          pointRadius: 0,
+          borderColor: "#c6f6d5",
+          fill: false
+        }]
+    },
+    options: {
+        legend: {
+            display: false,
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    display: false
+                },
+                gridLines: {
+                    display: false,
+                },
+            }],
+            xAxes: [{
+                ticks: {
+                    display: false
+                },
+                gridLines: {
+                    display: false,
+                },
+            }],
+        },
+    }
+  });
+</script>
+{% endblock extrajs %}
+{% endcomment %}
+

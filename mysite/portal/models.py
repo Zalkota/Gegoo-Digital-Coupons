@@ -84,11 +84,10 @@ RATING_CHOICES = [
 ]
 
 STATUS_CHOICES = [
-    (ONE, 'Approval Required'),
+    (ONE, 'Draft'),
+    (THREE, 'Pending'),
     (TWO, 'Published'),
-    (THREE, 'Denied'),
-    (FOUR, 'Edit Pending'),
-    (FIVE, 'Supscription Required'),
+    (FOUR, 'Denied'),
 ]
 
 STATES = (
@@ -304,13 +303,9 @@ class Offer(models.Model):
     author          = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     title           = models.CharField(max_length=100, blank=False)
     description     = models.TextField(max_length=500, blank=False)
-    # tag             = models.ManyToManyField(Tag, blank=True)
     slug            = models.SlugField(unique=True, blank=True, editable=False)
     end_date        = models.DateField()
     likes           = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
-    # is_featured     = models.BooleanField('FeaturedStatus', default=False)
-
-    status          = models.PositiveIntegerField(choices=STATUS_CHOICES, default=1)
 
     # Creation Fields
     created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
@@ -339,7 +334,7 @@ class StoreVideoManager(models.Manager):
 
 class Store(models.Model):
     subscription_status     = models.BooleanField(default=False) #TODO This is not needed, we can just verify
-    status                  = models.PositiveIntegerField(choices=STATUS_CHOICES, default=5)
+    status                  = models.PositiveIntegerField(choices=STATUS_CHOICES, default=1)
     merchant                = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern

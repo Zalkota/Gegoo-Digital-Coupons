@@ -56,18 +56,26 @@ from payments import models as payment_models
 #
 #         return super(MerchantProfileUpdateView, self).form_valid(form)
 #
-def MerchantApprovalAdditionalStoreView(request):
+class MerchantApprovalAdditionalStoreView(View):
 
-    subscription_qs = payment_models.Subscription.objects.filter(user=request.user)
+    def get(self, request, *args, **kwargs):
 
-    if subscription_qs.exists():
-        user_subscription = payment_models.Subscription.objects.get(user=request.user)
-        context = {
-            'subscription': user_subscription
-        }
-        return render(request, 'users/approval/merchant_approval_additional_store.html', context)
-    else:
-        return render(request, 'users/approval/merchant_approval_additional_store.html')
+        subscription_qs = payment_models.Subscription.objects.filter(user=self.request.user)
+        customer_store_qs = portal_models.Store.objects.filter(merchant=self.request.user, subscription_status=False).order_by('created_at')
+
+        if customer_store_qs.exists():
+            if subscription_qs.exists():
+                user_subscription = subscription_qs.first()
+                context = {
+                    'subscription': user_subscription
+                }
+                return render(self.request, 'users/approval/merchant_approval_additional_store.html', context)
+            else:
+                return render(self.request, 'users/approval/merchant_approval_additional_store.html')
+        else:
+            error_message = 'You do not have any stores to add to your subscription. Please create more!'
+            messages.warning(self.request, error_message)
+            return redirect('users:userPage')
 
 class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
     model = portal_models.Store
@@ -78,7 +86,7 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
         subscription_qs = payment_models.Subscription.objects.filter(user=self.request.user)
 
         if subscription_qs.exists():
-            subscription = payment_models.Subscription.objects.get(user=self.request.user)
+            subscription = subscription_qs.first()
             context = {
                 'form': MerchantStoreForm(),
                 'subscription': subscription,
@@ -87,21 +95,61 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
             context = {
                 'form': MerchantStoreForm(),
             }
-
+            
         context['store_list'] = portal_models.Store.objects.filter(merchant=self.request.user)
 
-        if subscription_qs.exists():
-            if subscription.subscription_status == 'active' or subscription.subscription_status == 'trialing':
+        if self.request.user.merchant_profile.status == 'INITIAL':
+            if self.request.user.merchant_profile.stores < 2:
                 return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
-            if subscription.subscription_status == 'canceled':
-                message = 'Your current subscription status is %s' % subscription.subscription_status
-                messages.success(self.request, message)
-                return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
-            elif subscription.subscription_status == 'incomplete':
-                error_message = 'Your Subscription is %s, please revise your subscription in the dashboard!' % subscription.subscription_status
+            else:
+                error_message = 'You have reached your store creation limit with profile status %s' % self.request.user.merchant_profile.status
+                messages.success(self.request, error_message)
+                return redirect('users:userPage')
+        elif self.request.user.merchant_profile.status == 'PENDING':
+            if self.request.user.merchant_profile.stores < 5:
+                if subscription_qs.exists():
+                    if subscription.subscription_status == 'active' or subscription.subscription_status == 'trialing':
+                        if self.request.user.merchant_profile.stores < 5:
+                            return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
+                    elif subscription.subscription_status == 'canceled':
+                        if self.request.user.merchant_profile.stores < 5:
+                            message = 'Your current subscription status is %s, You can create stores, but will have to repurchase a subscription' % subscription.subscription_status
+                            messages.success(self.request, message)
+                            return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
+                    elif subscription.subscription_status == 'incomplete':
+                        error_message = 'Your Subscription is %s, please revise your payment method in the dashboard!' % subscription.subscription_status
+                        messages.warning(self.request, error_message)
+                        return redirect('payments:payment_method_manage')
+                    else:
+                        error_message = 'Your Subscription is expired and has been deleted. Please repeat the approval process.'
+                        messages.warning(self.request, error_message)
+                        return redirect('users:userPage')
+                else:
+                    error_message = 'You must have a subscription to create more stores!'
+                    messages.warning(self.request, error_message)
+                    return redirect('users:userPage')
+            else:
+                error_message = 'You have reached your store creation limit with profile status %s' % self.request.user.merchant_profile.status
+                messages.success(self.request, error_message)
+                return redirect('users:userPage')
+        elif self.request.user.merchant_profile.status == 'APPROVED':
+            if subscription_qs.exists():
+                if subscription.subscription_status == 'active' or subscription.subscription_status == 'trialing':
+                    return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
+                elif subscription.subscription_status == 'canceled':
+                    message = 'Your current subscription status is %s, You can create stores, but will have to repurchase a subscription' % subscription.subscription_status
+                    messages.success(self.request, message)
+                    return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
+                elif subscription.subscription_status == 'incomplete':
+                    error_message = 'Your Subscription is %s, please revise your payment method in the dashboard!' % subscription.subscription_status
+                    messages.warning(self.request, error_message)
+                    return redirect('payments:payment_method_manage')
+            else:
+                error_message = 'You must have a subscription to create more stores!'
                 messages.warning(self.request, error_message)
                 return redirect('users:userPage')
         else:
+            error_message = 'Your account is %s, You cannot create stores with this account status' % self.request.user.merchant_profile.status
             return render(self.request, 'users/approval/merchant_approval_store_create.html', context)
 
 
@@ -128,7 +176,7 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
         subscription_qs = payment_models.Subscription.objects.filter(user=self.request.user)
 
         if subscription_qs.exists():
-            subscription = payment_models.Subscription.objects.get(user=self.request.user)
+            subscription = subscription_qs.first()
             if subscription.subscription_status == 'active':
                 return reverse_lazy('users:merchant_approval_additional_store')
             elif subscription.subscription_status == 'trialing':

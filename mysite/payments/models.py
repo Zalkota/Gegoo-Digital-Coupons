@@ -67,8 +67,13 @@ class Subscription(models.Model):
     subscription_item_id        = models.CharField(max_length=50, blank=True, editable=False)
     plan_id                     = models.CharField(max_length=50, blank=True)
     subscription_status         = models.CharField(max_length=50, blank=True, editable=False)
-    latest_invoice_status       = models.CharField(max_length=100, blank=True)
-    payment_status              = models.CharField(max_length=100, blank=True)
+    invoice_upcoming            = models.BooleanField(default=False, blank=True)
+    latest_invoice_id           = models.CharField(max_length=50, blank=True)
+    latest_invoice_number       = models.CharField(max_length=50, blank=True)
+    latest_invoice_url          = models.URLField(max_length=150, blank=True)
+    latest_receipt_url          = models.URLField(max_length=150, blank=True)
+    latest_invoice_status       = models.CharField(max_length=50, blank=True)
+    payment_status              = models.CharField(max_length=50, blank=True)
 
     # Creation Timestamp UNIX
     unix_created_at             = models.PositiveIntegerField(blank=True, null=True)
@@ -123,7 +128,7 @@ def pre_save_subscription(sender, instance, **kwargs):
         instance.trial_end          = trial_end_date
     
     if instance.unix_canceled_at is not None:
-        unix_timestamp_canceled_at      = instance.unix_created_at
+        unix_timestamp_canceled_at      = instance.unix_canceled_at
         canceled_at_date                = datetime.datetime.fromtimestamp(unix_timestamp_canceled_at)
         instance.canceled_at            = canceled_at_date
 

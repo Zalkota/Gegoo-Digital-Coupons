@@ -139,7 +139,7 @@ class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or
 			if self.request.user.is_authenticated:
 				store_connection_qs = portal_models.FollowStore.objects.filter(current_user=self.request.user)
 				if store_connection_qs.exists():
-					store_connection = portal_models.FollowStore.objects.get(current_user = self.request.user)
+					store_connection = portal_models.FollowStore.objects.get(current_user= self.request.user)
 					context['store_connection_user'] = store_connection.connections.all()
 
 				context['authenticated'] = True
@@ -194,7 +194,7 @@ class MerchantStoreListView(LoginRequiredMixin, ListView):
 		subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
 
 		if subscription_qs.exists():
-			subscription = payments_models.Subscription.objects.get(user=self.request.user)
+			subscription = subscription_qs.first()
 			context['subscription'] = subscription
 
 		return context
@@ -235,9 +235,8 @@ class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteVie
 		self.object = self.get_object()
 		self.object.delete()
 
-		stripe.api_key          = STRIPE_SECRET_KEY
-
-		subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
+		stripe.api_key	= STRIPE_SECRET_KEY
+		subscription_qs	= payments_models.Subscription.objects.filter(user=self.request.user)
 
 		if subscription_qs.exists():
 			subscription 		= subscription_qs.first()
@@ -263,7 +262,21 @@ class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteVie
 					sub.subscription_quantity   = subscription['items']['data'][0].quantity
 					sub.plan_id                 = subscription['plan']['id']
 					sub.subscription_status     = subscription['status']
+
+					if sub.invoice_upcoming == True:
+						sub.invoice_upcoming = False
+					else:
+						pass
+
 					sub.save()
+
+					if sub.subscription_status == 'canceled':
+						if self.request.user.merchant_profile.status == 'PENDING' or self.request.user.merchant_profile.status == 'APPROVED':
+							merchant_profile_user = users_models.MerchantProfile.objects.get(user=self.request.user)
+							merchant_profile_user.status = 'INITIAL'
+							merchant_profile_user.save()
+						else:
+							pass
 
 					messages.warning(self.request, 'You have deleted all your stores! Your subscription has been canceled')
 					return redirect('payments:subscription_detail', slug=sub.slug)
