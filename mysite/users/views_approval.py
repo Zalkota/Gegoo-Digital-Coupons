@@ -95,7 +95,7 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
             context = {
                 'form': MerchantStoreForm(),
             }
-            
+
         context['store_list'] = portal_models.Store.objects.filter(merchant=self.request.user)
 
         if self.request.user.merchant_profile.status == 'INITIAL':

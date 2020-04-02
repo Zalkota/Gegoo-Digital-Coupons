@@ -431,17 +431,22 @@ class Store(models.Model):
 
 @receiver([post_save, post_delete], sender=Store)
 def update_store_count(sender, instance, **kwargs):
-    merchantprofile             = users_models.MerchantProfile.objects.get(user=instance.merchant)
+    merchant_profile_qs = users_models.MerchantProfile.objects.filter(user=instance.merchant)
 
-    #Update store count
-    merchantprofile.stores      = Store.objects.filter(merchant=instance.merchant).count()
+    if merchant_profile_qs.exists():
+        merchantprofile             = merchant_profile_qs.first()
 
-    #Update User Status if store is approved
-    if instance.status          == 2:
-        merchantprofile.status  = 'APPROVED'
+        #Update store count
+        merchantprofile.stores      = Store.objects.filter(merchant=instance.merchant).count()
 
-    #Save changes
-    merchantprofile.save()
+        #Update User Status if store is approved
+        if instance.status          == 2:
+            merchantprofile.status  = 'APPROVED'
+
+        #Save changes
+        merchantprofile.save()
+    else:
+        pass
 
 post_save.connect(CalculateLocation, sender=Store)
 post_save.connect(setCouponCode, sender=Store)
