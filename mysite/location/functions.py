@@ -35,16 +35,12 @@ def get_ip(request):
         ip = x_forward.split(",")[0]
     else:
         ip = request.META.get("REMOTE_ADDR")
-        #We should have IP address at this point
 
-    try:
-        reader = geolite2.reader()
-        data = reader.get(ip)
+    #We should have IP address at this point
+    reader = geolite2.reader()
+    data = reader.get(ip)
 
-        if data == None:
-            data = reader.get('107.77.193.143')
-    except:
-        reader = geolite2.reader()
+    if data == None:
         data = reader.get('107.77.193.143')
     return data
 
