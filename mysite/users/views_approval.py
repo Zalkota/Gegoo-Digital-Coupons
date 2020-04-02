@@ -77,26 +77,30 @@ class MerchantApprovalAdditionalStoreView(View):
             messages.warning(self.request, error_message)
             return redirect('users:userPage')
 
+context['store_list'] = portal_models.Store.objects.filter(merchant=self.request.user)
+
 class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
     model = portal_models.Store
     form_class = MerchantStoreForm
     success_url = reverse_lazy('users:merchant_approval_additional_store')
 
     def get(self, request, *args, **kwargs):
+
         subscription_qs = payment_models.Subscription.objects.filter(user=self.request.user)
+        stores_qs = portal_models.Store.objects.filter(merchant=self.request.user)
 
         if subscription_qs.exists():
             subscription = subscription_qs.first()
             context = {
                 'form': MerchantStoreForm(),
                 'subscription': subscription,
+                'store_list': stores_qs
             }
         else:
             context = {
                 'form': MerchantStoreForm(),
+                'store_list': stores_qs
             }
-
-        context['store_list'] = portal_models.Store.objects.filter(merchant=self.request.user)
 
         if self.request.user.merchant_profile.status == 'INITIAL':
             if self.request.user.merchant_profile.stores < 2:

@@ -738,13 +738,17 @@ class SubscriptionManageView(LoginRequiredMixin, View):
 class PaymentMethodManageView(View):
     def get(self, *args, **kwargs):
 
+        context = {
+            'STRIPE_PUB_KEY': STRIPE_PUB_KEY,
+        }
+
         subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
         if subscription_qs.exists():
             subscription = subscription_qs.first()
 
             if subscription.subscription_status == 'incomplete':
                 if subscription.payment_status == 'requires_payment_method':
-                    return render(self.request, 'payments/update_payment_method.html')
+                    return render(self.request, 'payments/update_payment_method.html', context)
             elif subscription.subscription_status == 'incomplete_expired':
                 if subscription.payment_status == 'requires_payment_method':
                     return_message = 'Your subscription has ben canceled. Please purchase another subscription to continue use.'

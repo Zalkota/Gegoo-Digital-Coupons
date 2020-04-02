@@ -101,7 +101,7 @@ a:hover {
                         </div>
                     </div>
 
-                {% elif user.subscription.subscription_status != 'active' %}
+                {% elif user.subscription.subscription_status != 'active' or user.subscription.subscription_status != 'trialing' %}
 
                     <div class="col-lg-6">
                         <div class="card shadow-2 my-2">
