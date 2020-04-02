@@ -107,20 +107,24 @@ def get_or_set_location(request):
             # print('attemtping to obtain IP address location')
             data = get_ip(request)
             #Obtain City and State from IP address
-            city = data["city"]['names']['en']
-            state = data["subdivisions"][0]['names']['en']
+            try:
+                city = data["city"]['names']['en']
+                state = data["subdivisions"][0]['names']['en']
+                city_qs = City.objects.get(name=city, region__name=state)
+                location_data = CalculateCityLocation(request, city_qs)
 
-            city_qs = City.objects.get(name=city, region__name=state)
+                #Add City and State to Cookies for next time
+                set_location_cookies(request, city, state)
+                
+                context = {
+                'city': city,
+                'state': state,
+                'user_location': location_data
+                }
+                return context
+            except:
+                print('ERROR', city, state, 'not found in city_qs')
 
-            location_data = CalculateCityLocation(request, city_qs)
-            #Add City and State to Cookies for next time
-            set_location_cookies(request, city, state)
-            context = {
-            'city': city,
-            'state': state,
-            'user_location': location_data
-            }
-            return context
 
 
 
