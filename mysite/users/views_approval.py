@@ -77,7 +77,6 @@ class MerchantApprovalAdditionalStoreView(View):
             messages.warning(self.request, error_message)
             return redirect('users:userPage')
 
-context['store_list'] = portal_models.Store.objects.filter(merchant=self.request.user)
 
 class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
     model = portal_models.Store
