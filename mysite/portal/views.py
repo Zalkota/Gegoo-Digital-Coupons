@@ -405,43 +405,49 @@ class MerchantTestimonialCreateView(LoginRequiredMixin, SuccessMessageMixin, Cre
 # <**************************************************************************>
 
 
-def StoreChangeConnectionsAjax(request):
-	if request.method == 'POST':
-		store_pk = request.POST['store_pk']
-		action = request.POST['action']
+class StoreChangeConnectionsAjax(View):
 
-		print(store_pk)
-		print(action)
+	def get(self, request, *args, **kwargs):
+		return redirect('users:userPage')
 
-		if action == 'add':
-			store_connection_ajax = portal_models.Store.objects.get(pk=store_pk)
-			portal_models.FollowStore.add_connection(request.user, store_connection_ajax)
-			return HttpResponse('Success!')
+	def post(self, request, *args, **kwargs):
+		if request.method == 'POST':
+			store_pk = request.POST['store_pk']
+			action = request.POST['action']
 
-		if action == 'remove':
-			store_connection_ajax = portal_models.Store.objects.get(pk=store_pk)
-			portal_models.FollowStore.remove_connection(request.user, store_connection_ajax)
-			return HttpResponse('Success!')
+			if action == 'add':
+				store_connection_ajax = portal_models.Store.objects.get(pk=store_pk)
+				portal_models.FollowStore.add_connection(request.user, store_connection_ajax)
+				return HttpResponse('Success!')
+
+			if action == 'remove':
+				store_connection_ajax = portal_models.Store.objects.get(pk=store_pk)
+				portal_models.FollowStore.remove_connection(request.user, store_connection_ajax)
+				return HttpResponse('Success!')
 
 
-def StoreOfferAjax(request):
-	if request.method == 'POST':
-		store_pk = request.POST['store_pk']
-		offer_ajax_pk = request.POST['offer_pk']
-		action = request.POST['action']
+class StoreOfferAjax(View):
+	def get(self, request, *args, **kwargs):
+		return redirect('users:userPage')
 
-		print(store_pk)
-		print(offer_ajax_pk)
-		print(action)
+	def post(self, request, *args, **kwargs):
+		if request.method == 'POST':
+			store_pk = request.POST['store_pk']
+			offer_ajax_pk = request.POST['offer_pk']
+			action = request.POST['action']
 
-		if action == 'add':
-			store = portal_models.Store.objects.get(pk=store_pk)
-			add_offer_ajax = portal_models.Offer.objects.get(pk=offer_ajax_pk)
-			portal_models.StoreOffer.add_offer(store, add_offer_ajax)
-			return HttpResponse('Success!')
+			print(store_pk)
+			print(offer_ajax_pk)
+			print(action)
 
-		if action == 'remove':
-			store = portal_models.Store.objects.get(pk=store_pk)
-			add_offer_ajax = portal_models.Offer.objects.get(pk=offer_ajax_pk)
-			portal_models.StoreOffer.remove_offer(store, add_offer_ajax)
-			return HttpResponse('Success!')
+			if action == 'add':
+				store = portal_models.Store.objects.get(pk=store_pk)
+				add_offer_ajax = portal_models.Offer.objects.get(pk=offer_ajax_pk)
+				portal_models.StoreOffer.add_offer(store, add_offer_ajax)
+				return HttpResponse('Success!')
+
+			if action == 'remove':
+				store = portal_models.Store.objects.get(pk=store_pk)
+				add_offer_ajax = portal_models.Offer.objects.get(pk=offer_ajax_pk)
+				portal_models.StoreOffer.remove_offer(store, add_offer_ajax)
+				return HttpResponse('Success!')
