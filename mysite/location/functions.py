@@ -115,7 +115,7 @@ def get_or_set_location(request):
                 set_location_cookies(request, city, state)
             except:
                 city_qs = City.objects.get(name='Novi', region__name='Michigan')
-                print('ERROR', city, state, 'not found in city_qs')
+                print('ERROR: nothing found in city_qs')
 
             location_data = CalculateCityLocation(request, city_qs)
 
