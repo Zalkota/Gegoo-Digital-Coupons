@@ -28,8 +28,8 @@ STRIPE_PUB_KEY      = 'pk_test_ytOTGb9MgWKRqiFD3jL10LAb00sMmoKS8P'
 STRIPE_SECRET_KEY   = 'sk_test_Eu5hX5Y9os8wHLuu09bW8Cz600mtFK7crK'
 
 #MICHAELS STRIPE ACCOUNT
-# STRIPE_PUB_KEY      = 'pk_test_k2kLiCPSsK7yyQF4rDDPhHN100mYwH0Pvj'
-# STRIPE_SECRET_KEY   = 'sk_test_vZfYk3ISvw6WsynV64vP0XpK006WkTHRMI'
+STRIPE_PUB_KEY_TEST      = 'pk_test_k2kLiCPSsK7yyQF4rDDPhHN100mYwH0Pvj'
+STRIPE_SECRET_KEY_TEST   = 'sk_test_vZfYk3ISvw6WsynV64vP0XpK006WkTHRMI'
 
 
 # S3 ------------------------------------------------------------------------

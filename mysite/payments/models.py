@@ -48,7 +48,7 @@ class Plan(models.Model):
 
 @receiver(pre_save, sender=Plan)
 def pre_save_plan(sender, instance, **kwargs):
-    stripe.api_key              = settings.STRIPE_SECRET_KEY
+    stripe.api_key              = settings.STRIPE_SECRET_KEY_TEST
     plan                        = stripe.Plan.retrieve(id=instance.plan_id)
     instance.nickname           = plan['nickname']
     instance.product_id         = plan['product']
@@ -68,6 +68,7 @@ class Subscription(models.Model):
     plan_id                     = models.CharField(max_length=50, blank=True)
     subscription_status         = models.CharField(max_length=50, blank=True, editable=False)
     invoice_upcoming            = models.BooleanField(default=False, blank=True)
+    trial_will_end              = models.BooleanField(default=False, blank=True)
     latest_invoice_id           = models.CharField(max_length=50, blank=True)
     latest_invoice_number       = models.CharField(max_length=50, blank=True)
     latest_invoice_url          = models.URLField(max_length=150, blank=True)
@@ -100,6 +101,10 @@ class Subscription(models.Model):
 
     def get_absolute_url(self):
         return reverse('payments:subscription_detail', kwargs={'slug': self.slug})
+    
+    def created_at_date(self):
+        if self.created_at is not None:
+            return self.created_at.date()
 
 @receiver(pre_save, sender=Subscription)
 def pre_save_subscription(sender, instance, **kwargs):

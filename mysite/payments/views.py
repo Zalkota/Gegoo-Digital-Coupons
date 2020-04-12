@@ -17,8 +17,8 @@ import json
 
 
 #Stripe import key
-STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY
-STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
+STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY_TEST
+STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY_TEST
 
 def get_user_subscription(request):
     try:

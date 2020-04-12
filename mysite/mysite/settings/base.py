@@ -357,14 +357,6 @@ ACCOUNT_SESSION_REMEMBER = 'None' # Default is None. Controls the life time of t
 
 EMAIL_CUSTOMER = 'dominic@modwebservices.com'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'michael@modwebservices.com'
-EMAIL_HOST_PASSWORD = 'Florida1122pc$'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
-
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (42.3314, -83.0458),
     'DEFAULT_ZOOM': 5,
