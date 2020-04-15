@@ -59,8 +59,6 @@ class VideoFileUploadView(View, LoginRequiredMixin):
 
 
 
-
-
     def post(self, request, *args, **kwargs):
         form = VideoFileForm(self.request.POST, self.request.FILES)
         # user = request.user
