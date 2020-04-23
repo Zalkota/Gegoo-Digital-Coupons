@@ -277,7 +277,7 @@ a:hover {
                                             <td class="fs-14 fw-2">
                                                 {% if offer.storeoffer_set.all.count > 0 %}
                                                 <ul class="list-unstyled">
-                                                    {% for item in object.storeoffer_set.all %}
+                                                    {% for item in offer.storeoffer_set.all %}
                                                         <li class="text-dark">{{ item.current_store.business_name }},</li>
                                                     {% endfor %}
                                                 </ul>
