@@ -275,17 +275,15 @@ a:hover {
                                             </td>
                                             {% endif %} -->
                                             <td class="fs-14 fw-2">
-                                                {% if offer.storeoffer_set %}
                                                 <ul class="list-unstyled">
                                                     {% for item in offer.storeoffer_set.all %}
                                                         <li class="text-dark">{{ item.current_store.business_name }},</li>
+                                                        {% empty %}
+                                                        <span class="text-danger fs-14">
+                                                            This offer is not attached to any Stores. Edit your store to add it.
+                                                        </span>
                                                     {% endfor %}
                                                 </ul>
-                                                {% else %}
-                                                <span class="text-danger fs-14">
-                                                    This offer is not attached to any Stores. Edit your store to add it.
-                                                </span>
-                                                {% endif %}
                                             </td>
                                             <!-- <td class="fs-14 fw-2 text-dark">{{ offer.end_date }}</td> -->
                                             <!-- <td class="fs-14 fw-2 text-dark">{{ offer.description|truncatechars:45 }}</td> -->

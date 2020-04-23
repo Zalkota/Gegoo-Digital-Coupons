@@ -63,17 +63,16 @@
                             <tr>
                               <th scope="row">{{ object.title }}</th>
                               <td>
-                                  {% if object.storeoffer_set %}
                                   <ul class="list-unstyled">
                                       {% for item in object.storeoffer_set.all %}
                                           <li class="text-dark">{{ item.current_store.business_name }},</li>
+                                          {% empty %}
+                                          <span class="text-danger fs-14">
+                                              This offer is not attached to any Stores. Edit your store to add it.
+                                          </span>
                                       {% endfor %}
                                   </ul>
-                                  {% else %}
-                                  <span class="text-danger fs-14">
-                                      This offer is not attached to any Stores. Edit your store to add it.
-                                  </span>
-                                  {% endif %}
+
                               </td>
                               <!-- <td>
                                 {{ object.end_date }}

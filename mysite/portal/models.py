@@ -491,7 +491,7 @@ class Testimonial(models.Model):
         return rating_range
 
 class StoreOffer(models.Model):
-    offers = models.ManyToManyField(Offer)
+    offers = models.ManyToManyField(Offer, blank=True)
     current_store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name='storeoffer', null=True)
 
     @classmethod
