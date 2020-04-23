@@ -63,7 +63,7 @@
                             <tr>
                               <th scope="row">{{ object.title }}</th>
                               <td>
-                                  {% if object.storeoffer_set.all.count > 0 %}
+                                  {% if object.storeoffer_set %}
                                   <ul class="list-unstyled">
                                       {% for item in object.storeoffer_set.all %}
                                           <li class="text-dark">{{ item.current_store.business_name }},</li>
