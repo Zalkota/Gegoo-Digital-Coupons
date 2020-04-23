@@ -17,7 +17,7 @@ class Topic(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('topics_detail', kwargs={'slug': self.slug})
+        return reverse('support:topic_detail', kwargs={'slug': self.slug})
 
 class Question(models.Model):
 
@@ -39,7 +39,7 @@ class Question(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('questions_detail', kwargs={'slug': self.slug})
+        return reverse('support:question_detail', kwargs={'slug': self.slug})
 
 @receiver(pre_save, sender=Question)
 def pre_save(sender, **kwargs):

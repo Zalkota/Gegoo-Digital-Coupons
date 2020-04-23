@@ -14,6 +14,7 @@ from users import models as users_models
 from payments import forms as payments_forms
 from portal import models as portal_models
 import json
+from users.decorators import IsMerchantMixin, IsUserObject
 
 
 #Stripe import key
@@ -36,7 +37,7 @@ class PlanListView(ListView):
         plan_list = payments_models.Plan.objects.all()
         return plan_list
 
-class PlanDetailView(LoginRequiredMixin, DetailView):
+class PlanDetailView(LoginRequiredMixin, IsMerchantMixin, DetailView):
 
     def get(self, request, *args, **kwargs):
         #Mimic Detail View
@@ -533,7 +534,7 @@ class PlanDetailView(LoginRequiredMixin, DetailView):
                     messages.warning(self.request, 'Something went wrong. Please try again with a different payment source! - status %s' % e.http_status)
                     return render(self.request, 'payments/plan_detail.html')
 
-class Charge(View):
+class Charge(LoginRequiredMixin, IsMerchantMixin, View):
 
     def get(self, request, *args, **kwargs):
 
@@ -551,7 +552,7 @@ class Charge(View):
             messages.warning(self.request, error_message)
             return redirect('users:userPage')
 
-class SubscriptionDetailView(LoginRequiredMixin, DetailView):
+class SubscriptionDetailView(LoginRequiredMixin, IsMerchantMixin, DetailView):
     model = payments_models.Subscription
     template_name = 'payments/subscription_detail_mpm.html'
 
@@ -608,7 +609,7 @@ class SubscriptionDetailView(LoginRequiredMixin, DetailView):
             return render(self.request, 'payments/subscription_detail.html')
 
 
-class SubscriptionManageView(LoginRequiredMixin, View):
+class SubscriptionManageView(LoginRequiredMixin, IsMerchantMixin, View):
 
     def get(self, request, *args, **kwargs):
 
@@ -735,7 +736,7 @@ class SubscriptionManageView(LoginRequiredMixin, View):
                 messages.warning(self.request, 'Your Subscription cannot be downgraded at this time. Please contact support.')
                 return render(self.request, 'payments/subscription_detail.html')
 
-class PaymentMethodManageView(View):
+class PaymentMethodManageView(LoginRequiredMixin, IsMerchantMixin, View):
     def get(self, *args, **kwargs):
 
         context = {

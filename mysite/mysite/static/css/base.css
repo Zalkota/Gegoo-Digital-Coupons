@@ -13349,7 +13349,7 @@ input:focus {
     background-image: -o-linear-gradient(120deg, #805AD5, #7505AB);
     background-image: linear-gradient(120deg, #805AD5, #7505AB); }
   .volume-button {
-    z-index: 1000;
+    z-index: 4;
     position: absolute;
     bottom: 5%;
     left: 2%; } }
@@ -13374,7 +13374,7 @@ input:focus {
     background-image: -o-linear-gradient(120deg, #805AD5, #7505AB);
     background-image: linear-gradient(120deg, #805AD5, #7505AB); }
   .volume-button {
-    z-index: 1000;
+    z-index: 4;
     position: absolute;
     bottom: 8%;
     left: 2%; } }
@@ -13706,15 +13706,16 @@ select option {
     left: -75%;
     background-color: #fefefe;
     z-index: 1000;
-    transition: transform 0.3s; }
+    transition: transform 0.1s; }
   .navigation__background-2 {
     height: 100vh;
     width: 100%;
     position: fixed;
-    top: 0;
-    left: -100%;
+    top: -100%;
+    left: 0%;
     background-color: rgba(50, 50, 50, 0.86);
-    z-index: 900;
+    z-index: 0;
+    opacity: 0;
     transition: 0s; }
   .navigation__list {
     position: absolute;
@@ -13764,16 +13765,16 @@ select option {
     left: -75%;
     background-color: #fefefe;
     z-index: 1000;
-    transition: transform 0.3s; }
+    transition: transform 0.05s; }
   .navigation__background-2 {
     height: 100vh;
     width: 100%;
     position: fixed;
     top: 0;
     left: -100%;
-    background-color: rgba(50, 50, 50, 0.86);
+    background-color: rgba(50, 50, 50, 0);
     z-index: 500;
-    transition: 0s; }
+    transition: transform 0.1s; }
   .navigation__list {
     position: absolute;
     top: 10%;
@@ -13807,7 +13808,7 @@ select option {
   left: -100%;
   z-index: 1500;
   opacity: 0;
-  transition: all 0.3s; }
+  transition: transform 0.1s; }
 
 .navigation__link:link, .navigation__link:visited {
   display: inline-block;
@@ -13823,7 +13824,10 @@ select option {
   transform: translateX(100%); }
 
 .navigation__checkbox:checked ~ .navigation__background-2 {
-  transform: translateX(100%); }
+  transition: 0s;
+  z-index: 5;
+  opacity: 0.7;
+  top: 0; }
 
 .navigation__checkbox:checked ~ .navigation__nav {
   opacity: 1;
@@ -13843,14 +13847,14 @@ select option {
 .navigation__icon, .navigation__icon::before, .navigation__icon::after {
   width: 1.5rem;
   height: 2px;
-  background-color: #2D3748;
+  background-color: #2A4365;
   display: inline-block; }
 
 .navigation__icon::before, .navigation__icon::after {
   content: "";
   position: absolute;
   left: 0;
-  transition: all 0.1s; }
+  transition: transform 0.1s; }
 
 .navigation__icon::before {
   top: -.56rem; }
@@ -13870,9 +13874,11 @@ select option {
 .navigation__checkbox:checked + .navigation__button .navigation__icon::before {
   top: 0;
   transform: rotate(45deg);
-  background-color: #fff; }
+  z-index: 1000;
+  background-color: #7505AB !important; }
 
 .navigation__checkbox:checked + .navigation__button .navigation__icon::after {
   top: 0;
+  z-index: 1000;
   transform: rotate(-45deg);
-  background-color: #fff; }
+  background-color: #7505AB !important; }

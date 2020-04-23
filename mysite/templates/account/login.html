@@ -4,7 +4,7 @@
 {% load account socialaccount %}
 {% load crispy_forms_tags %}
 
-{% block head_title %}{% trans "Login" %}{% endblock %}
+{% block head_title %}{% trans "Login to Gegoo" %}{% endblock %}
 
 {% block content %}
 
@@ -15,34 +15,9 @@
             <div class="card-border bg-gray-20 shadow-5 ml-auto text-center mr-auto mt-3" style="width: 25rem;">
                     <h2 class="my-4 fw-6 fs-24 text-dark">Login</h2>
                     <div class=" text-left px-4 pb-4 pt-3" style="">
-                        {% get_providers as socialaccount_providers %}
-                        {% if socialaccount_providers %}
-                        <p class="text-center">{% blocktrans with site.name as site_name %}Please sign in with one
-                          of your existing third party accounts. Or, <a href="">Login to {{ SITE_NAME }}</a>
-                          for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-                        <div class="socialaccount_ballot">
-                            <ul class="socialaccount_providers">
-                              {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-                            </ul>
-                            <div class="login-or">
-                              {% trans 'or' %}
-                            </div>
-                        </div>
-                        {% include "socialaccount/snippets/login_extra.html" %}
-                        {% else %}
-                        {% endif %}
                         <form class="login" method="POST" id="loginForm" action="{% url 'account_login' %}" style="list-style-type: none;">
                             {% csrf_token %}
-                            <div class="form-group {% if form.login.errors %}has-error{% endif %}">
-                                <div class="form-control glyphicon glyphicon-envelope">
-                                    {{ form.login }}
-                                </div>
-                            </div>
-                            <div class="form-group {% if form.password.errors %}has-error{% endif %}">
-                                <div class="form-control ">
-                                    {{ form.password }}
-                                </div>
-                            </div>
+                            {{ form|crispy }}
                             {% if redirect_field_value %}
                             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />{% endif %}
                             <div class="btn-div pull-center">
@@ -77,34 +52,9 @@
              <h2 class="fw-6">{% trans "Login" %}</h2>
         </div>
         <div class="text-left p-4" style="">
-           {% get_providers as socialaccount_providers %}
-           {% if socialaccount_providers %}
-           <p class="text-center">{% blocktrans with site.name as site_name %}Please sign in with one
-             of your existing third party accounts. Or, <a href="">sign up</a>
-             for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-           <div class="socialaccount_ballot">
-               <ul class="socialaccount_providers">
-                 {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-               </ul>
-               <div class="login-or">
-                 {% trans 'or' %}
-               </div>
-           </div>
-        {% include "socialaccount/snippets/login_extra.html" %}
-        {% else %}
-        {% endif %}
            <form class="login" method="POST" action="{% url 'account_login' %}" style="list-style-type: none;">
                {% csrf_token %}
-               <div class="form-group {% if form.login.errors %}has-error{% endif %}">
-                   <div class="form-control glyphicon glyphicon-envelope">
-                       {{ form.login }}
-                   </div>
-               </div>
-               <div class="form-group {% if form.password.errors %}has-error{% endif %}">
-                   <div class="form-control">
-                       {{ form.password }}
-                   </div>
-               </div>
+               {{ form|crispy }}
                {% if redirect_field_value %}
                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />{% endif %}
                <div class="btn-div pull-center">

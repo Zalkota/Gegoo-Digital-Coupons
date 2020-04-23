@@ -22,9 +22,7 @@ from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
 from location.functions import CalculateCityLocation, set_location_cookies, get_ip, get_or_set_location
-
 from cities_light.models import Region, City
-
 
 # def get_reward_data(request, *args, **kwargs):
 #     UserRewardData = self.request.user.profile.points
@@ -256,7 +254,8 @@ class MerchantSignUpView(SignupView):
         ret.update(self.kwargs)
         return ret
 
-# def form_valid(self, form):             
+
+# def form_valid(self, form):
 
 
 

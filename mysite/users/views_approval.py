@@ -27,6 +27,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from portal.forms import MerchantStoreForm
 from portal import models as portal_models
+from users.decorators import IsMerchantMixin, IsUserObject
 
 from payments import models as payment_models
 
@@ -56,7 +57,7 @@ from payments import models as payment_models
 #
 #         return super(MerchantProfileUpdateView, self).form_valid(form)
 #
-class MerchantApprovalAdditionalStoreView(View):
+class MerchantApprovalAdditionalStoreView(LoginRequiredMixin, IsMerchantMixin, View):
 
     def get(self, request, *args, **kwargs):
 
@@ -78,7 +79,7 @@ class MerchantApprovalAdditionalStoreView(View):
             return redirect('users:userPage')
 
 
-class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
+class MerchantApprovalStoreCreateView(LoginRequiredMixin, IsMerchantMixin, CreateView):
     model = portal_models.Store
     form_class = MerchantStoreForm
     success_url = reverse_lazy('users:merchant_approval_additional_store')
@@ -190,7 +191,7 @@ class MerchantApprovalStoreCreateView(LoginRequiredMixin, CreateView):
             return reverse_lazy('users:merchant_approval_additional_store')
 
 
-class MerchantApprovalVideoFileListView(LoginRequiredMixin, View):
+class MerchantApprovalVideoFileListView(LoginRequiredMixin, IsMerchantMixin, View):
     def get(self, *args, **kwargs):
         try:
             store_qs = portal_models.Store.objects.filter(merchant=self.request.user)

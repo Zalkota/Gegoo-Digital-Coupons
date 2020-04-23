@@ -164,7 +164,7 @@ class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or
 
 # Merchant Store
 
-class MerchantStoreDetailView(LoginRequiredMixin, DetailView):
+class MerchantStoreDetailView(LoginRequiredMixin, IsMerchantMixin, DetailView):
 	model = portal_models.Store
 	template_name = 'portal/merchant/merchant_detail_mpm.html'
 
@@ -182,7 +182,7 @@ class MerchantStoreDetailView(LoginRequiredMixin, DetailView):
 		context['offers'] = portal_models.Offer.objects.filter(author=self.request.user)
 		return context
 
-class MerchantStoreListView(LoginRequiredMixin, ListView):
+class MerchantStoreListView(LoginRequiredMixin, IsMerchantMixin, ListView):
 	model = portal_models.Store
 	template_name = 'portal/merchant/merchant_store_list.html'
 
@@ -204,7 +204,7 @@ class MerchantStoreListView(LoginRequiredMixin, ListView):
 
 
 
-class MerchantStoreUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class MerchantStoreUpdateView(LoginRequiredMixin, SuccessMessageMixin, IsMerchantMixin, UpdateView):
 	model = portal_models.Store
 	form_class = MerchantStoreForm
 	template_name = 'portal/merchant/merchant_store_update.html'
@@ -219,7 +219,7 @@ class MerchantStoreUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateVie
 		return super(MerchantStoreUpdateView, self).form_valid(form)
 
 
-class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, IsMerchantMixin, DeleteView):
 	model = portal_models.Store
 	template_name = 'portal/merchant/merchant_store_delete.html'
 	# success_url = reverse_lazy('users:merchant_store_list')

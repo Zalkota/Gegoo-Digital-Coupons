@@ -25,6 +25,20 @@
             <div class="row">
             {% for object in object_list %}
                     <div class="col-lg-4 col-12 offset-lg-4 mb-5 pb-5 mt-1">
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.is_merchant == False %}
+                                <div class="message bg-orange-200 text-left stripe-orange-600 mb-4 shadow-2">
+                                    <div class="p-4 flex-container">
+                                        <div class="flex-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-2 icon-important"><path class="fill-orange-100" d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20z"/><path class="fill-orange-600" d="M12 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.9c-.13 1.2-1.88 1.2-2 0l-.5-5a1 1 0 0 1 1-1.1h1a1 1 0 0 1 1 1.1l-.5 5z"/></svg>
+                                        </div>
+                                        <div class="flex-box text-dark fs-16 py-2">
+                                            A Merchant Account is required, Please logout of your user account and create a Merchant Account. <a class="text-orange-600" href="{% url 'account_logout' %}" href="">Click here to logout</a> .
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
                         <div class="card card-effects subscription-card-left shadow-2 mt-4">
                             <div class="card-body">
                                 <h4 class="py-3 text-white header fw-6 mb-5">{{ object.nickname }}</h4>
@@ -49,10 +63,14 @@
                                     {% if user.payment_status == True %}
                                       	<a class="btn btn-gray-800-alt btn-block mb-4 text-white disabled">Purchased</a>
                                     {% else %}
+                                        {% if request.user.is_merchant == True %}
                                         <a href="{{ object.get_absolute_url }}" class="btn btn-purple-500-alt btn-block mb-4 fs-16">Purchase</a>
+                                        {% else %}
+                                        <a href="{% url 'account_logout' %}" class="btn btn-purple-500-alt btn-block mb-4 fs-16">Merchant Account Required</a>
+                                        {% endif %}
                       				{% endif %}
                                 {% else %}
-                                        <a href="{% url 'account_login' %}" class="btn btn-purple-500-alt btn-block mb-4">Login</a>
+                                        <a href="{% url 'users:merchant-signup' %}" class="btn btn-purple-500-alt btn-block mb-4">Create Merchant Account</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -93,7 +111,7 @@
                     </div> -->
             {% endfor %}
             </div>
-            <!-- <p class="text-muted " style="font-size: 14px;">Your membership will renew automatically every month. You may cancel your membership at any time from your member dashboard.</p> -->
+
         </div>
     </div>
 </div>
