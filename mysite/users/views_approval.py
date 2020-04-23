@@ -82,6 +82,7 @@ class MerchantApprovalAdditionalStoreView(LoginRequiredMixin, IsMerchantMixin, V
 class MerchantApprovalStoreCreateView(LoginRequiredMixin, IsMerchantMixin, CreateView):
     model = portal_models.Store
     form_class = MerchantStoreForm
+    template_name = "users/approval/merchant_approval_store_create"
     success_url = reverse_lazy('users:merchant_approval_additional_store')
 
     def get(self, request, *args, **kwargs):
