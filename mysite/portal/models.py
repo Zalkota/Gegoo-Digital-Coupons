@@ -304,7 +304,7 @@ class Offer(models.Model):
     title           = models.CharField(max_length=100, blank=False)
     description     = models.TextField(max_length=500, blank=False)
     slug            = models.SlugField(unique=True, blank=True, editable=False)
-    end_date        = models.DateField()
+    end_date        = models.DateField(blank=True, null=True)
     likes           = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
 
     # Creation Fields

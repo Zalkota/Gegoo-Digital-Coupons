@@ -204,7 +204,7 @@ class MerchantStoreListView(LoginRequiredMixin, IsMerchantMixin, ListView):
 
 
 
-class MerchantStoreUpdateView(LoginRequiredMixin, SuccessMessageMixin, IsMerchantMixin, UpdateView):
+class MerchantStoreUpdateView(LoginRequiredMixin, IsMerchantMixin, SuccessMessageMixin,  UpdateView):
 	model = portal_models.Store
 	form_class = MerchantStoreForm
 	template_name = 'portal/merchant/merchant_store_update.html'
@@ -212,14 +212,11 @@ class MerchantStoreUpdateView(LoginRequiredMixin, SuccessMessageMixin, IsMerchan
 	success_url = reverse_lazy('users:merchant_store_list')
 
 	def form_valid(self, form):
-		if form.instance.subscription_status == False:
-			form.instance.status = 5
-		else:
-			form.instance.status = 4
+		form.instance.status = 3
 		return super(MerchantStoreUpdateView, self).form_valid(form)
 
 
-class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, IsMerchantMixin, DeleteView):
+class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 	model = portal_models.Store
 	template_name = 'portal/merchant/merchant_store_delete.html'
 	# success_url = reverse_lazy('users:merchant_store_list')
@@ -258,7 +255,7 @@ class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, IsMerchan
 
 					sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
 					sub.subscription_id         = subscription['id']
-					sub.canceled_at             = subscription['canceled_at']
+					# sub.canceled_at             = subscription['canceled_at'] #TODO THIS IS CAUSING A PROBLEM ON SAVE
 					sub.subscription_item_id    = subscription['items']['data'][0].id
 					sub.subscription_quantity   = subscription['items']['data'][0].quantity
 					sub.plan_id                 = subscription['plan']['id']
@@ -316,13 +313,12 @@ class MerchantOfferListView(LoginRequiredMixin, ListView):
 		offer_list = portal_models.Offer.objects.filter(author=self.request.user)
 		return offer_list
 
-
 class MerchantOfferCreateView(LoginRequiredMixin, SuccessMessageMixin, IsMerchantMixin, CreateView):
 	model = portal_models.Offer
 	fields = [
 		'title',
 		'description',
-		'end_date',
+		# 'end_date', #removed until we add the datepicker tool
 	]
 	template_name = 'portal/offer/merchant_offer_create.html'
 	success_message = "Offer Created"
