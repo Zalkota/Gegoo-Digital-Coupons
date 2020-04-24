@@ -13,7 +13,7 @@
                                 {% if subscription %}
                                     {% if subscription.subscription_status == 'active' %}
                                         <p class="text-secondary fs-14">
-                                            This store is currently <span class="text-danger">inactive</span>. Please upgrade your subscription to begin the approval process for your recently created store(s).
+                                            Please upgrade your subscription to begin the approval process for your recently created store(s).
                                         </p>
                                         <p class="fs-18 fw-4 mb-1">Next Steps:</p>
                                         <p class="fs-14 fw-4 ml-2 mb-2">
@@ -36,7 +36,7 @@
                                         </p>
                                     {% else %}
                                         <p class="text-secondary fs-14">
-                                            It looks like you have purchased a subscription in the past, but your status is <span class="text-danger">{{ subscription.subscription_status }}</span>. This store is currently <span class="text-danger">inactive</span>. Please repurchase a subscription to begin the approval process for your recently created store(s).
+                                            It looks like you have purchased a subscription in the past, but your status is <span class="text-danger">{{ subscription.subscription_status }}</span>. Please repurchase a subscription to begin the approval process for your recently created store(s).
                                         </p>
                                         <p class="fs-18 fw-4 mb-1">Next Steps:</p>
                                         <p class="fs-14 fw-4 ml-2 mb-2">
@@ -54,7 +54,7 @@
                                     {% endif %}
                                 {% else %}
                                     <p class="text-secondary fs-14">
-                                        This store is currently <span class="text-danger">inactive</span>. Please purchase a subscription to begin the approval process for your recently created store(s).
+                                        Please purchase a subscription to begin the approval process for your recently created store(s).
                                     </p>
                                     <p class="fs-18 fw-4 mb-1">Next Steps:</p>
                                     <p class="fs-14 fw-4 ml-2 mb-2">
@@ -78,9 +78,9 @@
                             {% if subscription.subscription_status == 'active' %}
                                 <a href="{% url 'payments:subscription_manage' slug=subscription.slug %}" class="btn btn-secondary-inverted mr-2">Upgrade Subscription</a>
                             {% else %}
-                                <a href="{% url 'payments:plan_list' %}" class="btn btn-secondary-inverted mr-2">No, Let me Checkout</a>
+                                <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-secondary-inverted mr-2" >Create Additional Store</a>
                             {% endif %}
-                            <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-primary-alt mr-2" >Create Additional Store</a>
+                                <a href="{% url 'payments:plan_list' %}" class="btn btn-primary-alt mr-2">No, Let me Checkout</a>
                         </div>
                     </div>
                 </div>
