@@ -15,16 +15,17 @@
           </div>
           <div class="row mb-2">
             <div class="col-md-12">
-              <p>Please select from the stores below to upload your interactive content:</p>
+              <p class="fs-14 text-muted">Please select from the stores below to upload your interactive content:</p>
+              <br>
               {% for store in stores %}
                 <div class="row mb-2">
                   <div class="col-md-6">
                     <h1 class="fs-24 fw-4">{{ store.business_name }}</h1>
                   </div>
                   <div class="col-md-6 d-flex justify-content-center">
-                    <a href="{% url 'files:merchant_video_upload' slug=store.slug %}" class="py-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-cloud-upload"><path class="fill-primary" d="M18 14.97c0-.76-.3-1.51-.88-2.1l-3-3a3 3 0 0 0-4.24 0l-3 3A3 3 0 0 0 6 15a4 4 0 0 1-.99-7.88 5.5 5.5 0 0 1 10.86-.82A4.49 4.49 0 0 1 22 10.5a4.5 4.5 0 0 1-4 4.47z"></path><path class="fill-primary" d="M11 14.41V21a1 1 0 0 0 2 0v-6.59l1.3 1.3a1 1 0 0 0 1.4-1.42l-3-3a1 1 0 0 0-1.4 0l-3 3a1 1 0 0 0 1.4 1.42l1.3-1.3z"></path></svg>
-                        <span class=" fs-14 fw-2">Upload Video</span>
+                    <a href="{% url 'users:merchant_approval_file_select' slug=store.slug %}" class="btn-primary-alt py-1 pl-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-2 icon-cloud-upload"><path class="fill-white" d="M18 14.97c0-.76-.3-1.51-.88-2.1l-3-3a3 3 0 0 0-4.24 0l-3 3A3 3 0 0 0 6 15a4 4 0 0 1-.99-7.88 5.5 5.5 0 0 1 10.86-.82A4.49 4.49 0 0 1 22 10.5a4.5 4.5 0 0 1-4 4.47z"></path><path class="fill-white" d="M11 14.41V21a1 1 0 0 0 2 0v-6.59l1.3 1.3a1 1 0 0 0 1.4-1.42l-3-3a1 1 0 0 0-1.4 0l-3 3a1 1 0 0 0 1.4 1.42l1.3-1.3z"></path></svg>
+                        <span class=" fs-14 fw-2">Upload Content</span>
                     </a>
                   </div>
                 </div>
@@ -34,8 +35,9 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <p>If you dont have anything to upload, take some time to gather some awesome content and upload later!</p>
-              <a href="{% url 'users:userPage' %}" class="btn btn-primary-inverted w-100">Return To Dashboard</a>
+                <hr>
+              <p class="fs-14 text-muted">If you dont have anything to upload, take some time to gather some awesome content and upload later!</p>
+              <a href="{% url 'users:userPage' %}" class="btn btn-primary-inverted w-100">Proceed To Dashboard</a>
             </div>
           </div>
         </div>

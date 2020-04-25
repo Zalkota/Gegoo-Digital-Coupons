@@ -18,8 +18,8 @@ from users.decorators import IsMerchantMixin, IsUserObject
 
 
 #Stripe import key
-STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY_TEST
-STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY_TEST
+STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY
+STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
 
 def get_user_subscription(request):
     try:

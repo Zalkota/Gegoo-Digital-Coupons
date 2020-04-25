@@ -334,16 +334,16 @@ class StoreVideoManager(models.Manager):
         return object
 
 class Store(models.Model):
-    subscription_status     = models.BooleanField(default=False) 
+    subscription_status     = models.BooleanField(default=False)
     status                  = models.PositiveIntegerField(choices=STATUS_CHOICES, default=1)
     merchant                = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern
-    slug                = models.SlugField(unique=True, blank=True, null=True) 
+    slug                = models.SlugField(unique=True, blank=True, null=True)
 
     # Store Attributes
     business_name       = models.CharField(max_length=100)
-    website_url         = models.URLField(max_length=500, blank=True, null=True, help_text='Formatting requires HTTPS:// at the beginning. (ie. HTTPS://www.TheGegoo.com)')
+    website_url         = models.URLField(max_length=500, blank=True, null=True, help_text='Requires HTTPS:// at the beginning. (ie. HTTPS://www.TheGegoo.com)')
     facebook_url        = models.URLField(max_length=500, blank=True, null=True)
     logo                = models.ImageField(upload_to='store-logos/', validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])], null=True, blank=True)
 

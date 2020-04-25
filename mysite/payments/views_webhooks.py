@@ -14,7 +14,7 @@ from payments import models as payments_models
 import stripe
 import datetime
 
-STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY_TEST
+STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
 
 #TODO add to settings variable
 endpoint_secret = 'whsec_vOpYDyI05NhPSnS2xuOmoCcu87jBcC6h'
