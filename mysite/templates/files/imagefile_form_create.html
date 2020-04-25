@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %} Create New Form {% endblock %}
+
+{% block content %}
+<div class="modal fade" id="modal-progress" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Uploading...</h4>
+      </div>
+      <div class="modal-body">
+        <div class="progress">
+          <div class="progress-bar py-4" role="progressbar" style="width: 0%; height: 10px;">0%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="section">
+    <div class="container mb-5">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 px-0">
+          <div class="card card-border stripe-primary-top shadow-5">
+            <div class="border-bottom px-4 py-4">
+                <h2 class="header">Upload Images
+                    <button type="button" id="uploadbutton" class="btn btn-gray-600-alt py-2 js-upload-photos pull-right">
+                       Browse
+                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 ml-1 icon-folder"><path class="fill-gray-500" d="M4 4h7l2 2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><rect width="20" height="12" x="2" y="8" class="fill-gray-500" rx="2"/></svg>
+                    </button>
+                </h2>
+                <span class="text-muted fs-14">Accepted file formats are: PNG, JPEG, & JPG.
+                <br>
+                Max file size: 3MB. </span>
+            </div>
+            <div class="card-body bg-light text-center p-0" >
+
+                {# 1. MESSAGES #}
+
+                <div id="defaultmessage" style="padding-top: 6rem; padding-bottom: 6rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12 mr-4 icon-document"><path class="fill-gray-400" d="M6 2h6v6c0 1.1.9 2 2 2h6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2z"/><polygon class="secondary" points="14 2 20 8 14 8"/></svg>
+                    <h3 class="header text-muted mt-3">Drag Files Here to Upload or browse to choose a file</h3>
+                </div>
+
+                <!-- <div  style="display: none;" id="loadingmessage">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12 mb-4 icon-check" id="successIcon"><circle cx="12" cy="12" r="10" class="fill-green-200"/><path class="fill-green-600" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                    <h3 class="text-muted fs-18" id="loading-message"></h3>
+                </div>
+
+                <div style="display: none;" id="successmessage">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12 mb-4 icon-check" id="successIcon"><circle cx="12" cy="12" r="10" class="fill-green-200"/><path class="fill-green-600" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
+                    <h3 class="text-muted fs-18" id="success-message"></h3>
+                </div> -->
+
+                <div  style="display: none;" id="errormessage">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12 mb-4 icon-important" id="errorIcon"><path class="fill-gray-300" d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20z"/><path class="fill-red-600" d="M12 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1-5.9c-.13 1.2-1.88 1.2-2 0l-.5-5a1 1 0 0 1 1-1.1h1a1 1 0 0 1 1 1.1l-.5 5z"/></svg>
+                    <h3 class="text-muted fs-18" id="error-message"></h3>
+                </div>
+
+                <div id="progressbar" class="text-center mr-auto ml-auto" style="padding-top: 6rem; padding-bottom: 6rem; display: none; max-width: 300px;">
+                    <h3 class="text-muted fs-18" id="loading-message">Uploading..</h3>
+                    <div class="progress mt-4">
+                      <div class="progress-bar gradient-primary py-2 fw-6" role="progressbar" style="width: 0%; height: 10px;">0%</div>
+                    </div>
+                </div>
+
+
+
+              {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #}
+              <input id="fileupload" type="file" name="file" multiple
+                     style="display: none;"
+                     data-url="{% url 'users:merchant_approval_image_upload' slug=store_slug %}"
+                     data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+            </div>
+          </div>
+
+          <div class="card card-border stripe-primary-top shadow-5 my-4"  {% if imagefile_list.exists %} {% else %} style="display: none;" {% endif %} id="successmessage">
+              <div class="card-body p-0 table-responsive">
+                  {# 3. TABLE TO DISPLAY THE UPLOADED IMAGES #}
+                  <table id="gallery" class="table table-hover table-bordered ">
+                    <thead>
+                      <tr>
+                        <th class="p-4">
+                            <span class="header">Successfully Uploaded Files</span>
+                            <a class="btn btn-primary-alt pull-right pl-5" href="{% url 'users:userPage' %}">Finish
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 ml-2 icon-arrow-thick-right-circle"><circle cx="12" cy="12" r="10" class="fill-purple-600"/><path class="fill-purple-700" d="M12 14H7a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h5V8a1 1 0 0 1 1.7-.7l4 4a1 1 0 0 1 0 1.4l-4 4A1 1 0 0 1 12 16v-2z"/></svg>
+                            </a>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for file in imagefile_list %}
+                        <tr>
+                          <td><a href="{{ file.file.url }}" class="pl-3 text-gray-700 fs-14"><i class="fa fa-check text-primary" aria-hidden="true"></i> {{ file.title }}</a>
+                              <a class="pull-right" href="{% url 'users:merchant_image_delete' slug=file.slug %}">
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-trash"><path class="fill-red-400" d="M5 5h14l-.89 15.12a2 2 0 0 1-2 1.88H7.9a2 2 0 0 1-2-1.88L5 5zm5 5a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1zm4 0a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-6a1 1 0 0 0-1-1z"/><path class="fill-red-600" d="M8.59 4l1.7-1.7A1 1 0 0 1 11 2h2a1 1 0 0 1 .7.3L15.42 4H19a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2h3.59z"/></svg>
+                              </a>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+              </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="row mt-3">
+          <div class="offset-lg-2"></div>
+          <div class="col-lg-2">
+              <a class="btn btn-primary-alt py-2 btn-block" id="defaultbutton" href="{% url 'users:merchant_approval_file_select' slug=store_slug %}">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-arrow-thick-left-circle"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-purple-500" d="M12 10h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5v2a1 1 0 0 1-1.7.7l-4-4a1 1 0 0 1 0-1.4l4-4A1 1 0 0 1 12 8v2z"/></svg>
+                  Back
+              </a>
+          </div>
+      </div>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block extrajs %}
+  {# JQUERY FILE UPLOAD SCRIPTS #}
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="{% static 'js/jquery-file-upload/vendor/jquery.ui.widget.js' %}"></script>
+  <script src="{% static 'js/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
+  <script src="{% static 'js/jquery-file-upload/jquery.fileupload.js' %}"></script>
+
+  {# imageS PAGE SCRIPTS #}
+  <script src="{% static 'js/images/basic-upload.js' %}"></script>
+  <!-- <script src="{% static 'js/images/progress-bar-upload.js' %}"></script> -->
+  <!-- <script src="{% static 'js/images/drag-and-drop-upload.js' %}"></script> -->
+
+  {# imageS progress circle #}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+{% endblock %}

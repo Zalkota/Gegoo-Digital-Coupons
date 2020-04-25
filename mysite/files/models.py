@@ -13,29 +13,23 @@ from django.utils.text import slugify
 from django.contrib import messages
 from django.shortcuts import reverse
 
-class FileItem(models.Model):
-    user                            = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    name                            = models.CharField(max_length=120, null=True, blank=True)
-    path                            = models.TextField(blank=True, null=True)
-    size                            = models.BigIntegerField(default=0)
-    file_type                       = models.CharField(max_length=120, null=True, blank=True)
-    timestamp                       = models.DateTimeField(auto_now_add=True)
-    updated                         = models.DateTimeField(auto_now=True)
-    uploaded                        = models.BooleanField(default=False)
-    active                          = models.BooleanField(default=True)
+# random_string_generator
+import random
+import string
+def random_string_generator(size=4, chars=string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
 
-    @property
-    def title(self):
-        return str(self.name)
 
+
+# ***************** VIDEO UPLOAD ***************************************************
 
 def update_filename(instance, filename):
     slug = instance.store.slug
-    path = "store-videos/" + slug + '/'
     today = datetime.now()
-    time_string = today.strftime("%m-%d-%Y %H:-%M:-%S")
+    time_string = today.strftime("%m-%d-%Y")
+    path = slug + "/store-videos/" + time_string + '/'
     # time_string = str(today)
-    format = filename + '_' + time_string
+    format = filename
     return os.path.join(path, format)
 
 # def ValidationResponse():
@@ -49,6 +43,7 @@ def file_size(value): # add this to some file where you can import it from
 
 
 class VideoFile(models.Model):
+    title           = models.CharField(max_length=255, blank=True, null=True)
     store           = models.OneToOneField(Store, on_delete=models.CASCADE, related_name='videofile', null=True)
     file            = models.FileField(upload_to=update_filename, max_length=255, validators=[FileExtensionValidator(['mp4', 'mov']), file_size], help_text="Image must be a .MP4 or .MOV")
     uploaded_at     = models.DateTimeField(auto_now_add=True)
@@ -65,14 +60,77 @@ def pre_save_videofile(sender, **kwargs):
     slug = slugify(kwargs['instance'].store.slug, kwargs['instance'].uploaded_at)
     kwargs['instance'].slug = slug
 
+# *************** IMAGE UPLOAD *******************************************************
 
 
+def update_image_filename(instance, filename):
+    slug = instance.store.slug
+    today = datetime.now()
+    time_string = today.strftime("%m-%d-%Y")
+    path = slug + "/store-images/" + time_string + '/'
+    # time_string = str(today)
+    format = filename
+    return os.path.join(path, format)
 
-class PromotionalVideo(models.Model):
-    title           = models.CharField(max_length=64)
-    video           = models.OneToOneField(VideoFile, on_delete=models.CASCADE)
-    active          = models.BooleanField()
-    created_at      = models.DateTimeField(default=timezone.now, verbose_name="Created at")
+# def ValidationResponse():
+#     data = {'is_valid': False}
+#     return JsonResponse(data)
+
+def image_size(value): # add this to some file where you can import it from
+    limit = 3 * 1024 * 1024
+    if value.size > limit:
+        raise ValidationError(('File size too large, image must be under 3 MB'))
+
+
+class ImageFile(models.Model):
+    title           = models.CharField(max_length=255, blank=True, null=True)
+    store           = models.ForeignKey(Store, on_delete=models.CASCADE, related_name='imagefile', null=True)
+    file            = models.FileField(upload_to=update_image_filename, max_length=255, validators=[FileExtensionValidator(['png', 'jpg', 'jpeg']), image_size], help_text="Image must be a .JPG, PNG, or .JPEG")
+    uploaded_at     = models.DateTimeField(auto_now_add=True)
+    slug            = models.SlugField(unique=True, blank=True)
 
     def __str__(self):
-        return '%s' % (self.title)
+        return '%s' % (self.slug)
+
+    def get_absolute_url(self):
+        return reverse('users:merchant_image_detail', kwargs={'slug': self.slug})
+
+@receiver(pre_save, sender=ImageFile)
+def pre_save_image_file(sender, **kwargs):
+    random_number = random_string_generator()
+    today = datetime.now()
+    string = str(today) + '-' + str(random_number)
+    slug = slugify(string)
+    kwargs['instance'].slug = slug
+    kwargs['instance'].title = kwargs['instance'].file.name
+
+
+# ***************** FILE UPLOAD ***************************************************
+
+def update_downloadable_filename(instance, filename):
+    slug = instance.store.slug
+    today = datetime.now()
+    time_string = today.strftime("%m-%d-%Y")
+    path = slug + "/store-files/" + time_string + '/'
+    # time_string = str(today)
+    format = filename
+    return os.path.join(path, format)
+
+
+class DownloadableFile(models.Model):
+    title           = models.CharField(max_length=255, blank=True, null=True)
+    store           = models.OneToOneField(Store, on_delete=models.CASCADE, related_name='downloadablefile', null=True)
+    file            = models.FileField(upload_to=update_downloadable_filename, max_length=255, validators=[FileExtensionValidator(['pdf', 'zip', 'ppt', 'pptx']), file_size], help_text="File must be PDF, ZIP, or PowerPoint")
+    uploaded_at     = models.DateTimeField(auto_now_add=True)
+    slug            = models.SlugField(unique=True, blank=True)
+
+    def __str__(self):
+        return '%s' % (self.slug)
+
+    def get_absolute_url(self):
+        return reverse('users:merchant_file_detail', kwargs={'slug': self.slug})
+
+@receiver(pre_save, sender=DownloadableFile)
+def pre_save_videofile(sender, **kwargs):
+    slug = slugify(kwargs['instance'].store.slug, kwargs['instance'].uploaded_at)
+    kwargs['instance'].slug = slug

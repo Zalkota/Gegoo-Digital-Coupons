@@ -23,20 +23,55 @@
                 <h4 class="fs-16 fw-6">Filter Choices</h4>
                 <br>
             </div>
+
+            <!-- *********************** CATEGORY FILTER *********************** -->
               <dl>
-              {% if facets.fields.category %}
-                 <dt class="fs-14">Category</dt>
-                 <hr class="my-1">
-                 {% for category in facets.fields.category %}
-                 {% if category.1 != 0 %}
-                 <dd>
-                 <input class="facet " id="{{category.0|cut:" "}}" type="checkbox" name="category" value="{{ category.0 }}"
-                 data-toggle="toggle" /> <span class="fs-14">{{ category.0 }} ({{ category.1 }})</span>
-                 </dd>
-                 {% endif %}
-                 {% endfor %}
-                 {% endif %}
+                {% if facets.fields.category %}
+                    <dt class="fs-14">Category</dt>
+                    <hr class="my-1">
+                    {% for category in facets.fields.category|slice:":5" %}
+                        {% if category.1 != 0 %}
+                            <dd>
+                            <input class="facet " id="{{category.0|cut:" "}}" type="checkbox" name="category" value="{{ category.0 }}"
+                            data-toggle="toggle" /> <span class="fs-14">{{ category.0|title }} ({{ category.1 }})</span>
+                        </dd>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
               </dl>
+
+              <!-- *********************** SUBCATEGORY FILTER *********************** -->
+
+              <dl class="mt-4">
+                {% if facets.fields.subcategory %}
+                    <dt class="fs-14">SubCategory</dt>
+                    <hr class="my-1">
+                    {% for subcategory in facets.fields.subcategory|slice:":5" %}
+                        {% if subcategory.1 != 0 %}
+                            <dd>
+                            <input class="facet " id="{{subcategory.0|cut:" "}}" type="checkbox" name="subcategory" value="{{ subcategory.0 }}"
+                            data-toggle="toggle" /> <span class="fs-14">{{ subcategory.0|title }} ({{ subcategory.1 }})</span>
+                        </dd>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+              </dl>
+
+              <dl class="mt-4">
+                {% if facets.fields.city %}
+                    <dt class="fs-14">City</dt>
+                    <hr class="my-1">
+                    {% for city in facets.fields.city|slice:":5" %}
+                        {% if city.1 != 0 %}
+                            <dd>
+                            <input class="facet " id="{{city.0|cut:" "}}" type="checkbox" name="city" value="{{ city.0 }}"
+                            data-toggle="toggle" /> <span class="fs-14">{{ city.0|title }} ({{ city.1 }})</span>
+                        </dd>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+              </dl>
+
               <div>
                   <input class="btn btn-primary-alt btn-block fs-12 px-3 py-2 pull-right" type="submit" value="Apply filter" onclick="return onFacetChangeApplied();" />
               </div>

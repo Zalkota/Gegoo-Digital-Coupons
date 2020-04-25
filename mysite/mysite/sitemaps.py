@@ -22,7 +22,7 @@ class SupportSitemap(Sitemap):
     changefreq = 'monthly'
 
     def items(self):
-        return ['support:questions_list', 'support:contact-page', 'support:about-page', 'support:contact-landing-page']
+        return ['support:contact-page', 'support:about-page']
 
     def location(self, item):
         return reverse(item)

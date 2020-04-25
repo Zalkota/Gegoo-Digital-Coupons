@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="section-sm">
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-lg-6 offset-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="display-5 fw-5">Delete Video</h2>
+                        <span class="text-secondary fs-14">You are about to permanetly delete the following file: {{ object.title }}.</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-right">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <a class="btn btn-tertiary mr-2" href="{% url 'users:userPage'%}">Cancel</a>
+                                <button class="btn btn-danger-alt mr-2" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

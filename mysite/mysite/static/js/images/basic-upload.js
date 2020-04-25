@@ -37,10 +37,13 @@ $(function () {
           )
 
           $("#defaultbutton").hide()
-          $("#uploadbutton").hide()
-          $("#defaultmessage").hide()
+          // $("#uploadbutton").hide()
           $("#errormessage").hide()
-          console.log('Success')
+
+          $("#gallery tbody").prepend(
+            "<tr><td><a href='" + data.result.url + "'class='pl-3 text-gray-700 fs-14'><i class='fa fa-check text-primary' aria-hidden='true'></i> " + data.result.name + "</a></td></tr>")
+
+          console.log('test')
       }
       if (! (data.result.is_valid)) {
 

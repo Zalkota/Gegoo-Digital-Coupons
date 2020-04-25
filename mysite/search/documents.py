@@ -19,10 +19,11 @@ class StoreDocument(Document):
         model = Store # The model associated with this Document
 
         fields = [
-            'color',
+            'title',
             'city',
             'description',
-            'categories',
+            'category',
+            'subcategory',
             'business_name'
         ]
 

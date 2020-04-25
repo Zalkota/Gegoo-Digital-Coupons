@@ -19,7 +19,7 @@
                 {% endwith %}
             {% endblock %}
         </title>
-        <meta name="description" content="Gegoo Stores offers coupons to stores near by." />
+        <meta name="description" content="Business Directory, Product & Service Finders, Small business and service Advertisments. Connecting you to Anything and Everything. Ask us what we can do for you!" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
@@ -118,6 +118,25 @@
         <script type="text/javascript" src="{% static 'js/search/jquery.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/search/jquery.autocomplete.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/search/our_search_code.js' %}"></script>
+
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164356190-1"></script>
+
+        <script>
+
+          window.dataLayer = window.dataLayer || [];
+
+          function gtag(){dataLayer.push(arguments);}
+
+          gtag('js', new Date());
+
+
+
+          gtag('config', 'UA-164356190-1');
+
+        </script>
 
 
         {% block extrajs %}

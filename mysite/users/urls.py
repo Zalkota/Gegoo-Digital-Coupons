@@ -46,21 +46,30 @@ urlpatterns = [
     #Merchant Signup Forms
     path('merchant-signup/', users_views.MerchantSignUpView.as_view(), name='merchant-signup'),
 
-    # path('consumer-signup/', ConsumerSignUpView.as_view(), name='consumer-signup'),
-
     #Merchant Approval Views
-    path('approval/store/create/additional/',  users_approval_views.MerchantApprovalAdditionalStoreView.as_view(), name='merchant_approval_additional_store'),
     path('approval/store/create/', users_approval_views.MerchantApprovalStoreCreateView.as_view(), name='merchant_approval_store_create'),
-    path('approval/store/media-upload/', users_approval_views.MerchantApprovalVideoFileListView.as_view(), name='merchant_approval_videofile_list'),
-    path('approval/video-upload/store/<slug:slug>/', files_views.VideoFileUploadView.as_view(), name='merchant_approval_video_upload'),
+    path('approval/store/create/additional/',  users_approval_views.MerchantApprovalAdditionalStoreView.as_view(), name='merchant_approval_additional_store'),
+    path('approval/store/upload/content/<slug:slug>/', files_views.MerchantContentDetailView.as_view(), name='merchant_content_detait'),
+    path('approval/store/upload/file-type/<slug:slug>/', files_views.FileUploadSelector.as_view(), name='merchant_approval_file_select'),
+    path('approval/store/upload/image/<slug:slug>/', files_views.ImageFileUploadView.as_view(), name='merchant_approval_image_upload'),
+    path('approval/store/upload/video/<slug:slug>/', files_views.VideoFileUploadView.as_view(), name='merchant_approval_video_upload'),
+    path('approval/store/upload/file/<slug:slug>/', files_views.FileUploadView.as_view(), name='merchant_approval_file_upload'),
+
+    #Video
+    path('my-video/<slug:slug>/delete', files_views.MerchantVideoFileDeleteView.as_view(), name='merchant_video_delete'),
+    path('my-video/<slug:slug>/', files_views.MerchantVideoFileDetailView.as_view(), name='merchant_video_detail'),
+
+    #Images
+    path('my-images/<slug:slug>/delete', files_views.MerchantImageFileDeleteView.as_view(), name='merchant_image_delete'),
+    path('my-images/<slug:slug>/', files_views.MerchantImageFileDetailView.as_view(), name='merchant_image_detail'),
+
+    #Downloadable Content
+    path('my-files/<slug:slug>/delete', files_views.MerchantFileDeleteView.as_view(), name='merchant_file_delete'),
+    path('my-files/<slug:slug>/', files_views.MerchantFileDetailView.as_view(), name='merchant_file_detail'),
 
     #Merchant Testimonials
     path('my-reviews/', portal_views.MerchantTestimonialListView.as_view(), name='merchant_testimonial_list'),
     path('new-review/<slug:slug>/', portal_views.MerchantTestimonialCreateView.as_view(), name='merchant_testimonial_create'),
-
-    #Merchant Media
-    path('my-video/<slug:slug>/delete', files_views.MerchantVideoFileDeleteView.as_view(), name='merchant_video_delete'),
-    path('my-video/<slug:slug>/', files_views.MerchantVideoFileDetailView.as_view(), name='merchant_video_detail'),
 
     #Connections
     path('connect/<str:operator>/<int:pk>', users_views.ChangeConnections, name='change_connections'),

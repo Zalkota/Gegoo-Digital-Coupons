@@ -15,9 +15,13 @@ class StoreIndex(indexes.SearchIndex, indexes.Indexable):
 
     business_name = indexes.EdgeNgramField(model_attr='business_name')
     description = indexes.EdgeNgramField(model_attr="description", null=True)
-    category = indexes.CharField(model_attr='category')
-    city = indexes.CharField(model_attr='city')
+
     updated_at = indexes.DateTimeField(model_attr='updated_at')
+
+    #Faceted Objects
+    category = indexes.CharField(model_attr='category', faceted=True)
+    subcategory = indexes.CharField(model_attr='subcategory', faceted=True)
+    city = indexes.CharField(model_attr='city', faceted=True)
 
     # for auto complete
     content_auto = indexes.EdgeNgramField(model_attr='business_name')

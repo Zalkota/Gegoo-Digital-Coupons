@@ -54,26 +54,26 @@
                 </div>
             </div>
             <div class="flex-box mx-2">
-                <div class="card {% if 'beauty' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
-                    <a href="{% url 'portal:category_detail' slug='beauty' %}">
+                <div class="card {% if 'hygiene' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='hygiene' %}">
                         <div class=" text-center vertical-container">
                             <div class="vertical-alignment">
-                                <i class="fa fa-scissors fs-28 pt-1" aria-hidden="true"></i>
+                                <i class="fa fa-heart fs-28 pt-1" aria-hidden="true"></i>
                                 <br>
-                                Beauty
+                                Hygiene
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
             <div class="flex-box mx-2">
-                <div class="card {% if 'health' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
-                    <a href="{% url 'portal:category_detail' slug='health' %}">
+                <div class="card {% if 'professional' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='professional' %}">
                         <div class=" text-center vertical-container">
                             <div class="vertical-alignment">
-                                <i class="fa fa-heart fs-28 pt-1" aria-hidden="true"></i>
+                                <i class="fa fa-balance-scale fs-28 pt-1" aria-hidden="true"></i>
                                 <br>
-                                Health
+                                Professional
                             </div>
                         </div>
                     </a>
@@ -162,24 +162,24 @@
                 </div>
             </div>
             <div class="flex-box mx-1">
-                <div class="{% if 'beauty' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
-                    <a href="{% url 'portal:category_detail' slug='beauty' %}">
+                <div class="{% if 'hygiene' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='hygiene' %}">
                         <div class=" text-center vertical-container">
                             <div class="vertical-alignment">
-                                <i class="fa fa-scissors fs-16 mr-2" aria-hidden="true"></i>
-                                Beauty
+                                <i class="fa fa-heart fs-16 mr-2" aria-hidden="true"></i>
+                                Hygiene
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
             <div class="flex-box mx-1">
-                <div class="{% if 'health' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
-                    <a href="{% url 'portal:category_detail' slug='health' %}">
+                <div class="{% if 'professional' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='professional' %}">
                         <div class=" text-center vertical-container">
                             <div class="vertical-alignment">
-                                <i class="fa fa-heart fs-16 mr-2" aria-hidden="true"></i>
-                                Health
+                                <i class="fa fa-balance-scale fs-16 mr-2" aria-hidden="true"></i>
+                                Professional
                             </div>
                         </div>
                     </a>

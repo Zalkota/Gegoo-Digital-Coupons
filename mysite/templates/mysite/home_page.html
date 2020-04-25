@@ -2,6 +2,7 @@
 {% load static %}
 {% load location_extra %}
 
+{% block title %} The Gegoo {% endblock %}
 {% block body_class %} Shop Businesses and Services on the Gegoo{% endblock %}
 
 {% block extra_styles %}
@@ -35,32 +36,33 @@
                 </video>
             </div>
         </div>
-        <div class="col-lg-4 col-12">
-            <div class="card title-container border-radius-100">
+        <div class="col-lg-4 col-12 ">
+            <div class="card bg-white border-radius-100 p-0">
                 <div class="row">
-                    <div class="col-4">
-                        <img src="{{ data.logo_1 }}" id="video_logo" alt="featured store logo">
+                    <div class="col-12">
+                        <img class="img-fluid" src="{{ data.logo_1 }}" id="video_logo" alt="featured store logo">
                     </div>
-                    <div class="col-8">
-                        <h3 class="text-white fw-6 fs-20 fw-6" id="video_title">{{ data.store_1 }}</h3>
-                        <h4 class="text-white fw-4 fs-14" id="video_location">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-white" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-white" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
-                            {{ data.location_1 }}
-                        </h4>
-                        <a href="{{ data.url_1 }}" class="text-white fs-14" id="video_url">Visit Store</a>
+                    <div class="col-12">
+                        <div class="card-body pb-0 pt-3 text-center">
+                            <h3 class="fs-24 fw-6 text-dark" id="video_title">{{ data.store_1 }}
+                            <br>
+                        <span class="fs-14"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                        {{ data.location_1 }}</span>
+                        </div>
                     </div>
-                    <div class="col-lg-12 mt-3">
-                      <div class="card shadow-1 bg-gray-200">
-                          <div class="card-body py-3">
-                            <h3 class="subheader text-dark text-center">
+                    <div class="col-lg-12">
+                      <div class="card-body text-center pt-0 mt-0">
+                            <a href="{{ data.url_1 }}" class="btn-primary-alt shadow-1 btn-block fs-16 my-3" id="video_url">
+                               View Details
+                            </a>
+                            <a href="{{ data.url_1 }}" class="fs-16 btn-block btn-primary-alt  shadow-1 ">
                                 Use Code: <span class="fw-6" id="video_coupon">{{ data.coupon_code_1 }}</span>
-                            </h3>
-                          </div>
+                            </a>
                       </div>
                     </div>
                 </div>
             </div>
-            <div class="bg-white card-border stripe-primary shadow-5 mt-3 border-radius-100">
+            <!-- <div class="bg-white card-border stripe-primary shadow-5 mt-3 border-radius-100">
                 <div class="card-body">
                     <h3 class="header text-primary">
                         <span class="text-gray-700">Gegoo</span> Coupons
@@ -76,7 +78,7 @@
                         <p class="fs-16 text-gray-700">Earn Gegoo points for redeeming coupon codes and uploading receipts from your recent purchase!</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         </div>
     </div>
@@ -320,7 +322,7 @@
                 $('#video_container').attr('src' , data.video_url_5)
                 $('#video')[0].load()
                 $("#video_title").text(
-                  data.store_3
+                  data.store_5
                 )
                 console.log(x)
             }

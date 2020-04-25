@@ -12,13 +12,13 @@
         <div class="col-lg-8 offset-lg-2">
           <div class="card card-border stripe-primary-top shadow-5">
               <div class="border-bottom px-4 py-4">
-                  <h2 class="header">Upload a Video
+                  <h2 class="header">Upload Downloadable File
                       <button type="button" id="uploadbutton" class="btn btn-gray-600-alt py-2 js-upload-photos pull-right">
                          Browse
                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 ml-1 icon-folder"><path class="fill-gray-500" d="M4 4h7l2 2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><rect width="20" height="12" x="2" y="8" class="fill-gray-500" rx="2"/></svg>
                       </button>
                   </h2>
-                  <span class="text-muted fs-14">Accepted file formats are: MP4.
+                  <span class="text-muted fs-14">Accepted file formats are: ZIP, PDF, PPT.
                   <br>
                   Max file size: 50MB.</span>
               </div>
@@ -57,7 +57,7 @@
               {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #}
               <input id="fileupload" type="file" name="file" multiple
                      style="display: none;"
-                     data-url="{% url 'users:merchant_approval_video_upload' store_slug %}"
+                     data-url="{% url 'users:merchant_approval_file_upload' store_slug %}"
                      data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
               </div>
             </div>

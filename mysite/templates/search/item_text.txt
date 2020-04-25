@@ -1,2 +1,5 @@
 {{ object.business_name }}
 {{ object.description|default:"1" }}
+{{ object.category }}
+{{ object.subcategory }}
+{{ object.city }}

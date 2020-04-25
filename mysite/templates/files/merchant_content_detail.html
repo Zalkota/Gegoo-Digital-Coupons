@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <section class="section text-left">
+                    <div class="container" data-aos="fade-up">
+                        <div class="text text-center mb-5">
+                           <h1 class="section-header mb-3">{{ object.business_name }} <br>
+                               <span class="text-secondary fw-4 fs-16">Uploaded content for {{ object.business_name}} in {{ object.city }}, {{ object.state}}</span>
+                           </h1>
+                          <div class="hr-primary-sm mr-auto ml-auto"></div>
+
+                        </div>
+                        <div class="row pt-4">
+                            <div class="col-lg-8 offset-lg-2 text-left mb-5">
+
+                                <div class="card shadow-5 card-border accordion mb-3" id="myAccordion">
+                                    <div class="card-header" id="headingOne">
+                                        <h3 class="header">Video
+                                          <button type="button" class="pull-right btn-information-dropdown collapsed" data-toggle="collapse" data-target="#collapseOne"><i class="fa fa-plus text-primary" aria-hidden="true"></i></button>
+                                      </h3>
+
+                                    </div>
+                                    <div id="collapseOne" class="collapse card-body" aria-labelledby="headingOne" data-parent="#myAccordion">
+                                        <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ AwsBucketMediaURL }}{{ object.store.logo }}">
+                            				<source src="{{ AwsBucketMediaURL }}{{ object.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
+                        				</video>
+                                        <a href="{% url 'users:merchant_video_delete' object.slug %}" class="btn btn-danger-alt btn-block pr-3">Delete Video
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 ml-1 icon-close-circle"><circle cx="12" cy="12" r="10" class="fill-red-300"/><path class="fill-red-700" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="card shadow-5 card-border accordion mb-3" id="myAccordion">
+                                    <div class="card-header" id="headingTwo">
+                                        <h3 class="header">Uploaded Images
+                                          <button type="button" class="pull-right btn-information-dropdown collapsed" data-toggle="collapse" data-target="#collapseTwo"><i class="fa fa-plus text-primary" aria-hidden="true"></i></button>
+                                        </h3>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse card-body" aria-labelledby="headingTwo" data-parent="#myAccordion">
+                                          <div class="row">
+                                            {% for object in image_list %}
+                                            <div class="col-lg-3">
+                                                <img class="mb-3" style="width: 100%;" src="{{ object.file.url }}" alt="User Uploaded images">
+                                            </div>
+                                            {% endfor %}
+                                          </div>
+                                    </div>
+                                </div>
+
+                                <div class="card shadow-5 card-border accordion" id="myAccordion">
+                                    <div class="card-header" id="headingThree">
+                                        <h3 class="header">Downloadable Content
+                                          <button type="button" class="pull-right btn-information-dropdown collapsed" data-toggle="collapse" data-target="#collapseThree"><i class="fa fa-plus text-primary" aria-hidden="true"></i></button>
+                                        </h3>
+                                    </div>
+                                    <div id="collapseThree" class="collapse card-body" aria-labelledby="headingThree" data-parent="#myAccordion">
+                                        <div class="row">
+                                          <div class="col-lg-12">
+                                              <a href="{{ downloadablefile.file.url }}">{{ downloadablefile.title }}</a>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <div class="row ">
+                    <div class="offset-lg-2"></div>
+                    <div class="col-lg-3 pull-left">
+                        <a class="btn btn-primary-alt btn-block" id="defaultbutton" href="{% url 'users:userPage' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-arrow-thick-left-circle"><circle cx="12" cy="12" r="10" class="fill-transparent"/><path class="fill-purple-500" d="M12 10h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5v2a1 1 0 0 1-1.7.7l-4-4a1 1 0 0 1 0-1.4l4-4A1 1 0 0 1 12 8v2z"/></svg>
+                            Back
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

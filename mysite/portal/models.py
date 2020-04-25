@@ -56,7 +56,7 @@ PROMOTION_CHOICES = (
 CATEGORY_CHOICES = (
     ('ALL', 'All Services'),
     ('AUTO', 'Auto'),
-    ('BEAUTY', 'Beauty'),
+    ('HYGIENE', 'Hygiene'),
     ('COMMUNITY', 'Community'),
     ('CONSTRUCTION', 'Construction'),
     ('FOOD', 'Food'),
@@ -67,6 +67,7 @@ CATEGORY_CHOICES = (
     ('HOME', 'Home Improvement'),
     ('PETS', 'Pets'),
     ('RETAIL', 'Retail'),
+    ('PROFESSIONAL', 'Professional'),
 )
 
 ONE = 1
@@ -342,9 +343,9 @@ class Store(models.Model):
 
     # Store Attributes
     business_name       = models.CharField(max_length=100)
-    website_url         = models.URLField(max_length=500, blank=True, null=True)
+    website_url         = models.URLField(max_length=500, blank=True, null=True, help_text='Formatting requires HTTPS:// at the beginning. (ie. HTTPS://www.TheGegoo.com)')
     facebook_url        = models.URLField(max_length=500, blank=True, null=True)
-    logo                = models.ImageField(upload_to='store-logos/', validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])], null=True)
+    logo                = models.ImageField(upload_to='store-logos/', validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])], null=True, blank=True)
 
 
     category            = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)

@@ -15,8 +15,8 @@ from .config_s3_aws import (
     AWS_UPLOAD_SECRET_KEY,
     AWS_S3_SIGNATURE_VERSION,
 )
-from .models import FileItem, VideoFile
-from .forms import VideoFileForm
+from .models import DownloadableFile, VideoFile, ImageFile
+from .forms import ImageFileForm, VideoFileForm, DownloadableFileForm
 from portal.models import Store
 
 
@@ -29,7 +29,7 @@ from django.http import JsonResponse
 import json
 from django.contrib import messages
 from django.shortcuts import redirect
-
+from users.decorators import IsMerchantMixin, IsUserObject
 
 from django.core.exceptions import ValidationError
 
@@ -41,14 +41,10 @@ class VideoFileUploadView(View, LoginRequiredMixin):
         store_slug = self.kwargs['slug']
         store_qs = Store.objects.get(slug=store_slug)
 
-        if request.user.merchant_profile.status != 'APPROVED':
-            messages.warning(self.request, "Account approval required to upload a video, please check back in 24 hours.")
-            return redirect('/dashboard/')
-
         try:
-
             video = store_qs.videofile
             if store_qs.videofile.file != None:
+                messages.warning(self.request, "Video already exists, please delete it before uploading a new one. Visit 'View Content' to delete.")
                 return redirect('/dashboard/')
         except:
             context = {
@@ -70,6 +66,10 @@ class VideoFileUploadView(View, LoginRequiredMixin):
             videofile.store = store_qs
             videofile = form.save()
             data = {'is_valid': True, 'url': videofile.file.url}
+
+            user = store_qs.merchant.merchant_profile
+            user.content_uploaded = True
+            user.save()
         else:
             if ValidationError:
                 # returns ValdiationError Message as a Json Object
@@ -95,6 +95,168 @@ class MerchantVideoFileDeleteView(LoginRequiredMixin, DeleteView):
 class MerchantVideoFileDetailView(DetailView):
 	model = VideoFile
 	template_name = 'files/merchant_video_detail.html'
+
+
+# ***************** IMAGE UPLOAD ************************
+
+class ImageFileUploadView(View, LoginRequiredMixin):
+
+    def get(self, request, *args, **kwargs):
+        store_slug = self.kwargs['slug']
+        store = Store.objects.get(slug=store_slug)
+        imagefile_list = ImageFile.objects.filter(store__slug=store_slug)
+
+        context = {
+        "imagefile_list": imagefile_list,
+        "store_slug": store_slug,
+        "store": store,
+        }
+        return render(self.request, 'files/imagefile_form_create.html', context)
+
+
+    def post(self, request, *args, **kwargs):
+        form = ImageFileForm(self.request.POST, self.request.FILES)
+        # user = request.user
+        store_slug = self.kwargs['slug']
+        store_qs = Store.objects.get(slug=store_slug)
+
+        if form.is_valid():
+            imagefile = form.save(commit=False)
+            imagefile.store = store_qs
+            imagefile = form.save()
+            data = {'is_valid': True, 'name': imagefile.title, 'url': imagefile.file.url }
+
+            user = store_qs.merchant.merchant_profile
+            user.content_uploaded = True
+            user.save()
+        else:
+            if ValidationError:
+                # returns ValdiationError Message as a Json Object
+                error = form.errors.as_json()
+
+                # Loads Json data from a string
+                error_json_object = json.loads(error)
+                print(error_json_object)
+                message = error_json_object['file'][0]['message']
+
+                data = {'is_valid': False, 'message': message}
+        return JsonResponse(data)
+
+class MerchantImageFileDeleteView(LoginRequiredMixin, DeleteView):
+    model = ImageFile
+    template_name = 'files/merchant_image_delete.html'
+    success_url = reverse_lazy('users:userPage')
+    success_message = "Image Deleted"
+
+
+class MerchantImageFileDetailView(DetailView):
+	model = ImageFile
+	template_name = 'files/merchant_video_detail.html'
+
+
+# ***************** DOWNLOADABLE FILE UPLOAD ************************
+
+
+class FileUploadView(View, LoginRequiredMixin):
+
+    def get(self, request, *args, **kwargs):
+        store_slug = self.kwargs['slug']
+        store_qs = Store.objects.get(slug=store_slug)
+        store = Store.objects.get(slug=store_slug)
+
+        try:
+            file = store_qs.downloadablefile
+            if store_qs.downloadablefile.file != None:
+                messages.warning(self.request, "File already exists, please delete it before uploading a new one. Visit 'View Content' to delete.")
+                return redirect('/dashboard/')
+        except:
+            context = {
+            "store_slug": store_slug,
+            "store": store,
+            }
+            return render(self.request, 'files/downloadable_files/file_form_create.html', context)
+
+
+    def post(self, request, *args, **kwargs):
+        form = DownloadableFileForm(self.request.POST, self.request.FILES)
+        # user = request.user
+        store_slug = self.kwargs['slug']
+        store_qs = Store.objects.get(slug=store_slug)
+
+        if form.is_valid():
+            downloadablefile = form.save(commit=False)
+            downloadablefile.store = store_qs
+            downloadablefile = form.save()
+            data = {'is_valid': True, 'url': downloadablefile.file.url}
+
+            user = store_qs.merchant.merchant_profile
+            user.content_uploaded = True
+            user.save()
+        else:
+            if ValidationError:
+                # returns ValdiationError Message as a Json Object
+                error = form.errors.as_json()
+
+                # Loads Json data from a string
+                error_json_object = json.loads(error)
+                print(error_json_object)
+                message = error_json_object['file'][0]['message']
+
+                data = {'is_valid': False, 'message': message}
+        return JsonResponse(data)
+
+
+class MerchantFileDeleteView(LoginRequiredMixin, DeleteView):
+    model = DownloadableFile
+    template_name = 'files/downloadable_files/merchant_file_delete.html'
+    success_url = reverse_lazy('users:userPage')
+    success_message = "File Deleted"
+
+
+class MerchantFileDetailView(DetailView):
+	model = DownloadableFile
+	template_name = 'files/downloadable_files/merchant_file_detail.html'
+
+
+#****************** FILE UPLOAD SELECTOR *********************************
+
+class FileUploadSelector(LoginRequiredMixin, IsMerchantMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        store_slug = self.kwargs['slug']
+        context = {
+            'store_slug': store_slug
+        }
+        return render(self.request, 'files/merchant_file_select.html', context)
+
+
+class MerchantContentDetailView(LoginRequiredMixin, IsMerchantMixin, View):
+    def get(self, request, *args, **kwargs):
+        store_slug = self.kwargs['slug']
+        store_qs = Store.objects.get(slug=store_slug)
+
+        downloadablefile_qs = []
+        videofile_qs = []
+        try:
+            downloadablefile_qs = DownloadableFile.objects.get(store__slug=store_slug)
+        except:
+            pass
+        try:
+            videofile_qs = VideoFile.objects.get(store__slug=store_slug)
+        except:
+            pass
+        imagefile_qs = ImageFile.objects.filter(store__slug=store_slug)
+
+
+        context = {
+            'downloadablefile': downloadablefile_qs,
+            'imagefile': imagefile_qs,
+            'videofile': videofile_qs,
+            'store_slug': store_slug,
+            'object': store_qs
+        }
+        return render(self.request, 'files/merchant_content_detail.html', context)
+
 
 
 class FilePolicyAPI(APIView):

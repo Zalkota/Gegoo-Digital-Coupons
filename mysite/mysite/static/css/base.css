@@ -11495,6 +11495,11 @@ hr.hr-2 {
   background-image: -o-linear-gradient(120deg, #805AD5, #7505AB);
   background-image: linear-gradient(120deg, #805AD5, #7505AB); }
 
+.gradient-alt {
+  background-image: -webkit-linear-gradient(120deg, #8e8e8e, #5b5b5b);
+  background-image: -o-linear-gradient(120deg, #8e8e8e, #5b5b5b);
+  background-image: linear-gradient(120deg, #8e8e8e, #5b5b5b); }
+
 .display-none {
   display: none; }
 
@@ -11805,6 +11810,9 @@ hr.hr-2 {
 
 .w-12 {
   width: 3rem; }
+
+.w-16 {
+  width: 5rem; }
 
 .w-316 {
   width: 4rem; }

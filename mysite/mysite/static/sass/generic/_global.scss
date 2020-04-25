@@ -831,6 +831,12 @@ hr.hr-2 {
     background-image: linear-gradient($gradient-primary);
 }
 
+.gradient-alt {
+    background-image: -webkit-linear-gradient($gradient-alt);
+    background-image: -o-linear-gradient($gradient-alt);
+    background-image: linear-gradient($gradient-alt);
+}
+
 .display-none {
     display: none;
 }

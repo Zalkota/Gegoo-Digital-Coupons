@@ -102,9 +102,9 @@ STATES = (
         )
 
 class User(AbstractUser):
-    is_merchant     = models.BooleanField('is_merchant', default=False)
-    # is_approved     = models.BooleanField('merchant_is_approved', default=False)
-    city = models.ForeignKey(City, related_name='user_city', default='1', on_delete=models.CASCADE, null=True, blank=True)
+    is_merchant         = models.BooleanField('is_merchant', default=False)
+    city                = models.ForeignKey(City, related_name='user_city', default='1', on_delete=models.CASCADE, null=True, blank=True)
+
 
     # User Location
     location            = models.PointField(srid=4326, null=True, blank=True)
@@ -147,6 +147,7 @@ class MerchantProfile(models.Model): #Is a Profile Necessary?
     user            = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='merchant_profile')
     customer_id     = models.CharField(max_length=200, null=True, blank=True)
     status          = models.CharField(choices=STATUS_CHOICES, default='INITIAL', max_length=20)
+    content_uploaded    = models.BooleanField('Has this user uploaded content?', default=False)
 
     payment_status  = models.BooleanField(default=False)
 

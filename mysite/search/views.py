@@ -32,9 +32,8 @@ def autocomplete(request):
 
 class FacetedSearchView(BaseFacetedSearchView):
     form_class = FacetedOfferSearchForm
-    facet_fields = ['category']
+    facet_fields = ['category', 'subcategory', 'city']
     template_name = 'search/search_result.html'
-
     context_object_name = 'object_list'
     #
     #

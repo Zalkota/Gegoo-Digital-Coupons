@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="section-sm">
+    <div class="container">
+
+        <div class="row">
+            <div class="offset-lg-2"></div>
+            <div class="col-lg-8">
+                <h1 class="fs-24 fw-6 mb-3">Select a File Type</h1>
+                <div class="row my-5">
+                    <div class="col-lg-4">
+                        <a href="{% url 'users:merchant_approval_video_upload' slug=store_slug %}" claass="">
+                            <div class="card shadow-5 card-effects stripe-primary-top card-border">
+                                <div class="card-body p-4 text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-16 icon-videocam"><path class="fill-purple-500" d="M13.59 12l6.7-6.7A1 1 0 0 1 22 6v12a1 1 0 0 1-1.7.7L13.58 12z"/><rect width="14" height="14" x="2" y="5" class="fill-purple-600" rx="2"/></svg>
+                                    <br>
+                                    <h3 class="subheader mt-3">Upload Video</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a href="{% url 'users:merchant_approval_image_upload' slug=store_slug %}" claass="">
+                            <div class="card shadow-5 card-effects stripe-primary-top card-border">
+                                <div class="card-body p-4 text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-16 icon-folder"><path class="fill-purple-500" d="M4 4h7l2 2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><rect width="20" height="12" x="2" y="8" class="fill-primary" rx="2"/></svg>
+                                    <br>
+                                    <h3 class="subheader mt-3">Upload Image</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a href="{% url 'users:merchant_approval_file_upload' slug=store_slug %}" claass="">
+                            <div class="card shadow-5 card-effects stripe-primary-top card-border">
+                                <div class="card-body p-4 text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-16 icon-cloud-download"><path class="fill-purple-500" d="M15 15v-3a3 3 0 0 0-6 0v3H6a4 4 0 0 1-.99-7.88 5.5 5.5 0 0 1 10.86-.82A4.49 4.49 0 0 1 22 10.5a4.5 4.5 0 0 1-4.5 4.5H15z"/><path class="fill-primary" d="M11 18.59V12a1 1 0 0 1 2 0v6.59l1.3-1.3a1 1 0 0 1 1.4 1.42l-3 3a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l1.3 1.3z"/></svg>
+                                    <br>
+                                    <h3 class="subheader mt-3">Downloadable File</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="offset-lg-2"></div>
+        </div>
+        <div class="py-5 hide"></div>
+        <div class="py-5 hide"></div>
+    </div>
+</div>
+{% endblock content %}
