@@ -8,6 +8,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 from portal import models as portal_models
 
+from portal.fields import GroupedModelChoiceField
 
 # Customize Crispy forms
 from crispy_forms.helper import FormHelper
@@ -20,6 +21,8 @@ from crispy_forms.bootstrap import (
 
 
 class MerchantStoreForm(forms.ModelForm):
+    subcategory = GroupedModelChoiceField(queryset=portal_models.Subcategory.objects.all(), choices_groupby='category')
+
     class Meta:
        model = portal_models.Store
        fields = [
