@@ -12,12 +12,7 @@ class PlanAdmin(admin.ModelAdmin):
         ]
 
 class SubscriptionAdmin(admin.ModelAdmin):
-    list_display = ('user_and_subscription_id', 'subscription_status', 'payment_status')
-
-    def user_and_subscription_id(self, obj):
-        user_full_name = '%s %s' % (obj.user.first_name, obj.user.last_name)
-        id = user_full_name + ' - %s' % (obj.subscription_id)
-        return id
+    list_display = ('subscription_id', 'subscription_status', 'payment_status')
 
 admin.site.register(payments_models.Plan, PlanAdmin)
 admin.site.register(payments_models.Subscription, SubscriptionAdmin)

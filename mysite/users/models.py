@@ -28,8 +28,8 @@ from django.contrib.gis.db.models.functions import Distance
 from portal import models as portal_models
 
 #Stripe import key
-STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY
-STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
+STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY_TEST
+STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY_TEST
 
 STATUS_CHOICES = (
     ('INITIAL', 'Initial'),

@@ -334,12 +334,12 @@ class StoreVideoManager(models.Manager):
         return object
 
 class Store(models.Model):
-    subscription_status     = models.BooleanField(default=False) #TODO This is not needed, we can just verify
+    subscription_status     = models.BooleanField(default=False) 
     status                  = models.PositiveIntegerField(choices=STATUS_CHOICES, default=1)
     merchant                = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     # URL Pattern
-    slug                = models.SlugField(unique=True, blank=True, null=True) #MAKE THIS NOT EDITABLE
+    slug                = models.SlugField(unique=True, blank=True, null=True) 
 
     # Store Attributes
     business_name       = models.CharField(max_length=100)

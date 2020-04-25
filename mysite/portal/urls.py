@@ -15,7 +15,7 @@ urlpatterns = [
     path('store/<slug:slug>/', portal_views.ConsumerStoreDetailView.as_view(), name='consumer_store_detail'),
 
     #Connections
-    path('store-connect/', portal_views.StoreChangeConnectionsAjax, name='store_change_connections'),
-    path('offer-connect/', portal_views.StoreOfferAjax, name='offer_change_connections')
+    path('store-connect/', portal_views.StoreChangeConnectionsAjax.as_view(), name='store_change_connections'),
+    path('offer-connect/', portal_views.StoreOfferAjax.as_view(), name='offer_change_connections')
 
 ]

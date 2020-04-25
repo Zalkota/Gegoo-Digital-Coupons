@@ -18,8 +18,8 @@ from users.decorators import IsMerchantMixin, IsUserObject
 
 
 #Stripe import key
-STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY
-STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
+STRIPE_PUB_KEY = settings.STRIPE_PUB_KEY_TEST
+STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY_TEST
 
 def get_user_subscription(request):
     try:
@@ -539,6 +539,8 @@ class Charge(LoginRequiredMixin, IsMerchantMixin, View):
     def get(self, request, *args, **kwargs):
 
         subscription_qs = payments_models.Subscription.objects.filter(user=self.request.user)
+        store_qs = portal_models.Store.objects.filter(merchant=self.request.user, status=3, subscription_status=True)
+
         if subscription_qs.exists():
             subscription = subscription_qs.first()
 
@@ -546,7 +548,15 @@ class Charge(LoginRequiredMixin, IsMerchantMixin, View):
                 'subscription': subscription
             }
 
+            if store_qs.exists():
+
+                context = {
+                    'subscription': subscription,
+                    'stores': store_qs
+                }
+
             return render(self.request, 'payments/charge.html', context)
+            
         else:
             error_message = 'You have to purchase a subscription to view this page'
             messages.warning(self.request, error_message)

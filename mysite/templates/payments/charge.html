@@ -4,11 +4,13 @@
 <section class="section-lg vertical-container">
   <div class="vertical-alignment" style="max-width: 600px;">
       <div class="card shadow-5 mx-3">
-        <div class="card-body text-center py-4"  style="background-color: #f9fafb;">
-
-            <h5 class="fs-24 mb-1 fw-6">
+        <div class="card-body py-4"  style="background-color: #f9fafb;">
+          <div class="row mb-2">
+            <div class="col-md-12">
+              <h5 class="fs-24 mb-1 fw-6">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8  icon-check"><circle cx="12" cy="12" r="10" class="fill-green-300"></circle><path class="fill-green-700" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"></path></svg>
                 Payment Successful
+<<<<<<< HEAD
             </h5>
             <p class="fs-14">Thank you, your payment was successful!
                 <br>
@@ -16,6 +18,36 @@
         </div>
         <div class="card-footer text-right p-3">
           <a href="{% url 'users:userPage' %}" class="btn btn-primary-alt btn-block">Upload Content to Stores</a>
+=======
+              </h5>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-md-12">
+              <p>Please select from the stores below to upload your interactive content:</p>
+              {% for store in stores %}
+                <div class="row mb-2">
+                  <div class="col-md-6">
+                    <h1 class="fs-24 fw-4">{{ store.business_name }}</h1>
+                  </div>
+                  <div class="col-md-6 d-flex justify-content-center">             
+                    <a href="{% url 'files:merchant_video_upload' slug=store.slug %}" class="py-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-cloud-upload"><path class="fill-primary" d="M18 14.97c0-.76-.3-1.51-.88-2.1l-3-3a3 3 0 0 0-4.24 0l-3 3A3 3 0 0 0 6 15a4 4 0 0 1-.99-7.88 5.5 5.5 0 0 1 10.86-.82A4.49 4.49 0 0 1 22 10.5a4.5 4.5 0 0 1-4 4.47z"></path><path class="fill-primary" d="M11 14.41V21a1 1 0 0 0 2 0v-6.59l1.3 1.3a1 1 0 0 0 1.4-1.42l-3-3a1 1 0 0 0-1.4 0l-3 3a1 1 0 0 0 1.4 1.42l1.3-1.3z"></path></svg>
+                        <span class=" fs-14 fw-2">Upload Video</span>
+                    </a>
+                  </div>
+                </div>
+              {% endfor %}
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p>If you dont have anything to upload, take some time to gather some awesome content and upload later!</p>
+              <a href="{% url 'users:userPage' %}" class="btn btn-primary-inverted w-100">Return To Dashboard</a>
+            </div>
+          </div>
+>>>>>>> bug_fixes
         </div>
       </div>
   </div>
