@@ -75,12 +75,12 @@
                     </div>
                     <div class="card-footer mt-2">
                         <div class="text-right">
+                            <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-secondary-inverted mr-2" >Create Additional Store</a>
                             {% if subscription.subscription_status == 'active' %}
-                                <a href="{% url 'payments:subscription_manage' slug=subscription.slug %}" class="btn btn-secondary-inverted mr-2">Upgrade Subscription</a>
+                                <a href="{% url 'payments:subscription_manage' slug=subscription.slug %}" class="btn btn-primary-alt mr-2">Upgrade Subscription</a>
                             {% else %}
-                                <a href="{% url 'users:merchant_approval_store_create' %}" class="btn btn-secondary-inverted mr-2" >Create Additional Store</a>
-                            {% endif %}
                                 <a href="{% url 'payments:plan_list' %}" class="btn btn-primary-alt mr-2">No, Let me Checkout</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
