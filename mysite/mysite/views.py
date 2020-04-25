@@ -135,16 +135,15 @@ def get_items(request):
 
 class homeView(View):
     def get(self, *args, **kwargs):
-        city = 'default_city' #Is this necessary?
-        state = 'default_state' #Is this necessary?
-
-        city_state = get_or_set_location(self.request)
-        city = city_state["city"]
-        state = city_state["state"]
-        user_location = city_state["user_location"]
+        # city = 'default_city' #Is this necessary?
+        # state = 'default_state' #Is this necessary?
 
         #Query Stores Nearby
         try:
+            city_state = get_or_set_location(self.request)
+            city = city_state["city"]
+            state = city_state["state"]
+            user_location = city_state["user_location"]
             store_nearby = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:12]
         except:
             store_nearby = Store.objects.filter(city='Novi', state='Michigan')[0:12]

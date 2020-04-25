@@ -275,7 +275,7 @@
     $(document).ready(function(){
         var data = {{ data|safe }}
         var video_container = $('#video_container')
-        console.log(data)
+        // console.log(data)
         $('#video_container').attr('src' , data.video_url_1)
         $('#video')[0].load()
         var x = 1;
@@ -285,16 +285,11 @@
             if (x == 2) {
                 $('#video_container').attr('src' , data.video_url_2)
                 $('#video')[0].load()
-                $('video_title')
-                $("#video_title").text(
-                  data.store_2
-                )
-                $("#video_coupon").text(
-                  data.coupon_code_2
-                )
-                $("#video_location").text(
-                  data.location_2
-                )
+                // $('video_title')
+                $("#video_title").text(data.store_2)
+
+                $("#video_coupon").text(data.coupon_code_2)
+                $("#video_location").text(data.location_2)
                 $("#video_logo").attr('src' , data.logo_2)
                 $("#video_url").attr('href' , data.url_2)
                 console.log(x)
@@ -303,34 +298,50 @@
             if (x == 3) {
                 $('#video_container').attr('src' , data.video_url_3)
                 $('#video')[0].load()
-                $("#video_title").text(
-                  data.store_3
-                )
+                $("#video_title").text(data.store_3)
+
+                $("#video_coupon").text(data.coupon_code_3)
+                $("#video_location").text(data.location_3)
+                $("#video_logo").attr('src' , data.logo_3)
+                $("#video_url").attr('href' , data.url_3)
                 console.log(x)
             }
 
             if (x == 4) {
                 $('#video_container').attr('src' , data.video_url_4)
                 $('#video')[0].load()
-                $("#video_title").text(
-                  data.store_4
-                )
+                $("#video_title").text(data.store_4)
+
+                $("#video_coupon").text(data.coupon_code_4)
+                $("#video_location").text(data.location_4)
+                $("#video_logo").attr('src' , data.logo_4)
+                $("#video_url").attr('href' , data.url_4)
                 console.log(x)
             }
 
             if (x == 5) {
                 $('#video_container').attr('src' , data.video_url_5)
                 $('#video')[0].load()
-                $("#video_title").text(
-                  data.store_5
-                )
+                $("#video_title").text(data.store_5)
+
+                $("#video_coupon").text(data.coupon_code_5)
+                $("#video_location").text(data.location_5)
+                $("#video_logo").attr('src' , data.logo_5)
+                $("#video_url").attr('href' , data.url_5)
                 console.log(x)
             }
 
             if (x == 6) {
-                $('#video_container').attr('src' , data.video_url_5)
+                $('#video_container').attr('src' , data.video_url_6)
                 $('#video')[0].load()
+                $("#video_title").text(data.store_6)
+
+                $("#video_coupon").text(data.coupon_code_6)
+                $("#video_location").text(data.location_6)
+                $("#video_logo").attr('src' , data.logo_6)
+                $("#video_url").attr('href' , data.url_6)
                 console.log(x)
+                x = 1
             }
         });
 // $("img#itemDetail").attr('src' , $("img#itemDetail").attr('src') + detailUrl);
