@@ -53,11 +53,6 @@ class VideoFileUploadView(View, LoginRequiredMixin):
             }
             return render(self.request, 'files/videofile_form_create.html', context)
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> bug_fixes
     def post(self, request, *args, **kwargs):
         form = VideoFileForm(self.request.POST, self.request.FILES)
         # user = request.user
