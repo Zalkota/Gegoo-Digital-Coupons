@@ -18,7 +18,7 @@ from .config_s3_aws import (
 from .models import DownloadableFile, VideoFile, ImageFile
 from .forms import ImageFileForm, VideoFileForm, DownloadableFileForm
 from portal.models import Store
-
+from django.contrib.messages.views import SuccessMessageMixin
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, View, CreateView, DeleteView, UpdateView
@@ -85,7 +85,7 @@ class VideoFileUploadView(View, LoginRequiredMixin):
 
 
 
-class MerchantVideoFileDeleteView(LoginRequiredMixin, DeleteView):
+class MerchantVideoFileDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = VideoFile
     template_name = 'files/merchant_video_delete.html'
     success_url = reverse_lazy('users:userPage')
@@ -142,7 +142,7 @@ class ImageFileUploadView(View, LoginRequiredMixin):
                 data = {'is_valid': False, 'message': message}
         return JsonResponse(data)
 
-class MerchantImageFileDeleteView(LoginRequiredMixin, DeleteView):
+class MerchantImageFileDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = ImageFile
     template_name = 'files/merchant_image_delete.html'
     success_url = reverse_lazy('users:userPage')
@@ -206,7 +206,7 @@ class FileUploadView(View, LoginRequiredMixin):
         return JsonResponse(data)
 
 
-class MerchantFileDeleteView(LoginRequiredMixin, DeleteView):
+class MerchantFileDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = DownloadableFile
     template_name = 'files/downloadable_files/merchant_file_delete.html'
     success_url = reverse_lazy('users:userPage')
@@ -250,7 +250,7 @@ class MerchantContentDetailView(LoginRequiredMixin, IsMerchantMixin, View):
 
         context = {
             'downloadablefile': downloadablefile_qs,
-            'imagefile': imagefile_qs,
+            'image_list': imagefile_qs,
             'videofile': videofile_qs,
             'store_slug': store_slug,
             'object': store_qs

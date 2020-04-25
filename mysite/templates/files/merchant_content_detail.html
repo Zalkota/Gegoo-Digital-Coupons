@@ -17,54 +17,81 @@
                         <div class="row pt-4">
                             <div class="col-lg-8 offset-lg-2 text-left mb-5">
 
+                                {% if object.videofile %}
                                 <div class="card shadow-5 card-border accordion mb-3" id="myAccordion">
                                     <div class="card-header" id="headingOne">
-                                        <h3 class="header">Video
-                                          <button type="button" class="pull-right btn-information-dropdown collapsed" data-toggle="collapse" data-target="#collapseOne"><i class="fa fa-plus text-primary" aria-hidden="true"></i></button>
-                                      </h3>
-
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <h3 class="header pt-3">Video</h3>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button type="button" class="pull-right btn-information-dropdown collapsed" data-toggle="collapse" data-target="#collapseOne">View Content</button>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div id="collapseOne" class="collapse card-body" aria-labelledby="headingOne" data-parent="#myAccordion">
-                                        <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ AwsBucketMediaURL }}{{ object.store.logo }}">
-                            				<source src="{{ AwsBucketMediaURL }}{{ object.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
+                                        <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ AwsBucketMediaURL }}{{ object.logo }}">
+                            				<source src="{{ AwsBucketMediaURL }}{{ videofile.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
                         				</video>
-                                        <a href="{% url 'users:merchant_video_delete' object.slug %}" class="btn btn-danger-alt btn-block pr-3">Delete Video
+                                        <a href="{% url 'users:merchant_video_delete' slug=videofile.slug %}" class="btn btn-danger-alt btn-block pr-3 mt-3">Delete Video
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 ml-1 icon-close-circle"><circle cx="12" cy="12" r="10" class="fill-red-300"/><path class="fill-red-700" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
                                         </a>
                                     </div>
                                 </div>
+                                {% endif %}
 
-                                <div class="card shadow-5 card-border accordion mb-3" id="myAccordion">
-                                    <div class="card-header" id="headingTwo">
-                                        <h3 class="header">Uploaded Images
-                                          <button type="button" class="pull-right btn-information-dropdown collapsed" data-toggle="collapse" data-target="#collapseTwo"><i class="fa fa-plus text-primary" aria-hidden="true"></i></button>
-                                        </h3>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse card-body" aria-labelledby="headingTwo" data-parent="#myAccordion">
-                                          <div class="row">
-                                            {% for object in image_list %}
-                                            <div class="col-lg-3">
-                                                <img class="mb-3" style="width: 100%;" src="{{ object.file.url }}" alt="User Uploaded images">
+
+                                {% if object.imagefile.exists %}
+                                    <div class="card shadow-5 card-border accordion mb-3" id="myAccordion">
+                                        <div class="card-header" id="headingTwo">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <h3 class="header pt-3">Uploaded Images</h3>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button type="button" class="pull-right btn-information-dropdown collapsed" data-toggle="collapse" data-target="#collapseTwo">view content</button>
+                                                </div>
                                             </div>
-                                            {% endfor %}
-                                          </div>
-                                    </div>
-                                </div>
-
-                                <div class="card shadow-5 card-border accordion" id="myAccordion">
-                                    <div class="card-header" id="headingThree">
-                                        <h3 class="header">Downloadable Content
-                                          <button type="button" class="pull-right btn-information-dropdown collapsed" data-toggle="collapse" data-target="#collapseThree"><i class="fa fa-plus text-primary" aria-hidden="true"></i></button>
-                                        </h3>
-                                    </div>
-                                    <div id="collapseThree" class="collapse card-body" aria-labelledby="headingThree" data-parent="#myAccordion">
-                                        <div class="row">
-                                          <div class="col-lg-12">
-                                              <a href="{{ downloadablefile.file.url }}">{{ downloadablefile.title }}</a>
-                                          </div>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse card-body" aria-labelledby="headingTwo" data-parent="#myAccordion">
+                                              <div class="row">
+                                                {% for object in image_list %}
+                                                <div class="col-lg-3 mb-3 card-border text-center px-0">
+                                                    <img class="" style="width: 100%;" src="{{ object.file.url }}" alt="User Uploaded images">
+                                                    <a href="{% url 'users:merchant_image_delete' object.slug %}" class="text-danger btn-block pr-3 pt-1">Delete
+                                                    </a>
+                                                </div>
+                                                {% endfor %}
+                                              </div>
                                         </div>
                                     </div>
-                                </div>
+                                {% endif %}
+
+
+                                {% if object.downloadablefile %}
+                                    <div class="card shadow-5 card-border accordion" id="myAccordion">
+                                        <div class="card-header" id="headingThree">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <h3 class="header pt-3">Downloadable Content</h3>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button type="button" class="pull-right btn-information-dropdown collapsed" data-toggle="collapse" data-target="#collapseThree">view content</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="collapseThree" class="collapse card-body" aria-labelledby="headingThree" data-parent="#myAccordion">
+                                            <div class="row">
+                                              <div class="col-lg-12">
+                                                  <a href="{{ downloadablefile.file.url }}">{{ downloadablefile.title }}</a>
+                                                  <a href="{% url 'users:merchant_file_delete' slug=downloadablefile.slug %}" class="btn btn-danger-alt btn-block pr-3 mt-3">Delete {{ downloadablefile.title }}
+                                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 ml-1 icon-close-circle"><circle cx="12" cy="12" r="10" class="fill-red-300"/><path class="fill-red-700" d="M13.41 12l2.83 2.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 1 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12z"/></svg>
+                                                  </a>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
 
                         </div>
                     </div>

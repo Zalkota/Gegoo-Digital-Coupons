@@ -140,6 +140,12 @@
                     </div>
                     {% endif %}
 
+                    {% if store.imagefile.exists %}
+                    <div class="merchant-button merchant-button" id="ViewImagesBtn">
+                        <span>Images</span>
+                    </div>
+                    {% endif %}
+
                     {% if store.testimonial.exists %}
                     <div class="merchant-button" id="LearnMoreBtn">
                         <span>Reviews</span>
@@ -149,6 +155,67 @@
                     <!-- <div class="merchant-button" id="DownloadContentBtn">
                         <span>Download</span>
                     </div> -->
+                </div>
+
+                <div id="ViewImages">
+                    <div  class="card card-border shadow-5 mt-3">
+                        <div class="row card-body pb-0">
+                            <!--Carousel Wrapper-->
+                                <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+                                  <!--Slides-->
+                                  <div class="carousel-inner" role="listbox">
+
+                                    <!--First slide-->
+                                    <div class="carousel-item active">
+                                        {% for object in image_list_first_carousel.all %}
+                                            <div class="col-md-3" style="float:left">
+                                                <div class="mb-0">
+                                                  <a target="_blank" href="{{ object.file.url}}"><img class="mb-3" style="width: 100%;" src="{{ object.file.url }}" alt="User Uploaded images">
+                                                  </a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <!--/.First slide-->
+
+
+                                    {% if image_list_second_carousel.exists %}
+                                    <!--Second slide-->
+                                    <div class="carousel-item">
+                                        {% for object in image_list_second_carousel.all %}
+                                            <div class="col-md-3" style="float:left">
+                                                <div class="mb-0">
+                                                    <a target="_blank" href="{{ object.file.url}}">
+                                                         <img class="mb-3" style="width: 100%;" src="{{ object.file.url }}" alt="User Uploaded images">
+                                                      </a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <!--/.Second slide-->
+                                    {% endif%}
+
+
+
+                                  </div>
+                                  <!--/.Slides-->
+
+
+                                </div>
+                                <!--/.Carousel Wrapper-->
+                        </div>
+                    </div>
+                    <!--Controls-->
+                    <div class="controls-top text-center mt-2">
+                      <a class="" href="#multi-item-example" data-slide="prev">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-2 icon-arrow-thick-left-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12 10h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5v2a1 1 0 0 1-1.7.7l-4-4a1 1 0 0 1 0-1.4l4-4A1 1 0 0 1 12 8v2z"/></svg>
+                      </a>
+                      <a class="" href="#multi-item-example" data-slide="next">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 ml-2 icon-arrow-thick-right-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12 14H7a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h5V8a1 1 0 0 1 1.7-.7l4 4a1 1 0 0 1 0 1.4l-4 4A1 1 0 0 1 12 16v-2z"/></svg>
+                      </a>
+                    </div>
+                    <!--/.Controls-->
                 </div>
 
                 <!-- View Offers -->
@@ -277,18 +344,20 @@
 $(document).ready(function() {
 
     var view_info = $('#ViewInfo');
+    var view_images = $('#ViewImages');
     var view_offers = $('#ViewOffers');
     var view_services = $('#ViewServices');
     var download_content = $('#DownloadContent');
-    var learn_more = $('#LearnMore');
+
 
     // Size of browser viewport.
     // var height = $(window).height()
     var width = $(window).width()
 
+
     view_offers.hide()
+    view_images.hide()
     download_content.hide()
-    learn_more.hide()
 
     if (width >= 992) {
         $('#ViewOffersBtn').addClass('merchant-button-active')
@@ -298,14 +367,29 @@ $(document).ready(function() {
 
     $('#ViewInfoBtn').on('click', function() {
       view_info.show()
+      view_images.hide()
       view_offers.hide()
       view_services.hide()
       download_content.hide()
-      learn_more.hide()
 
       $('#ViewInfoBtn').addClass('merchant-button-active')
+      $('#ViewImagesBtn').removeClass('merchant-button-active')
       $('#DownloadContentBtn').removeClass('merchant-button-active')
-      $('#LearnMoreBtn').removeClass('merchant-button-active')
+      $('#ViewServicesBtn').removeClass('merchant-button-active')
+      $('#ViewOffersBtn').removeClass('merchant-button-active')
+
+    })
+
+    $('#ViewImagesBtn').on('click', function() {
+      view_offers.hide()
+      view_images.show()
+      view_offers.hide()
+      view_services.hide()
+      download_content.hide()
+
+      $('#ViewInfoBtn').removeClass('merchant-button-active')
+      $('#ViewImagesBtn').addClass('merchant-button-active')
+      $('#DownloadContentBtn').removeClass('merchant-button-active')
       $('#ViewServicesBtn').removeClass('merchant-button-active')
       $('#ViewOffersBtn').removeClass('merchant-button-active')
 
@@ -314,13 +398,13 @@ $(document).ready(function() {
 
     $('#ViewServicesBtn').on('click', function() {
       view_offers.hide()
+      view_images.hide()
       view_services.show()
       download_content.hide()
-      learn_more.hide()
 
       $('#ViewInfoBtn').removeClass('merchant-button-active')
+      $('#ViewImagesBtn').removeClass('merchant-button-active')
       $('#DownloadContentBtn').removeClass('merchant-button-active')
-      $('#LearnMoreBtn').removeClass('merchant-button-active')
       $('#ViewServicesBtn').addClass('merchant-button-active')
       $('#ViewOffersBtn').removeClass('merchant-button-active')
 
@@ -328,13 +412,13 @@ $(document).ready(function() {
 
     $('#ViewOffersBtn').on('click', function() {
       view_offers.show()
+      view_images.hide()
       view_services.hide()
       download_content.hide()
-      learn_more.hide()
 
       $('#ViewInfoBtn').removeClass('merchant-button-active')
+      $('#ViewImagesBtn').removeClass('merchant-button-active')
       $('#DownloadContentBtn').removeClass('merchant-button-active')
-      $('#LearnMoreBtn').removeClass('merchant-button-active')
       $('#ViewOffersBtn').addClass('merchant-button-active')
       $('#ViewServicesBtn').removeClass('merchant-button-active')
 
@@ -342,29 +426,17 @@ $(document).ready(function() {
 
     $('#DownloadContentBtn').on('click', function() {
       view_offers.hide()
+      view_images.hide()
       view_services.hide()
       download_content.show()
-      learn_more.hide()
 
       $('#ViewInfoBtn').removeClass('merchant-button-active')
+      $('#ViewImagesBtn').removeClass('merchant-button-active')
       $('#DownloadContentBtn').addClass('merchant-button-active')
-      $('#LearnMoreBtn').removeClass('merchant-button-active')
       $('#ViewOffersBtn').removeClass('merchant-button-active')
       $('#ViewServicesBtn').removeClass('merchant-button-active')
     })
 
-    $('#LearnMoreBtn').on('click', function() {
-      view_offers.hide()
-      download_content.hide()
-      view_services.hide()
-      learn_more.show()
-
-      $('#ViewInfoBtn').removeClass('merchant-button-active')
-      $('#DownloadContentBtn').removeClass('merchant-button-active')
-      $('#LearnMoreBtn').addClass('merchant-button-active')
-      $('#ViewOffersBtn').removeClass('merchant-button-active')
-      $('#ViewServicesBtn').removeClass('merchant-button-active')
-    })
 });
 </script>
 {% endblock extrajs %}

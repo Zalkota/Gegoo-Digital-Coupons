@@ -57,8 +57,10 @@ class VideoFile(models.Model):
 
 @receiver(pre_save, sender=VideoFile)
 def pre_save_videofile(sender, **kwargs):
+    print('pre_save_videofile')
     slug = slugify(kwargs['instance'].store.slug, kwargs['instance'].uploaded_at)
     kwargs['instance'].slug = slug
+    kwargs['instance'].title = kwargs['instance'].file.name
 
 # *************** IMAGE UPLOAD *******************************************************
 
@@ -131,6 +133,7 @@ class DownloadableFile(models.Model):
         return reverse('users:merchant_file_detail', kwargs={'slug': self.slug})
 
 @receiver(pre_save, sender=DownloadableFile)
-def pre_save_videofile(sender, **kwargs):
+def pre_save_downloadablefile(sender, **kwargs):
     slug = slugify(kwargs['instance'].store.slug, kwargs['instance'].uploaded_at)
     kwargs['instance'].slug = slug
+    kwargs['instance'].title = kwargs['instance'].file.name

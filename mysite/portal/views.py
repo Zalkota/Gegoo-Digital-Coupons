@@ -134,6 +134,16 @@ class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or
 	def get_context_data(self, **kwargs):
 		context = super(ConsumerStoreDetailView, self).get_context_data(**kwargs)
 
+		image_list_first_carousel_qs = self.object.imagefile.all()[:4]
+		context['image_list_first_carousel'] = image_list_first_carousel_qs
+
+		try:
+			image_list_second_carousel_qs = self.object.imagefile.all()[4:8]
+			context['image_list_second_carousel'] = image_list_second_carousel_qs
+		except:
+			pass
+
+
 
 		try:
 			if self.request.user.is_authenticated:

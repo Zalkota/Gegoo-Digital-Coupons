@@ -214,15 +214,15 @@ a:hover {
                             <!-- Desktop -->
                             <div class="col-lg-2 col-12 vertical-container ">
                                 <div class="py-3 px-3 vertical-alignment text-center hide">
-                                    {% if not store.videofile and store.imagefile and store.downloadablefile %}
-                                    <a>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-folder"><path class="fill-gray-500" d="M4 4h7l2 2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><rect width="20" height="12" x="2" y="8" class="fill-gray-400" rx="2"/></svg>
-                                        <p class="text-muted fs-14 fw-2">View Content</p>
-                                    </a>
-                                    {% else %}
+                                    {% if store.videofile != '' or store.imagefile.exists or store.downloadablefile != '' %}
                                     <a href="{% url 'users:merchant_content_detait' slug=store.slug %}">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-folder"><path class="fill-purple-500" d="M4 4h7l2 2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><rect width="20" height="12" x="2" y="8" class="fill-primary" rx="2"/></svg>
                                         <p class="text-primary fs-14 fw-2">View Content</p>
+                                    </a>
+                                    {% else %}
+                                    <a>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 icon-folder"><path class="fill-gray-500" d="M4 4h7l2 2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><rect width="20" height="12" x="2" y="8" class="fill-gray-400" rx="2"/></svg>
+                                        <p class="text-muted fs-14 fw-2">View Content</p>
                                     </a>
                                     {% endif %}
                                 </div>

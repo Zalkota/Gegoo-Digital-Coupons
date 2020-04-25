@@ -57,7 +57,7 @@
               {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #}
               <input id="fileupload" type="file" name="file" multiple
                      style="display: none;"
-                     data-url="{% url 'users:merchant_approval_video_upload' store_slug %}"
+                     data-url="{% url 'users:merchant_approval_video_upload' slug=store_slug %}"
                      data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
               </div>
             </div>
