@@ -258,7 +258,7 @@ class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteVie
 
 					sub, created                = payments_models.Subscription.objects.get_or_create(user=self.request.user)
 					sub.subscription_id         = subscription['id']
-					sub.canceled_at             = subscription['canceled_at']
+					sub.unix_canceled_at        = subscription['canceled_at']
 					sub.subscription_item_id    = subscription['items']['data'][0].id
 					sub.subscription_quantity   = subscription['items']['data'][0].quantity
 					sub.plan_id                 = subscription['plan']['id']
@@ -291,13 +291,17 @@ class MerchantStoreDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteVie
 				messages.warning(self.request, 'You have deleted all your stores! Your subscption is still %s ' % sub.subscription_status)
 				return redirect('users:merchant_store_list')
 
+			elif subscription.subscription_status == 'canceled':
+				messages.warning(self.request, 'Your store was deleted succesfully!')
+				return redirect('users:merchant_store_list')
+
 			else:
 				error_message = 'Something went wrong! Please contact support.'
 				messages.warning(self.request, error_message)
 				return redirect('users:userPage')
 
 		else:
-			messages.success(self.request, 'The store was deleted!')
+			messages.success(self.request, 'Your store was deleted succesfully!')
 			return redirect('users:userPage')
 
 # Merchant Offer
