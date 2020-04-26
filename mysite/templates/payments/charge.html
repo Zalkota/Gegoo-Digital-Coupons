@@ -20,7 +20,7 @@
               {% for store in stores %}
                 <div class="row mb-2">
                   <div class="col-md-6">
-                    <h1 class="fs-24 fw-4">{{ store.business_name }}</h1>
+                    <h1 class="fs-16 fw-4">{{ store.business_name }}</h1>
                   </div>
                   <div class="col-md-6 d-flex justify-content-center">
                     <a href="{% url 'users:merchant_approval_file_select' slug=store.slug %}" class="btn-primary-alt py-1 pl-3">

@@ -20,69 +20,58 @@
 <!-- VIDEO SECTION  Meeting your Landscaping Needs !-->
 <div class="section mt-3 pt-0 container px-3">
     <div class="row">
-        <div class="col-lg-8 col-12">
-            <div class="video-container">
-                <div class="volume-button">
-                    <button id="Unmutebutton">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-volume-mute"><path class="fill-white" d="M6.59 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3.59l4.7-4.7A1 1 0 0 1 13 4v16a1 1 0 0 1-1.7.7L6.58 16z"/><path class="fill-white" d="M17.09 12l-1.8-1.8a1 1 0 1 1 1.42-1.4l1.79 1.79 1.8-1.8a1 1 0 0 1 1.4 1.42L19.92 12l1.8 1.8a1 1 0 0 1-1.42 1.4l-1.79-1.79-1.8 1.8a1 1 0 0 1-1.4-1.42L17.08 12z"/></svg>
-                    </button>
-                    <button id="Mutebutton" style="display: none;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-volume-up"><path class="fill-white" d="M6.59 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3.59l4.7-4.7A1 1 0 0 1 13 4v16a1 1 0 0 1-1.7.7L6.58 16z"/><path class="fill-white" d="M17.66 6.34a1 1 0 0 1 1.41-1.41 10 10 0 0 1 0 14.14 1 1 0 0 1-1.41-1.41 8 8 0 0 0 0-11.32zm-2.83 2.83a1 1 0 1 1 1.41-1.41 6 6 0 0 1 0 8.48 1 1 0 0 1-1.41-1.41 4 4 0 0 0 0-5.66z"/></svg>
-                    </button>
-                </div>
-                <video autoplay muted poster="" class="fillWidth border-radius-100" id="video">
-                    <source src="" type="video/mp4" alt="Gegoo Promotional Video" id="video_container"/>
-                    Your browser does not support the video tag. Upgrade your browser.
-                </video>
-            </div>
-        </div>
-        <div class="col-lg-4 col-12 ">
-            <div class="card bg-white border-radius-100 p-0">
-                <div class="row">
-                    <div class="col-12">
-                        <img class="img-fluid" src="{{ data.logo_1 }}" id="video_logo" alt="featured store logo">
-                    </div>
-                    <div class="col-12">
-                        <div class="card-body pb-0 pt-3 text-center">
-                            <h3 class="fs-24 fw-6 text-dark" id="video_title">{{ data.store_1 }}
-                            <br>
-                        <span class="fs-14"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
-                        {{ data.location_1 }}</span>
+                <div class="col-lg-8 col-12 pb-0">
+                    <div class="card bg-white border-radius-100 p-0">
+                        <div class=" px-2 pt-2 mb-0 pb-0">
+                            <div class="video-container pb-0">
+                                <div class="volume-button">
+                                    <button id="Unmutebutton">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-volume-mute"><path class="fill-white" d="M6.59 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3.59l4.7-4.7A1 1 0 0 1 13 4v16a1 1 0 0 1-1.7.7L6.58 16z"/><path class="fill-white" d="M17.09 12l-1.8-1.8a1 1 0 1 1 1.42-1.4l1.79 1.79 1.8-1.8a1 1 0 0 1 1.4 1.42L19.92 12l1.8 1.8a1 1 0 0 1-1.42 1.4l-1.79-1.79-1.8 1.8a1 1 0 0 1-1.4-1.42L17.08 12z"/></svg>
+                                    </button>
+                                    <button id="Mutebutton" style="display: none;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 icon-volume-up"><path class="fill-white" d="M6.59 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3.59l4.7-4.7A1 1 0 0 1 13 4v16a1 1 0 0 1-1.7.7L6.58 16z"/><path class="fill-white" d="M17.66 6.34a1 1 0 0 1 1.41-1.41 10 10 0 0 1 0 14.14 1 1 0 0 1-1.41-1.41 8 8 0 0 0 0-11.32zm-2.83 2.83a1 1 0 1 1 1.41-1.41 6 6 0 0 1 0 8.48 1 1 0 0 1-1.41-1.41 4 4 0 0 0 0-5.66z"/></svg>
+                                    </button>
+                                </div>
+                                <video autoplay muted poster="" class="fillWidth border-radius-100" id="video">
+                                    <source src="" type="video/mp4" alt="Gegoo Promotional Video" id="video_container"/>
+                                    Your browser does not support the video tag. Upgrade your browser.
+                                </video>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                      <div class="card-body text-center pt-0 mt-0">
-                            <a href="{{ data.url_1 }}" class="btn-primary-alt shadow-1 btn-block fs-16 my-3" id="video_url">
-                               View Details
-                            </a>
-                            <a href="{{ data.url_1 }}" class="fs-16 btn-block btn-primary-alt  shadow-1 ">
-                                Use Code: <span class="fw-6" id="video_coupon">{{ data.coupon_code_1 }}</span>
-                            </a>
-                      </div>
+                </div>
+
+                <div class="col-lg-4 col-12 ">
+                    <div class="card bg-white border-radius-100 p-0 ">
+                        <div class="row">
+                            <div class="col-12">
+                                <img class="img-fluid" src="{{ data.logo_1 }}" id="video_logo" alt="featured store logo">
+                            </div>
+                            <div class="col-12">
+                                <div class="card-body pb-0 pt-3 text-center">
+                                    <h3 class="fs-24 fw-6 text-dark" id="video_title">{{ data.store_1 }}
+                                    <br>
+                                <span class="fs-14"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
+                                {{ data.location_1 }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                              <div class="card-body text-center pt-0 mt-0">
+                                    <a href="{{ data.url_1 }}" class="btn-primary-alt shadow-1 btn-block fs-16 mt-3 mb-2" id="video_url">
+                                       View Details
+                                    </a>
+                                    <a href="{{ data.url_1 }}" class="fs-16 btn-block btn-primary-alt  shadow-1 mt-1 ">
+                                        Use Code: <span class="fw-6" id="video_coupon">{{ data.coupon_code_1 }}</span>
+                                    </a>
+                              </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div class="bg-white card-border stripe-primary shadow-5 mt-3 border-radius-100">
-                <div class="card-body">
-                    <h3 class="header text-primary">
-                        <span class="text-gray-700">Gegoo</span> Coupons
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-tag"><path class="fill-primary" d="M2.59 13.41A1.98 1.98 0 0 1 2 12V7a5 5 0 0 1 5-5h4.99c.53 0 1.04.2 1.42.59l8 8a2 2 0 0 1 0 2.82l-8 8a2 2 0 0 1-2.82 0l-8-8zM7 9a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path class="fill-gray-300" d="M12 18l6-6-4-4-6 6.01L12 18z"/></svg>
-                    </h3>
-                    <p class="fs-16 text-gray-700">Redeem the Gegoo code on your next purchase and receive a discount or reward.</p>
-                    <div class="hide">
-                        <hr>
-                        <h3 class="header text-primary">
-                            <span class="text-gray-700">Gegoo</span> Rewards
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-currency-dollar"><circle cx="12" cy="12" r="10" class="fill-gray-300"/><path class="fill-primary" d="M13 7.12v3.96c2.25.36 4 1.93 4 3.92 0 2-1.75 3.56-4 3.92V19a1 1 0 0 1-2 0v-.08a4.82 4.82 0 0 1-3.67-2.49 1 1 0 0 1 1.8-.85c.29.6.98 1.09 1.87 1.3v-3.96C8.75 12.56 7 11 7 9c0-2 1.75-3.56 4-3.92V5a1 1 0 0 1 2 0v.08a4.81 4.81 0 0 1 3.68 2.5 1 1 0 0 1-1.81.85c-.28-.6-.98-1.1-1.87-1.31zm-2 3.76V7.12C9.81 7.4 9 8.18 9 9c0 .82.81 1.6 2 1.88zm2 2.24v3.76c1.19-.28 2-1.06 2-1.88 0-.82-.81-1.6-2-1.88z"/></svg>
-                        </h3>
-                        <p class="fs-16 text-gray-700">Earn Gegoo points for redeeming coupon codes and uploading receipts from your recent purchase!</p>
-                    </div>
-                </div>
-            </div> -->
-        </div>
-        </div>
+
     </div>
 </div>
+
 
 <!-- VIDEO END !-->
 
@@ -122,7 +111,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-4 px-m-na-3">
                     <div class="card">
                         <a class="" href="{{ object.get_consumer_absolute_url }}">
-                            <img class="img-fluid border-radius-top-100" style="max-height: 200px;" src="{{ AwsBucketMediaURL }}{{ object.logo }}" alt="User Uploaded images">
+                            <img class="img-fluid border-radius-top-100" style="height: 200px;" src="{{ AwsBucketMediaURL }}{{ object.logo }}" alt="User Uploaded images">
                         </a>
                         <div class="card-body py-1 px-3">
                             <div class=" text-left mt-2">
@@ -171,7 +160,7 @@
                         <div class="row">
                             <div class="col-lg-4 ">
                                     <a href="{{ object.get_consumer_absolute_url }}">
-                                        <img class="img-fluid" src="{{ AwsBucketMediaURL }}{{ object.logo }}" alt="User Uploaded images">
+                                        <img class="img-fluid" src="{{ AwsBucketMediaURL }}{{ object.logo.file }}" alt="User Uploaded images">
                                     </a>
                             </div>
                             <div class="col-lg-8 ">

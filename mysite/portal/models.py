@@ -56,14 +56,14 @@ PROMOTION_CHOICES = (
 CATEGORY_CHOICES = (
     ('ALL', 'All Services'),
     ('AUTO', 'Auto'),
-    ('HYGIENE', 'Hygiene'),
+    ('HEALTH-BEAUTY', 'Health & Beauty'),
     ('COMMUNITY', 'Community'),
     ('CONSTRUCTION', 'Construction'),
     ('FOOD', 'Food'),
     ('FUN', 'Fun'),
     ('GARDEN', 'Garden'),
     ('GROCERIES', 'Groceries'),
-    ('HEALTH', 'Health'),
+    # ('HEALTH', 'Health'),
     ('HOME', 'Home Improvement'),
     ('PETS', 'Pets'),
     ('RETAIL', 'Retail'),
@@ -354,7 +354,7 @@ class Store(models.Model):
 
     # Store Bio
     slogan               = models.CharField(max_length=40, null=True, help_text="Slogan or catchy short description")
-    description         = models.TextField(help_text="Describe the store", null=True)
+    description         = models.TextField(max_length=500, help_text="Describe the store", null=True)
 
     # Store Location Info - User fills out
     street_address      = models.CharField(max_length=100, blank=True, null=True)

@@ -77,8 +77,10 @@
                 </div>
                 <div class="card-body border-top">
                     <h3 class="header">About</h3>
-                        <div class="text-left fs-14 text-secondary">
-                        {{ store.description }}
+                    <div class="text-left fs-14 text-secondary">
+                        <div class="overflow-auto">
+                            {{ store.description }}
+                        </div>
                     </div>
                 </div>
                 <div class="card-body border-top">
@@ -103,7 +105,11 @@
                 </div>
                 <div class="card-body border-top">
                     <h3 class="header">Review Business</h3>
+                    {% if request.user.is_merchant == False %}
                     <a href="{% url 'users:merchant_testimonial_create' slug=store.slug %}" class="text-primary fs-14">Write a Review</a>
+                    {% else %}
+                    <p>Your users will be able to write reviews</p>
+                    {% endif %}
                 </div>
                 {% if related_stores %}
                 <div class="card-body border-top">
@@ -120,7 +126,7 @@
         <div class="offset-xl-1 order-1 "></div>
         <div class="col-lg-8 col-md-8 order-1 mt-3">
             <div class="p-0 shadow-2">
-                <video class="border-radius-100" style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ AwsBucketMediaURL }}{{ store.logo }}">
+                <video class="border-radius-100" style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen >
     				<source src="{{ AwsBucketMediaURL }}{{ store.videofile.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
 				</video>
             </div>
@@ -152,9 +158,12 @@
                     </div>
                     {% else %}
                     {% endif %}
-                    <!-- <div class="merchant-button" id="DownloadContentBtn">
-                        <span>Download</span>
-                    </div> -->
+
+                    {% if store.downloadablefile %}
+                    <div class="merchant-button" id="DownloadContentBtn">
+                        <span>Downloads</span>
+                    </div>
+                    {% endif %}
                 </div>
 
                 <div id="ViewImages">
@@ -323,10 +332,9 @@
                 <div class="text-center" id="DownloadContent">
                     <div class="card shadow-2 mt-3">
                         <div class="card-body">
-                            <h3 class="header mb-3">Content Available for Download</h3>
-                            <a href="#" class="btn btn-primary-alt mr-auto ml-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-6 icon-cloud-download"><path class="primary" d="M15 15v-3a3 3 0 0 0-6 0v3H6a4 4 0 0 1-.99-7.88 5.5 5.5 0 0 1 10.86-.82A4.49 4.49 0 0 1 22 10.5a4.5 4.5 0 0 1-4.5 4.5H15z"/><path class="primary" d="M11 18.59V12a1 1 0 0 1 2 0v6.59l1.3-1.3a1 1 0 0 1 1.4 1.42l-3 3a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l1.3 1.3z"/></svg>
-                                Download {{ store.downloadable_content_title }}
+                            <h3 class="header mb-3">Content Available for Download from {{object.business_name}}</h3>
+                            <a href="{{ store.downloadablefile.file.url }}" class="btn btn-primary-alt mr-auto ml-auto">
+                                Download {{ store.downloadablefile.title }}
                             </a>
                         </div>
                     </div>

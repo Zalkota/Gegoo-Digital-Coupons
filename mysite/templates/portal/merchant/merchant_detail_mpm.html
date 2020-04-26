@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-
-{% block title %} {{ request.user }} - {{ object.business_name }} Page {% endblock %}
+{% block title %}Store View | {{ SITE_NAME }}{% endblock %}
 
 {% block extra_styles %}
 
@@ -103,7 +102,7 @@
         <div class="offset-lg-1"></div>
         <div class="col-lg-8 mt-3">
             <div class="p-0 shadow-2">
-                <video  style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen poster="{{ AwsBucketMediaURL }}{{ store.logo }}">
+                <video class="border-radius-100" style="display: block; margin: auto;" width="100%" controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen >
     				<source src="{{ AwsBucketMediaURL }}{{ store.videofile.file }}" type="video/mp4"> Sorry, your browser doesn't support embedded videos.
 				</video>
             </div>

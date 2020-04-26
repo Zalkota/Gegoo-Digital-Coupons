@@ -54,13 +54,13 @@
                 </div>
             </div>
             <div class="flex-box mx-2">
-                <div class="card {% if 'hygiene' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
-                    <a href="{% url 'portal:category_detail' slug='hygiene' %}">
+                <div class="card {% if 'health-beauty' in request.path %} card-pill-active {% else %} card-pill {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='health-beauty' %}">
                         <div class=" text-center vertical-container">
                             <div class="vertical-alignment">
                                 <i class="fa fa-heart fs-28 pt-1" aria-hidden="true"></i>
                                 <br>
-                                Hygiene
+                                <span class="fs-14">Health & Beauty</span>
                             </div>
                         </div>
                     </a>
@@ -162,12 +162,12 @@
                 </div>
             </div>
             <div class="flex-box mx-1">
-                <div class="{% if 'hygiene' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
-                    <a href="{% url 'portal:category_detail' slug='hygiene' %}">
+                <div class="{% if 'health-beauty' in request.path %} card-pill-mobile-active {% else %} card-pill-mobile {% endif %}">
+                    <a href="{% url 'portal:category_detail' slug='health-beauty' %}">
                         <div class=" text-center vertical-container">
                             <div class="vertical-alignment">
                                 <i class="fa fa-heart fs-16 mr-2" aria-hidden="true"></i>
-                                Hygiene
+                                <span class="fs-14">Beauty</span>
                             </div>
                         </div>
                     </a>
