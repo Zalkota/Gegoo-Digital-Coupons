@@ -160,7 +160,7 @@
                     {% endif %}
 
                     {% if store.downloadablefile %}
-                    <div class="merchant-button" id="DownloadContentBtn">
+                    <div class="merchant-button" id="ViewDownloadBtn">
                         <span>Downloads</span>
                     </div>
                     {% endif %}
@@ -318,12 +318,13 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
                     {% endfor %}
                 </div>
 
                 <!-- Download Content -->
-                <div class="text-center" id="DownloadContent">
-                    <div class="card shadow-2 mt-3">
+                <div id="ViewDownloads">
+                    <div class="card shadow-2 mt-3 text-center">
                         <div class="card-body">
                             <h3 class="header mb-3">Content Available for Download from {{object.business_name}}</h3>
                             <a href="{{ store.downloadablefile.file.url }}" class="btn btn-primary-alt mr-auto ml-auto">
@@ -332,7 +333,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
+
         </div>
     </div>
 </section>
@@ -348,7 +350,7 @@ $(document).ready(function() {
     var view_images = $('#ViewImages');
     var view_offers = $('#ViewOffers');
     var view_services = $('#ViewServices');
-    var download_content = $('#DownloadContent');
+    var view_downloads = $('#ViewDownloads');
     var view_reviews = $('#ViewReviews');
 
 
@@ -359,7 +361,7 @@ $(document).ready(function() {
 
     view_offers.hide()
     view_images.hide()
-    download_content.hide()
+    view_downloads.hide()
     view_reviews.hide()
 
     if (width >= 992) {
@@ -373,12 +375,12 @@ $(document).ready(function() {
       view_images.hide()
       view_offers.hide()
       view_services.hide()
-      download_content.hide()
+      view_downloads.hide()
       view_reviews.hide()
 
       $('#ViewInfoBtn').addClass('merchant-button-active')
       $('#ViewImagesBtn').removeClass('merchant-button-active')
-      $('#DownloadContentBtn').removeClass('merchant-button-active')
+      $('#ViewDownloadBtn').removeClass('merchant-button-active')
       $('#ViewServicesBtn').removeClass('merchant-button-active')
       $('#ViewOffersBtn').removeClass('merchant-button-active')
       $('#ViewReviewsBtn').removeClass('merchant-button-active')
@@ -390,12 +392,12 @@ $(document).ready(function() {
       view_images.show()
       view_offers.hide()
       view_services.hide()
-      download_content.hide()
+      view_downloads.hide()
       view_reviews.hide()
 
       $('#ViewInfoBtn').removeClass('merchant-button-active')
       $('#ViewImagesBtn').addClass('merchant-button-active')
-      $('#DownloadContentBtn').removeClass('merchant-button-active')
+      $('#ViewDownloadBtn').removeClass('merchant-button-active')
       $('#ViewServicesBtn').removeClass('merchant-button-active')
       $('#ViewOffersBtn').removeClass('merchant-button-active')
       $('#ViewReviewsBtn').removeClass('merchant-button-active')
@@ -407,12 +409,12 @@ $(document).ready(function() {
       view_offers.hide()
       view_images.hide()
       view_services.show()
-      download_content.hide()
+      view_downloads.hide()
       view_reviews.hide()
 
       $('#ViewInfoBtn').removeClass('merchant-button-active')
       $('#ViewImagesBtn').removeClass('merchant-button-active')
-      $('#DownloadContentBtn').removeClass('merchant-button-active')
+      $('#ViewDownloadBtn').removeClass('merchant-button-active')
       $('#ViewServicesBtn').addClass('merchant-button-active')
       $('#ViewOffersBtn').removeClass('merchant-button-active')
       $('#ViewReviewsBtn').removeClass('merchant-button-active')
@@ -423,28 +425,28 @@ $(document).ready(function() {
       view_offers.show()
       view_images.hide()
       view_services.hide()
-      download_content.hide()
+      view_downloads.hide()
       view_reviews.hide()
 
       $('#ViewInfoBtn').removeClass('merchant-button-active')
       $('#ViewImagesBtn').removeClass('merchant-button-active')
-      $('#DownloadContentBtn').removeClass('merchant-button-active')
+      $('#ViewDownloadBtn').removeClass('merchant-button-active')
       $('#ViewOffersBtn').addClass('merchant-button-active')
       $('#ViewServicesBtn').removeClass('merchant-button-active')
       $('#ViewReviewsBtn').removeClass('merchant-button-active')
 
     })
 
-    $('#DownloadContentBtn').on('click', function() {
+    $('#ViewDownloadBtn').on('click', function() {
       view_offers.hide()
       view_images.hide()
       view_services.hide()
-      download_content.show()
       view_reviews.hide()
+      view_downloads.show()
 
       $('#ViewInfoBtn').removeClass('merchant-button-active')
       $('#ViewImagesBtn').removeClass('merchant-button-active')
-      $('#DownloadContentBtn').addClass('merchant-button-active')
+      $('#ViewDownloadBtn').addClass('merchant-button-active')
       $('#ViewOffersBtn').removeClass('merchant-button-active')
       $('#ViewServicesBtn').removeClass('merchant-button-active')
       $('#ViewReviewsBtn').removeClass('merchant-button-active')
@@ -454,12 +456,12 @@ $(document).ready(function() {
       view_offers.hide()
       view_images.hide()
       view_services.hide()
-      download_content.hide()
+      view_downloads.hide()
       view_reviews.show()
 
       $('#ViewInfoBtn').removeClass('merchant-button-active')
       $('#ViewImagesBtn').removeClass('merchant-button-active')
-      $('#DownloadContentBtn').removeClass('merchant-button-active')
+      $('#ViewDownloadBtn').removeClass('merchant-button-active')
       $('#ViewOffersBtn').removeClass('merchant-button-active')
       $('#ViewServicesBtn').removeClass('merchant-button-active')
       $('#ViewReviewsBtn').addClass('merchant-button-active')
