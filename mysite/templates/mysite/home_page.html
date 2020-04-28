@@ -45,14 +45,13 @@
                     <div class="card bg-white border-radius-100 p-0 ">
                         <div class="row">
                             <div class="col-12">
-                                <img class="img-fluid" src="{{ data.logo_1 }}" id="video_logo" alt="featured store logo">
+                                <img class="img-fluid" style="max-height:272px;" src="{{ data.logo_1 }}" id="video_logo" alt="featured store logo">
                             </div>
                             <div class="col-12">
                                 <div class="card-body pb-0 pt-3 text-center">
                                     <h3 class="fs-24 fw-6 text-dark" id="video_title">{{ data.store_1 }}
                                     <br>
-                                <span class="fs-14"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4  icon-location-pin"><path class="fill-primary" d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path class="fill-primary" d="M12 1a9 9 0 0 1 6.36 15.36l-5.65 5.66a1 1 0 0 1-.71.3V13a3 3 0 0 0 0-6V1z"/></svg>
-                                {{ data.location_1 }}</span>
+                                    <h3 class="fs-14" id="video_title">{{ data.location_1 }}</h3>
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -279,6 +278,7 @@
 
                 $("#video_coupon").text(data.coupon_code_2)
                 $("#video_location").text(data.location_2)
+                console.log(data.location_2)
                 $("#video_logo").attr('src' , data.logo_2)
                 $("#video_url").attr('href' , data.url_2)
                 console.log(x)

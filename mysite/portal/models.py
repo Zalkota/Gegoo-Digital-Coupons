@@ -343,9 +343,9 @@ class Store(models.Model):
 
     # Store Attributes
     business_name       = models.CharField(max_length=100)
-    website_url         = models.URLField(max_length=500, blank=True, null=True, help_text='Requires HTTPS:// at the beginning. (ie. HTTPS://www.TheGegoo.com)')
+    website_url         = models.URLField(max_length=500, blank=True, null=True, help_text='Example: HTTPS://www.TheGegoo.com')
     facebook_url        = models.URLField(max_length=500, blank=True, null=True)
-    logo                = models.ImageField(upload_to='store-logos/', validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])], null=True, blank=True)
+    logo                = models.ImageField(upload_to='store-logos/', validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])], null=True, blank=True, default='store-logos/default_store_image.png')
 
 
     category            = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
@@ -448,6 +448,13 @@ def update_store_count(sender, instance, **kwargs):
         merchantprofile.save()
     else:
         pass
+
+@receiver([pre_save], sender=Store)
+def update_category(sender, **kwargs):
+    subcategory_qs = kwargs['instance'].subcategory
+    category_qs = subcategory_qs.category
+    kwargs['instance'].category = category_qs
+
 
 post_save.connect(CalculateLocation, sender=Store)
 post_save.connect(setCouponCode, sender=Store)

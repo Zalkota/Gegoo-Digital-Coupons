@@ -29,7 +29,7 @@ class MerchantStoreForm(forms.ModelForm):
        'business_name',
        'slogan',
        'description',
-       'category',
+       # 'category',
        'subcategory',
        'street_address',
        'city',
@@ -61,7 +61,7 @@ class MerchantStoreForm(forms.ModelForm):
                 ),
                 Div(
                 'business_name',
-                'category',
+                # 'category',
                 'subcategory',
                 css_class="col-lg-6 pb-4"
                 ),
