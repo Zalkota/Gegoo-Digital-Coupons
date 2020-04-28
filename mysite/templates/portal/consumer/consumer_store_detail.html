@@ -41,7 +41,7 @@
         <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 order-lg-1 order-md-1 order-2 mt-3" id="ViewInfo">
             <div class="card shadow-5">
                 <div class="card-body p-0 hide">
-                    <img class="img-fluid p-0" style="width: 100%; border-radius: 0.25rem 0.25rem 0 0;" src="{{ AwsBucketMediaURL }}{{ store.logo }}" alt="Coupon Image Banner">
+                    <img class="img-fluid p-0" style="width: 100%; border-radius: 0.25rem 0.25rem 0 0;" src="{{ AwsBucketMediaURL }}{{ store.logo }}" alt="{{ store.category.get_name_display }} Store Logo">
                 </div>
                 <div class="card-body border-top">
                     <h2 class="header text-dark">{{ store.business_name }}</h2>
@@ -206,16 +206,18 @@
                                 <!--/.Carousel Wrapper-->
                         </div>
                     </div>
-                    <!--Controls-->
-                    <div class="controls-top text-center mt-2">
-                      <a class="" href="#multi-item-example" data-slide="prev">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-2 icon-arrow-thick-left-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12 10h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5v2a1 1 0 0 1-1.7.7l-4-4a1 1 0 0 1 0-1.4l4-4A1 1 0 0 1 12 8v2z"/></svg>
-                      </a>
-                      <a class="" href="#multi-item-example" data-slide="next">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 ml-2 icon-arrow-thick-right-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12 14H7a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h5V8a1 1 0 0 1 1.7-.7l4 4a1 1 0 0 1 0 1.4l-4 4A1 1 0 0 1 12 16v-2z"/></svg>
-                      </a>
-                    </div>
-                    <!--/.Controls-->
+                    {% if image_list_second_carousel.exists %}
+                        <!--Controls-->
+                        <div class="controls-top text-center mt-2">
+                          <a class="" href="#multi-item-example" data-slide="prev">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-2 icon-arrow-thick-left-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12 10h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5v2a1 1 0 0 1-1.7.7l-4-4a1 1 0 0 1 0-1.4l4-4A1 1 0 0 1 12 8v2z"/></svg>
+                          </a>
+                          <a class="" href="#multi-item-example" data-slide="next">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 ml-2 icon-arrow-thick-right-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12 14H7a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h5V8a1 1 0 0 1 1.7-.7l4 4a1 1 0 0 1 0 1.4l-4 4A1 1 0 0 1 12 16v-2z"/></svg>
+                          </a>
+                        </div>
+                        <!--/.Controls-->
+                    {% endif%}
                 </div>
 
                 <!-- View Offers -->
@@ -324,7 +326,7 @@
 
                 <!-- Download Content -->
                 <div id="ViewDownloads">
-                    <div class="card shadow-2 mt-3 text-center">
+                    <div class="card shadow-5 mt-3 text-center">
                         <div class="card-body">
                             <h3 class="header mb-3">Content Available for Download from {{object.business_name}}</h3>
                             <a href="{{ store.downloadablefile.file.url }}" class="btn btn-primary-alt mr-auto ml-auto">
