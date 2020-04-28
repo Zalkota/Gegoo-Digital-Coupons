@@ -1,11 +1,15 @@
 {% extends 'base-alt.html' %}
 
 <div class="section-sm container">
-    <div class="card text-center">
-        <div class="card-body">
-            <h3 class="card-title">Oops! Something Went Wrong</h3>
-            <p class="card-body">We had trouble connecting you. You may not have permission to view this page! Please:</p>
-            <a href="{% url 'dashboard' %}" class="btn btn-primary">Go To Dahsboard</a>
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="card-title">Oops! Something Went Wrong</h3>
+                    <p class="card-body">We had trouble connecting you. You may not have permission to view this page! Please:</p>
+                    <a href="{% url 'dashboard' %}" class="btn btn-primary">Go To Dashboard</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
