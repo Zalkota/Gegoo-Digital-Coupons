@@ -53,5 +53,5 @@ class FacetedSearchView(BaseFacetedSearchView):
         try:
             context['advert_list'] = Store.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:4]
         except:
-            context['advert_list'] = Store.objects.filter(city='Novi', state='Michigan')[0:8]
+            context['advert_list'] = Store.objects.filter(city='Novi', state='Michigan', status=2)[0:8]
         return context

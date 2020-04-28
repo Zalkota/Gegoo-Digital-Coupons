@@ -135,8 +135,8 @@ def get_items(request):
 
 class homeView(View):
     def get(self, *args, **kwargs):
-        # city = 'default_city' #Is this necessary?
-        # state = 'default_state' #Is this necessary?
+        city = 'Novi' #Is this necessary? YES SEE CONTEXT
+        state = 'Michigan' #Is this necessary? YES SEE CONTEXT
 
         #Query Stores Nearby
         try:
