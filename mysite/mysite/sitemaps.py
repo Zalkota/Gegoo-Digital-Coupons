@@ -34,8 +34,6 @@ class QuestionSitemap(Sitemap):
     def items(self):
         return support_models.Question.objects.all()
 
-    def location(self, item):
-        return reverse(item)
 
 class TopicSitemap(Sitemap):
     priority = 0.5
@@ -44,8 +42,6 @@ class TopicSitemap(Sitemap):
     def items(self):
         return support_models.Topic.objects.all()
 
-    def location(self, item):
-        return reverse(item)
 
 class StoreSitemap(Sitemap):
     priority = 0.5

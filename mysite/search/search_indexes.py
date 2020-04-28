@@ -33,7 +33,7 @@ class StoreIndex(indexes.SearchIndex, indexes.Indexable):
         return Store
 
     def index_queryset(self, using=None):
-        return self.get_model().objects.filter(updated_at__lte=timezone.now())
+        return self.get_model().objects.filter(updated_at__lte=timezone.now(), status=2)
         # city_state = get_or_set_location(self.request)
         # user_location = city_state["user_location"]
         # return self.get_model().objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2)[0:8]

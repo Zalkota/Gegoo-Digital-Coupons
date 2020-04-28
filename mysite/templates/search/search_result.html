@@ -14,149 +14,151 @@
             <span class="fs-14 text-muted">{{ page_obj.paginator.count }} {% if page_obj.paginator.count > 1 %}stores {% else %} store {% endif %} found for: <span class="fw-7">{{query}}</span></span>
         </div>
         <div class="row">
-        <!-- ********************************************** -->
-        <!--                 Side Filter                    -->
-        <!-- ********************************************** -->
-        {% if  page_obj.object_list %}
-        <div class="col-lg-2 mb-4">
-            <div class="accordion" id="myAccordion">
-                <div id="headingThree">
-                    <button type="button" class="text-left btn btn-primary-alt px-2 py-2 mb-4 collapsed" data-toggle="collapse" data-target="#collapseThree">Filter Results<i class="fa fa-filter ml-2" aria-hidden="true"></i></button>
+            <!-- ********************************************** -->
+            <!--                 Side Filter                    -->
+            <!-- ********************************************** -->
+            {% if  page_obj.object_list %}
+            <div class="col-lg-2 mb-4">
+                <div class="accordion" id="myAccordion">
+                    <div id="headingThree">
+                        <button type="button" class="text-left btn btn-primary-alt px-2 py-2 mb-4 collapsed" data-toggle="collapse" data-target="#collapseThree">Filter Results<i class="fa fa-filter ml-2" aria-hidden="true"></i></button>
+                    </div>
+
                 </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myAccordion">
+                	<div class="hide">
+                        <h4 class="fs-16 fw-6">Filter Choices</h4>
+                        <br>
+                    </div>
 
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myAccordion">
-            	<div class="hide">
-                    <h4 class="fs-16 fw-6">Filter Choices</h4>
-                    <br>
+                    <!-- *********************** CATEGORY FILTER *********************** -->
+                      <dl>
+                        {% if facets.fields.category %}
+                            <dt class="fs-14">Category</dt>
+                            <hr class="my-1">
+                            {% for category in facets.fields.category|slice:":5" %}
+                                {% if category.1 != 0 %}
+                                    <dd>
+                                    <input class="facet " id="{{category.0|cut:" "}}" type="checkbox" name="category" value="{{ category.0 }}"
+                                    data-toggle="toggle" /> <span class="fs-14">{{ category.0|title }} ({{ category.1 }})</span>
+                                </dd>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                      </dl>
+
+                      <!-- *********************** SUBCATEGORY FILTER *********************** -->
+
+                      <dl class="mt-4">
+                        {% if facets.fields.subcategory %}
+                            <dt class="fs-14">SubCategory</dt>
+                            <hr class="my-1">
+                            {% for subcategory in facets.fields.subcategory|slice:":5" %}
+                                {% if subcategory.1 != 0 %}
+                                    <dd>
+                                    <input class="facet " id="{{subcategory.0|cut:" "}}" type="checkbox" name="subcategory" value="{{ subcategory.0 }}"
+                                    data-toggle="toggle" /> <span class="fs-14">{{ subcategory.0|title }} ({{ subcategory.1 }})</span>
+                                </dd>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                      </dl>
+
+                      <dl class="mt-4">
+                        {% if facets.fields.city %}
+                            <dt class="fs-14">City</dt>
+                            <hr class="my-1">
+                            {% for city in facets.fields.city|slice:":5" %}
+                                {% if city.1 != 0 %}
+                                    <dd>
+                                    <input class="facet " id="{{city.0|cut:" "}}" type="checkbox" name="city" value="{{ city.0 }}"
+                                    data-toggle="toggle" /> <span class="fs-14">{{ city.0|title }} ({{ city.1 }})</span>
+                                </dd>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                      </dl>
+
+                      <div>
+                          <input class="btn btn-primary-alt btn-block fs-12 px-3 py-2 pull-right" type="submit" value="Apply filter" onclick="return onFacetChangeApplied();" />
+                      </div>
                 </div>
-
-                <!-- *********************** CATEGORY FILTER *********************** -->
-                  <dl>
-                    {% if facets.fields.category %}
-                        <dt class="fs-14">Category</dt>
-                        <hr class="my-1">
-                        {% for category in facets.fields.category|slice:":5" %}
-                            {% if category.1 != 0 %}
-                                <dd>
-                                <input class="facet " id="{{category.0|cut:" "}}" type="checkbox" name="category" value="{{ category.0 }}"
-                                data-toggle="toggle" /> <span class="fs-14">{{ category.0|title }} ({{ category.1 }})</span>
-                            </dd>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                  </dl>
-
-                  <!-- *********************** SUBCATEGORY FILTER *********************** -->
-
-                  <dl class="mt-4">
-                    {% if facets.fields.subcategory %}
-                        <dt class="fs-14">SubCategory</dt>
-                        <hr class="my-1">
-                        {% for subcategory in facets.fields.subcategory|slice:":5" %}
-                            {% if subcategory.1 != 0 %}
-                                <dd>
-                                <input class="facet " id="{{subcategory.0|cut:" "}}" type="checkbox" name="subcategory" value="{{ subcategory.0 }}"
-                                data-toggle="toggle" /> <span class="fs-14">{{ subcategory.0|title }} ({{ subcategory.1 }})</span>
-                            </dd>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                  </dl>
-
-                  <dl class="mt-4">
-                    {% if facets.fields.city %}
-                        <dt class="fs-14">City</dt>
-                        <hr class="my-1">
-                        {% for city in facets.fields.city|slice:":5" %}
-                            {% if city.1 != 0 %}
-                                <dd>
-                                <input class="facet " id="{{city.0|cut:" "}}" type="checkbox" name="city" value="{{ city.0 }}"
-                                data-toggle="toggle" /> <span class="fs-14">{{ city.0|title }} ({{ city.1 }})</span>
-                            </dd>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                  </dl>
-
-                  <div>
-                      <input class="btn btn-primary-alt btn-block fs-12 px-3 py-2 pull-right" type="submit" value="Apply filter" onclick="return onFacetChangeApplied();" />
-                  </div>
             </div>
-        </div>
-        {% endif %}
-          <!-- ********************************************** -->
-          <!--                   Products                     -->
-          <!-- ********************************************** -->
-        {{ page_obj.objectlist }}
-        {% if  page_obj.object_list %}
-            {% for result in page_obj.object_list %}
-                <div class="col-lg-3 col-md-6 col-sm-6 text-center border-radius-300 mb-4 px-m-na-3">
-                    <div class="card">
-                        <a class="" href="{{ result.object.get_consumer_absolute_url }}">
-                            <img class="img-fluid border-radius-top-100" style="max-height: 200px;" src="{{ AwsBucketMediaURL }}{{ result.object.logo }}" alt="User Uploaded images">
-                        </a>
-                        <div class="card-body py-1 px-3">
-                            <div class=" text-left mt-2">
-                                <a href="{{ result.object.get_consumer_absolute_url }}" class="fw-6 text-primary fs-18 mb-1">{{ result.object.business_name }}</a>
-                                <br>
-                                    {% for i in result.object.rating_average_round %}
-                                    <span class="fa fa-star star-yellow fs-16"></span>
+            {% endif %}
+              <!-- ********************************************** -->
+              <!--                   Products                     -->
+              <!-- ********************************************** -->
+            <div class="col-lg-10">
+                <div class="row">
+                    {{ page_obj.objectlist }}
+                    {% if  page_obj.object_list %}
+                        {% for result in page_obj.object_list %}
+                            <div class="col-lg-4 col-md-6 col-sm-6 text-center border-radius-300 mb-4 px-m-na-3">
+                                <div class="card">
+                                    <a class="" href="{{ result.object.get_consumer_absolute_url }}">
+                                        <img class="img-fluid border-radius-top-100" style="max-height: 200px;" src="{{ AwsBucketMediaURL }}{{ result.object.logo }}" alt="User Uploaded images">
+                                    </a>
+                                    <div class="card-body py-1 px-3">
+                                        <div class=" text-left mt-2">
+                                            <a href="{{ result.object.get_consumer_absolute_url }}" class="fw-6 text-primary fs-18 mb-1">{{ result.object.business_name }}</a>
+                                            <br>
+                                                {% for i in result.object.rating_average_round %}
+                                                <span class="fa fa-star star-yellow fs-16"></span>
 
-                                    {% endfor %}
-                                    {% for i in result.object.rating_average_round_inverted %}
-                                    <span class="fa fa-star-o star-yellow fs-16"></span>
-                                    {% endfor %}
-                                <br>
-                                <!-- <span class="fs-12 text-gray-700">{{ result.object.category.get_name_display }} <span class="text-purple-500 px-1">&#8226;</span> {{ result.object.subcategory.name }}</span> -->
-                                    {% for result.object in result.object.rating_average.ratingsystem %}
-                                        testimonial
-                                    {% endfor %}
-                                <p class="fw-4 text-gray-800 fs-16 fw-4 pt-2 mb-2">
-                                    {{ result.object.slogan|truncatewords:8 }}
+                                                {% endfor %}
+                                                {% for i in result.object.rating_average_round_inverted %}
+                                                <span class="fa fa-star-o star-yellow fs-16"></span>
+                                                {% endfor %}
+                                            <br>
+                                            <!-- <span class="fs-12 text-gray-700">{{ result.object.category.get_name_display }} <span class="text-purple-500 px-1">&#8226;</span> {{ result.object.subcategory.name }}</span> -->
+                                                {% for result.object in result.object.rating_average.ratingsystem %}
+                                                    testimonial
+                                                {% endfor %}
+                                            <p class="fw-4 text-gray-800 fs-16 fw-4 pt-2 mb-2">
+                                                {{ result.object.slogan|truncatewords:8 }}
+                                            </p>
+                                            <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    <div class="col-lg-12 pt-5 text-muted fs-14">
+                        <div class="row">
+                            <div class="col-md-12 pull-right">
+                                <p class="pull-right fs-14 text-muted">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
                                 </p>
-                                <!-- url 'portal:merchant_detail' object.state object.city object.offer.first.merchant.category object.offer.first.merchant.subcategory object.offer.first.merchant.business_name object.offer.first.merchant.ref_code -->
                             </div>
                         </div>
-                    </div>
-                </div>
-            {% endfor %}
-      	<div class="col-lg-12 pt-5 text-muted fs-14">
-            <div class="row">
-                <div class="col-md-12 pull-right">
-                    <p class="pull-right fs-14 text-muted">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                    </p>
+                            <div class="px-4">
+                                {% if is_paginated %}
+                                <div class="col-lg-12 py-3 text-center">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination pull-right">
+                                            {% if page_obj.has_previous %}
+                                                <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                                            {% endif %}
+                                            {% for num in page_obj.paginator.page_range %}
+                                                    {% if page_obj.number == num %}
+                                                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                                    {% endif %}
+                                            {% endfor %}
+                                            {% if page_obj.has_next %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </nav>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
                 </div>
             </div>
-                <div class="px-4">
-                    {% if is_paginated %}
-                    <div class="col-lg-12 py-3 text-center">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination pull-right">
-                                {% if page_obj.has_previous %}
-                                    <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
-                                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
-                                {% endif %}
-                                {% for num in page_obj.paginator.page_range %}
-                                        {% if page_obj.number == num %}
-                                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-                                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-                                        {% endif %}
-                                {% endfor %}
-                                {% if page_obj.has_next %}
-                                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
-                                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                </div>
-                {% endif %}
-
-
-          	</div>
-            {% endif %}
         </div>
     </div>
     </div>
