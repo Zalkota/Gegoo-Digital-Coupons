@@ -3,7 +3,7 @@ $(function () {
 
     $('#q').autocomplete({
     // serviceUrl: "http://127.0.0.1:8000/search/autocomplete/",
-    serviceUrl: "https://0.0.0.0:8000/search/autocomplete/",
+    serviceUrl: "https://127.0.0.1:8000/search/autocomplete/",
     minChars: 2,
     dataType: 'json',
     type: 'GET',
