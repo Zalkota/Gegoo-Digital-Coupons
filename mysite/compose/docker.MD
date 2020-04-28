@@ -18,6 +18,7 @@ docker exec -it mysite_django_1 python3 local.py makemigrations
 docker exec -it mysite_django_1 python3 local.py migrate
 
 docker exec -it mysite_django_1 python3 local.py rebuild_index
+docker exec -it mysite_django_1 python3 production.py rebuild_index
 
 docker network inspect bridge
 
