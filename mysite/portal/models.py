@@ -469,8 +469,8 @@ class TestimonialManager(models.Manager):
 class Testimonial(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     store  = models.ForeignKey(Store, on_delete=models.CASCADE, null=True, related_name="testimonial")
-    title  = models.CharField(max_length=256, default="")
-    review = models.TextField()
+    title  = models.CharField(max_length=20, default="")
+    review = models.TextField(max_length=200)
     rating = models.PositiveIntegerField(
         choices=RATING_CHOICES, default='5',
         validators = [
