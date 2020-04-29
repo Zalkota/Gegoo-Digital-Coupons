@@ -111,16 +111,6 @@
                     <p>Your users will be able to write reviews</p>
                     {% endif %}
                 </div>
-                {% if related_stores %}
-                <div class="card-body border-top">
-                    <h3 class="header">Related Shops</h3>
-                    <ul class="list-unstyled ">
-                        {% for object in related_stores %}
-                        <li class="fs-14"><a href="{{ object.get_absolute_url }}">{{ object.business_name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                {% endif %}
             </div>
         </div>
         <div class="offset-xl-1 order-1 "></div>

@@ -68,7 +68,6 @@
                         <br>
                         <br>
                         <a href="tel:{{ object.phone_number }}" class="text-primary">{{ object.phone_number.as_e164 }} </a>
-                        <a href="" class="text-primary">Write a Review</a>
                     </div>
                 </div>
                 <div class="card-body border-top">
@@ -77,26 +76,34 @@
                         {{ object.description }}
                     </div>
                 </div>
-                {% if object.street_address %}
                 <div class="card-body border-top">
-                    <h3 class="header">Location</h3>
-                    <address class="fs-14">
-                        {{ object.street_address }}<br>
-                        {{ object.city }}, {{ object.state }} {{ object.zip }} <br>
-                        United States
-                    </address>
+                    <h3 class="header">Subscribe to {{ store.business_name}}</h3>
+                    {% if authenticated == False %}
+                        <a href="{% url 'account_login' %}" class="btn btn-primary-alt px-2 py-1 mt-3">
+                            Subscribe
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
+                        </a>
+                    {% else %}
+                        {% if store in store_connection_user %}
+                            <a href="" data-catid="{{ store.pk }}" class="followBtn btn btn-purple-600-alt px-2 py-1 mt-3 shadow-0" action_type="remove">
+                                Subscribed
+                            </a>
+                        {% else %}
+                            <a href="" data-catid="{{ store.pk }}" class="followBtn btn btn-primary-alt px-2 py-1 mt-3" action_type="add">
+                                Subscribe
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 icon-heart"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12.88 8.88a3 3 0 1 1 4.24 4.24l-4.41 4.42a1 1 0 0 1-1.42 0l-4.41-4.42a3 3 0 1 1 4.24-4.24l.88.88.88-.88z"/></svg>
+                            </a>
+                        {% endif %}
+                    {% endif %}
                 </div>
-                {% endif %}
-                {% if related_objects %}
                 <div class="card-body border-top">
-                    <h3 class="header">Related Shops</h3>
-                    <ul class="list-unstyled ">
-                        {% for object in related_objects %}
-                        <li class="fs-14"><a href="{{ object.get_absolute_url }}">{{ object.business_name }}</a></li>
-                        {% endfor %}
-                    </ul>
+                    <h3 class="header">Review Business</h3>
+                    {% if request.user.is_merchant == False %}
+                    <a href="{% url 'users:merchant_testimonial_create' slug=store.slug %}" class="text-primary fs-14">Write a Review</a>
+                    {% else %}
+                    <p>Your users will be able to write reviews</p>
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
         </div>
         <div class="offset-lg-1"></div>
@@ -108,46 +115,95 @@
             </div>
 
             <div class="mt-3">
+
+
+
                 <div class="merchant-bottom-button-container hide">
                     <!-- <div class="merchant-button merchant-button-active" id="ViewServicesBtn">
                         <span>Services</span>
                     </div> -->
+                    <div class="merchant-button merchant-button-active unhide" id="ViewInfoBtn">
+                        <span>Info</span>
+                    </div>
+
                     <div class="merchant-button merchant-button-active" id="ViewOffersBtn">
                         <span>Offers</span>
                     </div>
-                    {% if object.testimonial.exists %}
-                    <div class="merchant-button" id="LearnMoreBtn">
+
+                    {% if store.imagefile.exists %}
+                    <div class="merchant-button merchant-button" id="ViewImagesBtn">
+                        <span>Images</span>
+                    </div>
+                    {% endif %}
+
+                    {% if store.testimonial.exists %}
+                    <div class="merchant-button" id="ViewReviewsBtn">
                         <span>Reviews</span>
                     </div>
                     {% else %}
                     {% endif %}
-                    <div class="merchant-button" id="DownloadContentBtn">
-                        <span>Download</span>
+
+                    {% if store.downloadablefile %}
+                    <div class="merchant-button" id="ViewDownloadBtn">
+                        <span>Downloads</span>
                     </div>
+                    {% endif %}
                 </div>
-                <!-- View Services -->
-                <!-- <div id="ViewServices">
-                    <div class="card shadow-2 mt-3">
-                        <div class="card-body p-0">
-                            <div class="border-bottom px-3 py-3">
-                                <div class="text-left">
-                                    <h4 class="fw-4 fs-16 mb-0">
-                                        {{ object.title }}
-                                        <span class="text-primary fs-14 fw-6 pull-right">$49.99</span>
-                                    </h4>
+
+                <div id="ViewImages">
+                    <div  class="card card-border shadow-5 mt-3">
+                        <div class="row card-body pb-0">
+                            <!--Carousel Wrapper-->
+                                <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+                                  <!--Slides-->
+                                  <div class="carousel-inner" role="listbox">
+                                    <!--First slide-->
+                                    <div class="carousel-item active">
+                                        {% for object in image_list_first_carousel.all %}
+                                            <div class="col-md-3" style="float:left">
+                                                <div class="mb-0">
+                                                  <a target="_blank" href="{{ object.file.url}}"><img class="mb-3" style="width: 100%;" src="{{ object.file.url }}" alt="User Uploaded images">
+                                                  </a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <!--/.First slide-->
+                                    {% if image_list_second_carousel.exists %}
+                                    <!--Second slide-->
+                                    <div class="carousel-item">
+                                        {% for object in image_list_second_carousel.all %}
+                                            <div class="col-md-3" style="float:left">
+                                                <div class="mb-0">
+                                                    <a target="_blank" href="{{ object.file.url}}">
+                                                         <img class="mb-3" style="width: 100%;" src="{{ object.file.url }}" alt="User Uploaded images">
+                                                      </a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <!--/.Second slide-->
+                                    {% endif%}
+                                  </div>
+                                  <!--/.Slides-->
                                 </div>
-                            </div>
-                            <div class="border-bottom px-3 py-3">
-                                <div class="text-left">
-                                    <h4 class="fw-4 fs-16 mb-0">
-                                        {{ object.title }}
-                                        <span class="text-primary fs-14 fw-6 pull-right">$49.99</span>
-                                    </h4>
-                                </div>
-                            </div>
+                                <!--/.Carousel Wrapper-->
                         </div>
                     </div>
-                </div> -->
+                    {% if image_list_second_carousel.exists %}
+                        <!--Controls-->
+                        <div class="controls-top text-center mt-2">
+                          <a class="" href="#multi-item-example" data-slide="prev">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-2 icon-arrow-thick-left-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12 10h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5v2a1 1 0 0 1-1.7.7l-4-4a1 1 0 0 1 0-1.4l4-4A1 1 0 0 1 12 8v2z"/></svg>
+                          </a>
+                          <a class="" href="#multi-item-example" data-slide="next">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 ml-2 icon-arrow-thick-right-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M12 14H7a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h5V8a1 1 0 0 1 1.7-.7l4 4a1 1 0 0 1 0 1.4l-4 4A1 1 0 0 1 12 16v-2z"/></svg>
+                          </a>
+                        </div>
+                        <!--/.Controls-->
+                    {% endif%}
+                </div>
+
                 <!-- View Offers -->
                 <div id="ViewOffers">
                     {% for offer in offers %}
@@ -196,29 +252,30 @@
                         </div>
                     {% endfor %}
                 </div>
-
                 <!-- Reviews -->
-                <div id="LearnMore">
-                    {% for object in object.testimonial.all %}
-                    <div class="card card-border shadow-2 mt-3">
+                <div id="ViewReviews">
+                    {% for object in object.testimonial.testimonials_capped %}
+                    <div class="card card-border shadow-5 mt-3">
                         <div class="flex-container-vertical">
                             <div class="card-body py-4 px-4">
                                 <div class="row">
-                                    <div class="col-lg-8">
-                                        <h3 class="subheader">{{ object.title}}</h3>
+                                    <div class="col-lg-12">
+                                        <div class=" pr-1" style="line-height: 5px;">
+                                            <i class="material-icons star-yellow fs-18 pull-right" style="">
+                                                {% for i in object.range %}
+                                                star
+                                                {% endfor %}
+                                                {% for i in object.range_inverted %}
+                                                star_border
+                                                {% endfor %}
+                                            </i>
+                                        </div>
+                                        <h3 class="subheader">{{ object.title }}</h3>
                                         <p class="mt-3 fw-4 fs-16 text-gray-700">
                                             {{ object.review|truncatewords:16 }}
                                         </p>
                                     </div>
-                                    <div class="col-lg-4">
-                                        <i class="material-icons star-yellow fs-18 pull-right" style="">
-                                            {% if object.rating == 1 %} star star_border star_border star_border star_border {% endif %}
-                                            {% if object.rating == 2 %} star star star_border star_border star_border {% endif %}
-                                            {% if object.rating == 3 %} star star star star_border star_border {% endif %}
-                                            {% if object.rating == 4 %} star star star star star_border {% endif %}
-                                            {% if object.rating == 5 %} star star star star star {% endif %}
-                                        </i>
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="flex-footer">
@@ -226,7 +283,11 @@
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="fs-14 text-secondary text-left">
-                                                <span>Written by: {{ object.author }}</span> <br>
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 mr-2 icon-user-circle"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M3.66 17.52A5 5 0 0 1 8 15h8a5 5 0 0 1 4.34 2.52 10 10 0 0 1-16.68 0zM12 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>
+                                                    {{ object.author|title }}
+                                                </span>
+                                                <br>
                                             </div>
                                         </div>
                                         <div class="offset-4"></div>
@@ -239,23 +300,22 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        </div>
                     {% endfor %}
-
                 </div>
 
                 <!-- Download Content -->
-                <!-- <div class="text-center" id="DownloadContent">
-                    <div class="card shadow-2 mt-3">
+                <div id="ViewDownloads">
+                    <div class="card shadow-5 mt-3 text-center">
                         <div class="card-body">
-                            <h3 class="header mb-3">Content Available for Download</h3>
-                            <a href="#" class="btn btn-primary-alt mr-auto ml-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 mr-6 icon-cloud-download"><path class="primary" d="M15 15v-3a3 3 0 0 0-6 0v3H6a4 4 0 0 1-.99-7.88 5.5 5.5 0 0 1 10.86-.82A4.49 4.49 0 0 1 22 10.5a4.5 4.5 0 0 1-4.5 4.5H15z"/><path class="primary" d="M11 18.59V12a1 1 0 0 1 2 0v6.59l1.3-1.3a1 1 0 0 1 1.4 1.42l-3 3a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l1.3 1.3z"/></svg>
-                                Download {{ object.downloadable_content_title }}
+                            <h3 class="header mb-3">Content Available for Download from {{object.business_name}}</h3>
+                            <a href="{{ store.downloadablefile.file.url }}" class="btn btn-primary-alt mr-auto ml-auto">
+                                Download {{ store.downloadablefile.title }}
                             </a>
                         </div>
                     </div>
-                </div> -->
+                </div>
+
             </div>
         </div>
     </div>
@@ -326,68 +386,129 @@ if(retrievedObjectText){
 {% block extrajs %}
 
 <script type="text/javascript">
-$(document).ready(function() {
+    $(document).ready(function() {
 
-    var view_offers = $('#ViewOffers');
-    var view_services = $('#ViewServices');
-    var download_content = $('#DownloadContent');
-    var learn_more = $('#LearnMore');
-
-
-    download_content.hide()
-    learn_more.hide()
+        var view_info = $('#ViewInfo');
+        var view_images = $('#ViewImages');
+        var view_offers = $('#ViewOffers');
+        var view_services = $('#ViewServices');
+        var view_downloads = $('#ViewDownloads');
+        var view_reviews = $('#ViewReviews');
 
 
+        // Size of browser viewport.
+        // var height = $(window).height()
+        var width = $(window).width()
 
-    $('#ViewServicesBtn').on('click', function() {
-      view_offers.hide()
-      view_services.show()
-      download_content.hide()
-      learn_more.hide()
 
-      $('#DownloadContentBtn').removeClass('merchant-button-active')
-      $('#LearnMoreBtn').removeClass('merchant-button-active')
-      $('#ViewServicesBtn').addClass('merchant-button-active')
-      $('#ViewOffersBtn').removeClass('merchant-button-active')
+        view_offers.hide()
+        view_images.hide()
+        view_downloads.hide()
+        view_reviews.hide()
 
-    })
+        if (width >= 992) {
+            $('#ViewOffersBtn').addClass('merchant-button-active')
+            view_offers.show()
+        }
 
-    $('#ViewOffersBtn').on('click', function() {
-      view_offers.show()
-      view_services.hide()
-      download_content.hide()
-      learn_more.hide()
 
-      $('#DownloadContentBtn').removeClass('merchant-button-active')
-      $('#LearnMoreBtn').removeClass('merchant-button-active')
-      $('#ViewOffersBtn').addClass('merchant-button-active')
-      $('#ViewServicesBtn').removeClass('merchant-button-active')
+        $('#ViewInfoBtn').on('click', function() {
+          view_info.show()
+          view_images.hide()
+          view_offers.hide()
+          view_services.hide()
+          view_downloads.hide()
+          view_reviews.hide()
 
-    })
+          $('#ViewInfoBtn').addClass('merchant-button-active')
+          $('#ViewImagesBtn').removeClass('merchant-button-active')
+          $('#ViewDownloadBtn').removeClass('merchant-button-active')
+          $('#ViewServicesBtn').removeClass('merchant-button-active')
+          $('#ViewOffersBtn').removeClass('merchant-button-active')
+          $('#ViewReviewsBtn').removeClass('merchant-button-active')
 
-    $('#DownloadContentBtn').on('click', function() {
-      view_offers.hide()
-      view_services.hide()
-      download_content.show()
-      learn_more.hide()
+        })
 
-      $('#DownloadContentBtn').addClass('merchant-button-active')
-      $('#LearnMoreBtn').removeClass('merchant-button-active')
-      $('#ViewOffersBtn').removeClass('merchant-button-active')
-      $('#ViewServicesBtn').removeClass('merchant-button-active')
-    })
+        $('#ViewImagesBtn').on('click', function() {
+          view_offers.hide()
+          view_images.show()
+          view_offers.hide()
+          view_services.hide()
+          view_downloads.hide()
+          view_reviews.hide()
 
-    $('#LearnMoreBtn').on('click', function() {
-      view_offers.hide()
-      download_content.hide()
-      view_services.hide()
-      learn_more.show()
+          $('#ViewInfoBtn').removeClass('merchant-button-active')
+          $('#ViewImagesBtn').addClass('merchant-button-active')
+          $('#ViewDownloadBtn').removeClass('merchant-button-active')
+          $('#ViewServicesBtn').removeClass('merchant-button-active')
+          $('#ViewOffersBtn').removeClass('merchant-button-active')
+          $('#ViewReviewsBtn').removeClass('merchant-button-active')
 
-      $('#DownloadContentBtn').removeClass('merchant-button-active')
-      $('#LearnMoreBtn').addClass('merchant-button-active')
-      $('#ViewOffersBtn').removeClass('merchant-button-active')
-      $('#ViewServicesBtn').removeClass('merchant-button-active')
-    })
-});
+        })
+
+
+        $('#ViewServicesBtn').on('click', function() {
+          view_offers.hide()
+          view_images.hide()
+          view_services.show()
+          view_downloads.hide()
+          view_reviews.hide()
+
+          $('#ViewInfoBtn').removeClass('merchant-button-active')
+          $('#ViewImagesBtn').removeClass('merchant-button-active')
+          $('#ViewDownloadBtn').removeClass('merchant-button-active')
+          $('#ViewServicesBtn').addClass('merchant-button-active')
+          $('#ViewOffersBtn').removeClass('merchant-button-active')
+          $('#ViewReviewsBtn').removeClass('merchant-button-active')
+
+        })
+
+        $('#ViewOffersBtn').on('click', function() {
+          view_offers.show()
+          view_images.hide()
+          view_services.hide()
+          view_downloads.hide()
+          view_reviews.hide()
+
+          $('#ViewInfoBtn').removeClass('merchant-button-active')
+          $('#ViewImagesBtn').removeClass('merchant-button-active')
+          $('#ViewDownloadBtn').removeClass('merchant-button-active')
+          $('#ViewOffersBtn').addClass('merchant-button-active')
+          $('#ViewServicesBtn').removeClass('merchant-button-active')
+          $('#ViewReviewsBtn').removeClass('merchant-button-active')
+
+        })
+
+        $('#ViewDownloadBtn').on('click', function() {
+          view_offers.hide()
+          view_images.hide()
+          view_services.hide()
+          view_reviews.hide()
+          view_downloads.show()
+
+          $('#ViewInfoBtn').removeClass('merchant-button-active')
+          $('#ViewImagesBtn').removeClass('merchant-button-active')
+          $('#ViewDownloadBtn').addClass('merchant-button-active')
+          $('#ViewOffersBtn').removeClass('merchant-button-active')
+          $('#ViewServicesBtn').removeClass('merchant-button-active')
+          $('#ViewReviewsBtn').removeClass('merchant-button-active')
+        })
+
+        $('#ViewReviewsBtn').on('click', function() {
+          view_offers.hide()
+          view_images.hide()
+          view_services.hide()
+          view_downloads.hide()
+          view_reviews.show()
+
+          $('#ViewInfoBtn').removeClass('merchant-button-active')
+          $('#ViewImagesBtn').removeClass('merchant-button-active')
+          $('#ViewDownloadBtn').removeClass('merchant-button-active')
+          $('#ViewOffersBtn').removeClass('merchant-button-active')
+          $('#ViewServicesBtn').removeClass('merchant-button-active')
+          $('#ViewReviewsBtn').addClass('merchant-button-active')
+        })
+
+    });
 </script>
 {% endblock extrajs %}

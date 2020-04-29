@@ -177,12 +177,22 @@ class ConsumerStoreDetailView(DetailView): #This needs to filter by user city or
 class MerchantStoreDetailView(LoginRequiredMixin, IsMerchantMixin, DetailView):
 	model = portal_models.Store
 	template_name = 'portal/merchant/merchant_detail_mpm.html'
+	context_object_name = 'store'
 
 	def get_context_data(self, **kwargs):
-		self.object = self.get_object()
 
 		context = super(MerchantStoreDetailView, self).get_context_data(**kwargs)
 		store_pk = self.object.pk
+
+		image_list_first_carousel_qs = self.object.imagefile.all()[:4]
+		context['image_list_first_carousel'] = image_list_first_carousel_qs
+
+		try:
+			image_list_second_carousel_qs = self.object.imagefile.all()[4:8]
+			context['image_list_second_carousel'] = image_list_second_carousel_qs
+		except:
+			pass
+
 
 		store_offer_qs = portal_models.StoreOffer.objects.filter(current_store=store_pk)
 		if store_offer_qs.exists():
