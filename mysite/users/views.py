@@ -153,13 +153,19 @@ class userRewards(LoginRequiredMixin, View):
         return render(self.request, "users/user/user_rewards.html", context)
 
 
-class userFavorites(LoginRequiredMixin, ListView):
-    model = portal_models.Offer
-    template_name = 'users/user/user_favorites.html'
+class userFavorites(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        try:
+            object = portal_models.FollowStore.objects.get(current_user=self.request.user)
 
-    # def get_queryset(self):
-    #     favorite_list = portal_models.Offer.objects.filter(likes=self.request.user)
-    #     return favorite_list
+            context = {
+                # 'form': form,
+                'object': object
+            }
+        except:
+            context = {}
+        return render(self.request, 'users/user/user_favorites.html', context)
+
     #
     # def get_context_data(self, **kwargs):
     #     follow = users_models.Follow.objects.get(current_user=self.request.user)
