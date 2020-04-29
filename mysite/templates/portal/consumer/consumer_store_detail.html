@@ -270,15 +270,13 @@
                             <div class="card-body py-4 px-4">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <div class=" pr-1" style="line-height: 5px;">
-                                            <i class="material-icons star-yellow fs-18 pull-right" style="">
-                                                {% for i in object.range %}
-                                                star
-                                                {% endfor %}
-                                                {% for i in object.range_inverted %}
-                                                star_border
-                                                {% endfor %}
-                                            </i>
+                                        <div class="flex-box pr-1">
+                                            {% for i in object.rating_average_round %}
+                                              <span class="fa fa-star star-yellow fs-16"></span>
+                                              {% endfor %}
+                                              {% for i in object.rating_average_round_inverted %}
+                                              <span class="fa fa-star-o star-yellow fs-16"></span>
+                                            {% endfor %}
                                         </div>
                                         <h3 class="subheader">{{ object.title }}</h3>
                                         <p class="mt-3 fw-4 fs-16 text-gray-700">
