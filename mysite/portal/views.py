@@ -59,9 +59,13 @@ class CategoryDetailView(ListView):
 		user_location = city_state["user_location"]
 		slug = self.kwargs['slug']
 		#Query Stores Nearby
-		category_qs = portal_models.Category.objects.get(slug=slug)
-		object_list = self.model.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2, category=category_qs)
-		return object_list
+		try:
+			category_qs = portal_models.Category.objects.get(slug=slug)
+			object_list = self.model.objects.annotate(distance = Distance("location", user_location)).order_by("distance").filter(status=2, category=category_qs)
+			return object_list
+		except ObjectDoesNotExist:
+			return redirect('home-page')
+
 
 	def get_context_data(self, **kwargs):
 		context = super(CategoryDetailView, self).get_context_data(**kwargs)
