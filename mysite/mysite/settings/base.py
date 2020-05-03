@@ -356,6 +356,7 @@ ACCOUNT_SESSION_REMEMBER = 'None' # Default is None. Controls the life time of t
 
 
 EMAIL_CUSTOMER = 'dominic@modwebservices.com'
+SUPPORT_EMAIL_ADDRESS_TO = 'dominic@modwebservices.com'
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (42.3314, -83.0458),

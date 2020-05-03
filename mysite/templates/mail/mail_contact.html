@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-{% load account %}{% user_display user as user_display %}{% load i18n %}
+thegegoo<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -192,8 +191,8 @@
     <![endif]-->
 
         <!-- Visually Hidden Preheader Text : BEGIN -->
-        <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
-            Password Reset Request from www.realisticlandscapes.com.
+        <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">{
+            Verify the email address that you provided during signup at www.thegegoo.com.
         </div>
         <!-- Visually Hidden Preheader Text : END -->
 
@@ -255,9 +254,14 @@
                                 <td style="padding: 20px 60px 40px 60px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
                                     <hr style="background-color: rgba(0, 0, 0, 0.06); color: rgba(0, 0, 0, 0.06);">
                                     <br><br>
-                                    <p style="margin: 0;">Hi {{ user_display }}, you're receiving this e-mail because you or someone else has requested a password for your user account at The Gegoo.
-                                    It can be safely ignored if you did not request a password reset. Click the link below to reset your password.
+                                    <p style="margin: 0;">{{ user }} has asked the following question:
+
                                     </p>
+                                    <p style="margin: 0;">{{ message }}
+
+                                    </p>
+
+                                    <h3>Contact them at: {{ email }}</h3>
                                 </td>
                             </tr>
 
@@ -272,7 +276,7 @@
                                       </tr>
                                         <tr>
                                             <td class="button-td button-td-primary" style="border-radius: 4px; background: #7505AB; width: 100%;">
-											    <a class="button-a button-a-primary" href="{{ password_reset_url }}" style="background: #7505AB; border: 1px solid #7505AB; font-family: sans-serif; font-size: 15px;font-weight: 700; line-height: 15px; text-decoration: none; padding: 13px 30px 13px 30px; color: #fff; display: block; border-radius: 4px;">Reset Password</a>
+											    <a class="button-a button-a-primary" href="mailto:{{ email }}" style="background: #7505AB; border: 1px solid #7505AB; font-family: sans-serif; font-size: 15px;font-weight: 700; line-height: 15px; text-decoration: none; padding: 13px 30px 13px 30px; color: #fff; display: block; border-radius: 4px;">Reply Via Email</a>
 											</td>
                                         </tr>
                                         <tr>
@@ -285,17 +289,7 @@
                                 </td>
                             </tr>
 
-                            <tr >
-                                <td style="padding: 40px 60px 40px 60px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
-                                    <!-- <h2 style="margin: 0 0 10px 0; font-family: sans-serif; font-size: 18px; line-height: 22px; color: #333333; font-weight: bold;">Praesent in felis ut velit pretium lobortis rhoncus ut&nbsp;erat.</h2> -->
-                                    <p style="margin: 0;"> Thanks for being with us! If you have any questions or concerns, feel free to <a href="https://thegegoo.com/support/contact" style="color: #7505AB;">contact us</a>.
-                                    <!--<ul style="padding: 0; margin: 0 0 10px 0; list-style-type: disc;">
-                  										<li style="margin:0 0 10px 30px;" class="list-item-first">A list item.</li>
-                  										<li style="margin:0 0 10px 30px;">Another list item here.</li>
-                  										<li style="margin: 0 0 0 30px;" class="list-item-last">Everyone gets a list item, list items for everyone!</li>
-                  									</ul> -->
-                                </td>
-                            </tr>
+
 
                             <tr>
                                 <td style="padding: 40px 60px 40px 60px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
