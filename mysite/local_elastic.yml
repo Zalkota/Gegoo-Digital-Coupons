@@ -53,7 +53,7 @@ services:
       - database1_network
     # environment:
       # - POSTGRES_USER=gegooadmin
-      # - POSTGRES_PASSWORD=$Django10
+      # - POSTGRES_PASSWORD=
       # - POSTGRES_PORT=
     #
 

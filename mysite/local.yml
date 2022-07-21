@@ -41,7 +41,7 @@ services:
         - ./compose/postgres/postgres.env
     # environment:
       # - POSTGRES_USER=gegooadmin
-      # - POSTGRES_PASSWORD=$Django10
+      # - POSTGRES_PASSWORD=
       # - POSTGRES_PORT=
     #
   # nginx:

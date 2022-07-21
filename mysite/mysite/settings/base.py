@@ -186,27 +186,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
-# DATABASES = {
-#
-# 	'default': {
-#         	'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         	'NAME': 'gegoo',
-#         	'USER': 'gegooadmin',
-#         	'PASSWORD': '$Django10',
-#         	'HOST': 'localhost',
-#         	'PORT': '',
-#     }
-# }
-
 DATABASES = {
      'default': {
          'ENGINE': os.getenv('DATABASE_ENGINE', 'django.contrib.gis.db.backends.postgis'),
          'NAME': os.getenv('DATABASE_NAME', 'gegoo'),
          'USER': os.getenv('DATABASE_USERNAME', 'gegooadmin'),
-         'PASSWORD': os.getenv('DATABASE_PASSWORD', '$Django10'),
+         'PASSWORD': os.getenv('DATABASE_PASSWORD', ''),
          'HOST': os.getenv('DATABASE_HOST', 'localhost'),
          'PORT': os.getenv('DATABASE_PORT', ''),
          'OPTIONS': json.loads(

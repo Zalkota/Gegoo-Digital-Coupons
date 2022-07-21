@@ -34,8 +34,8 @@ STRIPE_SECRET_KEY   = 'sk_test_Eu5hX5Y9os8wHLuu09bW8Cz600mtFK7crK'
 
 # S3 ------------------------------------------------------------------------
 import datetime
-AWS_ACCESS_KEY_ID = "AKIAXTP3WIX7E34PG34V"
-AWS_SECRET_ACCESS_KEY = "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"
+AWS_ACCESS_KEY_ID = ""
+AWS_SECRET_ACCESS_KEY = ""
 AWS_FILE_EXPIRE = 200
 AWS_PRELOAD_METADATA = True
 AWS_QUERYSTRING_AUTH = True

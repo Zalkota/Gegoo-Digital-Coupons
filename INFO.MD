@@ -43,7 +43,7 @@ This will install all of the requirements for the website_url
 sudo su postgres
 psql
 CREATE DATABASE gegoo;
-CREATE USER gegooadmin WITH PASSWORD '$Django10';
+CREATE USER gegooadmin WITH PASSWORD '';
 ALTER ROLE gegooadmin SET client_encoding TO 'utf8';
 ALTER ROLE gegooadmin SET default_transaction_isolation TO 'read committed';
 ALTER ROLE gegooadmin SET timezone TO 'UTC';
